@@ -4,6 +4,7 @@ namespace Illuminate\Auth;
 
 use Illuminate\Support\Facades\Auth;
 use App\Aktivasimentor;
+use App\Tbmentor;
 
 trait MustVerifyEmail
 {
@@ -29,6 +30,7 @@ trait MustVerifyEmail
     {
 
         Aktivasimentor::where('id', Auth::user()->id)->update(['tglAktivasi' => $this->freshTimestamp()]);
+        Tbmentor::where('id', Auth::user()->id)->update(['statusAktivasi' => '1']);
 
         // return $this->forceFill([
         //     'statusAktivasi' => '1',
