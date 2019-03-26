@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\MailMessage;
+use App\Aktivasimentor; //menggunakan tabel aktivasi mentor
 
 class VerifyEmail extends Notification
 {
@@ -37,6 +38,10 @@ class VerifyEmail extends Notification
      */
     public function toMail($notifiable)
     {
+        Aktivasimentor::where('id', $notifiable->getKey())->update(['codeAktivasi' => $this->verificationUrl($notifiable)]); 
+        Aktivasimentor::where('id', $notifiable->getKey())->update(['statusLimit' => '3']); 
+        Aktivasimentor::where('id', $notifiable->getKey())->update(['limitAktivasi' =>Carbon::now()->addMinutes(2880)]); 
+
         if (static::$toMailCallback) {
             return call_user_func(static::$toMailCallback, $notifiable);
         }
@@ -61,7 +66,7 @@ class VerifyEmail extends Notification
     {
         return URL::temporarySignedRoute(
             'verification.verify',
-            Carbon::now()->addMinutes(Config::get('auth.verification.expire', 60)),
+            Carbon::now()->addMinutes(Config::get('auth.verification.expire', 2880)),
             ['id' => $notifiable->getKey()]
         );
     }

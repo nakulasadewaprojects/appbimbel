@@ -49,8 +49,8 @@
                         <div class="form-group row">
                             <label for="last_name" class="col-md-4 col-form-label text-md-right">{{ __('Jenis Kelamin') }}</label>
                             <div class="col-md-8 col-form-label">
-                                    <input type="radio" name="gender" value="pria" required> Pria &nbsp;&nbsp;
-                                    <input type="radio" name="gender" value="wanita" required> Wanita
+                                    <input type="radio" name="gender" value="1" required> Pria &nbsp;&nbsp;
+                                    <input type="radio" name="gender" value="2" required> Wanita
                             </div>
                         </div>
 
@@ -72,7 +72,7 @@
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password"
-                                    required> @if ($errors->has('password'))
+                                    required> <font size="2">*Password minimal 8 karakter kombinasi huruf & angka</font> @if ($errors->has('password'))
                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span> @endif

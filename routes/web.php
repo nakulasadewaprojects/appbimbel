@@ -1,5 +1,4 @@
 <?php
-use Carbon\Carbon;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,8 +14,6 @@ use Carbon\Carbon;
 Route::get('/', function () {
 
     return view('welcome');
-    // $hariIni = Carbon::now();
-    // dump($hariIni);
 
 });
 

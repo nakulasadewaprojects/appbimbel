@@ -2,6 +2,9 @@
 
 namespace Illuminate\Auth;
 
+use Illuminate\Support\Facades\Auth;
+use App\Aktivasimentor;
+
 trait MustVerifyEmail
 {
     /**
@@ -11,7 +14,10 @@ trait MustVerifyEmail
      */
     public function hasVerifiedEmail()
     {
-        return ! is_null($this->email_verified_at);
+        // return ! is_null($this->email_verified_at);
+        if (Auth::check()) {
+            return  !is_null(Aktivasimentor::where('id', Auth::user()->id)->value('tglAktivasi'));
+        }
     }
 
     /**
@@ -21,9 +27,12 @@ trait MustVerifyEmail
      */
     public function markEmailAsVerified()
     {
-        return $this->forceFill([
-            'email_verified_at' => $this->freshTimestamp(),
-        ])->save();
+
+        Aktivasimentor::where('id', Auth::user()->id)->update(['tglAktivasi' => $this->freshTimestamp()]);
+
+        // return $this->forceFill([
+        //     'statusAktivasi' => '1',
+        // ])->save();
     }
 
     /**

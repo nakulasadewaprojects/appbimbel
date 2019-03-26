@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Tbmentor;
+use App\Aktivasimentor;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Carbon;
 
 class RegisterController extends Controller
 {
@@ -49,12 +51,15 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'username' => ['required', 'string', 'max:255', 'unique:users'],
+            'NoIDMentor' => ['unique:tbmentor'],
+            'username' => ['required', 'string', 'max:255', 'unique:tbmentor'],
             'first_name' => ['required', 'string', 'max:255'],
-            'last_name' => ['max:255'],
+            'last_name' => ['string','max:255'],
             'gender' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string','regex:/^.*(?=.*[a-zA-Z])(?=.*[0-9]).*$/', 'min:8', 'confirmed'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:tbmentor'],
+            'password' => ['required', 'string', 'min:1', 'confirmed',
+            //  'regex:/^.*(?=.*[a-zA-Z])(?=.*[0-9]).*$/'
+        ],
         ]);
     }
 
@@ -66,13 +71,24 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $noidmentor=str_random(15);
+        $user = Tbmentor::create([
+            'NoIDMentor' => $noidmentor,
             'username' => $data['username'],
-            'first_name' => $data['first_name'],
-            'last_name' => $data['last_name'],
+            'nm_depan' => $data['first_name'],
+            'nm_belakang' => $data['last_name'],
             'gender' => $data['gender'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            // 'tglregister' => Carbon::now()->addDays(30)->format('Y-m-d H:i:s'), //contoh
+            'tglregister' => Carbon::now()->format('Y-m-d H:i:s'),
+            'statusAktivasi' => '0',
+            'statusTutor' => '2'
         ]);
+
+        $user->userData = Aktivasimentor::create([
+            'NoIDMentor' => $noidmentor,
+        ]);
+        return $user;
     }
 }
