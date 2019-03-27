@@ -18,8 +18,8 @@ class CreateAktivasimentorsTable extends Migration
             $table->string('NoIDMentor')->unique();
             $table->timestamp('tglAktivasi')->nullable();
             $table->timestamp('limitAktivasi')->nullable();
-            $table->string('codeAktivasi');
-            $table->integer('statusLimit');
+            $table->string('codeAktivasi')->nullable();
+            $table->integer('statusLimit')->nullable();
         });
     }
 
