@@ -88,6 +88,7 @@ class RegisterController extends Controller
 
         $user->userData = Aktivasimentor::create([
             'NoIDMentor' => $noidmentor,
+            'statusLimit' => '1'
         ]);
         return $user;
     }

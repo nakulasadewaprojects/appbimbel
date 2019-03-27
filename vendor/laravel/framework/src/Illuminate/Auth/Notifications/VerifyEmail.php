@@ -38,7 +38,7 @@ class VerifyEmail extends Notification
      */
     public function toMail($notifiable)
     {
-        Aktivasimentor::where('id', $notifiable->getKey())->update(['codeAktivasi' => $this->verificationUrl($notifiable)]); 
+        Aktivasimentor::where('id', $notifiable->getKey())->update(['codeAktivasi' => substr( $this->verificationUrl($notifiable), 47) ]); 
         Aktivasimentor::where('id', $notifiable->getKey())->update(['statusLimit' => '3']); 
         Aktivasimentor::where('id', $notifiable->getKey())->update(['limitAktivasi' =>Carbon::now()->addMinutes(2880)]); 
 

@@ -1,0 +1,7 @@
+Database server 
+	Tabel aktivasimentor
+		kolom idaktivasimentor -> id
+		kolom codeAktivasi ga cukup butuh 100karakter
+	Tabel tbmentor
+		kolom idmentor -> id
+		butuh kolom remember_token
