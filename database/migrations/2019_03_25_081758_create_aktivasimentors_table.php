@@ -19,7 +19,7 @@ class CreateAktivasimentorsTable extends Migration
             $table->timestamp('tglAktivasi')->nullable();
             $table->timestamp('limitAktivasi')->nullable();
             $table->string('codeAktivasi')->nullable();
-            $table->integer('statusLimit')->nullable();
+            $table->integer('statusLimit')->comment('1=Pending 2=Cancel 3=Terkirim')->nullable();
         });
     }
 

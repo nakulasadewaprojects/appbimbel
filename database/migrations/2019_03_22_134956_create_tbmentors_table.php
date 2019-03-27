@@ -26,11 +26,11 @@ class CreateTbmentorsTable extends Migration
             $table->integer('kecamatan')->nullable();
             $table->integer('kelurahan')->nullable();
             $table->string('noTlpn',15)->nullable();
-            $table->integer('statusTutor')->nullable();
-            $table->string('gender')->nullable();
+            $table->integer('statusTutor')->comment('1=aktif 2=non aktif 3=out')->nullable();
+            $table->string('gender')->comment('1=laki-laki 2=perempuan')->nullable();
             $table->string('email',100)->unique();
             $table->timestamp('tglregister')->nullable();
-            $table->integer('statusAktivasi')->nullable();
+            $table->integer('statusAktivasi')->comment('0=belum aktivasi 1=sudah aktivasi')->nullable();
             $table->rememberToken()->nullable();
         });
     }
