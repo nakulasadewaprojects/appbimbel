@@ -4,9 +4,9 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>
-			AppBimbel
+			Metronic | My Profile
 		</title>
-		<meta name="description" content="Latest updates and statistic charts">
+		<meta name="description" content="User profile view and edit">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<!--begin::Web font -->
@@ -19,11 +19,10 @@
             }
           });
 		</script>
-		<link href="{{ asset('css/fullcalendar.bundle.css') }}" rel="stylesheet" type="text/css" />
 		<link href="{{ asset('css/vendors.bundle.css') }}" rel="stylesheet" type="text/css" />
     	<link href="{{ asset('css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
 		<link rel="shortcut icon" href="assets/demo/default/media/img/logo/favicon.ico" />
-
+        
 	</head>
 	<!-- end::Head -->
     <!-- end::Body -->
@@ -68,12 +67,38 @@
 						<div class="m-stack__item m-stack__item--fluid m-header-head" id="m_header_nav">
 							<div class="m-header__title">
 								<h3 class="m-header__title-text">
-									Mentor Dashboard
+									Profile Mentor
 								</h3>
-							</div>			
+							</div>
+							<!-- BEGIN: Horizontal Menu -->
+							<button class="m-aside-header-menu-mobile-close  m-aside-header-menu-mobile-close--skin-light " id="m_aside_header_menu_mobile_close_btn">
+								<i class="la la-close"></i>
+							</button>
+							<div id="m_header_menu" class="m-header-menu m-aside-header-menu-mobile m-aside-header-menu-mobile--offcanvas  m-header-menu--skin-light m-header-menu--submenu-skin-light m-aside-header-menu-mobile--skin-light m-aside-header-menu-mobile--submenu-skin-light "  >
+								
+							</div>
+							<!-- END: Horizontal Menu -->				
 				<!-- BEGIN: Topbar -->
 							<div id="m_header_topbar" class="m-topbar  m-stack m-stack--ver m-stack--general">
 								<div class="m-stack__item m-stack__item--middle m-dropdown m-dropdown--arrow m-dropdown--large m-dropdown--mobile-full-width m-dropdown--align-right m-dropdown--skin-light m-header-search m-header-search--expandable m-header-search--skin-light" id="m_quicksearch" data-search-type="default">
+									<!--BEGIN: Search Form -->
+									<form class="m-header-search__form">
+										<div class="m-header-search__wrapper">
+											<span class="m-header-search__icon-search" id="m_quicksearch_search">
+												<i class="flaticon-search"></i>
+											</span>
+											<span class="m-header-search__input-wrapper">
+												<input autocomplete="off" type="text" name="q" class="m-header-search__input" value="" placeholder="Search..." id="m_quicksearch_input">
+											</span>
+											<span class="m-header-search__icon-close" id="m_quicksearch_close">
+												<i class="la la-remove"></i>
+											</span>
+											<span class="m-header-search__icon-cancel" id="m_quicksearch_cancel">
+												<i class="la la-remove"></i>
+											</span>
+										</div>
+									</form>
+									<!--END: Search Form -->
 	<!--BEGIN: Search Results -->
 									<div class="m-dropdown__wrapper">
 										<div class="m-dropdown__arrow m-dropdown__arrow--center"></div>
@@ -300,6 +325,65 @@
 												</div>
 											</div>
 										</li>
+										<li class="m-nav__item m-topbar__quick-actions m-dropdown m-dropdown--skin-light m-dropdown--large m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push m-dropdown--mobile-full-width m-dropdown--skin-light"  data-dropdown-toggle="click">
+											<a href="#" class="m-nav__link m-dropdown__toggle">
+												<span class="m-nav__link-badge m-badge m-badge--dot m-badge--info m--hide"></span>
+												<span class="m-nav__link-icon">
+													<span class="m-nav__link-icon-wrapper">
+														<i class="flaticon-share"></i>
+													</span>
+												</span>
+											</a>
+											<div class="m-dropdown__wrapper">
+												<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
+												<div class="m-dropdown__inner">
+													<div class="m-dropdown__header m--align-center">
+														<span class="m-dropdown__header-title">
+															Quick Actions
+														</span>
+														<span class="m-dropdown__header-subtitle">
+															Shortcuts
+														</span>
+													</div>
+													<div class="m-dropdown__body m-dropdown__body--paddingless">
+														<div class="m-dropdown__content">
+															<div class="m-scrollable" data-scrollable="false" data-max-height="380" data-mobile-max-height="200">
+																<div class="m-nav-grid m-nav-grid--skin-light">
+																	<div class="m-nav-grid__row">
+																		<a href="#" class="m-nav-grid__item">
+																			<i class="m-nav-grid__icon flaticon-file"></i>
+																			<span class="m-nav-grid__text">
+																				Generate Report
+																			</span>
+																		</a>
+																		<a href="#" class="m-nav-grid__item">
+																			<i class="m-nav-grid__icon flaticon-time"></i>
+																			<span class="m-nav-grid__text">
+																				Add New Event
+																			</span>
+																		</a>
+																	</div>
+																	<div class="m-nav-grid__row">
+																		<a href="#" class="m-nav-grid__item">
+																			<i class="m-nav-grid__icon flaticon-folder"></i>
+																			<span class="m-nav-grid__text">
+																				Create New Task
+																			</span>
+																		</a>
+																		<a href="#" class="m-nav-grid__item">
+																			<i class="m-nav-grid__icon flaticon-clipboard"></i>
+																			<span class="m-nav-grid__text">
+																				Completed Tasks
+																			</span>
+																		</a>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</li>
 										<li class="m-nav__item m-topbar__user-profile  m-dropdown m-dropdown--medium m-dropdown--arrow  m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light" data-dropdown-toggle="click">
 											<a href="#" class="m-nav__link m-dropdown__toggle">
 												<span class="m-topbar__userpic m--hide">
@@ -324,10 +408,10 @@
 															</div>
 															<div class="m-card-user__details">
 																<span class="m-card-user__name m--font-weight-500">
-																	M Rijal Zulfi
+																	Mark Andre
 																</span>
-																<a href="https://www.gmail.com" class="m-card-user__email m--font-weight-300 m-link">
-																	rijalzulfi.mrz@gmail.com
+																<a href="" class="m-card-user__email m--font-weight-300 m-link">
+																	mark.andre@gmail.com
 																</a>
 															</div>
 														</div>
@@ -341,13 +425,12 @@
 																	</span>
 																</li>
 																<li class="m-nav__item">
-																	<a href="profile" class="m-nav__link">
+																	<a href="header/profile.html" class="m-nav__link">
 																		<i class="m-nav__link-icon flaticon-profile-1"></i>
 																		<span class="m-nav__link-title">
 																			<span class="m-nav__link-wrap">
 																				<span class="m-nav__link-text">
-																					<!-- <a href= "profile.html" class="m-nav__link"> -->
-																					 My Profile
+																					My Profile
 																				</span>
 																				<span class="m-nav__link-badge">
 																					<span class="m-badge m-badge--success">
@@ -817,66 +900,191 @@
 				</div>
 				<!-- END: Left Aside -->
 				<div class="m-grid__item m-grid__item--fluid m-wrapper">
-					<div class="m-subheader-search">
-						<h2 class="m-subheader-search__title">
-							Mencari Jadwal Mengajar
-							<!-- <span class="m-subheader-search__desc">
-								Onling Bookings Management
-							</span> -->
-						</h2>
-						<form class="m-form">
-							<div class="m-input-icon m-input-icon--fixed m-input-icon--fixed-large m-input-icon--right">
-								<input type="text" class="form-control form-control-lg m-input m-input--pill" placeholder="Cari">
-								<span class="m-input-icon__icon m-input-icon__icon--right">
-									<span>
-										<i class="la la-puzzle-piece"></i>
-									</span>
-								</span>
+					<!-- BEGIN: Subheader -->
+					<div class="m-subheader ">
+						<div class="d-flex align-items-center">
+							<div class="mr-auto">
+								<h3 class="m-subheader__title ">
+									My Profile
+								</h3>
 							</div>
-							<div class="m-input-icon m-input-icon--fixed m-input-icon--fixed-md m-input-icon--right">
-								<input type="text" class="form-control form-control-lg m-input m-input--pill" placeholder="From">
-								<span class="m-input-icon__icon m-input-icon__icon--right">
-									<span>
-										<i class="la la-calendar-check-o"></i>
-									</span>
-								</span>
-							</div>
-							<div class="m-input-icon m-input-icon--fixed m-input-icon--fixed-md m-input-icon--right">
-								<input type="text" class="form-control form-control-lg m-input m-input--pill" placeholder="To">
-								<span class="m-input-icon__icon m-input-icon__icon--right">
-									<span>
-										<i class="la la-calendar-check-o"></i>
-									</span>
-								</span>
-							</div>
-							<div class="m--margin-top-20 m--visible-tablet-and-mobile"></div>
-							<button type="button" class="btn m-btn--pill m-subheader-search__submit-btn">
-								Cari
-							</button>
-							<!-- <a href="#" class="m-subheader-search__link m-link">
-								Advance Search
-							</a> -->
-						</form>
-					</div>
-					<div class="m-content">
-<!--Begin::Main Portlet-->
-						<div class="row">
-							<div class="col-xl-12">
-								<div class="m-portlet m-portlet--mobile ">
-									<div class="m-portlet__head">
-										<div class="m-portlet__head-caption">
-											<div class="m-portlet__head-title">
-												<h3 class="m-portlet__head-text">
-													SIswa yang Terdaftar
-												</h3>
+							<div>
+								<div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover" aria-expanded="true">
+									<a href="#" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle">
+										<i class="la la-plus m--hide"></i>
+										<i class="la la-ellipsis-h"></i>
+									</a>
+									<div class="m-dropdown__wrapper">
+										<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
+										<div class="m-dropdown__inner">
+											<div class="m-dropdown__body">
+												<div class="m-dropdown__content">
+													<ul class="m-nav">
+														<li class="m-nav__section m-nav__section--first m--hide">
+															<span class="m-nav__section-text">
+																Quick Actions
+															</span>
+														</li>
+														<li class="m-nav__item">
+															<a href="" class="m-nav__link">
+																<i class="m-nav__link-icon flaticon-share"></i>
+																<span class="m-nav__link-text">
+																	Activity
+																</span>
+															</a>
+														</li>
+														<li class="m-nav__item">
+															<a href="" class="m-nav__link">
+																<i class="m-nav__link-icon flaticon-chat-1"></i>
+																<span class="m-nav__link-text">
+																	Messages
+																</span>
+															</a>
+														</li>
+														<li class="m-nav__item">
+															<a href="" class="m-nav__link">
+																<i class="m-nav__link-icon flaticon-info"></i>
+																<span class="m-nav__link-text">
+																	FAQ
+																</span>
+															</a>
+														</li>
+														<li class="m-nav__item">
+															<a href="" class="m-nav__link">
+																<i class="m-nav__link-icon flaticon-lifebuoy"></i>
+																<span class="m-nav__link-text">
+																	Support
+																</span>
+															</a>
+														</li>
+														<li class="m-nav__separator m-nav__separator--fit"></li>
+														<li class="m-nav__item">
+															<a href="#" class="btn btn-outline-danger m-btn m-btn--pill m-btn--wide btn-sm">
+																Submit
+															</a>
+														</li>
+													</ul>
+												</div>
 											</div>
-										</div>										
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- END: Subheader -->
+					<div class="m-content">
+						<div class="row">
+							<div class="col-xl-3 col-lg-4">
+								<div class="m-portlet m-portlet--full-height  ">
+									<div class="m-portlet__body">
+										<div class="m-card-profile">
+											<div class="m-card-profile__title m--hide">
+												Your Profile
+											</div>
+											<div class="m-card-profile__pic">
+												<div class="m-card-profile__pic-wrapper">
+													<img src="assets/app/media/img/users/user4.jpg" alt=""/>
+												</div>
+											</div>
+											<div class="m-card-profile__details">
+												<span class="m-card-profile__name">
+													Mark Andre
+												</span>
+												<a href="" class="m-card-profile__email m-link">
+													mark.andre@gmail.com
+												</a>
+											</div>
+										</div>
+										<ul class="m-nav m-nav--hover-bg m-portlet-fit--sides">
+											<li class="m-nav__separator m-nav__separator--fit"></li>
+											<li class="m-nav__section m--hide">
+												<span class="m-nav__section-text">
+													Section
+												</span>
+											</li>
+											<li class="m-nav__item">
+												<a href="header/profile&amp;demo=default.html" class="m-nav__link">
+													<i class="m-nav__link-icon flaticon-profile-1"></i>
+													<span class="m-nav__link-title">
+														<span class="m-nav__link-wrap">
+															<span class="m-nav__link-text">
+																My Profile
+															</span>
+															<span class="m-nav__link-badge">
+																<span class="m-badge m-badge--success">
+																	2
+																</span>
+															</span>
+														</span>
+													</span>
+												</a>
+											</li>
+											<li class="m-nav__item">
+												<a href="header/profile&amp;demo=default.html" class="m-nav__link">
+													<i class="m-nav__link-icon flaticon-share"></i>
+													<span class="m-nav__link-text">
+														Activity
+													</span>
+												</a>
+											</li>
+											<li class="m-nav__item">
+												<a href="header/profile&amp;demo=default.html" class="m-nav__link">
+													<i class="m-nav__link-icon flaticon-chat-1"></i>
+													<span class="m-nav__link-text">
+														Messages
+													</span>
+												</a>
+											</li>
+											<li class="m-nav__item">
+												<a href="header/profile&amp;demo=default.html" class="m-nav__link">
+													<i class="m-nav__link-icon flaticon-graphic-2"></i>
+													<span class="m-nav__link-text">
+														Sales
+													</span>
+												</a>
+											</li>
+											<li class="m-nav__item">
+												<a href="header/profile&amp;demo=default.html" class="m-nav__link">
+													<i class="m-nav__link-icon flaticon-time-3"></i>
+													<span class="m-nav__link-text">
+														Events
+													</span>
+												</a>
+											</li>
+											<li class="m-nav__item">
+												<a href="header/profile&amp;demo=default.html" class="m-nav__link">
+													<i class="m-nav__link-icon flaticon-lifebuoy"></i>
+													<span class="m-nav__link-text">
+														Support
+													</span>
+												</a>
+											</li>
+										</ul>
+										<div class="m-portlet__body-separator"></div>
+									
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-9 col-lg-8">
+								<div class="m-portlet m-portlet--full-height m-portlet--tabs  ">
+									<div class="m-portlet__head">
+										<div class="m-portlet__head-tools">
+											<ul class="nav nav-tabs m-tabs m-tabs-line   m-tabs-line--left m-tabs-line--primary" role="tablist">
+												<li class="nav-item m-tabs__item">
+													<a class="nav-link m-tabs__link active" data-toggle="tab" href="#m_user_profile_tab_1" role="tab">
+														<i class="flaticon-share m--hide"></i>
+														Update Profile
+													</a>
+												</li>
+											</ul>
+										</div>
 										<div class="m-portlet__head-tools">
 											<ul class="m-portlet__nav">
-												<li class="m-portlet__nav-item">
+												<li class="m-portlet__nav-item m-portlet__nav-item--last">
 													<div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover" aria-expanded="true">
 														<a href="#" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle">
-															<i class="la la-ellipsis-h m--font-brand"></i>
+															<i class="la la-gear"></i>
 														</a>
 														<div class="m-dropdown__wrapper">
 															<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
@@ -934,15 +1142,6 @@
 																					</span>
 																				</a>
 																			</li>
-																			<div class="m-widget3__info">
-														<span class="m-widget3__username">
-															Melania Trump
-														</span>
-														<br>
-														<span class="m-widget3__time">
-															2 day ago
-														</span>
-													</div>
 																			<li class="m-nav__separator m-nav__separator--fit m--hide"></li>
 																			<li class="m-nav__item m--hide">
 																				<a href="#" class="btn btn-outline-danger m-btn m-btn--pill m-btn--wide btn-sm">
@@ -959,1407 +1158,159 @@
 											</ul>
 										</div>
 									</div>
-									<div class="m-portlet__body">
-										<!--begin: Datatable -->
-										<div class="m_datatable" id="m_datatable_latest_orders">
-											<div class="m-section__content">
-												<table class="table table-striped m-table">
-													<thead>
-														<tr>
-															<th>
-																No.
-															</th>
-															<th>
-																Nama Lengkap
-															</th>
-															<th>
-																Alamat
-															</th>
-															<th>
-																Mata Pelajaran
-															</th>
-														</tr>
-													</thead>
-													<tbody>
-														<tr>
-															<th scope="row">
-																1
-															</th>
-															<td>
-																Ahmad Jhon
-															</td>
-															<td>
-																Lumajang
-															</td>
-															<td>
-																Matematika
-															</td>
-														</tr>
-														<tr>
-															<th scope="row">
-																2
-															</th>
-															<td>
-																Maharani 
-															</td>
-															<td>
-																Malang
-															</td>
-															<td>
-																Bahasa Inggris
-															</td>
-														</tr>
-														<tr>
-															<th scope="row">
-																3
-															</th>
-															<td>
-																Syailendra
-															</td>
-															<td>
-																Lamongan
-															</td>
-															<td>
-																Bahasa Indonesia
-															</td>
-														</tr>
-													</tbody>
-												</table>
-											</div>
-										</div>
-										
-										<!--end: Datatable -->
-									</div>
-								</div>
-							</div>
-						</div>
-						<!--End::Main Portlet-->   
-<!--Begin::Main Portlet-->
-						<div class="row">
-							<div class="col-xl-6">
-								<!--begin:: Widgets/Tasks -->
-								<div class="m-portlet m-portlet--full-height ">
-									<div class="m-portlet__head">
-										<div class="m-portlet__head-caption">
-											<div class="m-portlet__head-title">
-												<h3 class="m-portlet__head-text">
-													Jadwal
-												</h3>
-											</div>
-										</div>
-										<div class="m-portlet__head-tools">
-											<ul class="nav nav-pills nav-pills--brand m-nav-pills--align-right m-nav-pills--btn-pill m-nav-pills--btn-sm" role="tablist">
-												<li class="nav-item m-tabs__item">
-													<a class="nav-link m-tabs__link active" data-toggle="tab" href="#m_widget2_tab1_content" role="tab">
-														Today
-													</a>
-												</li>
-												<li class="nav-item m-tabs__item">
-													<a class="nav-link m-tabs__link" data-toggle="tab" href="#m_widget2_tab2_content1" role="tab">
-														Week
-													</a>
-												</li>
-												<li class="nav-item m-tabs__item">
-													<a class="nav-link m-tabs__link" data-toggle="tab" href="#m_widget2_tab3_content1" role="tab">
-														Month
-													</a>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<div class="m-portlet__body">
-										<div class="tab-content">
-											<div class="tab-pane active" id="m_widget2_tab1_content">
-												<div class="m-widget2">
-													<div class="m-widget2__item m-widget2__item--primary">
-														<div class="m-widget2__checkbox">
-															<label class="m-checkbox m-checkbox--solid m-checkbox--single m-checkbox--brand">
-																<input type="checkbox">
-																<span></span>
-															</label>
-														</div>
-														<div class="m-widget2__desc">
-															<span class="m-widget2__text">
-																Membuat nasi goreng jawa sedap!
-															</span>
-															<br>
-															<span class="m-widget2__user-name">
-																<a href="#" class="m-widget2__link">
-																	By Elmatul
-																</a>
-															</span>
-														</div>
-														<div class="m-widget2__actions">
-															<div class="m-widget2__actions-nav">
-																<div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover">
-																	<a href="#" class="m-dropdown__toggle">
-																		<i class="la la-ellipsis-h"></i>
-																	</a>
-																	<div class="m-dropdown__wrapper">
-																		<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
-																		<div class="m-dropdown__inner">
-																			<div class="m-dropdown__body">
-																				<div class="m-dropdown__content">
-																					<ul class="m-nav">
-																						<li class="m-nav__item">
-																							<a href="" class="m-nav__link">
-																								<i class="m-nav__link-icon flaticon-share"></i>
-																								<span class="m-nav__link-text">
-																									Activity
-																								</span>
-																							</a>
-																						</li>
-																						<li class="m-nav__item">
-																							<a href="" class="m-nav__link">
-																								<i class="m-nav__link-icon flaticon-chat-1"></i>
-																								<span class="m-nav__link-text">
-																									Messages
-																								</span>
-																							</a>
-																						</li>
-																						<li class="m-nav__item">
-																							<a href="" class="m-nav__link">
-																								<i class="m-nav__link-icon flaticon-info"></i>
-																								<span class="m-nav__link-text">
-																									FAQ
-																								</span>
-																							</a>
-																						</li>
-																						<li class="m-nav__item">
-																							<a href="" class="m-nav__link">
-																								<i class="m-nav__link-icon flaticon-lifebuoy"></i>
-																								<span class="m-nav__link-text">
-																									Support
-																								</span>
-																							</a>
-																						</li>
-																					</ul>
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-																</div>
-															</div>
+									<div class="tab-content">
+										<div class="tab-pane active" id="m_user_profile_tab_1">
+											<form class="m-form m-form--fit m-form--label-align-right">
+												<div class="m-portlet__body">
+													<div class="form-group m-form__group m--margin-top-10 m--hide">
+														<div class="alert m-alert m-alert--default" role="alert">
+															The example form below demonstrates common HTML form elements that receive updated styles from Bootstrap with additional classes.
 														</div>
 													</div>
-													<div class="m-widget2__item m-widget2__item--warning">
-														<div class="m-widget2__checkbox">
-															<label class="m-checkbox m-checkbox--solid m-checkbox--single m-checkbox--brand">
-																<input type="checkbox">
-																<span></span>
-															</label>
-														</div>
-														<div class="m-widget2__desc">
-															<span class="m-widget2__text">
-																Prepare Docs For Metting On Monday
-															</span>
-															<br>
-															<span class="m-widget2__user-name">
-																<a href="#" class="m-widget2__link">
-																	By Sean
-																</a>
-															</span>
-														</div>
-														<div class="m-widget2__actions">
-															<div class="m-widget2__actions-nav">
-																<div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover">
-																	<a href="#" class="m-dropdown__toggle">
-																		<i class="la la-ellipsis-h"></i>
-																	</a>
-																	<div class="m-dropdown__wrapper">
-																		<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
-																		<div class="m-dropdown__inner">
-																			<div class="m-dropdown__body">
-																				<div class="m-dropdown__content">
-																					<ul class="m-nav">
-																						<li class="m-nav__item">
-																							<a href="" class="m-nav__link">
-																								<i class="m-nav__link-icon flaticon-share"></i>
-																								<span class="m-nav__link-text">
-																									Activity
-																								</span>
-																							</a>
-																						</li>
-																						<li class="m-nav__item">
-																							<a href="" class="m-nav__link">
-																								<i class="m-nav__link-icon flaticon-chat-1"></i>
-																								<span class="m-nav__link-text">
-																									Messages
-																								</span>
-																							</a>
-																						</li>
-																						<li class="m-nav__item">
-																							<a href="" class="m-nav__link">
-																								<i class="m-nav__link-icon flaticon-info"></i>
-																								<span class="m-nav__link-text">
-																									FAQ
-																								</span>
-																							</a>
-																						</li>
-																						<li class="m-nav__item">
-																							<a href="" class="m-nav__link">
-																								<i class="m-nav__link-icon flaticon-lifebuoy"></i>
-																								<span class="m-nav__link-text">
-																									Support
-																								</span>
-																							</a>
-																						</li>
-																					</ul>
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-													<div class="m-widget2__item m-widget2__item--brand">
-														<div class="m-widget2__checkbox">
-															<label class="m-checkbox m-checkbox--solid m-checkbox--single m-checkbox--brand">
-																<input type="checkbox">
-																<span></span>
-															</label>
-														</div>
-														<div class="m-widget2__desc">
-															<span class="m-widget2__text">
-																Make Widgets Great Again.Estudiat Communy Elit
-															</span>
-															<br>
-															<span class="m-widget2__user-name">
-																<a href="#" class="m-widget2__link">
-																	By Aziko
-																</a>
-															</span>
-														</div>
-														<div class="m-widget2__actions">
-															<div class="m-widget2__actions-nav">
-																<div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover">
-																	<a href="#" class="m-dropdown__toggle">
-																		<i class="la la-ellipsis-h"></i>
-																	</a>
-																	<div class="m-dropdown__wrapper">
-																		<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
-																		<div class="m-dropdown__inner">
-																			<div class="m-dropdown__body">
-																				<div class="m-dropdown__content">
-																					<ul class="m-nav">
-																						<li class="m-nav__item">
-																							<a href="" class="m-nav__link">
-																								<i class="m-nav__link-icon flaticon-share"></i>
-																								<span class="m-nav__link-text">
-																									Activity
-																								</span>
-																							</a>
-																						</li>
-																						<li class="m-nav__item">
-																							<a href="" class="m-nav__link">
-																								<i class="m-nav__link-icon flaticon-chat-1"></i>
-																								<span class="m-nav__link-text">
-																									Messages
-																								</span>
-																							</a>
-																						</li>
-																						<li class="m-nav__item">
-																							<a href="" class="m-nav__link">
-																								<i class="m-nav__link-icon flaticon-info"></i>
-																								<span class="m-nav__link-text">
-																									FAQ
-																								</span>
-																							</a>
-																						</li>
-																						<li class="m-nav__item">
-																							<a href="" class="m-nav__link">
-																								<i class="m-nav__link-icon flaticon-lifebuoy"></i>
-																								<span class="m-nav__link-text">
-																									Support
-																								</span>
-																							</a>
-																						</li>
-																					</ul>
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-													<div class="m-widget2__item m-widget2__item--success">
-														<div class="m-widget2__checkbox">
-															<label class="m-checkbox m-checkbox--solid m-checkbox--single m-checkbox--brand">
-																<input type="checkbox">
-																<span></span>
-															</label>
-														</div>
-														<div class="m-widget2__desc">
-															<span class="m-widget2__text">
-																Make Metronic Great Again.Lorem Ipsum
-															</span>
-															<br>
-															<span class="m-widget2__user-name">
-																<a href="#" class="m-widget2__link">
-																	By James
-																</a>
-															</span>
-														</div>
-														<div class="m-widget2__actions">
-															<div class="m-widget2__actions-nav">
-																<div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover">
-																	<a href="#" class="m-dropdown__toggle">
-																		<i class="la la-ellipsis-h"></i>
-																	</a>
-																	<div class="m-dropdown__wrapper">
-																		<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
-																		<div class="m-dropdown__inner">
-																			<div class="m-dropdown__body">
-																				<div class="m-dropdown__content">
-																					<ul class="m-nav">
-																						<li class="m-nav__item">
-																							<a href="" class="m-nav__link">
-																								<i class="m-nav__link-icon flaticon-share"></i>
-																								<span class="m-nav__link-text">
-																									Activity
-																								</span>
-																							</a>
-																						</li>
-																						<li class="m-nav__item">
-																							<a href="" class="m-nav__link">
-																								<i class="m-nav__link-icon flaticon-chat-1"></i>
-																								<span class="m-nav__link-text">
-																									Messages
-																								</span>
-																							</a>
-																						</li>
-																						<li class="m-nav__item">
-																							<a href="" class="m-nav__link">
-																								<i class="m-nav__link-icon flaticon-info"></i>
-																								<span class="m-nav__link-text">
-																									FAQ
-																								</span>
-																							</a>
-																						</li>
-																						<li class="m-nav__item">
-																							<a href="" class="m-nav__link">
-																								<i class="m-nav__link-icon flaticon-lifebuoy"></i>
-																								<span class="m-nav__link-text">
-																									Support
-																								</span>
-																							</a>
-																						</li>
-																					</ul>
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-													<div class="m-widget2__item m-widget2__item--danger">
-														<div class="m-widget2__checkbox">
-															<label class="m-checkbox m-checkbox--solid m-checkbox--single m-checkbox--brand">
-																<input type="checkbox">
-																<span></span>
-															</label>
-														</div>
-														<div class="m-widget2__desc">
-															<span class="m-widget2__text">
-																Completa Financial Report For Emirates Airlines
-															</span>
-															<br>
-															<span class="m-widget2__user-name">
-																<a href="#" class="m-widget2__link">
-																	By Bob
-																</a>
-															</span>
-														</div>
-														<div class="m-widget2__actions">
-															<div class="m-widget2__actions-nav">
-																<div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover">
-																	<a href="#" class="m-dropdown__toggle">
-																		<i class="la la-ellipsis-h"></i>
-																	</a>
-																	<div class="m-dropdown__wrapper">
-																		<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
-																		<div class="m-dropdown__inner">
-																			<div class="m-dropdown__body">
-																				<div class="m-dropdown__content">
-																					<ul class="m-nav">
-																						<li class="m-nav__item">
-																							<a href="" class="m-nav__link">
-																								<i class="m-nav__link-icon flaticon-share"></i>
-																								<span class="m-nav__link-text">
-																									Activity
-																								</span>
-																							</a>
-																						</li>
-																						<li class="m-nav__item">
-																							<a href="" class="m-nav__link">
-																								<i class="m-nav__link-icon flaticon-chat-1"></i>
-																								<span class="m-nav__link-text">
-																									Messages
-																								</span>
-																							</a>
-																						</li>
-																						<li class="m-nav__item">
-																							<a href="" class="m-nav__link">
-																								<i class="m-nav__link-icon flaticon-info"></i>
-																								<span class="m-nav__link-text">
-																									FAQ
-																								</span>
-																							</a>
-																						</li>
-																						<li class="m-nav__item">
-																							<a href="" class="m-nav__link">
-																								<i class="m-nav__link-icon flaticon-lifebuoy"></i>
-																								<span class="m-nav__link-text">
-																									Support
-																								</span>
-																							</a>
-																						</li>
-																					</ul>
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-													<div class="m-widget2__item m-widget2__item--info">
-														<div class="m-widget2__checkbox">
-															<label class="m-checkbox m-checkbox--solid m-checkbox--single m-checkbox--brand">
-																<input type="checkbox">
-																<span></span>
-															</label>
-														</div>
-														<div class="m-widget2__desc">
-															<span class="m-widget2__text">
-																Completa Financial Report For Emirates Airlines
-															</span>
-															<br>
-															<span class="m-widget2__user-name">
-																<a href="#" class="m-widget2__link">
-																	By Sean
-																</a>
-															</span>
-														</div>
-														<div class="m-widget2__actions">
-															<div class="m-widget2__actions-nav">
-																<div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover">
-																	<a href="#" class="m-dropdown__toggle">
-																		<i class="la la-ellipsis-h"></i>
-																	</a>
-																	<div class="m-dropdown__wrapper">
-																		<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
-																		<div class="m-dropdown__inner">
-																			<div class="m-dropdown__body">
-																				<div class="m-dropdown__content">
-																					<ul class="m-nav">
-																						<li class="m-nav__item">
-																							<a href="" class="m-nav__link">
-																								<i class="m-nav__link-icon flaticon-share"></i>
-																								<span class="m-nav__link-text">
-																									Activity
-																								</span>
-																							</a>
-																						</li>
-																						<li class="m-nav__item">
-																							<a href="" class="m-nav__link">
-																								<i class="m-nav__link-icon flaticon-chat-1"></i>
-																								<span class="m-nav__link-text">
-																									Messages
-																								</span>
-																							</a>
-																						</li>
-																						<li class="m-nav__item">
-																							<a href="" class="m-nav__link">
-																								<i class="m-nav__link-icon flaticon-info"></i>
-																								<span class="m-nav__link-text">
-																									FAQ
-																								</span>
-																							</a>
-																						</li>
-																						<li class="m-nav__item">
-																							<a href="" class="m-nav__link">
-																								<i class="m-nav__link-icon flaticon-lifebuoy"></i>
-																								<span class="m-nav__link-text">
-																									Support
-																								</span>
-																							</a>
-																						</li>
-																					</ul>
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="tab-pane" id="m_widget2_tab2_content"></div>
-											<div class="tab-pane" id="m_widget2_tab3_content"></div>
-										</div>
-									</div>
-								</div>
-								<!--end:: Widgets/Tasks -->
-							</div>
-							<div class="col-xl-6">
-								<!--begin:: Widgets/Support Tickets -->
-								<div class="m-portlet m-portlet--full-height ">
-									<div class="m-portlet__head">
-										<div class="m-portlet__head-caption">
-											<div class="m-portlet__head-title">
-												<h3 class="m-portlet__head-text">
-													Support Tickets
-												</h3>
-											</div>
-										</div>
-										<div class="m-portlet__head-tools">
-											<ul class="m-portlet__nav">
-												<li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover" aria-expanded="true">
-													<a href="#" class="m-portlet__nav-link m-portlet__nav-link--icon m-portlet__nav-link--icon-xl m-dropdown__toggle">
-														<i class="la la-ellipsis-h m--font-brand"></i>
-													</a>
-													<div class="m-dropdown__wrapper">
-														<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
-														<div class="m-dropdown__inner">
-															<div class="m-dropdown__body">
-																<div class="m-dropdown__content">
-																	<ul class="m-nav">
-																		<li class="m-nav__item">
-																			<a href="" class="m-nav__link">
-																				<i class="m-nav__link-icon flaticon-share"></i>
-																				<span class="m-nav__link-text">
-																					Activity
-																				</span>
-																			</a>
-																		</li>
-																		<li class="m-nav__item">
-																			<a href="" class="m-nav__link">
-																				<i class="m-nav__link-icon flaticon-chat-1"></i>
-																				<span class="m-nav__link-text">
-																					Messages
-																				</span>
-																			</a>
-																		</li>
-																		<li class="m-nav__item">
-																			<a href="" class="m-nav__link">
-																				<i class="m-nav__link-icon flaticon-info"></i>
-																				<span class="m-nav__link-text">
-																					FAQ
-																				</span>
-																			</a>
-																		</li>
-																		<li class="m-nav__item">
-																			<a href="" class="m-nav__link">
-																				<i class="m-nav__link-icon flaticon-lifebuoy"></i>
-																				<span class="m-nav__link-text">
-																					Support
-																				</span>
-																			</a>
-																		</li>
-																	</ul>
-																</div>
-															</div>
-														</div>
-													</div>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<div class="m-portlet__body">
-										<div class="m-widget3">
-											<div class="m-widget3__item">
-												<div class="m-widget3__header">
-													<div class="m-widget3__user-img">
-														<img class="m-widget3__img" src="assets/app/media/img/users/user1.jpg" alt="">
-													</div>
-													<div class="m-widget3__info">
-														<span class="m-widget3__username">
-															Melania Trump
-														</span>
-														<br>
-														<span class="m-widget3__time">
-															2 day ago
-														</span>
-													</div>
-													<span class="m-widget3__status m--font-info">
-														Pending
-													</span>
-												</div>
-												<div class="m-widget3__body">
-													<p class="m-widget3__text">
-														Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.
-													</p>
-												</div>
-											</div>
-											<div class="m-widget3__item">
-												<div class="m-widget3__header">
-													<div class="m-widget3__user-img">
-														<img class="m-widget3__img" src="assets/app/media/img/users/user4.jpg" alt="">
-													</div>
-													<div class="m-widget3__info">
-														<span class="m-widget3__username">
-															Lebron King James
-														</span>
-														<br>
-														<span class="m-widget3__time">
-															1 day ago
-														</span>
-													</div>
-													<span class="m-widget3__status m--font-brand">
-														Open
-													</span>
-												</div>
-												<div class="m-widget3__body">
-													<p class="m-widget3__text">
-														Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.Ut wisi enim ad minim veniam,quis nostrud exerci tation ullamcorper.
-													</p>
-												</div>
-											</div>
-											<div class="m-widget3__item">
-												<div class="m-widget3__header">
-													<div class="m-widget3__user-img">
-														<img class="m-widget3__img" src="assets/app/media/img/users/user5.jpg" alt="">
-													</div>
-													<div class="m-widget3__info">
-														<span class="m-widget3__username">
-															Deb Gibson
-														</span>
-														<br>
-														<span class="m-widget3__time">
-															3 weeks ago
-														</span>
-													</div>
-													<span class="m-widget3__status m--font-success">
-														Closed
-													</span>
-												</div>
-												<div class="m-widget3__body">
-													<p class="m-widget3__text">
-														Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.
-													</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<!--end:: Widgets/Support Tickets -->
-							</div>
-						</div>
-						<!--End::Main Portlet-->
-<!--Begin::Main Portlet-->
-						<div class="row">
-							<div class="col-xl-12">
-								<!--begin::Portlet-->
-								<div class="m-portlet" id="m_portlet">
-									<div class="m-portlet__head">
-										<div class="m-portlet__head-caption">
-											<div class="m-portlet__head-title">
-												<span class="m-portlet__head-icon">
-													<i class="flaticon-map-location"></i>
-												</span>
-												<h3 class="m-portlet__head-text">
-													Calendar
-												</h3>
-											</div>
-										</div>
-										<div class="m-portlet__head-tools">
-											<ul class="m-portlet__nav">
-												<li class="m-portlet__nav-item">
-													<a href="#" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
-														<span>
-															<i class="la la-plus"></i>
-															<span>
-																Add Event
-															</span>
-														</span>
-													</a>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<div class="m-portlet__body">
-										<div id="m_calendar"></div>
-									</div>
-								</div>
-								<!--end::Portlet-->
-							</div>
-						</div>
-						<!--End::Main Portlet-->
-<!--Begin::Main Portlet-->
-						<div class="row">
-							<div class="col-xl-12">
-								<!--begin:: Widgets/Best Sellers-->
-								<div class="m-portlet m-portlet--full-height ">
-									<div class="m-portlet__head">
-										<div class="m-portlet__head-caption">
-											<div class="m-portlet__head-title">
-												<h3 class="m-portlet__head-text">
-													Best Sellers
-												</h3>
-											</div>
-										</div>
-										<div class="m-portlet__head-tools">
-											<ul class="nav nav-pills nav-pills--brand m-nav-pills--align-right m-nav-pills--btn-pill m-nav-pills--btn-sm" role="tablist">
-												<li class="nav-item m-tabs__item">
-													<a class="nav-link m-tabs__link active" data-toggle="tab" href="#m_widget5_tab1_content" role="tab">
-														Last Month
-													</a>
-												</li>
-												<li class="nav-item m-tabs__item">
-													<a class="nav-link m-tabs__link" data-toggle="tab" href="#m_widget5_tab2_content" role="tab">
-														last Year
-													</a>
-												</li>
-												<li class="nav-item m-tabs__item">
-													<a class="nav-link m-tabs__link" data-toggle="tab" href="#m_widget5_tab3_content" role="tab">
-														All time
-													</a>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<div class="m-portlet__body">
-										<!--begin::Content-->
-										<div class="tab-content">
-											<div class="tab-pane active" id="m_widget5_tab1_content" aria-expanded="true">
-												<!--begin::m-widget5-->
-												<div class="m-widget5">
-													<div class="m-widget5__item">
-														<div class="m-widget5__pic">
-															<img class="m-widget7__img" src="assets/app/media/img//products/product6.jpg" alt="">
-														</div>
-														<div class="m-widget5__content">
-															<h4 class="m-widget5__title">
-																Great Logo Designn
-															</h4>
-															<span class="m-widget5__desc">
-																Make Metronic Great  Again.Lorem Ipsum Amet
-															</span>
-															<div class="m-widget5__info">
-																<span class="m-widget5__author">
-																	Author:
-																</span>
-																<span class="m-widget5__info-label">
-																	author:
-																</span>
-																<span class="m-widget5__info-author-name">
-																	Fly themes
-																</span>
-																<span class="m-widget5__info-label">
-																	Released:
-																</span>
-																<span class="m-widget5__info-date m--font-info">
-																	23.08.17
-																</span>
-															</div>
-														</div>
-														<div class="m-widget5__stats1">
-															<span class="m-widget5__number">
-																19,200
-															</span>
-															<br>
-															<span class="m-widget5__sales">
-																sales
-															</span>
-														</div>
-														<div class="m-widget5__stats2">
-															<span class="m-widget5__number">
-																1046
-															</span>
-															<br>
-															<span class="m-widget5__votes">
-																votes
-															</span>
-														</div>
-													</div>
-													<div class="m-widget5__item">
-														<div class="m-widget5__pic">
-															<img class="m-widget7__img" src="assets/app/media/img//products/product10.jpg" alt="">
-														</div>
-														<div class="m-widget5__content">
-															<h4 class="m-widget5__title">
-																Branding Mockup
-															</h4>
-															<span class="m-widget5__desc">
-																Make Metronic Great  Again.Lorem Ipsum Amet
-															</span>
-															<div class="m-widget5__info">
-																<span class="m-widget5__author">
-																	Author:
-																</span>
-																<span class="m-widget5__info-author m--font-info">
-																	Fly themes
-																</span>
-																<span class="m-widget5__info-label">
-																	Released:
-																</span>
-																<span class="m-widget5__info-date m--font-info">
-																	23.08.17
-																</span>
-															</div>
-														</div>
-														<div class="m-widget5__stats1">
-															<span class="m-widget5__number">
-																24,583
-															</span>
-															<br>
-															<span class="m-widget5__sales">
-																sales
-															</span>
-														</div>
-														<div class="m-widget5__stats2">
-															<span class="m-widget5__number">
-																3809
-															</span>
-															<br>
-															<span class="m-widget5__votes">
-																votes
-															</span>
-														</div>
-													</div>
-													<div class="m-widget5__item">
-														<div class="m-widget5__pic">
-															<img class="m-widget7__img" src="assets/app/media/img//products/product11.jpg" alt="">
-														</div>
-														<div class="m-widget5__content">
-															<h4 class="m-widget5__title">
-																Awesome Mobile App
-															</h4>
-															<span class="m-widget5__desc">
-																Make Metronic Great  Again.Lorem Ipsum Amet
-															</span>
-															<div class="m-widget5__info">
-																<span class="m-widget5__author">
-																	Author:
-																</span>
-																<span class="m-widget5__info-author m--font-info">
-																	Fly themes
-																</span>
-																<span class="m-widget5__info-label">
-																	Released:
-																</span>
-																<span class="m-widget5__info-date m--font-info">
-																	23.08.17
-																</span>
-															</div>
-														</div>
-														<div class="m-widget5__stats1">
-															<span class="m-widget5__number">
-																10,054
-															</span>
-															<br>
-															<span class="m-widget5__sales">
-																sales
-															</span>
-														</div>
-														<div class="m-widget5__stats2">
-															<span class="m-widget5__number">
-																1103
-															</span>
-															<br>
-															<span class="m-widget5__votes">
-																votes
-															</span>
-														</div>
-													</div>
-												</div>
-												<!--end::m-widget5-->
-											</div>
-											<div class="tab-pane" id="m_widget5_tab2_content" aria-expanded="false">
-												<!--begin::m-widget5-->
-												<div class="m-widget5">
-													<div class="m-widget5__item">
-														<div class="m-widget5__pic">
-															<img class="m-widget7__img" src="assets/app/media/img//products/product11.jpg" alt="">
-														</div>
-														<div class="m-widget5__content">
-															<h4 class="m-widget5__title">
-																Branding Mockup
-															</h4>
-															<span class="m-widget5__desc">
-																Make Metronic Great  Again.Lorem Ipsum Amet
-															</span>
-															<div class="m-widget5__info">
-																<span class="m-widget5__author">
-																	Author:
-																</span>
-																<span class="m-widget5__info-author m--font-info">
-																	Fly themes
-																</span>
-																<span class="m-widget5__info-label">
-																	Released:
-																</span>
-																<span class="m-widget5__info-date m--font-info">
-																	23.08.17
-																</span>
-															</div>
-														</div>
-														<div class="m-widget5__stats1">
-															<span class="m-widget5__number">
-																24,583
-															</span>
-															<br>
-															<span class="m-widget5__sales">
-																sales
-															</span>
-														</div>
-														<div class="m-widget5__stats2">
-															<span class="m-widget5__number">
-																3809
-															</span>
-															<br>
-															<span class="m-widget5__votes">
-																votes
-															</span>
-														</div>
-													</div>
-													<div class="m-widget5__item">
-														<div class="m-widget5__pic">
-															<img class="m-widget7__img" src="assets/app/media/img//products/product6.jpg" alt="">
-														</div>
-														<div class="m-widget5__content">
-															<h4 class="m-widget5__title">
-																Great Logo Designn
-															</h4>
-															<span class="m-widget5__desc">
-																Make Metronic Great  Again.Lorem Ipsum Amet
-															</span>
-															<div class="m-widget5__info">
-																<span class="m-widget5__author">
-																	Author:
-																</span>
-																<span class="m-widget5__info-author m--font-info">
-																	Fly themes
-																</span>
-																<span class="m-widget5__info-label">
-																	Released:
-																</span>
-																<span class="m-widget5__info-date m--font-info">
-																	23.08.17
-																</span>
-															</div>
-														</div>
-														<div class="m-widget5__stats1">
-															<span class="m-widget5__number">
-																19,200
-															</span>
-															<br>
-															<span class="m-widget5__sales">
-																sales
-															</span>
-														</div>
-														<div class="m-widget5__stats2">
-															<span class="m-widget5__number">
-																1046
-															</span>
-															<br>
-															<span class="m-widget5__votes">
-																votes
-															</span>
-														</div>
-													</div>
-													<div class="m-widget5__item">
-														<div class="m-widget5__pic">
-															<img class="m-widget7__img" src="assets/app/media/img//products/product10.jpg" alt="">
-														</div>
-														<div class="m-widget5__content">
-															<h4 class="m-widget5__title">
-																Awesome Mobile App
-															</h4>
-															<span class="m-widget5__desc">
-																Make Metronic Great  Again.Lorem Ipsum Amet
-															</span>
-															<div class="m-widget5__info">
-																<span class="m-widget5__author">
-																	Author:
-																</span>
-																<span class="m-widget5__info-author m--font-info">
-																	Fly themes
-																</span>
-																<span class="m-widget5__info-label">
-																	Released:
-																</span>
-																<span class="m-widget5__info-date m--font-info">
-																	23.08.17
-																</span>
-															</div>
-														</div>
-														<div class="m-widget5__stats1">
-															<span class="m-widget5__number">
-																10,054
-															</span>
-															<br>
-															<span class="m-widget5__sales">
-																sales
-															</span>
-														</div>
-														<div class="m-widget5__stats2">
-															<span class="m-widget5__number">
-																1103
-															</span>
-															<br>
-															<span class="m-widget5__votes">
-																votes
-															</span>
-														</div>
-													</div>
-												</div>
-												<!--end::m-widget5-->
-											</div>
-											<div class="tab-pane" id="m_widget5_tab3_content" aria-expanded="false">
-												<!--begin::m-widget5-->
-												<div class="m-widget5">
-													<div class="m-widget5__item">
-														<div class="m-widget5__pic">
-															<img class="m-widget7__img" src="assets/app/media/img//products/product10.jpg" alt="">
-														</div>
-														<div class="m-widget5__content">
-															<h4 class="m-widget5__title">
-																Branding Mockup
-															</h4>
-															<span class="m-widget5__desc">
-																Make Metronic Great  Again.Lorem Ipsum Amet
-															</span>
-															<div class="m-widget5__info">
-																<span class="m-widget5__author">
-																	Author:
-																</span>
-																<span class="m-widget5__info-author m--font-info">
-																	Fly themes
-																</span>
-																<span class="m-widget5__info-label">
-																	Released:
-																</span>
-																<span class="m-widget5__info-date m--font-info">
-																	23.08.17
-																</span>
-															</div>
-														</div>
-														<div class="m-widget5__stats1">
-															<span class="m-widget5__number">
-																10.054
-															</span>
-															<br>
-															<span class="m-widget5__sales">
-																sales
-															</span>
-														</div>
-														<div class="m-widget5__stats2">
-															<span class="m-widget5__number">
-																1103
-															</span>
-															<br>
-															<span class="m-widget5__votes">
-																votes
-															</span>
-														</div>
-													</div>
-													<div class="m-widget5__item">
-														<div class="m-widget5__pic">
-															<img class="m-widget7__img" src="assets/app/media/img//products/product11.jpg" alt="">
-														</div>
-														<div class="m-widget5__content">
-															<h4 class="m-widget5__title">
-																Great Logo Designn
-															</h4>
-															<span class="m-widget5__desc">
-																Make Metronic Great  Again.Lorem Ipsum Amet
-															</span>
-															<div class="m-widget5__info">
-																<span class="m-widget5__author">
-																	Author:
-																</span>
-																<span class="m-widget5__info-author m--font-info">
-																	Fly themes
-																</span>
-																<span class="m-widget5__info-label">
-																	Released:
-																</span>
-																<span class="m-widget5__info-date m--font-info">
-																	23.08.17
-																</span>
-															</div>
-														</div>
-														<div class="m-widget5__stats1">
-															<span class="m-widget5__number">
-																24,583
-															</span>
-															<br>
-															<span class="m-widget5__sales">
-																sales
-															</span>
-														</div>
-														<div class="m-widget5__stats2">
-															<span class="m-widget5__number">
-																3809
-															</span>
-															<br>
-															<span class="m-widget5__votes">
-																votes
-															</span>
-														</div>
-													</div>
-													<div class="m-widget5__item">
-														<div class="m-widget5__pic">
-															<img class="m-widget7__img" src="assets/app/media/img//products/product6.jpg" alt="">
-														</div>
-														<div class="m-widget5__content">
-															<h4 class="m-widget5__title">
-																Awesome Mobile App
-															</h4>
-															<span class="m-widget5__desc">
-																Make Metronic Great  Again.Lorem Ipsum Amet
-															</span>
-															<div class="m-widget5__info">
-																<span class="m-widget5__author">
-																	Author:
-																</span>
-																<span class="m-widget5__info-author m--font-info">
-																	Fly themes
-																</span>
-																<span class="m-widget5__info-label">
-																	Released:
-																</span>
-																<span class="m-widget5__info-date m--font-info">
-																	23.08.17
-																</span>
-															</div>
-														</div>
-														<div class="m-widget5__stats1">
-															<span class="m-widget5__number">
-																19,200
-															</span>
-															<br>
-															<span class="m-widget5__sales">
-																1046
-															</span>
-														</div>
-														<div class="m-widget5__stats2">
-															<span class="m-widget5__number">
-																1046
-															</span>
-															<br>
-															<span class="m-widget5__votes">
-																votes
-															</span>
-														</div>
-													</div>
-												</div>
-												<!--end::m-widget5-->
-											</div>
-										</div>
-										<!--end::Content-->
-									</div>
-								</div>
-								<!--end:: Widgets/Best Sellers-->
-							</div>
-						</div>
-						<!--End::Main Portlet-->
-						<div class="m-grid__item m-grid__item--fluid m-wrapper">
-							<!-- BEGIN: Subheader -->
-							<div class="m-subheader ">
-								<div class="d-flex align-items-center">
-									<div class="mr-auto">
-										<h3 class="m-subheader__title m-subheader__title--separator">
-											Dropzone
-										</h3>
-										<ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
-											<li class="m-nav__item m-nav__item--home">
-												<a href="#" class="m-nav__link m-nav__link--icon">
-													<i class="m-nav__link-icon la la-home"></i>
-												</a>
-											</li>
-											<li class="m-nav__separator">
-												-
-											</li>
-											<li class="m-nav__item">
-												<a href="" class="m-nav__link">
-													<span class="m-nav__link-text">
-														Forms
-													</span>
-												</a>
-											</li>
-											<li class="m-nav__separator">
-												-
-											</li>
-											<li class="m-nav__item">
-												<a href="" class="m-nav__link">
-													<span class="m-nav__link-text">
-														Form Widgets
-													</span>
-												</a>
-											</li>
-											<li class="m-nav__separator">
-												-
-											</li>
-											<li class="m-nav__item">
-												<a href="" class="m-nav__link">
-													<span class="m-nav__link-text">
-														Dropzone
-													</span>
-												</a>
-											</li>
-										</ul>
-									</div>
-									<div>
-										<div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover" aria-expanded="true">
-											<a href="#" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle">
-												<i class="la la-plus m--hide"></i>
-												<i class="la la-ellipsis-h"></i>
-											</a>
-											<div class="m-dropdown__wrapper">
-												<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust" style="left: auto; right: 21.5px;"></span>
-												<div class="m-dropdown__inner">
-													<div class="m-dropdown__body">
-														<div class="m-dropdown__content">
-															<ul class="m-nav">
-																<li class="m-nav__section m-nav__section--first m--hide">
-																	<span class="m-nav__section-text">
-																		Quick Actions
-																	</span>
-																</li>
-																<li class="m-nav__item">
-																	<a href="" class="m-nav__link">
-																		<i class="m-nav__link-icon flaticon-share"></i>
-																		<span class="m-nav__link-text">
-																			Activity
-																		</span>
-																	</a>
-																</li>
-																<li class="m-nav__item">
-																	<a href="" class="m-nav__link">
-																		<i class="m-nav__link-icon flaticon-chat-1"></i>
-																		<span class="m-nav__link-text">
-																			Messages
-																		</span>
-																	</a>
-																</li>
-																<li class="m-nav__item">
-																	<a href="" class="m-nav__link">
-																		<i class="m-nav__link-icon flaticon-info"></i>
-																		<span class="m-nav__link-text">
-																			FAQ
-																		</span>
-																	</a>
-																</li>
-																<li class="m-nav__item">
-																	<a href="" class="m-nav__link">
-																		<i class="m-nav__link-icon flaticon-lifebuoy"></i>
-																		<span class="m-nav__link-text">
-																			Support
-																		</span>
-																	</a>
-																</li>
-																<li class="m-nav__separator m-nav__separator--fit"></li>
-																<li class="m-nav__item">
-																	<a href="#" class="btn btn-outline-danger m-btn m-btn--pill m-btn--wide btn-sm">
-																		Submit
-																	</a>
-																</li>
-															</ul>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- END: Subheader -->
-							<div class="m-content">
-								<!--begin::Portlet-->
-								<div class="m-portlet">
-									<div class="m-portlet__head">
-										<div class="m-portlet__head-caption">
-											<div class="m-portlet__head-title">
-												<h3 class="m-portlet__head-text">
-													Dropzone File Upload Examples
-												</h3>
-											</div>
-										</div>
-									</div>
-									<!--begin::Form-->
-									<form class="m-form m-form--fit m-form--label-align-right">
-										<div class="m-portlet__body">
-											<div class="form-group m-form__group row">
-												<label class="col-form-label col-lg-3 col-sm-12">
-													Single File Upload
-												</label>
-												<div class="col-lg-4 col-md-9 col-sm-12">
-													<div class="m-dropzone dropzone dz-clickable" action="inc/api/dropzone/upload.php" id="m-dropzone-one">
-														<div class="m-dropzone__msg dz-message needsclick">
-															<h3 class="m-dropzone__msg-title">
-																Drop files here or click to upload.
+													<div class="form-group m-form__group row">
+														<div class="col-10 ml-auto">
+															<h3 class="m-form__section">
+																1. Personal Details
 															</h3>
-															<span class="m-dropzone__msg-desc">
-																This is just a demo dropzone. Selected files are
-																<strong>
-																	not
-																</strong>
-																actually uploaded.
+														</div>
+													</div>
+													<div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
+															Full Name
+														</label>
+														<div class="col-7">
+															<input class="form-control m-input" type="text" value="Mark Andre">
+														</div>
+													</div>
+													<div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
+															Occupation
+														</label>
+														<div class="col-7">
+															<input class="form-control m-input" type="text" value="CTO">
+														</div>
+													</div>
+													<div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
+															Company Name
+														</label>
+														<div class="col-7">
+															<input class="form-control m-input" type="text" value="Keenthemes">
+															<span class="m-form__help">
+																If you want your invoices addressed to a company. Leave blank to use your full name.
 															</span>
 														</div>
 													</div>
-												</div>
-											</div>
-											<div class="form-group m-form__group row">
-												<label class="col-form-label col-lg-3 col-sm-12">
-													Multiple File Upload
-												</label>
-												<div class="col-lg-4 col-md-9 col-sm-12">
-													<div class="m-dropzone dropzone m-dropzone--primary dz-clickable" action="inc/api/dropzone/upload.php" id="m-dropzone-two">
-														<div class="m-dropzone__msg dz-message needsclick">
-															<h3 class="m-dropzone__msg-title">
-																Drop files here or click to upload.
+													<div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
+															Phone No.
+														</label>
+														<div class="col-7">
+															<input class="form-control m-input" type="text" value="+456669067890">
+														</div>
+													</div>
+													<div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
+													<div class="form-group m-form__group row">
+														<div class="col-10 ml-auto">
+															<h3 class="m-form__section">
+																2. Address
 															</h3>
-															<span class="m-dropzone__msg-desc">
-																Upload up to 10 files
-															</span>
 														</div>
 													</div>
-												</div>
-											</div>
-											<div class="form-group m-form__group row">
-												<label class="col-form-label col-lg-3 col-sm-12">
-													File Type Validation
-												</label>
-												<div class="col-lg-4 col-md-9 col-sm-12">
-													<div class="m-dropzone dropzone m-dropzone--success dz-clickable" action="inc/api/dropzone/upload.php" id="m-dropzone-three">
-														<div class="m-dropzone__msg dz-message needsclick">
-															<h3 class="m-dropzone__msg-title">
-																Drop files here or click to upload.
+													<div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
+															Address
+														</label>
+														<div class="col-7">
+															<input class="form-control m-input" type="text" value="L-12-20 Vertex, Cybersquare">
+														</div>
+													</div>
+													<div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
+															City
+														</label>
+														<div class="col-7">
+															<input class="form-control m-input" type="text" value="San Francisco">
+														</div>
+													</div>
+													<div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
+															State
+														</label>
+														<div class="col-7">
+															<input class="form-control m-input" type="text" value="California">
+														</div>
+													</div>
+													<div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
+															Postcode
+														</label>
+														<div class="col-7">
+															<input class="form-control m-input" type="text" value="45000">
+														</div>
+													</div>
+													<div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
+													<div class="form-group m-form__group row">
+														<div class="col-10 ml-auto">
+															<h3 class="m-form__section">
+																3. Social Links
 															</h3>
-															<span class="m-dropzone__msg-desc">
-																Only image, pdf and psd files are allowed for upload
-															</span>
+														</div>
+													</div>
+													<div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
+															Linkedin
+														</label>
+														<div class="col-7">
+															<input class="form-control m-input" type="text" value="www.linkedin.com/Mark.Andre">
+														</div>
+													</div>
+													<div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
+															Facebook
+														</label>
+														<div class="col-7">
+															<input class="form-control m-input" type="text" value="www.facebook.com/Mark.Andre">
+														</div>
+													</div>
+													<div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
+															Twitter
+														</label>
+														<div class="col-7">
+															<input class="form-control m-input" type="text" value="www.twitter.com/Mark.Andre">
+														</div>
+													</div>
+													<div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
+															Instagram
+														</label>
+														<div class="col-7">
+															<input class="form-control m-input" type="text" value="www.instagram.com/Mark.Andre">
 														</div>
 													</div>
 												</div>
-											</div>
-										</div>
-										<div class="m-portlet__foot m-portlet__foot--fit">
-											<div class="m-form__actions m-form__actions">
-												<div class="row">
-													<div class="col-lg-9 ml-lg-auto">
-														<button type="reset" class="btn btn-brand">
-															Submit
-														</button>
-														<button type="reset" class="btn btn-secondary">
-															Cancel
-														</button>
+												<div class="m-portlet__foot m-portlet__foot--fit">
+													<div class="m-form__actions">
+														<div class="row">
+															<div class="col-2"></div>
+															<div class="col-7">
+																<button type="reset" class="btn btn-accent m-btn m-btn--air m-btn--custom">
+																	Save changes
+																</button>
+																&nbsp;&nbsp;
+																<button type="reset" class="btn btn-secondary m-btn m-btn--air m-btn--custom">
+																	Cancel
+																</button>
+															</div>
+														</div>
 													</div>
 												</div>
-											</div>
+											</form>
 										</div>
-									</form>
-									<!--end::Form-->
+										<div class="tab-pane active" id="m_user_profile_tab_2"></div>
+									</div>
 								</div>
-								<!--end::Portlet-->
 							</div>
 						</div>
 					</div>
@@ -2372,9 +1323,9 @@
 					<div class="m-stack m-stack--flex-tablet-and-mobile m-stack--ver m-stack--desktop">
 						<div class="m-stack__item m-stack__item--left m-stack__item--middle m-stack__item--last">
 							<span class="m-footer__copyright">
-								2019 &copy; Aplikasi Bimbel Online Kekinian 
+								2017 &copy; Metronic theme by
 								<a href="#" class="m-link">
-									AppBimbel
+									Keenthemes
 								</a>
 							</span>
 						</div>
@@ -3009,8 +1960,8 @@
 			<i class="la la-arrow-up"></i>
 		</div>
 		<!-- end::Scroll Top -->		    <!-- begin::Quick Nav -->
-		<!-- <ul class="m-nav-sticky" style="margin-top: 30px;">
-			
+		<ul class="m-nav-sticky" style="margin-top: 30px;">
+			<!--
 			<li class="m-nav-sticky__item" data-toggle="m-tooltip" title="Showcase" data-placement="left">
 				<a href="">
 					<i class="la la-eye"></i>
@@ -3021,6 +1972,7 @@
 					<i class="la la-comments-o"></i>
 				</a>
 			</li>
+			-->
 			<li class="m-nav-sticky__item" data-toggle="m-tooltip" title="Purchase" data-placement="left">
 				<a href="https://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" target="_blank">
 					<i class="la la-cart-arrow-down"></i>
@@ -3036,20 +1988,12 @@
 					<i class="la la-life-ring"></i>
 				</a>
 			</li>
-		</ul> -->
+		</ul>
 		<!-- begin::Quick Nav -->	
     	<!--begin::Base Scripts -->
-		
 		<script src="{{ asset('js/vendors.bundle.js') }}" type="text/javascript"></script>
 		<script src="{{ asset('js/scripts.bundle.js') }}" type="text/javascript"></script>
-		
-		<!--end::Base Scripts -->   
-        <!--begin::Page Vendors -->
-		<script src="{{ asset('js/fullcalendar.bundle.js') }}" type="text/javascript"></script>
-		<!--end::Page Vendors -->  
-        <!--begin::Page Snippets -->
-		<script src="{{ asset('js/dashboard.js') }}" type="text/javascript"></script>
-		<!--end::Page Snippets -->
+		<!--end::Base Scripts -->
 	</body>
 	<!-- end::Body -->
 </html>
