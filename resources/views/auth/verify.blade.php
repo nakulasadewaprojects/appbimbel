@@ -16,6 +16,11 @@
 
                     {{ __('Sebelum melanjutkan, silakan periksa email Anda untuk tautan verifikasi.') }}
                     {{ __('Jika Anda tidak menerima email') }}, <a href="{{ route('verification.resend') }}">{{ __('klik di sini untuk kirim ulang') }}</a>.
+                    <br><br>
+                    <b>Batas waktu verifikasi: <br></b>
+                    {{Carbon\Carbon::parse($name->limitAktivasi)->isoFormat('dddd')}},     
+                    {{Carbon\Carbon::parse($name->limitAktivasi)->format('j F Y')}} pukul 
+                    {{Carbon\Carbon::parse($name->limitAktivasi)->format('H:i')}} WIB
                 </div>
             </div>
         </div>

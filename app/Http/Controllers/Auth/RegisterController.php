@@ -52,14 +52,15 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'NoIDMentor' => ['unique:tbmentor'],
-            'username' => ['required', 'string', 'max:255', 'unique:tbmentor'],
+            'username' => ['required', 'string','min:3', 'max:255', 'unique:tbmentor','regex:/^.*(?=.*[a-zA-Z])(?=.*[0-9]).*$/'],
             'first_name' => ['required', 'string', 'max:255'],
-            'last_name' => ['string','max:255'],
+            'last_name' => ['string', 'max:255'],
             'gender' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:tbmentor'],
-            'password' => ['required', 'string', 'min:1', 'confirmed',
-            //  'regex:/^.*(?=.*[a-zA-Z])(?=.*[0-9]).*$/'
-        ],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:tbmentor', 'regex:/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/'],
+            'password' => [
+                'required', 'string', 'min:8', 'confirmed',
+                 'regex:/^.*(?=.*[a-zA-Z])(?=.*[0-9]).*$/'
+            ],
         ]);
     }
 
@@ -71,9 +72,11 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $noidmentor=str_random(15);
+        // $tahun = Carbon::now()->format('YY');
+        // $bulan = Carbon::now()->format('m');
+        // $noidmentor = 'M' . $bulan . $tahun;
         $user = Tbmentor::create([
-            'NoIDMentor' => $noidmentor,
+            // 'NoIDMentor' => $noidmentor,
             'username' => $data['username'],
             'nm_depan' => $data['first_name'],
             'nm_belakang' => $data['last_name'],
@@ -83,11 +86,11 @@ class RegisterController extends Controller
             // 'tglregister' => Carbon::now()->addDays(30)->format('Y-m-d H:i:s'), //contoh
             'tglregister' => Carbon::now()->format('Y-m-d H:i:s'),
             'statusAktivasi' => '0',
-            'statusTutor' => '2'
+            'statusTutor' => '1'
         ]);
 
         $user->userData = Aktivasimentor::create([
-            'NoIDMentor' => $noidmentor,
+            // 'NoIDMentor' => $noidmentor,
             'statusLimit' => '1'
         ]);
         return $user;
