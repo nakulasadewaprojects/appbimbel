@@ -37,7 +37,7 @@
 						<div class="m-stack__item m-brand  m-brand--skin-light ">
 							<div class="m-stack m-stack--ver m-stack--general">
 								<div class="m-stack__item m-stack__item--middle m-brand__logo">
-									<a href="index.html" class="m-brand__logo-wrapper">
+									<a href="dashboard" class="m-brand__logo-wrapper">
 										<img alt="" src="assets/demo/default/media/img/logo/logo.png"/>
 									</a>
 									<h3 class="m-header__title">

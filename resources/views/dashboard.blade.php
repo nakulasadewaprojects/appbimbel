@@ -346,7 +346,6 @@
 																		<span class="m-nav__link-title">
 																			<span class="m-nav__link-wrap">
 																				<span class="m-nav__link-text">
-																					<!-- <a href= "profile.html" class="m-nav__link"> -->
 																					 My Profile
 																				</span>
 																				<span class="m-nav__link-badge">
