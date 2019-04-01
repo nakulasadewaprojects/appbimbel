@@ -5,6 +5,8 @@ namespace Illuminate\Foundation\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Support\Facades\Auth;
+use DB;
 
 trait VerifiesEmails
 {
@@ -18,9 +20,11 @@ trait VerifiesEmails
      */
     public function show(Request $request)
     {
+        $show = DB::table('aktivasimentor')->where('id', Auth::user()->id)->first();
+
         return $request->user()->hasVerifiedEmail()
                         ? redirect($this->redirectPath())
-                        : view('auth.verify');
+                        : view('auth.verify',['name'=>$show]);
     }
 
     /**
