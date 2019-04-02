@@ -38,12 +38,9 @@
 						<div class="m-stack__item m-brand  m-brand--skin-light ">
 							<div class="m-stack m-stack--ver m-stack--general">
 								<div class="m-stack__item m-stack__item--middle m-brand__logo">
-									<a href="index.html" class="m-brand__logo-wrapper">
+									<a href="dashboard" class="m-brand__logo-wrapper">
 										<img alt="" src="assets/demo/default/media/img/logo/logo.png"/>
 									</a>
-									<h3 class="m-header__title">
-										Apps
-									</h3>
 								</div>
 								<div class="m-stack__item m-stack__item--middle m-brand__tools">
 									<!-- BEGIN: Responsive Aside Left Menu Toggler -->
@@ -3007,48 +3004,11 @@
 		<div class="m-scroll-top m-scroll-top--skin-top" data-toggle="m-scroll-top" data-scroll-offset="500" data-scroll-speed="300">
 			<i class="la la-arrow-up"></i>
 		</div>
-		<!-- end::Scroll Top -->		    <!-- begin::Quick Nav -->
-		<!-- <ul class="m-nav-sticky" style="margin-top: 30px;">
-			
-			<li class="m-nav-sticky__item" data-toggle="m-tooltip" title="Showcase" data-placement="left">
-				<a href="">
-					<i class="la la-eye"></i>
-				</a>
-			</li>
-			<li class="m-nav-sticky__item" data-toggle="m-tooltip" title="Pre-sale Chat" data-placement="left">
-				<a href="" >
-					<i class="la la-comments-o"></i>
-				</a>
-			</li>
-			<li class="m-nav-sticky__item" data-toggle="m-tooltip" title="Purchase" data-placement="left">
-				<a href="https://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" target="_blank">
-					<i class="la la-cart-arrow-down"></i>
-				</a>
-			</li>
-			<li class="m-nav-sticky__item" data-toggle="m-tooltip" title="Documentation" data-placement="left">
-				<a href="http://keenthemes.com/metronic/documentation.html" target="_blank">
-					<i class="la la-code-fork"></i>
-				</a>
-			</li>
-			<li class="m-nav-sticky__item" data-toggle="m-tooltip" title="Support" data-placement="left">
-				<a href="http://keenthemes.com/forums/forum/support/metronic5/" target="_blank">
-					<i class="la la-life-ring"></i>
-				</a>
-			</li>
-		</ul> -->
-		<!-- begin::Quick Nav -->	
-    	<!--begin::Base Scripts -->
 		
 		<script src="{{ asset('js/vendors.bundle.js') }}" type="text/javascript"></script>
 		<script src="{{ asset('js/scripts.bundle.js') }}" type="text/javascript"></script>
-		
-		<!--end::Base Scripts -->   
-        <!--begin::Page Vendors -->
 		<script src="{{ asset('js/fullcalendar.bundle.js') }}" type="text/javascript"></script>
-		<!--end::Page Vendors -->  
-        <!--begin::Page Snippets -->
 		<script src="{{ asset('js/dashboard.js') }}" type="text/javascript"></script>
-		<!--end::Page Snippets -->
+
 	</body>
-	<!-- end::Body -->
 </html>
