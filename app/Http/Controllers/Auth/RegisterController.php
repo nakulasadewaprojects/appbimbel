@@ -52,7 +52,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'NoIDMentor' => ['unique:tbmentor'],
-            'username' => ['required', 'string','min:3', 'max:255', 'unique:tbmentor','regex:/^.*(?=.*[a-zA-Z])(?=.*[0-9]).*$/'],
+            'username' => ['required', 'string','min:6', 'max:255', 'unique:tbmentor','regex:/^.*(?=.*[a-zA-Z])(?=.*[0-9]).*$/'],
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['string', 'max:255'],
             'gender' => ['required', 'string', 'max:255'],
