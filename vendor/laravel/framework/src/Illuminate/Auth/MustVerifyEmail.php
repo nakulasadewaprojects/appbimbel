@@ -3,6 +3,7 @@
 namespace Illuminate\Auth;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Carbon;
 use App\Aktivasimentor;
 use App\Tbmentor;
 
@@ -28,6 +29,29 @@ trait MustVerifyEmail
      */
     public function markEmailAsVerified()
     {
+
+        $tahun = Carbon::now()->isoFormat('YY');
+        $bulan = Carbon::now()->format('m');
+        $noidmentor = 'M' . $bulan . $tahun;
+        if(strlen((string)Auth::user()->id)==1){
+            Aktivasimentor::where('id', Auth::user()->id)->update(['NoIDMentor' => $noidmentor.'0000'.Auth::user()->id]);
+            Tbmentor::where('id', Auth::user()->id)->update(['NoIDMentor' => $noidmentor.'0000'.Auth::user()->id]);
+        }else if(strlen((string)Auth::user()->id)==2){
+            Aktivasimentor::where('id', Auth::user()->id)->update(['NoIDMentor' => $noidmentor.'000'.Auth::user()->id]);
+            Tbmentor::where('id', Auth::user()->id)->update(['NoIDMentor' => $noidmentor.'000'.Auth::user()->id]);
+        }
+        else if(strlen((string)Auth::user()->id)==3){
+            Aktivasimentor::where('id', Auth::user()->id)->update(['NoIDMentor' => $noidmentor.'00'.Auth::user()->id]);
+            Tbmentor::where('id', Auth::user()->id)->update(['NoIDMentor' => $noidmentor.'00'.Auth::user()->id]);
+        }
+        else if(strlen((string)Auth::user()->id)==4){
+            Aktivasimentor::where('id', Auth::user()->id)->update(['NoIDMentor' => $noidmentor.'0'.Auth::user()->id]);
+            Tbmentor::where('id', Auth::user()->id)->update(['NoIDMentor' => $noidmentor.'0'.Auth::user()->id]);
+        }
+        else {
+            Aktivasimentor::where('id', Auth::user()->id)->update(['NoIDMentor' => $noidmentor.Auth::user()->id]);
+            Tbmentor::where('id', Auth::user()->id)->update(['NoIDMentor' => $noidmentor.Auth::user()->id]);
+        }
 
         Aktivasimentor::where('id', Auth::user()->id)->update(['tglAktivasi' => $this->freshTimestamp()]);
         Tbmentor::where('id', Auth::user()->id)->update(['statusAktivasi' => '1']);

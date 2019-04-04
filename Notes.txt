@@ -4,4 +4,3 @@ Database server
 		kolom codeAktivasi ga cukup butuh 100karakter
 	Tabel tbmentor
 		kolom idmentor -> id
-		butuh kolom remember_token

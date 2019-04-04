@@ -15,7 +15,7 @@ class CreateAktivasimentorsTable extends Migration
     {
         Schema::create('aktivasimentor', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('NoIDMentor')->unique();
+            $table->string('NoIDMentor')->nullable()->unique();
             $table->timestamp('tglAktivasi')->nullable();
             $table->timestamp('limitAktivasi')->nullable();
             $table->string('codeAktivasi')->nullable();
