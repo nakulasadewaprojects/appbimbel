@@ -103,7 +103,7 @@
 
                         <div class="m-login__form-action">
 <!--                            <div class="col-md-6 offset-md-4">-->
-                                <button id="m_login_signup_submit" type="submit" class="btn btn-outline-focus m-btn m-btn--pill m-btn--custom  m-login__btn">
+                                <button id="m_login_signup_submit" type="submit"  class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air m-login__btn m-login__btn--primary">
                                     {{ __('Daftar') }}
                                 </button>
 <!--                            </div>-->
