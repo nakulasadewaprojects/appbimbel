@@ -7,37 +7,37 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-   
+
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-    
-<!--
+
+    <!--
     <meta name="description" content="Latest updates and statistic charts">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 -->
-    
-     <!--begin::Base Styles -->
+
+    <!--begin::Base Styles -->
     <script src="{{ asset('js/app.js') }}" type="text/javascript" defer></script>
-<!--
+    <!--
     <script src="{{ asset('js/scripts.bundle.js')}}" type="text/javascript" defer></script>
     <script src="{{ asset('js/vendors.bundle.js') }}" type="text/javascript" defer></script>
 -->
-    
+
     <!--begin::Web font -->
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
     <script>
-          WebFont.load({
+        WebFont.load({
             google: {"families":["Poppins:300,400,500,600,700","Roboto:300,400,500,600,700"]},
             active: function() {
                 sessionStorage.fonts = true;
             }
           });
-        </script>
-		<!--end::Web font -->
+    </script>
+    <!--end::Web font -->
 
     <!-- Fonts -->
-<!--
+    <!--
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 -->
@@ -46,12 +46,13 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.bundle.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/vendors.bundle.css') }}" rel="stylesheet" type="text/css">
-<!--    <link rel="shortcut icon" href="{{ asset('media/img/logo/favicon.ico')}}" />-->
+    <!--    <link rel="shortcut icon" href="{{ asset('media/img/logo/favicon.ico')}}" />-->
 </head>
 
 <body>
     <div id="app">
-        {{-- <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+        @guest @if (Route::has('register')) @endif @else
+        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -70,15 +71,13 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
-                        @guest
+                        {{--
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Masuk') }}</a>
                         </li>
-                        @if (Route::has('register'))
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('register') }}">{{ __('Daftar') }}</a>
-                        </li>
-                        @endif @else
+                        </li> --}}
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false" v-pre>
@@ -99,8 +98,10 @@
                         @endguest
                     </ul>
                 </div>
+
+
             </div>
-        </nav> --}}
+        </nav>
 
         <main class="py-4">
             @yield('content')

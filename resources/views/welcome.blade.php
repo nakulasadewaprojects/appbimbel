@@ -130,8 +130,8 @@
                         @if (Auth::check())
                             <a href="{{ url('/home') }}">Home</a>
                         @else
-                            <a href="{{ url('/login') }}" class="header__references_support" target="_blank">Login</a>
-                            <a href="{{ url('/register') }}" class="header__references_purchase" target="_blank">Register</a>
+                            <a href="{{ url('/login') }}" class="header__references_purchase" target="_blank">Mentor</a>
+                            <a href="{{ url('/register') }}" class="header__references_purchase" target="_blank">Siswa</a>
                         @endif
                             </div>
                         @endif
