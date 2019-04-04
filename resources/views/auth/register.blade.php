@@ -6,7 +6,7 @@
 				<div class="m-grid__item m-grid__item--fluid	m-login__wrapper">
 					<div class="m-login__container">
 						<div class="m-login__logo">
-							<a href="#">
+							<a href="{{url('/')}}">
 								<img src="{{ asset('media/logo/logo-1.png') }}">
 							</a>
                         </div>
@@ -16,7 +16,7 @@
            
                 <div class="m-login__head">
                      <h3 class="m-login__title">
-                    {{ __('Pendaftaran') }}
+                    {{ __('Pendaftaran Mentor') }}
                     </h3>
                 </div>
             
@@ -106,12 +106,17 @@
                                 <button id="m_login_signup_submit" type="submit" class="btn btn-outline-focus m-btn m-btn--pill m-btn--custom  m-login__btn">
                                     {{ __('Daftar') }}
                                 </button>
-                                 <button id="m_login_signup_cancel" type="submit" class="btn btn-outline-focus m-btn m-btn--pill m-btn--custom  m-login__btn">
-                                                    {{ __('Cancel') }}
-                                    </button>
 <!--                            </div>-->
                         </div>
                     </form>
+                    <div class="m-login__account">
+                        <span class="m-login__account-msg">
+                          Sudah punya akun ?
+                      </span> &nbsp;&nbsp;
+                        <a href="login" id="m_login_signup" class="m-link m-link--light m-login__account-link">
+                          Masuk
+                      </a>
+                    </div>
                 </div>
             
         </div>

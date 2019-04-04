@@ -26,7 +26,7 @@
                              <input type="hidden" name="token" value="{{ $token }}">
                              
 							<div class="form-group m-form__group">
-                                    <input id="email" type="email" placeholder="emailmu opo?" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $email ?? old('email') }}"
+                                    <input id="email" type="email" placeholder="Email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $email ?? old('email') }}"
                                     required autofocus>
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
@@ -36,7 +36,7 @@
                             </div>
 
                             <div class="form-group m-form__group">
-                                    <input id="password" placeholder="passwordmu opo?" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password"
+                                    <input id="password" placeholder="Password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password"
                                     required>
                                 <font size="2">*Password minimal 8 karakter kombinasi huruf & angka</font>
 
@@ -48,7 +48,7 @@
                             </div>
 
                             <div class="form-group m-form__group">                                                    
-                                    <input id="password-confirm" placeholder="ini jg" type="password" class="form-control" name="password_confirmation" required>
+                                    <input id="password-confirm" placeholder="Ulangi Password" type="password" class="form-control" name="password_confirmation" required>
                                
                             </div>
                     
