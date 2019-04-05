@@ -32,7 +32,8 @@
 		<meta name="twitter:description" content="Metronic - #1 Selling Premium Bootstrap Admin Theme of All Time. Build with Twitter Bootstrap 4, SASS, Angular 4, Material Design. Trusted By Tens of Thousands Users."/>
 		<meta name="twitter:title" content="Premium Bootstrap Admin Themes"/>
 		<meta name="twitter:domain" content="Keenthemes"/>
-		<link rel="shortcut icon" href="{{ asset('media/logo/favicon.ico') }}"/>
+		<link rel="shortcut icon" href="assets/demo/demo6/media/img/logo/favicon.ico" />
+		
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -128,7 +129,7 @@
                         @if (Route::has('login'))
                             <div class="top-right links">
                         @if (Auth::check())
-                            <a href="{{ url('/home') }}" class="intro__video">Home</a>
+                            <a href="{{ url('/dashboard') }}" class="intro__video">Dashboard</a>
                         @else
                             <a href="{{ url('mentor/login') }}" class="intro__video">Mentor</a>
                             <a href="{{ url('siswa/login') }}" class="intro__video">Siswa</a>

@@ -3,11 +3,11 @@
 @section('content')
 <body class="m--skin- m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default"  >
         <div class="m-grid m-grid--hor m-grid--root m-page">
-			<div class="m-grid__item m-grid__item--fluid m-grid m-grid--hor m-login m-login--singin m-login--2 m-login-2--skin-2" id="m_login" style="background-image: url(media/background/bg-3.jpg);">
+			<div class="m-grid__item m-grid__item--fluid m-grid m-grid--hor m-login m-login--singin m-login--2 m-login-2--skin-2" id="m_login" style="background-image: url(../media/background/bg-3.jpg);">
 				<div class="m-grid__item m-grid__item--fluid	m-login__wrapper">
 					<div class="m-login__container">
 						<div class="m-login__logo">
-							<a href="#">
+                        <a href="{{url('/')}}">
 								<img src="{{ asset('media/logo/logo-1.png') }}">
 							</a>
                         </div>
@@ -48,9 +48,9 @@
                                         Request
 									</button>
 									&nbsp;&nbsp;
-									<button id="m_login_forget_password_cancel" class="btn btn-outline-focus m-btn m-btn--pill m-btn--custom m-login__btn">
+                                <a href="{{url('/')}}" id="m_login_forget_password_cancel" class="btn btn-outline-focus m-btn m-btn--pill m-btn--custom m-login__btn">
 										Cancel
-									</button>
+                                    </a>
 							    </div>
                             </form>
                         </div>

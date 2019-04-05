@@ -30,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/dashboard';
 
     /**
      * Create a new controller instance.
@@ -53,7 +53,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'NoIDMentor' => ['unique:tbmentor'],
             'username' => ['required', 'string','min:6', 'max:255', 'unique:tbmentor','regex:/^.*(?=.*[a-zA-Z])(?=.*[0-9]).*$/'],
-            'first_name' => ['required', 'string', 'max:255'],
+            'first_name' => ['required', 'min:3', 'string', 'max:255'],
             'last_name' => ['string', 'max:255'],
             'gender' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:tbmentor', 'regex:/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/'],
