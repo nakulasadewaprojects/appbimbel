@@ -128,10 +128,10 @@
                         @if (Route::has('login'))
                             <div class="top-right links">
                         @if (Auth::check())
-                            <a href="{{ url('/home') }}">Home</a>
+                            <a href="{{ url('/home') }}" class="intro__video">Home</a>
                         @else
-                            <a href="{{ url('/login') }}" class="header__references_support" target="_blank">Login</a>
-                            <a href="{{ url('/register') }}" class="header__references_purchase" target="_blank">Register</a>
+                            <a href="{{ url('mentor/login') }}" class="intro__video">Mentor</a>
+                            <a href="{{ url('siswa/login') }}" class="intro__video">Siswa</a>
                         @endif
                             </div>
                         @endif

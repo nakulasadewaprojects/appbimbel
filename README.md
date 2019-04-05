@@ -13,13 +13,31 @@
     - [x] Registration
     - [x] Login
     - [x] Logout
-    - [x] Reset Password
+    - [x] Reset password
+    - [x] Email verification
+    - [] Update Profile
 
-- [ ] Layout
-    - [ ] Registration
-    - [ ] Login
-    - [ ] Logout
-    - [ ] Reset Password
+- [x] Layout
+    - [x] Registration
+    - [x] Login
+    - [x] Logout
+    - [x] Reset password
+    - [x] Email verification
+    - [] Update Profile
+
+### Siswa
+- [] Function
+    - [] Registration
+    - [] Login
+    - [] Logout
+    - [] Reset password
+
+- [] Layout
+    - [] Registration
+    - [] Login
+    - [] Logout
+    - [] Reset password
+
 
 ## About Laravel
 

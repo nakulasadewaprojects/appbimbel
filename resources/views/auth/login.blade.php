@@ -8,7 +8,7 @@
             <div class="m-grid__item m-grid__item--fluid	m-login__wrapper">
                 <div class="m-login__container">
                     <div class="m-login__logo">
-                        <a href="#">
+                        <a href="{{url('/')}}">
 								<img src="{{ asset('media/logo/logo-1.png') }}">
 							</a>
                     </div>
@@ -16,7 +16,7 @@
                         <div class="m-login__signin">
                             <div class="m-login__head">
                                 <h3 class="m-login__title">
-                                    LOGIN
+                                    LOGIN MENTOR
                                 </h3>
                             </div>
                             <div class="card-body">
@@ -61,14 +61,14 @@
                                     </div>
 
                                 </form>
-                            </div>
-                            <div class="m-login__account">
-                                <span class="m-login__account-msg">
-                                  Belum punya akun ?
-                              </span> &nbsp;&nbsp;
-                                <a href="register" id="m_login_signup" class="m-link m-link--light m-login__account-link">
-                                  Daftar
-                              </a>
+                                <div class="m-login__account">
+                                    <span class="m-login__account-msg">
+                                      Belum punya akun ?
+                                  </span> &nbsp;&nbsp;
+                                    <a href="register" id="m_login_signup" class="m-link m-link--light m-login__account-link">
+                                      Daftar
+                                  </a>
+                                </div>
                             </div>
                         </div>
                     </div>
