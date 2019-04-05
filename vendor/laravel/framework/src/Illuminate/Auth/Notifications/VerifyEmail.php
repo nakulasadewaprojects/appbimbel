@@ -38,9 +38,9 @@ class VerifyEmail extends Notification
      */
     public function toMail($notifiable)
     {
-        Aktivasimentor::where('id', $notifiable->getKey())->update(['codeAktivasi' => substr( $this->verificationUrl($notifiable), 47) ]); 
-        Aktivasimentor::where('id', $notifiable->getKey())->update(['statusLimit' => '3']); 
-        Aktivasimentor::where('id', $notifiable->getKey())->update(['limitAktivasi' =>Carbon::now()->addMinutes(2880)]); 
+        Aktivasimentor::where('idaktivasimentor', $notifiable->getKey())->update(['codeAktivasi' => substr( $this->verificationUrl($notifiable), 47) ]); 
+        Aktivasimentor::where('idaktivasimentor', $notifiable->getKey())->update(['statusLimit' => '3']); 
+        Aktivasimentor::where('idaktivasimentor', $notifiable->getKey())->update(['limitAktivasi' =>Carbon::now()->addMinutes(2880)]); 
 
         if (static::$toMailCallback) {
             return call_user_func(static::$toMailCallback, $notifiable);
@@ -67,7 +67,7 @@ class VerifyEmail extends Notification
         return URL::temporarySignedRoute(
             'verification.verify',
             Carbon::now()->addMinutes(Config::get('auth.verification.expire', 2880)),
-            ['id' => $notifiable->getKey()]
+            ['idmentor' => $notifiable->getKey()]
         );
     }
 
