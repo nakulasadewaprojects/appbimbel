@@ -1055,7 +1055,6 @@ return array(
     'Illuminate\\Foundation\\Auth\\AuthenticatesUsers' => $vendorDir . '/laravel/framework/src/Illuminate/Foundation/Auth/AuthenticatesUsers.php',
     'Illuminate\\Foundation\\Auth\\RedirectsUsers' => $vendorDir . '/laravel/framework/src/Illuminate/Foundation/Auth/RedirectsUsers.php',
     'Illuminate\\Foundation\\Auth\\RegistersUsers' => $vendorDir . '/laravel/framework/src/Illuminate/Foundation/Auth/RegistersUsers.php',
-    'Illuminate\\Foundation\\Auth\\RegistersUsersmletet' => $vendorDir . '/laravel/framework/src/Illuminate/Foundation/Auth/RegistersUsersmletet.php',
     'Illuminate\\Foundation\\Auth\\ResetsPasswords' => $vendorDir . '/laravel/framework/src/Illuminate/Foundation/Auth/ResetsPasswords.php',
     'Illuminate\\Foundation\\Auth\\SendsPasswordResetEmails' => $vendorDir . '/laravel/framework/src/Illuminate/Foundation/Auth/SendsPasswordResetEmails.php',
     'Illuminate\\Foundation\\Auth\\ThrottlesLogins' => $vendorDir . '/laravel/framework/src/Illuminate/Foundation/Auth/ThrottlesLogins.php',
