@@ -47,11 +47,6 @@ License: You must have a valid license purchased only from themeforest(the above
 	<body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-light m-aside-left--fixed m-aside-left--offcanvas m-aside-left--minimize m-brand--minimize m-footer--push m-aside--offcanvas-default"  >
 		<!-- begin:: Page -->
 		<div class="m-grid m-grid--hor m-grid--root m-page">
-				@if (session('status'))
-				<div class="alert alert-success" role="alert">
-					{{ session('status') }}
-				</div>
-				@endif
 			<!-- BEGIN: Header -->
 			<header class="m-grid__item    m-header "  data-minimize-offset="200" data-minimize-mobile-offset="200" >
 				<div class="m-container m-container--fluid m-container--full-height">
@@ -1669,6 +1664,17 @@ License: You must have a valid license purchased only from themeforest(the above
 							</a>
 						</form>
 					</div>
+					<div class="m-content">
+						<!--Begin::Main Portlet-->
+						<div class="m-portlet">
+							<div class="m-portlet__body  m-portlet__body--no-padding">
+								<div class="row m-row--no-padding m-row--col-separator-xl">
+										@if (session('status'))
+										<div class="alert alert-success" role="alert">
+											{{ session('status') }}
+										</div>
+										@endif	
+								</div></div></div></div>
 					<div class="m-content">
 						<!--Begin::Main Portlet-->
 						<div class="m-portlet">
