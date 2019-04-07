@@ -1,70 +1,64 @@
 <?php
 
-// namespace App\Http\Controllers;
 namespace App\Http\Controllers\Auth;
 
 use App\Tbsiswa;
-// use Illuminate\Http\Request;
-
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 
 class RegisterSiswaController extends Controller
 {
-    
-    public function showRegisterForm()
-    {
-        return view('auth.registersiswa');
-    }
+    /*
+    |--------------------------------------------------------------------------
+    | Register Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller handles the registration of new users as well as their
+    | validation and creation. By default this controller uses a trait to
+    | provide this functionality without requiring any additional code.
+    |
+    */
 
+    use RegistersUsers;
 
-    public function register(Request $request)
-    {
-        $this->validator($request->all())->validate();
-
-        event(new Registered($user = $this->create($request->all())));
-
-        $this->guard()->login($user);
-
-        return $this->registered($request, $user)
-                        ?: redirect($this->redirectPath());
-    }
-
+    /**
+     * Where to redirect users after registration.
+     *
+     * @var string
+     */
     protected $redirectTo = '/dashboardsiswa';
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
 
     protected function guard()
     {
         return Auth::guard('siswa');
     }
 
-    public function __construct()
+    public function showRegisterForm()
     {
-        $this->middleware('guest');
+        return view('auth.registersiswa');
     }
 
-
-
-    protected function registered(Request $request, $user)
-    {
-        //
-    }
-
-    public function redirectPath()
-    {
-        if (method_exists($this, 'redirectTo')) {
-            return $this->redirectTo();
-        }
-
-        return property_exists($this, 'redirectTo') ? $this->redirectTo : '/dashboard';
-    }    
-
-   
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
     protected function validator(array $data)
     {
         return Validator::make($data, [
@@ -80,6 +74,13 @@ class RegisterSiswaController extends Controller
             ],
         ]);
     }
+
+    /**
+     * Create a new user instance after a valid registration.
+     *
+     * @param  array  $data
+     * @return \App\User
+     */
     protected function create(array $data)
     {
         return Tbsiswa::create([

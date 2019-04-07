@@ -17,10 +17,13 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if (Auth::guard($guard)->check()) {
+        if (Auth::guard('web')->check()) {
             return redirect('/dashboard');
+        } else if(Auth::guard('siswa')->check()) {
+            return redirect('/dashboardsiswa');
         }
-
-        return $next($request);
+        else {
+            return $next($request);
+        }
     }
 }

@@ -126,16 +126,18 @@
 											Purchase
 										</a>
 -->
-                        @if (Route::has('login'))
-                            <div class="top-right links">
-                        @if (Auth::check())
+                        
+						<div class="top-right links">
+                        @if (Auth::guard('web')->check())
                             <a href="{{ url('/dashboard') }}" class="intro__video">Dashboard</a>
+                        @elseif ( Auth::guard('siswa')->check())
+                            <a href="{{ url('/dashboardsiswa') }}" class="intro__video">Dashboard</a>
                         @else
                             <a href="{{ url('mentor/login') }}" class="intro__video">Mentor</a>
                             <a href="{{ url('siswa/login') }}" class="intro__video">Siswa</a>
                         @endif
                             </div>
-                        @endif
+                        
 				        </div>
                     </div>
                 </header>
