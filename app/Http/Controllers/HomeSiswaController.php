@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 
 
-class HomeController extends Controller
+class HomeSiswaController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -17,22 +17,22 @@ class HomeController extends Controller
      */
     public function __construct()
     {
+      
+            $this->middleware('auth:siswa');
     
-        $this->middleware(['auth', 'verified']);
-        
     }
         /**
          * Show the application dashboard.
          *
          * @return \Illuminate\Contracts\Support\Renderable
          */
-    public function index()
-    {
-        return view('home');
-    }
+    // public function index()
+    // {
+    //     return view('home');
+    // }
     public function dashboard()
     {
-        return view('dashboard');
+        return view('dashboardSiswa');
     }
     public function profile()
     {

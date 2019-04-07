@@ -1159,10 +1159,10 @@ class Router implements RegistrarContract, BindingRegistrar
             $this->post('mentor/register', 'Auth\RegisterController@register');
         }
 
-        if ($options['registerSiswa'] ?? true) {
-            $this->get('/siswa/registerSiswa','Auth\RegisterSiswaController@showRegistrationForm')->name('registerSiswa');;
-            $this->post('/siswa/registerSiswa','Auth\RegisterSiswaController@registerSiswa');
-        }
+        // if ($options['registerSiswa'] ?? true) {
+        //     $this->get('/siswa/registerSiswa','Auth\RegisterSiswaController@showRegistrationForm')->name('registerSiswa');;
+        //     $this->post('/siswa/registerSiswa','Auth\RegisterSiswaController@registerSiswa');
+        // }
 
         // Password Reset Routes...
         if ($options['reset'] ?? true) {

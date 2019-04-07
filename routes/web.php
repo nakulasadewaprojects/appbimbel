@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Route::get('/siswa/login', 'Auth\RegisterSiswaController@showRegisterForm');
 
 Route::get('/', function () {
 
@@ -20,6 +21,12 @@ Route::get('/', function () {
 // Auth::routes();
 Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/siswa/register', 'Auth\RegisterSiswaController@showRegisterForm')->name('registersiswa');
+Route::post('/siswa/register', 'Auth\RegisterSiswaController@register');
+Route::get('/siswa/login', 'Auth\LoginSiswaController@showLoginForm')->name('loginsiswa');
+Route::post('/siswa/login', 'Auth\LoginSiswaController@login');
 Route::get('/dashboard', 'HomeController@dashboard');
+Route::get('/dashboardsiswa', 'HomeSiswaController@dashboard');
 Route::get('/profile', 'HomeController@profile');
+Route::get('/profilesiswa', 'HomeSiswaController@profile');
 

@@ -41,6 +41,11 @@ return [
             'provider' => 'users',
         ],
 
+        'siswa' => [
+            'driver' => 'session',
+            'provider' => 'siswas',
+        ],
+
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -71,6 +76,11 @@ return [
             'model' => App\Tbmentor::class,
         ],
 
+        'siswas' => [
+            'driver' => 'eloquent',
+            'model' => App\Tbsiswa::class,
+        ],
+
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
@@ -95,6 +105,11 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'siswas' => [
+            'provider' => 'siswas',
             'table' => 'password_resets',
             'expire' => 60,
         ],
