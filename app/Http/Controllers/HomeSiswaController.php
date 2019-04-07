@@ -30,12 +30,12 @@ class HomeSiswaController extends Controller
     // {
     //     return view('home');
     // }
-    public function dashboard()
+    public function dashboardsiswa()
     {
-        return view('dashboardSiswa');
+        return view('dashboardsiswa');
     }
-    public function profile()
+    public function profilesiswa()
     {
-        return view('profile');
+        return view('profilesiswa');
     }
 }

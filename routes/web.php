@@ -26,7 +26,7 @@ Route::post('/siswa/register', 'Auth\RegisterSiswaController@register');
 Route::get('/siswa/login', 'Auth\LoginSiswaController@showLoginForm')->name('loginsiswa');
 Route::post('/siswa/login', 'Auth\LoginSiswaController@login');
 Route::get('/dashboard', 'HomeController@dashboard');
-Route::get('/dashboardsiswa', 'HomeSiswaController@dashboard');
+Route::get('/dashboardsiswa', 'HomeSiswaController@dashboardsiswa');
 Route::get('/profile', 'HomeController@profile');
-Route::get('/profilesiswa', 'HomeSiswaController@profile');
+Route::get('/profilesiswa', 'HomeSiswaController@profilesiswa');
 
