@@ -6,15 +6,15 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Tbmentor extends Authenticatable implements MustVerifyEmail
+class Tbsiswa extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 
     public $timestamps = false;
 
-    public $primaryKey = 'idmentor';
+    // public $primaryKey = 'NoIDSiswa';
 
-    public $table = "tbmentor";
+    public $table = "tbsiswa";
 
     /**
      * The attributes that are mass assignable.
@@ -22,7 +22,7 @@ class Tbmentor extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'NoIDMentor','username','nm_depan','nm_belakang', 'gender', 'email', 'password','tglregister','statusAktivasi','statusTutor'
+        'NoIDSiswa','username','password','namaLengkap','alamat','kota','provinsi','kecamatan','kelurahan','gender','NoTlpn','email','tglregister' 
     ];
 
     /**

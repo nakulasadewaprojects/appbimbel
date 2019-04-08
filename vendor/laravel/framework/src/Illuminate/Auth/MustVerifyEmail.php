@@ -18,7 +18,7 @@ trait MustVerifyEmail
     {
         // return ! is_null($this->email_verified_at);
         if (Auth::check()) {
-            return  !is_null(Aktivasimentor::where('id', Auth::user()->id)->value('tglAktivasi'));
+            return  !is_null(Aktivasimentor::where('idaktivasimentor', Auth::user()->idmentor)->value('tglAktivasi'));
         }
     }
 
@@ -33,28 +33,28 @@ trait MustVerifyEmail
         $tahun = Carbon::now()->isoFormat('YY');
         $bulan = Carbon::now()->format('m');
         $noidmentor = 'M' . $bulan . $tahun;
-        if(strlen((string)Auth::user()->id)==1){
-            Aktivasimentor::where('id', Auth::user()->id)->update(['NoIDMentor' => $noidmentor.'0000'.Auth::user()->id]);
-            Tbmentor::where('id', Auth::user()->id)->update(['NoIDMentor' => $noidmentor.'0000'.Auth::user()->id]);
-        }else if(strlen((string)Auth::user()->id)==2){
-            Aktivasimentor::where('id', Auth::user()->id)->update(['NoIDMentor' => $noidmentor.'000'.Auth::user()->id]);
-            Tbmentor::where('id', Auth::user()->id)->update(['NoIDMentor' => $noidmentor.'000'.Auth::user()->id]);
+        if(strlen((string)Auth::user()->idmentor)==1){
+            Aktivasimentor::where('idaktivasimentor', Auth::user()->idmentor)->update(['NoIDMentor' => $noidmentor.'0000'.Auth::user()->idmentor]);
+            Tbmentor::where('idmentor', Auth::user()->idmentor)->update(['NoIDMentor' => $noidmentor.'0000'.Auth::user()->idmentor]);
+        }else if(strlen((string)Auth::user()->idmentor)==2){
+            Aktivasimentor::where('idaktivasimentor', Auth::user()->idmentor)->update(['NoIDMentor' => $noidmentor.'000'.Auth::user()->idmentor]);
+            Tbmentor::where('idmentor', Auth::user()->idmentor)->update(['NoIDMentor' => $noidmentor.'000'.Auth::user()->idmentor]);
         }
-        else if(strlen((string)Auth::user()->id)==3){
-            Aktivasimentor::where('id', Auth::user()->id)->update(['NoIDMentor' => $noidmentor.'00'.Auth::user()->id]);
-            Tbmentor::where('id', Auth::user()->id)->update(['NoIDMentor' => $noidmentor.'00'.Auth::user()->id]);
+        else if(strlen((string)Auth::user()->idmentor)==3){
+            Aktivasimentor::where('idaktivasimentor', Auth::user()->idmentor)->update(['NoIDMentor' => $noidmentor.'00'.Auth::user()->idmentor]);
+            Tbmentor::where('idmentor', Auth::user()->idmentor)->update(['NoIDMentor' => $noidmentor.'00'.Auth::user()->idmentor]);
         }
-        else if(strlen((string)Auth::user()->id)==4){
-            Aktivasimentor::where('id', Auth::user()->id)->update(['NoIDMentor' => $noidmentor.'0'.Auth::user()->id]);
-            Tbmentor::where('id', Auth::user()->id)->update(['NoIDMentor' => $noidmentor.'0'.Auth::user()->id]);
+        else if(strlen((string)Auth::user()->idmentor)==4){
+            Aktivasimentor::where('idaktivasimentor', Auth::user()->idmentor)->update(['NoIDMentor' => $noidmentor.'0'.Auth::user()->idmentor]);
+            Tbmentor::where('idmentor', Auth::user()->idmentor)->update(['NoIDMentor' => $noidmentor.'0'.Auth::user()->idmentor]);
         }
         else {
-            Aktivasimentor::where('id', Auth::user()->id)->update(['NoIDMentor' => $noidmentor.Auth::user()->id]);
-            Tbmentor::where('id', Auth::user()->id)->update(['NoIDMentor' => $noidmentor.Auth::user()->id]);
+            Aktivasimentor::where('idaktivasimentor', Auth::user()->idmentor)->update(['NoIDMentor' => $noidmentor.Auth::user()->idmentor]);
+            Tbmentor::where('idmentor', Auth::user()->idmentor)->update(['NoIDMentor' => $noidmentor.Auth::user()->idmentor]);
         }
 
-        Aktivasimentor::where('id', Auth::user()->id)->update(['tglAktivasi' => $this->freshTimestamp()]);
-        Tbmentor::where('id', Auth::user()->id)->update(['statusAktivasi' => '1']);
+        Aktivasimentor::where('idaktivasimentor', Auth::user()->idmentor)->update(['tglAktivasi' => $this->freshTimestamp()]);
+        Tbmentor::where('idmentor', Auth::user()->idmentor)->update(['statusAktivasi' => '1']);
 
         // return $this->forceFill([
         //     'statusAktivasi' => '1',

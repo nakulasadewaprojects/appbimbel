@@ -23,7 +23,7 @@
                                     @csrf
                                     <div class="form-group m-form__group">
                                         <input id="email" type="text" placeholder="Email atau Nama Pengguna" name="email" class="form-control m-input{{ $errors->has('email') || $errors->has('username') ? ' is-invalid' : '' }}"
-                                            name="email" value="{{ old('email') ?: old('username') }}" required autofocus>                                        @if ($errors->has('email') || $errors->has('username'))
+                                            name="email" value="{{ old('email') ?: old('username') }}" required autofocus>@if ($errors->has('email') || $errors->has('username'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('email') ?: $errors->first('username') }}</strong>
                                             </span> @endif

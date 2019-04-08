@@ -1151,14 +1151,24 @@ class Router implements RegistrarContract, BindingRegistrar
         // Authentication Routes...
         $this->get('mentor/login', 'Auth\LoginController@showLoginForm')->name('login');
         $this->post('mentor/login', 'Auth\LoginController@login');
+        $this->get('/siswa/login', 'Auth\LoginSiswaController@showLoginForm')->name('siswalogin');
+        $this->post('/siswa/login', 'Auth\LoginSiswaController@login');
         $this->post('logout', 'Auth\LoginController@logout')->name('logout');
 
         // Registration Routes...
         if ($options['mentor/register'] ?? true) {
-            $this->get('mentor/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-            $this->post('mentor/register', 'Auth\RegisterController@register');
-        }
+           $this->get('mentor/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+           $this->post('mentor/register', 'Auth\RegisterController@register');
+        
+       }
 
+   if ($options['registerSiswa'] ?? true) {
+        $this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+        $this->post('register', 'Auth\RegisterController@register');
+        $this->get('/siswa/registerSiswa','Auth\RegisterSiswaController@showRegistrationForm')->name('registerSiswa');;
+        $this->post('/siswa/registerSiswa','Auth\RegisterSiswaController@registerSiswa');
+   }
+   
         // Password Reset Routes...
         if ($options['reset'] ?? true) {
             $this->resetPassword();
@@ -1191,7 +1201,7 @@ class Router implements RegistrarContract, BindingRegistrar
     public function emailVerification()
     {
         $this->get('email/verify', 'Auth\VerificationController@show')->name('verification.notice');
-        $this->get('email/verify/{id}', 'Auth\VerificationController@verify')->name('verification.verify');
+        $this->get('email/verify/{idmentor}', 'Auth\VerificationController@verify')->name('verification.verify');
         $this->get('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
     }
 
