@@ -42,7 +42,7 @@
 						<div class="m-stack__item m-brand  m-brand--skin-light ">
 							<div class="m-stack m-stack--ver m-stack--general">
 								<div class="m-stack__item m-stack__item--middle m-brand__logo">
-									<a href="dashboard" class="m-brand__logo-wrapper">
+									<a href="dashboardsiswa" class="m-brand__logo-wrapper">
 										<img alt="" src="assets/demo/demo6/media/img/logo/logo.png"/>
 									</a>
 								</div>
@@ -69,7 +69,7 @@
 						<div class="m-stack__item m-stack__item--fluid m-header-head" id="m_header_nav">
 							<div class="m-header__title">
 								<h3 class="m-header__title-text">
-									Mentor Dashboard
+									Siswa Dashboard
 								</h3>
 							</div>
 							<!-- BEGIN: Horizontal Menu -->
@@ -397,7 +397,7 @@
 																	</span>
 																</li>
 																<li class="m-nav__item">
-																	<a href="profile" class="m-nav__link">
+																	<a href="profilesiswa" class="m-nav__link">
 																		<i class="m-nav__link-icon flaticon-profile-1"></i>
 																		<span class="m-nav__link-title">
 																			<span class="m-nav__link-wrap">
@@ -418,12 +418,12 @@
 																</li>
 																<li class="m-nav__separator m-nav__separator--fit"></li>
 																<li class="m-nav__item">
-																	<a href="{{ route('logout') }}" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder"
+																	<a href="{{ route('logoutsiswa') }}" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder"
 																	onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
 																		Logout
 																	</a>
-																	<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+																	<form id="logout-form" action="{{ route('logoutsiswa') }}" method="POST" style="display: none;">
 																			@csrf
 																		</form>
 																</li>
@@ -849,28 +849,28 @@
 				<div class="m-grid__item m-grid__item--fluid m-wrapper">
 					<div class="m-subheader-search">
 						<h2 class="m-subheader-search__title">
-							Cari Jadwal Mengajar
+							Cari Mentor
 						</h2>
 						<form class="m-form">
 							<div class="m-input-icon m-input-icon--fixed m-input-icon--fixed-large m-input-icon--right">
-								<input type="text" class="form-control form-control-lg m-input m-input--pill" placeholder="Cari Jadwal">
+								<input type="text" class="form-control form-control-lg m-input m-input--pill" placeholder="MatPel">
 								<span class="m-input-icon__icon m-input-icon__icon--right">
 									<span>
 										<i class="la la-puzzle-piece"></i>
 									</span>
 								</span>
 							</div>
-							<div class="m-input-icon m-input-icon--fixed m-input-icon--fixed-md m-input-icon--right">
-								<input type="text" class="form-control form-control-lg m-input m-input--pill" placeholder="Waktu">
+							<!-- <div class="m-input-icon m-input-icon--fixed m-input-icon--fixed-md m-input-icon--right">
+								<input type="text" class="form-control form-control-lg m-input m-input--pill" placeholder="MatPel">
 								<span class="m-input-icon__icon m-input-icon__icon--right">
 									<span>
 										<i class="la la-calendar-check-o"></i>
 									</span>
 								</span>
-							</div>
+							</div> -->
 							<div class="m--margin-top-20 m--visible-tablet-and-mobile"></div>
 							<button type="button" class="btn m-btn--pill m-subheader-search__submit-btn">
-								Cari Jadwal
+								Cari
 							</button>
 						</form>
 					</div>

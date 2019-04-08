@@ -3,16 +3,17 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Tbsiswa extends Authenticatable implements MustVerifyEmail
+class Tbsiswa extends Authenticatable
 {
     use Notifiable;
 
     public $timestamps = false;
 
-    // public $primaryKey = 'NoIDSiswa';
+    // protected $guard = 'siswaguard';
+
+    public $primaryKey = 'idsiswa';
 
     public $table = "tbsiswa";
 
@@ -33,14 +34,14 @@ class Tbsiswa extends Authenticatable implements MustVerifyEmail
     protected $hidden = [
         'password', 'remember_token',
     ];
-
-    /**
+    
+     /**
      * The attributes that should be cast to native types.
      *
      * @var array
      */
-    protected $casts = [
-        // 'email_verified_at' => 'datetime',
-        'statusAktivasi' => 'boolean',
-    ];
+//    protected $casts = [
+//        // 'email_verified_at' => 'datetime',
+//        'statusAktivasi' => 'boolean',
+//    ];
 }

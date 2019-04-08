@@ -1,37 +1,37 @@
 <?php
 
-// namespace App\Http\Controllers;
 namespace App\Http\Controllers\Auth;
 
 use App\Tbsiswa;
-// use Illuminate\Http\Request;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersSiswaUsers;
+use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 
 class RegisterSiswaController extends Controller
 {
-    // public function getLogin(){
-    //     return view('login');
-    // }
-    // public function postLogin(){
-    //     dd('login');
-    // }
-    //  public function getRegister(){
-    //     return view('registerSiswa');
-    // }
-    use RegistersSiswaUsers;
-    
+    /*
+    |--------------------------------------------------------------------------
+    | Register Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller handles the registration of new users as well as their
+    | validation and creation. By default this controller uses a trait to
+    | provide this functionality without requiring any additional code.
+    |
+    */
+
+    use RegistersUsers;
+
     /**
      * Where to redirect users after registration.
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/dashboardsiswa';
 
     /**
      * Create a new controller instance.
@@ -43,15 +43,29 @@ class RegisterSiswaController extends Controller
         $this->middleware('guest');
     }
 
+    protected function guard()
+    {
+        return Auth::guard('siswa');
+    }
+
+    public function showRegisterForm()
+    {
+        return view('auth.registersiswa');
+    }
+
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
     protected function validator(array $data)
     {
         return Validator::make($data, [
             'NoIDSiswa' => ['unique:tbsiswa'],
             'username' => ['required', 'string','min:3', 'max:255', 'unique:tbsiswa','regex:/^.*(?=.*[a-zA-Z])(?=.*[0-9]).*$/'],
-            // 'first_name' => ['required', 'string', 'max:255'],
-            // 'last_name' => ['string', 'max:255'],
             'NamaLengkap' => ['required', 'string', 'max:255'],
-            'NoTlpn' => ['required', 'string', 'max:255'],
+            'NoTlpn' => ['required', 'string', 'max:255','unique:tbsiswa'],
             'gender' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:tbsiswa', 'regex:/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/'],
             'password' => [
@@ -60,6 +74,13 @@ class RegisterSiswaController extends Controller
             ],
         ]);
     }
+
+    /**
+     * Create a new user instance after a valid registration.
+     *
+     * @param  array  $data
+     * @return \App\User
+     */
     protected function create(array $data)
     {
         return Tbsiswa::create([

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Tbsiswa;
+
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesSiswaUsers;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+
 
 class LoginSiswaController extends Controller
 {
@@ -19,15 +21,24 @@ class LoginSiswaController extends Controller
     |
     */
 
-    use AuthenticatesSiswaUsers;
-    
+    use AuthenticatesUsers;
 
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
-    protected $redirectTo = '/dashboard';
+    protected $redirectTo = '/dashboardsiswa';
+
+    protected function guard()
+    {
+        return Auth::guard('siswa');
+    }
+
+    public function showLoginForm()
+    {
+        return view('auth.loginsiswa');
+    }
 
     /**
      * Create a new controller instance.
@@ -43,16 +54,7 @@ class LoginSiswaController extends Controller
         $this->username = $this->findUsername();
     }
 
-    /**public function getLogin()
-        {
-            return view('loginSiswa');
-        }
-    public function postLogin(Request $request)
-    {
-        
-     }*/
-
-     public function findUsername()
+    public function findUsername()
     {
         $login = request()->input('email');
  
@@ -67,6 +69,5 @@ class LoginSiswaController extends Controller
     {
         return $this->username;
     }
-    
 
 }

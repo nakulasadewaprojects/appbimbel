@@ -45,7 +45,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.bundle.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/vendors.bundle.css') }}" rel="stylesheet" type="text/css">
-    <link rel="shortcut icon" href="assets/demo/demo6/media/img/logo/favicon.ico" />
+    <link rel="shortcut icon" href="{{asset('assets/demo/demo6/media/img/logo/favicon.ico')}}" />
 
 </head>
 
