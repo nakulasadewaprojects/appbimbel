@@ -41,9 +41,9 @@ return [
             'provider' => 'users',
         ],
 
-        'siswaguard' => [
+        'siswa' => [
             'driver' => 'session',
-            'provider' => 'siswa',
+            'provider' => 'siswas',
         ],
 
         'api' => [
@@ -76,7 +76,7 @@ return [
             'model' => App\Tbmentor::class,
         ],
 
-        'siswa' => [
+        'siswas' => [
             'driver' => 'eloquent',
             'model' => App\Tbsiswa::class,
         ],
@@ -105,6 +105,11 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'siswas' => [
+            'provider' => 'siswas',
             'table' => 'password_resets',
             'expire' => 60,
         ],

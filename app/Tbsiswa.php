@@ -11,7 +11,9 @@ class Tbsiswa extends Authenticatable
 
     public $timestamps = false;
 
-    public $primaryKey = 'NoIDSiswa';
+    // protected $guard = 'siswaguard';
+
+    public $primaryKey = 'idsiswa';
 
     public $table = "tbsiswa";
 

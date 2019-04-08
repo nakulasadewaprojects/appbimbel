@@ -1,12 +1,25 @@
 <!DOCTYPE html>
+<!-- 
+Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 4
+Version: 5.0.5
+Author: KeenThemes
+Website: http://www.keenthemes.com/
+Contact: support@keenthemes.com
+Follow: www.twitter.com/keenthemes
+Dribbble: www.dribbble.com/keenthemes
+Like: www.facebook.com/keenthemes
+Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
+Renew Support: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
+License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
+-->
 <html lang="en" >
 	<!-- begin::Head -->
 	<head>
 		<meta charset="utf-8" />
 		<title>
-			App Bimbel
+			Metronic | My Profile
 		</title>
-		<meta name="description" content="Latest updates and statistic charts">
+		<meta name="description" content="User profile view and edit">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<!--begin::Web font -->
@@ -20,10 +33,7 @@
           });
 		</script>
 		<!--end::Web font -->
-        <!--begin::Base Styles -->  
-        <!--begin::Page Vendors -->
-		<link href="assets/vendors/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
-		<!--end::Page Vendors -->
+        <!--begin::Base Styles -->
 		<link href="assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
 		<link href="assets/demo/demo6/base/style.bundle.css" rel="stylesheet" type="text/css" />
 		<!--end::Base Styles -->
@@ -42,9 +52,12 @@
 						<div class="m-stack__item m-brand  m-brand--skin-light ">
 							<div class="m-stack m-stack--ver m-stack--general">
 								<div class="m-stack__item m-stack__item--middle m-brand__logo">
-									<a href="dashboard" class="m-brand__logo-wrapper">
+									<a href="dashboardsiswa" class="m-brand__logo-wrapper">
 										<img alt="" src="assets/demo/demo6/media/img/logo/logo.png"/>
 									</a>
+									<h3 class="m-header__title">
+										Apps
+									</h3>
 								</div>
 								<div class="m-stack__item m-stack__item--middle m-brand__tools">
 									<!-- BEGIN: Responsive Aside Left Menu Toggler -->
@@ -69,18 +82,11 @@
 						<div class="m-stack__item m-stack__item--fluid m-header-head" id="m_header_nav">
 							<div class="m-header__title">
 								<h3 class="m-header__title-text">
-									Mentor Dashboard
+									Profil Mentor
 								</h3>
 							</div>
-							<!-- BEGIN: Horizontal Menu -->
-							<button class="m-aside-header-menu-mobile-close  m-aside-header-menu-mobile-close--skin-light " id="m_aside_header_menu_mobile_close_btn">
-								<i class="la la-close"></i>
-							</button>
-							<!-- END: Horizontal Menu -->				
 				<!-- BEGIN: Topbar -->
 							<div id="m_header_topbar" class="m-topbar  m-stack m-stack--ver m-stack--general">
-								<div class="m-stack__item m-stack__item--middle m-dropdown m-dropdown--arrow m-dropdown--large m-dropdown--mobile-full-width m-dropdown--align-right m-dropdown--skin-light m-header-search m-header-search--expandable m-header-search--skin-light" id="m_quicksearch" data-search-type="default">
-								</div>
 								<div class="m-stack__item m-topbar__nav-wrapper">
 									<ul class="m-topbar__nav m-nav m-nav--inline">
 										<li class="m-nav__item m-topbar__notifications m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-center 	m-dropdown--mobile-full-width" data-dropdown-toggle="click" data-dropdown-persistent="true">
@@ -292,10 +298,7 @@
 														</div>
 													</div>
 												</div>
-												
-												
 											</div>
-											
 										</li>
 										<li class="m-nav__item m-topbar__quick-actions m-dropdown m-dropdown--skin-light m-dropdown--large m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push m-dropdown--mobile-full-width m-dropdown--skin-light"  data-dropdown-toggle="click">
 											<a href="#" class="m-nav__link m-dropdown__toggle">
@@ -397,35 +400,14 @@
 																	</span>
 																</li>
 																<li class="m-nav__item">
-																	<a href="profile" class="m-nav__link">
-																		<i class="m-nav__link-icon flaticon-profile-1"></i>
-																		<span class="m-nav__link-title">
-																			<span class="m-nav__link-wrap">
-																				<span class="m-nav__link-text">
-																					My Profile
-																				</span>
-																			</span>
-																		</span>
-																	</a>
-																</li>
-																<li class="m-nav__item">
-																	<a href="header/profile.html" class="m-nav__link">
-																		<i class="m-nav__link-icon flaticon-info"></i>
-																		<span class="m-nav__link-text">
-																			Setting
-																		</span>
-																	</a>
-																</li>
-																<li class="m-nav__separator m-nav__separator--fit"></li>
-																<li class="m-nav__item">
 																	<a href="{{ route('logout') }}" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder"
 																	onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                                     				document.getElementById('logout-form').submit();">
 																		Logout
 																	</a>
 																	<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-																			@csrf
-																		</form>
+																		@csrf
+																	</form>
 																</li>
 															</ul>
 														</div>
@@ -847,73 +829,482 @@
 				</div>
 				<!-- END: Left Aside -->
 				<div class="m-grid__item m-grid__item--fluid m-wrapper">
-					<div class="m-subheader-search">
-						<h2 class="m-subheader-search__title">
-							Cari Jadwal Mengajar
-						</h2>
-						<form class="m-form">
-							<div class="m-input-icon m-input-icon--fixed m-input-icon--fixed-large m-input-icon--right">
-								<input type="text" class="form-control form-control-lg m-input m-input--pill" placeholder="Cari Jadwal">
-								<span class="m-input-icon__icon m-input-icon__icon--right">
-									<span>
-										<i class="la la-puzzle-piece"></i>
-									</span>
-								</span>
+					<!-- BEGIN: Subheader -->
+					<div class="m-subheader ">
+						<div class="d-flex align-items-center">
+							<div class="mr-auto">
+								<h3 class="m-subheader__title ">
+									My Profile
+								</h3>
 							</div>
-							<div class="m-input-icon m-input-icon--fixed m-input-icon--fixed-md m-input-icon--right">
-								<input type="text" class="form-control form-control-lg m-input m-input--pill" placeholder="Waktu">
-								<span class="m-input-icon__icon m-input-icon__icon--right">
-									<span>
-										<i class="la la-calendar-check-o"></i>
-									</span>
-								</span>
-							</div>
-							<div class="m--margin-top-20 m--visible-tablet-and-mobile"></div>
-							<button type="button" class="btn m-btn--pill m-subheader-search__submit-btn">
-								Cari Jadwal
-							</button>
-						</form>
-					</div>
-					<div class="m-content">
-<!--Begin::Main Portlet-->
-						<div class="row">
-							<div class="col-xl-12">
-								<!--begin::Portlet-->
-								<div class="m-portlet" id="m_portlet">
-									<div class="m-portlet__head">
-										<div class="m-portlet__head-caption">
-											<div class="m-portlet__head-title">
-												<span class="m-portlet__head-icon">
-													<i class="flaticon-map-location"></i>
-												</span>
-												<h3 class="m-portlet__head-text">
-													Calendar
-												</h3>
+							<div>
+								<div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover" aria-expanded="true">
+									<a href="#" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle">
+										<i class="la la-plus m--hide"></i>
+										<i class="la la-ellipsis-h"></i>
+									</a>
+									<div class="m-dropdown__wrapper">
+										<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
+										<div class="m-dropdown__inner">
+											<div class="m-dropdown__body">
+												<div class="m-dropdown__content">
+													<ul class="m-nav">
+														<li class="m-nav__section m-nav__section--first m--hide">
+															<span class="m-nav__section-text">
+																Quick Actions
+															</span>
+														</li>
+														<li class="m-nav__item">
+															<a href="" class="m-nav__link">
+																<i class="m-nav__link-icon flaticon-share"></i>
+																<span class="m-nav__link-text">
+																	Activity
+																</span>
+															</a>
+														</li>
+														<li class="m-nav__item">
+															<a href="" class="m-nav__link">
+																<i class="m-nav__link-icon flaticon-chat-1"></i>
+																<span class="m-nav__link-text">
+																	Messages
+																</span>
+															</a>
+														</li>
+														<li class="m-nav__item">
+															<a href="" class="m-nav__link">
+																<i class="m-nav__link-icon flaticon-info"></i>
+																<span class="m-nav__link-text">
+																	FAQ
+																</span>
+															</a>
+														</li>
+														<li class="m-nav__item">
+															<a href="" class="m-nav__link">
+																<i class="m-nav__link-icon flaticon-lifebuoy"></i>
+																<span class="m-nav__link-text">
+																	Support
+																</span>
+															</a>
+														</li>
+														<li class="m-nav__separator m-nav__separator--fit"></li>
+														<li class="m-nav__item">
+															<a href="#" class="btn btn-outline-danger m-btn m-btn--pill m-btn--wide btn-sm">
+																Submit
+															</a>
+														</li>
+													</ul>
+												</div>
 											</div>
 										</div>
-										<div class="m-portlet__head-tools">
-											<ul class="m-portlet__nav">
-												<li class="m-portlet__nav-item">
-													<a href="#" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
-														<span>
-															<i class="la la-plus"></i>
-															<span>
-																Add Event
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- END: Subheader -->
+					<div class="m-content">
+						<div class="row">
+							<div class="col-xl-3 col-lg-4">
+								<div class="m-portlet m-portlet--full-height  ">
+									<div class="m-portlet__body">
+										<div class="m-card-profile">
+											<div class="m-card-profile__title m--hide">
+												Your Profile
+											</div>
+											<div class="m-card-profile__pic">
+												<div class="m-card-profile__pic-wrapper">
+													<img src="assets/app/media/img/users/user4.jpg" alt=""/>
+												</div>
+											</div>
+											<div class="m-card-profile__details">
+												<span class="m-card-profile__name">
+													{{ Auth::user()->username }}
+												</span>
+												<a href="" class="m-card-profile__email m-link">
+													{{ Auth::user()->email }} 
+												</a>
+											</div>
+										</div>
+										<ul class="m-nav m-nav--hover-bg m-portlet-fit--sides">
+											<li class="m-nav__separator m-nav__separator--fit"></li>
+											<li class="m-nav__section m--hide">
+												<span class="m-nav__section-text">
+													Section
+												</span>
+											</li>
+											<li class="m-nav__item">
+												<a href="header/profile&amp;demo=default.html" class="m-nav__link">
+													<i class="m-nav__link-icon flaticon-profile-1"></i>
+													<span class="m-nav__link-title">
+														<span class="m-nav__link-wrap">
+															<span class="m-nav__link-text">
+																My Profile
+															</span>
+															<span class="m-nav__link-badge">
+																<span class="m-badge m-badge--success">
+																	2
+																</span>
 															</span>
 														</span>
+													</span>
+												</a>
+											</li>
+											<li class="m-nav__item">
+												<a href="header/profile&amp;demo=default.html" class="m-nav__link">
+													<i class="m-nav__link-icon flaticon-share"></i>
+													<span class="m-nav__link-text">
+														Activity
+													</span>
+												</a>
+											</li>
+											<li class="m-nav__item">
+												<a href="header/profile&amp;demo=default.html" class="m-nav__link">
+													<i class="m-nav__link-icon flaticon-chat-1"></i>
+													<span class="m-nav__link-text">
+														Messages
+													</span>
+												</a>
+											</li>
+											<li class="m-nav__item">
+												<a href="header/profile&amp;demo=default.html" class="m-nav__link">
+													<i class="m-nav__link-icon flaticon-graphic-2"></i>
+													<span class="m-nav__link-text">
+														Sales
+													</span>
+												</a>
+											</li>
+											<li class="m-nav__item">
+												<a href="header/profile&amp;demo=default.html" class="m-nav__link">
+													<i class="m-nav__link-icon flaticon-time-3"></i>
+													<span class="m-nav__link-text">
+														Events
+													</span>
+												</a>
+											</li>
+											<li class="m-nav__item">
+												<a href="header/profile&amp;demo=default.html" class="m-nav__link">
+													<i class="m-nav__link-icon flaticon-lifebuoy"></i>
+													<span class="m-nav__link-text">
+														Support
+													</span>
+												</a>
+											</li>
+										</ul>
+										<div class="m-portlet__body-separator"></div>
+										<div class="m-widget1 m-widget1--paddingless">
+											<div class="m-widget1__item">
+												<div class="row m-row--no-padding align-items-center">
+													<div class="col">
+														<h3 class="m-widget1__title">
+															Member Profit
+														</h3>
+														<span class="m-widget1__desc">
+															Awerage Weekly Profit
+														</span>
+													</div>
+													<div class="col m--align-right">
+														<span class="m-widget1__number m--font-brand">
+															+$17,800
+														</span>
+													</div>
+												</div>
+											</div>
+											<div class="m-widget1__item">
+												<div class="row m-row--no-padding align-items-center">
+													<div class="col">
+														<h3 class="m-widget1__title">
+															Orders
+														</h3>
+														<span class="m-widget1__desc">
+															Weekly Customer Orders
+														</span>
+													</div>
+													<div class="col m--align-right">
+														<span class="m-widget1__number m--font-danger">
+															+1,800
+														</span>
+													</div>
+												</div>
+											</div>
+											<div class="m-widget1__item">
+												<div class="row m-row--no-padding align-items-center">
+													<div class="col">
+														<h3 class="m-widget1__title">
+															Issue Reports
+														</h3>
+														<span class="m-widget1__desc">
+															System bugs and issues
+														</span>
+													</div>
+													<div class="col m--align-right">
+														<span class="m-widget1__number m--font-success">
+															-27,49%
+														</span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-9 col-lg-8">
+								<div class="m-portlet m-portlet--full-height m-portlet--tabs  ">
+									<div class="m-portlet__head">
+										<div class="m-portlet__head-tools">
+											<ul class="nav nav-tabs m-tabs m-tabs-line   m-tabs-line--left m-tabs-line--primary" role="tablist">
+												<li class="nav-item m-tabs__item">
+													<a class="nav-link m-tabs__link active" data-toggle="tab" href="#m_user_profile_tab_1" role="tab">
+														<i class="flaticon-share m--hide"></i>
+														Update Profile
+													</a>
+												</li>
+												<li class="nav-item m-tabs__item">
+													<a class="nav-link m-tabs__link" data-toggle="tab" href="#m_user_profile_tab_2" role="tab">
+														Messages
+													</a>
+												</li>
+												<li class="nav-item m-tabs__item">
+													<a class="nav-link m-tabs__link" data-toggle="tab" href="#m_user_profile_tab_3" role="tab">
+														Settings
 													</a>
 												</li>
 											</ul>
 										</div>
+										<div class="m-portlet__head-tools">
+											<ul class="m-portlet__nav">
+												<li class="m-portlet__nav-item m-portlet__nav-item--last">
+													<div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover" aria-expanded="true">
+														<a href="#" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle">
+															<i class="la la-gear"></i>
+														</a>
+														<div class="m-dropdown__wrapper">
+															<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
+															<div class="m-dropdown__inner">
+																<div class="m-dropdown__body">
+																	<div class="m-dropdown__content">
+																		<ul class="m-nav">
+																			<li class="m-nav__section m-nav__section--first">
+																				<span class="m-nav__section-text">
+																					Quick Actions
+																				</span>
+																			</li>
+																			<li class="m-nav__item">
+																				<a href="" class="m-nav__link">
+																					<i class="m-nav__link-icon flaticon-share"></i>
+																					<span class="m-nav__link-text">
+																						Create Post
+																					</span>
+																				</a>
+																			</li>
+																			<li class="m-nav__item">
+																				<a href="" class="m-nav__link">
+																					<i class="m-nav__link-icon flaticon-chat-1"></i>
+																					<span class="m-nav__link-text">
+																						Send Messages
+																					</span>
+																				</a>
+																			</li>
+																			<li class="m-nav__item">
+																				<a href="" class="m-nav__link">
+																					<i class="m-nav__link-icon flaticon-multimedia-2"></i>
+																					<span class="m-nav__link-text">
+																						Upload File
+																					</span>
+																				</a>
+																			</li>
+																			<li class="m-nav__section">
+																				<span class="m-nav__section-text">
+																					Useful Links
+																				</span>
+																			</li>
+																			<li class="m-nav__item">
+																				<a href="" class="m-nav__link">
+																					<i class="m-nav__link-icon flaticon-info"></i>
+																					<span class="m-nav__link-text">
+																						FAQ
+																					</span>
+																				</a>
+																			</li>
+																			<li class="m-nav__item">
+																				<a href="" class="m-nav__link">
+																					<i class="m-nav__link-icon flaticon-lifebuoy"></i>
+																					<span class="m-nav__link-text">
+																						Support
+																					</span>
+																				</a>
+																			</li>
+																			<li class="m-nav__separator m-nav__separator--fit m--hide"></li>
+																			<li class="m-nav__item m--hide">
+																				<a href="#" class="btn btn-outline-danger m-btn m-btn--pill m-btn--wide btn-sm">
+																					Submit
+																				</a>
+																			</li>
+																		</ul>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</li>
+											</ul>
+										</div>
 									</div>
-									<div class="m-portlet__body">
-										<div id="m_calendar"></div>
+									<div class="tab-content">
+										<div class="tab-pane active" id="m_user_profile_tab_1">
+											<form class="m-form m-form--fit m-form--label-align-right">
+												<div class="m-portlet__body">
+													<div class="form-group m-form__group m--margin-top-10 m--hide">
+														<div class="alert m-alert m-alert--default" role="alert">
+															The example form below demonstrates common HTML form elements that receive updated styles from Bootstrap with additional classes.
+														</div>
+													</div>
+													<div class="form-group m-form__group row">
+														<div class="col-10 ml-auto">
+															<h3 class="m-form__section">
+																1. Personal Details
+															</h3>
+														</div>
+													</div>
+													<div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
+															Nama Lengkap
+														</label>
+														<div class="col-7">
+															<input class="form-control m-input" type="text" value="{{ Auth::user()->NamaLengkap }}">
+														</div>
+													</div>
+													<div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
+															TTL
+														</label>
+														<div class="col-7">
+															<input class="form-control m-input" type="text" value="Lumajang  17 April 1997">
+														</div>
+													</div>
+													<div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
+															Pekerjaan
+														</label>
+														<div class="col-7">
+															<input class="form-control m-input" type="text" value="Guru">
+															<!-- <span class="m-form__help">
+																If you want your invoices addressed to a company. Leave blank to use your full name.
+															</span> -->
+														</div>
+													</div>
+													<div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
+															No Telepon
+														</label>
+														<div class="col-7">
+															<input class="form-control m-input" type="text" value="{{ Auth::user()->NoTlpn }}">
+														</div>
+													</div>
+													<div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
+													<div class="form-group m-form__group row">
+														<div class="col-10 ml-auto">
+															<h3 class="m-form__section">
+																2. Address
+															</h3>
+														</div>
+													</div>
+													<div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
+															Alamat
+														</label>
+														<div class="col-7">
+															<input class="form-control m-input" type="text" value="Pulo City of Heaven">
+														</div>
+													</div>
+													<div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
+															Kecamatan
+														</label>
+														<div class="col-7">
+															<input class="form-control m-input" type="text" value="Tempeh">
+														</div>
+													</div>
+													<div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
+															Kabupaten
+														</label>
+														<div class="col-7">
+															<input class="form-control m-input" type="text" value="Lumajang">
+														</div>
+													</div>
+													<div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
+															Kode Pos
+														</label>
+														<div class="col-7">
+															<input class="form-control m-input" type="text" value="67371">
+														</div>
+													</div>
+													<div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
+													<div class="form-group m-form__group row">
+														<div class="col-10 ml-auto">
+															<h3 class="m-form__section">
+																3. Social Links
+															</h3>
+														</div>
+													</div>
+													<div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
+															Linkedin
+														</label>
+														<div class="col-7">
+															<input class="form-control m-input" type="text" value="www.linkedin.com/Mark.Andre">
+														</div>
+													</div>
+													<div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
+															Facebook
+														</label>
+														<div class="col-7">
+															<input class="form-control m-input" type="text" value="www.facebook.com/Mark.Andre">
+														</div>
+													</div>
+													<div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
+															Twitter
+														</label>
+														<div class="col-7">
+															<input class="form-control m-input" type="text" value="www.twitter.com/Mark.Andre">
+														</div>
+													</div>
+													<div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
+															Instagram
+														</label>
+														<div class="col-7">
+															<input class="form-control m-input" type="text" value="www.instagram.com/Mark.Andre">
+														</div>
+													</div>
+												</div>
+												<div class="m-portlet__foot m-portlet__foot--fit">
+													<div class="m-form__actions">
+														<div class="row">
+															<div class="col-2"></div>
+															<div class="col-7">
+																<button type="reset" class="btn btn-accent m-btn m-btn--air m-btn--custom">
+																	Save changes
+																</button>
+																&nbsp;&nbsp;
+																<button type="reset" class="btn btn-secondary m-btn m-btn--air m-btn--custom">
+																	Cancel
+																</button>
+															</div>
+														</div>
+													</div>
+												</div>
+											</form>
+										</div>
+										<div class="tab-pane active" id="m_user_profile_tab_2"></div>
+										<div class="tab-pane active" id="m_user_profile_tab_3"></div>
 									</div>
 								</div>
-								<!--end::Portlet-->
 							</div>
 						</div>
-						<!--End::Main Portlet-->
 					</div>
 				</div>
 			</div>
@@ -924,9 +1315,9 @@
 					<div class="m-stack m-stack--flex-tablet-and-mobile m-stack--ver m-stack--desktop">
 						<div class="m-stack__item m-stack__item--left m-stack__item--middle m-stack__item--last">
 							<span class="m-footer__copyright">
-								2019 &copy; AppBimbel Kekinian
+								2017 &copy; Metronic theme by
 								<a href="#" class="m-link">
-									AppBimbel
+									Keenthemes
 								</a>
 							</span>
 						</div>
@@ -1564,12 +1955,7 @@
     	<!--begin::Base Scripts -->
 		<script src="assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
 		<script src="assets/demo/demo6/base/scripts.bundle.js" type="text/javascript"></script>
-		<!--end::Base Scripts -->   
-        <!--begin::Page Vendors -->
-		<script src="assets/vendors/custom/fullcalendar/fullcalendar.bundle.js" type="text/javascript"></script>
-		<!--end::Page Vendors -->  
-        <!--begin::Page Snippets -->
-		<script src="assets/app/js/dashboard.js" type="text/javascript"></script>
-		<!--end::Page Snippets -->
+		<!--end::Base Scripts -->
 	</body>
+	<!-- end::Body -->
 </html>

@@ -141,10 +141,10 @@ trait AuthenticatesUsers
      *
      * @return string
      */
-    public function username()
-    {
-        return 'email';
-    }
+    // public function username()
+    // {
+    //     return 'email';
+    // }
 
     /**
      * Log the user out of the application.

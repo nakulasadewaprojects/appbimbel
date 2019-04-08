@@ -34,6 +34,14 @@ return [
     */
 
     'channels' => [
+        'browser' => [
+            'driver' => 'monolog',
+            'handler' => Monolog\Handler\BrowserConsoleHandler::class,
+            'formatter' => Monolog\Formatter\HtmlFormatter::class,
+            'formatter_with' => [
+                'dateFormat' => 'Y-m-d',
+            ],
+        ],
         'stack' => [
             'driver' => 'stack',
             'channels' => ['daily'],
