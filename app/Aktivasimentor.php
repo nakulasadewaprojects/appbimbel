@@ -9,6 +9,8 @@ class Aktivasimentor extends Model
 
     public $timestamps = false;
 
+    public $primaryKey = 'idaktivasimentor';
+
     public $table = "aktivasimentor";
 
     protected $fillable = [

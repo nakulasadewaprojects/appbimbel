@@ -514,7 +514,7 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
      * @param  string|null  $guard
      * @return mixed
      */
-    public function user($guard = null)
+    public function user1($guard = null)
     {
         return call_user_func($this->getUserResolver(), $guard);
     }

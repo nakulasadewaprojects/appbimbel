@@ -12,7 +12,7 @@ class Tbmentor extends Authenticatable implements MustVerifyEmail
 
     public $timestamps = false;
 
-    // public $primaryKey = 'NoIDMentor';
+    public $primaryKey = 'idmentor';
 
     public $table = "tbmentor";
 

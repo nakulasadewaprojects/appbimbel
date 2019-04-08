@@ -63,7 +63,7 @@ class RegisterSiswaController extends Controller
     protected function create(array $data)
     {
         return Tbsiswa::create([
-            // 'NoIDMentor' => $noidmentor,
+            // 'NoIDSiswa' => $noidSiswa,
             'username' => $data['username'],
             'password' => Hash::make($data['password']),
             'NamaLengkap' => $data['NamaLengkap'],

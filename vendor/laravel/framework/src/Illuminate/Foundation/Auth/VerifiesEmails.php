@@ -20,7 +20,7 @@ trait VerifiesEmails
      */
     public function show(Request $request)
     {
-        $show = DB::table('aktivasimentor')->where('id', Auth::user()->id)->first();
+        $show = DB::table('aktivasimentor')->where('idaktivasimentor', Auth::user()->idmentor)->first();
 
         return $request->user()->hasVerifiedEmail()
                         ? redirect($this->redirectPath())
@@ -36,7 +36,7 @@ trait VerifiesEmails
      */
     public function verify(Request $request)
     {
-        if ($request->route('id') != $request->user()->getKey()) {
+        if ($request->route('idmentor') != $request->user()->getKey()) {
             throw new AuthorizationException;
         }
 

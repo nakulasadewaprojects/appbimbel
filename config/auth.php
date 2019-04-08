@@ -41,6 +41,11 @@ return [
             'provider' => 'users',
         ],
 
+        'siswaguard' => [
+            'driver' => 'session',
+            'provider' => 'siswa',
+        ],
+
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -69,6 +74,11 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Tbmentor::class,
+        ],
+
+        'siswa' => [
+            'driver' => 'eloquent',
+            'model' => App\Tbsiswa::class,
         ],
 
         // 'users' => [
