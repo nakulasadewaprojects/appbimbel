@@ -13,7 +13,7 @@ class Tbsiswa extends Authenticatable
 
     // protected $guard = 'siswaguard';
 
-    // public $primaryKey = 'NoIDSiswa';
+    public $primaryKey = 'idsiswa';
 
     public $table = "tbsiswa";
 
