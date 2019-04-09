@@ -1151,7 +1151,9 @@ License: You must have a valid license purchased only from themeforest(the above
 									</div>
 									<div class="tab-content">
 										<div class="tab-pane active" id="m_user_profile_tab_1">
-											<form class="m-form m-form--fit m-form--label-align-right">
+											<form class="m-form m-form--fit m-form--label-align-right" method="POST" action="profilesiswa/update/{{ Auth::user()->idsiswa}}">
+													{{ csrf_field() }}
+    													{{ method_field('PUT') }}
 												<div class="m-portlet__body">
 													<div class="form-group m-form__group m--margin-top-10 m--hide">
 														<div class="alert m-alert m-alert--default" role="alert">
@@ -1167,29 +1169,34 @@ License: You must have a valid license purchased only from themeforest(the above
 													</div>
 													<div class="form-group m-form__group row">
 														<label for="example-text-input" class="col-2 col-form-label">
+															Username
+														</label>
+														<div class="col-7">
+															<input class="form-control m-input" name="username" type="text" value="{{ Auth::user()->username }}">
+														</div>
+													</div>
+													<div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
 															Nama Lengkap
 														</label>
 														<div class="col-7">
-															<input class="form-control m-input" type="text" value="{{ Auth::user()->NamaLengkap }}">
+															<input class="form-control m-input" type="text" name="NamaLengkap" value="{{ Auth::user()->NamaLengkap }}">
 														</div>
 													</div>
-													<div class="form-group m-form__group row">
+													<!-- <div class="form-group m-form__group row">
 														<label for="example-text-input" class="col-2 col-form-label">
-															TTL
+															Nama Lengkap
 														</label>
 														<div class="col-7">
-															<input class="form-control m-input" type="text" value="Lumajang  17 April 1997">
+															<input class="form-control m-input" type="text" value="{{ Auth::user()->alamat }}">
 														</div>
-													</div>
+													</div> -->
 													<div class="form-group m-form__group row">
 														<label for="example-text-input" class="col-2 col-form-label">
-															Pekerjaan
+															Jenis Kelamin
 														</label>
 														<div class="col-7">
-															<input class="form-control m-input" type="text" value="Guru">
-															<!-- <span class="m-form__help">
-																If you want your invoices addressed to a company. Leave blank to use your full name.
-															</span> -->
+															<input class="form-control m-input" type="text" name="gender " value="{{ Auth::user()->gender }}">
 														</div>
 													</div>
 													<div class="form-group m-form__group row">
@@ -1197,9 +1204,36 @@ License: You must have a valid license purchased only from themeforest(the above
 															No Telepon
 														</label>
 														<div class="col-7">
-															<input class="form-control m-input" type="text" value="{{ Auth::user()->NoTlpn }}">
+															<input class="form-control m-input" type="text" name="NoTlpn" value="{{ Auth::user()->NoTlpn }}">
 														</div>
 													</div>
+													<div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
+															Email
+														</label>
+														<div class="col-7">
+															<input class="form-control m-input" name="email" type="email" value="{{ Auth::user()->email }}">
+														</div>
+													</div>
+													<!-- <div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
+															TTL
+														</label>
+														<div class="col-7">
+															<input class="form-control m-input" type="text" value="Lumajang  17 April 1997">
+														</div>
+													</div> -->
+													<!-- <div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
+															Pekerjaan
+														</label>
+														<div class="col-7">
+															<input class="form-control m-input" type="text" value="Guru"> -->
+															<!-- <span class="m-form__help">
+																If you want your invoices addressed to a company. Leave blank to use your full name.
+															</span> -->
+														<!-- </div>
+													</div> -->
 													<div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
 													<div class="form-group m-form__group row">
 														<div class="col-10 ml-auto">
@@ -1213,7 +1247,7 @@ License: You must have a valid license purchased only from themeforest(the above
 															Alamat
 														</label>
 														<div class="col-7">
-															<input class="form-control m-input" type="text" value="Pulo City of Heaven">
+															<input class="form-control m-input" name="alamat" type="text" value="{{ Auth::user()->alamat }}">
 														</div>
 													</div>
 													<div class="form-group m-form__group row">
@@ -1240,53 +1274,53 @@ License: You must have a valid license purchased only from themeforest(the above
 															<input class="form-control m-input" type="text" value="67371">
 														</div>
 													</div>
-													<div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
-													<div class="form-group m-form__group row">
+													<!-- <div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div> -->
+													<!-- <div class="form-group m-form__group row">
 														<div class="col-10 ml-auto">
 															<h3 class="m-form__section">
 																3. Social Links
 															</h3>
 														</div>
-													</div>
-													<div class="form-group m-form__group row">
+													</div> -->
+													<!-- <div class="form-group m-form__group row">
 														<label for="example-text-input" class="col-2 col-form-label">
 															Linkedin
 														</label>
 														<div class="col-7">
 															<input class="form-control m-input" type="text" value="www.linkedin.com/Mark.Andre">
 														</div>
-													</div>
-													<div class="form-group m-form__group row">
+													</div> -->
+													<!-- <div class="form-group m-form__group row">
 														<label for="example-text-input" class="col-2 col-form-label">
 															Facebook
 														</label>
 														<div class="col-7">
 															<input class="form-control m-input" type="text" value="www.facebook.com/Mark.Andre">
 														</div>
-													</div>
-													<div class="form-group m-form__group row">
+													</div> -->
+													<!-- <div class="form-group m-form__group row">
 														<label for="example-text-input" class="col-2 col-form-label">
 															Twitter
 														</label>
 														<div class="col-7">
 															<input class="form-control m-input" type="text" value="www.twitter.com/Mark.Andre">
 														</div>
-													</div>
-													<div class="form-group m-form__group row">
+													</div> -->
+													<!-- <div class="form-group m-form__group row">
 														<label for="example-text-input" class="col-2 col-form-label">
 															Instagram
 														</label>
 														<div class="col-7">
 															<input class="form-control m-input" type="text" value="www.instagram.com/Mark.Andre">
 														</div>
-													</div>
+													</div> -->
 												</div>
 												<div class="m-portlet__foot m-portlet__foot--fit">
 													<div class="m-form__actions">
 														<div class="row">
 															<div class="col-2"></div>
 															<div class="col-7">
-																<button type="reset" class="btn btn-accent m-btn m-btn--air m-btn--custom">
+																<button type="submit" class="btn btn-accent m-btn m-btn--air m-btn--custom">
 																	Save changes
 																</button>
 																&nbsp;&nbsp;

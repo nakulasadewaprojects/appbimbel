@@ -20,7 +20,7 @@ class Authenticated
      *
      * @var \Illuminate\Contracts\Auth\Authenticatable
      */
-    public $user1;
+    public $user;
 
     /**
      * Create a new event instance.
@@ -29,9 +29,9 @@ class Authenticated
      * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
      * @return void
      */
-    public function __construct($guard, $user1)
+    public function __construct($guard, $user)
     {
-        $this->user1 = $user1;
+        $this->user = $user;
         $this->guard = $guard;
     }
 }
