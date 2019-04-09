@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Tbdetailmentor;
 use App\Tbmentor;
 use App\Aktivasimentor;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Carbon;
 
 class RegisterController extends Controller
@@ -40,6 +44,21 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }
+
+
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        $this->guard()->login($user);
+
+        Tbdetailmentor::where('idtbRiwayatTutor', Auth::user()->idmentor)->update(['idmentor' => Auth::user()->idmentor]);
+
+        return $this->registered($request, $user)
+                        ?: redirect($this->redirectPath());
     }
 
     /**
@@ -92,6 +111,10 @@ class RegisterController extends Controller
         $user->userData = Aktivasimentor::create([
             // 'NoIDMentor' => $noidmentor,
             'statusLimit' => '1'
+        ]);
+        $user->userData1 = Tbdetailmentor::create([
+            // 'NoIDMentor' => $noidmentor,
+            'statKomplit' => '0'
         ]);
         return $user;
     }

@@ -26,8 +26,6 @@ class CreateTbdetailmentorsTable extends Migration
             $table->foreign('idmentor')->references('idmentor')->on('tbmentor');
             $table->text('pengalaman')->nullable();
             
-
-            $table->timestamps();
         });
     }
 
