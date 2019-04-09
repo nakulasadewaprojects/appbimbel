@@ -22,8 +22,8 @@
 		<!--end::Web font -->
         <!--begin::Base Styles -->
 		<link href="assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
-		<link href="assets/demo/default/base/style.bundle.css" rel="stylesheet" type="text/css" />
-        <link rel="shortcut icon" href="assets/demo/default/media/img/logo/favicon.ico" />
+		<link href="assets/demo/demo6/base/style.bundle.css" rel="stylesheet" type="text/css" />
+        <link rel="shortcut icon" href="assets/demo/demo6/media/img/logo/favicon.ico" />
         
 	</head>
 	<!-- end::Head -->
@@ -47,7 +47,7 @@
 		<!-- end:: Page -->
     	<!--begin::Base Scripts -->
 		<script src="assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
-		<script src="assets/demo/default/base/scripts.bundle.js" type="text/javascript"></script>
+		<script src="assets/demo/demo6/base/scripts.bundle.js" type="text/javascript"></script>
 		<!--end::Base Scripts -->
 	</body>
 	<!-- end::Body -->
