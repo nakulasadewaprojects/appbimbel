@@ -5,7 +5,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Http\Request;
+use DB;
+use App\Tbsiswa;
 
 
 class HomeSiswaController extends Controller
@@ -37,5 +39,21 @@ class HomeSiswaController extends Controller
     public function profilesiswa()
     {
         return view('profilesiswa');
+    }
+    public function update($idsiswa, Request $request)
+    {
+        DB::table('Tbsiswa')->where('idsiswa',$idsiswa)->update([
+            'username' => $request['username'],
+            // 'password' => Hash::make($data['password']),
+            'NamaLengkap' => $request['NamaLengkap'],
+            'alamat' => $request['alamat'],
+            // 'nm_depan' => $data['first_name'],
+            // 'nm_belakang' => $data['last_name'],
+            'gender' => $request['gender'],
+            'NoTlpn' => $request['NoTlpn'],
+            'email' => $request['email']
+            
+         ] );
+        return redirect('/dashboardsiswa');
     }
 }

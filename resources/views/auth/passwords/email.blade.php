@@ -25,7 +25,7 @@
                                     {{ session('status') }}
                                 </div>
                                 <div class="alert alert-warning" role="alert">
-                                    Masa berlaku tautan hanya {{config('auth.passwords.users.expire')}} detik
+                                    Masa berlaku tautan hanya {{config('auth.passwords.users.expire')}} menit
                                 </div>
                                     
                                      @endif
