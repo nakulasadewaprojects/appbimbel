@@ -14,7 +14,7 @@ class CreateTbmentorsTable extends Migration
     public function up()
     {
         Schema::create('tbmentor', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('idmentor');
             $table->string('NoIDMentor',15)->nullable();
             $table->string('username',35)->unique();
             $table->string('email',100)->unique();
