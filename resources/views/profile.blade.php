@@ -1244,40 +1244,56 @@ License: You must have a valid license purchased only from themeforest(the above
 													<div class="form-group m-form__group row">
 														<div class="col-10 ml-auto">
 															<h3 class="m-form__section">
-																3. Social Links
+																3. Lengkapi Berkas
 															</h3>
 														</div>
 													</div>
 													<div class="form-group m-form__group row">
 														<label for="example-text-input" class="col-2 col-form-label">
-															Linkedin
+															Pendidikan Terakhir
 														</label>
 														<div class="col-7">
-															<input class="form-control m-input" type="text" value="www.linkedin.com/Mark.Andre">
+															<input class="form-control m-input" type="text">
 														</div>
 													</div>
 													<div class="form-group m-form__group row">
 														<label for="example-text-input" class="col-2 col-form-label">
-															Facebook
+															Status Pendidikan
 														</label>
 														<div class="col-7">
-															<input class="form-control m-input" type="text" value="www.facebook.com/Mark.Andre">
+															<input class="form-control m-input" type="text" >
 														</div>
 													</div>
 													<div class="form-group m-form__group row">
 														<label for="example-text-input" class="col-2 col-form-label">
-															Twitter
+															Foto
 														</label>
 														<div class="col-7">
-															<input class="form-control m-input" type="text" value="www.twitter.com/Mark.Andre">
+															<input class="form-control m-input" type="file" >
 														</div>
 													</div>
 													<div class="form-group m-form__group row">
 														<label for="example-text-input" class="col-2 col-form-label">
-															Instagram
+															Nomor Identitas
 														</label>
 														<div class="col-7">
-															<input class="form-control m-input" type="text" value="www.instagram.com/Mark.Andre">
+															<input class="form-control m-input" type="text" >
+														</div>
+													</div>
+													<div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
+															File KTP
+														</label>
+														<div class="col-7">
+															<input class="form-control m-input" type="file" >
+														</div>
+													</div>
+													<div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
+															File Ijazah
+														</label>
+														<div class="col-7">
+															<input class="form-control m-input" type="file" >
 														</div>
 													</div>
 												</div>

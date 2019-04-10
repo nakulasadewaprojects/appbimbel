@@ -1199,8 +1199,8 @@ License: You must have a valid license purchased only from themeforest(the above
 														</label>
 														<div class="col-7">
 															<!-- <input class="form-control m-input" type="text" name="gender " value="{{ Auth::user()->gender }}"> -->
-															<input type="radio" name="gender" value="1" required> Pria &nbsp;&nbsp;
-                                            				<input type="radio" name="gender" value="2" required> Wanita
+															<input type="radio" name="gender" id="male" value="1" required> Pria &nbsp;&nbsp;
+                                            				<input type="radio" name="gender" id="female" value="2" required> Wanita
 														</div>
 													</div>
 													<div class="form-group m-form__group row">
@@ -2004,6 +2004,13 @@ License: You must have a valid license purchased only from themeforest(the above
 		<script src="assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
 		<script src="assets/demo/demo6/base/scripts.bundle.js" type="text/javascript"></script>
 		<!--end::Base Scripts -->
+		<script>
+		if({{ Auth::user()->gender }}==1){
+			document.getElementById("male").checked = true;
+		}else{
+			document.getElementById("female").checked = true;
+		}
+		</script>
 	</body>
 	<!-- end::Body -->
 </html>

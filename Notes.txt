@@ -1,6 +1,11 @@
 Database server 
 	Tabel aktivasimentor
-		kolom idaktivasimentor -> id
 		kolom codeAktivasi ga cukup butuh 100karakter
 	Tabel tbmentor
-		kolom idmentor -> id
+
+	Tabel tbdetailmentor
+		No.Identitas -> No_Identitas
+
+	Tabel password_resets
+		Create_at -> Created_at
+		
