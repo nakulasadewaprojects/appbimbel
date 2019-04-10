@@ -1149,7 +1149,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								</div>
 								<div class="tab-content">
 									<div class="tab-pane active" id="m_user_profile_tab_1">
-										<form class="m-form m-form--fit m-form--label-align-right" method="POST" action="profile/update/{{ Auth::user()->idmentor}}">>
+										<form class="m-form m-form--fit m-form--label-align-right" method="POST" action="profile/update/{{ Auth::user()->idmentor}}">
 											{{ csrf_field() }}
 											{{ method_field('PUT') }}
 											<div class="m-portlet__body">
@@ -1257,44 +1257,60 @@ License: You must have a valid license purchased only from themeforest(the above
 												</div>
 												<div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
 												<div class="form-group m-form__group row">
-													<div class="col-10 ml-auto">
-														<h3 class="m-form__section">
-															3. Social Links
-														</h3>
+														<div class="col-10 ml-auto">
+															<h3 class="m-form__section">
+																3. Lengkapi Berkas
+															</h3>
+														</div>
 													</div>
-												</div>
-												<div class="form-group m-form__group row">
-													<label for="example-text-input" class="col-2 col-form-label">
-														Linkedin
-													</label>
-													<div class="col-7">
-														<input class="form-control m-input" type="text" value="www.linkedin.com/Mark.Andre">
+													<div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
+															Pendidikan Terakhir
+														</label>
+														<div class="col-7">
+															<input class="form-control m-input" type="text">
+														</div>
 													</div>
-												</div>
-												<div class="form-group m-form__group row">
-													<label for="example-text-input" class="col-2 col-form-label">
-														Facebook
-													</label>
-													<div class="col-7">
-														<input class="form-control m-input" type="text" value="www.facebook.com/Mark.Andre">
+													<div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
+															Status Pendidikan
+														</label>
+														<div class="col-7">
+															<input class="form-control m-input" type="text" >
+														</div>
 													</div>
-												</div>
-												<div class="form-group m-form__group row">
-													<label for="example-text-input" class="col-2 col-form-label">
-														Twitter
-													</label>
-													<div class="col-7">
-														<input class="form-control m-input" type="text" value="www.twitter.com/Mark.Andre">
+													<div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
+															Foto
+														</label>
+														<div class="col-7">
+															<input class="form-control m-input" type="file" >
+														</div>
 													</div>
-												</div>
-												<div class="form-group m-form__group row">
-													<label for="example-text-input" class="col-2 col-form-label">
-														Instagram
-													</label>
-													<div class="col-7">
-														<input class="form-control m-input" type="text" value="www.instagram.com/Mark.Andre">
+													<div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
+															Nomor Identitas
+														</label>
+														<div class="col-7">
+															<input class="form-control m-input" type="text" >
+														</div>
 													</div>
-												</div>
+													<div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
+															File KTP
+														</label>
+														<div class="col-7">
+															<input class="form-control m-input" type="file" >
+														</div>
+													</div>
+													<div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
+															File Ijazah
+														</label>
+														<div class="col-7">
+															<input class="form-control m-input" type="file" >
+														</div>
+													</div>
 											</div>
 											<div class="m-portlet__foot m-portlet__foot--fit">
 												<div class="m-form__actions">
