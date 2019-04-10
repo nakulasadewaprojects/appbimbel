@@ -1151,7 +1151,7 @@ License: You must have a valid license purchased only from themeforest(the above
 									</div>
 									<div class="tab-content">
 										<div class="tab-pane active" id="m_user_profile_tab_1">
-											<form class="m-form m-form--fit m-form--label-align-right" method="POST" action="profilesiswa/update/{{ Auth::user()->idsiswa}}">
+											<form class="m-form m-form--fit m-form--label-align-right" method="POST" action="profilesiswa/update/{{ Auth::user()->idtbSiswa}}">
 													{{ csrf_field() }}
     													{{ method_field('PUT') }}
 												<div class="m-portlet__body">

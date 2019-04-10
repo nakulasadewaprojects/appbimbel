@@ -34,19 +34,19 @@ class HomeSiswaController extends Controller
     {
         return view('profilesiswa');
     }
-    public function update($idsiswa, Request $request)
+    public function update($idtbsiswa, Request $request)
     {
         $this->validate($request,[
             // 'NoIDSiswa' => $noidSiswa,
             // 'NoIDSiswa' => ['unique:tbsiswa'],
-            'username' => ['required', 'string','min:3', 'max:255', 'unique:tbsiswa,username,'.$idsiswa.',idsiswa','regex:/^.*(?=.*[a-zA-Z])(?=.*[0-9]).*$/'],
+            'username' => ['required', 'string','min:3', 'max:255', 'unique:tbsiswa,username,'.$idtbsiswa.',idtbSiswa','regex:/^.*(?=.*[a-zA-Z])(?=.*[0-9]).*$/'],
             'NamaLengkap' => ['required', 'string', 'max:255'],
             'alamat' => ['required', 'string', 'max:255'],
             'gender' => ['required', 'string', 'max:255'],
-            'NoTlpn' => ['required', 'string', 'max:255','unique:tbsiswa,NoTlpn,'.$idsiswa.',idsiswa'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:tbsiswa,email,'.$idsiswa.',idsiswa', 'regex:/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/']
+            'NoTlpn' => ['required', 'string', 'max:255','unique:tbsiswa,NoTlpn,'.$idtbsiswa.',idtbSiswa'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:tbsiswa,email,'.$idtbsiswa.',idtbSiswa', 'regex:/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/']
          ]);
-        DB::table('Tbsiswa')->where('idsiswa',$idsiswa)->update([
+        DB::table('Tbsiswa')->where('idtbSiswa',$idtbsiswa)->update([
             'username' => $request['username'],
             // 'password' => Hash::make($data['password']),
             'NamaLengkap' => $request['NamaLengkap'],

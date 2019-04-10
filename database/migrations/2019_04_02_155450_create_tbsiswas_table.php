@@ -14,7 +14,7 @@ class CreateTbsiswasTable extends Migration
     public function up()
     {
         Schema::create('tbsiswa', function (Blueprint $table) {
-            $table->bigIncrements('idsiswa');
+            $table->bigIncrements('idtbSiswa');
             $table->string('NoIDSiswa',15)->nullable();
             $table->string('username',35)->unique()->nullable();
             $table->string('password')->nullable();
