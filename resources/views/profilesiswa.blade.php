@@ -82,7 +82,7 @@ License: You must have a valid license purchased only from themeforest(the above
 						<div class="m-stack__item m-stack__item--fluid m-header-head" id="m_header_nav">
 							<div class="m-header__title">
 								<h3 class="m-header__title-text">
-									Profil Mentor
+									Profil Siswa
 								</h3>
 							</div>
 				<!-- BEGIN: Topbar -->

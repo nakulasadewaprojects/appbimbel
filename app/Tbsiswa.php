@@ -23,7 +23,7 @@ class Tbsiswa extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'NoIDSiswa','username','password','NamaLengkap','alamat','kota','provinsi','kecamatan','kelurahan','gender','NoTlpn','email','tglregister' 
+        'NoIDSiswa','username','password','NamaLengkap','alamat','kota','provinsi','kecamatan','kelurahan','gender','NoTlpn','email','status','tglregister' 
     ];
 
     /**

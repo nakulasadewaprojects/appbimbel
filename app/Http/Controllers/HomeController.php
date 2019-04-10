@@ -10,6 +10,7 @@ use DB;
 
 
 
+
 class HomeController extends Controller
 {
     /**
@@ -34,7 +35,8 @@ class HomeController extends Controller
     }
     public function dashboard()
     {
-        return view('dashboard');
+        $show = DB::table('tbdetailmentor')->where('idmentor', Auth::user()->idmentor)->first();
+        return view('dashboard',['isCompleted'=>$show]);
     }
     public function profile()
     {

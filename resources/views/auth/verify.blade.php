@@ -28,8 +28,8 @@
                             email') }}, <a href="{{ route('verification.resend') }}">{{ __('klik di sini untuk kirim ulang') }}</a>.
                         </div>
                         <font color="red" size="3">
-                            <b>Batas waktu verifikasi:  {{Carbon\Carbon::parse($name->limitAktivasi)->isoFormat('dddd')}},
-                            {{Carbon\Carbon::parse($name->limitAktivasi)->format('j F Y')}} pukul {{Carbon\Carbon::parse($name->limitAktivasi)->format('H:i')}}
+                            <b>Batas waktu verifikasi:  {{Carbon\Carbon::parse($deadline->limitAktivasi)->isoFormat('dddd')}},
+                            {{Carbon\Carbon::parse($deadline->limitAktivasi)->format('j F Y')}} pukul {{Carbon\Carbon::parse($deadline->limitAktivasi)->format('H:i')}}
                             WIB</b>
                         </font>
                     </div>

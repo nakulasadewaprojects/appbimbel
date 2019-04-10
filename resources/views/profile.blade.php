@@ -1205,13 +1205,13 @@ License: You must have a valid license purchased only from themeforest(the above
 
 														<label class="m-radio">
 															<input type="radio" name="gender" id="gender_Male" value="1" required>
-															<span></span>
 															Pria &nbsp&nbsp&nbsp
+															<span></span>
 														</label>
 														<label class="m-radio">
 															<input type="radio" name="gender" id="gender_Female" value="2" required>
-															<span></span>
 															Wanita
+															<span></span>
 														</label>
 													</div>
 												</div>
@@ -1990,9 +1990,10 @@ License: You must have a valid license purchased only from themeforest(the above
 	<script>
 		if ({{Auth::user()->gender }} == 1) {
 			$('input[id=gender_Male]:checked')
-}else if ({{ Auth::user()->gender }} == 2) {
-	$('input[id=gender_Female]:checked')
-}
+			}
+		else if ({{ Auth::user()->gender }} == 2) {
+			$('input[id=gender_Female]:checked')
+			}
 	</script>
 
 	<!--end::Base Scripts -->
