@@ -10,7 +10,6 @@ use DB;
 
 
 
-
 class HomeController extends Controller
 {
     /**
