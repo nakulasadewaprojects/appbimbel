@@ -31,4 +31,5 @@ Route::get('/dashboardsiswa', 'HomeSiswaController@dashboardsiswa');
 Route::get('/profile', 'HomeController@profile');
 Route::get('/profilesiswa', 'HomeSiswaController@profilesiswa');
 Route::put('/profilesiswa/update/{idsiswa}', 'HomeSiswaController@update');
+Route::put('/profile/update/{idmentor}', 'HomeController@update');
 

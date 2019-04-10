@@ -54,6 +54,6 @@ class HomeSiswaController extends Controller
             'email' => $request['email']
             
          ] );
-        return redirect('/dashboardsiswa');
+        return redirect('/profilesiswa');
     }
 }
