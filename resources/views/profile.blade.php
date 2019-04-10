@@ -1198,23 +1198,15 @@ License: You must have a valid license purchased only from themeforest(the above
 													</div>
 												</div>
 												<div class="form-group m-form__group row">
-													<label for="example-text-input" class="col-2 col-form-label">
-														Jenis Kelamin
-													</label>
-													<div class="col-7">
-
-														<label class="m-radio">
-															<input type="radio" name="gender" id="gender_Male" value="1" required>
-															Pria &nbsp&nbsp&nbsp
-															<span></span>
+														<label for="example-text-input" class="col-2 col-form-label text-md-right">
+															Jenis Kelamin
 														</label>
-														<label class="m-radio">
-															<input type="radio" name="gender" id="gender_Female" value="2" required>
-															Wanita
-															<span></span>
-														</label>
+														<div class="col-7">
+															<!-- <input class="form-control m-input" type="text" name="gender " value="{{ Auth::user()->gender }}"> -->
+															<input type="radio" name="gender" id="male" value="1" required> Pria &nbsp;&nbsp;
+                                            				<input type="radio" name="gender" id="female" value="2" required> Wanita
+														</div>
 													</div>
-												</div>
 												<div class="form-group m-form__group row">
 													<label for="example-text-input" class="col-2 col-form-label">
 														No Telepon
@@ -1978,23 +1970,13 @@ License: You must have a valid license purchased only from themeforest(the above
 	<!--begin::Base Scripts -->
 	<script src="assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
 	<script src="assets/demo/demo6/base/scripts.bundle.js" type="text/javascript"></script>
-	<!-- <script>
-		if ({{ Auth::user()->gender }} == 1) {
-			document.getElementById('gender_Male').checked
-			
-		} else if ({{ Auth::user()->gender }} == 2) {
-			document.getElementById('gender_Female').checked
-			
-		}
-	</script> -->
 	<script>
-		if ({{Auth::user()->gender }} == 1) {
-			$('input[id=gender_Male]:checked')
-			}
-		else if ({{ Auth::user()->gender }} == 2) {
-			$('input[id=gender_Female]:checked')
-			}
-	</script>
+		if({{ Auth::user()->gender }}==1){
+			document.getElementById("male").checked = true;
+		}else{
+			document.getElementById("female").checked = true;
+		}
+		</script>
 
 	<!--end::Base Scripts -->
 </body>
