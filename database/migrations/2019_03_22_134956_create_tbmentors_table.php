@@ -16,10 +16,10 @@ class CreateTbmentorsTable extends Migration
         Schema::create('tbmentor', function (Blueprint $table) {
             $table->bigIncrements('idmentor');
             $table->string('NoIDMentor',15)->nullable();
-            $table->string('username',35)->unique();
-            $table->string('email',100)->unique();
+            $table->string('username',35)->unique()->nullable();
+            $table->string('email',100)->unique()->nullable();
             $table->string('password');
-            $table->string('nm_depan',100);
+            $table->string('nm_depan',100)->nullable();
             $table->string('nm_belakang',100)->nullable();
             $table->string('gender')->comment('1=laki-laki 2=perempuan')->nullable();
             $table->string('alamat',100)->nullable();
