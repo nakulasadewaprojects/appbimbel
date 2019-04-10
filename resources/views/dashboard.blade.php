@@ -879,6 +879,49 @@
 						<div class="row">
 							<div class="col-xl-12">
 								<!--begin::Portlet-->
+							
+								<!--end::Portlet-->
+								<div class="modal hide fade" id="m_modal_1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+									<div class="modal-dialog" role="document">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title"  id="exampleModalLabel">
+													Kelengkapan Data Mentor
+												</h5>
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+													<span aria-hidden="true">
+														&times;
+													</span>
+												</button>
+											</div>
+											<div class="modal-body">
+												
+												<b>Segera lengkapi data Anda! </b> <br><br>
+												Pendidikan terakhir: @if($isCompleted->pendidikanTerakhir==NULL) Belum terisi @else Sudah terisi @endif  <br>
+												Status pendidikan:  @if($isCompleted->statusPendidikan==NULL) Belum terisi @else Sudah terisi @endif<br>
+												Foto: @if($isCompleted->foto==NULL) Belum terisi @else Sudah terisi @endif<br>
+												Nomor Identitas: @if($isCompleted->No_Identitas==NULL) Belum terisi @else Sudah terisi @endif<br>
+												File KTP: @if($isCompleted->fileKTP==NULL) Belum terisi @else Sudah terisi @endif<br>
+												File Ijazah: @if($isCompleted->fileIjazah==NULL) Belum terisi @else Sudah terisi @endif<br>
+												
+
+												
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary" data-dismiss="modal">
+													Nanti Saja
+												</button>
+												<button class="btn btn-primary"onclick="window.location.href = 'profile';">Lengkapi Data Sekarang</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					
+						<div class="row">
+							<div class="col-xl-12">
+								<!--begin::Portlet-->
 								<div class="m-portlet" id="m_portlet">
 									<div class="m-portlet__head">
 										<div class="m-portlet__head-caption">
@@ -1571,5 +1614,14 @@
         <!--begin::Page Snippets -->
 		<script src="assets/app/js/dashboard.js" type="text/javascript"></script>
 		<!--end::Page Snippets -->
+		@if ($isCompleted->statKomplit!==100)
+		<script type="text/javascript">
+			$(window).on('load',function(){
+				$('#m_modal_1').modal('show');
+			});
+		</script>
+		@else
+		sudah komplit
+		@endif
 	</body>
 </html>

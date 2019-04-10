@@ -64,7 +64,7 @@ class RegisterSiswaController extends Controller
         return Validator::make($data, [
             'NoIDSiswa' => ['unique:tbsiswa'],
             'username' => ['required', 'string','min:3', 'max:255', 'unique:tbsiswa','regex:/^.*(?=.*[a-zA-Z])(?=.*[0-9]).*$/'],
-            'NamaLengkap' => ['required', 'string', 'max:255'],
+            'NamaLengkap' => ['required', 'string', 'max:255',],
             'NoTlpn' => ['required', 'string', 'max:255','unique:tbsiswa'],
             'gender' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:tbsiswa', 'regex:/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/'],
@@ -97,7 +97,7 @@ class RegisterSiswaController extends Controller
             // 'tglregister' => Carbon::now()->addDays(30)->format('Y-m-d H:i:s'), //contoh
 //            'tglregister' => Carbon::now()->format('Y-m-d H:i:s')
             // 'statusAktivasi' => '0',
-            'status' => '1',
+            'status' => '2',
             'tglregister' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
     }  
