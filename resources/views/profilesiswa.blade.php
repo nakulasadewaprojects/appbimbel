@@ -1172,7 +1172,7 @@ License: You must have a valid license purchased only from themeforest(the above
 															Username
 														</label>
 														<div class="col-7">
-															<input class="form-control m-input" name="username" type="text" value="{{ Auth::user()->username }}">
+															<input class="form-control m-input"  type="text" name="username" value="{{ Auth::user()->username }}">
 														</div>
 													</div>
 													<div class="form-group m-form__group row">
@@ -1183,20 +1183,12 @@ License: You must have a valid license purchased only from themeforest(the above
 															<input class="form-control m-input" type="text" name="NamaLengkap" value="{{ Auth::user()->NamaLengkap }}">
 														</div>
 													</div>
-													<!-- <div class="form-group m-form__group row">
-														<label for="example-text-input" class="col-2 col-form-label">
-															Nama Lengkap
-														</label>
-														<div class="col-7">
-															<input class="form-control m-input" type="text" value="{{ Auth::user()->alamat }}">
-														</div>
-													</div> -->
 													<div class="form-group m-form__group row">
 														<label for="example-text-input" class="col-2 col-form-label">
 															Jenis Kelamin
 														</label>
 														<div class="col-7">
-															<input class="form-control m-input" type="text" name="gender " value="{{ Auth::user()->gender }}">
+															<input class="form-control m-input" type="text" name="gender" value="{{ Auth::user()->gender }}">
 														</div>
 													</div>
 													<div class="form-group m-form__group row">

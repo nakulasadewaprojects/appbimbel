@@ -5,8 +5,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use DB;
-
 
 
 
@@ -40,5 +40,21 @@ class HomeController extends Controller
     public function profile()
     {
         return view('profile');
+    }
+    public function update($idmentor, Request $request)
+    {
+        DB::table('tbmentor')->where('idmentor',$idmentor)->update([
+            'username' => $request['username'],
+            // 'password' => Hash::make($data['password']),
+            // 'NamaLengkap' => $request['NamaLengkap'],
+            'alamat' => $request['alamat'],
+            'nm_depan' => $request['nm_depan'],
+            'nm_belakang' => $request['nm_belakang'],
+            'gender' => $request['gender'],
+            'noTlpn' => $request['noTlpn'],
+            'email' => $request['email']
+            
+         ] );
+        return redirect('/profile');
     }
 }
