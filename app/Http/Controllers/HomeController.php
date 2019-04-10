@@ -53,7 +53,7 @@ class HomeController extends Controller
             'nm_belakang' => $request['nm_belakang'],
             'gender' => $request['gender'],
             'noTlpn' => $request['noTlpn'],
-            'email' => $request['email']
+            // 'email' => $request['email']
             
          ] );
         return redirect('/profile');

@@ -1046,7 +1046,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							</div>
 						</div>
 						<div class="col-xl-9 col-lg-8">
-							<div class="m-portlet m-portlet--full-height m-portlet--tabs  ">
+							<div class="m-portlet m-portlet--full-height m-portlet--tabs">
 								<div class="m-portlet__head">
 									<div class="m-portlet__head-tools">
 										<ul class="nav nav-tabs m-tabs m-tabs-line   m-tabs-line--left m-tabs-line--primary" role="tablist">
