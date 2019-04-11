@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use DB;
 use App\Tbsiswa;
+use App\Tbdetailsiswa;
+
 class HomeSiswaController extends Controller
 {
     /**
@@ -15,7 +17,7 @@ class HomeSiswaController extends Controller
     {
       
             $this->middleware('auth:siswa');
-    
+
     }
         /**
          * Show the application dashboard.
@@ -28,8 +30,11 @@ class HomeSiswaController extends Controller
     // }
     public function dashboardsiswa()
     {
+        Tbdetailsiswa::where('idtbDetailSiswa', Auth::user()->idtbSiswa)->update(['idtbSiswa' => Auth::user()->idtbSiswa]);
         $show = DB::table('tbdetailsiswa')->where('idtbSiswa', Auth::user()->idtbSiswa)->first();
         return view('dashboardsiswa',['isCompleted'=>$show]);
+        
+
     }
     public function profilesiswa()
     {
