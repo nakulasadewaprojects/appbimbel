@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use App\Tbdetailsiswa;
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
+
 
 
 class RegisterSiswaController extends Controller
@@ -48,6 +52,21 @@ class RegisterSiswaController extends Controller
         return Auth::guard('siswa');
     }
 
+
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        $this->guard()->login($user);
+
+        return $this->registered($request, $user)
+                        ?: redirect($this->redirectPath());
+    }
+
+    
+
     public function showRegisterForm()
     {
         return view('auth.registersiswa');
@@ -83,7 +102,7 @@ class RegisterSiswaController extends Controller
      */
     protected function create(array $data)
     {
-        return Tbsiswa::create([
+        $user = Tbsiswa::create([
             // 'NoIDSiswa' => $noidSiswa,
             'username' => $data['username'],
             'password' => Hash::make($data['password']),
@@ -100,5 +119,10 @@ class RegisterSiswaController extends Controller
             'status' => '2',
             'tglregister' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
+        $user->userData1 = Tbdetailsiswa::create([
+            // 'NoIDMentor' => $noidmentor,
+            'statusKomplit' => '0'
+        ]);
+        return $user;  
     }  
 }
