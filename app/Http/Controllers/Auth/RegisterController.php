@@ -51,19 +51,6 @@ class RegisterController extends Controller
         return Auth::guard('web');
     }
 
-    public function register(Request $request)
-    {
-        $this->validator($request->all())->validate();
-
-        event(new Registered($user = $this->create($request->all())));
-
-        $this->guard()->login($user);
-
-        Tbdetailmentor::where('idtbRiwayatTutor', Auth::user()->idmentor)->update(['idmentor' => Auth::user()->idmentor]);
-
-        return $this->registered($request, $user)
-                        ?: redirect($this->redirectPath());
-    }
 
     /**
      * Get a validator for an incoming registration request.
