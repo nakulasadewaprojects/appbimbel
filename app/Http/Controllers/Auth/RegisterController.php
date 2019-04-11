@@ -45,7 +45,11 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }
-
+    
+    protected function guard()
+    {
+        return Auth::guard('web');
+    }
 
     public function register(Request $request)
     {
