@@ -64,4 +64,16 @@ class HomeSiswaController extends Controller
          ] );
         return redirect('/profilesiswa');
     }
+    public function lengkapiBerkas($idtbSiswa, Request $request)
+    {
+        DB::table('Tbdetailsiswa')->where('idtbSiswa',$idtbSiswa )->create([
+                'namaWali' => $request['namaWali'],
+                'pendidikanSiswa' => $request['	pendidikanSiswa'],
+                'jenjang'=>$request['jenjang'],
+                'prodiSiswa'=>$request['prodiSiswa']
+
+    ]);
+    return redirect('/profilesiswa');
+    }
+
 }

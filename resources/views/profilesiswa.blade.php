@@ -1292,7 +1292,7 @@ License: You must have a valid license purchased only from themeforest(the above
 													<!-- <div class="form-group m-form__group row">
 														<div class="col-10 ml-auto">
 															<h3 class="m-form__section">
-																3. Social Links
+																3. Lengkapi Berkas
 															</h3>
 														</div>
 													</div> -->
@@ -1301,15 +1301,15 @@ License: You must have a valid license purchased only from themeforest(the above
 															Linkedin
 														</label>
 														<div class="col-7">
-															<input class="form-control m-input" type="text" value="www.linkedin.com/Mark.Andre">
+															<input class="form-control m-input" type="text" name="namaWali" >
 														</div>
-													</div> -->
-													<!-- <div class="form-group m-form__group row">
-														<label for="example-text-input" class="col-2 col-form-label">
-															Facebook
+													</div>
+													<div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label" >
+															Pendidikan Siswa
 														</label>
 														<div class="col-7">
-															<input class="form-control m-input" type="text" value="www.facebook.com/Mark.Andre">
+															<input class="form-control m-input" type="text"name="pendidikanSiswa" >
 														</div>
 													</div> -->
 													<!-- <div class="form-group m-form__group row">
@@ -1317,15 +1317,15 @@ License: You must have a valid license purchased only from themeforest(the above
 															Twitter
 														</label>
 														<div class="col-7">
-															<input class="form-control m-input" type="text" value="www.twitter.com/Mark.Andre">
+															<input class="form-control m-input" type="text" name="jenjang">
 														</div>
-													</div> -->
-													<!-- <div class="form-group m-form__group row">
-														<label for="example-text-input" class="col-2 col-form-label">
-															Instagram
+													</div>
+													<div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label" >
+															Prodi Siswa
 														</label>
 														<div class="col-7">
-															<input class="form-control m-input" type="text" value="www.instagram.com/Mark.Andre">
+															<input class="form-control m-input" type="text" name="prodiSiswa">
 														</div>
 													</div> -->
 												</div>
