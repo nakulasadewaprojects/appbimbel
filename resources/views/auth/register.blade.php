@@ -112,12 +112,12 @@
                                             <label for="last_name" class="col-md-5 ">Jenis Kelamin</label>
                                             <!--                            <div class="col-md-8 col-form-label">-->
                                             <label class="m-radio m-radio--bold m-radio--state-brand">
-                                                    <input required type="radio" name="gender" id="male" value="1">
+                                                    <input required type="radio" name="gender" id="male" value="1" @if(old('gender')==1) checked @endif>
                                                     Laki-Laki&nbsp;
                                                     <span></span>
                                             </label>
                                             <label class="m-radio m-radio--bold m-radio--state-brand">
-                                                    <input required type="radio" name="gender" id="female" value="2">
+                                                    <input required type="radio" name="gender" id="female" value="2" @if(old('gender')==2) checked @endif>
                                                     Perempuan
                                                     <span></span>
                                             </label>

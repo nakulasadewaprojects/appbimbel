@@ -1344,7 +1344,7 @@ License: You must have a valid license purchased only from themeforest(the above
 															Alamat
 														</label>
 													<div class="col-7">
-														<input class="form-control m-input" type="text" value="Pulo City of Heaven">
+														<input class="form-control m-input" name="alamat" type="text" value="{{ Auth::user()->alamat }}">
 													</div>
 												</div>
 												<div class="form-group m-form__group row">
