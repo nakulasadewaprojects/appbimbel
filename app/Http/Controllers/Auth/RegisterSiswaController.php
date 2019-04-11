@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Tbsiswa;
+use App\Tbdetailsiswa;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 
 class RegisterSiswaController extends Controller
@@ -83,7 +86,7 @@ class RegisterSiswaController extends Controller
      */
     protected function create(array $data)
     {
-        return Tbsiswa::create([
+        $user=Tbsiswa::create([
             // 'NoIDSiswa' => $noidSiswa,
             'username' => $data['username'],
             'password' => Hash::make($data['password']),
@@ -100,5 +103,24 @@ class RegisterSiswaController extends Controller
             'status' => '2',
             'tglregister' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
-    }  
+
+        $user->userData1 = Tbdetailsiswa::create([
+            // 'NoIDMentor' => $noidmentor,
+            'statusKomplit' => '0'
+        ]);
+        return $user;
+    } 
+    // public function register(Request $request)
+    // {
+    //     $this->validator($request->all())->validate();
+
+    //     event(new Registered($user = $this->create($request->all())));
+        
+    //     $this->guard()->login($user);
+        
+    //     Tbdetailsiswa::where('idtbDetailSiswa', Auth::user()->idtbSiswa)->update(['idtbSiswa' => Auth::user()->idtbSiswa]);
+
+    //     return $this->registered($request, $user)
+    //                     ?: redirect($this->redirectPath());
+    // } 
 }

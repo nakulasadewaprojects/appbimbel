@@ -93,7 +93,8 @@ License: You must have a valid license purchased only from themeforest(the above
 						<div id="m_header_topbar" class="m-topbar  m-stack m-stack--ver m-stack--general">
 							<div class="m-stack__item m-topbar__nav-wrapper">
 								<ul class="m-topbar__nav m-nav m-nav--inline">
-									<li class="m-nav__item m-topbar__notifications m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-center 	m-dropdown--mobile-full-width" data-dropdown-toggle="click" data-dropdown-persistent="true">
+									<li class="m-nav__item m-topbar__notifications m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-center 	m-dropdown--mobile-full-width"
+									 data-dropdown-toggle="click" data-dropdown-persistent="true">
 										<a href="#" class="m-nav__link m-dropdown__toggle" id="m_topbar_notification_icon">
 											<span class="m-nav__link-badge m-badge m-badge--dot m-badge--dot-small m-badge--danger"></span>
 											<span class="m-nav__link-icon">
@@ -304,7 +305,8 @@ License: You must have a valid license purchased only from themeforest(the above
 											</div>
 										</div>
 									</li>
-									<li class="m-nav__item m-topbar__quick-actions m-dropdown m-dropdown--skin-light m-dropdown--large m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push m-dropdown--mobile-full-width m-dropdown--skin-light" data-dropdown-toggle="click">
+									<li class="m-nav__item m-topbar__quick-actions m-dropdown m-dropdown--skin-light m-dropdown--large m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push m-dropdown--mobile-full-width m-dropdown--skin-light"
+									 data-dropdown-toggle="click">
 										<a href="#" class="m-nav__link m-dropdown__toggle">
 											<span class="m-nav__link-badge m-badge m-badge--dot m-badge--info m--hide"></span>
 											<span class="m-nav__link-icon">
@@ -363,7 +365,8 @@ License: You must have a valid license purchased only from themeforest(the above
 											</div>
 										</div>
 									</li>
-									<li class="m-nav__item m-topbar__user-profile  m-dropdown m-dropdown--medium m-dropdown--arrow  m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light" data-dropdown-toggle="click">
+									<li class="m-nav__item m-topbar__user-profile  m-dropdown m-dropdown--medium m-dropdown--arrow  m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light"
+									 data-dropdown-toggle="click">
 										<a href="#" class="m-nav__link m-dropdown__toggle">
 											<span class="m-topbar__userpic m--hide">
 												<img src="assets/app/media/img/users/user4.jpg" class="m--img-rounded m--marginless m--img-centered" alt="" />
@@ -404,7 +407,8 @@ License: You must have a valid license purchased only from themeforest(the above
 																</span>
 															</li>
 															<li class="m-nav__item">
-																<a href="{{ route('logout') }}" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder" onclick="event.preventDefault();
+																<a href="{{ route('logout') }}" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder"
+																 onclick="event.preventDefault();
                                                      				document.getElementById('logout-form').submit();">
 																	Logout
 																</a>
@@ -444,7 +448,8 @@ License: You must have a valid license purchased only from themeforest(the above
 			</button>
 			<div id="m_aside_left" class="m-grid__item	m-aside-left  m-aside-left--skin-light ">
 				<!-- BEGIN: Aside Menu -->
-				<div id="m_ver_menu" class="m-aside-menu  m-aside-menu--skin-light m-aside-menu--submenu-skin-light " data-menu-vertical="true" data-menu-scrollable="true" data-menu-dropdown-timeout="500">
+				<div id="m_ver_menu" class="m-aside-menu  m-aside-menu--skin-light m-aside-menu--submenu-skin-light " data-menu-vertical="true"
+				 data-menu-scrollable="true" data-menu-dropdown-timeout="500">
 					<ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow ">
 						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover">
 							<a href="#" class="m-menu__link m-menu__toggle">
@@ -836,7 +841,8 @@ License: You must have a valid license purchased only from themeforest(the above
 							</h3>
 						</div>
 						<div>
-							<div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover" aria-expanded="true">
+							<div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover"
+							 aria-expanded="true">
 								<a href="#" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle">
 									<i class="la la-plus m--hide"></i>
 									<i class="la la-ellipsis-h"></i>
@@ -1071,7 +1077,8 @@ License: You must have a valid license purchased only from themeforest(the above
 									<div class="m-portlet__head-tools">
 										<ul class="m-portlet__nav">
 											<li class="m-portlet__nav-item m-portlet__nav-item--last">
-												<div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover" aria-expanded="true">
+												<div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover"
+												 aria-expanded="true">
 													<a href="#" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle">
 														<i class="la la-gear"></i>
 													</a>
@@ -1150,16 +1157,16 @@ License: You must have a valid license purchased only from themeforest(the above
 								<div class="tab-content">
 									<div class="tab-pane active" id="m_user_profile_tab_1">
 										<form class="m-form m-form--fit m-form--label-align-right" method="POST" action="profile/update/{{ Auth::user()->idmentor}}">
-											{{ csrf_field() }}
-											{{ method_field('PUT') }}
+											{{ csrf_field() }} {{ method_field('PUT') }}
 											<div class="m-portlet__body">
 												<div class="form-group m-form__group m--margin-top-10 m--hide">
 													<div class="alert m-alert m-alert--default" role="alert">
-														The example form below demonstrates common HTML form elements that receive updated styles from Bootstrap with additional classes.
+														The example form below demonstrates common HTML form elements that receive updated styles from Bootstrap with additional
+														classes.
 													</div>
 												</div>
 												<div class="form-group m-form__group row">
-													<div class="col-10 ml-auto">
+													<div class="col-7 ml-auto">
 														<h3 class="m-form__section">
 															1. Personal Details
 														</h3>
@@ -1198,15 +1205,26 @@ License: You must have a valid license purchased only from themeforest(the above
 													</div>
 												</div>
 												<div class="form-group m-form__group row">
-														<label for="example-text-input" class="col-2 col-form-label text-md-right">
+													<label for="example-text-input" class="col-2 col-form-label text-md-right">
 															Jenis Kelamin
 														</label>
-														<div class="col-7">
-															<!-- <input class="form-control m-input" type="text" name="gender " value="{{ Auth::user()->gender }}"> -->
-															<input type="radio" name="gender" id="male" value="1" required> Pria &nbsp;&nbsp;
-                                            				<input type="radio" name="gender" id="female" value="2" required> Wanita
-														</div>
+													<div class="col-2">
+														{{--
+														<!-- <input class="form-control m-input" type="text" name="gender " value="{{ Auth::user()->gender }}"> -->
+														<input type="radio" name="gender" id="male" value="1" required> Pria &nbsp;&nbsp;
+														<input type="radio" name="gender" id="female" value="2" required> Wanita --}}
+														<label class="m-radio m-radio--bold m-radio--state-brand">
+																<input type="radio" name="gender" id="male" value="1">
+																Laki-Laki 
+																<span></span>
+														</label>
+														<label class="m-radio m-radio--bold m-radio--state-brand">
+																<input type="radio" name="gender" id="female" value="2">
+																Perempuan
+																<span></span>
+														</label>
 													</div>
+												</div>
 												<div class="form-group m-form__group row">
 													<label for="example-text-input" class="col-2 col-form-label">
 														No Telepon
@@ -1217,26 +1235,36 @@ License: You must have a valid license purchased only from themeforest(the above
 												</div>
 												<div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
 												<div class="form-group m-form__group row">
-													<div class="col-10 ml-auto">
+													<div class="col-7 ml-auto">
 														<h3 class="m-form__section">
 															2. Address
 														</h3>
 													</div>
 												</div>
+
+
 												<div class="form-group m-form__group row">
 													<label for="example-text-input" class="col-2 col-form-label">
-														Alamat
+														Provinsi
 													</label>
 													<div class="col-7">
-														<input class="form-control m-input" type="text" value="Pulo City of Heaven">
-													</div>
-												</div>
-												<div class="form-group m-form__group row">
-													<label for="example-text-input" class="col-2 col-form-label">
-														Kecamatan
-													</label>
-													<div class="col-7">
-														<input class="form-control m-input" type="text" value="Tempeh">
+														<select class="form-control m-input" id="exampleSelect1">
+																<option>
+																	1
+																</option>
+																<option>
+																	2
+																</option>
+																<option>
+																	3
+																</option>
+																<option>
+																	4
+																</option>
+																<option>
+																	5
+																</option>
+															</select>
 													</div>
 												</div>
 												<div class="form-group m-form__group row">
@@ -1244,73 +1272,154 @@ License: You must have a valid license purchased only from themeforest(the above
 														Kabupaten
 													</label>
 													<div class="col-7">
-														<input class="form-control m-input" type="text" value="Lumajang">
+														<select class="form-control m-input" id="exampleSelect1">
+																<option>
+																	1
+																</option>
+																<option>
+																	2
+																</option>
+																<option>
+																	3
+																</option>
+																<option>
+																	4
+																</option>
+																<option>
+																	5
+																</option>
+															</select>
 													</div>
 												</div>
 												<div class="form-group m-form__group row">
 													<label for="example-text-input" class="col-2 col-form-label">
-														Kode Pos
+														Kecamatan
 													</label>
+													<div class="col-7">
+														<select class="form-control m-input" id="exampleSelect1">
+																<option>
+																	1
+																</option>
+																<option>
+																	2
+																</option>
+																<option>
+																	3
+																</option>
+																<option>
+																	4
+																</option>
+																<option>
+																	5
+																</option>
+															</select>
+													</div>
+												</div>
+												<div class="form-group m-form__group row">
+													<label for="example-text-input" class="col-2 col-form-label">
+														Kelurahan
+													</label>
+													<div class="col-7">
+														<select class="form-control m-input" id="exampleSelect1">
+																<option>
+																	1
+																</option>
+																<option>
+																	2
+																</option>
+																<option>
+																	3
+																</option>
+																<option>
+																	4
+																</option>
+																<option>
+																	5
+																</option>
+															</select>
+													</div>
+												</div>
+												<div class="form-group m-form__group row">
+													<label for="example-text-input" class="col-2 col-form-label">
+															Alamat
+														</label>
+													<div class="col-7">
+														<input class="form-control m-input" type="text" value="Pulo City of Heaven">
+													</div>
+												</div>
+												<div class="form-group m-form__group row">
+													<label for="example-text-input" class="col-2 col-form-label">
+																Kode Pos
+															</label>
 													<div class="col-7">
 														<input class="form-control m-input" type="text" value="67371">
 													</div>
 												</div>
 												<div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
 												<div class="form-group m-form__group row">
-														<div class="col-10 ml-auto">
-															<h3 class="m-form__section">
-																3. Lengkapi Berkas
-															</h3>
-														</div>
+													<div class="col-7 ml-auto">
+														<h3 class="m-form__section">
+															3. Lengkapi Berkas
+														</h3>
 													</div>
-													<div class="form-group m-form__group row">
-														<label for="example-text-input" class="col-2 col-form-label">
+												</div>
+												<div class="form-group m-form__group row">
+													<label for="example-text-input" class="col-3 col-form-label">
 															Pendidikan Terakhir
 														</label>
-														<div class="col-7">
-															<input class="form-control m-input" type="text">
-														</div>
+													<div class="col-4">
+														<input class="form-control m-input" type="text">
 													</div>
-													<div class="form-group m-form__group row">
-														<label for="example-text-input" class="col-2 col-form-label">
+												</div>
+												<div class="form-group m-form__group row">
+													<label for="example-text-input" class="col-3 col-form-label">
 															Status Pendidikan
 														</label>
-														<div class="col-7">
-															<input class="form-control m-input" type="text" >
-														</div>
+													<div class="col-4">
+														<input class="form-control m-input" type="text">
 													</div>
-													<div class="form-group m-form__group row">
-														<label for="example-text-input" class="col-2 col-form-label">
+												</div>
+												<div class="form-group m-form__group row">
+													<label for="example-text-input" class="col-3 col-form-label">
 															Foto
 														</label>
-														<div class="col-7">
-															<input class="form-control m-input" type="file" >
-														</div>
+													<div class="col-7">
+														<label class="custom-file">
+																	<input type="file" id="file2" class="custom-file-input">
+																	<span class="custom-file-control"></span>
+																</label>
 													</div>
-													<div class="form-group m-form__group row">
-														<label for="example-text-input" class="col-2 col-form-label">
+												</div>
+												<div class="form-group m-form__group row">
+													<label for="example-text-input" class="col-3 col-form-label">
 															Nomor Identitas
 														</label>
-														<div class="col-7">
-															<input class="form-control m-input" type="text" >
-														</div>
+													<div class="col-7">
+														<input class="form-control m-input" type="text">
 													</div>
-													<div class="form-group m-form__group row">
-														<label for="example-text-input" class="col-2 col-form-label">
+												</div>
+												<div class="form-group m-form__group row">
+													<label for="example-text-input" class="col-3 col-form-label">
 															File KTP
 														</label>
-														<div class="col-7">
-															<input class="form-control m-input" type="file" >
-														</div>
+													<div class="col-7">
+														<label class="custom-file">
+																	<input type="file" id="file2" class="custom-file-input">
+																	<span class="custom-file-control"></span>
+																</label>
 													</div>
-													<div class="form-group m-form__group row">
-														<label for="example-text-input" class="col-2 col-form-label">
+												</div>
+												<div class="form-group m-form__group row">
+													<label for="example-text-input" class="col-3 col-form-label">
 															File Ijazah
 														</label>
-														<div class="col-7">
-															<input class="form-control m-input" type="file" >
-														</div>
+													<div class="col-7">
+														<label class="custom-file">
+																	<input type="file" id="file2" class="custom-file-input">
+																	<span class="custom-file-control"></span>
+																</label>
 													</div>
+												</div>
 											</div>
 											<div class="m-portlet__foot m-portlet__foot--fit">
 												<div class="m-form__actions">
@@ -1319,8 +1428,7 @@ License: You must have a valid license purchased only from themeforest(the above
 														<div class="col-7">
 															<button type="submit" class="btn btn-accent m-btn m-btn--air m-btn--custom">
 																Save changes
-															</button>
-															&nbsp;&nbsp;
+															</button> &nbsp;&nbsp;
 															<button type="reset" class="btn btn-secondary m-btn m-btn--air m-btn--custom">
 																Cancel
 															</button>
@@ -1589,8 +1697,8 @@ License: You must have a valid license purchased only from themeforest(the above
 										<label>
 											<input type="checkbox" checked="checked" name="">
 											<span></span>
-										</label>
-									</span>
+								</label>
+								</span>
 								</span>
 							</div>
 							<div class="m-list-settings__item">
@@ -1602,8 +1710,8 @@ License: You must have a valid license purchased only from themeforest(the above
 										<label>
 											<input type="checkbox" name="">
 											<span></span>
-										</label>
-									</span>
+								</label>
+								</span>
 								</span>
 							</div>
 							<div class="m-list-settings__item">
@@ -1615,8 +1723,8 @@ License: You must have a valid license purchased only from themeforest(the above
 										<label>
 											<input type="checkbox" name="">
 											<span></span>
-										</label>
-									</span>
+								</label>
+								</span>
 								</span>
 							</div>
 							<div class="m-list-settings__item">
@@ -1628,8 +1736,8 @@ License: You must have a valid license purchased only from themeforest(the above
 										<label>
 											<input type="checkbox" name="">
 											<span></span>
-										</label>
-									</span>
+								</label>
+								</span>
 								</span>
 							</div>
 							<div class="m-list-settings__item">
@@ -1641,8 +1749,8 @@ License: You must have a valid license purchased only from themeforest(the above
 										<label>
 											<input type="checkbox" checked="checked" name="">
 											<span></span>
-										</label>
-									</span>
+								</label>
+								</span>
 								</span>
 							</div>
 						</div>
@@ -1659,8 +1767,8 @@ License: You must have a valid license purchased only from themeforest(the above
 										<label>
 											<input type="checkbox" name="">
 											<span></span>
-										</label>
-									</span>
+								</label>
+								</span>
 								</span>
 							</div>
 							<div class="m-list-settings__item">
@@ -1672,8 +1780,8 @@ License: You must have a valid license purchased only from themeforest(the above
 										<label>
 											<input type="checkbox" name="">
 											<span></span>
-										</label>
-									</span>
+								</label>
+								</span>
 								</span>
 							</div>
 							<div class="m-list-settings__item">
@@ -1685,8 +1793,8 @@ License: You must have a valid license purchased only from themeforest(the above
 										<label>
 											<input type="checkbox" name="">
 											<span></span>
-										</label>
-									</span>
+								</label>
+								</span>
 								</span>
 							</div>
 							<div class="m-list-settings__item">
@@ -1698,8 +1806,8 @@ License: You must have a valid license purchased only from themeforest(the above
 										<label>
 											<input type="checkbox" checked="checked" name="">
 											<span></span>
-										</label>
-									</span>
+								</label>
+								</span>
 								</span>
 							</div>
 							<div class="m-list-settings__item">
@@ -1711,8 +1819,8 @@ License: You must have a valid license purchased only from themeforest(the above
 										<label>
 											<input type="checkbox" name="">
 											<span></span>
-										</label>
-									</span>
+								</label>
+								</span>
 								</span>
 							</div>
 						</div>
@@ -1992,7 +2100,7 @@ License: You must have a valid license purchased only from themeforest(the above
 		}else{
 			document.getElementById("female").checked = true;
 		}
-		</script>
+	</script>
 
 	<!--end::Base Scripts -->
 </body>
