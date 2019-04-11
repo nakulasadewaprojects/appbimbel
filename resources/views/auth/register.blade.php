@@ -23,6 +23,50 @@
                                 </div>
 
                                 <div class="card-body">
+                                        <div class="modal fade" id="m_modal_1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLongTitle">
+                                                                Persyaratan Mentor
+                                                            </h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">
+                                                                    &times;
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>
+                                                                Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+                                                            </p>
+                                                            <p>
+                                                                Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+                                                            </p>
+                                                            <p>
+                                                                Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+                                                            </p>
+                                                            <p>
+                                                                Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+                                                            </p>
+                                                            <p>
+                                                                Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+                                                            </p>
+                                                            <p>
+                                                                Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+                                                            </p>
+                                                            <p>
+                                                                Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+                                                            </p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-primary" data-dismiss="modal">
+                                                                Saya Setuju
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                     <form class="m-login__form m-form" method="POST" action="{{ route('register') }}">
                                         @csrf
 
@@ -31,9 +75,10 @@
 
                                             <div class="form-group m-form__group">
                                                 <input id="username" type="text" placeholder="Nama Pengguna" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}"
-                                                    name="username" value="{{ old('username') }}" required autofocus>     <font size="2">*Username minimal 6 karakter kombinasi huruf & angka</font>                                           @if ($errors->has('username'))
-                                                
-                                                    <span class="invalid-feedback" role="alert">
+                                                    name="username" value="{{ old('username') }}" required autofocus>
+                                                <font size="2">*Username minimal 6 karakter kombinasi huruf & angka</font> @if ($errors->has('username'))
+
+                                                <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('username') }}</strong>
                                     </span> @endif
                                             </div>
@@ -62,17 +107,17 @@
                                     </span> @endif
                                             <!--                            </div>-->
                                         </div>
-<br>
+                                        <br>
                                         <div class="form-group m-form__group">
-                                            <label for="last_name" class="col-md-5 ">{{ __('Jenis Kelamin') }}</label>
+                                            <label for="last_name" class="col-md-5 ">Jenis Kelamin</label>
                                             <!--                            <div class="col-md-8 col-form-label">-->
-                                                <label class="m-radio m-radio--bold m-radio--state-brand">
-                                                    <input type="radio" name="gender" id="male" value="1">
+                                            <label class="m-radio m-radio--bold m-radio--state-brand">
+                                                    <input required type="radio" name="gender" id="male" value="1">
                                                     Laki-Laki&nbsp;
                                                     <span></span>
                                             </label>
                                             <label class="m-radio m-radio--bold m-radio--state-brand">
-                                                    <input type="radio" name="gender" id="female" value="2">
+                                                    <input required type="radio" name="gender" id="female" value="2">
                                                     Perempuan
                                                     <span></span>
                                             </label>
@@ -112,9 +157,17 @@
                                             <input id="password-confirm" type="password" placeholder="Konfirmasi Kata Sandi" class="form-control" name="password_confirmation"
                                                 required>
                                             <!--                            </div>-->
-                                        </div>
-
-                                        <div class="m-login__form-action">
+                                        </div><br><br>
+                                        <div class="form-group m-form__group">
+                                            <label class="m-checkbox  m-checkbox--focus">
+                                                    <input class="form-check-input" type="checkbox" required>
+                                                    {{ __('Saya sudah membaca persyaratan mentor ')}}
+											     <span></span>
+                                                </label>
+                                            </div>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a data-target="#m_modal_1" data-toggle="modal" href="#m_modal_1">Baca persyaratan</a>
+                                        
+                                            <div class="m-login__form-action">
                                             <!--                            <div class="col-md-6 offset-md-4">-->
                                             <button id="m_login_signup_submit" type="submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air m-login__btn m-login__btn--primary">
                                     {{ __('Daftar') }}
@@ -140,5 +193,6 @@
             </div>
         </div>
     </div>
+    
 </body>
 @endsection
