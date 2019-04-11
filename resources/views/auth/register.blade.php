@@ -31,8 +31,9 @@
 
                                             <div class="form-group m-form__group">
                                                 <input id="username" type="text" placeholder="Nama Pengguna" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}"
-                                                    name="username" value="{{ old('username') }}" required autofocus>                                                @if ($errors->has('username'))
-                                                <span class="invalid-feedback" role="alert">
+                                                    name="username" value="{{ old('username') }}" required autofocus>     <font size="2">*Username minimal 6 karakter kombinasi huruf & angka</font>                                           @if ($errors->has('username'))
+                                                
+                                                    <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('username') }}</strong>
                                     </span> @endif
                                             </div>
@@ -61,12 +62,20 @@
                                     </span> @endif
                                             <!--                            </div>-->
                                         </div>
-
+<br>
                                         <div class="form-group m-form__group">
-                                            <label for="last_name" class="col-md-5 col-form-label text-md-right">{{ __('Jenis Kelamin') }}</label>
+                                            <label for="last_name" class="col-md-5 ">{{ __('Jenis Kelamin') }}</label>
                                             <!--                            <div class="col-md-8 col-form-label">-->
-                                            <input type="radio" name="gender" value="1" required> Pria &nbsp;&nbsp;
-                                            <input type="radio" name="gender" value="2" required> Wanita
+                                                <label class="m-radio m-radio--bold m-radio--state-brand">
+                                                    <input type="radio" name="gender" id="male" value="1">
+                                                    Laki-Laki&nbsp;
+                                                    <span></span>
+                                            </label>
+                                            <label class="m-radio m-radio--bold m-radio--state-brand">
+                                                    <input type="radio" name="gender" id="female" value="2">
+                                                    Perempuan
+                                                    <span></span>
+                                            </label>
                                             <!--                            </div>-->
                                         </div>
 

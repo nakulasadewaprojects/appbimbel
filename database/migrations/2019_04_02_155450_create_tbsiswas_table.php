@@ -29,7 +29,7 @@ class CreateTbsiswasTable extends Migration
             $table->string('email',100)->unique()->nullable();
             $table->integer('status')->comment('1=aktif 2=non aktif 3=out')->nullable();
             $table->timestamp('tglregister')->nullable();
-            $table->rememberToken()->nullable();
+            // $table->rememberToken()->nullable();
             // $table->string('password');
             // $table->timestamps();
         });
