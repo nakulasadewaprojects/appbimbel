@@ -28,25 +28,24 @@ class HomeSiswaController extends Controller
     // }
     public function dashboardsiswa()
     {
-        return view('dashboardsiswa');
+        $show = DB::table('tbdetailsiswa')->where('idtbSiswa', Auth::user()->idtbSiswa)->first();
+        return view('dashboardsiswa',['isCompleted'=>$show]);
     }
     public function profilesiswa()
     {
         return view('profilesiswa');
     }
-    public function update($idtbsiswa, Request $request)
+    public function update($idtbSiswa, Request $request)
     {
         $this->validate($request,[
-            // 'NoIDSiswa' => $noidSiswa,
-            // 'NoIDSiswa' => ['unique:tbsiswa'],
-            'username' => ['required', 'string','min:3', 'max:255', 'unique:tbsiswa,username,'.$idtbsiswa.',idtbSiswa','regex:/^.*(?=.*[a-zA-Z])(?=.*[0-9]).*$/'],
+            'username' => ['required', 'string','min:3', 'max:255', 'unique:tbsiswa,username,'.$idtbSiswa.',idtbSiswa','regex:/^.*(?=.*[a-zA-Z])(?=.*[0-9]).*$/'],
             'NamaLengkap' => ['required', 'string', 'max:255'],
             'alamat' => ['required', 'string', 'max:255'],
             'gender' => ['required', 'string', 'max:255'],
-            'NoTlpn' => ['required', 'string', 'max:255','unique:tbsiswa,NoTlpn,'.$idtbsiswa.',idtbSiswa'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:tbsiswa,email,'.$idtbsiswa.',idtbSiswa', 'regex:/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/']
+            'NoTlpn' => ['required', 'string', 'max:255','unique:tbsiswa,NoTlpn,'.$idtbSiswa.',idtbSiswa'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:tbsiswa,email,'.$idtbSiswa.',idtbSiswa', 'regex:/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/']
          ]);
-        DB::table('Tbsiswa')->where('idtbSiswa',$idtbsiswa)->update([
+        DB::table('Tbsiswa')->where('idtbSiswa',$idtbSiswa)->update([
             'username' => $request['username'],
             // 'password' => Hash::make($data['password']),
             'NamaLengkap' => $request['NamaLengkap'],
