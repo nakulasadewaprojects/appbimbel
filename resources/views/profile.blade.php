@@ -1177,7 +1177,12 @@ License: You must have a valid license purchased only from themeforest(the above
 														username
 													</label>
 													<div class="col-7">
-														<input class="form-control m-input" type="text" name="username" value="{{ Auth::user()->username }}">
+														<input class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" type="text" value="{{ Auth::user()->username }}">
+															@if ($errors->has('username'))
+															<span class="invalid-feedback" role="alert">
+																<strong>{{ $errors->first('username') }}</strong>
+															</span>
+															@endif
 													</div>
 												</div>
 												<div class="form-group m-form__group row">
@@ -1185,7 +1190,12 @@ License: You must have a valid license purchased only from themeforest(the above
 														Nama Depan
 													</label>
 													<div class="col-7">
-														<input class="form-control m-input" type="text" name="nm_depan" value="{{ Auth::user()->nm_depan }}">
+													<input class="form-control{{ $errors->has('NamaDepan') ? ' is-invalid' : '' }}" name="NamaDepan" type="text" value="{{ Auth::user()->nm_depan }}">
+															@if ($errors->has('NamaDepan'))
+															<span class="invalid-feedback" role="alert">
+																<strong>{{ $errors->first('NamaDepan') }}</strong>
+															</span>
+															@endif
 													</div>
 												</div>
 												<div class="form-group m-form__group row">
@@ -1193,7 +1203,12 @@ License: You must have a valid license purchased only from themeforest(the above
 														Nama Belakang
 													</label>
 													<div class="col-7">
-														<input class="form-control m-input" type="text" name="nm_belakang" value="{{ Auth::user()->nm_belakang }}">
+													<input class="form-control{{ $errors->has('NamaBelakang') ? ' is-invalid' : '' }}" name="NamaBelakang" type="text" value="{{ Auth::user()->nm_belakang }}">
+															@if ($errors->has('NamaBelakang'))
+															<span class="invalid-feedback" role="alert">
+																<strong>{{ $errors->first('NamaBelakang') }}</strong>
+															</span>
+															@endif
 													</div>
 												</div>
 												<div class="form-group m-form__group row">
@@ -1209,10 +1224,6 @@ License: You must have a valid license purchased only from themeforest(the above
 															Jenis Kelamin
 														</label>
 													<div class="col-2">
-														{{--
-														<!-- <input class="form-control m-input" type="text" name="gender " value="{{ Auth::user()->gender }}"> -->
-														<input type="radio" name="gender" id="male" value="1" required> Pria &nbsp;&nbsp;
-														<input type="radio" name="gender" id="female" value="2" required> Wanita --}}
 														<label class="m-radio m-radio--bold m-radio--state-brand">
 																<input type="radio" name="gender" id="male" value="1">
 																Laki-Laki 
@@ -1230,7 +1241,12 @@ License: You must have a valid license purchased only from themeforest(the above
 														No Telepon
 													</label>
 													<div class="col-7">
-														<input class="form-control m-input" type="text" name="noTlpn" value="{{ Auth::user()->noTlpn }}">
+													<input class="form-control{{ $errors->has('noTlpn') ? ' is-invalid' : '' }}" type="text" name="noTlpn" value="{{ Auth::user()->noTlpn }}">
+																@if ($errors->has('noTlpn'))
+                                            						<span class="invalid-feedback" role="alert">
+                                       									 <strong>{{ $errors->first('noTlpn') }}</strong>
+																	</span>
+																@endif
 													</div>
 												</div>
 												<div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
@@ -1344,7 +1360,12 @@ License: You must have a valid license purchased only from themeforest(the above
 															Alamat
 														</label>
 													<div class="col-7">
-														<input class="form-control m-input" name="alamat" type="text" value="{{ Auth::user()->alamat }}">
+													<input class="form-control{{ $errors->has('alamat') ? ' is-invalid' : '' }}" name="alamat" type="text" value="{{ Auth::user()->alamat }}">
+																@if ($errors->has('alamat'))
+                                            						<span class="invalid-feedback" role="alert">
+                                        								<strong>{{ $errors->first('alamat') }}</strong>
+																	</span> 
+																@endif
 													</div>
 												</div>
 												<div class="form-group m-form__group row">

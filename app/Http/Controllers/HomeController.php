@@ -43,20 +43,31 @@ class HomeController extends Controller
     {
         return view('profile');
     }
+    
     public function update($idmentor, Request $request)
     {
+        $this->validate($request,[
+            'username' => ['required', 'alpha_num','min:6', 'max:50', 'unique:tbmentor,username,'.$idmentor.',idmentor','regex:/^.*(?=.*[a-zA-Z])(?=.*[0-9]).*$/'],
+            'NamaDepan' => ['required', 'string', 'max:255'],
+            'NamaBelakang' => ['required', 'string', 'max:255'],
+            'alamat' => ['required', 'string', 'max:255'],
+            // 'gender' => ['required', 'string', 'max:255'],
+            'noTlpn' => ['required', 'string', 'max:255', 'unique:tbmentor,noTlpn,'.$idmentor.',idmentor'],
+            // 'email' => ['required', 'string', 'email', 'max:255', 'unique:tbmentor,email,'.$idmentor.',idmentor', 'regex:/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/']
+         ]);
+         
         DB::table('tbmentor')->where('idmentor',$idmentor)->update([
             'username' => $request['username'],
             // 'password' => Hash::make($data['password']),
             // 'NamaLengkap' => $request['NamaLengkap'],
             'alamat' => $request['alamat'],
-            'nm_depan' => $request['nm_depan'],
-            'nm_belakang' => $request['nm_belakang'],
+            'nm_depan' => $request['NamaDepan'],
+            'nm_belakang' => $request['NamaBelakang'],
             'gender' => $request['gender'],
             'noTlpn' => $request['noTlpn'],
             // 'email' => $request['email']
             
-         ] );
+         ]);
         return redirect('/profile');
     }
 }
