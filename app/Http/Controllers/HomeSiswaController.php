@@ -62,18 +62,20 @@ class HomeSiswaController extends Controller
             'email' => $request['email']
             
          ] );
-        return redirect('/profilesiswa');
-    }
-    public function lengkapiBerkas($idtbSiswa, Request $request)
-    {
-        DB::table('Tbdetailsiswa')->where('idtbSiswa',$idtbSiswa )->create([
-                'namaWali' => $request['namaWali'],
-                'pendidikanSiswa' => $request['	pendidikanSiswa'],
-                'jenjang'=>$request['jenjang'],
-                'prodiSiswa'=>$request['prodiSiswa']
 
-    ]);
-    return redirect('/profilesiswa');
+        //  $this->validate($request,[
+        //     'namaWali' => ['required', 'string', 'max:255'],
+        //     'pendidikanSiswa' => ['required'],
+        //     'jenjang' => ['required'],
+        //     'prodiSiswa' => ['required', 'string', 'max:255'],
+        //  ]);
+         DB::table('Tbdetailsiswa')->where('idtbSiswa',$idtbSiswa )->update([
+            'namaWali' => $request['namaWali'],
+            'pendidikanSiswa' => $request['pendidikanSiswa'],
+            'jenjang'=>$request['jenjang'],
+            'prodiSiswa'=>$request['prodiSiswa']
+        ]);
+        return redirect('/profilesiswa');
     }
 
 }

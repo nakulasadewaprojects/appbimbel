@@ -32,6 +32,7 @@ License: You must have a valid license purchased only from themeforest(the above
             }
           });
 		</script>
+		
 		<!--end::Web font -->
         <!--begin::Base Styles -->
 		<link href="assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
@@ -405,7 +406,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                      				document.getElementById('logout-form').submit();">
 																		Logout
 																	</a>
-																	<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+																	<form id="logout-form" name='form1' action="{{ route('logout') }}" method="POST" style="display: none;">
 																		@csrf
 																	</form>
 																</li>
@@ -1151,7 +1152,7 @@ License: You must have a valid license purchased only from themeforest(the above
 									</div>
 									<div class="tab-content">
 										<div class="tab-pane active" id="m_user_profile_tab_1">
-											<form class="m-form m-form--fit m-form--label-align-right" method="POST" action="profilesiswa/update/{{ Auth::user()->idtbSiswa}}">
+											<form class="m-form m-form--fit m-form--label-align-right" method="POST"  action="profilesiswa/update/{{ Auth::user()->idtbSiswa}}">
 													{{ csrf_field() }}
     													{{ method_field('PUT') }}
 												<div class="m-portlet__body">
@@ -1194,15 +1195,35 @@ License: You must have a valid license purchased only from themeforest(the above
 														</div>
 													</div>
 													<div class="form-group m-form__group row">
+													<label for="example-text-input" class="col-2 col-form-label text-md-right">
+															Jenis Kelamin
+														</label>
+													<div class="col-2">
+														{{--
+														<!-- <input class="form-control m-input" type="text" name="gender " value="{{ Auth::user()->gender }}"> -->
+														<input type="radio" name="gender" id="male" value="1" required> Pria &nbsp;&nbsp;
+														<input type="radio" name="gender" id="female" value="2" required> Wanita --}}
+														<label class="m-radio m-radio--bold m-radio--state-brand">
+																<input type="radio" name="gender" id="male" value="1">
+																Laki-Laki 
+																<span></span>
+														</label>
+														<label class="m-radio m-radio--bold m-radio--state-brand">
+																<input type="radio" name="gender" id="female" value="2">
+																Perempuan
+																<span></span>
+														</label>
+													</div>
+												</div>
+													<!-- <div class="form-group m-form__group row">
 														<label for="example-text-input" class="col-2 col-form-label text-md-right">
 															Jenis Kelamin
 														</label>
 														<div class="col-7">
-															<!-- <input class="form-control m-input" type="text" name="gender " value="{{ Auth::user()->gender }}"> -->
 															<input type="radio" name="gender" id="male" value="1" required> Pria &nbsp;&nbsp;
                                             				<input type="radio" name="gender" id="female" value="2" required> Wanita
 														</div>
-													</div>
+													</div> -->
 													<div class="form-group m-form__group row">
 														<label for="example-text-input" class="col-2 col-form-label">
 															No Telepon
@@ -1256,15 +1277,116 @@ License: You must have a valid license purchased only from themeforest(the above
 															</h3>
 														</div>
 													</div>
+												<div class="form-group m-form__group row">
+													<label for="example-text-input" class="col-2 col-form-label">
+														Provinsi
+													</label>
+													<div class="col-7">
+														<select class="form-control m-input" id="exampleSelect1">
+																<option>
+																	1
+																</option>
+																<option>
+																	2
+																</option>
+																<option>
+																	3
+																</option>
+																<option>
+																	4
+																</option>
+																<option>
+																	5
+																</option>
+															</select>
+													</div>
+												</div>
+												<div class="form-group m-form__group row">
+													<label for="example-text-input" class="col-2 col-form-label">
+														Kabupaten
+													</label>
+													<div class="col-7">
+														<select class="form-control m-input" id="exampleSelect1">
+																<option>
+																	1
+																</option>
+																<option>
+																	2
+																</option>
+																<option>
+																	3
+																</option>
+																<option>
+																	4
+																</option>
+																<option>
+																	5
+																</option>
+															</select>
+													</div>
+												</div>
+												<div class="form-group m-form__group row">
+													<label for="example-text-input" class="col-2 col-form-label">
+														Kecamatan
+													</label>
+													<div class="col-7">
+														<select class="form-control m-input" id="exampleSelect1">
+																<option>
+																	1
+																</option>
+																<option>
+																	2
+																</option>
+																<option>
+																	3
+																</option>
+																<option>
+																	4
+																</option>
+																<option>
+																	5
+																</option>
+															</select>
+													</div>
+												</div>
+												<div class="form-group m-form__group row">
+													<label for="example-text-input" class="col-2 col-form-label">
+														Kelurahan
+													</label>
+													<div class="col-7">
+														<select class="form-control m-input" id="exampleSelect1">
+																<option>
+																	1
+																</option>
+																<option>
+																	2
+																</option>
+																<option>
+																	3
+																</option>
+																<option>
+																	4
+																</option>
+																<option>
+																	5
+																</option>
+															</select>
+													</div>
+												</div>
 													<div class="form-group m-form__group row">
 														<label for="example-text-input" class="col-2 col-form-label">
 															Alamat
 														</label>
 														<div class="col-7">
-															<input class="form-control m-input" name="alamat" type="text" value="{{ Auth::user()->alamat }}">
+															<input class="form-control{{ $errors->has('alamat') ? ' is-invalid' : '' }}" name="alamat" type="text" value="{{ Auth::user()->alamat }}">
+															@if ($errors->has('alamat'))
+                                            						<span class="invalid-feedback" role="alert">
+                                        								<strong>{{ $errors->first('alamat') }}</strong>
+																	</span> 
+																@endif
 														</div>
 													</div>
-													<div class="form-group m-form__group row">
+													<!-- <div class="form-group m-form__group row">
 														<label for="example-text-input" class="col-2 col-form-label">
 															Kecamatan
 														</label>
@@ -1287,21 +1409,26 @@ License: You must have a valid license purchased only from themeforest(the above
 														<div class="col-7">
 															<input class="form-control m-input" type="text" value="67371">
 														</div>
-													</div>
-													<!-- <div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div> -->
-													<!-- <div class="form-group m-form__group row">
+													</div> -->
+													<div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
+													 <div class="form-group m-form__group row">
 														<div class="col-10 ml-auto">
 															<h3 class="m-form__section">
-																3. Lengkapi Berkas
+																3. Lengkapi Data
 															</h3>
 														</div>
-													</div> -->
-													<!-- <div class="form-group m-form__group row">
+													</div>
+													<div class="form-group m-form__group row">
 														<label for="example-text-input" class="col-2 col-form-label">
-															Linkedin
+															Nama Wali
 														</label>
 														<div class="col-7">
-															<input class="form-control m-input" type="text" name="namaWali" >
+															<input class="form-control{{ $errors->has('namaWali') ? ' is-invalid' : '' }}" type="text" name="namaWali" value="{{ Auth::user()->namaWali }}"">
+																@if ($errors->has('namaWali'))
+                                            						<span class="invalid-feedback" role="alert">
+                                        								<strong>{{ $errors->first('namaWali') }}</strong>
+																	</span> 
+																@endif
 														</div>
 													</div>
 													<div class="form-group m-form__group row">
@@ -1309,15 +1436,25 @@ License: You must have a valid license purchased only from themeforest(the above
 															Pendidikan Siswa
 														</label>
 														<div class="col-7">
-															<input class="form-control m-input" type="text"name="pendidikanSiswa" >
+															<input class="form-control{{ $errors->has('pendidikanSiswa') ? ' is-invalid' : '' }}" type="text" name="pendidikanSiswa" value="{{ Auth::user()->pendidikanSiswa }}" >
+															@if ($errors->has('pendidikanSiswa'))
+                                            						<span class="invalid-feedback" role="alert">
+                                        								<strong>{{ $errors->first('pendidikanSiswa') }}</strong>
+																	</span> 
+																@endif
 														</div>
-													</div> -->
-													<!-- <div class="form-group m-form__group row">
+													</div>
+													<div class="form-group m-form__group row">
 														<label for="example-text-input" class="col-2 col-form-label">
-															Twitter
+															Jenjang
 														</label>
 														<div class="col-7">
-															<input class="form-control m-input" type="text" name="jenjang">
+															<input class="form-control{{ $errors->has('jenjang') ? ' is-invalid' : '' }}" type="text" name="jenjang" value="{{ Auth::user()->jenjang }}">
+															@if ($errors->has('jenjang'))
+                                            						<span class="invalid-feedback" role="alert">
+                                        								<strong>{{ $errors->first('jenjang') }}</strong>
+																	</span> 
+																@endif
 														</div>
 													</div>
 													<div class="form-group m-form__group row">
@@ -1325,9 +1462,14 @@ License: You must have a valid license purchased only from themeforest(the above
 															Prodi Siswa
 														</label>
 														<div class="col-7">
-															<input class="form-control m-input" type="text" name="prodiSiswa">
+															<input class="form-control{{ $errors->has('prodiSiswa') ? ' is-invalid' : '' }}" type="text" name="prodiSiswa" value="{{ Auth::user()->prodiSiswa }}"">
+															@if ($errors->has('prodiSiswa'))
+                                            						<span class="invalid-feedback" role="alert">
+                                        								<strong>{{ $errors->first('prodiSiswa') }}</strong>
+																	</span> 
+																@endif
 														</div>
-													</div> -->
+													</div>
 												</div>
 												<div class="m-portlet__foot m-portlet__foot--fit">
 													<div class="m-form__actions">
@@ -1337,7 +1479,6 @@ License: You must have a valid license purchased only from themeforest(the above
 																<button type="submit" class="btn btn-accent m-btn m-btn--air m-btn--custom">
 																	Save changes
 																</button>
-																&nbsp;&nbsp;
 																<button type="reset" class="btn btn-secondary m-btn m-btn--air m-btn--custom">
 																	Cancel
 																</button>

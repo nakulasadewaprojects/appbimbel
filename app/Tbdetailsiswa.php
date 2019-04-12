@@ -16,4 +16,8 @@ class Tbdetailsiswa extends Model
         'namaWali','pendidikanSiswa','jenjang','prodiSiswa','statusKomplit','idtbSiswa' 
     ];
 
+    // public function DataDetailSiswa(){
+    //         return $this->belongsTo('App\Tbsiswa');
+    //     }
+
 }
