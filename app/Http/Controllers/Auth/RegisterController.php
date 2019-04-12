@@ -62,15 +62,18 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'NoIDMentor' => ['unique:tbmentor'],
-            'username' => ['required', 'string','min:6', 'max:255', 'unique:tbmentor','regex:/^.*(?=.*[a-zA-Z])(?=.*[0-9]).*$/'],
-            'first_name' => ['required', 'min:3', 'string', 'max:255'],
-            'last_name' => ['string', 'max:255'],
-            'gender' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:tbmentor', 'regex:/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/'],
+            'username' => ['required', 'alpha_num','min:6', 'max:20', 'unique:tbmentor','regex:/^.*(?=.*[a-zA-Z])(?=.*[0-9]).*$/'],
+            'first_name' => ['required','min:3', 'max:100','regex:/^[a-zA-Z\s]*$/'],
+            // 'last_name' => ['string', 'max:255'],
+            'gender' => ['required', 'numeric', 'min:1', 'max:1'],
+            'email' => ['required', 'string', 'email', 'max:50', 'unique:tbmentor', 'regex:/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/'],
             'password' => [
                 'required', 'string', 'min:8', 'confirmed',
                  'regex:/^.*(?=.*[a-zA-Z])(?=.*[0-9]).*$/'
             ],
+        ])->setAttributeNames([
+            'first_name' => 'Nama Depan',
+            'username' => 'Username'
         ]);
     }
 

@@ -1344,7 +1344,7 @@ License: You must have a valid license purchased only from themeforest(the above
 															Alamat
 														</label>
 													<div class="col-7">
-														<input class="form-control m-input" type="text" value="Pulo City of Heaven">
+														<input class="form-control m-input" name="alamat" type="text" value="{{ Auth::user()->alamat }}">
 													</div>
 												</div>
 												<div class="form-group m-form__group row">
@@ -1368,7 +1368,7 @@ License: You must have a valid license purchased only from themeforest(the above
 															Pendidikan Terakhir
 														</label>
 													<div class="col-4">
-														<input class="form-control m-input" type="text">
+														<input class="form-control m-input" type="text" name="pendidikanTerakhir" value="{{ Auth::user()->alamat }}">
 													</div>
 												</div>
 												<div class="form-group m-form__group row">
@@ -1376,7 +1376,7 @@ License: You must have a valid license purchased only from themeforest(the above
 															Status Pendidikan
 														</label>
 													<div class="col-4">
-														<input class="form-control m-input" type="text">
+														<input class="form-control m-input" type="text" name="statusPendidikan">
 													</div>
 												</div>
 												<div class="form-group m-form__group row">
@@ -1395,7 +1395,7 @@ License: You must have a valid license purchased only from themeforest(the above
 															Nomor Identitas
 														</label>
 													<div class="col-7">
-														<input class="form-control m-input" type="text">
+														<input class="form-control m-input" type="text" name="No_Identitas">
 													</div>
 												</div>
 												<div class="form-group m-form__group row">

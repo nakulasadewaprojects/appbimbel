@@ -49,12 +49,20 @@
                                     </span> @endif
                                             <!--                            </div>-->
                                         </div>
-
+                                        <br>
                                         <div class="form-group m-form__group">
-                                            <label for="Jenis_Kelamin" class="col-md-5 col-form-label text-md-right">{{ __('Jenis Kelamin') }}</label>
+                                            <label for="last_name" class="col-md-5 ">Jenis Kelamin</label>
                                             <!--                            <div class="col-md-8 col-form-label">-->
-                                            <input type="radio" name="gender" value="1" required> Pria &nbsp;&nbsp;
-                                            <input type="radio" name="gender" value="2" required> Wanita
+                                            <label class="m-radio m-radio--bold m-radio--state-brand">
+                                                    <input required type="radio" name="gender" id="male" value="1" @if(old('gender')==1) checked @endif>
+                                                    Laki-Laki&nbsp;
+                                                    <span></span>
+                                            </label>
+                                            <label class="m-radio m-radio--bold m-radio--state-brand">
+                                                    <input required type="radio" name="gender" id="female" value="2" @if(old('gender')==2) checked @endif>
+                                                    Perempuan
+                                                    <span></span>
+                                            </label>
                                             <!--                            </div>-->
                                         </div>
 
