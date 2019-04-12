@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+
 class Tbsiswa extends Authenticatable
 {
     use Notifiable;
@@ -25,6 +26,10 @@ class Tbsiswa extends Authenticatable
     protected $fillable = [
         'NoIDSiswa','username','password','NamaLengkap','alamat','kota','provinsi','kecamatan','kelurahan','gender','NoTlpn','email','status','tglregister' 
     ];
+
+    // public function DataDetailSiswa{
+    //     return $this->hasMany('App\Tbdetailsiswa');
+    // }
 
     /**
      * The attributes that should be hidden for arrays.
