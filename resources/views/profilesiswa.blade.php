@@ -1195,15 +1195,35 @@ License: You must have a valid license purchased only from themeforest(the above
 														</div>
 													</div>
 													<div class="form-group m-form__group row">
+													<label for="example-text-input" class="col-2 col-form-label text-md-right">
+															Jenis Kelamin
+														</label>
+													<div class="col-2">
+														{{--
+														<!-- <input class="form-control m-input" type="text" name="gender " value="{{ Auth::user()->gender }}"> -->
+														<input type="radio" name="gender" id="male" value="1" required> Pria &nbsp;&nbsp;
+														<input type="radio" name="gender" id="female" value="2" required> Wanita --}}
+														<label class="m-radio m-radio--bold m-radio--state-brand">
+																<input type="radio" name="gender" id="male" value="1">
+																Laki-Laki 
+																<span></span>
+														</label>
+														<label class="m-radio m-radio--bold m-radio--state-brand">
+																<input type="radio" name="gender" id="female" value="2">
+																Perempuan
+																<span></span>
+														</label>
+													</div>
+												</div>
+													<!-- <div class="form-group m-form__group row">
 														<label for="example-text-input" class="col-2 col-form-label text-md-right">
 															Jenis Kelamin
 														</label>
 														<div class="col-7">
-															<!-- <input class="form-control m-input" type="text" name="gender " value="{{ Auth::user()->gender }}"> -->
 															<input type="radio" name="gender" id="male" value="1" required> Pria &nbsp;&nbsp;
                                             				<input type="radio" name="gender" id="female" value="2" required> Wanita
 														</div>
-													</div>
+													</div> -->
 													<div class="form-group m-form__group row">
 														<label for="example-text-input" class="col-2 col-form-label">
 															No Telepon
@@ -1257,6 +1277,102 @@ License: You must have a valid license purchased only from themeforest(the above
 															</h3>
 														</div>
 													</div>
+												<div class="form-group m-form__group row">
+													<label for="example-text-input" class="col-2 col-form-label">
+														Provinsi
+													</label>
+													<div class="col-7">
+														<select class="form-control m-input" id="exampleSelect1">
+																<option>
+																	1
+																</option>
+																<option>
+																	2
+																</option>
+																<option>
+																	3
+																</option>
+																<option>
+																	4
+																</option>
+																<option>
+																	5
+																</option>
+															</select>
+													</div>
+												</div>
+												<div class="form-group m-form__group row">
+													<label for="example-text-input" class="col-2 col-form-label">
+														Kabupaten
+													</label>
+													<div class="col-7">
+														<select class="form-control m-input" id="exampleSelect1">
+																<option>
+																	1
+																</option>
+																<option>
+																	2
+																</option>
+																<option>
+																	3
+																</option>
+																<option>
+																	4
+																</option>
+																<option>
+																	5
+																</option>
+															</select>
+													</div>
+												</div>
+												<div class="form-group m-form__group row">
+													<label for="example-text-input" class="col-2 col-form-label">
+														Kecamatan
+													</label>
+													<div class="col-7">
+														<select class="form-control m-input" id="exampleSelect1">
+																<option>
+																	1
+																</option>
+																<option>
+																	2
+																</option>
+																<option>
+																	3
+																</option>
+																<option>
+																	4
+																</option>
+																<option>
+																	5
+																</option>
+															</select>
+													</div>
+												</div>
+												<div class="form-group m-form__group row">
+													<label for="example-text-input" class="col-2 col-form-label">
+														Kelurahan
+													</label>
+													<div class="col-7">
+														<select class="form-control m-input" id="exampleSelect1">
+																<option>
+																	1
+																</option>
+																<option>
+																	2
+																</option>
+																<option>
+																	3
+																</option>
+																<option>
+																	4
+																</option>
+																<option>
+																	5
+																</option>
+															</select>
+													</div>
+												</div>
 													<div class="form-group m-form__group row">
 														<label for="example-text-input" class="col-2 col-form-label">
 															Alamat
@@ -1270,7 +1386,7 @@ License: You must have a valid license purchased only from themeforest(the above
 																@endif
 														</div>
 													</div>
-													<div class="form-group m-form__group row">
+													<!-- <div class="form-group m-form__group row">
 														<label for="example-text-input" class="col-2 col-form-label">
 															Kecamatan
 														</label>
@@ -1293,7 +1409,7 @@ License: You must have a valid license purchased only from themeforest(the above
 														<div class="col-7">
 															<input class="form-control m-input" type="text" value="67371">
 														</div>
-													</div>
+													</div> -->
 													<div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
 													 <div class="form-group m-form__group row">
 														<div class="col-10 ml-auto">
