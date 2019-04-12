@@ -66,7 +66,7 @@ class RegisterController extends Controller
             'first_name' => ['required','min:3', 'max:100','regex:/^[a-zA-Z\s]*$/'],
             // 'last_name' => ['string', 'max:255'],
             'gender' => ['required', 'numeric', 'min:1', 'max:1'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:tbmentor', 'regex:/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/'],
+            'email' => ['required', 'string', 'email', 'max:50', 'unique:tbmentor', 'regex:/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/'],
             'password' => [
                 'required', 'string', 'min:8', 'confirmed',
                  'regex:/^.*(?=.*[a-zA-Z])(?=.*[0-9]).*$/'

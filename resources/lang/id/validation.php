@@ -91,7 +91,7 @@ return [
     ],
     'not_in' => 'The selected :attribute is invalid.',
     'not_regex' => 'Format :attribute tidak valid.',
-    'numeric' => 'The :attribute must be a number.',
+    'numeric' => 'Kolom :attribute must be a number.',
     'present' => 'The :attribute field must be present.',
     'regex' => 'Format :attribute tidak valid.',
     'required' => 'Kolom :attribute harus diisi.',
