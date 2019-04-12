@@ -1436,7 +1436,7 @@ License: You must have a valid license purchased only from themeforest(the above
 															Pendidikan Siswa
 														</label>
 														<div class="col-7">
-															<select class="form-control m-input" id="pendidikanSiswa">
+															<select class="form-control m-input" name="pendidikanSiswa" id="pendidikanSiswa">
 																	<option>
 																		1
 																	</option>
@@ -1460,7 +1460,7 @@ License: You must have a valid license purchased only from themeforest(the above
 															Jenjang
 														</label>
 														<div class="col-7">
-															<select class="form-control m-input" id="jenjang">
+															<select class="form-control m-input" name="jenjang" id="jenjang">
 																	<option>
 																		1
 																	</option>

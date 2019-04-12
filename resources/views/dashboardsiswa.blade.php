@@ -894,8 +894,19 @@
 												</button>
 											</div>
 											<div class="modal-body">
-											
-												<b>Segera lengkapi data Anda! </b> <br><br>
+												<center><b>Persentase Kelengkapan Data @if($isCompleted->statusKomplit==4) 100%  @elseif($isCompleted->statusKomplit==3) 75% @elseif($isCompleted->statusKomplit==2) 50% @elseif($isCompleted->statusKomplit==1) 25% @else 0% @endif</b> </center>
+
+													<div class="m-section__content">
+															<div class="m--space-10"></div>
+															<div class="progress">
+																<div class="progress-bar progress-bar-striped progress-bar-animated  bg-success" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="width:
+														@if($isCompleted->statusKomplit==4) 100%  @elseif($isCompleted->statusKomplit==3) 75% @elseif($isCompleted->statusKomplit==2) 50% @elseif($isCompleted->statusKomplit==1) 25% @else 0% @endif ">
+														@if($isCompleted->statusKomplit==4) 100  @elseif($isCompleted->statusKomplit==3) 75 @elseif($isCompleted->statusKomplit==2) 50 @elseif($isCompleted->statusKomplit==1) 25 @else 0  @endif
+														
+													</div>
+															</div>
+														</div>
+												<br>
 												Nama Wali: @if($isCompleted->namaWali==NULL) Belum terisi @else Sudah terisi @endif  <br>
 												Pendidikan Siswa:  @if($isCompleted->pendidikanSiswa==NULL) Belum terisi @else Sudah terisi @endif<br>
 												Jenjang: @if($isCompleted->jenjang==NULL) Belum terisi @else Sudah terisi @endif<br>
@@ -1606,14 +1617,13 @@
         <!--begin::Page Snippets -->
 		<script src="assets/app/js/dashboard.js" type="text/javascript"></script>
 		<!--end::Page Snippets -->
-		@if ($isCompleted->statusKomplit!==100)
+		@if ($isCompleted->statusKomplit!==4)
 		<script type="text/javascript">
 			$(window).on('load',function(){
 				$('#m_modal_1').modal('show');
 			});
 		</script>
-		@else
-		sudah komplit
+	
 		@endif
 	</body>
 </html>

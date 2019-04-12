@@ -30,16 +30,53 @@ class HomeSiswaController extends Controller
     // }
     public function dashboardsiswa()
     {
+        $showing = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->first();
+        $show = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->pluck('namaWali')->toArray();
+        $show1 = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->pluck('pendidikanSiswa')->toArray();
+        $show2 = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->pluck('jenjang')->toArray();
+        $show3 = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->pluck('prodiSiswa')->toArray();
+        $show4 = array_merge($show,$show1,$show2,$show3);
+        $counting = count(array_filter($show4,"is_null"));
+        
+        if($counting==4){
+            Tbdetailsiswa::where('idtbDetailSiswa', Auth::user()->idtbSiswa)->update(['statusKomplit' => '0']);
+        }else if($counting==3){
+            Tbdetailsiswa::where('idtbDetailSiswa', Auth::user()->idtbSiswa)->update(['statusKomplit' => '1']);
+        }else if($counting==2){
+            Tbdetailsiswa::where('idtbDetailSiswa', Auth::user()->idtbSiswa)->update(['statusKomplit' => '2']);
+        }else if($counting==1){
+            Tbdetailsiswa::where('idtbDetailSiswa', Auth::user()->idtbSiswa)->update(['statusKomplit' => '3']);
+        }else{
+            Tbdetailsiswa::where('idtbDetailSiswa', Auth::user()->idtbSiswa)->update(['statusKomplit' => '4']);
+        }
+
         Tbdetailsiswa::where('idtbDetailSiswa', Auth::user()->idtbSiswa)->update(['idtbSiswa' => Auth::user()->idtbSiswa]);
-        $show = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->first();
-        return view('dashboardsiswa',['isCompleted'=>$show]);
+        return view('dashboardsiswa',['isCompleted'=>$showing]);
         
 
     }
     public function profilesiswa()
     {
-        $show = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->first();
-        return view('profilesiswa',['isCompleted'=>$show]);
+        $show = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->pluck('namaWali')->toArray();
+        $show1 = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->pluck('pendidikanSiswa')->toArray();
+        $show2 = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->pluck('jenjang')->toArray();
+        $show3 = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->pluck('prodiSiswa')->toArray();
+        $show4 = array_merge($show,$show1,$show2,$show3);
+        $counting = count(array_filter($show4,"is_null"));
+        
+        if($counting==4){
+            Tbdetailsiswa::where('idtbDetailSiswa', Auth::user()->idtbSiswa)->update(['statusKomplit' => '0']);
+        }else if($counting==3){
+            Tbdetailsiswa::where('idtbDetailSiswa', Auth::user()->idtbSiswa)->update(['statusKomplit' => '1']);
+        }else if($counting==2){
+            Tbdetailsiswa::where('idtbDetailSiswa', Auth::user()->idtbSiswa)->update(['statusKomplit' => '2']);
+        }else if($counting==1){
+            Tbdetailsiswa::where('idtbDetailSiswa', Auth::user()->idtbSiswa)->update(['statusKomplit' => '3']);
+        }else{
+            Tbdetailsiswa::where('idtbDetailSiswa', Auth::user()->idtbSiswa)->update(['statusKomplit' => '4']);
+        }
+        $showing = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->first();
+        return view('profilesiswa',['isCompleted'=>$showing]);
     }
     public function update($idtbSiswa, Request $request)
     {
@@ -74,6 +111,7 @@ class HomeSiswaController extends Controller
             'namaWali' => $request['namaWali'],
             'pendidikanSiswa' => $request['pendidikanSiswa'],
             'jenjang'=>$request['jenjang'],
+            'pendidikanSiswa'=>$request['pendidikanSiswa'],
             'prodiSiswa'=>$request['prodiSiswa']
         ]);
         return redirect('/profilesiswa');
