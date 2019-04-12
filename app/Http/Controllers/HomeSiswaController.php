@@ -31,14 +31,15 @@ class HomeSiswaController extends Controller
     public function dashboardsiswa()
     {
         Tbdetailsiswa::where('idtbDetailSiswa', Auth::user()->idtbSiswa)->update(['idtbSiswa' => Auth::user()->idtbSiswa]);
-        $show = DB::table('tbdetailsiswa')->where('idtbSiswa', Auth::user()->idtbSiswa)->first();
+        $show = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->first();
         return view('dashboardsiswa',['isCompleted'=>$show]);
         
 
     }
     public function profilesiswa()
     {
-        return view('profilesiswa');
+        $show = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->first();
+        return view('profilesiswa',['isCompleted'=>$show]);
     }
     public function update($idtbSiswa, Request $request)
     {

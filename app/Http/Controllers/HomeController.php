@@ -36,7 +36,7 @@ class HomeController extends Controller
     public function dashboard()
     {
         Tbdetailmentor::where('idtbRiwayatTutor', Auth::user()->idmentor)->update(['idmentor' => Auth::user()->idmentor]);
-        $show = DB::table('tbdetailmentor')->where('idmentor', Auth::user()->idmentor)->first();
+        $show = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
         return view('dashboard',['isCompleted'=>$show]);
     }
     public function profile()

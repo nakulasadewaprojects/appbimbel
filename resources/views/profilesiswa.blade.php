@@ -1423,7 +1423,7 @@ License: You must have a valid license purchased only from themeforest(the above
 															Nama Wali
 														</label>
 														<div class="col-7">
-															<input class="form-control{{ $errors->has('namaWali') ? ' is-invalid' : '' }}" type="text" name="namaWali" value="{{ Auth::user()->namaWali }}"">
+														<input class="form-control{{ $errors->has('namaWali') ? ' is-invalid' : '' }}" type="text" name="namaWali" value="{{$isCompleted->namaWali}}">
 																@if ($errors->has('namaWali'))
                                             						<span class="invalid-feedback" role="alert">
                                         								<strong>{{ $errors->first('namaWali') }}</strong>
@@ -1432,16 +1432,27 @@ License: You must have a valid license purchased only from themeforest(the above
 														</div>
 													</div>
 													<div class="form-group m-form__group row">
-														<label for="example-text-input" class="col-2 col-form-label" >
+														<label for="example-text-input" class="col-2 col-form-label">
 															Pendidikan Siswa
 														</label>
 														<div class="col-7">
-															<input class="form-control{{ $errors->has('pendidikanSiswa') ? ' is-invalid' : '' }}" type="text" name="pendidikanSiswa" value="{{ Auth::user()->pendidikanSiswa }}" >
-															@if ($errors->has('pendidikanSiswa'))
-                                            						<span class="invalid-feedback" role="alert">
-                                        								<strong>{{ $errors->first('pendidikanSiswa') }}</strong>
-																	</span> 
-																@endif
+															<select class="form-control m-input" id="pendidikanSiswa">
+																	<option>
+																		1
+																	</option>
+																	<option>
+																		2
+																	</option>
+																	<option>
+																		3
+																	</option>
+																	<option>
+																		4
+																	</option>
+																	<option>
+																		5
+																	</option>
+																</select>
 														</div>
 													</div>
 													<div class="form-group m-form__group row">
@@ -1449,12 +1460,23 @@ License: You must have a valid license purchased only from themeforest(the above
 															Jenjang
 														</label>
 														<div class="col-7">
-															<input class="form-control{{ $errors->has('jenjang') ? ' is-invalid' : '' }}" type="text" name="jenjang" value="{{ Auth::user()->jenjang }}">
-															@if ($errors->has('jenjang'))
-                                            						<span class="invalid-feedback" role="alert">
-                                        								<strong>{{ $errors->first('jenjang') }}</strong>
-																	</span> 
-																@endif
+															<select class="form-control m-input" id="jenjang">
+																	<option>
+																		1
+																	</option>
+																	<option>
+																		2
+																	</option>
+																	<option>
+																		3
+																	</option>
+																	<option>
+																		4
+																	</option>
+																	<option>
+																		5
+																	</option>
+																</select>
 														</div>
 													</div>
 													<div class="form-group m-form__group row">
@@ -1462,7 +1484,7 @@ License: You must have a valid license purchased only from themeforest(the above
 															Prodi Siswa
 														</label>
 														<div class="col-7">
-															<input class="form-control{{ $errors->has('prodiSiswa') ? ' is-invalid' : '' }}" type="text" name="prodiSiswa" value="{{ Auth::user()->prodiSiswa }}"">
+															<input class="form-control{{ $errors->has('prodiSiswa') ? ' is-invalid' : '' }}" type="text" name="prodiSiswa" value="{{ $isCompleted->prodiSiswa }}"">
 															@if ($errors->has('prodiSiswa'))
                                             						<span class="invalid-feedback" role="alert">
                                         								<strong>{{ $errors->first('prodiSiswa') }}</strong>
