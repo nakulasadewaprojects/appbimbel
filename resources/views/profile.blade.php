@@ -1156,8 +1156,10 @@ License: You must have a valid license purchased only from themeforest(the above
 								</div>
 								<div class="tab-content">
 									<div class="tab-pane active" id="m_user_profile_tab_1">
-										<form class="m-form m-form--fit m-form--label-align-right" method="POST" action="profile/update/{{ Auth::user()->idmentor}}">
-											{{ csrf_field() }} {{ method_field('PUT') }}
+									<form class="m-form m-form--fit m-form--label-align-right" method="POST" action="profile/update/{{ Auth::user()->idmentor}}">
+										<!-- <form class="m-form m-form--fit m-form--label-align-right" method="POST" action="profile/update"> -->
+											{{ csrf_field() }} 
+											<!-- {{ method_field('PUT') }} -->
 											<div class="m-portlet__body">
 												<div class="form-group m-form__group m--margin-top-10 m--hide">
 													<div class="alert m-alert m-alert--default" role="alert">
@@ -1177,7 +1179,12 @@ License: You must have a valid license purchased only from themeforest(the above
 														username
 													</label>
 													<div class="col-7">
-														<input class="form-control m-input" type="text" name="username" value="{{ Auth::user()->username }}">
+														<input class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" type="text" value="{{ Auth::user()->username }}">
+															@if ($errors->has('username'))
+															<span class="invalid-feedback" role="alert">
+																<strong>{{ $errors->first('username') }}</strong>
+															</span>
+															@endif
 													</div>
 												</div>
 												<div class="form-group m-form__group row">
@@ -1185,7 +1192,12 @@ License: You must have a valid license purchased only from themeforest(the above
 														Nama Depan
 													</label>
 													<div class="col-7">
-														<input class="form-control m-input" type="text" name="nm_depan" value="{{ Auth::user()->nm_depan }}">
+													<input class="form-control{{ $errors->has('NamaDepan') ? ' is-invalid' : '' }}" name="NamaDepan" type="text" value="{{ Auth::user()->nm_depan }}">
+															@if ($errors->has('NamaDepan'))
+															<span class="invalid-feedback" role="alert">
+																<strong>{{ $errors->first('NamaDepan') }}</strong>
+															</span>
+															@endif
 													</div>
 												</div>
 												<div class="form-group m-form__group row">
@@ -1193,7 +1205,12 @@ License: You must have a valid license purchased only from themeforest(the above
 														Nama Belakang
 													</label>
 													<div class="col-7">
-														<input class="form-control m-input" type="text" name="nm_belakang" value="{{ Auth::user()->nm_belakang }}">
+													<input class="form-control{{ $errors->has('NamaBelakang') ? ' is-invalid' : '' }}" name="NamaBelakang" type="text" value="{{ Auth::user()->nm_belakang }}">
+															@if ($errors->has('NamaBelakang'))
+															<span class="invalid-feedback" role="alert">
+																<strong>{{ $errors->first('NamaBelakang') }}</strong>
+															</span>
+															@endif
 													</div>
 												</div>
 												<div class="form-group m-form__group row">
@@ -1209,10 +1226,6 @@ License: You must have a valid license purchased only from themeforest(the above
 															Jenis Kelamin
 														</label>
 													<div class="col-2">
-														{{--
-														<!-- <input class="form-control m-input" type="text" name="gender " value="{{ Auth::user()->gender }}"> -->
-														<input type="radio" name="gender" id="male" value="1" required> Pria &nbsp;&nbsp;
-														<input type="radio" name="gender" id="female" value="2" required> Wanita --}}
 														<label class="m-radio m-radio--bold m-radio--state-brand">
 																<input type="radio" name="gender" id="male" value="1">
 																Laki-Laki 
@@ -1230,7 +1243,12 @@ License: You must have a valid license purchased only from themeforest(the above
 														No Telepon
 													</label>
 													<div class="col-7">
-														<input class="form-control m-input" type="text" name="noTlpn" value="{{ Auth::user()->noTlpn }}">
+													<input class="form-control{{ $errors->has('noTlpn') ? ' is-invalid' : '' }}" type="text" name="noTlpn" value="{{ Auth::user()->noTlpn }}">
+																@if ($errors->has('noTlpn'))
+                                            						<span class="invalid-feedback" role="alert">
+                                       									 <strong>{{ $errors->first('noTlpn') }}</strong>
+																	</span>
+																@endif
 													</div>
 												</div>
 												<div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
@@ -1344,7 +1362,12 @@ License: You must have a valid license purchased only from themeforest(the above
 															Alamat
 														</label>
 													<div class="col-7">
-														<input class="form-control m-input" name="alamat" type="text" value="{{ Auth::user()->alamat }}">
+													<input class="form-control{{ $errors->has('alamat') ? ' is-invalid' : '' }}" name="alamat" type="text" value="{{ Auth::user()->alamat }}">
+																@if ($errors->has('alamat'))
+                                            						<span class="invalid-feedback" role="alert">
+                                        								<strong>{{ $errors->first('alamat') }}</strong>
+																	</span> 
+																@endif
 													</div>
 												</div>
 												<div class="form-group m-form__group row">
@@ -1368,7 +1391,7 @@ License: You must have a valid license purchased only from themeforest(the above
 															Pendidikan Terakhir
 														</label>
 													<div class="col-4">
-														<input class="form-control m-input" type="text" name="pendidikanTerakhir" value="{{ Auth::user()->alamat }}">
+														<input class="form-control m-input" type="text" name="pendidikanTerakhir" value="{{ $isCompleted->pendidikanTerakhir }}">
 													</div>
 												</div>
 												<div class="form-group m-form__group row">
@@ -1376,7 +1399,7 @@ License: You must have a valid license purchased only from themeforest(the above
 															Status Pendidikan
 														</label>
 													<div class="col-4">
-														<input class="form-control m-input" type="text" name="statusPendidikan">
+														<input class="form-control m-input" type="text" name="statusPendidikan" value="{{ $isCompleted->statusPendidikan }}">
 													</div>
 												</div>
 												<div class="form-group m-form__group row">
@@ -1385,17 +1408,21 @@ License: You must have a valid license purchased only from themeforest(the above
 														</label>
 													<div class="col-7">
 														<label class="custom-file">
-																	<input type="file" id="file2" class="custom-file-input">
+																	<input type="file" name="foto">
 																	<span class="custom-file-control"></span>
 																</label>
 													</div>
 												</div>
+												<!-- <div class="form-group">
+													<b>File Gambar</b><br/>
+														<input type="file" name="foto">
+												</div> -->
 												<div class="form-group m-form__group row">
 													<label for="example-text-input" class="col-3 col-form-label">
 															Nomor Identitas
 														</label>
 													<div class="col-7">
-														<input class="form-control m-input" type="text" name="No_Identitas">
+														<input class="form-control m-input" type="text" name="No_Identitas" value="{{ $isCompleted->No_Identitas }}">
 													</div>
 												</div>
 												<div class="form-group m-form__group row">
@@ -1404,7 +1431,7 @@ License: You must have a valid license purchased only from themeforest(the above
 														</label>
 													<div class="col-7">
 														<label class="custom-file">
-																	<input type="file" id="file2" class="custom-file-input">
+																	<input type="file" id="file2" class="custom-file-input" name="fileKTP">
 																	<span class="custom-file-control"></span>
 																</label>
 													</div>
