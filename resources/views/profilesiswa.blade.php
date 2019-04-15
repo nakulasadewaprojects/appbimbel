@@ -1,23 +1,10 @@
 <!DOCTYPE html>
-<!-- 
-Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 4
-Version: 5.0.5
-Author: KeenThemes
-Website: http://www.keenthemes.com/
-Contact: support@keenthemes.com
-Follow: www.twitter.com/keenthemes
-Dribbble: www.dribbble.com/keenthemes
-Like: www.facebook.com/keenthemes
-Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
-Renew Support: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
-License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
--->
 <html lang="en" >
 	<!-- begin::Head -->
 	<head>
 		<meta charset="utf-8" />
 		<title>
-			Metronic | My Profile
+			Edit Profil Saya
 		</title>
 		<meta name="description" content="User profile view and edit">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -835,10 +822,10 @@ License: You must have a valid license purchased only from themeforest(the above
 						<div class="d-flex align-items-center">
 							<div class="mr-auto">
 								<h3 class="m-subheader__title ">
-									My Profile
+									Edit Profil Saya
 								</h3>
 							</div>
-							<div>
+							{{-- <div>
 								<div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover" aria-expanded="true">
 									<a href="#" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle">
 										<i class="la la-plus m--hide"></i>
@@ -899,7 +886,7 @@ License: You must have a valid license purchased only from themeforest(the above
 										</div>
 									</div>
 								</div>
-							</div>
+							</div> --}}
 						</div>
 					</div>
 					<!-- END: Subheader -->
@@ -934,23 +921,40 @@ License: You must have a valid license purchased only from themeforest(the above
 												</span>
 											</li>
 											<li class="m-nav__item">
-												<a href="header/profile&amp;demo=default.html" class="m-nav__link">
+												<a href="myprofilesiswa" class="m-nav__link">
 													<i class="m-nav__link-icon flaticon-profile-1"></i>
 													<span class="m-nav__link-title">
 														<span class="m-nav__link-wrap">
 															<span class="m-nav__link-text">
-																My Profile
+																Lihat Profil Saya
 															</span>
-															<span class="m-nav__link-badge">
+															{{-- <span class="m-nav__link-badge">
 																<span class="m-badge m-badge--success">
 																	2
 																</span>
-															</span>
+															</span> --}}
 														</span>
 													</span>
 												</a>
 											</li>
 											<li class="m-nav__item">
+												<a href="profilesiswa" class="m-nav__link">
+													<i class="m-nav__link-icon flaticon-edit"></i>
+													<span class="m-nav__link-title">
+														<span class="m-nav__link-wrap">
+															<span class="m-nav__link-text">
+																Edit Profil Saya
+															</span>
+															{{-- <span class="m-nav__link-badge">
+																<span class="m-badge m-badge--success">
+																	2
+																</span>
+															</span> --}}
+														</span>
+													</span>
+												</a>
+											</li>
+											{{-- <li class="m-nav__item">
 												<a href="header/profile&amp;demo=default.html" class="m-nav__link">
 													<i class="m-nav__link-icon flaticon-share"></i>
 													<span class="m-nav__link-text">
@@ -989,10 +993,10 @@ License: You must have a valid license purchased only from themeforest(the above
 														Support
 													</span>
 												</a>
-											</li>
+											</li> --}}
 										</ul>
 										<div class="m-portlet__body-separator"></div>
-										<div class="m-widget1 m-widget1--paddingless">
+										{{-- <div class="m-widget1 m-widget1--paddingless">
 											<div class="m-widget1__item">
 												<div class="row m-row--no-padding align-items-center">
 													<div class="col">
@@ -1044,13 +1048,13 @@ License: You must have a valid license purchased only from themeforest(the above
 													</div>
 												</div>
 											</div>
-										</div>
+										</div> --}}
 									</div>
 								</div>
 							</div>
 							<div class="col-xl-9 col-lg-8">
 								<div class="m-portlet m-portlet--full-height m-portlet--tabs  ">
-									<div class="m-portlet__head">
+									{{-- <div class="m-portlet__head">
 										<div class="m-portlet__head-tools">
 											<ul class="nav nav-tabs m-tabs m-tabs-line   m-tabs-line--left m-tabs-line--primary" role="tablist">
 												<li class="nav-item m-tabs__item">
@@ -1149,7 +1153,7 @@ License: You must have a valid license purchased only from themeforest(the above
 												</li>
 											</ul>
 										</div>
-									</div>
+									</div> --}}
 									<div class="tab-content">
 										<div class="tab-pane active" id="m_user_profile_tab_1">
 											<form class="m-form m-form--fit m-form--label-align-right" method="POST"  action="profilesiswa/update/{{ Auth::user()->idtbSiswa}}">
@@ -1162,68 +1166,86 @@ License: You must have a valid license purchased only from themeforest(the above
 														</div>
 													</div>
 													<div class="form-group m-form__group row">
-														<div class="col-10 ml-auto">
+														<div class="col-7 ml-auto">
 															<h3 class="m-form__section">
-																1. Personal Details
+																1. Profil Siswa
 															</h3>
 														</div>
 													</div>
 													<div class="form-group m-form__group row">
 														<label for="example-text-input" class="col-2 col-form-label">
-															Username
+															Nama Wali
 														</label>
 														<div class="col-7">
-															<input class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" type="text" value="{{ Auth::user()->username }}">
-																@if ($errors->has('username'))
-                                                					<span class="invalid-feedback" role="alert">
-                                       							 		<strong>{{ $errors->first('username') }}</strong>
-																	</span>
-																 @endif
-														</div>
-													</div>
-													<div class="form-group m-form__group row">
-														<label for="example-text-input" class="col-2 col-form-label">
-															Nama Lengkap
-														</label>
-														<div class="col-7">
-															<input class="form-control{{ $errors->has('NamaLengkap') ? ' is-invalid' : '' }}" type="text" name="NamaLengkap" value="{{ Auth::user()->NamaLengkap }}">
-																@if ($errors->has('NamaLengkap'))
+														<input class="form-control{{ $errors->has('namaWali') ? ' is-invalid' : '' }}" type="text" name="namaWali" value="{{$isCompleted->namaWali}}">
+																@if ($errors->has('namaWali'))
                                             						<span class="invalid-feedback" role="alert">
-                                        								<strong>{{ $errors->first('NamaLengkap') }}</strong>
+                                        								<strong>{{ $errors->first('namaWali') }}</strong>
 																	</span> 
 																@endif
 														</div>
 													</div>
 													<div class="form-group m-form__group row">
-													<label for="example-text-input" class="col-2 col-form-label text-md-right">
-															Jenis Kelamin
-														</label>
-													<div class="col-2">
-														{{--
-														<!-- <input class="form-control m-input" type="text" name="gender " value="{{ Auth::user()->gender }}"> -->
-														<input type="radio" name="gender" id="male" value="1" required> Pria &nbsp;&nbsp;
-														<input type="radio" name="gender" id="female" value="2" required> Wanita --}}
-														<label class="m-radio m-radio--bold m-radio--state-brand">
-																<input type="radio" name="gender" id="male" value="1">
-																Laki-Laki 
-																<span></span>
-														</label>
-														<label class="m-radio m-radio--bold m-radio--state-brand">
-																<input type="radio" name="gender" id="female" value="2">
-																Perempuan
-																<span></span>
-														</label>
-													</div>
-												</div>
-													<!-- <div class="form-group m-form__group row">
-														<label for="example-text-input" class="col-2 col-form-label text-md-right">
-															Jenis Kelamin
+														<label for="example-text-input" class="col-2 col-form-label">
+															Pendidikan Siswa
 														</label>
 														<div class="col-7">
-															<input type="radio" name="gender" id="male" value="1" required> Pria &nbsp;&nbsp;
-                                            				<input type="radio" name="gender" id="female" value="2" required> Wanita
+															<select class="form-control m-input" name="pendidikanSiswa" id="pendidikanSiswa">
+																	<option>
+																		1
+																	</option>
+																	<option>
+																		2
+																	</option>
+																	<option>
+																		3
+																	</option>
+																	<option>
+																		4
+																	</option>
+																	<option>
+																		5
+																	</option>
+																</select>
 														</div>
-													</div> -->
+													</div>
+													<div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
+															Jenjang
+														</label>
+														<div class="col-7">
+															<select class="form-control m-input" name="jenjang" id="jenjang">
+																	<option>
+																		1
+																	</option>
+																	<option>
+																		2
+																	</option>
+																	<option>
+																		3
+																	</option>
+																	<option>
+																		4
+																	</option>
+																	<option>
+																		5
+																	</option>
+																</select>
+														</div>
+													</div>
+													<div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label" >
+															Prodi Siswa
+														</label>
+														<div class="col-7">
+															<input class="form-control{{ $errors->has('prodiSiswa') ? ' is-invalid' : '' }}" type="text" name="prodiSiswa" value="{{ $isCompleted->prodiSiswa }}"">
+															@if ($errors->has('prodiSiswa'))
+                                            						<span class="invalid-feedback" role="alert">
+                                        								<strong>{{ $errors->first('prodiSiswa') }}</strong>
+																	</span> 
+																@endif
+														</div>
+													</div>
 													<div class="form-group m-form__group row">
 														<label for="example-text-input" class="col-2 col-form-label">
 															No Telepon
@@ -1271,9 +1293,9 @@ License: You must have a valid license purchased only from themeforest(the above
 													</div> -->
 													<div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
 													<div class="form-group m-form__group row">
-														<div class="col-10 ml-auto">
+														<div class="col-7 ml-auto">
 															<h3 class="m-form__section">
-																2. Address
+																2. Alamat Siswa
 															</h3>
 														</div>
 													</div>
@@ -1410,88 +1432,8 @@ License: You must have a valid license purchased only from themeforest(the above
 															<input class="form-control m-input" type="text" value="67371">
 														</div>
 													</div> -->
-													<div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
-													 <div class="form-group m-form__group row">
-														<div class="col-10 ml-auto">
-															<h3 class="m-form__section">
-																3. Lengkapi Data
-															</h3>
-														</div>
-													</div>
-													<div class="form-group m-form__group row">
-														<label for="example-text-input" class="col-2 col-form-label">
-															Nama Wali
-														</label>
-														<div class="col-7">
-														<input class="form-control{{ $errors->has('namaWali') ? ' is-invalid' : '' }}" type="text" name="namaWali" value="{{$isCompleted->namaWali}}">
-																@if ($errors->has('namaWali'))
-                                            						<span class="invalid-feedback" role="alert">
-                                        								<strong>{{ $errors->first('namaWali') }}</strong>
-																	</span> 
-																@endif
-														</div>
-													</div>
-													<div class="form-group m-form__group row">
-														<label for="example-text-input" class="col-2 col-form-label">
-															Pendidikan Siswa
-														</label>
-														<div class="col-7">
-															<select class="form-control m-input" name="pendidikanSiswa" id="pendidikanSiswa">
-																	<option>
-																		1
-																	</option>
-																	<option>
-																		2
-																	</option>
-																	<option>
-																		3
-																	</option>
-																	<option>
-																		4
-																	</option>
-																	<option>
-																		5
-																	</option>
-																</select>
-														</div>
-													</div>
-													<div class="form-group m-form__group row">
-														<label for="example-text-input" class="col-2 col-form-label">
-															Jenjang
-														</label>
-														<div class="col-7">
-															<select class="form-control m-input" name="jenjang" id="jenjang">
-																	<option>
-																		1
-																	</option>
-																	<option>
-																		2
-																	</option>
-																	<option>
-																		3
-																	</option>
-																	<option>
-																		4
-																	</option>
-																	<option>
-																		5
-																	</option>
-																</select>
-														</div>
-													</div>
-													<div class="form-group m-form__group row">
-														<label for="example-text-input" class="col-2 col-form-label" >
-															Prodi Siswa
-														</label>
-														<div class="col-7">
-															<input class="form-control{{ $errors->has('prodiSiswa') ? ' is-invalid' : '' }}" type="text" name="prodiSiswa" value="{{ $isCompleted->prodiSiswa }}"">
-															@if ($errors->has('prodiSiswa'))
-                                            						<span class="invalid-feedback" role="alert">
-                                        								<strong>{{ $errors->first('prodiSiswa') }}</strong>
-																	</span> 
-																@endif
-														</div>
-													</div>
+													
+													
 												</div>
 												<div class="m-portlet__foot m-portlet__foot--fit">
 													<div class="m-form__actions">

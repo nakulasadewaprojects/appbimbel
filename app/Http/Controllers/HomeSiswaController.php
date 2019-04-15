@@ -66,22 +66,27 @@ class HomeSiswaController extends Controller
         return view('profilesiswa', ['isCompleted' => $showing]);
     }
 
+    public function editprofilsiswa(){
+        return view('myprofilesiswa');
+
+    }
+
     public function update($idtbSiswa, Request $request)
     {
         // $this->validate($request, [
         $this->validate($request, [
-            'username' => ['required', 'string', 'min:3', 'max:255', 'unique:tbsiswa,username,' . $idtbSiswa . ',idtbSiswa', 'regex:/^.*(?=.*[a-zA-Z])(?=.*[0-9]).*$/'],
-            'NamaLengkap' => ['required', 'string', 'max:255'],
+            // 'username' => ['required', 'string', 'min:3', 'max:255', 'unique:tbsiswa,username,' . $idtbSiswa . ',idtbSiswa', 'regex:/^.*(?=.*[a-zA-Z])(?=.*[0-9]).*$/'],
+            // 'NamaLengkap' => ['required', 'string', 'max:255'],
             'alamat' => ['required', 'string', 'max:255'],
-            'gender' => ['required', 'string', 'max:255'],
+            // 'gender' => ['required', 'string', 'max:255'],
             'NoTlpn' => ['required', 'string', 'max:255', 'unique:tbsiswa,NoTlpn,' . $idtbSiswa . ',idtbSiswa'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:tbsiswa,email,' . $idtbSiswa . ',idtbSiswa', 'regex:/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/']
         ]);
         DB::table('Tbsiswa')->where('idtbSiswa', $idtbSiswa)->update([
-            'username' => $request['username'],
-            'NamaLengkap' => $request['NamaLengkap'],
+            // 'username' => $request['username'],
+            // 'NamaLengkap' => $request['NamaLengkap'],
             'alamat' => $request['alamat'],
-            'gender' => $request['gender'],
+            // 'gender' => $request['gender'],
             'NoTlpn' => $request['NoTlpn'],
             'email' => $request['email']
         ]);
@@ -90,7 +95,7 @@ class HomeSiswaController extends Controller
             'namaWali' => $request['namaWali'],
             'pendidikanSiswa' => $request['pendidikanSiswa'],
             'jenjang' => $request['jenjang'],
-            'pendidikanSiswa' => $request['pendidikanSiswa'],
+            // 'pendidikanSiswa' => $request['pendidikanSiswa'],
             'prodiSiswa' => $request['prodiSiswa']
         ]);
 

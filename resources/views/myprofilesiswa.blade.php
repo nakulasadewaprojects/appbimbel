@@ -4,9 +4,9 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>
-			App Bimbel
+			Lihat Profil Saya
 		</title>
-		<meta name="description" content="Latest updates and statistic charts">
+		<meta name="description" content="User profile view and edit">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<!--begin::Web font -->
@@ -19,11 +19,9 @@
             }
           });
 		</script>
+		
 		<!--end::Web font -->
-        <!--begin::Base Styles -->  
-        <!--begin::Page Vendors -->
-		<link href="assets/vendors/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
-		<!--end::Page Vendors -->
+        <!--begin::Base Styles -->
 		<link href="assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
 		<link href="assets/demo/demo6/base/style.bundle.css" rel="stylesheet" type="text/css" />
 		<!--end::Base Styles -->
@@ -45,6 +43,9 @@
 									<a href="dashboardsiswa" class="m-brand__logo-wrapper">
 										<img alt="" src="assets/demo/demo6/media/img/logo/logo.png"/>
 									</a>
+									<h3 class="m-header__title">
+										Apps
+									</h3>
 								</div>
 								<div class="m-stack__item m-stack__item--middle m-brand__tools">
 									<!-- BEGIN: Responsive Aside Left Menu Toggler -->
@@ -69,18 +70,11 @@
 						<div class="m-stack__item m-stack__item--fluid m-header-head" id="m_header_nav">
 							<div class="m-header__title">
 								<h3 class="m-header__title-text">
-									Siswa Dashboard
+									Profil Siswa
 								</h3>
 							</div>
-							<!-- BEGIN: Horizontal Menu -->
-							<button class="m-aside-header-menu-mobile-close  m-aside-header-menu-mobile-close--skin-light " id="m_aside_header_menu_mobile_close_btn">
-								<i class="la la-close"></i>
-							</button>
-							<!-- END: Horizontal Menu -->				
 				<!-- BEGIN: Topbar -->
 							<div id="m_header_topbar" class="m-topbar  m-stack m-stack--ver m-stack--general">
-								<div class="m-stack__item m-stack__item--middle m-dropdown m-dropdown--arrow m-dropdown--large m-dropdown--mobile-full-width m-dropdown--align-right m-dropdown--skin-light m-header-search m-header-search--expandable m-header-search--skin-light" id="m_quicksearch" data-search-type="default">
-								</div>
 								<div class="m-stack__item m-topbar__nav-wrapper">
 									<ul class="m-topbar__nav m-nav m-nav--inline">
 										<li class="m-nav__item m-topbar__notifications m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-center 	m-dropdown--mobile-full-width" data-dropdown-toggle="click" data-dropdown-persistent="true">
@@ -292,10 +286,7 @@
 														</div>
 													</div>
 												</div>
-												
-												
 											</div>
-											
 										</li>
 										<li class="m-nav__item m-topbar__quick-actions m-dropdown m-dropdown--skin-light m-dropdown--large m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push m-dropdown--mobile-full-width m-dropdown--skin-light"  data-dropdown-toggle="click">
 											<a href="#" class="m-nav__link m-dropdown__toggle">
@@ -397,35 +388,14 @@
 																	</span>
 																</li>
 																<li class="m-nav__item">
-																	<a href="myprofilesiswa" class="m-nav__link">
-																		<i class="m-nav__link-icon flaticon-profile-1"></i>
-																		<span class="m-nav__link-title">
-																			<span class="m-nav__link-wrap">
-																				<span class="m-nav__link-text">
-																					Profil Saya
-																				</span>
-																			</span>
-																		</span>
-																	</a>
-																</li>
-																{{-- <li class="m-nav__item">
-																	<a href="header/profile.html" class="m-nav__link">
-																		<i class="m-nav__link-icon flaticon-info"></i>
-																		<span class="m-nav__link-text">
-																			Setting
-																		</span>
-																	</a>
-																</li> --}}
-																<li class="m-nav__separator m-nav__separator--fit"></li>
-																<li class="m-nav__item">
-																	<a href="{{ route('logoutsiswa') }}" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder"
+																	<a href="{{ route('logout') }}" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder"
 																	onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                                     				document.getElementById('logout-form').submit();">
 																		Logout
 																	</a>
-																	<form id="logout-form" action="{{ route('logoutsiswa') }}" method="POST" style="display: none;">
-																			@csrf
-																		</form>
+																	<form id="logout-form" name='form1' action="{{ route('logout') }}" method="POST" style="display: none;">
+																		@csrf
+																	</form>
 																</li>
 															</ul>
 														</div>
@@ -847,135 +817,353 @@
 				</div>
 				<!-- END: Left Aside -->
 				<div class="m-grid__item m-grid__item--fluid m-wrapper">
-						@if ($isCompleted->statusKomplit!==4)
-						<div class="m-alert m-alert--icon alert alert-primary" role="alert">
-							<div class="m-alert__icon">
-								<i class="la la-warning"></i>
+					<!-- BEGIN: Subheader -->
+					<div class="m-subheader ">
+						<div class="d-flex align-items-center">
+							<div class="mr-auto">
+								<h3 class="m-subheader__title ">
+									Lihat Profil Saya
+								</h3>
 							</div>
-							<div class="m-alert__text">
-								<strong>
-									Luar biasa!
-								</strong>
-								Silakan lengkapi profil Anda agar dapat mesen mentor.								
-							</div>
-							<div class="m-alert__actions" style="width: 160px;">
-								<a class="btn btn-warning btn-sm m-btn m-btn--pill m-btn--wide" href="myprofilesiswa">Lengkapi Sekarang</a>
-							</div>
-						</div>
-						@endif
-					<div class="m-subheader-search">
-						<h2 class="m-subheader-search__title">
-							Cari Mentor
-						</h2>
-						<form class="m-form">
-							<div class="m-input-icon m-input-icon--fixed m-input-icon--fixed-large m-input-icon--right">
-								<input type="text" class="form-control form-control-lg m-input m-input--pill" placeholder="MatPel">
-								<span class="m-input-icon__icon m-input-icon__icon--right">
-									<span>
-										<i class="la la-puzzle-piece"></i>
-									</span>
-								</span>
-							</div>
-							<!-- <div class="m-input-icon m-input-icon--fixed m-input-icon--fixed-md m-input-icon--right">
-								<input type="text" class="form-control form-control-lg m-input m-input--pill" placeholder="MatPel">
-								<span class="m-input-icon__icon m-input-icon__icon--right">
-									<span>
-										<i class="la la-calendar-check-o"></i>
-									</span>
-								</span>
-							</div> -->
-							<div class="m--margin-top-20 m--visible-tablet-and-mobile"></div>
-							<button type="button" class="btn m-btn--pill m-subheader-search__submit-btn">
-								Cari
-							</button>
-						</form>
-					</div>
-					<div class="m-content">
-<!--Begin::Main Portlet-->
-						<div class="row">
-							<div class="col-xl-12">
-								<!--begin::Portlet-->
-		  							<!--end::Portlet-->
-									{{-- <div class="modal hide fade" id="m_modal_1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-									<div class="modal-dialog" role="document">
-										<div class="modal-content">
-											<div class="modal-header">
-												<h5 class="modal-title"  id="exampleModalLabel">
-													Kelengkapan Data Siswa
-												</h5>
-												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-													<span aria-hidden="true">
-														&times;
-													</span>
-												</button>
-											</div>
-											<div class="modal-body">
-												<center><b>Persentase Kelengkapan Data @if($isCompleted->statusKomplit==4) 100%  @elseif($isCompleted->statusKomplit==3) 75% @elseif($isCompleted->statusKomplit==2) 50% @elseif($isCompleted->statusKomplit==1) 25% @else 0% @endif</b> </center>
-
-													<div class="m-section__content">
-															<div class="m--space-10"></div>
-															<div class="progress">
-																<div class="progress-bar progress-bar-striped progress-bar-animated  bg-success" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="width:
-														@if($isCompleted->statusKomplit==4) 100%  @elseif($isCompleted->statusKomplit==3) 75% @elseif($isCompleted->statusKomplit==2) 50% @elseif($isCompleted->statusKomplit==1) 25% @else 0% @endif ">
-														@if($isCompleted->statusKomplit==4) 100  @elseif($isCompleted->statusKomplit==3) 75 @elseif($isCompleted->statusKomplit==2) 50 @elseif($isCompleted->statusKomplit==1) 25 @else 0  @endif
-														
-													</div>
-															</div>
-														</div>
-												<br>
-												Nama Wali: @if($isCompleted->namaWali==NULL) Belum terisi @else Sudah terisi @endif  <br>
-												Pendidikan Siswa:  @if($isCompleted->pendidikanSiswa==NULL) Belum terisi @else Sudah terisi @endif<br>
-												Jenjang: @if($isCompleted->jenjang==NULL) Belum terisi @else Sudah terisi @endif<br>
-												Prodi Siswa: @if($isCompleted->prodiSiswa==NULL) Belum terisi @else Sudah terisi @endif<br>
-											
-											</div>
-											<div class="modal-footer">
-												<button type="button" class="btn btn-secondary" data-dismiss="modal">
-													Nanti Saja
-												</button>
-												<button class="btn btn-primary"onclick="window.location.href = 'profilesiswa';">Lengkapi Data Sekarang</button>
+							{{-- <div>
+								<div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover" aria-expanded="true">
+									<a href="#" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle">
+										<i class="la la-plus m--hide"></i>
+										<i class="la la-ellipsis-h"></i>
+									</a>
+									<div class="m-dropdown__wrapper">
+										<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
+										<div class="m-dropdown__inner">
+											<div class="m-dropdown__body">
+												<div class="m-dropdown__content">
+													<ul class="m-nav">
+														<li class="m-nav__section m-nav__section--first m--hide">
+															<span class="m-nav__section-text">
+																Quick Actions
+															</span>
+														</li>
+														<li class="m-nav__item">
+															<a href="" class="m-nav__link">
+																<i class="m-nav__link-icon flaticon-share"></i>
+																<span class="m-nav__link-text">
+																	Activity
+																</span>
+															</a>
+														</li>
+														<li class="m-nav__item">
+															<a href="" class="m-nav__link">
+																<i class="m-nav__link-icon flaticon-chat-1"></i>
+																<span class="m-nav__link-text">
+																	Messages
+																</span>
+															</a>
+														</li>
+														<li class="m-nav__item">
+															<a href="" class="m-nav__link">
+																<i class="m-nav__link-icon flaticon-info"></i>
+																<span class="m-nav__link-text">
+																	FAQ
+																</span>
+															</a>
+														</li>
+														<li class="m-nav__item">
+															<a href="" class="m-nav__link">
+																<i class="m-nav__link-icon flaticon-lifebuoy"></i>
+																<span class="m-nav__link-text">
+																	Support
+																</span>
+															</a>
+														</li>
+														<li class="m-nav__separator m-nav__separator--fit"></li>
+														<li class="m-nav__item">
+															<a href="#" class="btn btn-outline-danger m-btn m-btn--pill m-btn--wide btn-sm">
+																Submit
+															</a>
+														</li>
+													</ul>
+												</div>
 											</div>
 										</div>
 									</div>
-								</div> --}}
-								
-
-
-								<div class="m-portlet" id="m_portlet">
-									<div class="m-portlet__head">
-										<div class="m-portlet__head-caption">
-											<div class="m-portlet__head-title">
-												<span class="m-portlet__head-icon">
-													<i class="flaticon-map-location"></i>
+								</div>
+							</div> --}}
+						</div>
+					</div>
+					<!-- END: Subheader -->
+					<div class="m-content">
+						<div class="row">
+							<div class="col-xl-3 col-lg-4">
+								<div class="m-portlet m-portlet--full-height  ">
+									<div class="m-portlet__body">
+										<div class="m-card-profile">
+											<div class="m-card-profile__title m--hide">
+												Your Profile
+											</div>
+											<div class="m-card-profile__pic">
+												<div class="m-card-profile__pic-wrapper">
+													<img src="assets/app/media/img/users/user4.jpg" alt=""/>
+												</div>
+											</div>
+											<div class="m-card-profile__details">
+												<span class="m-card-profile__name">
+													{{ Auth::user()->username }}
 												</span>
-												<h3 class="m-portlet__head-text">
-													Calendar
-												</h3>
+												<a href="" class="m-card-profile__email m-link">
+													{{ Auth::user()->email }} 
+												</a>
 											</div>
 										</div>
-										<div class="m-portlet__head-tools">
-											<ul class="m-portlet__nav">
-												<li class="m-portlet__nav-item">
-													<a href="#" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
-														<span>
-															<i class="la la-plus"></i>
-															<span>
-																Add Event
+										<ul class="m-nav m-nav--hover-bg m-portlet-fit--sides">
+											<li class="m-nav__separator m-nav__separator--fit"></li>
+											<li class="m-nav__section m--hide">
+												<span class="m-nav__section-text">
+													Section
+												</span>
+											</li>
+											<li class="m-nav__item">
+												<a href="myprofilesiswa" class="m-nav__link">
+													<i class="m-nav__link-icon flaticon-profile-1"></i>
+													<span class="m-nav__link-title">
+														<span class="m-nav__link-wrap">
+															<span class="m-nav__link-text">
+																Lihat Profil Saya
 															</span>
+															{{-- <span class="m-nav__link-badge">
+																<span class="m-badge m-badge--success">
+																	2
+																</span>
+															</span> --}}
 														</span>
+													</span>
+												</a>
+											</li>
+											<li class="m-nav__item">
+												<a href="profilesiswa" class="m-nav__link">
+													<i class="m-nav__link-icon flaticon-edit"></i>
+													<span class="m-nav__link-title">
+														<span class="m-nav__link-wrap">
+															<span class="m-nav__link-text">
+																Edit Profil Saya
+															</span>
+															{{-- <span class="m-nav__link-badge">
+																<span class="m-badge m-badge--success">
+																	2
+																</span>
+															</span> --}}
+														</span>
+													</span>
+												</a>
+											</li>
+											{{-- <li class="m-nav__item">
+												<a href="header/profile&amp;demo=default.html" class="m-nav__link">
+													<i class="m-nav__link-icon flaticon-share"></i>
+													<span class="m-nav__link-text">
+														Activity
+													</span>
+												</a>
+											</li>
+											<li class="m-nav__item">
+												<a href="header/profile&amp;demo=default.html" class="m-nav__link">
+													<i class="m-nav__link-icon flaticon-chat-1"></i>
+													<span class="m-nav__link-text">
+														Messages
+													</span>
+												</a>
+											</li>
+											<li class="m-nav__item">
+												<a href="header/profile&amp;demo=default.html" class="m-nav__link">
+													<i class="m-nav__link-icon flaticon-graphic-2"></i>
+													<span class="m-nav__link-text">
+														Sales
+													</span>
+												</a>
+											</li>
+											<li class="m-nav__item">
+												<a href="header/profile&amp;demo=default.html" class="m-nav__link">
+													<i class="m-nav__link-icon flaticon-time-3"></i>
+													<span class="m-nav__link-text">
+														Events
+													</span>
+												</a>
+											</li>
+											<li class="m-nav__item">
+												<a href="header/profile&amp;demo=default.html" class="m-nav__link">
+													<i class="m-nav__link-icon flaticon-lifebuoy"></i>
+													<span class="m-nav__link-text">
+														Support
+													</span>
+												</a>
+											</li> --}}
+										</ul>
+										<div class="m-portlet__body-separator"></div>
+										{{-- <div class="m-widget1 m-widget1--paddingless">
+											<div class="m-widget1__item">
+												<div class="row m-row--no-padding align-items-center">
+													<div class="col">
+														<h3 class="m-widget1__title">
+															Member Profit
+														</h3>
+														<span class="m-widget1__desc">
+															Awerage Weekly Profit
+														</span>
+													</div>
+													<div class="col m--align-right">
+														<span class="m-widget1__number m--font-brand">
+															+$17,800
+														</span>
+													</div>
+												</div>
+											</div>
+											<div class="m-widget1__item">
+												<div class="row m-row--no-padding align-items-center">
+													<div class="col">
+														<h3 class="m-widget1__title">
+															Orders
+														</h3>
+														<span class="m-widget1__desc">
+															Weekly Customer Orders
+														</span>
+													</div>
+													<div class="col m--align-right">
+														<span class="m-widget1__number m--font-danger">
+															+1,800
+														</span>
+													</div>
+												</div>
+											</div>
+											<div class="m-widget1__item">
+												<div class="row m-row--no-padding align-items-center">
+													<div class="col">
+														<h3 class="m-widget1__title">
+															Issue Reports
+														</h3>
+														<span class="m-widget1__desc">
+															System bugs and issues
+														</span>
+													</div>
+													<div class="col m--align-right">
+														<span class="m-widget1__number m--font-success">
+															-27,49%
+														</span>
+													</div>
+												</div>
+											</div>
+										</div> --}}
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-9 col-lg-8">
+								<div class="m-portlet m-portlet--full-height m-portlet--tabs  ">
+									{{-- <div class="m-portlet__head">
+										<div class="m-portlet__head-tools">
+											<ul class="nav nav-tabs m-tabs m-tabs-line   m-tabs-line--left m-tabs-line--primary" role="tablist">
+												<li class="nav-item m-tabs__item">
+													<a class="nav-link m-tabs__link active" data-toggle="tab" href="#m_user_profile_tab_1" role="tab">
+														<i class="flaticon-share m--hide"></i>
+														Update Profile
+													</a>
+												</li>
+												<li class="nav-item m-tabs__item">
+													<a class="nav-link m-tabs__link" data-toggle="tab" href="#m_user_profile_tab_2" role="tab">
+														Messages
+													</a>
+												</li>
+												<li class="nav-item m-tabs__item">
+													<a class="nav-link m-tabs__link" data-toggle="tab" href="#m_user_profile_tab_3" role="tab">
+														Settings
 													</a>
 												</li>
 											</ul>
 										</div>
-									</div>
-									<div class="m-portlet__body">
-										<div id="m_calendar"></div>
+										<div class="m-portlet__head-tools">
+											<ul class="m-portlet__nav">
+												<li class="m-portlet__nav-item m-portlet__nav-item--last">
+													<div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover" aria-expanded="true">
+														<a href="#" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle">
+															<i class="la la-gear"></i>
+														</a>
+														<div class="m-dropdown__wrapper">
+															<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
+															<div class="m-dropdown__inner">
+																<div class="m-dropdown__body">
+																	<div class="m-dropdown__content">
+																		<ul class="m-nav">
+																			<li class="m-nav__section m-nav__section--first">
+																				<span class="m-nav__section-text">
+																					Quick Actions
+																				</span>
+																			</li>
+																			<li class="m-nav__item">
+																				<a href="" class="m-nav__link">
+																					<i class="m-nav__link-icon flaticon-share"></i>
+																					<span class="m-nav__link-text">
+																						Create Post
+																					</span>
+																				</a>
+																			</li>
+																			<li class="m-nav__item">
+																				<a href="" class="m-nav__link">
+																					<i class="m-nav__link-icon flaticon-chat-1"></i>
+																					<span class="m-nav__link-text">
+																						Send Messages
+																					</span>
+																				</a>
+																			</li>
+																			<li class="m-nav__item">
+																				<a href="" class="m-nav__link">
+																					<i class="m-nav__link-icon flaticon-multimedia-2"></i>
+																					<span class="m-nav__link-text">
+																						Upload File
+																					</span>
+																				</a>
+																			</li>
+																			<li class="m-nav__section">
+																				<span class="m-nav__section-text">
+																					Useful Links
+																				</span>
+																			</li>
+																			<li class="m-nav__item">
+																				<a href="" class="m-nav__link">
+																					<i class="m-nav__link-icon flaticon-info"></i>
+																					<span class="m-nav__link-text">
+																						FAQ
+																					</span>
+																				</a>
+																			</li>
+																			<li class="m-nav__item">
+																				<a href="" class="m-nav__link">
+																					<i class="m-nav__link-icon flaticon-lifebuoy"></i>
+																					<span class="m-nav__link-text">
+																						Support
+																					</span>
+																				</a>
+																			</li>
+																			<li class="m-nav__separator m-nav__separator--fit m--hide"></li>
+																			<li class="m-nav__item m--hide">
+																				<a href="#" class="btn btn-outline-danger m-btn m-btn--pill m-btn--wide btn-sm">
+																					Submit
+																				</a>
+																			</li>
+																		</ul>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</li>
+											</ul>
+										</div>
+									</div> --}}
+									<div class="tab-content">
+										<div class="tab-pane active" id="m_user_profile_tab_1">
+											dena memang hebat!
+										</div>
+										{{-- <div class="tab-pane active" id="m_user_profile_tab_2"></div>
+										<div class="tab-pane active" id="m_user_profile_tab_3"></div> --}}
 									</div>
 								</div>
-								<!--end::Portlet-->
 							</div>
 						</div>
-						<!--End::Main Portlet-->
 					</div>
 				</div>
 			</div>
@@ -986,9 +1174,9 @@
 					<div class="m-stack m-stack--flex-tablet-and-mobile m-stack--ver m-stack--desktop">
 						<div class="m-stack__item m-stack__item--left m-stack__item--middle m-stack__item--last">
 							<span class="m-footer__copyright">
-								2019 &copy; AppBimbel Kekinian
+								2017 &copy; Metronic theme by
 								<a href="#" class="m-link">
-									AppBimbel
+									Keenthemes
 								</a>
 							</span>
 						</div>
@@ -1626,20 +1814,40 @@
     	<!--begin::Base Scripts -->
 		<script src="assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
 		<script src="assets/demo/demo6/base/scripts.bundle.js" type="text/javascript"></script>
-		<!--end::Base Scripts -->   
-        <!--begin::Page Vendors -->
-		<script src="assets/vendors/custom/fullcalendar/fullcalendar.bundle.js" type="text/javascript"></script>
-		<!--end::Page Vendors -->  
-        <!--begin::Page Snippets -->
-		<script src="assets/app/js/dashboard.js" type="text/javascript"></script>
-		<!--end::Page Snippets -->
-		@if ($isCompleted->statusKomplit!==4)
-		<script type="text/javascript">
-			$(window).on('load',function(){
-				$('#m_modal_1').modal('show');
-			});
+		<!--end::Base Scripts -->
+
+		<script>
+		if({{session()->has('message')}}){
+			toastr.options = {
+  "closeButton": true,
+  "debug": false,
+  "newestOnTop": false,
+  "progressBar": false,
+  "positionClass": "toast-top-center",
+  "preventDuplicates": true,
+  "onclick": null,
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "5000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+};
+
+toastr.success("Profil Anda telah diperbarui", "Sukses");
+		}
+
 		</script>
-	
-		@endif
+
+		<script>
+		if({{ Auth::user()->gender }}==1){
+			document.getElementById("male").checked = true;
+		}else{
+			document.getElementById("female").checked = true;
+		}
+		</script>
 	</body>
+	<!-- end::Body -->
 </html>
