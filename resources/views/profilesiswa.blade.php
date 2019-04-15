@@ -2167,6 +2167,32 @@ License: You must have a valid license purchased only from themeforest(the above
 		<script src="assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
 		<script src="assets/demo/demo6/base/scripts.bundle.js" type="text/javascript"></script>
 		<!--end::Base Scripts -->
+
+		<script>
+		if({{session()->has('message')}}){
+			toastr.options = {
+  "closeButton": true,
+  "debug": false,
+  "newestOnTop": false,
+  "progressBar": false,
+  "positionClass": "toast-top-center",
+  "preventDuplicates": true,
+  "onclick": null,
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "5000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+};
+
+toastr.success("Profil Anda telah diperbarui", "Sukses");
+		}
+
+		</script>
+
 		<script>
 		if({{ Auth::user()->gender }}==1){
 			document.getElementById("male").checked = true;
