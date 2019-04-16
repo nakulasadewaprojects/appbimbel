@@ -66,8 +66,10 @@ class HomeSiswaController extends Controller
         return view('profilesiswa', ['isCompleted' => $showing]);
     }
 
-    public function editprofilsiswa(){
-        return view('myprofilesiswa');
+    public function myprofilsiswa(){
+        $showing = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->first();
+
+        return view('myprofilesiswa' , ['ProfilSiswa' => $showing]);
 
     }
 
@@ -99,7 +101,7 @@ class HomeSiswaController extends Controller
             'prodiSiswa' => $request['prodiSiswa']
         ]);
 
-      return redirect()->back()->with('message', 'IT WORKS!');
+      return redirect('/myprofilesiswa')->with('message', 'IT WORKS!');
       
     }
 }
