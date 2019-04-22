@@ -1156,8 +1156,10 @@ License: You must have a valid license purchased only from themeforest(the above
 								</div>
 								<div class="tab-content">
 									<div class="tab-pane active" id="m_user_profile_tab_1">
-										<form class="m-form m-form--fit m-form--label-align-right" method="POST" action="profile/update/{{ Auth::user()->idmentor}}">
-											{{ csrf_field() }} {{ method_field('PUT') }}
+									<form class="m-form m-form--fit m-form--label-align-right" method="POST" action="profile/update/{{ Auth::user()->idmentor}}">
+										<!-- <form class="m-form m-form--fit m-form--label-align-right" method="POST" action="profile/update"> -->
+											{{ csrf_field() }} 
+											<!-- {{ method_field('PUT') }} -->
 											<div class="m-portlet__body">
 												<div class="form-group m-form__group m--margin-top-10 m--hide">
 													<div class="alert m-alert m-alert--default" role="alert">
@@ -1389,7 +1391,7 @@ License: You must have a valid license purchased only from themeforest(the above
 															Pendidikan Terakhir
 														</label>
 													<div class="col-4">
-														<input class="form-control m-input" type="text">
+														<input class="form-control m-input" type="text" name="pendidikanTerakhir" value="{{ $isCompleted->pendidikanTerakhir }}">
 													</div>
 												</div>
 												<div class="form-group m-form__group row">
@@ -1397,7 +1399,7 @@ License: You must have a valid license purchased only from themeforest(the above
 															Status Pendidikan
 														</label>
 													<div class="col-4">
-														<input class="form-control m-input" type="text">
+														<input class="form-control m-input" type="text" name="statusPendidikan" value="{{ $isCompleted->statusPendidikan }}">
 													</div>
 												</div>
 												<div class="form-group m-form__group row">
@@ -1406,17 +1408,21 @@ License: You must have a valid license purchased only from themeforest(the above
 														</label>
 													<div class="col-7">
 														<label class="custom-file">
-																	<input type="file" id="file2" class="custom-file-input">
+																	<input type="file" name="foto">
 																	<span class="custom-file-control"></span>
 																</label>
 													</div>
 												</div>
+												<!-- <div class="form-group">
+													<b>File Gambar</b><br/>
+														<input type="file" name="foto">
+												</div> -->
 												<div class="form-group m-form__group row">
 													<label for="example-text-input" class="col-3 col-form-label">
 															Nomor Identitas
 														</label>
 													<div class="col-7">
-														<input class="form-control m-input" type="text">
+														<input class="form-control m-input" type="text" name="No_Identitas" value="{{ $isCompleted->No_Identitas }}">
 													</div>
 												</div>
 												<div class="form-group m-form__group row">
@@ -1425,7 +1431,7 @@ License: You must have a valid license purchased only from themeforest(the above
 														</label>
 													<div class="col-7">
 														<label class="custom-file">
-																	<input type="file" id="file2" class="custom-file-input">
+																	<input type="file" id="file2" class="custom-file-input" name="fileKTP">
 																	<span class="custom-file-control"></span>
 																</label>
 													</div>
