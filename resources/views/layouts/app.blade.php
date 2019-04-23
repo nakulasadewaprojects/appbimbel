@@ -19,8 +19,8 @@
 
     <!--begin::Base Styles -->
     <script src="{{ asset('js/app.js') }}" type="text/javascript" defer></script>
-    {{-- <script src="{{ asset('js/scripts.bundle.js')}}" type="text/javascript" defer></script>
-    <script src="{{ asset('js/vendors.bundle.js') }}" type="text/javascript" defer></script> --}}
+    <script src="{{ asset('js/scripts.bundle.js')}}" type="text/javascript" defer></script>
+    <script src="{{ asset('js/vendors.bundle.js') }}" type="text/javascript" defer></script>
 
 
     <!--begin::Web font -->
