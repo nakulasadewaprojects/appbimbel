@@ -153,6 +153,10 @@
 					<h2 class="intro__title">
 						Aplikasi Bimbel Untuk Memudahkan Mentor Bertemu dengan Calon Siswa
 					</h2>
+					<br>
+					<br>
+					<br>
+					
 					<a href="home" class="intro__video" data-lity>
 						<span>
 							Watch Video
