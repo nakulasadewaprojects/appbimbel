@@ -890,13 +890,149 @@
 							</button>
 						</form>
 					</div>
+					<div class="m-subheader ">
+							<div class="d-flex align-items-center">
+								<div class="mr-auto">
+									<h3 class="m-subheader__title ">
+										Daftar Mentor
+									</h3>
+								</div>
+							</div>
+						</div>
 					<div class="m-content">
 <!--Begin::Main Portlet-->
+
 						<div class="row">
+								<div class="col-xl-3 col-lg-4">
+										<div class="m-portlet m-portlet--full-height  ">
+											<div class="m-portlet__body">
+												<div class="m-card-profile">
+													<div class="m-card-profile__title m--hide">
+														Your Profile
+													</div>
+													<div class="m-card-profile__pic">
+														<div class="m-card-profile__pic-wrapper">
+															<img src="assets/app/media/img/users/user4.jpg" alt="" />
+														</div>
+													</div>
+													<div class="m-card-profile__details">
+														<span class="m-card-profile__name">
+															{{ Auth::user()->username }}
+														</span>
+														<a href="" class="m-card-profile__email m-link">
+															{{ Auth::user()->email }}
+														</a>
+													</div>
+												</div>
+												<ul class="m-nav m-nav--hover-bg m-portlet-fit--sides">
+													<li class="m-nav__separator m-nav__separator--fit"></li>
+													<li class="m-nav__section m--hide">
+														<span class="m-nav__section-text">
+															Section
+														</span>
+													</li>
+													<li class="m-nav__item">
+														<a href="myprofilesiswa" class="m-nav__link">
+															<i class="m-nav__link-icon flaticon-profile-1"></i>
+															<span class="m-nav__link-title">
+																<span class="m-nav__link-wrap">
+																	<span class="m-nav__link-text">
+																		Lihat Profil Saya
+																	</span>
+															
+																</span>
+															</span>
+														</a>
+													</li>
+													<li class="m-nav__item">
+														<a href="profilesiswa" class="m-nav__link">
+															<i class="m-nav__link-icon flaticon-edit"></i>
+															<span class="m-nav__link-title">
+																<span class="m-nav__link-wrap">
+																	<span class="m-nav__link-text">
+																		Edit Profil Saya
+																	</span>
+															
+																</span>
+															</span>
+														</a>
+													</li>
+													
+												</ul>
+												<div class="m-portlet__body-separator"></div>
+												
+											</div>
+										</div>
+									</div>
+								<div class="col-xl-3 col-lg-4">
+										<div class="m-portlet m-portlet--full-height  ">
+											<div class="m-portlet__body">
+												<div class="m-card-profile">
+													<div class="m-card-profile__title m--hide">
+														Your Profile
+													</div>
+													<div class="m-card-profile__pic">
+														<div class="m-card-profile__pic-wrapper">
+															<img src="assets/app/media/img/users/user4.jpg" alt="" />
+														</div>
+													</div>
+													<div class="m-card-profile__details">
+														<span class="m-card-profile__name">
+															{{ Auth::user()->username }}
+														</span>
+														<a href="" class="m-card-profile__email m-link">
+															{{ Auth::user()->email }}
+														</a>
+													</div>
+												</div>
+												<ul class="m-nav m-nav--hover-bg m-portlet-fit--sides">
+													<li class="m-nav__separator m-nav__separator--fit"></li>
+													<li class="m-nav__section m--hide">
+														<span class="m-nav__section-text">
+															Section
+														</span>
+													</li>
+													<li class="m-nav__item">
+														<a href="myprofilesiswa" class="m-nav__link">
+															<i class="m-nav__link-icon flaticon-profile-1"></i>
+															<span class="m-nav__link-title">
+																<span class="m-nav__link-wrap">
+																	<span class="m-nav__link-text">
+																		Lihat Profil Saya
+																	</span>
+															
+																</span>
+															</span>
+														</a>
+													</li>
+													<li class="m-nav__item">
+														<a href="profilesiswa" class="m-nav__link">
+															<i class="m-nav__link-icon flaticon-edit"></i>
+															<span class="m-nav__link-title">
+																<span class="m-nav__link-wrap">
+																	<span class="m-nav__link-text">
+																		Edit Profil Saya
+																	</span>
+															
+																</span>
+															</span>
+														</a>
+													</li>
+													
+												</ul>
+												<div class="m-portlet__body-separator"></div>
+												
+											</div>
+										</div>
+									</div>
+							
+						</div>
+						<div class="row">
+
 							<div class="col-xl-12">
 								<!--begin::Portlet-->
 		  							<!--end::Portlet-->
-									<div class="modal hide fade" id="m_modal_1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+									{{-- <div class="modal hide fade" id="m_modal_1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 									<div class="modal-dialog" role="document">
 										<div class="modal-content">
 											<div class="modal-header">
@@ -926,10 +1062,8 @@
 											</div>
 										</div>
 									</div>
-								</div>
+								</div> --}}
 								
-
-
 								<div class="m-portlet" id="m_portlet">
 									<div class="m-portlet__head">
 										<div class="m-portlet__head-caption">
