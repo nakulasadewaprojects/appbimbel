@@ -397,7 +397,7 @@
 																	</span>
 																</li>
 																<li class="m-nav__item">
-																	<a href="profile" class="m-nav__link">
+																	<a href="myProfile" class="m-nav__link">
 																		<i class="m-nav__link-icon flaticon-profile-1"></i>
 																		<span class="m-nav__link-title">
 																			<span class="m-nav__link-wrap">

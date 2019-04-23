@@ -402,20 +402,20 @@
 																		<span class="m-nav__link-title">
 																			<span class="m-nav__link-wrap">
 																				<span class="m-nav__link-text">
-																					Profil Saya
+																					My Profile
 																				</span>
 																			</span>
 																		</span>
 																	</a>
 																</li>
-																{{-- <li class="m-nav__item">
+																<li class="m-nav__item">
 																	<a href="header/profile.html" class="m-nav__link">
 																		<i class="m-nav__link-icon flaticon-info"></i>
 																		<span class="m-nav__link-text">
 																			Setting
 																		</span>
 																	</a>
-																</li> --}}
+																</li>
 																<li class="m-nav__separator m-nav__separator--fit"></li>
 																<li class="m-nav__item">
 																	<a href="{{ route('logoutsiswa') }}" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder"
@@ -896,7 +896,7 @@
 							<div class="col-xl-12">
 								<!--begin::Portlet-->
 		  							<!--end::Portlet-->
-									{{-- <div class="modal hide fade" id="m_modal_1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+									<div class="modal hide fade" id="m_modal_1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 									<div class="modal-dialog" role="document">
 										<div class="modal-content">
 											<div class="modal-header">
@@ -910,19 +910,8 @@
 												</button>
 											</div>
 											<div class="modal-body">
-												<center><b>Persentase Kelengkapan Data @if($isCompleted->statusKomplit==4) 100%  @elseif($isCompleted->statusKomplit==3) 75% @elseif($isCompleted->statusKomplit==2) 50% @elseif($isCompleted->statusKomplit==1) 25% @else 0% @endif</b> </center>
-
-													<div class="m-section__content">
-															<div class="m--space-10"></div>
-															<div class="progress">
-																<div class="progress-bar progress-bar-striped progress-bar-animated  bg-success" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="width:
-														@if($isCompleted->statusKomplit==4) 100%  @elseif($isCompleted->statusKomplit==3) 75% @elseif($isCompleted->statusKomplit==2) 50% @elseif($isCompleted->statusKomplit==1) 25% @else 0% @endif ">
-														@if($isCompleted->statusKomplit==4) 100  @elseif($isCompleted->statusKomplit==3) 75 @elseif($isCompleted->statusKomplit==2) 50 @elseif($isCompleted->statusKomplit==1) 25 @else 0  @endif
-														
-													</div>
-															</div>
-														</div>
-												<br>
+											
+												<b>Segera lengkapi data Anda! </b> <br><br>
 												Nama Wali: @if($isCompleted->namaWali==NULL) Belum terisi @else Sudah terisi @endif  <br>
 												Pendidikan Siswa:  @if($isCompleted->pendidikanSiswa==NULL) Belum terisi @else Sudah terisi @endif<br>
 												Jenjang: @if($isCompleted->jenjang==NULL) Belum terisi @else Sudah terisi @endif<br>
@@ -937,7 +926,7 @@
 											</div>
 										</div>
 									</div>
-								</div> --}}
+								</div>
 								
 
 
@@ -1633,13 +1622,5 @@
         <!--begin::Page Snippets -->
 		<script src="assets/app/js/dashboard.js" type="text/javascript"></script>
 		<!--end::Page Snippets -->
-		{{-- @if ($isCompleted->statusKomplit!==4)
-		<script type="text/javascript">
-			$(window).on('load',function(){
-				$('#m_modal_1').modal('show');
-			});
-		</script>
-	
-		@endif --}}
 	</body>
 </html>

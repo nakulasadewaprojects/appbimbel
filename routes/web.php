@@ -28,9 +28,11 @@ Route::post('/siswa/login', 'Auth\LoginSiswaController@login');
 Route::post('logoutsiswa', 'Auth\LoginSiswaController@logout')->name('logoutsiswa');
 Route::get('/dashboard', 'HomeController@dashboard');
 Route::get('/dashboardsiswa', 'HomeSiswaController@dashboardsiswa');
+Route::get('/myProfile', 'HomeController@myprofile');
 Route::get('/profile', 'HomeController@profile');
+Route::post('/profile/update/{idmentor}', 'HomeController@update');
 Route::get('/profilesiswa', 'HomeSiswaController@profilesiswa');
 Route::get('/myprofilesiswa', 'HomeSiswaController@myprofilsiswa');
 Route::put('/profilesiswa/update/{idtbSiswa}', 'HomeSiswaController@update');
 // Route::put('/profile/update/{idmentor}', 'HomeController@update');
- Route::post('/profile/update/{idmentor}', 'HomeController@update');
+
