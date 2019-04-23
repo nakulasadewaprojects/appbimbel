@@ -18,7 +18,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <head>
 	<meta charset="utf-8" />
 	<title>
-		Metronic | My Profile
+		Lihat Profil Saya
 	</title>
 	<meta name="description" content="User profile view and edit">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -93,8 +93,7 @@ License: You must have a valid license purchased only from themeforest(the above
 						<div id="m_header_topbar" class="m-topbar  m-stack m-stack--ver m-stack--general">
 							<div class="m-stack__item m-topbar__nav-wrapper">
 								<ul class="m-topbar__nav m-nav m-nav--inline">
-									<li class="m-nav__item m-topbar__notifications m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-center 	m-dropdown--mobile-full-width"
-									 data-dropdown-toggle="click" data-dropdown-persistent="true">
+									<li class="m-nav__item m-topbar__notifications m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-center 	m-dropdown--mobile-full-width" data-dropdown-toggle="click" data-dropdown-persistent="true">
 										<a href="#" class="m-nav__link m-dropdown__toggle" id="m_topbar_notification_icon">
 											<span class="m-nav__link-badge m-badge m-badge--dot m-badge--dot-small m-badge--danger"></span>
 											<span class="m-nav__link-icon">
@@ -305,8 +304,7 @@ License: You must have a valid license purchased only from themeforest(the above
 											</div>
 										</div>
 									</li>
-									<li class="m-nav__item m-topbar__quick-actions m-dropdown m-dropdown--skin-light m-dropdown--large m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push m-dropdown--mobile-full-width m-dropdown--skin-light"
-									 data-dropdown-toggle="click">
+									<li class="m-nav__item m-topbar__quick-actions m-dropdown m-dropdown--skin-light m-dropdown--large m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push m-dropdown--mobile-full-width m-dropdown--skin-light" data-dropdown-toggle="click">
 										<a href="#" class="m-nav__link m-dropdown__toggle">
 											<span class="m-nav__link-badge m-badge m-badge--dot m-badge--info m--hide"></span>
 											<span class="m-nav__link-icon">
@@ -365,8 +363,7 @@ License: You must have a valid license purchased only from themeforest(the above
 											</div>
 										</div>
 									</li>
-									<li class="m-nav__item m-topbar__user-profile  m-dropdown m-dropdown--medium m-dropdown--arrow  m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light"
-									 data-dropdown-toggle="click">
+									<li class="m-nav__item m-topbar__user-profile  m-dropdown m-dropdown--medium m-dropdown--arrow  m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light" data-dropdown-toggle="click">
 										<a href="#" class="m-nav__link m-dropdown__toggle">
 											<span class="m-topbar__userpic m--hide">
 												<img src="assets/app/media/img/users/user4.jpg" class="m--img-rounded m--marginless m--img-centered" alt="" />
@@ -407,12 +404,11 @@ License: You must have a valid license purchased only from themeforest(the above
 																</span>
 															</li>
 															<li class="m-nav__item">
-																<a href="{{ route('logout') }}" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder"
-																 onclick="event.preventDefault();
+																<a href="{{ route('logout') }}" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder" onclick="event.preventDefault();
                                                      				document.getElementById('logout-form').submit();">
 																	Logout
 																</a>
-																<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+																<form id="logout-form" name='form1' action="{{ route('logout') }}" method="POST" style="display: none;">
 																	@csrf
 																</form>
 															</li>
@@ -448,8 +444,7 @@ License: You must have a valid license purchased only from themeforest(the above
 			</button>
 			<div id="m_aside_left" class="m-grid__item	m-aside-left  m-aside-left--skin-light ">
 				<!-- BEGIN: Aside Menu -->
-				<div id="m_ver_menu" class="m-aside-menu  m-aside-menu--skin-light m-aside-menu--submenu-skin-light " data-menu-vertical="true"
-				 data-menu-scrollable="true" data-menu-dropdown-timeout="500">
+				<div id="m_ver_menu" class="m-aside-menu  m-aside-menu--skin-light m-aside-menu--submenu-skin-light " data-menu-vertical="true" data-menu-scrollable="true" data-menu-dropdown-timeout="500">
 					<ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow ">
 						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover">
 							<a href="#" class="m-menu__link m-menu__toggle">
@@ -837,72 +832,71 @@ License: You must have a valid license purchased only from themeforest(the above
 					<div class="d-flex align-items-center">
 						<div class="mr-auto">
 							<h3 class="m-subheader__title ">
-								My Profile
+								Lihat Profil Saya
 							</h3>
 						</div>
-						<div>
-							<div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover"
-							 aria-expanded="true">
-								<a href="#" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle">
-									<i class="la la-plus m--hide"></i>
-									<i class="la la-ellipsis-h"></i>
-								</a>
-								<div class="m-dropdown__wrapper">
-									<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
-									<div class="m-dropdown__inner">
-										<div class="m-dropdown__body">
-											<div class="m-dropdown__content">
-												<ul class="m-nav">
-													<li class="m-nav__section m-nav__section--first m--hide">
-														<span class="m-nav__section-text">
-															Quick Actions
-														</span>
-													</li>
-													<li class="m-nav__item">
-														<a href="" class="m-nav__link">
-															<i class="m-nav__link-icon flaticon-share"></i>
-															<span class="m-nav__link-text">
-																Activity
+						{{-- <div>
+								<div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover" aria-expanded="true">
+									<a href="#" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle">
+										<i class="la la-plus m--hide"></i>
+										<i class="la la-ellipsis-h"></i>
+									</a>
+									<div class="m-dropdown__wrapper">
+										<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
+										<div class="m-dropdown__inner">
+											<div class="m-dropdown__body">
+												<div class="m-dropdown__content">
+													<ul class="m-nav">
+														<li class="m-nav__section m-nav__section--first m--hide">
+															<span class="m-nav__section-text">
+																Quick Actions
 															</span>
-														</a>
-													</li>
-													<li class="m-nav__item">
-														<a href="" class="m-nav__link">
-															<i class="m-nav__link-icon flaticon-chat-1"></i>
-															<span class="m-nav__link-text">
-																Messages
-															</span>
-														</a>
-													</li>
-													<li class="m-nav__item">
-														<a href="" class="m-nav__link">
-															<i class="m-nav__link-icon flaticon-info"></i>
-															<span class="m-nav__link-text">
-																FAQ
-															</span>
-														</a>
-													</li>
-													<li class="m-nav__item">
-														<a href="" class="m-nav__link">
-															<i class="m-nav__link-icon flaticon-lifebuoy"></i>
-															<span class="m-nav__link-text">
-																Support
-															</span>
-														</a>
-													</li>
-													<li class="m-nav__separator m-nav__separator--fit"></li>
-													<li class="m-nav__item">
-														<a href="#" class="btn btn-outline-danger m-btn m-btn--pill m-btn--wide btn-sm">
-															Submit
-														</a>
-													</li>
-												</ul>
+														</li>
+														<li class="m-nav__item">
+															<a href="" class="m-nav__link">
+																<i class="m-nav__link-icon flaticon-share"></i>
+																<span class="m-nav__link-text">
+																	Activity
+																</span>
+															</a>
+														</li>
+														<li class="m-nav__item">
+															<a href="" class="m-nav__link">
+																<i class="m-nav__link-icon flaticon-chat-1"></i>
+																<span class="m-nav__link-text">
+																	Messages
+																</span>
+															</a>
+														</li>
+														<li class="m-nav__item">
+															<a href="" class="m-nav__link">
+																<i class="m-nav__link-icon flaticon-info"></i>
+																<span class="m-nav__link-text">
+																	FAQ
+																</span>
+															</a>
+														</li>
+														<li class="m-nav__item">
+															<a href="" class="m-nav__link">
+																<i class="m-nav__link-icon flaticon-lifebuoy"></i>
+																<span class="m-nav__link-text">
+																	Support
+																</span>
+															</a>
+														</li>
+														<li class="m-nav__separator m-nav__separator--fit"></li>
+														<li class="m-nav__item">
+															<a href="#" class="btn btn-outline-danger m-btn m-btn--pill m-btn--wide btn-sm">
+																Submit
+															</a>
+														</li>
+													</ul>
+												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-						</div>
+							</div> --}}
 					</div>
 				</div>
 				<!-- END: Subheader -->
@@ -917,7 +911,7 @@ License: You must have a valid license purchased only from themeforest(the above
 										</div>
 										<div class="m-card-profile__pic">
 											<div class="m-card-profile__pic-wrapper">
-												<img src="assets/app/media/img/users/user4.jpg" alt="" />
+												<img src="{{ url('/data_file/'.$isCompleted->foto) }}" alt="" />
 											</div>
 										</div>
 										<div class="m-card-profile__details">
@@ -937,219 +931,396 @@ License: You must have a valid license purchased only from themeforest(the above
 											</span>
 										</li>
 										<li class="m-nav__item">
-											<a href="header/profile&amp;demo=default.html" class="m-nav__link">
+											<a href="myProfile" class="m-nav__link">
 												<i class="m-nav__link-icon flaticon-profile-1"></i>
 												<span class="m-nav__link-title">
 													<span class="m-nav__link-wrap">
 														<span class="m-nav__link-text">
-															My Profile
+															Lihat Profil Saya
 														</span>
-														<span class="m-nav__link-badge">
-															<span class="m-badge m-badge--success">
-																2
-															</span>
-														</span>
+														{{-- <span class="m-nav__link-badge">
+																<span class="m-badge m-badge--success">
+																	2
+																</span>
+															</span> --}}
 													</span>
 												</span>
 											</a>
 										</li>
 										<li class="m-nav__item">
-											<a href="header/profile&amp;demo=default.html" class="m-nav__link">
-												<i class="m-nav__link-icon flaticon-share"></i>
-												<span class="m-nav__link-text">
-													Activity
+											<a href="profile" class="m-nav__link">
+												<i class="m-nav__link-icon flaticon-edit"></i>
+												<span class="m-nav__link-title">
+													<span class="m-nav__link-wrap">
+														<span class="m-nav__link-text">
+															Edit Profil Saya
+														</span>
+														{{-- <span class="m-nav__link-badge">
+																<span class="m-badge m-badge--success">
+																	2
+																</span>
+															</span> --}}
+													</span>
 												</span>
 											</a>
 										</li>
-										<li class="m-nav__item">
-											<a href="header/profile&amp;demo=default.html" class="m-nav__link">
-												<i class="m-nav__link-icon flaticon-chat-1"></i>
-												<span class="m-nav__link-text">
-													Messages
-												</span>
-											</a>
-										</li>
-										<li class="m-nav__item">
-											<a href="header/profile&amp;demo=default.html" class="m-nav__link">
-												<i class="m-nav__link-icon flaticon-graphic-2"></i>
-												<span class="m-nav__link-text">
-													Sales
-												</span>
-											</a>
-										</li>
-										<li class="m-nav__item">
-											<a href="header/profile&amp;demo=default.html" class="m-nav__link">
-												<i class="m-nav__link-icon flaticon-time-3"></i>
-												<span class="m-nav__link-text">
-													Events
-												</span>
-											</a>
-										</li>
-										<li class="m-nav__item">
-											<a href="header/profile&amp;demo=default.html" class="m-nav__link">
-												<i class="m-nav__link-icon flaticon-lifebuoy"></i>
-												<span class="m-nav__link-text">
-													Support
-												</span>
-											</a>
-										</li>
+										{{-- <li class="m-nav__item">
+												<a href="header/profile&amp;demo=default.html" class="m-nav__link">
+													<i class="m-nav__link-icon flaticon-share"></i>
+													<span class="m-nav__link-text">
+														Activity
+													</span>
+												</a>
+											</li>
+											<li class="m-nav__item">
+												<a href="header/profile&amp;demo=default.html" class="m-nav__link">
+													<i class="m-nav__link-icon flaticon-chat-1"></i>
+													<span class="m-nav__link-text">
+														Messages
+													</span>
+												</a>
+											</li>
+											<li class="m-nav__item">
+												<a href="header/profile&amp;demo=default.html" class="m-nav__link">
+													<i class="m-nav__link-icon flaticon-graphic-2"></i>
+													<span class="m-nav__link-text">
+														Sales
+													</span>
+												</a>
+											</li>
+											<li class="m-nav__item">
+												<a href="header/profile&amp;demo=default.html" class="m-nav__link">
+													<i class="m-nav__link-icon flaticon-time-3"></i>
+													<span class="m-nav__link-text">
+														Events
+													</span>
+												</a>
+											</li>
+											<li class="m-nav__item">
+												<a href="header/profile&amp;demo=default.html" class="m-nav__link">
+													<i class="m-nav__link-icon flaticon-lifebuoy"></i>
+													<span class="m-nav__link-text">
+														Support
+													</span>
+												</a>
+											</li> --}}
 									</ul>
 									<div class="m-portlet__body-separator"></div>
-									<div class="m-widget1 m-widget1--paddingless">
-										<div class="m-widget1__item">
-											<div class="row m-row--no-padding align-items-center">
-												<div class="col">
-													<h3 class="m-widget1__title">
-														Member Profit
-													</h3>
-													<span class="m-widget1__desc">
-														Awerage Weekly Profit
-													</span>
-												</div>
-												<div class="col m--align-right">
-													<span class="m-widget1__number m--font-brand">
-														+$17,800
-													</span>
-												</div>
-											</div>
-										</div>
-										<div class="m-widget1__item">
-											<div class="row m-row--no-padding align-items-center">
-												<div class="col">
-													<h3 class="m-widget1__title">
-														Orders
-													</h3>
-													<span class="m-widget1__desc">
-														Weekly Customer Orders
-													</span>
-												</div>
-												<div class="col m--align-right">
-													<span class="m-widget1__number m--font-danger">
-														+1,800
-													</span>
+									{{-- <div class="m-widget1 m-widget1--paddingless">
+											<div class="m-widget1__item">
+												<div class="row m-row--no-padding align-items-center">
+													<div class="col">
+														<h3 class="m-widget1__title">
+															Member Profit
+														</h3>
+														<span class="m-widget1__desc">
+															Awerage Weekly Profit
+														</span>
+													</div>
+													<div class="col m--align-right">
+														<span class="m-widget1__number m--font-brand">
+															+$17,800
+														</span>
+													</div>
 												</div>
 											</div>
-										</div>
-										<div class="m-widget1__item">
-											<div class="row m-row--no-padding align-items-center">
-												<div class="col">
-													<h3 class="m-widget1__title">
-														Issue Reports
-													</h3>
-													<span class="m-widget1__desc">
-														System bugs and issues
-													</span>
-												</div>
-												<div class="col m--align-right">
-													<span class="m-widget1__number m--font-success">
-														-27,49%
-													</span>
+											<div class="m-widget1__item">
+												<div class="row m-row--no-padding align-items-center">
+													<div class="col">
+														<h3 class="m-widget1__title">
+															Orders
+														</h3>
+														<span class="m-widget1__desc">
+															Weekly Customer Orders
+														</span>
+													</div>
+													<div class="col m--align-right">
+														<span class="m-widget1__number m--font-danger">
+															+1,800
+														</span>
+													</div>
 												</div>
 											</div>
-										</div>
-									</div>
+											<div class="m-widget1__item">
+												<div class="row m-row--no-padding align-items-center">
+													<div class="col">
+														<h3 class="m-widget1__title">
+															Issue Reports
+														</h3>
+														<span class="m-widget1__desc">
+															System bugs and issues
+														</span>
+													</div>
+													<div class="col m--align-right">
+														<span class="m-widget1__number m--font-success">
+															-27,49%
+														</span>
+													</div>
+												</div>
+											</div>
+										</div> --}}
 								</div>
 							</div>
 						</div>
-                        <div class="col-xl-9 col-lg-8">
-							<div class="m-portlet m-portlet--full-height m-portlet--tabs">
-							
-								<div class="tab-content">
-									<div class="tab-pane active" id="m_user_profile_tab_1">
-                                    
-                                    
- <!--begin:: Widgets/Company Summary-->
-<div class="m-portlet m-portlet--full-height ">
-									<div class="m-portlet__head">
-                                    <div class="m-portlet__head-title">
-												<h3 class="m-portlet__head-text">
-													Company Summary
-												</h3>
+						<div class="col-xl-9 col-lg-8">
+							<div class="m-portlet m-portlet--full-height m-portlet--tabs  ">
+								{{-- <div class="m-portlet__head">
+										<div class="m-portlet__head-tools">
+											<ul class="nav nav-tabs m-tabs m-tabs-line   m-tabs-line--left m-tabs-line--primary" role="tablist">
+												<li class="nav-item m-tabs__item">
+													<a class="nav-link m-tabs__link active" data-toggle="tab" href="#m_user_profile_tab_1" role="tab">
+														<i class="flaticon-share m--hide"></i>
+														Update Profile
+													</a>
+												</li>
+												<li class="nav-item m-tabs__item">
+													<a class="nav-link m-tabs__link" data-toggle="tab" href="#m_user_profile_tab_2" role="tab">
+														Messages
+													</a>
+												</li>
+												<li class="nav-item m-tabs__item">
+													<a class="nav-link m-tabs__link" data-toggle="tab" href="#m_user_profile_tab_3" role="tab">
+														Settings
+													</a>
+												</li>
+											</ul>
+										</div>
+										<div class="m-portlet__head-tools">
+											<ul class="m-portlet__nav">
+												<li class="m-portlet__nav-item m-portlet__nav-item--last">
+													<div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover" aria-expanded="true">
+														<a href="#" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle">
+															<i class="la la-gear"></i>
+														</a>
+														<div class="m-dropdown__wrapper">
+															<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
+															<div class="m-dropdown__inner">
+																<div class="m-dropdown__body">
+																	<div class="m-dropdown__content">
+																		<ul class="m-nav">
+																			<li class="m-nav__section m-nav__section--first">
+																				<span class="m-nav__section-text">
+																					Quick Actions
+																				</span>
+																			</li>
+																			<li class="m-nav__item">
+																				<a href="" class="m-nav__link">
+																					<i class="m-nav__link-icon flaticon-share"></i>
+																					<span class="m-nav__link-text">
+																						Create Post
+																					</span>
+																				</a>
+																			</li>
+																			<li class="m-nav__item">
+																				<a href="" class="m-nav__link">
+																					<i class="m-nav__link-icon flaticon-chat-1"></i>
+																					<span class="m-nav__link-text">
+																						Send Messages
+																					</span>
+																				</a>
+																			</li>
+																			<li class="m-nav__item">
+																				<a href="" class="m-nav__link">
+																					<i class="m-nav__link-icon flaticon-multimedia-2"></i>
+																					<span class="m-nav__link-text">
+																						Upload File
+																					</span>
+																				</a>
+																			</li>
+																			<li class="m-nav__section">
+																				<span class="m-nav__section-text">
+																					Useful Links
+																				</span>
+																			</li>
+																			<li class="m-nav__item">
+																				<a href="" class="m-nav__link">
+																					<i class="m-nav__link-icon flaticon-info"></i>
+																					<span class="m-nav__link-text">
+																						FAQ
+																					</span>
+																				</a>
+																			</li>
+																			<li class="m-nav__item">
+																				<a href="" class="m-nav__link">
+																					<i class="m-nav__link-icon flaticon-lifebuoy"></i>
+																					<span class="m-nav__link-text">
+																						Support
+																					</span>
+																				</a>
+																			</li>
+																			<li class="m-nav__separator m-nav__separator--fit m--hide"></li>
+																			<li class="m-nav__item m--hide">
+																				<a href="#" class="btn btn-outline-danger m-btn m-btn--pill m-btn--wide btn-sm">
+																					Submit
+																				</a>
+																			</li>
+																		</ul>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</li>
+											</ul>
+										</div>
+									</div> --}}
+									<div class="tab-content">
+									<div class="tab-pane active">
+										<div class="m-portlet m-portlet--full-height ">
+											<div class="m-portlet__head">
+												<div class="m-portlet__head-caption">
+													<div class="m-portlet__head-title">
+														<h3 class="m-portlet__head-text">
+															Profil Saya
+														</h3>
+													</div>
+												</div>
+												<div class="m-portlet__head-tools">
+												</div>
 											</div>
-										
-									</div>
-									<div class="m-portlet__body">
-										<div class="m-widget13">
-											<div class="m-widget13__item">
-												<span class="m-widget13__desc m--align-right">
-													Username
-												</span>
-												<span class="m-widget13__text m-widget13__text-bolder">
-                                                {{ Auth::user()->username }}
-												</span>
-											</div>
-											<div class="m-widget13__item">
-												<span class="m-widget13__desc m--align-right">
-													Nama Depan
-												</span>
-												<span class="m-widget13__text m-widget13__text-bolder">
-                                                {{ Auth::user()->nm_depan }}
-												</span>
-											</div>
-											<div class="m-widget13__item">
-												<span class="m-widget13__desc m--align-right">
-													Nama Belakang
-												</span>
-												<span class="m-widget13__text">
-                                                {{ Auth::user()->nm_belakang }}
-												</span>
-											</div>
-											<div class="m-widget13__item">
-												<span class="m-widget13__desc m--align-right">
-													Jenis Kelamin
-												</span>
-												<span class="m-widget13__text m-widget13__text-bolder">
-                                                {{ Auth::user()->gender}}
-												</span>
-											</div>
-											<div class="m-widget13__item">
-												<span class="m-widget13__desc m--align-right">
-													Alamat
-												</span>
-												<span class="m-widget13__text">
-                                                {{ Auth::user()->alamat }}
-												</span>
-											</div>
-											<div class="m-widget13__item">
-												<span class="m-widget13__desc m--align-right">
-													Phone:
-												</span>
-												<span class="m-widget13__text m-widget13__number-bolder m--font-brand">
-													(0) 123 456 78 90
-												</span>
-											</div>
-											<div class="m-widget13__action m--align-right">
-												<button type="button" class="m-widget__detalis  btn m-btn--pill  btn-accent">
-													Detalis
-												</button>
-												<button type="button" class="btn m-btn--pill  href  btn-secondary">
-                                                    <a href="editProfile">
-                                                    Update
-                                                    </a>
-												</button>
+											<div class="m-portlet__body">
+												<div class="m-widget13">
+													<div class="m-widget13__item">
+														<span class="m-widget13__desc m--align-right">
+															Username :
+														</span>
+														<span class="m-widget13__text m-widget13__text-bolder">
+														{{ Auth::user()->username }}
+														</span>
+													</div>
+													<div class="m-widget13__item">
+														<span class="m-widget13__desc m--align-right">
+															Alamat Email :
+														</span>
+														<span class="m-widget13__text m-widget13__text-bolder">
+														{{ Auth::user()->email }}
+														</span>
+													</div>
+													<div class="m-widget13__item">
+														<span class="m-widget13__desc m--align-right">
+															Nama Depan :
+														</span>
+														<span class="m-widget13__text m-widget13__text-bolder">
+														{{ Auth::user()->nm_depan }}
+														</span>
+													</div>
+													<div class="m-widget13__item">
+														<span class="m-widget13__desc m--align-right">
+															Nama Belakang :
+														</span>
+														<span class="m-widget13__text m-widget13__text-bolder">
+														{{ Auth::user()->nm_belakang }}
+														</span>
+													</div>
+													<div class="m-widget13__item">
+														<span class="m-widget13__desc m--align-right">
+															Jenis Kelamin :
+														</span>
+														<span class="m-widget13__text m-widget13__text-bolder">
+															{{ Auth::user()->gender }}
+														</span>
+													</div>
+													<div class="m-widget13__item">
+														<span class="m-widget13__desc m--align-right">
+															Alamat :
+														</span>
+														<span class="m-widget13__text m-widget13__text-bolder">
+															{{  Auth::user()->alamat }}
+														</span>
+													</div>
+													<div class="m-widget13__item">
+														<span class="m-widget13__desc m--align-right">
+															Nomor Telepon :
+														</span>
+														<span class="m-widget13__text m-widget13__text-bolder">
+														{{  Auth::user()->noTlpn }}
+														</span>
+													</div>
+													
+											
+													<!-- <div class="m-widget13__action m--align-right">
+														<button type="button" class="m-widget__detalis  btn m-btn--pill  btn-accent">
+															Detalis
+														</button>
+														<button type="button" class="btn m-btn--pill    btn-secondary">
+															Update
+														</button>
+													</div> -->
+												</div>
 											</div>
 										</div>
 									</div>
+									{{-- <div class="tab-pane active" id="m_user_profile_tab_2"></div>
+										<div class="tab-pane active" id="m_user_profile_tab_3"></div> --}}
+									
 								</div>
-                                <!--end:: Widgets/Company Summary-->
-                                
-                            </div>
-                            
-                            
+								
+									
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<!-- end:: Body -->
-	<!-- end:: Page -->
-
-
-									</div>
-									<div class="tab-pane active" id="m_user_profile_tab_2"></div>
-									<div class="tab-pane active" id="m_user_profile_tab_3"></div>
-								</div>
-							</div>
-						</div>
+		<!-- begin::Footer -->
+		<!-- <footer class="m-grid__item		m-footer ">
+			<div class="m-container m-container--fluid m-container--full-height m-page__container">
+				<div class="m-stack m-stack--flex-tablet-and-mobile m-stack--ver m-stack--desktop">
+					<div class="m-stack__item m-stack__item--left m-stack__item--middle m-stack__item--last">
+						<span class="m-footer__copyright">
+							2017 &copy; Metronic theme by
+							<a href="#" class="m-link">
+								Keenthemes
+							</a>
+						</span>
+					</div>
+					<div class="m-stack__item m-stack__item--right m-stack__item--middle m-stack__item--first">
+						<ul class="m-footer__nav m-nav m-nav--inline m--pull-right">
+							<li class="m-nav__item">
+								<a href="#" class="m-nav__link">
+									<span class="m-nav__link-text">
+										About
+									</span>
+								</a>
+							</li>
+							<li class="m-nav__item">
+								<a href="#" class="m-nav__link">
+									<span class="m-nav__link-text">
+										Privacy
+									</span>
+								</a>
+							</li>
+							<li class="m-nav__item">
+								<a href="#" class="m-nav__link">
+									<span class="m-nav__link-text">
+										T&C
+									</span>
+								</a>
+							</li>
+							<li class="m-nav__item">
+								<a href="#" class="m-nav__link">
+									<span class="m-nav__link-text">
+										Purchase
+									</span>
+								</a>
+							</li>
+							<li class="m-nav__item m-nav__item">
+								<a href="#" class="m-nav__link" data-toggle="m-tooltip" title="Support Center" data-placement="left">
+									<i class="m-nav__link-icon flaticon-info m--icon-font-size-lg3"></i>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</footer> -->
+		<!-- end::Footer -->
+	</div>
+			
+		<!-- end:: Page -->							
+							
 	<!-- begin::Quick Sidebar -->
 	<div id="m_quick_sidebar" class="m-quick-sidebar m-quick-sidebar--tabbed m-quick-sidebar--skin-light">
 		<div class="m-quick-sidebar__content m--hide">
