@@ -847,7 +847,7 @@
 				</div>
 				<!-- END: Left Aside -->
 				<div class="m-grid__item m-grid__item--fluid m-wrapper">
-						@if ($isCompleted->statusKomplit!==4)
+						@if (DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->value('statusKomplit')!==4)
 						<div class="m-alert m-alert--icon alert alert-primary" role="alert">
 							<div class="m-alert__icon">
 								<i class="la la-warning"></i>
@@ -1633,13 +1633,13 @@
         <!--begin::Page Snippets -->
 		<script src="assets/app/js/dashboard.js" type="text/javascript"></script>
 		<!--end::Page Snippets -->
-		@if ($isCompleted->statusKomplit!==4)
+		{{-- @if ($isCompleted->statusKomplit!==4)
 		<script type="text/javascript">
 			$(window).on('load',function(){
 				$('#m_modal_1').modal('show');
 			});
 		</script>
 	
-		@endif
+		@endif --}}
 	</body>
 </html>
