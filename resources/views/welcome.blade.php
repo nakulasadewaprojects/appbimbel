@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <title>App Bimbel</title>
     <link rel="stylesheet" href="style.css">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+	<link href="{{ asset('css/style.css') }}" rel="stylesheet">
+	<link rel="shortcut icon" href="assets/demo/demo6/media/img/logo/favicon.ico" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
