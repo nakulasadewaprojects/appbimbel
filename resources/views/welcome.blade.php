@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>App Bimbel</title>
     <link rel="stylesheet" href="style.css">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
