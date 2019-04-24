@@ -75,7 +75,7 @@ class HomeController extends Controller
          $Tbmentor->nm_belakang=$request['NamaBelakang'];
          $Tbmentor->gender=$request['gender'];
          $Tbmentor->noTlpn=$request['noTlpn'];
-         $Tbmentor ->save();
+         $Tbmentor->save();
 
         //  $this->validate($request, [
         // 	'foto' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
