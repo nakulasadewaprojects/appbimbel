@@ -889,6 +889,77 @@
         <!--begin::Page Snippets -->
 		<script src="assets/app/js/dashboard.js" type="text/javascript"></script>
 		<!--end::Page Snippets -->
+		<script>
+			if ({
+					{
+						session() - > has('message')
+					}
+				}) {
+				toastr.options = {
+					"closeButton": true,
+					"debug": false,
+					"newestOnTop": false,
+					"progressBar": false,
+					"positionClass": "toast-top-center",
+					"preventDuplicates": true,
+					"onclick": null,
+					"showDuration": "300",
+					"hideDuration": "1000",
+					"timeOut": "5000",
+					"extendedTimeOut": "1000",
+					"showEasing": "swing",
+					"hideEasing": "linear",
+					"showMethod": "fadeIn",
+					"hideMethod": "fadeOut"
+				};
+	
+				toastr.success("Profil Anda telah diperbarui", "Sukses");
+			}
+		</script>
+	
+		<script>
+			if ({
+					{
+						Auth::user() - > gender
+					}
+				} == 1) {
+				document.getElementById("male").checked = true;
+			} else {
+				document.getElementById("female").checked = true;
+			}
+		</script>
+		<script>
+			if({{session()->has('message')}}){
+				toastr.options = {
+		"closeButton": true,
+		"debug": false,
+		"newestOnTop": false,
+		"progressBar": false,
+		"positionClass": "toast-top-center",
+		"preventDuplicates": true,
+		"onclick": null,
+		"showDuration": "300",
+		"hideDuration": "1000",
+		"timeOut": "5000",
+		"extendedTimeOut": "1000",
+		"showEasing": "swing",
+		"hideEasing": "linear",
+		"showMethod": "fadeIn",
+		"hideMethod": "fadeOut"
+	};
+	
+	toastr.success("Profil Anda telah diperbarui", "Sukses");
+			}
+	
+			</script>
+	
+			<script>
+			if({{ Auth::user()->gender }}==1){
+				document.getElementById("male").checked = true;
+			}else{
+				document.getElementById("female").checked = true;
+			}
+			</script>
 
 </body>
 </html>
