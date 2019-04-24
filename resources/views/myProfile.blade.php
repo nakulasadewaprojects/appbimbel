@@ -911,7 +911,7 @@ License: You must have a valid license purchased only from themeforest(the above
 										</div>
 										<div class="m-card-profile__pic">
 											<div class="m-card-profile__pic-wrapper">
-												<img src="{{ url('/data_file/'.$isCompleted->foto) }}" alt="" />
+												<img src="{{ url('/data_file/'.$isCompleted->foto) }}" width="100px" height="100px" alt="" />
 											</div>
 										</div>
 										<div class="m-card-profile__details">
