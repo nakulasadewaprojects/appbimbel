@@ -1217,7 +1217,11 @@ License: You must have a valid license purchased only from themeforest(the above
 															Jenis Kelamin :
 														</span>
 														<span class="m-widget13__text m-widget13__text-bolder">
-															{{ Auth::user()->gender }}
+														@if($m->gender!=2) 
+														laki laki
+														@else
+														perempuan
+														@endif
 														</span>
 													</div>
 													<div class="m-widget13__item">

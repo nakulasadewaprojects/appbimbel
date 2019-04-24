@@ -43,8 +43,10 @@ class HomeController extends Controller
     }
     public function myprofile()
     {
+        $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
         $show = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
-        return view('myProfile',['isCompleted'=>$show]);
+        return view('myProfile',['isCompleted'=>$show,'m'=>$mentor]);
+        
     }
     public function profile()
     {
