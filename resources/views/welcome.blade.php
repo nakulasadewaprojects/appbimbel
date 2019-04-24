@@ -31,7 +31,7 @@
       <a href="{{ url('siswa/login') }}">Saya Siswa</a> @endif
       <br><br><br>
       <audio controls>
-        <source src="http://live.mp3quran.net:8010/;">
+        <source src="https://server8.mp3quran.net/afs_dori/014.mp3" type="audio/mpeg">
         </audio>
         <p>Jangan lupa ngaji ya :)</p>
     </div>
