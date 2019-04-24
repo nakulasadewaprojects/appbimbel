@@ -72,6 +72,11 @@ class HomeSiswaController extends Controller
         return view('myprofilesiswa' , ['ProfilSiswa' => $showing]);
 
     }
+    public function calendarsiswa(){
+       
+        return view('calendarsiswa');
+
+    }
 
     public function update($idtbSiswa, Request $request)
     {
