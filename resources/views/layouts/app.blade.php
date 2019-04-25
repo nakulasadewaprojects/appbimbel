@@ -9,7 +9,13 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>
+        @if(Route::current()->getName()==='login') {{ __('messages.mentor_masuk') }} 
+        @elseif(Route::current()->getName()==='register') {{ __('messages.mentor_daftar') }} 
+        @elseif(Route::current()->getName()==='registersiswa') {{ __('messages.siswa_daftar') }} 
+        @elseif(Route::current()->getName()==='loginsiswa') {{ __('messages.siswa_masuk') }} 
+        @endif
+    </title>
 
     <!--
     <meta name="description" content="Latest updates and statistic charts">
@@ -19,8 +25,8 @@
 
     <!--begin::Base Styles -->
     <script src="{{ asset('js/app.js') }}" type="text/javascript" defer></script>
-    {{-- <script src="{{ asset('js/scripts.bundle.js')}}" type="text/javascript" defer></script>
-    <script src="{{ asset('js/vendors.bundle.js') }}" type="text/javascript" defer></script> --}}
+    <script src="{{ asset('js/scripts.bundle.js')}}" type="text/javascript" defer></script>
+    <script src="{{ asset('js/vendors.bundle.js') }}" type="text/javascript" defer></script>
 
 
     <!--begin::Web font -->

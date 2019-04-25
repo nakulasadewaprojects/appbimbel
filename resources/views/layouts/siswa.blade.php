@@ -1,16 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" >
-	<!-- begin::Head -->
-	<head>
-		<meta charset="utf-8" />
-		<title>
-			App Bimbel
-		</title>
-		<meta name="description" content="Latest updates and statistic charts">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<!--begin::Web font -->
-		<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+	<meta charset="utf-8" />    
+    <meta name="description" content="Latest updates and statistic charts">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
 		<script>
           WebFont.load({
             google: {"families":["Poppins:300,400,500,600,700","Roboto:300,400,500,600,700"]},
@@ -19,19 +15,17 @@
             }
           });
 		</script>
-		<!--end::Web font -->
-        <!--begin::Base Styles -->  
-        <!--begin::Page Vendors -->
-		<link href="assets/vendors/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+
+    <title>Document</title>
+
+    <link href="assets/vendors/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
 		<!--end::Page Vendors -->
 		<link href="assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
 		<link href="assets/demo/demo6/base/style.bundle.css" rel="stylesheet" type="text/css" />
 		<!--end::Base Styles -->
 		<link rel="shortcut icon" href="assets/demo/demo6/media/img/logo/favicon.ico" />
-	</head>
-	<!-- end::Head -->
-    <!-- end::Body -->
-	<body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-light m-aside-left--fixed m-aside-left--offcanvas m-aside-left--minimize m-brand--minimize m-footer--push m-aside--offcanvas-default"  >
+</head>
+<body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-light m-aside-left--fixed m-aside-left--offcanvas m-aside-left--minimize m-brand--minimize m-footer--push m-aside--offcanvas-default"  >
 		<!-- begin:: Page -->
 		<div class="m-grid m-grid--hor m-grid--root m-page">
 			<!-- BEGIN: Header -->
@@ -42,7 +36,7 @@
 						<div class="m-stack__item m-brand  m-brand--skin-light ">
 							<div class="m-stack m-stack--ver m-stack--general">
 								<div class="m-stack__item m-stack__item--middle m-brand__logo">
-									<a href="dashboard" class="m-brand__logo-wrapper">
+									<a href="dashboardsiswa" class="m-brand__logo-wrapper">
 										<img alt="" src="assets/demo/demo6/media/img/logo/logo.png"/>
 									</a>
 								</div>
@@ -69,7 +63,7 @@
 						<div class="m-stack__item m-stack__item--fluid m-header-head" id="m_header_nav">
 							<div class="m-header__title">
 								<h3 class="m-header__title-text">
-									Mentor Dashboard
+									Siswa Dashboard
 								</h3>
 							</div>
 							<!-- BEGIN: Horizontal Menu -->
@@ -83,7 +77,7 @@
 								</div>
 								<div class="m-stack__item m-topbar__nav-wrapper">
 									<ul class="m-topbar__nav m-nav m-nav--inline">
-										<li class="m-nav__item m-topbar__notifications m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-center 	m-dropdown--mobile-full-width" data-dropdown-toggle="click" data-dropdown-persistent="true">
+										<li class="m-nav__item m-topbar__notifications m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-right 	m-dropdown--mobile-full-width" data-dropdown-toggle="click">
 											<a href="#" class="m-nav__link m-dropdown__toggle" id="m_topbar_notification_icon">
 												<span class="m-nav__link-badge m-badge m-badge--dot m-badge--dot-small m-badge--danger"></span>
 												<span class="m-nav__link-icon">
@@ -93,7 +87,7 @@
 												</span>
 											</a>
 											<div class="m-dropdown__wrapper">
-												<span class="m-dropdown__arrow m-dropdown__arrow--center"></span>
+												<span class="m-dropdown__arrow m-dropdown__arrow--right"></span>
 												<div class="m-dropdown__inner">
 													<div class="m-dropdown__header m--align-center">
 														<span class="m-dropdown__header-title">
@@ -397,7 +391,7 @@
 																	</span>
 																</li>
 																<li class="m-nav__item">
-																	<a href="myProfile" class="m-nav__link">
+																	<a href="myprofilesiswa" class="m-nav__link">
 																		<i class="m-nav__link-icon flaticon-profile-1"></i>
 																		<span class="m-nav__link-title">
 																			<span class="m-nav__link-wrap">
@@ -418,12 +412,12 @@
 																</li>
 																<li class="m-nav__separator m-nav__separator--fit"></li>
 																<li class="m-nav__item">
-																	<a href="{{ route('logout') }}" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder"
+																	<a href="{{ route('logoutsiswa') }}" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder"
 																	onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
 																		Logout
 																	</a>
-																	<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+																	<form id="logout-form" action="{{ route('logoutsiswa') }}" method="POST" style="display: none;">
 																			@csrf
 																		</form>
 																</li>
@@ -433,15 +427,7 @@
 												</div>
 											</div>
 										</li>
-										<li id="m_quick_sidebar_toggle" class="m-nav__item">
-											<a href="#" class="m-nav__link m-dropdown__toggle">
-												<span class="m-nav__link-icon m-nav__link-icon-alt">
-													<span class="m-nav__link-icon-wrapper">
-														<i class="flaticon-grid-menu"></i>
-													</span>
-												</span>
-											</a>
-										</li>
+										
 									</ul>
 								</div>
 							</div>
@@ -477,43 +463,28 @@
 								<div class="m-menu__submenu">
 									<span class="m-menu__arrow"></span>
 									<ul class="m-menu__subnav">
-										<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true" >
-											<a  href="#" class="m-menu__link ">
-												<span class="m-menu__link-text">
-													Resources
-												</span>
-											</a>
-										</li>
+										
 										<li class="m-menu__item " aria-haspopup="true"  data-redirect="true">
-											<a  href="inner.html" class="m-menu__link ">
+											<a  href="calendarsiswa" class="m-menu__link ">
 												<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 													<span></span>
 												</i>
 												<span class="m-menu__link-text">
-													Timesheet
+													Lihat Jadwal Saya
 												</span>
 											</a>
 										</li>
 										<li class="m-menu__item " aria-haspopup="true"  data-redirect="true">
-											<a  href="inner.html" class="m-menu__link ">
+											<a  href="dashboardsiswa" class="m-menu__link ">
 												<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 													<span></span>
 												</i>
 												<span class="m-menu__link-text">
-													Payroll
+												Cari Mentor
 												</span>
 											</a>
 										</li>
-										<li class="m-menu__item " aria-haspopup="true"  data-redirect="true">
-											<a  href="inner.html" class="m-menu__link ">
-												<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-													<span></span>
-												</i>
-												<span class="m-menu__link-text">
-													Contacts
-												</span>
-											</a>
-										</li>
+										
 									</ul>
 								</div>
 							</li>
@@ -845,140 +816,8 @@
 					</div>
 					<!-- END: Aside Menu -->
 				</div>
-				<!-- END: Left Aside -->
-				<div class="m-grid__item m-grid__item--fluid m-wrapper">
-				@if (DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->value('statKomplit')!==6)
-						<div class="m-alert m-alert--icon alert alert-primary" role="alert">
-							<div class="m-alert__icon">
-								<i class="la la-warning"></i>
-							</div>
-							<div class="m-alert__text">
-								<strong>
-									Luar biasa!
-								</strong>
-								Silakan lengkapi profil Anda agar dapat mesen mentor.								
-							</div>
-							<div class="m-alert__actions" style="width: 160px;">
-								<a class="btn btn-warning btn-sm m-btn m-btn--pill m-btn--wide" href="profile">Lengkapi Sekarang</a>
-							</div>
-						</div>
-						@endif
-					<div class="m-subheader-search">
-						<h2 class="m-subheader-search__title">
-							Cari Jadwal Mengajar
-						</h2>
-						<form class="m-form">
-							<div class="m-input-icon m-input-icon--fixed m-input-icon--fixed-large m-input-icon--right">
-								<input type="text" class="form-control form-control-lg m-input m-input--pill" placeholder="Cari Jadwal">
-								<span class="m-input-icon__icon m-input-icon__icon--right">
-									<span>
-										<i class="la la-puzzle-piece"></i>
-									</span>
-								</span>
-							</div>
-							<div class="m-input-icon m-input-icon--fixed m-input-icon--fixed-md m-input-icon--right">
-								<input type="text" class="form-control form-control-lg m-input m-input--pill" placeholder="Waktu">
-								<span class="m-input-icon__icon m-input-icon__icon--right">
-									<span>
-										<i class="la la-calendar-check-o"></i>
-									</span>
-								</span>
-							</div>
-							<div class="m--margin-top-20 m--visible-tablet-and-mobile"></div>
-							<button type="button" class="btn m-btn--pill m-subheader-search__submit-btn">
-								Cari Jadwal
-							</button>
-						</form>
-					</div>
-					<div class="m-content">
-<!--Begin::Main Portlet-->
-						<div class="row">
-							<div class="col-xl-12">
-								<!--begin::Portlet-->
-							
-								<!--end::Portlet-->
-								<!-- <div class="modal hide fade" id="m_modal_1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-									<div class="modal-dialog" role="document">
-										<div class="modal-content">
-											<div class="modal-header">
-												<h5 class="modal-title"  id="exampleModalLabel">
-													Kelengkapan Data Mentor
-												</h5>
-												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-													<span aria-hidden="true">
-														&times;
-													</span>
-												</button>
-											</div>
-											<div class="modal-body">
-												
-												<b>Segera lengkapi data Anda! </b> <br><br>
-												Pendidikan terakhir: @if($isCompleted->pendidikanTerakhir==NULL) Belum terisi @else Sudah terisi @endif  <br>
-												Status pendidikan:  @if($isCompleted->statusPendidikan==NULL) Belum terisi @else Sudah terisi @endif<br>
-												Foto: @if($isCompleted->foto==NULL) Belum terisi @else Sudah terisi @endif<br>
-												Nomor Identitas: @if($isCompleted->No_Identitas==NULL) Belum terisi @else Sudah terisi @endif<br>
-												File KTP: @if($isCompleted->fileKTP==NULL) Belum terisi @else Sudah terisi @endif<br>
-												File Ijazah: @if($isCompleted->fileIjazah==NULL) Belum terisi @else Sudah terisi @endif<br>
-												
-
-												
-											</div>
-											<div class="modal-footer">
-												<button type="button" class="btn btn-secondary" data-dismiss="modal">
-													Nanti Saja
-												</button>
-												<button class="btn btn-primary"onclick="window.location.href = 'profile';">Lengkapi Data Sekarang</button>
-											</div>
-										</div>
-									</div>
-								</div> -->
-							</div>
-						</div>
-					
-						<div class="row">
-							<div class="col-xl-12">
-								<!--begin::Portlet-->
-								<div class="m-portlet" id="m_portlet">
-									<div class="m-portlet__head">
-										<div class="m-portlet__head-caption">
-											<div class="m-portlet__head-title">
-												<span class="m-portlet__head-icon">
-													<i class="flaticon-map-location"></i>
-												</span>
-												<h3 class="m-portlet__head-text">
-													Calendar
-												</h3>
-											</div>
-										</div>
-										<div class="m-portlet__head-tools">
-											<ul class="m-portlet__nav">
-												<li class="m-portlet__nav-item">
-													<a href="#" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
-														<span>
-															<i class="la la-plus"></i>
-															<span>
-																Add Event
-															</span>
-														</span>
-													</a>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<div class="m-portlet__body">
-										<div id="m_calendar"></div>
-									</div>
-								</div>
-								<!--end::Portlet-->
-							</div>
-						</div>
-						<!--End::Main Portlet-->
-					</div>
-				</div>
-			</div>
-			<!-- end:: Body -->
-<!-- begin::Footer -->
-			<footer class="m-grid__item		m-footer ">
+        @yield('content')
+        <footer class="m-grid__item		m-footer ">
 				<div class="m-container m-container--fluid m-container--full-height m-page__container">
 					<div class="m-stack m-stack--flex-tablet-and-mobile m-stack--ver m-stack--desktop">
 						<div class="m-stack__item m-stack__item--left m-stack__item--middle m-stack__item--last">
@@ -1033,587 +872,7 @@
 		</div>
 		<!-- end:: Page -->
     		        <!-- begin::Quick Sidebar -->
-		<div id="m_quick_sidebar" class="m-quick-sidebar m-quick-sidebar--tabbed m-quick-sidebar--skin-light">
-			<div class="m-quick-sidebar__content m--hide">
-				<span id="m_quick_sidebar_close" class="m-quick-sidebar__close">
-					<i class="la la-close"></i>
-				</span>
-				<ul id="m_quick_sidebar_tabs" class="nav nav-tabs m-tabs m-tabs-line m-tabs-line--brand" role="tablist">
-					<li class="nav-item m-tabs__item">
-						<a class="nav-link m-tabs__link active" data-toggle="tab" href="#m_quick_sidebar_tabs_messenger" role="tab">
-							Messages
-						</a>
-					</li>
-					<li class="nav-item m-tabs__item">
-						<a class="nav-link m-tabs__link" 		data-toggle="tab" href="#m_quick_sidebar_tabs_settings" role="tab">
-							Settings
-						</a>
-					</li>
-					<li class="nav-item m-tabs__item">
-						<a class="nav-link m-tabs__link" data-toggle="tab" href="#m_quick_sidebar_tabs_logs" role="tab">
-							Logs
-						</a>
-					</li>
-				</ul>
-				<div class="tab-content">
-					<div class="tab-pane active m-scrollable" id="m_quick_sidebar_tabs_messenger" role="tabpanel">
-						<div class="m-messenger m-messenger--message-arrow m-messenger--skin-light">
-							<div class="m-messenger__messages">
-								<div class="m-messenger__message m-messenger__message--in">
-									<div class="m-messenger__message-pic">
-										<img src="assets/app/media/img//users/user3.jpg" alt=""/>
-									</div>
-									<div class="m-messenger__message-body">
-										<div class="m-messenger__message-arrow"></div>
-										<div class="m-messenger__message-content">
-											<div class="m-messenger__message-username">
-												Megan wrote
-											</div>
-											<div class="m-messenger__message-text">
-												Hi Bob. What time will be the meeting ?
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="m-messenger__message m-messenger__message--out">
-									<div class="m-messenger__message-body">
-										<div class="m-messenger__message-arrow"></div>
-										<div class="m-messenger__message-content">
-											<div class="m-messenger__message-text">
-												Hi Megan. It's at 2.30PM
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="m-messenger__message m-messenger__message--in">
-									<div class="m-messenger__message-pic">
-										<img src="assets/app/media/img//users/user3.jpg" alt=""/>
-									</div>
-									<div class="m-messenger__message-body">
-										<div class="m-messenger__message-arrow"></div>
-										<div class="m-messenger__message-content">
-											<div class="m-messenger__message-username">
-												Megan wrote
-											</div>
-											<div class="m-messenger__message-text">
-												Will the development team be joining ?
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="m-messenger__message m-messenger__message--out">
-									<div class="m-messenger__message-body">
-										<div class="m-messenger__message-arrow"></div>
-										<div class="m-messenger__message-content">
-											<div class="m-messenger__message-text">
-												Yes sure. I invited them as well
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="m-messenger__datetime">
-									2:30PM
-								</div>
-								<div class="m-messenger__message m-messenger__message--in">
-									<div class="m-messenger__message-pic">
-										<img src="assets/app/media/img//users/user3.jpg"  alt=""/>
-									</div>
-									<div class="m-messenger__message-body">
-										<div class="m-messenger__message-arrow"></div>
-										<div class="m-messenger__message-content">
-											<div class="m-messenger__message-username">
-												Megan wrote
-											</div>
-											<div class="m-messenger__message-text">
-												Noted. For the Coca-Cola Mobile App project as well ?
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="m-messenger__message m-messenger__message--out">
-									<div class="m-messenger__message-body">
-										<div class="m-messenger__message-arrow"></div>
-										<div class="m-messenger__message-content">
-											<div class="m-messenger__message-text">
-												Yes, sure.
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="m-messenger__message m-messenger__message--out">
-									<div class="m-messenger__message-body">
-										<div class="m-messenger__message-arrow"></div>
-										<div class="m-messenger__message-content">
-											<div class="m-messenger__message-text">
-												Please also prepare the quotation for the Loop CRM project as well.
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="m-messenger__datetime">
-									3:15PM
-								</div>
-								<div class="m-messenger__message m-messenger__message--in">
-									<div class="m-messenger__message-no-pic m--bg-fill-danger">
-										<span>
-											M
-										</span>
-									</div>
-									<div class="m-messenger__message-body">
-										<div class="m-messenger__message-arrow"></div>
-										<div class="m-messenger__message-content">
-											<div class="m-messenger__message-username">
-												Megan wrote
-											</div>
-											<div class="m-messenger__message-text">
-												Noted. I will prepare it.
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="m-messenger__message m-messenger__message--out">
-									<div class="m-messenger__message-body">
-										<div class="m-messenger__message-arrow"></div>
-										<div class="m-messenger__message-content">
-											<div class="m-messenger__message-text">
-												Thanks Megan. I will see you later.
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="m-messenger__message m-messenger__message--in">
-									<div class="m-messenger__message-pic">
-										<img src="assets/app/media/img//users/user3.jpg"  alt=""/>
-									</div>
-									<div class="m-messenger__message-body">
-										<div class="m-messenger__message-arrow"></div>
-										<div class="m-messenger__message-content">
-											<div class="m-messenger__message-username">
-												Megan wrote
-											</div>
-											<div class="m-messenger__message-text">
-												Sure. See you in the meeting soon.
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="m-messenger__seperator"></div>
-							<div class="m-messenger__form">
-								<div class="m-messenger__form-controls">
-									<input type="text" name="" placeholder="Type here..." class="m-messenger__form-input">
-								</div>
-								<div class="m-messenger__form-tools">
-									<a href="" class="m-messenger__form-attachment">
-										<i class="la la-paperclip"></i>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="tab-pane  m-scrollable" id="m_quick_sidebar_tabs_settings" role="tabpanel">
-						<div class="m-list-settings">
-							<div class="m-list-settings__group">
-								<div class="m-list-settings__heading">
-									General Settings
-								</div>
-								<div class="m-list-settings__item">
-									<span class="m-list-settings__item-label">
-										Email Notifications
-									</span>
-									<span class="m-list-settings__item-control">
-										<span class="m-switch m-switch--outline m-switch--icon-check m-switch--brand">
-											<label>
-												<input type="checkbox" checked="checked" name="">
-												<span></span>
-											</label>
-										</span>
-									</span>
-								</div>
-								<div class="m-list-settings__item">
-									<span class="m-list-settings__item-label">
-										Site Tracking
-									</span>
-									<span class="m-list-settings__item-control">
-										<span class="m-switch m-switch--outline m-switch--icon-check m-switch--brand">
-											<label>
-												<input type="checkbox" name="">
-												<span></span>
-											</label>
-										</span>
-									</span>
-								</div>
-								<div class="m-list-settings__item">
-									<span class="m-list-settings__item-label">
-										SMS Alerts
-									</span>
-									<span class="m-list-settings__item-control">
-										<span class="m-switch m-switch--outline m-switch--icon-check m-switch--brand">
-											<label>
-												<input type="checkbox" name="">
-												<span></span>
-											</label>
-										</span>
-									</span>
-								</div>
-								<div class="m-list-settings__item">
-									<span class="m-list-settings__item-label">
-										Backup Storage
-									</span>
-									<span class="m-list-settings__item-control">
-										<span class="m-switch m-switch--outline m-switch--icon-check m-switch--brand">
-											<label>
-												<input type="checkbox" name="">
-												<span></span>
-											</label>
-										</span>
-									</span>
-								</div>
-								<div class="m-list-settings__item">
-									<span class="m-list-settings__item-label">
-										Audit Logs
-									</span>
-									<span class="m-list-settings__item-control">
-										<span class="m-switch m-switch--outline m-switch--icon-check m-switch--brand">
-											<label>
-												<input type="checkbox" checked="checked" name="">
-												<span></span>
-											</label>
-										</span>
-									</span>
-								</div>
-							</div>
-							<div class="m-list-settings__group">
-								<div class="m-list-settings__heading">
-									System Settings
-								</div>
-								<div class="m-list-settings__item">
-									<span class="m-list-settings__item-label">
-										System Logs
-									</span>
-									<span class="m-list-settings__item-control">
-										<span class="m-switch m-switch--outline m-switch--icon-check m-switch--brand">
-											<label>
-												<input type="checkbox" name="">
-												<span></span>
-											</label>
-										</span>
-									</span>
-								</div>
-								<div class="m-list-settings__item">
-									<span class="m-list-settings__item-label">
-										Error Reporting
-									</span>
-									<span class="m-list-settings__item-control">
-										<span class="m-switch m-switch--outline m-switch--icon-check m-switch--brand">
-											<label>
-												<input type="checkbox" name="">
-												<span></span>
-											</label>
-										</span>
-									</span>
-								</div>
-								<div class="m-list-settings__item">
-									<span class="m-list-settings__item-label">
-										Applications Logs
-									</span>
-									<span class="m-list-settings__item-control">
-										<span class="m-switch m-switch--outline m-switch--icon-check m-switch--brand">
-											<label>
-												<input type="checkbox" name="">
-												<span></span>
-											</label>
-										</span>
-									</span>
-								</div>
-								<div class="m-list-settings__item">
-									<span class="m-list-settings__item-label">
-										Backup Servers
-									</span>
-									<span class="m-list-settings__item-control">
-										<span class="m-switch m-switch--outline m-switch--icon-check m-switch--brand">
-											<label>
-												<input type="checkbox" checked="checked" name="">
-												<span></span>
-											</label>
-										</span>
-									</span>
-								</div>
-								<div class="m-list-settings__item">
-									<span class="m-list-settings__item-label">
-										Audit Logs
-									</span>
-									<span class="m-list-settings__item-control">
-										<span class="m-switch m-switch--outline m-switch--icon-check m-switch--brand">
-											<label>
-												<input type="checkbox" name="">
-												<span></span>
-											</label>
-										</span>
-									</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="tab-pane  m-scrollable" id="m_quick_sidebar_tabs_logs" role="tabpanel">
-						<div class="m-list-timeline">
-							<div class="m-list-timeline__group">
-								<div class="m-list-timeline__heading">
-									System Logs
-								</div>
-								<div class="m-list-timeline__items">
-									<div class="m-list-timeline__item">
-										<span class="m-list-timeline__badge m-list-timeline__badge--state-success"></span>
-										<a href="" class="m-list-timeline__text">
-											12 new users registered
-											<span class="m-badge m-badge--warning m-badge--wide">
-												important
-											</span>
-										</a>
-										<span class="m-list-timeline__time">
-											Just now
-										</span>
-									</div>
-									<div class="m-list-timeline__item">
-										<span class="m-list-timeline__badge m-list-timeline__badge--state-info"></span>
-										<a href="" class="m-list-timeline__text">
-											System shutdown
-										</a>
-										<span class="m-list-timeline__time">
-											11 mins
-										</span>
-									</div>
-									<div class="m-list-timeline__item">
-										<span class="m-list-timeline__badge m-list-timeline__badge--state-danger"></span>
-										<a href="" class="m-list-timeline__text">
-											New invoice received
-										</a>
-										<span class="m-list-timeline__time">
-											20 mins
-										</span>
-									</div>
-									<div class="m-list-timeline__item">
-										<span class="m-list-timeline__badge m-list-timeline__badge--state-warning"></span>
-										<a href="" class="m-list-timeline__text">
-											Database overloaded 89%
-											<span class="m-badge m-badge--success m-badge--wide">
-												resolved
-											</span>
-										</a>
-										<span class="m-list-timeline__time">
-											1 hr
-										</span>
-									</div>
-									<div class="m-list-timeline__item">
-										<span class="m-list-timeline__badge m-list-timeline__badge--state-success"></span>
-										<a href="" class="m-list-timeline__text">
-											System error
-										</a>
-										<span class="m-list-timeline__time">
-											2 hrs
-										</span>
-									</div>
-									<div class="m-list-timeline__item">
-										<span class="m-list-timeline__badge m-list-timeline__badge--state-info"></span>
-										<a href="" class="m-list-timeline__text">
-											Production server down
-											<span class="m-badge m-badge--danger m-badge--wide">
-												pending
-											</span>
-										</a>
-										<span class="m-list-timeline__time">
-											3 hrs
-										</span>
-									</div>
-									<div class="m-list-timeline__item">
-										<span class="m-list-timeline__badge m-list-timeline__badge--state-success"></span>
-										<a href="" class="m-list-timeline__text">
-											Production server up
-										</a>
-										<span class="m-list-timeline__time">
-											5 hrs
-										</span>
-									</div>
-								</div>
-							</div>
-							<div class="m-list-timeline__group">
-								<div class="m-list-timeline__heading">
-									Applications Logs
-								</div>
-								<div class="m-list-timeline__items">
-									<div class="m-list-timeline__item">
-										<span class="m-list-timeline__badge m-list-timeline__badge--state-info"></span>
-										<a href="" class="m-list-timeline__text">
-											New order received
-											<span class="m-badge m-badge--info m-badge--wide">
-												urgent
-											</span>
-										</a>
-										<span class="m-list-timeline__time">
-											7 hrs
-										</span>
-									</div>
-									<div class="m-list-timeline__item">
-										<span class="m-list-timeline__badge m-list-timeline__badge--state-success"></span>
-										<a href="" class="m-list-timeline__text">
-											12 new users registered
-										</a>
-										<span class="m-list-timeline__time">
-											Just now
-										</span>
-									</div>
-									<div class="m-list-timeline__item">
-										<span class="m-list-timeline__badge m-list-timeline__badge--state-info"></span>
-										<a href="" class="m-list-timeline__text">
-											System shutdown
-										</a>
-										<span class="m-list-timeline__time">
-											11 mins
-										</span>
-									</div>
-									<div class="m-list-timeline__item">
-										<span class="m-list-timeline__badge m-list-timeline__badge--state-danger"></span>
-										<a href="" class="m-list-timeline__text">
-											New invoices received
-										</a>
-										<span class="m-list-timeline__time">
-											20 mins
-										</span>
-									</div>
-									<div class="m-list-timeline__item">
-										<span class="m-list-timeline__badge m-list-timeline__badge--state-warning"></span>
-										<a href="" class="m-list-timeline__text">
-											Database overloaded 89%
-										</a>
-										<span class="m-list-timeline__time">
-											1 hr
-										</span>
-									</div>
-									<div class="m-list-timeline__item">
-										<span class="m-list-timeline__badge m-list-timeline__badge--state-success"></span>
-										<a href="" class="m-list-timeline__text">
-											System error
-											<span class="m-badge m-badge--info m-badge--wide">
-												pending
-											</span>
-										</a>
-										<span class="m-list-timeline__time">
-											2 hrs
-										</span>
-									</div>
-									<div class="m-list-timeline__item">
-										<span class="m-list-timeline__badge m-list-timeline__badge--state-info"></span>
-										<a href="" class="m-list-timeline__text">
-											Production server down
-										</a>
-										<span class="m-list-timeline__time">
-											3 hrs
-										</span>
-									</div>
-								</div>
-							</div>
-							<div class="m-list-timeline__group">
-								<div class="m-list-timeline__heading">
-									Server Logs
-								</div>
-								<div class="m-list-timeline__items">
-									<div class="m-list-timeline__item">
-										<span class="m-list-timeline__badge m-list-timeline__badge--state-success"></span>
-										<a href="" class="m-list-timeline__text">
-											Production server up
-										</a>
-										<span class="m-list-timeline__time">
-											5 hrs
-										</span>
-									</div>
-									<div class="m-list-timeline__item">
-										<span class="m-list-timeline__badge m-list-timeline__badge--state-info"></span>
-										<a href="" class="m-list-timeline__text">
-											New order received
-										</a>
-										<span class="m-list-timeline__time">
-											7 hrs
-										</span>
-									</div>
-									<div class="m-list-timeline__item">
-										<span class="m-list-timeline__badge m-list-timeline__badge--state-success"></span>
-										<a href="" class="m-list-timeline__text">
-											12 new users registered
-										</a>
-										<span class="m-list-timeline__time">
-											Just now
-										</span>
-									</div>
-									<div class="m-list-timeline__item">
-										<span class="m-list-timeline__badge m-list-timeline__badge--state-info"></span>
-										<a href="" class="m-list-timeline__text">
-											System shutdown
-										</a>
-										<span class="m-list-timeline__time">
-											11 mins
-										</span>
-									</div>
-									<div class="m-list-timeline__item">
-										<span class="m-list-timeline__badge m-list-timeline__badge--state-danger"></span>
-										<a href="" class="m-list-timeline__text">
-											New invoice received
-										</a>
-										<span class="m-list-timeline__time">
-											20 mins
-										</span>
-									</div>
-									<div class="m-list-timeline__item">
-										<span class="m-list-timeline__badge m-list-timeline__badge--state-warning"></span>
-										<a href="" class="m-list-timeline__text">
-											Database overloaded 89%
-										</a>
-										<span class="m-list-timeline__time">
-											1 hr
-										</span>
-									</div>
-									<div class="m-list-timeline__item">
-										<span class="m-list-timeline__badge m-list-timeline__badge--state-success"></span>
-										<a href="" class="m-list-timeline__text">
-											System error
-										</a>
-										<span class="m-list-timeline__time">
-											2 hrs
-										</span>
-									</div>
-									<div class="m-list-timeline__item">
-										<span class="m-list-timeline__badge m-list-timeline__badge--state-info"></span>
-										<a href="" class="m-list-timeline__text">
-											Production server down
-										</a>
-										<span class="m-list-timeline__time">
-											3 hrs
-										</span>
-									</div>
-									<div class="m-list-timeline__item">
-										<span class="m-list-timeline__badge m-list-timeline__badge--state-success"></span>
-										<a href="" class="m-list-timeline__text">
-											Production server up
-										</a>
-										<span class="m-list-timeline__time">
-											5 hrs
-										</span>
-									</div>
-									<div class="m-list-timeline__item">
-										<span class="m-list-timeline__badge m-list-timeline__badge--state-info"></span>
-										<a href="" class="m-list-timeline__text">
-											New order received
-										</a>
-										<span class="m-list-timeline__time">
-											1117 hrs
-										</span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+		
 		<!-- end::Quick Sidebar -->		    
 	    <!-- begin::Scroll Top -->
 		<div class="m-scroll-top m-scroll-top--skin-top" data-toggle="m-scroll-top" data-scroll-offset="500" data-scroll-speed="300">
@@ -1630,14 +889,77 @@
         <!--begin::Page Snippets -->
 		<script src="assets/app/js/dashboard.js" type="text/javascript"></script>
 		<!--end::Page Snippets -->
-		@if ($isCompleted->statKomplit!==100)
-		<script type="text/javascript">
-			$(window).on('load',function(){
-				$('#m_modal_1').modal('show');
-			});
+		<script>
+			if ({
+					{
+						session() - > has('message')
+					}
+				}) {
+				toastr.options = {
+					"closeButton": true,
+					"debug": false,
+					"newestOnTop": false,
+					"progressBar": false,
+					"positionClass": "toast-top-center",
+					"preventDuplicates": true,
+					"onclick": null,
+					"showDuration": "300",
+					"hideDuration": "1000",
+					"timeOut": "5000",
+					"extendedTimeOut": "1000",
+					"showEasing": "swing",
+					"hideEasing": "linear",
+					"showMethod": "fadeIn",
+					"hideMethod": "fadeOut"
+				};
+	
+				toastr.success("Profil Anda telah diperbarui", "Sukses");
+			}
 		</script>
-		@else
-		sudah komplit
-		@endif
-	</body>
+	
+		<script>
+			if ({
+					{
+						Auth::user() - > gender
+					}
+				} == 1) {
+				document.getElementById("male").checked = true;
+			} else {
+				document.getElementById("female").checked = true;
+			}
+		</script>
+		<script>
+			if({{session()->has('message')}}){
+				toastr.options = {
+		"closeButton": true,
+		"debug": false,
+		"newestOnTop": false,
+		"progressBar": false,
+		"positionClass": "toast-top-center",
+		"preventDuplicates": true,
+		"onclick": null,
+		"showDuration": "300",
+		"hideDuration": "1000",
+		"timeOut": "5000",
+		"extendedTimeOut": "1000",
+		"showEasing": "swing",
+		"hideEasing": "linear",
+		"showMethod": "fadeIn",
+		"hideMethod": "fadeOut"
+	};
+	
+	toastr.success("Profil Anda telah diperbarui", "Sukses");
+			}
+	
+			</script>
+	
+			<script>
+			if({{ Auth::user()->gender }}==1){
+				document.getElementById("male").checked = true;
+			}else{
+				document.getElementById("female").checked = true;
+			}
+			</script>
+
+</body>
 </html>

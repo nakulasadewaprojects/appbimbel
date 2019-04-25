@@ -18,7 +18,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <head>
 	<meta charset="utf-8" />
 	<title>
-		Metronic | My Profile
+		Lihat Profil Saya
 	</title>
 	<meta name="description" content="User profile view and edit">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -93,8 +93,7 @@ License: You must have a valid license purchased only from themeforest(the above
 						<div id="m_header_topbar" class="m-topbar  m-stack m-stack--ver m-stack--general">
 							<div class="m-stack__item m-topbar__nav-wrapper">
 								<ul class="m-topbar__nav m-nav m-nav--inline">
-									<li class="m-nav__item m-topbar__notifications m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-center 	m-dropdown--mobile-full-width"
-									 data-dropdown-toggle="click" data-dropdown-persistent="true">
+									<li class="m-nav__item m-topbar__notifications m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-center 	m-dropdown--mobile-full-width" data-dropdown-toggle="click" data-dropdown-persistent="true">
 										<a href="#" class="m-nav__link m-dropdown__toggle" id="m_topbar_notification_icon">
 											<span class="m-nav__link-badge m-badge m-badge--dot m-badge--dot-small m-badge--danger"></span>
 											<span class="m-nav__link-icon">
@@ -305,8 +304,7 @@ License: You must have a valid license purchased only from themeforest(the above
 											</div>
 										</div>
 									</li>
-									<li class="m-nav__item m-topbar__quick-actions m-dropdown m-dropdown--skin-light m-dropdown--large m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push m-dropdown--mobile-full-width m-dropdown--skin-light"
-									 data-dropdown-toggle="click">
+									<li class="m-nav__item m-topbar__quick-actions m-dropdown m-dropdown--skin-light m-dropdown--large m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push m-dropdown--mobile-full-width m-dropdown--skin-light" data-dropdown-toggle="click">
 										<a href="#" class="m-nav__link m-dropdown__toggle">
 											<span class="m-nav__link-badge m-badge m-badge--dot m-badge--info m--hide"></span>
 											<span class="m-nav__link-icon">
@@ -365,8 +363,7 @@ License: You must have a valid license purchased only from themeforest(the above
 											</div>
 										</div>
 									</li>
-									<li class="m-nav__item m-topbar__user-profile  m-dropdown m-dropdown--medium m-dropdown--arrow  m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light"
-									 data-dropdown-toggle="click">
+									<li class="m-nav__item m-topbar__user-profile  m-dropdown m-dropdown--medium m-dropdown--arrow  m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light" data-dropdown-toggle="click">
 										<a href="#" class="m-nav__link m-dropdown__toggle">
 											<span class="m-topbar__userpic m--hide">
 												<img src="assets/app/media/img/users/user4.jpg" class="m--img-rounded m--marginless m--img-centered" alt="" />
@@ -386,7 +383,7 @@ License: You must have a valid license purchased only from themeforest(the above
 												<div class="m-dropdown__header m--align-center">
 													<div class="m-card-user m-card-user--skin-light">
 														<div class="m-card-user__pic">
-															<img src="" class="m--img-rounded m--marginless" alt="" />
+															<img src="assets/app/media/img/users/user4.jpg" class="m--img-rounded m--marginless" alt="" />
 														</div>
 														<div class="m-card-user__details">
 															<span class="m-card-user__name m--font-weight-500">
@@ -407,12 +404,11 @@ License: You must have a valid license purchased only from themeforest(the above
 																</span>
 															</li>
 															<li class="m-nav__item">
-																<a href="{{ route('logout') }}" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder"
-																 onclick="event.preventDefault();
+																<a href="{{ route('logout') }}" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder" onclick="event.preventDefault();
                                                      				document.getElementById('logout-form').submit();">
 																	Logout
 																</a>
-																<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+																<form id="logout-form" name='form1' action="{{ route('logout') }}" method="POST" style="display: none;">
 																	@csrf
 																</form>
 															</li>
@@ -448,8 +444,7 @@ License: You must have a valid license purchased only from themeforest(the above
 			</button>
 			<div id="m_aside_left" class="m-grid__item	m-aside-left  m-aside-left--skin-light ">
 				<!-- BEGIN: Aside Menu -->
-				<div id="m_ver_menu" class="m-aside-menu  m-aside-menu--skin-light m-aside-menu--submenu-skin-light " data-menu-vertical="true"
-				 data-menu-scrollable="true" data-menu-dropdown-timeout="500">
+				<div id="m_ver_menu" class="m-aside-menu  m-aside-menu--skin-light m-aside-menu--submenu-skin-light " data-menu-vertical="true" data-menu-scrollable="true" data-menu-dropdown-timeout="500">
 					<ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow ">
 						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover">
 							<a href="#" class="m-menu__link m-menu__toggle">
@@ -840,7 +835,68 @@ License: You must have a valid license purchased only from themeforest(the above
 								Lihat Profil Saya
 							</h3>
 						</div>
-						
+						{{-- <div>
+								<div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover" aria-expanded="true">
+									<a href="#" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle">
+										<i class="la la-plus m--hide"></i>
+										<i class="la la-ellipsis-h"></i>
+									</a>
+									<div class="m-dropdown__wrapper">
+										<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
+										<div class="m-dropdown__inner">
+											<div class="m-dropdown__body">
+												<div class="m-dropdown__content">
+													<ul class="m-nav">
+														<li class="m-nav__section m-nav__section--first m--hide">
+															<span class="m-nav__section-text">
+																Quick Actions
+															</span>
+														</li>
+														<li class="m-nav__item">
+															<a href="" class="m-nav__link">
+																<i class="m-nav__link-icon flaticon-share"></i>
+																<span class="m-nav__link-text">
+																	Activity
+																</span>
+															</a>
+														</li>
+														<li class="m-nav__item">
+															<a href="" class="m-nav__link">
+																<i class="m-nav__link-icon flaticon-chat-1"></i>
+																<span class="m-nav__link-text">
+																	Messages
+																</span>
+															</a>
+														</li>
+														<li class="m-nav__item">
+															<a href="" class="m-nav__link">
+																<i class="m-nav__link-icon flaticon-info"></i>
+																<span class="m-nav__link-text">
+																	FAQ
+																</span>
+															</a>
+														</li>
+														<li class="m-nav__item">
+															<a href="" class="m-nav__link">
+																<i class="m-nav__link-icon flaticon-lifebuoy"></i>
+																<span class="m-nav__link-text">
+																	Support
+																</span>
+															</a>
+														</li>
+														<li class="m-nav__separator m-nav__separator--fit"></li>
+														<li class="m-nav__item">
+															<a href="#" class="btn btn-outline-danger m-btn m-btn--pill m-btn--wide btn-sm">
+																Submit
+															</a>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div> --}}
 					</div>
 				</div>
 				<!-- END: Subheader -->
@@ -882,7 +938,11 @@ License: You must have a valid license purchased only from themeforest(the above
 														<span class="m-nav__link-text">
 															Lihat Profil Saya
 														</span>
-														
+														{{-- <span class="m-nav__link-badge">
+																<span class="m-badge m-badge--success">
+																	2
+																</span>
+															</span> --}}
 													</span>
 												</span>
 											</a>
@@ -904,355 +964,298 @@ License: You must have a valid license purchased only from themeforest(the above
 												</span>
 											</a>
 										</li>
-										
-										
-										
-										
+										{{-- <li class="m-nav__item">
+												<a href="header/profile&amp;demo=default.html" class="m-nav__link">
+													<i class="m-nav__link-icon flaticon-share"></i>
+													<span class="m-nav__link-text">
+														Activity
+													</span>
+												</a>
+											</li>
+											<li class="m-nav__item">
+												<a href="header/profile&amp;demo=default.html" class="m-nav__link">
+													<i class="m-nav__link-icon flaticon-chat-1"></i>
+													<span class="m-nav__link-text">
+														Messages
+													</span>
+												</a>
+											</li>
+											<li class="m-nav__item">
+												<a href="header/profile&amp;demo=default.html" class="m-nav__link">
+													<i class="m-nav__link-icon flaticon-graphic-2"></i>
+													<span class="m-nav__link-text">
+														Sales
+													</span>
+												</a>
+											</li>
+											<li class="m-nav__item">
+												<a href="header/profile&amp;demo=default.html" class="m-nav__link">
+													<i class="m-nav__link-icon flaticon-time-3"></i>
+													<span class="m-nav__link-text">
+														Events
+													</span>
+												</a>
+											</li>
+											<li class="m-nav__item">
+												<a href="header/profile&amp;demo=default.html" class="m-nav__link">
+													<i class="m-nav__link-icon flaticon-lifebuoy"></i>
+													<span class="m-nav__link-text">
+														Support
+													</span>
+												</a>
+											</li> --}}
 									</ul>
 									<div class="m-portlet__body-separator"></div>
-									<div class="m-widget1 m-widget1--paddingless">
-										<div class="m-widget1__item">
-											<div class="row m-row--no-padding align-items-center">
-												
-												
+									{{-- <div class="m-widget1 m-widget1--paddingless">
+											<div class="m-widget1__item">
+												<div class="row m-row--no-padding align-items-center">
+													<div class="col">
+														<h3 class="m-widget1__title">
+															Member Profit
+														</h3>
+														<span class="m-widget1__desc">
+															Awerage Weekly Profit
+														</span>
+													</div>
+													<div class="col m--align-right">
+														<span class="m-widget1__number m--font-brand">
+															+$17,800
+														</span>
+													</div>
+												</div>
 											</div>
-										</div>
-										<div class="m-widget1__item">
-											<div class="row m-row--no-padding align-items-center">
-											
-											
+											<div class="m-widget1__item">
+												<div class="row m-row--no-padding align-items-center">
+													<div class="col">
+														<h3 class="m-widget1__title">
+															Orders
+														</h3>
+														<span class="m-widget1__desc">
+															Weekly Customer Orders
+														</span>
+													</div>
+													<div class="col m--align-right">
+														<span class="m-widget1__number m--font-danger">
+															+1,800
+														</span>
+													</div>
+												</div>
 											</div>
-										</div>
-										<div class="m-widget1__item">
-											<div class="row m-row--no-padding align-items-center">
-											
-												
+											<div class="m-widget1__item">
+												<div class="row m-row--no-padding align-items-center">
+													<div class="col">
+														<h3 class="m-widget1__title">
+															Issue Reports
+														</h3>
+														<span class="m-widget1__desc">
+															System bugs and issues
+														</span>
+													</div>
+													<div class="col m--align-right">
+														<span class="m-widget1__number m--font-success">
+															-27,49%
+														</span>
+													</div>
+												</div>
 											</div>
-										</div>
-									</div>
+										</div> --}}
 								</div>
 							</div>
 						</div>
 						<div class="col-xl-9 col-lg-8">
-							<div class="m-portlet m-portlet--full-height m-portlet--tabs">
-								
-								<div class="tab-content">
-									<div class="tab-pane active" id="m_user_profile_tab_1">
-									<form class="m-form m-form--fit m-form--label-align-right" method="POST" action="profile/update/{{ Auth::user()->idmentor}}" enctype="multipart/form-data">
-										<!-- <form class="m-form m-form--fit m-form--label-align-right" method="POST" action="profile/update"> -->
-											{{ csrf_field() }} 
-											<!-- {{ method_field('PUT') }} -->
+							<div class="m-portlet m-portlet--full-height m-portlet--tabs  ">
+								{{-- <div class="m-portlet__head">
+										<div class="m-portlet__head-tools">
+											<ul class="nav nav-tabs m-tabs m-tabs-line   m-tabs-line--left m-tabs-line--primary" role="tablist">
+												<li class="nav-item m-tabs__item">
+													<a class="nav-link m-tabs__link active" data-toggle="tab" href="#m_user_profile_tab_1" role="tab">
+														<i class="flaticon-share m--hide"></i>
+														Update Profile
+													</a>
+												</li>
+												<li class="nav-item m-tabs__item">
+													<a class="nav-link m-tabs__link" data-toggle="tab" href="#m_user_profile_tab_2" role="tab">
+														Messages
+													</a>
+												</li>
+												<li class="nav-item m-tabs__item">
+													<a class="nav-link m-tabs__link" data-toggle="tab" href="#m_user_profile_tab_3" role="tab">
+														Settings
+													</a>
+												</li>
+											</ul>
+										</div>
+										<div class="m-portlet__head-tools">
+											<ul class="m-portlet__nav">
+												<li class="m-portlet__nav-item m-portlet__nav-item--last">
+													<div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover" aria-expanded="true">
+														<a href="#" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle">
+															<i class="la la-gear"></i>
+														</a>
+														<div class="m-dropdown__wrapper">
+															<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
+															<div class="m-dropdown__inner">
+																<div class="m-dropdown__body">
+																	<div class="m-dropdown__content">
+																		<ul class="m-nav">
+																			<li class="m-nav__section m-nav__section--first">
+																				<span class="m-nav__section-text">
+																					Quick Actions
+																				</span>
+																			</li>
+																			<li class="m-nav__item">
+																				<a href="" class="m-nav__link">
+																					<i class="m-nav__link-icon flaticon-share"></i>
+																					<span class="m-nav__link-text">
+																						Create Post
+																					</span>
+																				</a>
+																			</li>
+																			<li class="m-nav__item">
+																				<a href="" class="m-nav__link">
+																					<i class="m-nav__link-icon flaticon-chat-1"></i>
+																					<span class="m-nav__link-text">
+																						Send Messages
+																					</span>
+																				</a>
+																			</li>
+																			<li class="m-nav__item">
+																				<a href="" class="m-nav__link">
+																					<i class="m-nav__link-icon flaticon-multimedia-2"></i>
+																					<span class="m-nav__link-text">
+																						Upload File
+																					</span>
+																				</a>
+																			</li>
+																			<li class="m-nav__section">
+																				<span class="m-nav__section-text">
+																					Useful Links
+																				</span>
+																			</li>
+																			<li class="m-nav__item">
+																				<a href="" class="m-nav__link">
+																					<i class="m-nav__link-icon flaticon-info"></i>
+																					<span class="m-nav__link-text">
+																						FAQ
+																					</span>
+																				</a>
+																			</li>
+																			<li class="m-nav__item">
+																				<a href="" class="m-nav__link">
+																					<i class="m-nav__link-icon flaticon-lifebuoy"></i>
+																					<span class="m-nav__link-text">
+																						Support
+																					</span>
+																				</a>
+																			</li>
+																			<li class="m-nav__separator m-nav__separator--fit m--hide"></li>
+																			<li class="m-nav__item m--hide">
+																				<a href="#" class="btn btn-outline-danger m-btn m-btn--pill m-btn--wide btn-sm">
+																					Submit
+																				</a>
+																			</li>
+																		</ul>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</li>
+											</ul>
+										</div>
+									</div> --}}
+									<div class="tab-content">
+									<div class="tab-pane active">
+										<div class="m-portlet m-portlet--full-height ">
+											<div class="m-portlet__head">
+												<div class="m-portlet__head-caption">
+													<div class="m-portlet__head-title">
+														<h3 class="m-portlet__head-text">
+															Profil Saya
+														</h3>
+													</div>
+												</div>
+												<div class="m-portlet__head-tools">
+												</div>
+											</div>
 											<div class="m-portlet__body">
-												<div class="form-group m-form__group m--margin-top-10 m--hide">
-													<div class="alert m-alert m-alert--default" role="alert">
-														The example form below demonstrates common HTML form elements that receive updated styles from Bootstrap with additional
-														classes.
+												<div class="m-widget13">
+													<div class="m-widget13__item">
+														<span class="m-widget13__desc m--align-right">
+															Username :
+														</span>
+														<span class="m-widget13__text m-widget13__text-bolder">
+														{{ Auth::user()->username }}
+														</span>
 													</div>
-												</div>
-												<div class="form-group m-form__group row">
-													<div class="col-7 ml-auto">
-														<h3 class="m-form__section">
-															1. Personal Details
-														</h3>
+													<div class="m-widget13__item">
+														<span class="m-widget13__desc m--align-right">
+															Alamat Email :
+														</span>
+														<span class="m-widget13__text m-widget13__text-bolder">
+														{{ Auth::user()->email }}
+														</span>
 													</div>
-												</div>
-												<div class="form-group m-form__group row">
-													<label for="example-text-input" class="col-2 col-form-label">
-														username
-													</label>
-													<div class="col-7">
-														<input class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" type="text" value="{{ Auth::user()->username }}">
-															@if ($errors->has('username'))
-															<span class="invalid-feedback" role="alert">
-																<strong>{{ $errors->first('username') }}</strong>
-															</span>
-															@endif
+													<div class="m-widget13__item">
+														<span class="m-widget13__desc m--align-right">
+															Nama Depan :
+														</span>
+														<span class="m-widget13__text m-widget13__text-bolder">
+														{{ Auth::user()->nm_depan }}
+														</span>
 													</div>
-												</div>
-												<div class="form-group m-form__group row">
-													<label for="example-text-input" class="col-2 col-form-label">
-														Nama Depan
-													</label>
-													<div class="col-7">
-													<input class="form-control{{ $errors->has('NamaDepan') ? ' is-invalid' : '' }}" name="NamaDepan" type="text" value="{{ Auth::user()->nm_depan }}">
-															@if ($errors->has('NamaDepan'))
-															<span class="invalid-feedback" role="alert">
-																<strong>{{ $errors->first('NamaDepan') }}</strong>
-															</span>
-															@endif
+													<div class="m-widget13__item">
+														<span class="m-widget13__desc m--align-right">
+															Nama Belakang :
+														</span>
+														<span class="m-widget13__text m-widget13__text-bolder">
+														{{ Auth::user()->nm_belakang }}
+														</span>
 													</div>
-												</div>
-												<div class="form-group m-form__group row">
-													<label for="example-text-input" class="col-2 col-form-label">
-														Nama Belakang
-													</label>
-													<div class="col-7">
-													<input class="form-control{{ $errors->has('NamaBelakang') ? ' is-invalid' : '' }}" name="NamaBelakang" type="text" value="{{ Auth::user()->nm_belakang }}">
-															@if ($errors->has('NamaBelakang'))
-															<span class="invalid-feedback" role="alert">
-																<strong>{{ $errors->first('NamaBelakang') }}</strong>
-															</span>
-															@endif
+													<div class="m-widget13__item">
+														<span class="m-widget13__desc m--align-right">
+															Jenis Kelamin :
+														</span>
+														<span class="m-widget13__text m-widget13__text-bolder">
+															{{ Auth::user()->gender }}
+														</span>
 													</div>
-												</div>
-												<div class="form-group m-form__group row">
-													<label for="example-text-input" class="col-2 col-form-label">
-														TTL
-													</label>
-													<div class="col-7">
-														<input class="form-control m-input" type="text" value="Lumajang 17 April 1997">
+													<div class="m-widget13__item">
+														<span class="m-widget13__desc m--align-right">
+															Alamat :
+														</span>
+														<span class="m-widget13__text m-widget13__text-bolder">
+															{{  Auth::user()->alamat }}
+														</span>
 													</div>
-												</div>
-												<div class="form-group m-form__group row">
-													<label for="example-text-input" class="col-2 col-form-label text-md-right">
-															Jenis Kelamin
-														</label>
-													<div class="col-2">
-														<label class="m-radio m-radio--bold m-radio--state-brand">
-																<input type="radio" name="gender" id="male" value="1">
-																Laki-Laki 
-																<span></span>
-														</label>
-														<label class="m-radio m-radio--bold m-radio--state-brand">
-																<input type="radio" name="gender" id="female" value="2">
-																Perempuan
-																<span></span>
-														</label>
+													<div class="m-widget13__item">
+														<span class="m-widget13__desc m--align-right">
+															Nomor Telepon :
+														</span>
+														<span class="m-widget13__text m-widget13__text-bolder">
+														{{  Auth::user()->noTlpn }}
+														</span>
 													</div>
-												</div>
-												<div class="form-group m-form__group row">
-													<label for="example-text-input" class="col-2 col-form-label">
-														No Telepon
-													</label>
-													<div class="col-7">
-													<input class="form-control{{ $errors->has('noTlpn') ? ' is-invalid' : '' }}" type="text" name="noTlpn" value="{{ Auth::user()->noTlpn }}">
-																@if ($errors->has('noTlpn'))
-                                            						<span class="invalid-feedback" role="alert">
-                                       									 <strong>{{ $errors->first('noTlpn') }}</strong>
-																	</span>
-																@endif
-													</div>
-												</div>
-												<div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
-												<div class="form-group m-form__group row">
-													<div class="col-7 ml-auto">
-														<h3 class="m-form__section">
-															2. Address
-														</h3>
-													</div>
-												</div>
-
-
-												<div class="form-group m-form__group row">
-														<label for="example-text-input" class="col-2 col-form-label">
-															Provinsi
-														</label>
-														<div class="col-7">																																																															
-															<select class="form-control m-input" name="provinsi" type="text">
-																	<option value="">pilih provinsi</option>
-																	@foreach ($p as $a)
-																	<option value="{{ $a->id }}" {{ Auth::user()->provinsi ==  $a->id  ? 'selected' : ''}}> {{$a->nama}}</option>																																																															
-																	@endforeach
-																	
-															</select>																
-														</div>
-												</div>
-
-												<div class="form-group m-form__group row">
-													<label for="example-text-input" class="col-2 col-form-label">
-														Kabupaten
-													</label>
-													<div class="col-7">																						
-														<select class="form-control m-input"  name="kabupaten" type="text" id="kabupaten" >															
-																<option value=""> pilih kabupaten</option>
-																@foreach ($b as $a)																
-																<option value="{{ $a->id }}"{{ Auth::user()->kota ==  $a->id  ? 'selected' : ''}}>{{$a->nama}}</option>																																		
-																@endforeach
-														</select>														
-													</div>
-												</div>
-
-												<div class="form-group m-form__group row">
-													<label for="example-text-input" class="col-2 col-form-label">
-														Kecamatan
-													</label>
-													<div class="col-7">							
-														<select class="form-control m-input" name="kecamatan" type="text" id="kecamatan">
-																<option value="">pilih kecamatan </option>
-																@foreach ($c as $a)
-																<option value="{{ $a->id }}"{{ Auth::user()->kecamatan ==  $a->id  ? 'selected' : ''}}>{{$a->nama}}</option>																																																	
-																@endforeach
-														</select>
-													</div>
-												</div>
-
-												<div class="form-group m-form__group row">
-													<label for="example-text-input" class="col-2 col-form-label">
-														Kelurahan
-													</label>
-													<div class="col-7">															
-														<select class="form-control m-input" name="kelurahan" type="text" id="kelurahan">
-															<option value="">pilih kelurahan </option>
-										 					@foreach ($d as $a)
-															<option value="{{ $a->id }}"{{ Auth::user()->kelurahan ==  $a->id  ? 'selected' : ''}}>{{$a->nama}}</option>
-															@endforeach
-														</select>
-													</div>
-												</div>
-
-												<div class="form-group m-form__group row">
-													<label for="example-text-input" class="col-2 col-form-label">
-															Alamat
-														</label>
-													<div class="col-7">
-													<input class="form-control{{ $errors->has('alamat') ? ' is-invalid' : '' }}" name="alamat" type="text" value="{{ Auth::user()->alamat }}">
-																@if ($errors->has('alamat'))
-                                            						<span class="invalid-feedback" role="alert">
-                                        								<strong>{{ $errors->first('alamat') }}</strong>
-																	</span> 
-																@endif
-													</div>
-												</div>
-												<div class="form-group m-form__group row">
-													<label for="example-text-input" class="col-2 col-form-label">
-																Kode Pos
-															</label>
-													<div class="col-7">
-														<input class="form-control m-input" type="text" value="67371">
-													</div>
-												</div>
-												<div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
-												<div class="form-group m-form__group row">
-													<div class="col-7 ml-auto">
-														<h3 class="m-form__section">
-															3. Lengkapi Berkas
-														</h3>
-													</div>
-												</div>
-												<!-- <div class="form-group m-form__group row">
-													<label for="example-text-input" class="col-3 col-form-label">
-													Pendidikan Terakhir
-													</label>
-													<div class="col-7">
-														<select class="form-control m-input" id="exampleSelect1">
-																<option value="1">
-																	Pendidikan Terakhir 1
-																</option>
-																<option value="2">
-																Pendidikan Terakhir 2
-																</option>
-																<option value="3">
-																Pendidikan Terakhir 3
-																</option>
-															</select>
-													</div>
-												</div> -->
-
-												<div class="form-group m-form__group row">
-													<label for="example-text-input" class="col-3 col-form-label">
-															Pendidikan Terakhir
-														</label>
-													<div class="col-4">
-														<input class="form-control m-input" type="text" name="pendidikanTerakhir" value="{{ $isCompleted->pendidikanTerakhir }}">
-													</div>
-												</div>
-												<div class="form-group m-form__group row">
-													<label for="example-text-input" class="col-3 col-form-label">
-															Status Pendidikan
-														</label>
-													<div class="col-4">
-														<input class="form-control m-input" type="text" name="statusPendidikan" value="{{ $isCompleted->statusPendidikan }}">
-													</div>
-												</div>
-												<div class="form-group m-form__group row">
-													<label for="example-text-input" class="col-3 col-form-label">
-															Foto
-														</label>
-													<div class="col-3">
-														<label class="custom-file">
-																	<input type="file" name="foto">
-																</label>
-																@if($isCompleted->foto!=null)
-																<img width="50px" height="50px" src="{{ url('/data_file/'.$isCompleted->foto) }}" alt="tidak ada foto">
-																@else
-																Tidak Ada Foto
-																@endif
-													</div>
-												</div>
-												<!-- @foreach($isCompleted as $ft) -->
-												<!-- @endforeach -->
-												<div class="form-group m-form__group row">
-													<label for="example-text-input" class="col-3 col-form-label">
-															Nomor Identitas
-														</label>
-													<div class="col-7">
-														<input class="form-control m-input" type="text" name="No_Identitas" value="{{ $isCompleted->No_Identitas }}">
-													</div>
-												</div>
-												<div class="form-group m-form__group row">
-													<label for="example-text-input" class="col-3 col-form-label">
-															File KTP
-													</label>
-														<div class="col-3">
-															<label class="custom-file">
-																<input type="file" name="fileKTP">
-																	<!-- <span class="custom-file-control"></span> -->
-															</label>
-															@if($isCompleted->fileKTP!=null)
-															<img width="50px" height="50px" src="{{ url('/data_file/'.$isCompleted->fileKTP) }}">
-															@else
-															Tidak Ada File
-															@endif
-														</div>
-												</div>
-												<div class="form-group m-form__group row">
-													<label for="example-text-input" class="col-3 col-form-label">
-															File Ijazah
-													</label>
-													<div class="col-3">
-														<label class="custom-file">
-															<input type="file" name="fileIjazah" >
-																	<!-- <span class="custom-file-control"></span> -->
-														</label>
-														<!-- <div class="col-md-2"> -->
-															@if($isCompleted->fileIjazah!=null)
-												<div class="m-demo-icon">
-													<div class="m-demo-icon__preview">
-														<i class="fa fa-file-pdf-o"></i>
-													</div>
-													<div class="m-demo-icon__class">
-													{{$isCompleted->fileIjazah}}
-													</div>
-												</div>
-														@else
-														Tidak Ada File
-														@endif
-											<!-- </div> -->
-																<!-- <embed width="100" height="150" src="{{ url('/data_file/'.$isCompleted->fileIjazah) }}"> -->
-													</div>
+													
+											
+													<!-- <div class="m-widget13__action m--align-right">
+														<button type="button" class="m-widget__detalis  btn m-btn--pill  btn-accent">
+															Detalis
+														</button>
+														<button type="button" class="btn m-btn--pill    btn-secondary">
+															Update
+														</button>
+													</div> -->
 												</div>
 											</div>
-											<div class="m-portlet__foot m-portlet__foot--fit">
-												<div class="m-form__actions">
-													<div class="row">
-														<div class="col-2"></div>
-														<div class="col-7">
-															<button type="submit" class="btn btn-accent m-btn m-btn--air m-btn--custom">
-																Save changes
-															</button> &nbsp;&nbsp;
-															<button type="reset" class="btn btn-secondary m-btn m-btn--air m-btn--custom">
-																Cancel
-															</button>
-														</div>
-													</div>
-												</div>
-											</div>
-										</form>
+										</div>
 									</div>
-									<div class="tab-pane active" id="m_user_profile_tab_2">
-										
-									</div>
-									<div class="tab-pane active" id="m_user_profile_tab_3"></div>
+									{{-- <div class="tab-pane active" id="m_user_profile_tab_2"></div>
+										<div class="tab-pane active" id="m_user_profile_tab_3"></div> --}}
+									
+								</div>
+								
+									
 								</div>
 							</div>
 						</div>
@@ -1262,7 +1265,7 @@ License: You must have a valid license purchased only from themeforest(the above
 		</div>
 		<!-- end:: Body -->
 		<!-- begin::Footer -->
-		<footer class="m-grid__item		m-footer ">
+		<!-- <footer class="m-grid__item		m-footer ">
 			<div class="m-container m-container--fluid m-container--full-height m-page__container">
 				<div class="m-stack m-stack--flex-tablet-and-mobile m-stack--ver m-stack--desktop">
 					<div class="m-stack__item m-stack__item--left m-stack__item--middle m-stack__item--last">
@@ -1312,10 +1315,12 @@ License: You must have a valid license purchased only from themeforest(the above
 					</div>
 				</div>
 			</div>
-		</footer>
+		</footer> -->
 		<!-- end::Footer -->
 	</div>
-	<!-- end:: Page -->
+			
+		<!-- end:: Page -->							
+							
 	<!-- begin::Quick Sidebar -->
 	<div id="m_quick_sidebar" class="m-quick-sidebar m-quick-sidebar--tabbed m-quick-sidebar--skin-light">
 		<div class="m-quick-sidebar__content m--hide">
@@ -1907,53 +1912,13 @@ License: You must have a valid license purchased only from themeforest(the above
 	<!--begin::Base Scripts -->
 	<script src="assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
 	<script src="assets/demo/demo6/base/scripts.bundle.js" type="text/javascript"></script>
-	<script src="{{ asset('js/jquery.min.js') }}"></script>
-	<script src="{{ asset('js/popper.min.js') }}" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-	<script src="{{ asset('js/bootstrap.min.js') }}" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 	<script>
 		if({{ Auth::user()->gender }}==1){
 			document.getElementById("male").checked = true;
 		}else{
 			document.getElementById("female").checked = true;
 		}
-
-		$(function() {
-			$("button").on("click",function(event){
-				e.preventDefault();
-				$(".hidden-control").attr("type","text");
-				$("form").submit();
-			});
-			
-		});
 	</script>
-
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('select[name="provinsi"]').on('change', function() {
-            var provinsiID = $(this).val();
-            if(provinsiID) {
-                $.ajax({
-                    url: '/myform/ajax/'+provinsiID,
-                    type: "GET",
-                    dataType: "json",
-                    success:function(data) {
-
-                        
-                        $('select[name="kabupaten"]').empty();
-                        $.each(data, function(key, value) {
-                            $('select[name="kabupaten"]').append('<option value="'+ key +'">'+ value +'</option>');
-                        });
-
-
-                    }
-                });
-            }else{
-                $('select[name="kabupaten"]').empty();
-            }
-        });
-    });
-</script> 
-
 	<!--end::Base Scripts -->
 </body>
 <!-- end::Body -->

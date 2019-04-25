@@ -7,11 +7,9 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Tbdetailmentor;
+use App\Tbmentor;
+use File;
 use DB;
-use App\Provinsi;
-use Kota;
-use AppKecamatan;
-use AppKelurahan;
 
 class HomeController extends Controller
 {
@@ -41,24 +39,25 @@ class HomeController extends Controller
         $show = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
         return view('dashboard',['isCompleted'=>$show]);
     }
+
+    public function myprofile()
+    {
+        $show = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
+        return view('myProfile',['isCompleted'=>$show]);
+    }
+
     public function profile()
     {
-     
+     $show = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
        $provinsi  = DB::table('provinsi')->get();
        $kabupaten = DB::table('kota_kabupaten')->get();
        $kecamatan = DB::table('kecamatan')->get();
        $kelurahan = DB::table('kelurahan')->get();
-        return view('profile', ['p' => $provinsi, 'b' => $kabupaten, 'c' => $kecamatan, 'd' => $kelurahan]);
+        return view('profile', ['isCompleted'=>$show, 'p' => $provinsi, 'b' => $kabupaten, 'c' => $kecamatan, 'd' => $kelurahan]);
       //return  $provinsi;
     }
 
-    public function getStates($id) {
-            $states = DB::table("provinsi")->where("id",$id)->pluck("nama","id");
     
-            return json_encode($states);
-            //return $states;
-    
-         }      
     
     public function update($idmentor, Request $request)
     {
@@ -72,22 +71,64 @@ class HomeController extends Controller
             // 'email' => ['required', 'string', 'email', 'max:255', 'unique:tbmentor,email,'.$idmentor.',idmentor', 'regex:/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/']
          ]);
          
-        DB::table('tbmentor')->where('idmentor',$idmentor)->update([
-            'username' => $request['username'],
-            // 'password' => Hash::make($data['password']),
-            // 'NamaLengkap' => $request['NamaLengkap'],
-            'alamat' => $request['alamat'],
-            'provinsi' => $request['provinsi'],
-            'kota' => $request['kabupaten'],
-            'kecamatan' => $request['kecamatan'],
-            'kelurahan' => $request['kelurahan'],
-            'nm_depan' => $request['NamaDepan'],
-            'nm_belakang' => $request['NamaBelakang'],
-            'gender' => $request['gender'],
-            'noTlpn' => $request['noTlpn'],
-            // 'email' => $request['email']
-            
-         ]);
-        return redirect('/profile');
+         $Tbmentor=Tbmentor::find($idmentor);
+         $Tbmentor->username=$request['username'];
+         $Tbmentor->alamat=$request['alamat'];
+         $Tbmentor->provinsi=$request['provinsi'];
+         $Tbmentor->kota=$request['kabupaten'];
+         $Tbmentor->kecamatan=$request['kecamatan'];
+         $Tbmentor->kelurahan=$request['kelurahan'];
+         $Tbmentor->nm_depan=$request['NamaDepan'];
+         $Tbmentor->nm_belakang=$request['NamaBelakang'];
+         $Tbmentor->gender=$request['gender'];
+         $Tbmentor->noTlpn=$request['noTlpn'];
+         $Tbmentor->save();
+        //  $this->validate($request, [
+        // 	'foto' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
+        //     'fileIjazah'=>'required',
+        //     'fileKTP'=>'required',
+        //     'pendidikanTerakhir'=>'required',
+        //     'statusPendidikan'=>'required',
+        //     'No_Identitas'=>'required'
+		// ]);
+        $Tbdetailmentor= Tbdetailmentor::find($idmentor);
+        $Tbdetailmentor->pendidikanTerakhir=$request['pendidikanTerakhir'];
+        $Tbdetailmentor->statusPendidikan=$request['statusPendidikan'];
+        $foto = $request->file('foto');
+        $tujuan_upload = 'data_file';
+        if($request->hasFile('foto')){
+            // Storage::delete('/data_file/'.$show );
+        $show = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->value('foto');
+            $nama_foto = time()."_".$foto->getClientOriginalName();
+            // $tujuan_upload = 'data_file';
+            $foto->move($tujuan_upload,$nama_foto);
+            File::delete($tujuan_upload.'/'.$show);
+            $Tbdetailmentor->foto=$nama_foto;
+        }else{
+        }
+        
+        $fileKTP= $request->file('fileKTP');
+        if($request->hasFile('fileKTP')){
+        $show = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->value('fileKTP');            
+            $namafileKTP=time()."_".$fileKTP->getClientOriginalName();
+            $fileKTP->move($tujuan_upload,$namafileKTP);
+            File::delete($tujuan_upload.'/'.$show);
+            $Tbdetailmentor->fileKTP=$namafileKTP;
+        }else{
+        }
+        $fileIjazah= $request->file('fileIjazah');
+        if($request->hasFile('fileIjazah')){
+        $show = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->value('fileIjazah');            
+            $namafileIjazah=time()."_".$fileIjazah->getClientOriginalName();
+            $fileIjazah->move($tujuan_upload,$namafileIjazah);
+            File::delete($tujuan_upload.'/'.$show);            
+            $Tbdetailmentor->fileIjazah=$namafileIjazah;
+        }else{
+        }
+        $Tbdetailmentor->No_Identitas=$request['No_Identitas'];
+        $Tbdetailmentor->save();
+        return redirect('/myProfile');
     }
 }
+         
+    
