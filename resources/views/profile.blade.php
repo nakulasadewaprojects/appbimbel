@@ -840,7 +840,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								Lihat Profil Saya
 							</h3>
 						</div>
-						
+
 					</div>
 				</div>
 				<!-- END: Subheader -->
@@ -904,29 +904,29 @@ License: You must have a valid license purchased only from themeforest(the above
 												</span>
 											</a>
 										</li>
-										
-										
-										
-										
+
+
+
+
 									</ul>
 									<div class="m-portlet__body-separator"></div>
 									<div class="m-widget1 m-widget1--paddingless">
 										<div class="m-widget1__item">
 											<div class="row m-row--no-padding align-items-center">
-												
-												
+
+
 											</div>
 										</div>
 										<div class="m-widget1__item">
 											<div class="row m-row--no-padding align-items-center">
-											
-											
+
+
 											</div>
 										</div>
 										<div class="m-widget1__item">
 											<div class="row m-row--no-padding align-items-center">
-											
-												
+
+
 											</div>
 										</div>
 									</div>
@@ -935,12 +935,13 @@ License: You must have a valid license purchased only from themeforest(the above
 						</div>
 						<div class="col-xl-9 col-lg-8">
 							<div class="m-portlet m-portlet--full-height m-portlet--tabs">
-								
+
 								<div class="tab-content">
 									<div class="tab-pane active" id="m_user_profile_tab_1">
-									<form class="m-form m-form--fit m-form--label-align-right" method="POST" action="profile/update/{{ Auth::user()->idmentor}}" enctype="multipart/form-data">
-										<!-- <form class="m-form m-form--fit m-form--label-align-right" method="POST" action="profile/update"> -->
-											{{ csrf_field() }} 
+										<form class="m-form m-form--fit m-form--label-align-right" method="POST" action="profile/update/{{ Auth::user()->idmentor}}"
+										 enctype="multipart/form-data">
+											<!-- <form class="m-form m-form--fit m-form--label-align-right" method="POST" action="profile/update"> -->
+											{{ csrf_field() }}
 											<!-- {{ method_field('PUT') }} -->
 											<div class="m-portlet__body">
 												<div class="form-group m-form__group m--margin-top-10 m--hide">
@@ -961,12 +962,10 @@ License: You must have a valid license purchased only from themeforest(the above
 														username
 													</label>
 													<div class="col-7">
-														<input class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" type="text" value="{{ Auth::user()->username }}">
-															@if ($errors->has('username'))
-															<span class="invalid-feedback" role="alert">
+														<input class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" type="text" value="{{ Auth::user()->username }}">														@if ($errors->has('username'))
+														<span class="invalid-feedback" role="alert">
 																<strong>{{ $errors->first('username') }}</strong>
-															</span>
-															@endif
+															</span> @endif
 													</div>
 												</div>
 												<div class="form-group m-form__group row">
@@ -974,12 +973,10 @@ License: You must have a valid license purchased only from themeforest(the above
 														Nama Depan
 													</label>
 													<div class="col-7">
-													<input class="form-control{{ $errors->has('NamaDepan') ? ' is-invalid' : '' }}" name="NamaDepan" type="text" value="{{ Auth::user()->nm_depan }}">
-															@if ($errors->has('NamaDepan'))
-															<span class="invalid-feedback" role="alert">
+														<input class="form-control{{ $errors->has('NamaDepan') ? ' is-invalid' : '' }}" name="NamaDepan" type="text" value="{{ Auth::user()->nm_depan }}">														@if ($errors->has('NamaDepan'))
+														<span class="invalid-feedback" role="alert">
 																<strong>{{ $errors->first('NamaDepan') }}</strong>
-															</span>
-															@endif
+															</span> @endif
 													</div>
 												</div>
 												<div class="form-group m-form__group row">
@@ -987,12 +984,10 @@ License: You must have a valid license purchased only from themeforest(the above
 														Nama Belakang
 													</label>
 													<div class="col-7">
-													<input class="form-control{{ $errors->has('NamaBelakang') ? ' is-invalid' : '' }}" name="NamaBelakang" type="text" value="{{ Auth::user()->nm_belakang }}">
-															@if ($errors->has('NamaBelakang'))
-															<span class="invalid-feedback" role="alert">
+														<input class="form-control{{ $errors->has('NamaBelakang') ? ' is-invalid' : '' }}" name="NamaBelakang" type="text" value="{{ Auth::user()->nm_belakang }}">														@if ($errors->has('NamaBelakang'))
+														<span class="invalid-feedback" role="alert">
 																<strong>{{ $errors->first('NamaBelakang') }}</strong>
-															</span>
-															@endif
+															</span> @endif
 													</div>
 												</div>
 												<div class="form-group m-form__group row">
@@ -1025,12 +1020,10 @@ License: You must have a valid license purchased only from themeforest(the above
 														No Telepon
 													</label>
 													<div class="col-7">
-													<input class="form-control{{ $errors->has('noTlpn') ? ' is-invalid' : '' }}" type="text" name="noTlpn" value="{{ Auth::user()->noTlpn }}">
-																@if ($errors->has('noTlpn'))
-                                            						<span class="invalid-feedback" role="alert">
+														<input class="form-control{{ $errors->has('noTlpn') ? ' is-invalid' : '' }}" type="text" name="noTlpn" value="{{ Auth::user()->noTlpn }}">														@if ($errors->has('noTlpn'))
+														<span class="invalid-feedback" role="alert">
                                        									 <strong>{{ $errors->first('noTlpn') }}</strong>
-																	</span>
-																@endif
+																	</span> @endif
 													</div>
 												</div>
 												<div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
@@ -1044,31 +1037,31 @@ License: You must have a valid license purchased only from themeforest(the above
 
 
 												<div class="form-group m-form__group row">
-														<label for="example-text-input" class="col-2 col-form-label">
+													<label for="example-text-input" class="col-2 col-form-label">
 															Provinsi
 														</label>
-														<div class="col-7">																																																															
-															<select class="form-control m-input" name="provinsi" type="text">
+													<div class="col-7">
+														<select class="form-control m-input" name="provinsi" type="text">
 																	<option value="">pilih provinsi</option>
 																	@foreach ($p as $a)
 																	<option value="{{ $a->id }}" {{ Auth::user()->provinsi ==  $a->id  ? 'selected' : ''}}> {{$a->nama}}</option>																																																															
 																	@endforeach
 																	
-															</select>																
-														</div>
+															</select>
+													</div>
 												</div>
 
 												<div class="form-group m-form__group row">
 													<label for="example-text-input" class="col-2 col-form-label">
 														Kabupaten
 													</label>
-													<div class="col-7">																						
-														<select class="form-control m-input"  name="kabupaten" type="text" id="kabupaten" >															
+													<div class="col-7">
+														<select class="form-control m-input" name="kabupaten" type="text" id="kabupaten">															
 																<option value=""> pilih kabupaten</option>
 																@foreach ($b as $a)																
 																<option value="{{ $a->id }}"{{ Auth::user()->kota ==  $a->id  ? 'selected' : ''}}>{{$a->nama}}</option>																																		
 																@endforeach
-														</select>														
+														</select>
 													</div>
 												</div>
 
@@ -1076,7 +1069,7 @@ License: You must have a valid license purchased only from themeforest(the above
 													<label for="example-text-input" class="col-2 col-form-label">
 														Kecamatan
 													</label>
-													<div class="col-7">							
+													<div class="col-7">
 														<select class="form-control m-input" name="kecamatan" type="text" id="kecamatan">
 																<option value="">pilih kecamatan </option>
 																@foreach ($c as $a)
@@ -1090,7 +1083,7 @@ License: You must have a valid license purchased only from themeforest(the above
 													<label for="example-text-input" class="col-2 col-form-label">
 														Kelurahan
 													</label>
-													<div class="col-7">															
+													<div class="col-7">
 														<select class="form-control m-input" name="kelurahan" type="text" id="kelurahan">
 															<option value="">pilih kelurahan </option>
 										 					@foreach ($d as $a)
@@ -1105,12 +1098,10 @@ License: You must have a valid license purchased only from themeforest(the above
 															Alamat
 														</label>
 													<div class="col-7">
-													<input class="form-control{{ $errors->has('alamat') ? ' is-invalid' : '' }}" name="alamat" type="text" value="{{ Auth::user()->alamat }}">
-																@if ($errors->has('alamat'))
-                                            						<span class="invalid-feedback" role="alert">
+														<input class="form-control{{ $errors->has('alamat') ? ' is-invalid' : '' }}" name="alamat" type="text" value="{{ Auth::user()->alamat }}">														@if ($errors->has('alamat'))
+														<span class="invalid-feedback" role="alert">
                                         								<strong>{{ $errors->first('alamat') }}</strong>
-																	</span> 
-																@endif
+																	</span> @endif
 													</div>
 												</div>
 												<div class="form-group m-form__group row">
@@ -1171,12 +1162,9 @@ License: You must have a valid license purchased only from themeforest(the above
 													<div class="col-3">
 														<label class="custom-file">
 																	<input type="file" name="foto">
-																</label>
-																@if($isCompleted->foto!=null)
-																<img width="50px" height="50px" src="{{ url('/data_file/'.$isCompleted->foto) }}" alt="tidak ada foto">
-																@else
-																Tidak Ada Foto
-																@endif
+																</label> @if($isCompleted->foto!=null)
+														<img width="50px" height="50px" src="{{ url('/data_file/'.$isCompleted->foto) }}" alt="tidak ada foto"> @else
+														Tidak Ada Foto @endif
 													</div>
 												</div>
 												<!-- @foreach($isCompleted as $ft) -->
@@ -1193,17 +1181,14 @@ License: You must have a valid license purchased only from themeforest(the above
 													<label for="example-text-input" class="col-3 col-form-label">
 															File KTP
 													</label>
-														<div class="col-3">
-															<label class="custom-file">
+													<div class="col-3">
+														<label class="custom-file">
 																<input type="file" name="fileKTP">
 																	<!-- <span class="custom-file-control"></span> -->
-															</label>
-															@if($isCompleted->fileKTP!=null)
-															<img width="50px" height="50px" src="{{ url('/data_file/'.$isCompleted->fileKTP) }}">
-															@else
-															Tidak Ada File
-															@endif
-														</div>
+															</label> @if($isCompleted->fileKTP!=null)
+														<img width="50px" height="50px" src="{{ url('/data_file/'.$isCompleted->fileKTP) }}"> @else Tidak Ada File
+														@endif
+													</div>
 												</div>
 												<div class="form-group m-form__group row">
 													<label for="example-text-input" class="col-3 col-form-label">
@@ -1215,20 +1200,18 @@ License: You must have a valid license purchased only from themeforest(the above
 																	<!-- <span class="custom-file-control"></span> -->
 														</label>
 														<!-- <div class="col-md-2"> -->
-															@if($isCompleted->fileIjazah!=null)
-												<div class="m-demo-icon">
-													<div class="m-demo-icon__preview">
-														<i class="fa fa-file-pdf-o"></i>
-													</div>
-													<div class="m-demo-icon__class">
-													{{$isCompleted->fileIjazah}}
-													</div>
-												</div>
-														@else
-														Tidak Ada File
-														@endif
-											<!-- </div> -->
-																<!-- <embed width="100" height="150" src="{{ url('/data_file/'.$isCompleted->fileIjazah) }}"> -->
+														@if($isCompleted->fileIjazah!=null)
+														<div class="m-demo-icon">
+															<div class="m-demo-icon__preview">
+																<i class="fa fa-file-pdf-o"></i>
+															</div>
+															<div class="m-demo-icon__class">
+																{{$isCompleted->fileIjazah}}
+															</div>
+														</div>
+														@else Tidak Ada File @endif
+														<!-- </div> -->
+														<!-- <embed width="100" height="150" src="{{ url('/data_file/'.$isCompleted->fileIjazah) }}"> -->
 													</div>
 												</div>
 											</div>
@@ -1250,7 +1233,7 @@ License: You must have a valid license purchased only from themeforest(the above
 										</form>
 									</div>
 									<div class="tab-pane active" id="m_user_profile_tab_2">
-										
+
 									</div>
 									<div class="tab-pane active" id="m_user_profile_tab_3"></div>
 								</div>
@@ -1908,8 +1891,10 @@ License: You must have a valid license purchased only from themeforest(the above
 	<script src="assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
 	<script src="assets/demo/demo6/base/scripts.bundle.js" type="text/javascript"></script>
 	<script src="{{ asset('js/jquery.min.js') }}"></script>
-	<script src="{{ asset('js/popper.min.js') }}" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-	<script src="{{ asset('js/bootstrap.min.js') }}" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+	<script src="{{ asset('js/popper.min.js') }}" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+	 crossorigin="anonymous"></script>
+	<script src="{{ asset('js/bootstrap.min.js') }}" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+	 crossorigin="anonymous"></script>
 	<script>
 		if({{ Auth::user()->gender }}==1){
 			document.getElementById("male").checked = true;
@@ -1927,8 +1912,8 @@ License: You must have a valid license purchased only from themeforest(the above
 		});
 	</script>
 
-<script type="text/javascript">
-    $(document).ready(function() {
+	<script type="text/javascript">
+		$(document).ready(function() {
         $('select[name="provinsi"]').on('change', function() {
             var provinsiID = $(this).val();
             if(provinsiID) {
@@ -1952,7 +1937,8 @@ License: You must have a valid license purchased only from themeforest(the above
             }
         });
     });
-</script> 
+
+	</script>
 
 	<!--end::Base Scripts -->
 </body>
