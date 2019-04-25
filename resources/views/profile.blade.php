@@ -1260,101 +1260,62 @@ License: You must have a valid license purchased only from themeforest(the above
 
 
 												<div class="form-group m-form__group row">
-													<label for="example-text-input" class="col-2 col-form-label">
-														Provinsi
-													</label>
-													<div class="col-7">
-														<select class="form-control m-input" id="exampleSelect1">
-																<option>
-																	1
-																</option>
-																<option>
-																	2
-																</option>
-																<option>
-																	3
-																</option>
-																<option>
-																	4
-																</option>
-																<option>
-																	5
-																</option>
-															</select>
-													</div>
+														<label for="example-text-input" class="col-2 col-form-label">
+															Provinsi
+														</label>
+														<div class="col-7">																																																															
+															<select class="form-control m-input" name="provinsi" type="text">
+																	<option value="">pilih provinsi</option>
+																	@foreach ($p as $a)
+																	<option value="{{ $a->id }}" {{ Auth::user()->provinsi ==  $a->id  ? 'selected' : ''}}> {{$a->nama}}</option>																																																															
+																	@endforeach
+																	
+															</select>																
+														</div>
 												</div>
+
 												<div class="form-group m-form__group row">
 													<label for="example-text-input" class="col-2 col-form-label">
 														Kabupaten
 													</label>
-													<div class="col-7">
-														<select class="form-control m-input" id="exampleSelect1">
-																<option>
-																	1
-																</option>
-																<option>
-																	2
-																</option>
-																<option>
-																	3
-																</option>
-																<option>
-																	4
-																</option>
-																<option>
-																	5
-																</option>
-															</select>
+													<div class="col-7">																						
+														<select class="form-control m-input"  name="kabupaten" type="text" id="kabupaten" >															
+																<option value=""> pilih kabupaten</option>
+																@foreach ($b as $a)																
+																<option value="{{ $a->id }}"{{ Auth::user()->kota ==  $a->id  ? 'selected' : ''}}>{{$a->nama}}</option>																																		
+																@endforeach
+														</select>														
 													</div>
 												</div>
+
 												<div class="form-group m-form__group row">
 													<label for="example-text-input" class="col-2 col-form-label">
 														Kecamatan
 													</label>
-													<div class="col-7">
-														<select class="form-control m-input" id="exampleSelect1">
-																<option>
-																	1
-																</option>
-																<option>
-																	2
-																</option>
-																<option>
-																	3
-																</option>
-																<option>
-																	4
-																</option>
-																<option>
-																	5
-																</option>
-															</select>
+													<div class="col-7">							
+														<select class="form-control m-input" name="kecamatan" type="text" id="kecamatan">
+																<option value="">pilih kecamatan </option>
+																@foreach ($c as $a)
+																<option value="{{ $a->id }}"{{ Auth::user()->kecamatan ==  $a->id  ? 'selected' : ''}}>{{$a->nama}}</option>																																																	
+																@endforeach
+														</select>
 													</div>
 												</div>
+
 												<div class="form-group m-form__group row">
 													<label for="example-text-input" class="col-2 col-form-label">
 														Kelurahan
 													</label>
-													<div class="col-7">
-														<select class="form-control m-input" id="exampleSelect1">
-																<option>
-																	1
-																</option>
-																<option>
-																	2
-																</option>
-																<option>
-																	3
-																</option>
-																<option>
-																	4
-																</option>
-																<option>
-																	5
-																</option>
-															</select>
+													<div class="col-7">															
+														<select class="form-control m-input" name="kelurahan" type="text" id="kelurahan">
+															<option value="">pilih kelurahan </option>
+										 					@foreach ($d as $a)
+															<option value="{{ $a->id }}"{{ Auth::user()->kelurahan ==  $a->id  ? 'selected' : ''}}>{{$a->nama}}</option>
+															@endforeach
+														</select>
 													</div>
 												</div>
+
 												<div class="form-group m-form__group row">
 													<label for="example-text-input" class="col-2 col-form-label">
 															Alamat
@@ -2115,6 +2076,9 @@ License: You must have a valid license purchased only from themeforest(the above
 	<!--begin::Base Scripts -->
 	<script src="assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
 	<script src="assets/demo/demo6/base/scripts.bundle.js" type="text/javascript"></script>
+	<script src="{{ asset('js/jquery.min.js') }}"></script>
+	<script src="{{ asset('js/popper.min.js') }}" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+	<script src="{{ asset('js/bootstrap.min.js') }}" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 	<script>
 		if({{ Auth::user()->gender }}==1){
 			document.getElementById("male").checked = true;
@@ -2122,6 +2086,33 @@ License: You must have a valid license purchased only from themeforest(the above
 			document.getElementById("female").checked = true;
 		}
 	</script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('select[name="provinsi"]').on('change', function() {
+            var provinsiID = $(this).val();
+            if(provinsiID) {
+                $.ajax({
+                    url: '/myform/ajax/'+provinsiID,
+                    type: "GET",
+                    dataType: "json",
+                    success:function(data) {
+
+                        
+                        $('select[name="kabupaten"]').empty();
+                        $.each(data, function(key, value) {
+                            $('select[name="kabupaten"]').append('<option value="'+ key +'">'+ value +'</option>');
+                        });
+
+
+                    }
+                });
+            }else{
+                $('select[name="kabupaten"]').empty();
+            }
+        });
+    });
+</script> 
 
 	<!--end::Base Scripts -->
 </body>

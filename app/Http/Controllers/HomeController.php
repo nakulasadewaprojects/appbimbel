@@ -8,8 +8,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Tbdetailmentor;
 use DB;
-
-
+use App\Provinsi;
+use Kota;
+use AppKecamatan;
+use AppKelurahan;
 
 class HomeController extends Controller
 {
@@ -41,8 +43,22 @@ class HomeController extends Controller
     }
     public function profile()
     {
-        return view('profile');
+     
+       $provinsi  = DB::table('provinsi')->get();
+       $kabupaten = DB::table('kota_kabupaten')->get();
+       $kecamatan = DB::table('kecamatan')->get();
+       $kelurahan = DB::table('kelurahan')->get();
+        return view('profile', ['p' => $provinsi, 'b' => $kabupaten, 'c' => $kecamatan, 'd' => $kelurahan]);
+      //return  $provinsi;
     }
+
+    public function getStates($id) {
+            $states = DB::table("provinsi")->where("id",$id)->pluck("nama","id");
+    
+            return json_encode($states);
+            //return $states;
+    
+         }      
     
     public function update($idmentor, Request $request)
     {
@@ -61,6 +77,10 @@ class HomeController extends Controller
             // 'password' => Hash::make($data['password']),
             // 'NamaLengkap' => $request['NamaLengkap'],
             'alamat' => $request['alamat'],
+            'provinsi' => $request['provinsi'],
+            'kota' => $request['kabupaten'],
+            'kecamatan' => $request['kecamatan'],
+            'kelurahan' => $request['kelurahan'],
             'nm_depan' => $request['NamaDepan'],
             'nm_belakang' => $request['NamaBelakang'],
             'gender' => $request['gender'],
