@@ -6,12 +6,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use DB;
 use App\Tbdetailmentor;
 use App\Tbmentor;
 use File;
-use Illuminate\Support\Facades\Storage;
-
+use DB;
 
 class HomeController extends Controller
 {
@@ -41,20 +39,25 @@ class HomeController extends Controller
         $show = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
         return view('dashboard',['isCompleted'=>$show]);
     }
+
     public function myprofile()
     {
         $show = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
         return view('myProfile',['isCompleted'=>$show]);
     }
+
     public function profile()
     {
-        $show = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
-        return view('profile',['isCompleted'=>$show]);
-        // $tujuan_upload = 'data_file';
-        // $show = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->value('foto');
-        // return $tujuan_upload.'/'.$show;
+     $show = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
+       $provinsi  = DB::table('provinsi')->get();
+       $kabupaten = DB::table('kota_kabupaten')->get();
+       $kecamatan = DB::table('kecamatan')->get();
+       $kelurahan = DB::table('kelurahan')->get();
+        return view('profile', ['isCompleted'=>$show, 'p' => $provinsi, 'b' => $kabupaten, 'c' => $kecamatan, 'd' => $kelurahan]);
+      //return  $provinsi;
     }
 
+    
     
     public function update($idmentor, Request $request)
     {
@@ -71,12 +74,15 @@ class HomeController extends Controller
          $Tbmentor=Tbmentor::find($idmentor);
          $Tbmentor->username=$request['username'];
          $Tbmentor->alamat=$request['alamat'];
+         $Tbmentor->provinsi=$request['provinsi'];
+         $Tbmentor->kota=$request['kabupaten'];
+         $Tbmentor->kecamatan=$request['kecamatan'];
+         $Tbmentor->kelurahan=$request['kelurahan'];
          $Tbmentor->nm_depan=$request['NamaDepan'];
          $Tbmentor->nm_belakang=$request['NamaBelakang'];
          $Tbmentor->gender=$request['gender'];
          $Tbmentor->noTlpn=$request['noTlpn'];
          $Tbmentor->save();
-
         //  $this->validate($request, [
         // 	'foto' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
         //     'fileIjazah'=>'required',
@@ -124,3 +130,5 @@ class HomeController extends Controller
         return redirect('/myProfile');
     }
 }
+         
+    
