@@ -97,7 +97,19 @@ class HomeController extends Controller
     public function profile()
     {
         $show = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
-        return view('profile', ['isCompleted' => $show]);
+        $provinsi  = DB::table('provinsi')->get();
+        $kabupaten = DB::table('kota_kabupaten')->get();
+        $kecamatan = DB::table('kecamatan')->get();
+        $kelurahan = DB::table('kelurahan')->get();
+        return view('profile', ['isCompleted' => $show, 'p' => $provinsi, 'b' => $kabupaten, 'c' => $kecamatan, 'd' => $kelurahan]);
+        //return  $provinsi;
+    }
+
+    public function getStates($id)
+    {
+        $states = DB::table("provinsi")->where("id", $id)->pluck("nama", "id");
+
+        return json_encode($states);
     }
 
     public function update($idmentor, Request $request)
