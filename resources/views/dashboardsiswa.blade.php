@@ -45,10 +45,41 @@
 		</div>
 	</div>
 	<div class="m-content">
-		<!--Begin::Main Portlet-->
+		<div class="row">
 
-		
-		<!--End::Main Portlet-->
+			@foreach($mentor as $dm)
+
+			<div class="col-xl-3 col-lg-4">
+				<div class="m-portlet m-portlet--full-height  ">
+					<div class="m-portlet__body">
+						<div class="m-card-profile">
+							<div class="m-card-profile__title m--hide">
+								Your Profile
+							</div>
+							<div class="m-card-profile__pic">
+								<div class="m-card-profile__pic-wrapper">
+									<img src="{{ url('/data_file/'.$dm->foto) }}" alt="" width="100px" height="100px" />
+								</div>
+							</div>
+							<div class="m-card-profile__details">
+								<span class="m-card-profile__name">
+												{{ $dm->nm_depan }} {{ $dm->nm_belakang }}
+											</span>
+								<a href="" class="m-card-profile__email m-link">
+												{{ $dm->alamat  }}
+											</a>
+							</div>
+						</div>
+
+						<div class="m-portlet__body-separator"></div>
+
+					</div>
+				</div>
+			</div>
+
+
+			@endforeach
+		</div>
 	</div>
 </div>
 </div>

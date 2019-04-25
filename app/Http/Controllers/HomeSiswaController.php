@@ -18,6 +18,10 @@ class HomeSiswaController extends Controller
 
     public function dashboardsiswa()
     {
+        $mentor=DB::table('tbmentor')
+                    ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+                    ->get();
+        // $tbmentor=DB::table('tbmentor')->get();
         $showing = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->first();
         $show = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->pluck('namaWali')->toArray();
         $show1 = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->pluck('pendidikanSiswa')->toArray();
@@ -39,7 +43,8 @@ class HomeSiswaController extends Controller
         }
 
         Tbdetailsiswa::where('idtbDetailSiswa', Auth::user()->idtbSiswa)->update(['idtbSiswa' => Auth::user()->idtbSiswa]);
-        return view('dashboardsiswa', ['isCompleted' => $showing]);
+        return view('dashboardsiswa', ['isCompleted' => $showing,'mentor'=>$mentor]);
+        // return  $mentor;
     }
 
     public function profilesiswa()
