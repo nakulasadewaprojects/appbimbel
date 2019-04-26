@@ -10,6 +10,7 @@ use App\Tbdetailmentor;
 use App\Tbmentor;
 use File;
 use DB;
+use Image;
 
 class HomeController extends Controller
 {
@@ -145,10 +146,11 @@ class HomeController extends Controller
         $Tbmentor->gender = $request['gender'];
         $Tbmentor->noTlpn = $request['noTlpn'];
         $Tbmentor->save();
+
         //  $this->validate($request, [
         // 	'foto' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
-        //     'fileIjazah'=>'required',
-        //     'fileKTP'=>'required',
+        //     'fileIjazah'=>'required|file|mimes:jpeg,png,jpg,pdf|max:2048',
+        //     'fileKTP'=>'required|file|image|mimes:jpeg,png,jpg|max:2048',
         //     'pendidikanTerakhir'=>'required',
         //     'statusPendidikan'=>'required',
         //     'No_Identitas'=>'required'
@@ -159,12 +161,17 @@ class HomeController extends Controller
         $foto = $request->file('foto');
         $tujuan_upload = 'data_file';
         if ($request->hasFile('foto')) {
-            // Storage::delete('/data_file/'.$show );
             $show = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->value('foto');
-            $nama_foto = time() . "_" . $foto->getClientOriginalName();
-            // $tujuan_upload = 'data_file';
-            $foto->move($tujuan_upload, $nama_foto);
-            File::delete($tujuan_upload . '/' . $show);
+            
+            // $nama_foto = time() . "_" . $foto->getClientOriginalName();
+            $nama_foto = time().'.'.$foto->getClientOriginalExtension();
+            $tujuan_upload2 = public_path('/data_file2');
+            $thumb_img = Image::make($foto->getRealPath())->resize(100, 100);
+            $thumb_img->save($tujuan_upload2.'/'.$nama_foto,80);
+            File::delete($tujuan_upload2 . '/' . $show);
+            $tujuan_upload2 = public_path('/data_file') ;
+            $foto->move($tujuan_upload2, $nama_foto);
+            File::delete($tujuan_upload2 . '/' . $show);
             $Tbdetailmentor->foto = $nama_foto;
         } else { }
 

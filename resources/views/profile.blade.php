@@ -25,7 +25,7 @@
 							</div>
 							<div class="m-card-profile__pic">
 								<div class="m-card-profile__pic-wrapper">
-									<img src="{{ url('/data_file/'.$isCompleted->foto) }}" width="100px" height="100px" alt="" />
+									<img src="{{ url('/data_file2/'.$isCompleted->foto) }}" width="100px" height="100px" alt="" />
 								</div>
 							</div>
 							<div class="m-card-profile__details">
@@ -333,7 +333,7 @@
 											<label class="custom-file">
 																	<input type="file" name="foto">
 																</label> @if($isCompleted->foto!=null)
-											<img width="50px" height="50px" src="{{ url('/data_file/'.$isCompleted->foto) }}" alt="tidak ada foto"> @else
+											<img width="50px" height="50px" src="{{ url('/data_file2/'.$isCompleted->foto) }}" alt="tidak ada foto"> @else
 											Tidak Ada Foto @endif
 										</div>
 									</div>
