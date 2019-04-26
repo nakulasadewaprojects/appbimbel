@@ -4,7 +4,6 @@
 <head>
   <meta charset="utf-8">
   <title>App Bimbel</title>
-  <link rel="stylesheet" href="style.css">
   <link href="{{ asset('css/style.css') }}" rel="stylesheet">
   <link rel="shortcut icon" href="assets/demo/demo6/media/img/logo/favicon.ico" />
 
@@ -33,7 +32,7 @@
       <audio controls>
         <source src="https://server8.mp3quran.net/afs_dori/014.mp3" type="audio/mpeg">
         </audio>
-        <p>Jangan lupa ngaji ya :)</p>
+      <p>Jangan lupa ngaji ya :)</p>
     </div>
   </div>
 

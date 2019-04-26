@@ -105,11 +105,20 @@ class HomeController extends Controller
         //return  $provinsi;
     }
 
-    public function getStates($id)
+    public function getKabupaten($id)
     {
-        $states = DB::table("provinsi")->where("id", $id)->pluck("nama", "id");
-
-        return json_encode($states);
+        $kabupaten = DB::table("kota_kabupaten")->where("provinsi_id", $id)->pluck("nama", "id");
+        return json_encode($kabupaten);
+    }
+    public function getKecamatan($id)
+    {
+        $kecamatan = DB::table("kecamatan")->where("kab_kota_id", $id)->pluck("nama", "id");
+        return json_encode($kecamatan);
+    }
+    public function getKelurahan($id)
+    {
+        $kelurahan = DB::table("kelurahan")->where("kecamatan_id", $id)->pluck("nama", "id");
+        return json_encode($kelurahan);
     }
 
     public function update($idmentor, Request $request)

@@ -20,7 +20,7 @@ License: You must have a valid license purchased only from themeforest(the above
 	<title>
 		Metronic | My Profile
 	</title>
-	
+
 	<meta name="description" content="User profile view and edit">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -410,7 +410,7 @@ License: You must have a valid license purchased only from themeforest(the above
 																</span>
 															</li>
 															<li class="m-nav__item">
-																	<a href="myProfile" class="m-nav__link">
+																<a href="myProfile" class="m-nav__link">
 																		<i class="m-nav__link-icon flaticon-profile-1"></i>
 																		<span class="m-nav__link-title">
 																			<span class="m-nav__link-wrap">
@@ -420,15 +420,15 @@ License: You must have a valid license purchased only from themeforest(the above
 																			</span>
 																		</span>
 																	</a>
-																</li>
-																<li class="m-nav__item">
-																	<a href="header/profile.html" class="m-nav__link">
+															</li>
+															<li class="m-nav__item">
+																<a href="header/profile.html" class="m-nav__link">
 																		<i class="m-nav__link-icon flaticon-info"></i>
 																		<span class="m-nav__link-text">
 																			Setting
 																		</span>
 																	</a>
-																</li>
+															</li>
 															<li class="m-nav__separator m-nav__separator--fit"></li>
 															<li class="m-nav__item">
 																<a href="{{ route('logout') }}" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder"
@@ -493,7 +493,7 @@ License: You must have a valid license purchased only from themeforest(the above
 											</span>
 										</a>
 									</li>
-									
+
 									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
 										<a href="inner.html" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
@@ -854,9 +854,9 @@ License: You must have a valid license purchased only from themeforest(the above
 					</ul>
 				</div>
 				<!-- END: Aside Menu -->
-            </div>
-            @yield('content')
-            </div>
+			</div>
+			@yield('content')
+		</div>
 		<!-- end:: Body -->
 		<!-- begin::Footer -->
 		<footer class="m-grid__item		m-footer ">
@@ -1504,12 +1504,12 @@ License: You must have a valid license purchased only from themeforest(the above
 	<!--begin::Base Scripts -->
 	<script src="assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
 	<script src="assets/demo/demo6/base/scripts.bundle.js" type="text/javascript"></script>
-	   <!--begin::Page Vendors -->
-	   <script src="assets/vendors/custom/fullcalendar/fullcalendar.bundle.js" type="text/javascript"></script>
-		<!--end::Page Vendors -->  
-        <!--begin::Page Snippets -->
-		<script src="assets/app/js/dashboard.js" type="text/javascript"></script>
-		<!--end::Page Snippets -->
+	<!--begin::Page Vendors -->
+	<script src="assets/vendors/custom/fullcalendar/fullcalendar.bundle.js" type="text/javascript"></script>
+	<!--end::Page Vendors -->
+	<!--begin::Page Snippets -->
+	<script src="assets/app/js/dashboard.js" type="text/javascript"></script>
+	<!--end::Page Snippets -->
 	<script>
 		if({{ Auth::user()->gender }}==1){
 			document.getElementById("male").checked = true;
@@ -1526,7 +1526,130 @@ License: You must have a valid license purchased only from themeforest(the above
 			
 		});
 	</script>
-<!--end::Base Scripts -->
+
+	<script>
+		$(document).ready(function() {
+
+$('select[name="provinsi"]').on('change', function(){
+	var kabupatenId = $('select[name="provinsi"]').val();
+	if(kabupatenId) {
+		$.ajax({
+			url: '/appbimbel/public/kabupaten/get/'+kabupatenId,
+			type:"GET",
+			dataType:"json",
+			beforeSend: function(){
+				$('#loader').css("visibility", "visible");
+			},
+
+			success:function(data) {
+
+				$('select[name="kabupaten"]').empty();
+				$('select[name="kecamatan"]').empty();
+				$('select[name="kelurahan"]').empty();
+				$('select[name="kabupaten"]').append('<option value="">' + 'Pilih Kabupaten' + '</option>');
+				$('select[name="kecamatan"]').append('<option value="">' + 'Pilih Kecamatan' + '</option>');
+				$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
+
+				$.each(data, function(key, value){
+
+					
+					$('select[name="kabupaten"]').append('<option value="'+ key +'">' + value + '</option>');
+
+				});
+			},
+			complete: function(){
+				$('#loader').css("visibility", "hidden");
+			}
+		});
+	} else {
+		$('select[name="kabupaten"]').empty();
+		$('select[name="kecamatan"]').empty();
+		$('select[name="kelurahan"]').empty();
+		$('select[name="kabupaten"]').append('<option value="">' + 'Pilih Kabupaten' + '</option>');		
+		$('select[name="kecamatan"]').append('<option value="">' + 'Pilih Kecamatan' + '</option>');		
+		$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');		
+	}
+
+});
+});
+
+$(document).ready(function() {
+
+$('select[name="kabupaten"]').on('change', function(){
+	var kecamatanId = $(this).val();
+	if(kecamatanId) {
+		$.ajax({
+			url: '/appbimbel/public/kecamatan/get/'+kecamatanId,
+			type:"GET",
+			dataType:"json",
+			beforeSend: function(){
+				$('#loader').css("visibility", "visible");
+			},
+
+			success:function(data) {
+
+				$('select[name="kecamatan"]').empty();
+				$('select[name="kelurahan"]').empty();
+				$('select[name="kecamatan"]').append('<option value="">' + 'Pilih Kecamatan' + '</option>');
+				$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
+
+				$.each(data, function(key, value){
+
+					$('select[name="kecamatan"]').append('<option value="'+ key +'">' + value + '</option>');
+
+				});
+			},
+			complete: function(){
+				$('#loader').css("visibility", "hidden");
+			}
+		});
+	} else {
+		$('select[name="kecamatan"]').empty();
+		$('select[name="kelurahan"]').empty();
+		$('select[name="kecamatan"]').append('<option value="">' + 'Pilih Kecamatan' + '</option>');
+		$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
+	}
+
+});
+});
+
+$(document).ready(function() {
+
+$('select[name="kecamatan"]').on('change', function(){
+	var kelurahanId = $(this).val();
+	if(kelurahanId) {
+		$.ajax({
+			url: '/appbimbel/public/kelurahan/get/'+kelurahanId,
+			type:"GET",
+			dataType:"json",
+			beforeSend: function(){
+				$('#loader').css("visibility", "visible");
+			},
+
+			success:function(data) {
+
+				$('select[name="kelurahan"]').empty();
+				$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
+
+				$.each(data, function(key, value){
+
+					$('select[name="kelurahan"]').append('<option value="'+ key +'">' + value + '</option>');
+
+				});
+			},
+			complete: function(){
+				$('#loader').css("visibility", "hidden");
+			}
+		});
+	} else {
+		$('select[name="kelurahan"]').empty();
+		$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
+	}
+
+});
+});
+	</script>
+	<!--end::Base Scripts -->
 </body>
 <!-- end::Body -->
 
