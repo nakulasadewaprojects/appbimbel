@@ -25,7 +25,7 @@
 										</div>
 										<div class="m-card-profile__pic">
 											<div class="m-card-profile__pic-wrapper">
-												<img src="assets/app/media/img/users/user4.jpg" alt="" />
+												<img src="{{ url('/data_fileSiswa/'.$ProfilSiswa->foto) }}" height="100px" width="100px" alt="" />
 											</div>
 										</div>
 										<div class="m-card-profile__details">
@@ -110,6 +110,18 @@
 														</span>
 														<span class="m-widget13__text m-widget13__text-bolder">
 															{{ Auth::user()->NamaLengkap }}
+														</span>
+													</div>
+													<div class="m-widget13__item">
+														<span class="m-widget13__desc m--align-right">
+															Jenis Kelamin :
+														</span>
+														<span class="m-widget13__text m-widget13__text-bolder">
+														@if($s->gender!=2) 
+														laki laki
+														@else
+														perempuan
+														@endif
 														</span>
 													</div>
 													<div class="m-widget13__item">

@@ -7,7 +7,7 @@
 						<div class="d-flex align-items-center">
 							<div class="mr-auto">
 								<h3 class="m-subheader__title ">
-									Edit Profil Sayang
+									Edit Profil Saya
 								</h3>
 							</div>
 							
@@ -25,7 +25,7 @@
 											</div>
 											<div class="m-card-profile__pic">
 												<div class="m-card-profile__pic-wrapper">
-													<img src="assets/app/media/img/users/user4.jpg" alt=""/>
+													<img src="{{ url('/data_fileSiswa/'.$isCompleted->foto) }}" height="100px" width="100px" alt=""/>
 												</div>
 											</div>
 											<div class="m-card-profile__details">
@@ -82,7 +82,7 @@
 								
 									<div class="tab-content">
 										<div class="tab-pane active" id="m_user_profile_tab_1">
-											<form class="m-form m-form--fit m-form--label-align-right" method="POST"  action="profilesiswa/update/{{ Auth::user()->idtbSiswa}}">
+											<form class="m-form m-form--fit m-form--label-align-right" method="POST"  action="profilesiswa/update/{{ Auth::user()->idtbSiswa}}"  enctype="multipart/form-data">
 													{{ csrf_field() }}
     													{{ method_field('PUT') }}
 												<div class="m-portlet__body">
@@ -196,6 +196,20 @@
                                         								<strong>{{ $errors->first('email') }}</strong>
 																	</span> 
 																@endif
+														</div>
+													</div>
+													<div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-3 col-form-label">
+																			Foto
+														</label>
+														<div class="col-3">
+															<label class="custom-file">
+																				<input type="file" name="foto">
+															</label>
+															 @if($isCompleted->foto!=null)
+															<img width="50px" height="50px" src="{{ url('/data_fileSiswa/'.$isCompleted->foto) }}" alt="tidak ada foto"> @else
+															Tidak Ada Foto
+															 @endif
 														</div>
 													</div>
 													<div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
