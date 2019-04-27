@@ -43,6 +43,10 @@ License: You must have a valid license purchased only from themeforest(the above
 	<link href="assets/demo/demo6/base/style.bundle.css" rel="stylesheet" type="text/css" />
 	<!--end::Base Styles -->
 	<link rel="shortcut icon" href="assets/demo/demo6/media/img/logo/favicon.ico" />
+	<!-- zoom image -->
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/imgzoom.css') }}" />
+	<script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/jquery.imgzoom.pack.js') }}"></script>
 </head>
 <!-- end::Head -->
 <!-- end::Body -->
@@ -1331,9 +1335,15 @@ License: You must have a valid license purchased only from themeforest(the above
 				$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
 			}
 
-		});
-		});
-	</script>
+});
+});
+</script>
+<!-- zoom image -->
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('img.thumbnail').imgZoom();
+  });
+</script>
 	<!--end::Base Scripts -->
 </body>
 <!-- end::Body -->
