@@ -21,13 +21,11 @@
         asperiores modi adipisci cupiditate odit rem reiciendis, natus aspernatur.
 
       </p>
-      <!-- <a href="#">Saya Siswa</a>
-        <a href="#">Saya Mentor</a> -->
       @if (Auth::guard('web')->check())
       <a href="{{ url('/dashboard') }}">Dashboard</a> @elseif ( Auth::guard('siswa')->check())
       <a href="{{ url('/dashboardsiswa') }}">Dashboard</a> @else
-      <a href="{{ url('mentor/login') }}">Saya Mentor</a>
-      <a href="{{ url('siswa/login') }}">Saya Siswa</a> @endif
+      <a href="{{ url('mentor/login') }}">Mentor</a>
+      <a href="{{ url('siswa/login') }}">Siswa</a> @endif
       <br><br><br>
       <audio controls>
         <source src="https://server8.mp3quran.net/afs_dori/014.mp3" type="audio/mpeg">
