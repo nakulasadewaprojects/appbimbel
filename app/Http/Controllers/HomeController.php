@@ -10,7 +10,6 @@ use App\Tbdetailmentor;
 use App\Tbmentor;
 use File;
 use DB;
-use Image;
 
 class HomeController extends Controller
 {
@@ -106,20 +105,11 @@ class HomeController extends Controller
         //return  $provinsi;
     }
 
-    public function getKabupaten($id)
+    public function getStates($id)
     {
-        $kabupaten = DB::table("kota_kabupaten")->where("provinsi_id", $id)->pluck("nama", "id");
-        return json_encode($kabupaten);
-    }
-    public function getKecamatan($id)
-    {
-        $kecamatan = DB::table("kecamatan")->where("kab_kota_id", $id)->pluck("nama", "id");
-        return json_encode($kecamatan);
-    }
-    public function getKelurahan($id)
-    {
-        $kelurahan = DB::table("kelurahan")->where("kecamatan_id", $id)->pluck("nama", "id");
-        return json_encode($kelurahan);
+        $states = DB::table("provinsi")->where("id", $id)->pluck("nama", "id");
+
+        return json_encode($states);
     }
 
     public function update($idmentor, Request $request)
@@ -146,11 +136,10 @@ class HomeController extends Controller
         $Tbmentor->gender = $request['gender'];
         $Tbmentor->noTlpn = $request['noTlpn'];
         $Tbmentor->save();
-
         //  $this->validate($request, [
         // 	'foto' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
-        //     'fileIjazah'=>'required|file|mimes:jpeg,png,jpg,pdf|max:2048',
-        //     'fileKTP'=>'required|file|image|mimes:jpeg,png,jpg|max:2048',
+        //     'fileIjazah'=>'required',
+        //     'fileKTP'=>'required',
         //     'pendidikanTerakhir'=>'required',
         //     'statusPendidikan'=>'required',
         //     'No_Identitas'=>'required'
@@ -161,17 +150,12 @@ class HomeController extends Controller
         $foto = $request->file('foto');
         $tujuan_upload = 'data_file';
         if ($request->hasFile('foto')) {
+            // Storage::delete('/data_file/'.$show );
             $show = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->value('foto');
-            
-            // $nama_foto = time() . "_" . $foto->getClientOriginalName();
-            $nama_foto = time().'.'.$foto->getClientOriginalExtension();
-            $tujuan_upload2 = public_path('/data_file2');
-            $thumb_img = Image::make($foto->getRealPath())->resize(100, 100);
-            $thumb_img->save($tujuan_upload2.'/'.$nama_foto,80);
-            File::delete($tujuan_upload2 . '/' . $show);
-            $tujuan_upload2 = public_path('/data_file') ;
-            $foto->move($tujuan_upload2, $nama_foto);
-            File::delete($tujuan_upload2 . '/' . $show);
+            $nama_foto = time() . "_" . $foto->getClientOriginalName();
+            // $tujuan_upload = 'data_file';
+            $foto->move($tujuan_upload, $nama_foto);
+            File::delete($tujuan_upload . '/' . $show);
             $Tbdetailmentor->foto = $nama_foto;
         } else { }
 
