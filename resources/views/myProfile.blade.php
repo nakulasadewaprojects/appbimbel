@@ -86,7 +86,7 @@
 										</div>
 										<div class="m-card-profile__pic">
 											<div class="m-card-profile__pic-wrapper">
-												<img src="{{ url('/data_file/'.$isCompleted->foto) }}" width="100px" height="100px" alt="" />
+												<img src="{{ url('/data_file2/'.$isCompleted->foto) }}" width="100px" height="100px" alt="" />
 											</div>
 										</div>
 										<div class="m-card-profile__details">
@@ -404,7 +404,7 @@
 															Alamat :
 														</span>
 														<span class="m-widget13__text m-widget13__text-bolder">
-															{{  Auth::user()->alamat }}, 
+															{{  Auth::user()->alamat }}
 														</span>
 													</div>
 													<div class="m-widget13__item">
@@ -441,8 +441,3 @@
 					</div>
 				</div>
 				@endsection
-		
-						
-							
-	
-

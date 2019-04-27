@@ -1,16 +1,12 @@
 <?php
-
-
-
 namespace App\Http\Controllers;
-
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Tbdetailmentor;
 use App\Tbmentor;
 use File;
 use DB;
-
+use Image;
 class HomeController extends Controller
 {
     /**
@@ -20,7 +16,6 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-
         $this->middleware(['auth', 'verified']);
     }
     /**
@@ -43,7 +38,6 @@ class HomeController extends Controller
         $show5 = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->pluck('fileIjazah')->toArray();
         $show6 = array_merge($show, $show1, $show2, $show3, $show4, $show5);
         $counting = count(array_filter($show6, "is_null"));
-
         if ($counting == 6) {
             Tbdetailmentor::where('idtbRiwayatTutor', Auth::user()->idmentor)->update(['statKomplit' => '0']);
         } else if ($counting == 5) {
@@ -62,7 +56,6 @@ class HomeController extends Controller
         Tbdetailmentor::where('idtbRiwayatTutor', Auth::user()->idmentor)->update(['idmentor' => Auth::user()->idmentor]);
         return view('dashboard', ['isCompleted' => $showing]);
     }
-
     public function myprofile()
     {
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
@@ -75,7 +68,6 @@ class HomeController extends Controller
         $show5 = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->pluck('fileIjazah')->toArray();
         $show6 = array_merge($show, $show1, $show2, $show3, $show4, $show5);
         $counting = count(array_filter($show6, "is_null"));
-
         if ($counting == 6) {
             Tbdetailmentor::where('idtbRiwayatTutor', Auth::user()->idmentor)->update(['statKomplit' => '0']);
         } else if ($counting == 5) {
@@ -93,7 +85,6 @@ class HomeController extends Controller
         }
         return view('myProfile', ['isCompleted' => $showing, 'm' => $mentor]);
     }
-
     public function profile()
     {
         $show = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
@@ -104,26 +95,32 @@ class HomeController extends Controller
         return view('profile', ['isCompleted' => $show, 'p' => $provinsi, 'b' => $kabupaten, 'c' => $kecamatan, 'd' => $kelurahan]);
         //return  $provinsi;
     }
-
-    public function getStates($id)
+    public function getKabupaten($id)
     {
-        $states = DB::table("provinsi")->where("id", $id)->pluck("nama", "id");
-
-        return json_encode($states);
+        $kabupaten = DB::table("kota_kabupaten")->where("provinsi_id", $id)->pluck("nama", "id");
+        return json_encode($kabupaten);
     }
-
+    public function getKecamatan($id)
+    {
+        $kecamatan = DB::table("kecamatan")->where("kab_kota_id", $id)->pluck("nama", "id");
+        return json_encode($kecamatan);
+    }
+    public function getKelurahan($id)
+    {
+        $kelurahan = DB::table("kelurahan")->where("kecamatan_id", $id)->pluck("nama", "id");
+        return json_encode($kelurahan);
+    }
     public function update($idmentor, Request $request)
     {
         $this->validate($request, [
             'username' => ['required', 'alpha_num', 'min:6', 'max:50', 'unique:tbmentor,username,' . $idmentor . ',idmentor', 'regex:/^.*(?=.*[a-zA-Z])(?=.*[0-9]).*$/'],
             'NamaDepan' => ['required', 'string', 'max:255'],
-            'NamaBelakang' => ['string', 'max:255'],
-            'alamat' => [ 'string', 'max:255'],
+            'NamaBelakang' => ['required', 'string', 'max:255'],
+            'alamat' => ['required', 'string', 'max:255'],
             // 'gender' => ['required', 'string', 'max:255'],
-            'noTlpn' => [ 'string', 'max:255', 'unique:tbmentor,noTlpn,' . $idmentor . ',idmentor'],
+            'noTlpn' => ['required', 'string', 'max:255', 'unique:tbmentor,noTlpn,' . $idmentor . ',idmentor'],
             // 'email' => ['required', 'string', 'email', 'max:255', 'unique:tbmentor,email,'.$idmentor.',idmentor', 'regex:/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/']
         ]);
-
         $Tbmentor = Tbmentor::find($idmentor);
         $Tbmentor->username = $request['username'];
         $Tbmentor->alamat = $request['alamat'];
@@ -138,8 +135,8 @@ class HomeController extends Controller
         $Tbmentor->save();
         //  $this->validate($request, [
         // 	'foto' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
-        //     'fileIjazah'=>'required',
-        //     'fileKTP'=>'required',
+        //     'fileIjazah'=>'required|file|mimes:jpeg,png,jpg,pdf|max:2048',
+        //     'fileKTP'=>'required|file|image|mimes:jpeg,png,jpg|max:2048',
         //     'pendidikanTerakhir'=>'required',
         //     'statusPendidikan'=>'required',
         //     'No_Identitas'=>'required'
@@ -150,7 +147,6 @@ class HomeController extends Controller
         $foto = $request->file('foto');
         $tujuan_upload = 'data_file';
         if ($request->hasFile('foto')) {
-            // Storage::delete('/data_file/'.$show );
             $show = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->value('foto');
             // $nama_foto = time() . "_" . $foto->getClientOriginalName();
             $nama_foto = time().'.'.$foto->getClientOriginalExtension();
@@ -163,7 +159,6 @@ class HomeController extends Controller
             File::delete($tujuan_upload2 . '/' . $show);
             $Tbdetailmentor->foto = $nama_foto;
         } else { }
-
         $fileKTP = $request->file('fileKTP');
         if ($request->hasFile('fileKTP')) {
             $show = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->value('fileKTP');
@@ -182,6 +177,6 @@ class HomeController extends Controller
         } else { }
         $Tbdetailmentor->No_Identitas = $request['No_Identitas'];
         $Tbdetailmentor->save();
-        return redirect('/myProfile')->with('message', 'IT WORKS!');
+        return redirect('/myProfile')->with('message', 'IT WORKS!');       
     }
 }
