@@ -162,7 +162,6 @@ class HomeController extends Controller
         $tujuan_upload = 'data_file';
         if ($request->hasFile('foto')) {
             $show = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->value('foto');
-            
             // $nama_foto = time() . "_" . $foto->getClientOriginalName();
             $nama_foto = time().'.'.$foto->getClientOriginalExtension();
             $tujuan_upload2 = public_path('/data_file2');
