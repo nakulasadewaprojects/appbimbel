@@ -7,7 +7,7 @@
 					<div class="d-flex align-items-center">
 						<div class="mr-auto">
 							<h3 class="m-subheader__title ">
-								Lihat Profil Sayang
+								Lihat Profil Saya
 							</h3>
 						</div>
 						

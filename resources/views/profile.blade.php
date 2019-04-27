@@ -212,7 +212,7 @@
 														</label>
 										<div class="col-7">
 											<select class="form-control m-input" name="provinsi" type="text">
-																	<option value="">Pilih Provinsi</option>
+																	<option value="">pilih provinsi</option>
 																	@foreach ($p as $a)
 																	<option value="{{ $a->id }}" {{ Auth::user()->provinsi ==  $a->id  ? 'selected' : ''}}> {{$a->nama}}</option>																																																															
 																	@endforeach
@@ -227,7 +227,7 @@
 													</label>
 										<div class="col-7">
 											<select class="form-control m-input" name="kabupaten" type="text" id="kabupaten">															
-																<option value="">Pilih Kabupaten</option>
+																<option value=""> pilih kabupaten</option>
 																@foreach ($b as $a)																
 																<option value="{{ $a->id }}"{{ Auth::user()->kota ==  $a->id  ? 'selected' : ''}}>{{$a->nama}}</option>																																		
 																@endforeach
@@ -241,7 +241,7 @@
 													</label>
 										<div class="col-7">
 											<select class="form-control m-input" name="kecamatan" type="text" id="kecamatan">
-																<option value="">Pilih Kecamatan </option>
+																<option value="">pilih kecamatan </option>
 																@foreach ($c as $a)
 																<option value="{{ $a->id }}"{{ Auth::user()->kecamatan ==  $a->id  ? 'selected' : ''}}>{{$a->nama}}</option>																																																	
 																@endforeach
@@ -255,7 +255,7 @@
 													</label>
 										<div class="col-7">
 											<select class="form-control m-input" name="kelurahan" type="text" id="kelurahan">
-															<option value="">Pilih Kelurahan </option>
+															<option value="">pilih kelurahan </option>
 										 					@foreach ($d as $a)
 															<option value="{{ $a->id }}"{{ Auth::user()->kelurahan ==  $a->id  ? 'selected' : ''}}>{{$a->nama}}</option>
 															@endforeach
