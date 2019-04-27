@@ -213,7 +213,7 @@
 														</label>
 										<div class="col-7">
 											<select class="form-control m-input" name="provinsi" type="text">
-																	<option value="">pilih provinsi</option>
+																	<option value="">Pilih Provinsi</option>
 																	@foreach ($p as $a)
 																	<option value="{{ $a->id }}" {{ Auth::user()->provinsi ==  $a->id  ? 'selected' : ''}}> {{$a->nama}}</option>																																																															
 																	@endforeach
@@ -334,7 +334,7 @@
 											<label class="custom-file">
 																	<input type="file" name="foto">
 																</label> @if($isCompleted->foto!=null)
-												<a href="{{ url('/data_file/'.$isCompleted->foto) }}"><img width="50px" height="50px" src="{{ url('/data_file2/'.$isCompleted->foto) }}" class="thumbnail" alt="tidak ada foto"> @else
+												<a href="{{ url('/data_file/'.$isCompleted->foto) }}"><img width="50px" height="50px" src="{{ url('/data_file2/'.$isCompleted->foto) }}" class="thumbnail" alt="tidak ada foto"></a> @else
 											Tidak Ada Foto @endif
 										</div>
 									</div>
