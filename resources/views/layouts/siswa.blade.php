@@ -454,7 +454,7 @@
 							<a href="#" class="m-menu__link m-menu__toggle">
 								<i class="m-menu__link-icon flaticon-layers"></i>
 								<span class="m-menu__link-text">
-									Resources
+									Menu
 								</span>
 								<i class="m-menu__ver-arrow la la-angle-right"></i>
 							</a>
