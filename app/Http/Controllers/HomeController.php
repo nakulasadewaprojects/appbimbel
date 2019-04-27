@@ -152,10 +152,15 @@ class HomeController extends Controller
         if ($request->hasFile('foto')) {
             // Storage::delete('/data_file/'.$show );
             $show = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->value('foto');
-            $nama_foto = time() . "_" . $foto->getClientOriginalName();
-            // $tujuan_upload = 'data_file';
-            $foto->move($tujuan_upload, $nama_foto);
-            File::delete($tujuan_upload . '/' . $show);
+            // $nama_foto = time() . "_" . $foto->getClientOriginalName();
+            $nama_foto = time().'.'.$foto->getClientOriginalExtension();
+            $tujuan_upload2 = public_path('/data_file2');
+            $thumb_img = Image::make($foto->getRealPath())->resize(100, 100);
+            $thumb_img->save($tujuan_upload2.'/'.$nama_foto,80);
+            File::delete($tujuan_upload2 . '/' . $show);
+            $tujuan_upload2 = public_path('/data_file') ;
+            $foto->move($tujuan_upload2, $nama_foto);
+            File::delete($tujuan_upload2 . '/' . $show);
             $Tbdetailmentor->foto = $nama_foto;
         } else { }
 

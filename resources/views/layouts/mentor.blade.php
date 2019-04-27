@@ -43,6 +43,10 @@ License: You must have a valid license purchased only from themeforest(the above
 	<link href="assets/demo/demo6/base/style.bundle.css" rel="stylesheet" type="text/css" />
 	<!--end::Base Styles -->
 	<link rel="shortcut icon" href="assets/demo/demo6/media/img/logo/favicon.ico" />
+	<!-- zoom image -->
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/imgzoom.css') }}" />
+	<script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/jquery.imgzoom.pack.js') }}"></script>
 </head>
 <!-- end::Head -->
 <!-- end::Body -->
@@ -1186,7 +1190,136 @@ License: You must have a valid license purchased only from themeforest(the above
 			
 		});
 	</script>
-<!--end::Base Scripts -->
+
+	<script>
+		$(document).ready(function() {
+
+$('select[name="provinsi"]').on('change', function(){
+	var kabupatenId = $('select[name="provinsi"]').val();
+	if(kabupatenId) {
+		$.ajax({
+			url: '/appbimbel/public/kabupaten/get/'+kabupatenId,
+			type:"GET",
+			dataType:"json",
+			beforeSend: function(){
+				$('#loader').css("visibility", "visible");
+			},
+
+			success:function(data) {
+
+				$('select[name="kabupaten"]').empty();
+				$('select[name="kecamatan"]').empty();
+				$('select[name="kelurahan"]').empty();
+				$('select[name="kabupaten"]').append('<option value="">' + 'Pilih Kabupaten' + '</option>');
+				$('select[name="kecamatan"]').append('<option value="">' + 'Pilih Kecamatan' + '</option>');
+				$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
+
+				$.each(data, function(key, value){
+
+					
+					$('select[name="kabupaten"]').append('<option value="'+ key +'">' + value + '</option>');
+
+				});
+			},
+			complete: function(){
+				$('#loader').css("visibility", "hidden");
+			}
+		});
+	} else {
+		$('select[name="kabupaten"]').empty();
+		$('select[name="kecamatan"]').empty();
+		$('select[name="kelurahan"]').empty();
+		$('select[name="kabupaten"]').append('<option value="">' + 'Pilih Kabupaten' + '</option>');		
+		$('select[name="kecamatan"]').append('<option value="">' + 'Pilih Kecamatan' + '</option>');		
+		$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');		
+	}
+
+});
+});
+
+$(document).ready(function() {
+
+$('select[name="kabupaten"]').on('change', function(){
+	var kecamatanId = $(this).val();
+	if(kecamatanId) {
+		$.ajax({
+			url: '/appbimbel/public/kecamatan/get/'+kecamatanId,
+			type:"GET",
+			dataType:"json",
+			beforeSend: function(){
+				$('#loader').css("visibility", "visible");
+			},
+
+			success:function(data) {
+
+				$('select[name="kecamatan"]').empty();
+				$('select[name="kelurahan"]').empty();
+				$('select[name="kecamatan"]').append('<option value="">' + 'Pilih Kecamatan' + '</option>');
+				$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
+
+				$.each(data, function(key, value){
+
+					$('select[name="kecamatan"]').append('<option value="'+ key +'">' + value + '</option>');
+
+				});
+			},
+			complete: function(){
+				$('#loader').css("visibility", "hidden");
+			}
+		});
+	} else {
+		$('select[name="kecamatan"]').empty();
+		$('select[name="kelurahan"]').empty();
+		$('select[name="kecamatan"]').append('<option value="">' + 'Pilih Kecamatan' + '</option>');
+		$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
+	}
+
+});
+});
+
+$(document).ready(function() {
+
+$('select[name="kecamatan"]').on('change', function(){
+	var kelurahanId = $(this).val();
+	if(kelurahanId) {
+		$.ajax({
+			url: '/appbimbel/public/kelurahan/get/'+kelurahanId,
+			type:"GET",
+			dataType:"json",
+			beforeSend: function(){
+				$('#loader').css("visibility", "visible");
+			},
+
+			success:function(data) {
+
+				$('select[name="kelurahan"]').empty();
+				$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
+
+				$.each(data, function(key, value){
+
+					$('select[name="kelurahan"]').append('<option value="'+ key +'">' + value + '</option>');
+
+				});
+			},
+			complete: function(){
+				$('#loader').css("visibility", "hidden");
+			}
+		});
+	} else {
+		$('select[name="kelurahan"]').empty();
+		$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
+	}
+
+});
+});
+</script>
+<!-- zoom image -->
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('img.thumbnail').imgZoom();
+  });
+</script>
+	<!--end::Base Scripts -->
 </body>
 <!-- end::Body -->
 
