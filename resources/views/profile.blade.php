@@ -1,4 +1,4 @@
-@extends('layouts.mentor') 
+@extends('layouts.mentor')
 @section('content')
 <!-- END: Left Aside -->
 <div class="m-grid__item m-grid__item--fluid m-wrapper">
@@ -25,55 +25,55 @@
 							</div>
 							<div class="m-card-profile__pic">
 								<div class="m-card-profile__pic-wrapper">
-								<!-- <a href="puppy.jpg"><img class="thumbnail" src="puppy_small.jpg" alt="Puppy" /></a> -->
-								<a href="{{ url('/data_file/'.$isCompleted->foto) }}">	<img src="{{ url('/data_file2/'.$isCompleted->foto) }}" class="thumbnail" alt="" />
+									<!-- <a href="puppy.jpg"><img class="thumbnail" src="puppy_small.jpg" alt="Puppy" /></a> -->
+									<a href="{{ url('/data_file/'.$isCompleted->foto) }}"> <img src="{{ url('/data_file2/'.$isCompleted->foto) }}" class="thumbnail" alt="" />
 								</div>
 							</div>
 							<div class="m-card-profile__details">
 								<span class="m-card-profile__name">
-												{{ Auth::user()->username }}
-											</span>
+									{{ Auth::user()->username }}
+								</span>
 								<a href="" class="m-card-profile__email m-link">
-												{{ Auth::user()->email }}
-											</a>
+									{{ Auth::user()->email }}
+								</a>
 							</div>
 						</div>
 						<ul class="m-nav m-nav--hover-bg m-portlet-fit--sides">
 							<li class="m-nav__separator m-nav__separator--fit"></li>
 							<li class="m-nav__section m--hide">
 								<span class="m-nav__section-text">
-												Section
-											</span>
+									Section
+								</span>
 							</li>
 							<li class="m-nav__item">
 								<a href="myProfile" class="m-nav__link">
-												<i class="m-nav__link-icon flaticon-profile-1"></i>
-												<span class="m-nav__link-title">
-													<span class="m-nav__link-wrap">
-														<span class="m-nav__link-text">
-															Lihat Profil Saya
-														</span>
-														
-													</span>
-												</span>
-											</a>
+									<i class="m-nav__link-icon flaticon-profile-1"></i>
+									<span class="m-nav__link-title">
+										<span class="m-nav__link-wrap">
+											<span class="m-nav__link-text">
+												Lihat Profil Saya
+											</span>
+
+										</span>
+									</span>
+								</a>
 							</li>
 							<li class="m-nav__item">
 								<a href="profile" class="m-nav__link">
-												<i class="m-nav__link-icon flaticon-edit"></i>
-												<span class="m-nav__link-title">
-													<span class="m-nav__link-wrap">
-														<span class="m-nav__link-text">
-															Edit Profil Saya
-														</span>
-														{{-- <span class="m-nav__link-badge">
+									<i class="m-nav__link-icon flaticon-edit"></i>
+									<span class="m-nav__link-title">
+										<span class="m-nav__link-wrap">
+											<span class="m-nav__link-text">
+												Edit Profil Saya
+											</span>
+											{{-- <span class="m-nav__link-badge">
 																<span class="m-badge m-badge--success">
 																	2
 																</span>
 															</span> --}}
-													</span>
-												</span>
-											</a>
+										</span>
+									</span>
+								</a>
 							</li>
 
 
@@ -109,8 +109,7 @@
 
 					<div class="tab-content">
 						<div class="tab-pane active" id="m_user_profile_tab_1">
-							<form class="m-form m-form--fit m-form--label-align-right" method="POST" action="profile/update/{{ Auth::user()->idmentor}}"
-							 enctype="multipart/form-data">
+							<form class="m-form m-form--fit m-form--label-align-right" method="POST" action="profile/update/{{ Auth::user()->idmentor}}" enctype="multipart/form-data">
 								<!-- <form class="m-form m-form--fit m-form--label-align-right" method="POST" action="profile/update"> -->
 								{{ csrf_field() }}
 								<!-- {{ method_field('PUT') }} -->
@@ -130,71 +129,71 @@
 									</div>
 									<div class="form-group m-form__group row">
 										<label for="example-text-input" class="col-2 col-form-label">
-														username
-													</label>
+											username
+										</label>
 										<div class="col-7">
-											<input class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" type="text" value="{{ Auth::user()->username }}">											@if ($errors->has('username'))
+											<input class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" type="text" value="{{ Auth::user()->username }}"> @if ($errors->has('username'))
 											<span class="invalid-feedback" role="alert">
-																<strong>{{ $errors->first('username') }}</strong>
-															</span> @endif
+												<strong>{{ $errors->first('username') }}</strong>
+											</span> @endif
 										</div>
 									</div>
 									<div class="form-group m-form__group row">
 										<label for="example-text-input" class="col-2 col-form-label">
-														Nama Depan
-													</label>
+											Nama Depan
+										</label>
 										<div class="col-7">
-											<input class="form-control{{ $errors->has('NamaDepan') ? ' is-invalid' : '' }}" name="NamaDepan" type="text" value="{{ Auth::user()->nm_depan }}">											@if ($errors->has('NamaDepan'))
+											<input class="form-control{{ $errors->has('NamaDepan') ? ' is-invalid' : '' }}" name="NamaDepan" type="text" value="{{ Auth::user()->nm_depan }}"> @if ($errors->has('NamaDepan'))
 											<span class="invalid-feedback" role="alert">
-																<strong>{{ $errors->first('NamaDepan') }}</strong>
-															</span> @endif
+												<strong>{{ $errors->first('NamaDepan') }}</strong>
+											</span> @endif
 										</div>
 									</div>
 									<div class="form-group m-form__group row">
 										<label for="example-text-input" class="col-2 col-form-label">
-														Nama Belakang
-													</label>
+											Nama Belakang
+										</label>
 										<div class="col-7">
-											<input class="form-control{{ $errors->has('NamaBelakang') ? ' is-invalid' : '' }}" name="NamaBelakang" type="text" value="{{ Auth::user()->nm_belakang }}">											@if ($errors->has('NamaBelakang'))
+											<input class="form-control{{ $errors->has('NamaBelakang') ? ' is-invalid' : '' }}" name="NamaBelakang" type="text" value="{{ Auth::user()->nm_belakang }}"> @if ($errors->has('NamaBelakang'))
 											<span class="invalid-feedback" role="alert">
-																<strong>{{ $errors->first('NamaBelakang') }}</strong>
-															</span> @endif
+												<strong>{{ $errors->first('NamaBelakang') }}</strong>
+											</span> @endif
 										</div>
 									</div>
 									<div class="form-group m-form__group row">
 										<label for="example-text-input" class="col-2 col-form-label">
-														TTL
-													</label>
+											TTL
+										</label>
 										<div class="col-7">
 											<input class="form-control m-input" type="text" value="Lumajang 17 April 1997">
 										</div>
 									</div>
 									<div class="form-group m-form__group row">
 										<label for="example-text-input" class="col-2 col-form-label text-md-right">
-															Jenis Kelamin
-														</label>
+											Jenis Kelamin
+										</label>
 										<div class="col-2">
 											<label class="m-radio m-radio--bold m-radio--state-brand">
-																<input type="radio" name="gender" id="male" value="1">
-																Laki-Laki 
-																<span></span>
-														</label>
+												<input type="radio" name="gender" id="male" value="1">
+												Laki-Laki
+												<span></span>
+											</label>
 											<label class="m-radio m-radio--bold m-radio--state-brand">
-																<input type="radio" name="gender" id="female" value="2">
-																Perempuan
-																<span></span>
-														</label>
+												<input type="radio" name="gender" id="female" value="2">
+												Perempuan
+												<span></span>
+											</label>
 										</div>
 									</div>
 									<div class="form-group m-form__group row">
 										<label for="example-text-input" class="col-2 col-form-label">
-														No Telepon
-													</label>
+											No Telepon
+										</label>
 										<div class="col-7">
-											<input class="form-control{{ $errors->has('noTlpn') ? ' is-invalid' : '' }}" type="text" name="noTlpn" value="{{ Auth::user()->noTlpn }}">											@if ($errors->has('noTlpn'))
+											<input class="form-control{{ $errors->has('noTlpn') ? ' is-invalid' : '' }}" type="text" name="noTlpn" value="{{ Auth::user()->noTlpn }}"> @if ($errors->has('noTlpn'))
 											<span class="invalid-feedback" role="alert">
-                                       									 <strong>{{ $errors->first('noTlpn') }}</strong>
-																	</span> @endif
+												<strong>{{ $errors->first('noTlpn') }}</strong>
+											</span> @endif
 										</div>
 									</div>
 									<div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
@@ -209,76 +208,76 @@
 
 									<div class="form-group m-form__group row">
 										<label for="example-text-input" class="col-2 col-form-label">
-															Provinsi
-														</label>
+											Provinsi
+										</label>
 										<div class="col-7">
 											<select class="form-control m-input" name="provinsi" type="text">
-																	<option value="">pilih provinsi</option>
-																	@foreach ($p as $a)
-																	<option value="{{ $a->id }}" {{ Auth::user()->provinsi ==  $a->id  ? 'selected' : ''}}> {{$a->nama}}</option>																																																															
-																	@endforeach
-																	
-															</select>
+												<option value="">pilih provinsi</option>
+												@foreach ($p as $a)
+												<option value="{{ $a->id }}" {{ Auth::user()->provinsi ==  $a->id  ? 'selected' : ''}}> {{$a->nama}}</option>
+												@endforeach
+
+											</select>
 										</div>
 									</div>
 
 									<div class="form-group m-form__group row">
 										<label for="example-text-input" class="col-2 col-form-label">
-														Kabupaten
-													</label>
+											Kabupaten
+										</label>
 										<div class="col-7">
-											<select class="form-control m-input" name="kabupaten" type="text" id="kabupaten">															
-																<option value=""> pilih kabupaten</option>
-																@foreach ($b as $a)																
-																<option value="{{ $a->id }}"{{ Auth::user()->kota ==  $a->id  ? 'selected' : ''}}>{{$a->nama}}</option>																																		
-																@endforeach
-														</select>
+											<select class="form-control m-input" name="kabupaten" type="text" id="kabupaten">
+												<option value=""> pilih kabupaten</option>
+												@foreach ($b as $a)
+												<option value="{{ $a->id }}" {{ Auth::user()->kota ==  $a->id  ? 'selected' : ''}}>{{$a->nama}}</option>
+												@endforeach
+											</select>
 										</div>
 									</div>
 
 									<div class="form-group m-form__group row">
 										<label for="example-text-input" class="col-2 col-form-label">
-														Kecamatan
-													</label>
+											Kecamatan
+										</label>
 										<div class="col-7">
 											<select class="form-control m-input" name="kecamatan" type="text" id="kecamatan">
-																<option value="">pilih kecamatan </option>
-																@foreach ($c as $a)
-																<option value="{{ $a->id }}"{{ Auth::user()->kecamatan ==  $a->id  ? 'selected' : ''}}>{{$a->nama}}</option>																																																	
-																@endforeach
-														</select>
+												<option value="">pilih kecamatan </option>
+												@foreach ($c as $a)
+												<option value="{{ $a->id }}" {{ Auth::user()->kecamatan ==  $a->id  ? 'selected' : ''}}>{{$a->nama}}</option>
+												@endforeach
+											</select>
 										</div>
 									</div>
 
 									<div class="form-group m-form__group row">
 										<label for="example-text-input" class="col-2 col-form-label">
-														Kelurahan
-													</label>
+											Kelurahan
+										</label>
 										<div class="col-7">
 											<select class="form-control m-input" name="kelurahan" type="text" id="kelurahan">
-															<option value="">pilih kelurahan </option>
-										 					@foreach ($d as $a)
-															<option value="{{ $a->id }}"{{ Auth::user()->kelurahan ==  $a->id  ? 'selected' : ''}}>{{$a->nama}}</option>
-															@endforeach
-														</select>
+												<option value="">pilih kelurahan </option>
+												@foreach ($d as $a)
+												<option value="{{ $a->id }}" {{ Auth::user()->kelurahan ==  $a->id  ? 'selected' : ''}}>{{$a->nama}}</option>
+												@endforeach
+											</select>
 										</div>
 									</div>
 
 									<div class="form-group m-form__group row">
 										<label for="example-text-input" class="col-2 col-form-label">
-															Alamat
-														</label>
+											Alamat
+										</label>
 										<div class="col-7">
-											<input class="form-control{{ $errors->has('alamat') ? ' is-invalid' : '' }}" name="alamat" type="text" value="{{ Auth::user()->alamat }}">											@if ($errors->has('alamat'))
+											<input class="form-control{{ $errors->has('alamat') ? ' is-invalid' : '' }}" name="alamat" type="text" value="{{ Auth::user()->alamat }}"> @if ($errors->has('alamat'))
 											<span class="invalid-feedback" role="alert">
-                                        								<strong>{{ $errors->first('alamat') }}</strong>
-																	</span> @endif
+												<strong>{{ $errors->first('alamat') }}</strong>
+											</span> @endif
 										</div>
 									</div>
 									<div class="form-group m-form__group row">
 										<label for="example-text-input" class="col-2 col-form-label">
-																Kode Pos
-															</label>
+											Kode Pos
+										</label>
 										<div class="col-7">
 											<input class="form-control m-input" type="text" value="67371">
 										</div>
@@ -287,7 +286,7 @@
 									<div class="form-group m-form__group row">
 										<div class="col-7 ml-auto">
 											<h3 class="m-form__section">
-												3. Lengkapi Berkas
+												3. Lengkapi File
 											</h3>
 										</div>
 									</div>
@@ -312,63 +311,63 @@
 
 									<div class="form-group m-form__group row">
 										<label for="example-text-input" class="col-3 col-form-label">
-															Pendidikan Terakhir
-														</label>
+											Pendidikan Terakhir
+										</label>
 										<div class="col-4">
 											<input class="form-control m-input" type="text" name="pendidikanTerakhir" value="{{ $isCompleted->pendidikanTerakhir }}">
 										</div>
 									</div>
 									<div class="form-group m-form__group row">
 										<label for="example-text-input" class="col-3 col-form-label">
-															Status Pendidikan
-														</label>
+											Status Pendidikan
+										</label>
 										<div class="col-4">
 											<input class="form-control m-input" type="text" name="statusPendidikan" value="{{ $isCompleted->statusPendidikan }}">
 										</div>
 									</div>
 									<div class="form-group m-form__group row">
 										<label for="example-text-input" class="col-3 col-form-label">
-															Foto
-														</label>
+											Foto
+										</label>
 										<div class="col-3">
 											<label class="custom-file">
-																	<input type="file" name="foto">
-																</label> @if($isCompleted->foto!=null)
-												<a href="{{ url('/data_file/'.$isCompleted->foto) }}"><img width="50px" height="50px" src="{{ url('/data_file2/'.$isCompleted->foto) }}" class="thumbnail" alt="tidak ada foto"> @else
-											Tidak Ada Foto @endif
+												<input type="file" name="foto">
+											</label> @if($isCompleted->foto!=null)
+											<a href="{{ url('/data_file/'.$isCompleted->foto) }}"><img width="50px" height="50px" src="{{ url('/data_file2/'.$isCompleted->foto) }}" class="thumbnail" alt="tidak ada foto"></a> @else
+												Tidak Ada Foto @endif
 										</div>
 									</div>
 									<!-- @foreach($isCompleted as $ft) -->
 									<!-- @endforeach -->
 									<div class="form-group m-form__group row">
 										<label for="example-text-input" class="col-3 col-form-label">
-															Nomor Identitas
-														</label>
+											Nomor Identitas
+										</label>
 										<div class="col-7">
 											<input class="form-control m-input" type="text" name="No_Identitas" value="{{ $isCompleted->No_Identitas }}">
 										</div>
 									</div>
 									<div class="form-group m-form__group row">
 										<label for="example-text-input" class="col-3 col-form-label">
-															File KTP
-													</label>
+											File KTP
+										</label>
 										<div class="col-3">
 											<label class="custom-file">
-																<input type="file" name="fileKTP">
-																	<!-- <span class="custom-file-control"></span> -->
-															</label> @if($isCompleted->fileKTP!=null)
+												<input type="file" name="fileKTP">
+												<!-- <span class="custom-file-control"></span> -->
+											</label> @if($isCompleted->fileKTP!=null)
 											<img width="50px" height="50px" src="{{ url('/data_file/'.$isCompleted->fileKTP) }}"> @else Tidak Ada File @endif
 										</div>
 									</div>
 									<div class="form-group m-form__group row">
 										<label for="example-text-input" class="col-3 col-form-label">
-															File Ijazah
-													</label>
+											File Ijazah
+										</label>
 										<div class="col-3">
 											<label class="custom-file">
-															<input type="file" name="fileIjazah" >
-																	<!-- <span class="custom-file-control"></span> -->
-														</label>
+												<input type="file" name="fileIjazah">
+												<!-- <span class="custom-file-control"></span> -->
+											</label>
 											<!-- <div class="col-md-2"> -->
 											@if($isCompleted->fileIjazah!=null)
 											<div class="m-demo-icon">
@@ -391,11 +390,11 @@
 											<div class="col-2"></div>
 											<div class="col-7">
 												<button type="submit" class="btn btn-accent m-btn m-btn--air m-btn--custom">
-																Save changes
-															</button> &nbsp;&nbsp;
+													Save changes
+												</button> &nbsp;&nbsp;
 												<button type="reset" class="btn btn-secondary m-btn m-btn--air m-btn--custom">
-																Cancel
-															</button>
+													Cancel
+												</button>
 											</div>
 										</div>
 									</div>
