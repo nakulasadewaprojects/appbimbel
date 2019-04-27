@@ -25,7 +25,8 @@
 							</div>
 							<div class="m-card-profile__pic">
 								<div class="m-card-profile__pic-wrapper">
-									<img src="{{ url('/data_file/'.$isCompleted->foto) }}" width="100px" height="100px" alt="" />
+								<!-- <a href="puppy.jpg"><img class="thumbnail" src="puppy_small.jpg" alt="Puppy" /></a> -->
+								<a href="{{ url('/data_file/'.$isCompleted->foto) }}">	<img src="{{ url('/data_file2/'.$isCompleted->foto) }}" class="thumbnail" alt="" />
 								</div>
 							</div>
 							<div class="m-card-profile__details">
@@ -227,7 +228,7 @@
 													</label>
 										<div class="col-7">
 											<select class="form-control m-input" name="kabupaten" type="text" id="kabupaten">															
-																<option value="">Pilih Kabupaten</option>
+																<option value=""> pilih kabupaten</option>
 																@foreach ($b as $a)																
 																<option value="{{ $a->id }}"{{ Auth::user()->kota ==  $a->id  ? 'selected' : ''}}>{{$a->nama}}</option>																																		
 																@endforeach
@@ -241,7 +242,7 @@
 													</label>
 										<div class="col-7">
 											<select class="form-control m-input" name="kecamatan" type="text" id="kecamatan">
-																<option value="">Pilih Kecamatan </option>
+																<option value="">pilih kecamatan </option>
 																@foreach ($c as $a)
 																<option value="{{ $a->id }}"{{ Auth::user()->kecamatan ==  $a->id  ? 'selected' : ''}}>{{$a->nama}}</option>																																																	
 																@endforeach
@@ -255,7 +256,7 @@
 													</label>
 										<div class="col-7">
 											<select class="form-control m-input" name="kelurahan" type="text" id="kelurahan">
-															<option value="">Pilih Kelurahan </option>
+															<option value="">pilih kelurahan </option>
 										 					@foreach ($d as $a)
 															<option value="{{ $a->id }}"{{ Auth::user()->kelurahan ==  $a->id  ? 'selected' : ''}}>{{$a->nama}}</option>
 															@endforeach
@@ -314,7 +315,7 @@
 											<label class="custom-file">
 																	<input type="file" name="foto">
 																</label> @if($isCompleted->foto!=null)
-											<img width="50px" height="50px" src="{{ url('/data_file/'.$isCompleted->foto) }}" alt="tidak ada foto"> @else
+												<a href="{{ url('/data_file/'.$isCompleted->foto) }}"><img width="50px" height="50px" src="{{ url('/data_file2/'.$isCompleted->foto) }}" class="thumbnail" alt="tidak ada foto"></a> @else
 											Tidak Ada Foto @endif
 										</div>
 									</div>

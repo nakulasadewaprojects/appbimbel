@@ -18,7 +18,9 @@ class CreateTbdetailsiswasTable extends Migration
             $table->string('namaWali')->nullable();
             $table->integer('pendidikanSiswa')->nullable();
             $table->integer('jenjang')->nullable();
-            $table->string('prodiSiswa')->nullable();
+            $table->integer('tingkatPendidikan')->nullable();
+            $table->longText('prodiSiswa')->nullable();
+            $table->string('fotoProfile')->nullable();
             $table->integer('statusKomplit')->nullable();
             $table->unsignedBigInteger('idtbSiswa')->nullable();
             $table->foreign('idtbSiswa')->references('idtbSiswa')->on('tbsiswa');

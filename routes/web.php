@@ -15,6 +15,7 @@
 Route::get('/', function () {
 
     return view('welcome');
+
 })->name('welcome');
 
 // Auth::routes();
@@ -43,5 +44,4 @@ Route::get('/kabupaten/get/{id}', 'HomeSiswaController@getKabupaten');
 Route::get('/kecamatan/get/{id}', 'HomeSiswaController@getKecamatan');
 Route::get('/kelurahan/get/{id}', 'HomeSiswaController@getKelurahan');
 Route::put('/profilesiswa/update/{idtDetailSiswa}', 'HomeSiswaController@update');
-Route::get('/jenjang/get/{idMasterPendidikan}', 'HomeSiswaController@getJenjang');
-Route::get('/tingkatpendidikan/get/{idtingkat}', 'HomeSiswaController@getTingkatPendidikan');
+
