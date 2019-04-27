@@ -7,7 +7,7 @@
 						<div class="d-flex align-items-center">
 							<div class="mr-auto">
 								<h3 class="m-subheader__title ">
-									Edit Profil Sayang
+									Edit Profil Saya
 								</h3>
 							</div>
 							
@@ -116,23 +116,12 @@
 															Pendidikan Siswa
 														</label>
 														<div class="col-7">
-															<select class="form-control m-input" name="pendidikanSiswa" id="pendidikanSiswa">
-																	<option>
-																		1
-																	</option>
-																	<option>
-																		2
-																	</option>
-																	<option>
-																		3
-																	</option>
-																	<option>
-																		4
-																	</option>
-																	<option>
-																		5
-																	</option>
-																</select>
+															<input class="form-control{{ $errors->has('pendidikanSiswa') ? ' is-invalid' : '' }}" type="text" name="pendidikanSiswa" value="{{$isCompleted->pendidikanSiswa}}">
+																@if ($errors->has('pendidikanSiswa'))
+                                            						<span class="invalid-feedback" role="alert">
+                                        								<strong>{{ $errors->first('pendidikanSiswa') }}</strong>
+																	</span> 
+																@endif
 														</div>
 													</div>
 													<div class="form-group m-form__group row">
@@ -140,23 +129,27 @@
 															Jenjang
 														</label>
 														<div class="col-7">
-															<select class="form-control m-input" name="jenjang" id="jenjang">
-																	<option>
-																		1
-																	</option>
-																	<option>
-																		2
-																	</option>
-																	<option>
-																		3
-																	</option>
-																	<option>
-																		4
-																	</option>
-																	<option>
-																		5
-																	</option>
-																</select>
+														<select class="form-control m-input" name="jenjang" type="text">
+																<option value="">Pilih Jenjang</option>
+																@foreach ($j as $a)
+																<option value="{{ $a->idMasterPendidikan }}" {{ Auth::user()->jenjang ==  $a->idMasterPendidikan   ? 'selected' : ''}}> {{$a->jenjangPendidikan}}</option>																																																															
+																@endforeach
+																
+														</select>
+														</div>
+													</div>
+													<div class="form-group m-form__group row">
+														<label for="example-text-input" class="col-2 col-form-label">
+															Tingkat Pendidikan
+														</label>
+														<div class="col-7">
+															<select class="form-control m-input" name="tingkatPendidikan" type="text">
+																<option value="">Pilih Tingkat Pendidikan</option>
+																@foreach ($tp as $a)
+																<option value="{{ $a->idtingkat }}" {{ Auth::user()->tingkatPendidikan ==  $a->idtingkat   ? 'selected' : ''}}> {{$a->keterangan}}</option>																																																															
+																@endforeach
+																
+															</select>
 														</div>
 													</div>
 													<div class="form-group m-form__group row">
@@ -211,23 +204,13 @@
 														Provinsi
 													</label>
 													<div class="col-7">
-														<select class="form-control m-input" id="exampleSelect1">
-																<option>
-																	1
-																</option>
-																<option>
-																	2
-																</option>
-																<option>
-																	3
-																</option>
-																<option>
-																	4
-																</option>
-																<option>
-																	5
-																</option>
-															</select>
+													<select class="form-control m-input" name="provinsi" type="text">
+															<option value="">Pilih Provinsi</option>
+															@foreach ($p as $a)
+															<option value="{{ $a->id }}" {{ Auth::user()->provinsi ==  $a->id  ? 'selected' : ''}}> {{$a->nama}}</option>																																																															
+															@endforeach
+															
+													</select>
 													</div>
 												</div>
 												<div class="form-group m-form__group row">
@@ -235,23 +218,12 @@
 														Kabupaten
 													</label>
 													<div class="col-7">
-														<select class="form-control m-input" id="exampleSelect1">
-																<option>
-																	1
-																</option>
-																<option>
-																	2
-																</option>
-																<option>
-																	3
-																</option>
-																<option>
-																	4
-																</option>
-																<option>
-																	5
-																</option>
-															</select>
+													<select class="form-control m-input" name="kabupaten" type="text" id="kabupaten">															
+															<option value="">Pilih Kabupaten</option>
+															@foreach ($b as $a)																
+															<option value="{{ $a->id }}"{{ Auth::user()->kota ==  $a->id  ? 'selected' : ''}}>{{$a->nama}}</option>																																		
+															@endforeach
+													</select>
 													</div>
 												</div>
 												<div class="form-group m-form__group row">
@@ -259,23 +231,12 @@
 														Kecamatan
 													</label>
 													<div class="col-7">
-														<select class="form-control m-input" id="exampleSelect1">
-																<option>
-																	1
-																</option>
-																<option>
-																	2
-																</option>
-																<option>
-																	3
-																</option>
-																<option>
-																	4
-																</option>
-																<option>
-																	5
-																</option>
-															</select>
+													<select class="form-control m-input" name="kecamatan" type="text" id="kecamatan">
+															<option value="">Pilih Kecamatan </option>
+															@foreach ($c as $a)
+															<option value="{{ $a->id }}"{{ Auth::user()->kecamatan ==  $a->id  ? 'selected' : ''}}>{{$a->nama}}</option>																																																	
+															@endforeach
+													</select>
 													</div>
 												</div>
 												<div class="form-group m-form__group row">
@@ -283,23 +244,12 @@
 														Kelurahan
 													</label>
 													<div class="col-7">
-														<select class="form-control m-input" id="exampleSelect1">
-																<option>
-																	1
-																</option>
-																<option>
-																	2
-																</option>
-																<option>
-																	3
-																</option>
-																<option>
-																	4
-																</option>
-																<option>
-																	5
-																</option>
-															</select>
+														<select class="form-control m-input" name="kelurahan" type="text" id="kelurahan">
+															<option value="">Pilih Kelurahan </option>
+										 					@foreach ($d as $a)
+															<option value="{{ $a->id }}"{{ Auth::user()->kelurahan ==  $a->id  ? 'selected' : ''}}>{{$a->nama}}</option>
+															@endforeach
+														</select>
 													</div>
 												</div>
 													<div class="form-group m-form__group row">

@@ -611,6 +611,129 @@
 			}
 		</script>
 
+<script>
+	$(document).ready(function() {
+
+$('select[name="provinsi"]').on('change', function(){
+var kabupatenId = $('select[name="provinsi"]').val();
+if(kabupatenId) {
+	$.ajax({
+		url: '/appbimbel/public/kabupaten/get/'+kabupatenId,
+		type:"GET",
+		dataType:"json",
+		beforeSend: function(){
+			$('#loader').css("visibility", "visible");
+		},
+
+		success:function(data) {
+
+			$('select[name="kabupaten"]').empty();
+			$('select[name="kecamatan"]').empty();
+			$('select[name="kelurahan"]').empty();
+			$('select[name="kabupaten"]').append('<option value="">' + 'Pilih Kabupaten' + '</option>');
+			$('select[name="kecamatan"]').append('<option value="">' + 'Pilih Kecamatan' + '</option>');
+			$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
+
+			$.each(data, function(key, value){
+
+				
+				$('select[name="kabupaten"]').append('<option value="'+ key +'">' + value + '</option>');
+
+			});
+		},
+		complete: function(){
+			$('#loader').css("visibility", "hidden");
+		}
+	});
+} else {
+	$('select[name="kabupaten"]').empty();
+	$('select[name="kecamatan"]').empty();
+	$('select[name="kelurahan"]').empty();
+	$('select[name="kabupaten"]').append('<option value="">' + 'Pilih Kabupaten' + '</option>');		
+	$('select[name="kecamatan"]').append('<option value="">' + 'Pilih Kecamatan' + '</option>');		
+	$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');		
+}
+
+});
+});
+
+$(document).ready(function() {
+
+$('select[name="kabupaten"]').on('change', function(){
+var kecamatanId = $(this).val();
+if(kecamatanId) {
+	$.ajax({
+		url: '/appbimbel/public/kecamatan/get/'+kecamatanId,
+		type:"GET",
+		dataType:"json",
+		beforeSend: function(){
+			$('#loader').css("visibility", "visible");
+		},
+
+		success:function(data) {
+
+			$('select[name="kecamatan"]').empty();
+			$('select[name="kelurahan"]').empty();
+			$('select[name="kecamatan"]').append('<option value="">' + 'Pilih Kecamatan' + '</option>');
+			$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
+
+			$.each(data, function(key, value){
+
+				$('select[name="kecamatan"]').append('<option value="'+ key +'">' + value + '</option>');
+
+			});
+		},
+		complete: function(){
+			$('#loader').css("visibility", "hidden");
+		}
+	});
+} else {
+	$('select[name="kecamatan"]').empty();
+	$('select[name="kelurahan"]').empty();
+	$('select[name="kecamatan"]').append('<option value="">' + 'Pilih Kecamatan' + '</option>');
+	$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
+}
+
+});
+});
+
+$(document).ready(function() {
+
+$('select[name="kecamatan"]').on('change', function(){
+var kelurahanId = $(this).val();
+if(kelurahanId) {
+	$.ajax({
+		url: '/appbimbel/public/kelurahan/get/'+kelurahanId,
+		type:"GET",
+		dataType:"json",
+		beforeSend: function(){
+			$('#loader').css("visibility", "visible");
+		},
+
+		success:function(data) {
+
+			$('select[name="kelurahan"]').empty();
+			$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
+
+			$.each(data, function(key, value){
+
+				$('select[name="kelurahan"]').append('<option value="'+ key +'">' + value + '</option>');
+
+			});
+		},
+		complete: function(){
+			$('#loader').css("visibility", "hidden");
+		}
+	});
+} else {
+	$('select[name="kelurahan"]').empty();
+	$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
+}
+
+});
+});
+</script>
+
 </body>
 
 </html>
