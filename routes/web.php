@@ -40,8 +40,4 @@ Route::get('/kabupaten/get/{id}', 'HomeController@getKabupaten');
 Route::get('/kecamatan/get/{id}', 'HomeController@getKecamatan');
 Route::get('/kelurahan/get/{id}', 'HomeController@getKelurahan');
 Route::put('/profilesiswa/update/{idmentor}', 'HomeSiswaController@update');
-Route::get('/kabupaten/get/{id}', 'HomeSiswaController@getKabupaten');
-Route::get('/kecamatan/get/{id}', 'HomeSiswaController@getKecamatan');
-Route::get('/kelurahan/get/{id}', 'HomeSiswaController@getKelurahan');
-Route::put('/profilesiswa/update/{idtDetailSiswa}', 'HomeSiswaController@update');
-
+Route::get('/multimediasiswa', 'HomeSiswaController@multimediasiswa');

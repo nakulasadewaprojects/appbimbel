@@ -19,7 +19,9 @@
 		});
 	</script>
 
-	<title>Document</title>
+	<title>
+		App Bimbel
+	</title>
 
 	<link href="assets/vendors/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
 	<!--end::Page Vendors -->
@@ -480,7 +482,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
-										<a href="calendarsiswa" class="m-menu__link ">
+										<a href="multimediasiswa" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>

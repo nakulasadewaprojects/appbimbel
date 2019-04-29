@@ -7,7 +7,7 @@
 		<div class="d-flex align-items-center">
 			<div class="mr-auto">
 				<h3 class="m-subheader__title ">
-					Lihat Profil Saya
+					Edit Profil Saya
 				</h3>
 			</div>
 

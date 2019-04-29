@@ -2,6 +2,21 @@
 @section('content')
 			<!-- END: Left Aside -->
 			<div class="m-grid__item m-grid__item--fluid m-wrapper">
+					@if (DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->value('statusKomplit')!==4)
+					<div class="m-alert m-alert--icon alert alert-warning" role="alert">
+						<div class="m-alert__icon">
+							<i class="la la-warning"></i>
+						</div>
+						<div class="m-alert__text">
+							<strong>
+													Luar biasa!
+												</strong> Silakan lengkapi profil Anda agar dapat mesen mentor.
+						</div>
+						<div class="m-alert__actions" style="width: 160px;">
+							<a class="btn btn-info btn-sm m-btn m-btn--pill m-btn--wide" href="myprofilesiswa">Lengkapi Sekarang</a>
+						</div>
+					</div>
+					@endif
 				<!-- BEGIN: Subheader -->
 				<div class="m-subheader ">
 					<div class="d-flex align-items-center">
