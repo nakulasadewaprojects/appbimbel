@@ -13,7 +13,7 @@
 												</strong> Silakan lengkapi profil Anda agar dapat mesen mentor.
 						</div>
 						<div class="m-alert__actions" style="width: 160px;">
-							<a class="btn btn-info btn-sm m-btn m-btn--pill m-btn--wide" href="myprofilesiswa">Lengkapi Sekarang</a>
+							<a class="btn btn-info btn-sm m-btn m-btn--pill m-btn--wide" href="profilesiswa">Lengkapi Sekarang</a>
 						</div>
 					</div>
 					@endif

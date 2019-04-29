@@ -132,9 +132,8 @@
 														<select class="form-control m-input" name="jenjang" type="text">
 																<option value="">Pilih Jenjang</option>
 																@foreach ($j as $a)
-																<option value="{{ $a->idMasterPendidikan }}" {{ Auth::user()->jenjang ==  $a->idMasterPendidikan   ? 'selected' : ''}}> {{$a->jenjangPendidikan}}</option>																																																															
-																@endforeach
-																
+																<option value="{{ $a->idMasterPendidikan }}" {{ $jenjang ==  $a->idMasterPendidikan   ? 'selected' : ''}}> {{$a->jenjangPendidikan}}</option>																																																															
+																@endforeach																
 														</select>
 														</div>
 													</div>
@@ -146,7 +145,7 @@
 															<select class="form-control m-input" name="tingkatPendidikan" type="text">
 																<option value="">Pilih Tingkat Pendidikan</option>
 																@foreach ($tp as $a)
-																<option value="{{ $a->idtingkat }}" {{ Auth::user()->tingkatPendidikan ==  $a->idtingkat   ? 'selected' : ''}}> {{$a->keterangan}}</option>																																																															
+																<option value="{{ $a->idtingkat }}" {{ $tingkatpendidikan ==  $a->idtingkat   ? 'selected' : ''}}> {{$a->keterangan}}</option>																																																															
 																@endforeach
 																
 															</select>
