@@ -511,7 +511,7 @@
 											</span>
 										</a>
 									</li>
-									</li>
+									
 									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
 										<a href="calendarsiswa" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
@@ -519,6 +519,46 @@
 											</i>
 											<span class="m-menu__link-text">
 												Report
+											</span>
+										</a>
+									</li>
+									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
+										<a href="calendarsiswa" class="m-menu__link ">
+											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+												<span></span>
+											</i>
+											<span class="m-menu__link-text">
+												Informasi Payment
+											</span>
+										</a>
+									</li>
+									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
+										<a href="calendarsiswa" class="m-menu__link ">
+											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+												<span></span>
+											</i>
+											<span class="m-menu__link-text">
+												Setting Jadwal
+											</span>
+										</a>
+									</li>
+									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
+										<a href="calendarsiswa" class="m-menu__link ">
+											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+												<span></span>
+											</i>
+											<span class="m-menu__link-text">
+												Approval
+											</span>
+										</a>
+									</li>
+									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
+										<a href="calendarsiswa" class="m-menu__link ">
+											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+												<span></span>
+											</i>
+											<span class="m-menu__link-text">
+												Konten
 											</span>
 										</a>
 									</li>
