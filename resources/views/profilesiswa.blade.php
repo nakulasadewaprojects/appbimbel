@@ -25,7 +25,7 @@
 											</div>
 											<div class="m-card-profile__pic">
 												<div class="m-card-profile__pic-wrapper">
-													<img src="{{ url('/data_fileSiswa/'.$isCompleted->foto) }}" height="100px" width="100px" alt=""/>
+													<img src="{{ url('/data_fileSiswa/'.$isCompleted->fotoProfile) }}" height="100px" width="100px" alt=""/>
 												</div>
 											</div>
 											<div class="m-card-profile__details">
@@ -204,10 +204,10 @@
 														</label>
 														<div class="col-3">
 															<label class="custom-file">
-																				<input type="file" name="foto">
+																				<input type="file" name="fotoProfile">
 															</label>
-															 @if($isCompleted->foto!=null)
-															<img width="50px" height="50px" src="{{ url('/data_fileSiswa/'.$isCompleted->foto) }}" alt="tidak ada foto"> @else
+															 @if($isCompleted->fotoProfile!=null)
+															<img width="50px" height="50px" src="{{ url('/data_fileSiswa/'.$isCompleted->fotoProfile) }}" alt="tidak ada foto"> @else
 															Tidak Ada Foto
 															 @endif
 														</div>
