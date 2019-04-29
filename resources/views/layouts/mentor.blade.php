@@ -572,13 +572,11 @@ License: You must have a valid license purchased only from themeforest(the above
 	<script src="assets/app/js/dashboard.js" type="text/javascript"></script>
 	<!--end::Page Snippets -->
 	<script>
-		if ({
-				{
-					Auth::user() - > gender
-				}
-			} == 1) {
+		if ({{Auth::user()->gender}} == 1) {
+				
 			document.getElementById("male").checked = true;
 		} else {
+			
 			document.getElementById("female").checked = true;
 		}
 
@@ -593,11 +591,7 @@ License: You must have a valid license purchased only from themeforest(the above
 	</script>
 
 	<script>
-		if ({
-				{
-					session() - > has('message')
-				}
-			}) {
+		if ({{session() -> has('message')}}) {
 			console.log("jalan");
 			toastr.options = {
 				"closeButton": true,

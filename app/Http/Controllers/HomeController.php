@@ -36,22 +36,26 @@ class HomeController extends Controller
         $show3 = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->pluck('No_Identitas')->toArray();
         $show4 = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->pluck('fileKTP')->toArray();
         $show5 = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->pluck('fileIjazah')->toArray();
-        $show6 = array_merge($show, $show1, $show2, $show3, $show4, $show5);
-        $counting = count(array_filter($show6, "is_null"));
-        if ($counting == 6) {
+        $show6 = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->pluck('pengalaman')->toArray();
+        $show7 = array_merge($show, $show1, $show2, $show3, $show4, $show5, $show6);
+        $counting = count(array_filter($show7, "is_null"));
+
+        if ($counting == 7) {
             Tbdetailmentor::where('idtbRiwayatTutor', Auth::user()->idmentor)->update(['statKomplit' => '0']);
-        } else if ($counting == 5) {
+        } else if ($counting == 6) {
             Tbdetailmentor::where('idtbRiwayatTutor', Auth::user()->idmentor)->update(['statKomplit' => '1']);
-        } else if ($counting == 4) {
+        } else if ($counting == 5) {
             Tbdetailmentor::where('idtbRiwayatTutor', Auth::user()->idmentor)->update(['statKomplit' => '2']);
-        } else if ($counting == 3) {
+        } else if ($counting == 4) {
             Tbdetailmentor::where('idtbRiwayatTutor', Auth::user()->idmentor)->update(['statKomplit' => '3']);
-        } else if ($counting == 2) {
+        } else if ($counting == 3) {
             Tbdetailmentor::where('idtbRiwayatTutor', Auth::user()->idmentor)->update(['statKomplit' => '4']);
-        } else if ($counting == 1) {
+        } else if ($counting == 2) {
             Tbdetailmentor::where('idtbRiwayatTutor', Auth::user()->idmentor)->update(['statKomplit' => '5']);
-        } else {
+        } else if ($counting == 1) {
             Tbdetailmentor::where('idtbRiwayatTutor', Auth::user()->idmentor)->update(['statKomplit' => '6']);
+        } else {
+            Tbdetailmentor::where('idtbRiwayatTutor', Auth::user()->idmentor)->update(['statKomplit' => '7']);
         }
         Tbdetailmentor::where('idtbRiwayatTutor', Auth::user()->idmentor)->update(['idmentor' => Auth::user()->idmentor]);
         return view('dashboard', ['isCompleted' => $showing]);
@@ -66,22 +70,26 @@ class HomeController extends Controller
         $show3 = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->pluck('No_Identitas')->toArray();
         $show4 = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->pluck('fileKTP')->toArray();
         $show5 = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->pluck('fileIjazah')->toArray();
-        $show6 = array_merge($show, $show1, $show2, $show3, $show4, $show5);
-        $counting = count(array_filter($show6, "is_null"));
-        if ($counting == 6) {
+        $show6 = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->pluck('pengalaman')->toArray();
+        $show7 = array_merge($show, $show1, $show2, $show3, $show4, $show5, $show6 );
+        $counting = count(array_filter($show7, "is_null"));
+        if ($counting == 7) {
             Tbdetailmentor::where('idtbRiwayatTutor', Auth::user()->idmentor)->update(['statKomplit' => '0']);
-        } else if ($counting == 5) {
+        } else if ($counting == 6) {
             Tbdetailmentor::where('idtbRiwayatTutor', Auth::user()->idmentor)->update(['statKomplit' => '1']);
-        } else if ($counting == 4) {
+        } else if ($counting == 5) {
             Tbdetailmentor::where('idtbRiwayatTutor', Auth::user()->idmentor)->update(['statKomplit' => '2']);
-        } else if ($counting == 3) {
+        } else if ($counting == 4) {
             Tbdetailmentor::where('idtbRiwayatTutor', Auth::user()->idmentor)->update(['statKomplit' => '3']);
-        } else if ($counting == 2) {
+        } else if ($counting == 3) {
             Tbdetailmentor::where('idtbRiwayatTutor', Auth::user()->idmentor)->update(['statKomplit' => '4']);
-        } else if ($counting == 1) {
+        } else if ($counting == 2) {
             Tbdetailmentor::where('idtbRiwayatTutor', Auth::user()->idmentor)->update(['statKomplit' => '5']);
-        } else {
+        } else if ($counting == 1) {
             Tbdetailmentor::where('idtbRiwayatTutor', Auth::user()->idmentor)->update(['statKomplit' => '6']);
+
+        } else {
+            Tbdetailmentor::where('idtbRiwayatTutor', Auth::user()->idmentor)->update(['statKomplit' => '7']);
         }
         return view('myProfile', ['isCompleted' => $showing, 'm' => $mentor]);
     }
@@ -176,6 +184,7 @@ class HomeController extends Controller
             $Tbdetailmentor->fileIjazah = $namafileIjazah;
         } else { }
         $Tbdetailmentor->No_Identitas = $request['No_Identitas'];
+        $Tbdetailmentor->pengalaman = $request['pengalaman'];
         $Tbdetailmentor->save();
         return redirect('/myProfile')->with('message', 'IT WORKS!');       
     }

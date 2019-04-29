@@ -169,7 +169,45 @@
 															Jenjang :
 														</span>
 														<span class="m-widget13__text m-widget13__text-bolder">
-															{{ $ProfilSiswa->jenjang }}
+
+														@if($ProfilSiswa->jenjang==1) 
+														SD
+														@elseif($ProfilSiswa->jenjang==2) 
+														SMP
+														@elseif($ProfilSiswa->jenjang==3)
+														SMA
+														@elseif($ProfilSiswa->jenjang==4)
+														SMK
+														@elseif($ProfilSiswa->jenjang==5)
+														D III
+														@elseif($ProfilSiswa->jenjang==6)
+														S1
+														@elseif($ProfilSiswa->jenjang==7)
+														S2
+														@else
+														S3
+														@endif
+														</span>
+													</div>
+													<div class="m-widget13__item">
+														<span class="m-widget13__desc m--align-right">
+															Tingkat Pendidikan :
+														</span>
+														<span class="m-widget13__text m-widget13__text-bolder">
+															
+															@if($ProfilSiswa->tingkatPendidikan==1)
+															Kelas 1 SD, SMP, SMA
+															@elseif($ProfilSiswa->tingkatPendidikan==2)
+															Kelas 2 SD, SMP, SMA
+															@elseif($ProfilSiswa->tingkatPendidikan==3)
+															Kelas 3 SD, SMP, SMA
+															@elseif($ProfilSiswa->tingkatPendidikan==4)
+															Kelas 4 SD
+															@elseif($ProfilSiswa->tingkatPendidikan==5)
+															Kelas 5 SD
+															@else
+															Kelas 6 SD
+															@endif
 														</span>
 													</div>
 													<div class="m-widget13__item">

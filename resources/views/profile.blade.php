@@ -286,29 +286,10 @@
 									<div class="form-group m-form__group row">
 										<div class="col-7 ml-auto">
 											<h3 class="m-form__section">
-												3. Lengkapi File
+												3. Lengkapi Data
 											</h3>
 										</div>
-									</div>
-									<!-- <div class="form-group m-form__group row">
-													<label for="example-text-input" class="col-3 col-form-label">
-													Pendidikan Terakhir
-													</label>
-													<div class="col-7">
-														<select class="form-control m-input" id="exampleSelect1">
-																<option value="1">
-																	Pendidikan Terakhir 1
-																</option>
-																<option value="2">
-																Pendidikan Terakhir 2
-																</option>
-																<option value="3">
-																Pendidikan Terakhir 3
-																</option>
-															</select>
-													</div>
-												</div> -->
-
+									</div>								
 									<div class="form-group m-form__group row">
 										<label for="example-text-input" class="col-3 col-form-label">
 											Pendidikan Terakhir
@@ -382,6 +363,15 @@
 											<!-- </div> -->
 											<!-- <embed width="100" height="150" src="{{ url('/data_file/'.$isCompleted->fileIjazah) }}"> -->
 										</div>
+									</div>
+								</div>
+
+								<div class="form-group m-form__group row">
+									<label for="example-text-input" class="col-2 col-form-label">
+										Pengalaman
+									</label>
+									<div class="col-7">
+										<input class="form-control m-input" type="text" name="pengalaman" value="{{ $isCompleted->pengalaman }}">																				
 									</div>
 								</div>
 								<div class="m-portlet__foot m-portlet__foot--fit">
