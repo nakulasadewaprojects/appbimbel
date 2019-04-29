@@ -18,7 +18,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <head>
 	<meta charset="utf-8" />
 	<title>
-		Metronic | My Profile
+		App Bimbel
 	</title>
 
 	<meta name="description" content="User profile view and edit">
@@ -93,7 +93,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<div class="m-stack__item m-stack__item--fluid m-header-head" id="m_header_nav">
 						<div class="m-header__title">
 							<h3 class="m-header__title-text">
-								Profil Mentor
+								Mentor Dashboard
 							</h3>
 						</div>
 						<!-- BEGIN: Topbar -->

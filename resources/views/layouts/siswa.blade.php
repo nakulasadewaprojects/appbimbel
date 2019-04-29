@@ -19,7 +19,9 @@
 		});
 	</script>
 
-	<title>Document</title>
+	<title>
+		App Bimbel
+	</title>
 
 	<link href="assets/vendors/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
 	<!--end::Page Vendors -->
