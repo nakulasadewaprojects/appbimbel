@@ -21,9 +21,17 @@ License: You must have a valid license purchased only from themeforest(the above
 		App Bimbel
 	</title>
 
+	<!-- zoom image -->
+
+	<!-- <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}" ></script>
+	<script type="text/javascript" src="{{ asset('js/jquery.imgzoom.pack.js') }}"></script> -->
+	
+
+
 	<meta name="description" content="User profile view and edit">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
 	<!--begin::Web font -->
 	<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
 	<script>
@@ -43,10 +51,13 @@ License: You must have a valid license purchased only from themeforest(the above
 	<link href="assets/demo/demo6/base/style.bundle.css" rel="stylesheet" type="text/css" />
 	<!--end::Base Styles -->
 	<link rel="shortcut icon" href="assets/demo/demo6/media/img/logo/favicon.ico" />
-	<!-- zoom image -->
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/imgzoom.css') }}" />
-	<script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('js/jquery.imgzoom.pack.js') }}"></script>
+		<!-- zoom image css  -->
+	<link rel="stylesheet" href="css/viewbox.css">
+	<!-- pdf  -->
+	<link href="css/jquery.touchPDF.css" rel="stylesheet">
+
+
+	
 </head>
 <!-- end::Head -->
 <!-- end::Body -->
@@ -562,6 +573,7 @@ License: You must have a valid license purchased only from themeforest(the above
 		<i class="la la-arrow-up"></i>
 	</div>
 	<!-- end::Scroll Top -->
+	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 	<!--begin::Base Scripts -->
 	<script src="assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
 	<script src="assets/demo/demo6/base/scripts.bundle.js" type="text/javascript"></script>
@@ -571,6 +583,17 @@ License: You must have a valid license purchased only from themeforest(the above
 	<!--begin::Page Snippets -->
 	<script src="assets/app/js/dashboard.js" type="text/javascript"></script>
 	<!--end::Page Snippets -->
+	<script src="js/jquery.viewbox.min.js"></script>
+	<!-- pdf -->
+	<script src="js/pdf.compatibility.js"></script>
+	<script src="js/pdf.js"></script>
+	<!-- <script src="//code.jquery.com/jquery-1.11.2.min.js"></script> -->
+	<script src="js/jquery.touchSwipe.min.js"></script>
+	<script src="js/jquery.touchPDF.js"></script>
+	<script src="js/jquery.panzoom.js"></script>
+	<script src="js/jquery.mousewheel.js"></script>
+
+
 	<script>
 		if ({{Auth::user()->gender}} == 1) {
 				
@@ -736,13 +759,78 @@ License: You must have a valid license purchased only from themeforest(the above
 
 			});
 		});
-	</script>
-	<!-- zoom image -->
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('img.thumbnail').imgZoom();
-		});
-	</script>
+</script>
+<!-- zoom image -->
+<!-- <script type="text/javascript">
+  $(document).ready(function () {
+    $('img.thumbnail').imgZoom();
+  });
+</script> -->
+
+<script >
+$('.thumbnail').viewbox({
+  template: '<div class="viewbox-container"><div class="viewbox-body"><div class="viewbox-header"></div><div class="viewbox-content"></div><div class="viewbox-footer"></div></div></div>',
+  // loading spinner
+  loader: '<div class="loader"><div class="spinner"><div class="double-bounce1"></div><div class="double-bounce2"></div></div></div>',
+  setTitle: true,
+  margin: 20,
+  resizeDuration: 300,
+  openDuration: 200,
+  closeDuration: 200,
+  closeButton: true,
+  navButtons: false,
+  closeOnSideClick: true,
+  nextOnContentClick: true,
+  useGestures: true
+});
+</script>
+
+<script type="text/javascript">
+$(function() {
+  $("#myPDF").pdf( 
+    source: "demo.pdf",
+    // MORE SETTINGS HERE
+  } );
+});
+</script>
+<script>
+// Path of PDF file to display
+source: null,
+// Title of the PDF to be displayed in the toolbar
+title: "TouchPDF",
+// Array of tabs to display on the side.
+tabs: [],
+// Default background color for all tabs.
+// Available colors are "green", "yellow", "orange", "brown",
+// "blue", "white", "black" and you can define your own colors with CSS.
+tabsColor: "beige",
+// Disable zooming of PDF document.
+disable<a href="https://www.jqueryscript.net/zoom/">Zoom</a>: false,
+// Disable swipe to next/prev page of PDF document.
+disableSwipe: false,
+// Disable all internal and external links on PDF document
+disableLinks: false,
+// Disable the arrow keys for next/previous page and +/- for zooming
+disableKeys: false,
+// Force resize of PDF viewer on window resize
+redrawOnWindowResize: true,
+// Show a toolbar on top of the document with title,
+// page number and buttons for next/prev pages and zooming
+showToolbar: true,
+// A handler triggered when PDF document is loaded
+loaded: null,
+// A handler triggered each time a new page is displayed
+changed: null,
+// Text or HTML displayed on white page shown before document is loaded
+loadingHeight: 841,
+// Height in px of white page shown before document is loaded
+loadingWidth: 595,
+// Width in px of white page shown before document is loaded
+loadingHTML: "Loading PDF"
+</script>
+
+
+
 	<!--end::Base Scripts -->
 </body>
 <!-- end::Body -->

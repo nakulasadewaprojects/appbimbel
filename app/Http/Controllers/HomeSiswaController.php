@@ -150,9 +150,9 @@ class HomeSiswaController extends Controller
         $Tbdetailsiswa->jenjang= $request['jenjang'];
         $Tbdetailsiswa->tingkatPendidikan= $request['tingkatPendidikan'];
         $Tbdetailsiswa->prodiSiswa=$request['prodiSiswa'];
-        $foto = $request->file('foto');
+        $foto = $request->file('fotoProfile');
         $tujuan_upload = 'data_fileSiswa';
-        if ($request->hasFile('foto')) {
+        if ($request->hasFile('fotoProfile')) {
             $show = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->value('fotoProfile');
             $nama_foto = time() . "_" . $foto->getClientOriginalName();
             $foto->move($tujuan_upload, $nama_foto);

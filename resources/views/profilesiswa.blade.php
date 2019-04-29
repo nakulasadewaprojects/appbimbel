@@ -196,7 +196,7 @@
 														</label>
 														<div class="col-3">
 															<label class="custom-file">
-																				<input type="file" name="foto">
+																				<input type="file" name="fotoProfile">
 															</label>
 															 @if($isCompleted->fotoProfile!=null)
 															<img width="50px" height="50px" src="{{ url('/data_fileSiswa/'.$isCompleted->fotoProfile) }}" alt="tidak ada foto"> @else

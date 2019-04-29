@@ -25,8 +25,8 @@
 							</div>
 							<div class="m-card-profile__pic">
 								<div class="m-card-profile__pic-wrapper">
-									<!-- <a href="puppy.jpg"><img class="thumbnail" src="puppy_small.jpg" alt="Puppy" /></a> -->
-									<a href="{{ url('/data_file/'.$isCompleted->foto) }}"> <img src="{{ url('/data_file2/'.$isCompleted->foto) }}" class="thumbnail" alt="" />
+								<!-- <a href="puppy.jpg"><img class="thumbnail" src="puppy_small.jpg" alt="Puppy" /></a> -->
+								<a href="{{ url('/data_file/'.$isCompleted->foto) }}" class="thumbnail">	<img src="{{ url('/data_file2/'.$isCompleted->foto) }}"  alt="Tidak Ada Foto" /></a>
 								</div>
 							</div>
 							<div class="m-card-profile__details">
@@ -308,14 +308,17 @@
 									</div>
 									<div class="form-group m-form__group row">
 										<label for="example-text-input" class="col-3 col-form-label">
-											Foto
+															Foto
 										</label>
 										<div class="col-3">
 											<label class="custom-file">
-												<input type="file" name="foto">
-											</label> @if($isCompleted->foto!=null)
-											<a href="{{ url('/data_file/'.$isCompleted->foto) }}"><img width="50px" height="50px" src="{{ url('/data_file2/'.$isCompleted->foto) }}" class="thumbnail" alt="tidak ada foto"></a> @else
-												Tidak Ada Foto @endif
+													<input type="file" name="foto">
+											</label> 
+											@if($isCompleted->foto!=null)
+												<a href="{{ url('/data_file/'.$isCompleted->foto) }}" class="thumbnail"><img width="50px" height="50px" src="{{ url('/data_file2/'.$isCompleted->foto) }}"  alt=""></a>
+											 @else
+											Tidak Ada Foto 
+											@endif
 										</div>
 									</div>
 									<!-- @foreach($isCompleted as $ft) -->
@@ -335,9 +338,11 @@
 										<div class="col-3">
 											<label class="custom-file">
 												<input type="file" name="fileKTP">
-												<!-- <span class="custom-file-control"></span> -->
-											</label> @if($isCompleted->fileKTP!=null)
-											<img width="50px" height="50px" src="{{ url('/data_file/'.$isCompleted->fileKTP) }}"> @else Tidak Ada File @endif
+																	<!-- <span class="custom-file-control"></span> -->
+											</label>
+											 @if($isCompleted->fileKTP!=null)
+											 <a href="{{ url('/data_file/'.$isCompleted->fileKTP) }}" class="thumbnail"><img width="50px" height="50px" src="{{ url('/data_file2/'.$isCompleted->fileKTP) }}"></a> 
+											@else Tidak Ada File @endif
 										</div>
 									</div>
 									<div class="form-group m-form__group row">
@@ -355,8 +360,8 @@
 												<div class="m-demo-icon__preview">
 													<i class="fa fa-file-pdf-o"></i>
 												</div>
-												<div class="m-demo-icon__class">
-													{{$isCompleted->fileIjazah}}
+												<div class="m-demo-icon__class" id="myPDF">
+												<a target="_blank" href="{{ url('/data_file/'.$isCompleted->fileIjazah) }}">{{ $isCompleted->fileIjazah }}"<a/>
 												</div>
 											</div>
 											@else Tidak Ada File @endif
