@@ -6,6 +6,8 @@ use DB;
 use File;
 use App\Tbsiswa;
 use App\Tbdetailsiswa;
+use Illuminate\Support\Carbon;
+
 use Dotenv\Regex\Success;
 class HomeSiswaController extends Controller
 {
@@ -15,6 +17,27 @@ class HomeSiswaController extends Controller
     }
     public function dashboardsiswa()
     {
+        $tahun = Carbon::now()->isoFormat('YY');
+        $bulan = Carbon::now()->format('m');
+        $noidsiswa = 'S' . $bulan . $tahun;
+        if(Tbsiswa::where('idtbSiswa', Auth::user()->idtbSiswa)->value('NoIDSiswa')==NULL){
+            
+            if(strlen((string)Auth::user()->idtbSiswa)==1){
+                Tbsiswa::where('idtbSiswa', Auth::user()->idtbSiswa)->update(['NoIDSiswa' => $noidsiswa.'0000'.Auth::user()->idtbSiswa]);
+            }else if(strlen((string)Auth::user()->idtbSiswa)==2){
+                Tbsiswa::where('idtbSiswa', Auth::user()->idtbSiswa)->update(['NoIDSiswa' => $noidsiswa.'000'.Auth::user()->idtbSiswa]);
+            }
+            else if(strlen((string)Auth::user()->idtbSiswa)==3){
+                Tbsiswa::where('idtbSiswa', Auth::user()->idtbSiswa)->update(['NoIDSiswa' => $noidsiswa.'00'.Auth::user()->idtbSiswa]);
+            }
+            else if(strlen((string)Auth::user()->idtbSiswa)==4){
+                Tbsiswa::where('idtbSiswa', Auth::user()->idtbSiswa)->update(['NoIDSiswa' => $noidsiswa.'0'.Auth::user()->idtbSiswa]);
+            }
+            else {
+                Tbsiswa::where('idtbSiswa', Auth::user()->idtbSiswa)->update(['NoIDSiswa' => $noidsiswa.Auth::user()->idtbSiswa]);
+        }
+        }
+
         $mentor=DB::table('tbmentor')
                     ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
                     ->get();

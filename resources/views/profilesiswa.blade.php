@@ -25,7 +25,11 @@
 											</div>
 											<div class="m-card-profile__pic">
 												<div class="m-card-profile__pic-wrapper">
-													<img src="{{ url('/data_fileSiswa/'.$isCompleted->fotoProfile) }}" height="100px" width="100px" alt=""/>
+													@if(DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->value('fotoProfile')==NULL)
+													<img src="{{ url('/data_fileSiswa/default_photo_profile.png') }}" height="100px" width="100px" alt="Anda Belum Upload Foto"/>
+													@else
+													<img src="{{ url('/data_fileSiswa/'.$isCompleted->fotoProfile) }}" height="100px" width="100px" alt="Anda Belum Upload Foto"/>
+													@endif
 												</div>
 											</div>
 											<div class="m-card-profile__details">

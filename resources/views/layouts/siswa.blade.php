@@ -374,7 +374,7 @@
 												<div class="m-dropdown__header m--align-center">
 													<div class="m-card-user m-card-user--skin-light">
 														<div class="m-card-user__pic">
-														<a href="{{ url('/data_fileSiswa/'.$isCompleted->fotoProfile) }}"> <img src="{{ url('/data_fileSiswa/'.$isCompleted->fotoProfile) }}" height="70px" width="100px" alt="" />
+														<img src="{{ url('/data_fileSiswa/'.$isCompleted->fotoProfile) }}" height="70px" width="100px" alt="" />
 														</div>
 														<div class="m-card-user__details">
 															<span class="m-card-user__name m--font-weight-500">
