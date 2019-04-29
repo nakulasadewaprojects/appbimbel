@@ -82,11 +82,12 @@ class HomeSiswaController extends Controller
         } else {
             Tbdetailsiswa::where('idtbDetailSiswa', Auth::user()->idtbSiswa)->update(['statusKomplit' => '4']);
         }
-        return view('myprofilesiswa' , ['ProfilSiswa' => $showing,'s'=>$siswa]);
+        return view('myprofilesiswa' , ['ProfilSiswa' => $showing,'s'=>$siswa] , ['isCompleted' => $showing,'s'=>$siswa]);
     }
     public function calendarsiswa(){
-       
-        return view('calendarsiswa');
+        $siswa = DB::table('tbsiswa')->where('idtbSiswa', Auth::user()->idtbSiswa)->first();
+        $showing = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->first();
+        return view('calendarsiswa' , ['ProfilSiswa' => $showing,'s'=>$siswa] , ['isCompleted' => $showing,'s'=>$siswa]);
     }
     public function update($idtbSiswa, Request $request)
     {

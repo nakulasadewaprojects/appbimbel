@@ -7,7 +7,7 @@
 					<div class="d-flex align-items-center">
 						<div class="mr-auto">
 							<h3 class="m-subheader__title ">
-								Lihat Profil Sayang
+								Lihat Profil Saya
 							</h3>
 						</div>
 						
@@ -25,7 +25,7 @@
 										</div>
 										<div class="m-card-profile__pic">
 											<div class="m-card-profile__pic-wrapper">
-												<img src="{{ url('/data_fileSiswa/'.$ProfilSiswa->fotoProfile) }}" height="100px" width="100px" alt="" />
+												<img src="{{ url('/data_fileSiswa/'.$isCompleted->fotoProfile) }}" height="100px" width="100px" alt="" />
 											</div>
 										</div>
 										<div class="m-card-profile__details">
