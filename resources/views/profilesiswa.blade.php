@@ -25,7 +25,7 @@
 											</div>
 											<div class="m-card-profile__pic">
 												<div class="m-card-profile__pic-wrapper">
-													<img src="{{ url('/data_fileSiswa/'.$isCompleted->fotoProfile) }}" height="100px" width="100px" alt=""/>
+												<a href="{{ url('/data_fileSiswa/'.$isCompleted->fotoProfile) }}" class="thumbnail"><img src="{{ url('/data_fileSiswa2/'.$isCompleted->fotoProfile) }}" alt=""/></a>
 												</div>
 											</div>
 											<div class="m-card-profile__details">
@@ -207,7 +207,8 @@
 																				<input type="file" name="fotoProfile">
 															</label>
 															 @if($isCompleted->fotoProfile!=null)
-															<img width="50px" height="50px" src="{{ url('/data_fileSiswa/'.$isCompleted->fotoProfile) }}" alt="tidak ada foto"> @else
+															 <a href="{{ url('/data_fileSiswa/'.$isCompleted->fotoProfile) }}" class="thumbnail"><img width="50px" height="50px" src="{{ url('/data_fileSiswa2/'.$isCompleted->fotoProfile) }}" alt="tidak ada foto"></a>
+															 @else
 															Tidak Ada Foto
 															 @endif
 														</div>

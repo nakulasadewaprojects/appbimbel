@@ -27,6 +27,8 @@
 	<link href="assets/demo/demo6/base/style.bundle.css" rel="stylesheet" type="text/css" />
 	<!--end::Base Styles -->
 	<link rel="shortcut icon" href="assets/demo/demo6/media/img/logo/favicon.ico" />
+	<!-- zoom image css  -->
+	<link rel="stylesheet" href="css/viewbox.css">
 </head>
 
 <body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-light m-aside-left--fixed m-aside-left--offcanvas m-aside-left--minimize m-brand--minimize m-footer--push m-aside--offcanvas-default">
@@ -560,6 +562,8 @@
 			<i class="la la-arrow-up"></i>
 		</div>
 		<!-- end::Scroll Top -->
+		<!-- zoom image -->
+		<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 		<!--begin::Base Scripts -->
 		<script src="assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
 		<script src="assets/demo/demo6/base/scripts.bundle.js" type="text/javascript"></script>
@@ -570,6 +574,9 @@
 		<!--begin::Page Snippets -->
 		<script src="assets/app/js/dashboard.js" type="text/javascript"></script>
 		<!--end::Page Snippets -->
+		<!-- zoom image -->
+		<script src="js/jquery.viewbox.min.js"></script>
+
 
 		<script>
 			if ({
@@ -610,6 +617,24 @@
 				document.getElementById("female").checked = true;
 			}
 		</script>
+<!-- zoom image -->
+<script >
+$('.thumbnail').viewbox({
+  template: '<div class="viewbox-container"><div class="viewbox-body"><div class="viewbox-header"></div><div class="viewbox-content"></div><div class="viewbox-footer"></div></div></div>',
+  // loading spinner
+  loader: '<div class="loader"><div class="spinner"><div class="double-bounce1"></div><div class="double-bounce2"></div></div></div>',
+  setTitle: true,
+  margin: 20,
+  resizeDuration: 300,
+  openDuration: 200,
+  closeDuration: 200,
+  closeButton: true,
+  navButtons: false,
+  closeOnSideClick: true,
+  nextOnContentClick: true,
+  useGestures: true
+});
+</script>
 
 </body>
 

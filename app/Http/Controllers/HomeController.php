@@ -147,14 +147,14 @@ class HomeController extends Controller
         $Tbmentor->noTlpn = $request['noTlpn'];
         $Tbmentor->save();
 
-        //  $this->validate($request, [
-        // 	'foto' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
-        //     'fileIjazah'=>'required|file|mimes:jpeg,png,jpg,pdf|max:2048',
-        //     'fileKTP'=>'required|file|image|mimes:jpeg,png,jpg|max:2048',
-        //     'pendidikanTerakhir'=>'required',
-        //     'statusPendidikan'=>'required',
-        //     'No_Identitas'=>'required'
-        // ]);
+         $this->validate($request, [
+        	'foto' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
+            'fileIjazah'=>'required|file|mimes:pdf|max:2048',
+            'fileKTP'=>'required|file|image|mimes:jpeg,png,jpg|max:2048',
+            'pendidikanTerakhir'=>'required',
+            'statusPendidikan'=>'required',
+            'No_Identitas'=>'required'
+        ]);
         $Tbdetailmentor = Tbdetailmentor::find($idmentor);
         $Tbdetailmentor->pendidikanTerakhir = $request['pendidikanTerakhir'];
         $Tbdetailmentor->statusPendidikan = $request['statusPendidikan'];

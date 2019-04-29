@@ -25,7 +25,7 @@
 										</div>
 										<div class="m-card-profile__pic">
 											<div class="m-card-profile__pic-wrapper">
-												<img src="{{ url('/data_fileSiswa/'.$ProfilSiswa->fotoProfile) }}" height="100px" width="100px" alt="" />
+												<a href="{{ url('/data_fileSiswa/'.$ProfilSiswa->fotoProfile) }}" class="thumbnail"><img src="{{ url('/data_fileSiswa2/'.$ProfilSiswa->fotoProfile) }}" alt="" /></a>
 											</div>
 										</div>
 										<div class="m-card-profile__details">
