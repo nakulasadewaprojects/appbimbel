@@ -1,11 +1,8 @@
 @extends('layouts.mentor') 
 @section('content')
-
-		<!-- begin::Body -->
-				
 				<div class="m-grid__item m-grid__item--fluid m-wrapper">
 				@if (DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->value('statKomplit')!==6)
-						<div class="m-alert m-alert--icon alert alert-primary" role="alert">
+						<div class="m-alert m-alert--icon alert alert-warning" role="alert">
 							<div class="m-alert__icon">
 								<i class="la la-warning"></i>
 							</div>
@@ -13,10 +10,10 @@
 								<strong>
 									Luar biasa!
 								</strong>
-								Silakan lengkapi profil Anda agar dapat mesen mentor.								
+								Silakan lengkapi profil Anda agar dapat menerima siswa.								
 							</div>
 							<div class="m-alert__actions" style="width: 160px;">
-								<a class="btn btn-warning btn-sm m-btn m-btn--pill m-btn--wide" href="profile">Lengkapi Sekarang</a>
+								<a class="btn btn-info btn-sm m-btn m-btn--pill m-btn--wide" href="profile">Lengkapi Sekarang</a>
 							</div>
 						</div>
 						@endif

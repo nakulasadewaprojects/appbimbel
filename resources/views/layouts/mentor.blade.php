@@ -18,12 +18,20 @@ License: You must have a valid license purchased only from themeforest(the above
 <head>
 	<meta charset="utf-8" />
 	<title>
-		Metronic | My Profile
+		App Bimbel
 	</title>
+
+	<!-- zoom image -->
+
+	<!-- <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}" ></script>
+	<script type="text/javascript" src="{{ asset('js/jquery.imgzoom.pack.js') }}"></script> -->
 	
+
+
 	<meta name="description" content="User profile view and edit">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
 	<!--begin::Web font -->
 	<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
 	<script>
@@ -43,10 +51,13 @@ License: You must have a valid license purchased only from themeforest(the above
 	<link href="assets/demo/demo6/base/style.bundle.css" rel="stylesheet" type="text/css" />
 	<!--end::Base Styles -->
 	<link rel="shortcut icon" href="assets/demo/demo6/media/img/logo/favicon.ico" />
-	<!-- zoom image -->
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/imgzoom.css') }}" />
-	<script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('js/jquery.imgzoom.pack.js') }}"></script>
+		<!-- zoom image css  -->
+	<link rel="stylesheet" href="css/viewbox.css">
+	<!-- pdf  -->
+	<link href="css/jquery.touchPDF.css" rel="stylesheet">
+
+
+	
 </head>
 <!-- end::Head -->
 <!-- end::Body -->
@@ -93,15 +104,14 @@ License: You must have a valid license purchased only from themeforest(the above
 					<div class="m-stack__item m-stack__item--fluid m-header-head" id="m_header_nav">
 						<div class="m-header__title">
 							<h3 class="m-header__title-text">
-								Profil Mentor
+								Mentor Dashboard
 							</h3>
 						</div>
 						<!-- BEGIN: Topbar -->
 						<div id="m_header_topbar" class="m-topbar  m-stack m-stack--ver m-stack--general">
 							<div class="m-stack__item m-topbar__nav-wrapper">
 								<ul class="m-topbar__nav m-nav m-nav--inline">
-									<li class="m-nav__item m-topbar__notifications m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-center 	m-dropdown--mobile-full-width"
-									 data-dropdown-toggle="click" data-dropdown-persistent="true">
+									<li class="m-nav__item m-topbar__notifications m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-right 	m-dropdown--mobile-full-width" data-dropdown-toggle="click" data-dropdown-persistent="true">
 										<a href="#" class="m-nav__link m-dropdown__toggle" id="m_topbar_notification_icon">
 											<span class="m-nav__link-badge m-badge m-badge--dot m-badge--dot-small m-badge--danger"></span>
 											<span class="m-nav__link-icon">
@@ -111,7 +121,7 @@ License: You must have a valid license purchased only from themeforest(the above
 											</span>
 										</a>
 										<div class="m-dropdown__wrapper">
-											<span class="m-dropdown__arrow m-dropdown__arrow--center"></span>
+											<span class="m-dropdown__arrow m-dropdown__arrow--right"></span>
 											<div class="m-dropdown__inner">
 												<div class="m-dropdown__header m--align-center">
 													<span class="m-dropdown__header-title">
@@ -310,10 +320,11 @@ License: You must have a valid license purchased only from themeforest(the above
 													</div>
 												</div>
 											</div>
+
+
 										</div>
 									</li>
-									<li class="m-nav__item m-topbar__quick-actions m-dropdown m-dropdown--skin-light m-dropdown--large m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push m-dropdown--mobile-full-width m-dropdown--skin-light"
-									 data-dropdown-toggle="click">
+									<li class="m-nav__item m-topbar__quick-actions m-dropdown m-dropdown--skin-light m-dropdown--large m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push m-dropdown--mobile-full-width m-dropdown--skin-light" data-dropdown-toggle="click">
 										<a href="#" class="m-nav__link m-dropdown__toggle">
 											<span class="m-nav__link-badge m-badge m-badge--dot m-badge--info m--hide"></span>
 											<span class="m-nav__link-icon">
@@ -372,19 +383,12 @@ License: You must have a valid license purchased only from themeforest(the above
 											</div>
 										</div>
 									</li>
-									<li class="m-nav__item m-topbar__user-profile  m-dropdown m-dropdown--medium m-dropdown--arrow  m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light"
-									 data-dropdown-toggle="click">
+									<li class="m-nav__item m-topbar__user-profile  m-dropdown m-dropdown--medium m-dropdown--arrow  m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light" data-dropdown-toggle="click">
 										<a href="#" class="m-nav__link m-dropdown__toggle">
-											<span class="m-topbar__userpic m--hide">
-												<img src="assets/app/media/img/users/user4.jpg" class="m--img-rounded m--marginless m--img-centered" alt="" />
-											</span>
 											<span class="m-nav__link-icon m-topbar__usericon">
 												<span class="m-nav__link-icon-wrapper">
 													<i class="flaticon-user-ok"></i>
 												</span>
-											</span>
-											<span class="m-topbar__username m--hide">
-												Nick
 											</span>
 										</a>
 										<div class="m-dropdown__wrapper">
@@ -393,7 +397,7 @@ License: You must have a valid license purchased only from themeforest(the above
 												<div class="m-dropdown__header m--align-center">
 													<div class="m-card-user m-card-user--skin-light">
 														<div class="m-card-user__pic">
-															<img src="" class="m--img-rounded m--marginless" alt="" />
+														<a href="{{ url('/data_file/'.$isCompleted->foto) }}"> <img src="{{ url('/data_file2/'.$isCompleted->foto) }}" class="thumbnail" alt="" />
 														</div>
 														<div class="m-card-user__details">
 															<span class="m-card-user__name m--font-weight-500">
@@ -414,29 +418,28 @@ License: You must have a valid license purchased only from themeforest(the above
 																</span>
 															</li>
 															<li class="m-nav__item">
-																	<a href="myProfile" class="m-nav__link">
-																		<i class="m-nav__link-icon flaticon-profile-1"></i>
-																		<span class="m-nav__link-title">
-																			<span class="m-nav__link-wrap">
-																				<span class="m-nav__link-text">
-																					My Profile
-																				</span>
+																<a href="myProfile" class="m-nav__link">
+																	<i class="m-nav__link-icon flaticon-profile-1"></i>
+																	<span class="m-nav__link-title">
+																		<span class="m-nav__link-wrap">
+																			<span class="m-nav__link-text">
+																				My Profile
 																			</span>
 																		</span>
-																	</a>
-																</li>
-																<li class="m-nav__item">
-																	<a href="header/profile.html" class="m-nav__link">
-																		<i class="m-nav__link-icon flaticon-info"></i>
-																		<span class="m-nav__link-text">
-																			Setting
-																		</span>
-																	</a>
-																</li>
+																	</span>
+																</a>
+															</li>
+															<li class="m-nav__item">
+																<a href="header/profile.html" class="m-nav__link">
+																	<i class="m-nav__link-icon flaticon-info"></i>
+																	<span class="m-nav__link-text">
+																		Setting
+																	</span>
+																</a>
+															</li>
 															<li class="m-nav__separator m-nav__separator--fit"></li>
 															<li class="m-nav__item">
-																<a href="{{ route('logout') }}" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder"
-																 onclick="event.preventDefault();
+																<a href="{{ route('logout') }}" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder" onclick="event.preventDefault();
                                                      				document.getElementById('logout-form').submit();">
 																	Logout
 																</a>
@@ -450,7 +453,7 @@ License: You must have a valid license purchased only from themeforest(the above
 											</div>
 										</div>
 									</li>
-									
+
 								</ul>
 							</div>
 						</div>
@@ -468,8 +471,7 @@ License: You must have a valid license purchased only from themeforest(the above
 			</button>
 			<div id="m_aside_left" class="m-grid__item	m-aside-left  m-aside-left--skin-light ">
 				<!-- BEGIN: Aside Menu -->
-				<div id="m_ver_menu" class="m-aside-menu  m-aside-menu--skin-light m-aside-menu--submenu-skin-light " data-menu-vertical="true"
-				 data-menu-scrollable="true" data-menu-dropdown-timeout="500">
+				<div id="m_ver_menu" class="m-aside-menu  m-aside-menu--skin-light m-aside-menu--submenu-skin-light " data-menu-vertical="true" data-menu-scrollable="true" data-menu-dropdown-timeout="500">
 					<ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow ">
 						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover">
 							<a href="#" class="m-menu__link m-menu__toggle">
@@ -518,9 +520,9 @@ License: You must have a valid license purchased only from themeforest(the above
 					</ul>
 				</div>
 				<!-- END: Aside Menu -->
-            </div>
-            @yield('content')
-            </div>
+			</div>
+			@yield('content')
+		</div>
 		<!-- end:: Body -->
 		<!-- begin::Footer -->
 		<footer class="m-grid__item		m-footer ">
@@ -528,9 +530,9 @@ License: You must have a valid license purchased only from themeforest(the above
 				<div class="m-stack m-stack--flex-tablet-and-mobile m-stack--ver m-stack--desktop">
 					<div class="m-stack__item m-stack__item--left m-stack__item--middle m-stack__item--last">
 						<span class="m-footer__copyright">
-							2017 &copy; Metronic theme by
+							2019 &copy; AppBimbel Kekinian
 							<a href="#" class="m-link">
-								Keenthemes
+								AppBimbel
 							</a>
 						</span>
 					</div>
@@ -539,31 +541,18 @@ License: You must have a valid license purchased only from themeforest(the above
 							<li class="m-nav__item">
 								<a href="#" class="m-nav__link">
 									<span class="m-nav__link-text">
-										About
+										Tentang
 									</span>
 								</a>
 							</li>
 							<li class="m-nav__item">
 								<a href="#" class="m-nav__link">
 									<span class="m-nav__link-text">
-										Privacy
+										Kontak
 									</span>
 								</a>
 							</li>
-							<li class="m-nav__item">
-								<a href="#" class="m-nav__link">
-									<span class="m-nav__link-text">
-										T&C
-									</span>
-								</a>
-							</li>
-							<li class="m-nav__item">
-								<a href="#" class="m-nav__link">
-									<span class="m-nav__link-text">
-										Purchase
-									</span>
-								</a>
-							</li>
+
 							<li class="m-nav__item m-nav__item">
 								<a href="#" class="m-nav__link" data-toggle="m-tooltip" title="Support Center" data-placement="left">
 									<i class="m-nav__link-icon flaticon-info m--icon-font-size-lg3"></i>
@@ -578,616 +567,51 @@ License: You must have a valid license purchased only from themeforest(the above
 	</div>
 	<!-- end:: Page -->
 	<!-- begin::Quick Sidebar -->
-	<div id="m_quick_sidebar" class="m-quick-sidebar m-quick-sidebar--tabbed m-quick-sidebar--skin-light">
-		<div class="m-quick-sidebar__content m--hide">
-			<span id="m_quick_sidebar_close" class="m-quick-sidebar__close">
-				<i class="la la-close"></i>
-			</span>
-			<ul id="m_quick_sidebar_tabs" class="nav nav-tabs m-tabs m-tabs-line m-tabs-line--brand" role="tablist">
-				<li class="nav-item m-tabs__item">
-					<a class="nav-link m-tabs__link active" data-toggle="tab" href="#m_quick_sidebar_tabs_messenger" role="tab">
-						Messages
-					</a>
-				</li>
-				<li class="nav-item m-tabs__item">
-					<a class="nav-link m-tabs__link" data-toggle="tab" href="#m_quick_sidebar_tabs_settings" role="tab">
-						Settings
-					</a>
-				</li>
-				<li class="nav-item m-tabs__item">
-					<a class="nav-link m-tabs__link" data-toggle="tab" href="#m_quick_sidebar_tabs_logs" role="tab">
-						Logs
-					</a>
-				</li>
-			</ul>
-			<div class="tab-content">
-				<div class="tab-pane active m-scrollable" id="m_quick_sidebar_tabs_messenger" role="tabpanel">
-					<div class="m-messenger m-messenger--message-arrow m-messenger--skin-light">
-						<div class="m-messenger__messages">
-							<div class="m-messenger__message m-messenger__message--in">
-								<div class="m-messenger__message-pic">
-									<img src="assets/app/media/img//users/user3.jpg" alt="" />
-								</div>
-								<div class="m-messenger__message-body">
-									<div class="m-messenger__message-arrow"></div>
-									<div class="m-messenger__message-content">
-										<div class="m-messenger__message-username">
-											Megan wrote
-										</div>
-										<div class="m-messenger__message-text">
-											Hi Bob. What time will be the meeting ?
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="m-messenger__message m-messenger__message--out">
-								<div class="m-messenger__message-body">
-									<div class="m-messenger__message-arrow"></div>
-									<div class="m-messenger__message-content">
-										<div class="m-messenger__message-text">
-											Hi Megan. It's at 2.30PM
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="m-messenger__message m-messenger__message--in">
-								<div class="m-messenger__message-pic">
-									<img src="assets/app/media/img//users/user3.jpg" alt="" />
-								</div>
-								<div class="m-messenger__message-body">
-									<div class="m-messenger__message-arrow"></div>
-									<div class="m-messenger__message-content">
-										<div class="m-messenger__message-username">
-											Megan wrote
-										</div>
-										<div class="m-messenger__message-text">
-											Will the development team be joining ?
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="m-messenger__message m-messenger__message--out">
-								<div class="m-messenger__message-body">
-									<div class="m-messenger__message-arrow"></div>
-									<div class="m-messenger__message-content">
-										<div class="m-messenger__message-text">
-											Yes sure. I invited them as well
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="m-messenger__datetime">
-								2:30PM
-							</div>
-							<div class="m-messenger__message m-messenger__message--in">
-								<div class="m-messenger__message-pic">
-									<img src="assets/app/media/img//users/user3.jpg" alt="" />
-								</div>
-								<div class="m-messenger__message-body">
-									<div class="m-messenger__message-arrow"></div>
-									<div class="m-messenger__message-content">
-										<div class="m-messenger__message-username">
-											Megan wrote
-										</div>
-										<div class="m-messenger__message-text">
-											Noted. For the Coca-Cola Mobile App project as well ?
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="m-messenger__message m-messenger__message--out">
-								<div class="m-messenger__message-body">
-									<div class="m-messenger__message-arrow"></div>
-									<div class="m-messenger__message-content">
-										<div class="m-messenger__message-text">
-											Yes, sure.
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="m-messenger__message m-messenger__message--out">
-								<div class="m-messenger__message-body">
-									<div class="m-messenger__message-arrow"></div>
-									<div class="m-messenger__message-content">
-										<div class="m-messenger__message-text">
-											Please also prepare the quotation for the Loop CRM project as well.
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="m-messenger__datetime">
-								3:15PM
-							</div>
-							<div class="m-messenger__message m-messenger__message--in">
-								<div class="m-messenger__message-no-pic m--bg-fill-danger">
-									<span>
-										M
-									</span>
-								</div>
-								<div class="m-messenger__message-body">
-									<div class="m-messenger__message-arrow"></div>
-									<div class="m-messenger__message-content">
-										<div class="m-messenger__message-username">
-											Megan wrote
-										</div>
-										<div class="m-messenger__message-text">
-											Noted. I will prepare it.
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="m-messenger__message m-messenger__message--out">
-								<div class="m-messenger__message-body">
-									<div class="m-messenger__message-arrow"></div>
-									<div class="m-messenger__message-content">
-										<div class="m-messenger__message-text">
-											Thanks Megan. I will see you later.
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="m-messenger__message m-messenger__message--in">
-								<div class="m-messenger__message-pic">
-									<img src="assets/app/media/img//users/user3.jpg" alt="" />
-								</div>
-								<div class="m-messenger__message-body">
-									<div class="m-messenger__message-arrow"></div>
-									<div class="m-messenger__message-content">
-										<div class="m-messenger__message-username">
-											Megan wrote
-										</div>
-										<div class="m-messenger__message-text">
-											Sure. See you in the meeting soon.
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="m-messenger__seperator"></div>
-						<div class="m-messenger__form">
-							<div class="m-messenger__form-controls">
-								<input type="text" name="" placeholder="Type here..." class="m-messenger__form-input">
-							</div>
-							<div class="m-messenger__form-tools">
-								<a href="" class="m-messenger__form-attachment">
-									<i class="la la-paperclip"></i>
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="tab-pane  m-scrollable" id="m_quick_sidebar_tabs_settings" role="tabpanel">
-					<div class="m-list-settings">
-						<div class="m-list-settings__group">
-							<div class="m-list-settings__heading">
-								General Settings
-							</div>
-							<div class="m-list-settings__item">
-								<span class="m-list-settings__item-label">
-									Email Notifications
-								</span>
-								<span class="m-list-settings__item-control">
-									<span class="m-switch m-switch--outline m-switch--icon-check m-switch--brand">
-										<label>
-											<input type="checkbox" checked="checked" name="">
-											<span></span>
-								</label>
-								</span>
-								</span>
-							</div>
-							<div class="m-list-settings__item">
-								<span class="m-list-settings__item-label">
-									Site Tracking
-								</span>
-								<span class="m-list-settings__item-control">
-									<span class="m-switch m-switch--outline m-switch--icon-check m-switch--brand">
-										<label>
-											<input type="checkbox" name="">
-											<span></span>
-								</label>
-								</span>
-								</span>
-							</div>
-							<div class="m-list-settings__item">
-								<span class="m-list-settings__item-label">
-									SMS Alerts
-								</span>
-								<span class="m-list-settings__item-control">
-									<span class="m-switch m-switch--outline m-switch--icon-check m-switch--brand">
-										<label>
-											<input type="checkbox" name="">
-											<span></span>
-								</label>
-								</span>
-								</span>
-							</div>
-							<div class="m-list-settings__item">
-								<span class="m-list-settings__item-label">
-									Backup Storage
-								</span>
-								<span class="m-list-settings__item-control">
-									<span class="m-switch m-switch--outline m-switch--icon-check m-switch--brand">
-										<label>
-											<input type="checkbox" name="">
-											<span></span>
-								</label>
-								</span>
-								</span>
-							</div>
-							<div class="m-list-settings__item">
-								<span class="m-list-settings__item-label">
-									Audit Logs
-								</span>
-								<span class="m-list-settings__item-control">
-									<span class="m-switch m-switch--outline m-switch--icon-check m-switch--brand">
-										<label>
-											<input type="checkbox" checked="checked" name="">
-											<span></span>
-								</label>
-								</span>
-								</span>
-							</div>
-						</div>
-						<div class="m-list-settings__group">
-							<div class="m-list-settings__heading">
-								System Settings
-							</div>
-							<div class="m-list-settings__item">
-								<span class="m-list-settings__item-label">
-									System Logs
-								</span>
-								<span class="m-list-settings__item-control">
-									<span class="m-switch m-switch--outline m-switch--icon-check m-switch--brand">
-										<label>
-											<input type="checkbox" name="">
-											<span></span>
-								</label>
-								</span>
-								</span>
-							</div>
-							<div class="m-list-settings__item">
-								<span class="m-list-settings__item-label">
-									Error Reporting
-								</span>
-								<span class="m-list-settings__item-control">
-									<span class="m-switch m-switch--outline m-switch--icon-check m-switch--brand">
-										<label>
-											<input type="checkbox" name="">
-											<span></span>
-								</label>
-								</span>
-								</span>
-							</div>
-							<div class="m-list-settings__item">
-								<span class="m-list-settings__item-label">
-									Applications Logs
-								</span>
-								<span class="m-list-settings__item-control">
-									<span class="m-switch m-switch--outline m-switch--icon-check m-switch--brand">
-										<label>
-											<input type="checkbox" name="">
-											<span></span>
-								</label>
-								</span>
-								</span>
-							</div>
-							<div class="m-list-settings__item">
-								<span class="m-list-settings__item-label">
-									Backup Servers
-								</span>
-								<span class="m-list-settings__item-control">
-									<span class="m-switch m-switch--outline m-switch--icon-check m-switch--brand">
-										<label>
-											<input type="checkbox" checked="checked" name="">
-											<span></span>
-								</label>
-								</span>
-								</span>
-							</div>
-							<div class="m-list-settings__item">
-								<span class="m-list-settings__item-label">
-									Audit Logs
-								</span>
-								<span class="m-list-settings__item-control">
-									<span class="m-switch m-switch--outline m-switch--icon-check m-switch--brand">
-										<label>
-											<input type="checkbox" name="">
-											<span></span>
-								</label>
-								</span>
-								</span>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="tab-pane  m-scrollable" id="m_quick_sidebar_tabs_logs" role="tabpanel">
-					<div class="m-list-timeline">
-						<div class="m-list-timeline__group">
-							<div class="m-list-timeline__heading">
-								System Logs
-							</div>
-							<div class="m-list-timeline__items">
-								<div class="m-list-timeline__item">
-									<span class="m-list-timeline__badge m-list-timeline__badge--state-success"></span>
-									<a href="" class="m-list-timeline__text">
-										12 new users registered
-										<span class="m-badge m-badge--warning m-badge--wide">
-											important
-										</span>
-									</a>
-									<span class="m-list-timeline__time">
-										Just now
-									</span>
-								</div>
-								<div class="m-list-timeline__item">
-									<span class="m-list-timeline__badge m-list-timeline__badge--state-info"></span>
-									<a href="" class="m-list-timeline__text">
-										System shutdown
-									</a>
-									<span class="m-list-timeline__time">
-										11 mins
-									</span>
-								</div>
-								<div class="m-list-timeline__item">
-									<span class="m-list-timeline__badge m-list-timeline__badge--state-danger"></span>
-									<a href="" class="m-list-timeline__text">
-										New invoice received
-									</a>
-									<span class="m-list-timeline__time">
-										20 mins
-									</span>
-								</div>
-								<div class="m-list-timeline__item">
-									<span class="m-list-timeline__badge m-list-timeline__badge--state-warning"></span>
-									<a href="" class="m-list-timeline__text">
-										Database overloaded 89%
-										<span class="m-badge m-badge--success m-badge--wide">
-											resolved
-										</span>
-									</a>
-									<span class="m-list-timeline__time">
-										1 hr
-									</span>
-								</div>
-								<div class="m-list-timeline__item">
-									<span class="m-list-timeline__badge m-list-timeline__badge--state-success"></span>
-									<a href="" class="m-list-timeline__text">
-										System error
-									</a>
-									<span class="m-list-timeline__time">
-										2 hrs
-									</span>
-								</div>
-								<div class="m-list-timeline__item">
-									<span class="m-list-timeline__badge m-list-timeline__badge--state-info"></span>
-									<a href="" class="m-list-timeline__text">
-										Production server down
-										<span class="m-badge m-badge--danger m-badge--wide">
-											pending
-										</span>
-									</a>
-									<span class="m-list-timeline__time">
-										3 hrs
-									</span>
-								</div>
-								<div class="m-list-timeline__item">
-									<span class="m-list-timeline__badge m-list-timeline__badge--state-success"></span>
-									<a href="" class="m-list-timeline__text">
-										Production server up
-									</a>
-									<span class="m-list-timeline__time">
-										5 hrs
-									</span>
-								</div>
-							</div>
-						</div>
-						<div class="m-list-timeline__group">
-							<div class="m-list-timeline__heading">
-								Applications Logs
-							</div>
-							<div class="m-list-timeline__items">
-								<div class="m-list-timeline__item">
-									<span class="m-list-timeline__badge m-list-timeline__badge--state-info"></span>
-									<a href="" class="m-list-timeline__text">
-										New order received
-										<span class="m-badge m-badge--info m-badge--wide">
-											urgent
-										</span>
-									</a>
-									<span class="m-list-timeline__time">
-										7 hrs
-									</span>
-								</div>
-								<div class="m-list-timeline__item">
-									<span class="m-list-timeline__badge m-list-timeline__badge--state-success"></span>
-									<a href="" class="m-list-timeline__text">
-										12 new users registered
-									</a>
-									<span class="m-list-timeline__time">
-										Just now
-									</span>
-								</div>
-								<div class="m-list-timeline__item">
-									<span class="m-list-timeline__badge m-list-timeline__badge--state-info"></span>
-									<a href="" class="m-list-timeline__text">
-										System shutdown
-									</a>
-									<span class="m-list-timeline__time">
-										11 mins
-									</span>
-								</div>
-								<div class="m-list-timeline__item">
-									<span class="m-list-timeline__badge m-list-timeline__badge--state-danger"></span>
-									<a href="" class="m-list-timeline__text">
-										New invoices received
-									</a>
-									<span class="m-list-timeline__time">
-										20 mins
-									</span>
-								</div>
-								<div class="m-list-timeline__item">
-									<span class="m-list-timeline__badge m-list-timeline__badge--state-warning"></span>
-									<a href="" class="m-list-timeline__text">
-										Database overloaded 89%
-									</a>
-									<span class="m-list-timeline__time">
-										1 hr
-									</span>
-								</div>
-								<div class="m-list-timeline__item">
-									<span class="m-list-timeline__badge m-list-timeline__badge--state-success"></span>
-									<a href="" class="m-list-timeline__text">
-										System error
-										<span class="m-badge m-badge--info m-badge--wide">
-											pending
-										</span>
-									</a>
-									<span class="m-list-timeline__time">
-										2 hrs
-									</span>
-								</div>
-								<div class="m-list-timeline__item">
-									<span class="m-list-timeline__badge m-list-timeline__badge--state-info"></span>
-									<a href="" class="m-list-timeline__text">
-										Production server down
-									</a>
-									<span class="m-list-timeline__time">
-										3 hrs
-									</span>
-								</div>
-							</div>
-						</div>
-						<div class="m-list-timeline__group">
-							<div class="m-list-timeline__heading">
-								Server Logs
-							</div>
-							<div class="m-list-timeline__items">
-								<div class="m-list-timeline__item">
-									<span class="m-list-timeline__badge m-list-timeline__badge--state-success"></span>
-									<a href="" class="m-list-timeline__text">
-										Production server up
-									</a>
-									<span class="m-list-timeline__time">
-										5 hrs
-									</span>
-								</div>
-								<div class="m-list-timeline__item">
-									<span class="m-list-timeline__badge m-list-timeline__badge--state-info"></span>
-									<a href="" class="m-list-timeline__text">
-										New order received
-									</a>
-									<span class="m-list-timeline__time">
-										7 hrs
-									</span>
-								</div>
-								<div class="m-list-timeline__item">
-									<span class="m-list-timeline__badge m-list-timeline__badge--state-success"></span>
-									<a href="" class="m-list-timeline__text">
-										12 new users registered
-									</a>
-									<span class="m-list-timeline__time">
-										Just now
-									</span>
-								</div>
-								<div class="m-list-timeline__item">
-									<span class="m-list-timeline__badge m-list-timeline__badge--state-info"></span>
-									<a href="" class="m-list-timeline__text">
-										System shutdown
-									</a>
-									<span class="m-list-timeline__time">
-										11 mins
-									</span>
-								</div>
-								<div class="m-list-timeline__item">
-									<span class="m-list-timeline__badge m-list-timeline__badge--state-danger"></span>
-									<a href="" class="m-list-timeline__text">
-										New invoice received
-									</a>
-									<span class="m-list-timeline__time">
-										20 mins
-									</span>
-								</div>
-								<div class="m-list-timeline__item">
-									<span class="m-list-timeline__badge m-list-timeline__badge--state-warning"></span>
-									<a href="" class="m-list-timeline__text">
-										Database overloaded 89%
-									</a>
-									<span class="m-list-timeline__time">
-										1 hr
-									</span>
-								</div>
-								<div class="m-list-timeline__item">
-									<span class="m-list-timeline__badge m-list-timeline__badge--state-success"></span>
-									<a href="" class="m-list-timeline__text">
-										System error
-									</a>
-									<span class="m-list-timeline__time">
-										2 hrs
-									</span>
-								</div>
-								<div class="m-list-timeline__item">
-									<span class="m-list-timeline__badge m-list-timeline__badge--state-info"></span>
-									<a href="" class="m-list-timeline__text">
-										Production server down
-									</a>
-									<span class="m-list-timeline__time">
-										3 hrs
-									</span>
-								</div>
-								<div class="m-list-timeline__item">
-									<span class="m-list-timeline__badge m-list-timeline__badge--state-success"></span>
-									<a href="" class="m-list-timeline__text">
-										Production server up
-									</a>
-									<span class="m-list-timeline__time">
-										5 hrs
-									</span>
-								</div>
-								<div class="m-list-timeline__item">
-									<span class="m-list-timeline__badge m-list-timeline__badge--state-info"></span>
-									<a href="" class="m-list-timeline__text">
-										New order received
-									</a>
-									<span class="m-list-timeline__time">
-										1117 hrs
-									</span>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 	<!-- end::Quick Sidebar -->
 	<!-- begin::Scroll Top -->
 	<div class="m-scroll-top m-scroll-top--skin-top" data-toggle="m-scroll-top" data-scroll-offset="500" data-scroll-speed="300">
 		<i class="la la-arrow-up"></i>
 	</div>
 	<!-- end::Scroll Top -->
+	<!-- zoom image-->
+	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 	<!--begin::Base Scripts -->
 	<script src="assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
 	<script src="assets/demo/demo6/base/scripts.bundle.js" type="text/javascript"></script>
-	   <!--begin::Page Vendors -->
-	   <script src="assets/vendors/custom/fullcalendar/fullcalendar.bundle.js" type="text/javascript"></script>
-		<!--end::Page Vendors -->  
-        <!--begin::Page Snippets -->
-		<script src="assets/app/js/dashboard.js" type="text/javascript"></script>
-		<!--end::Page Snippets -->
+	<!--begin::Page Vendors -->
+	<script src="assets/vendors/custom/fullcalendar/fullcalendar.bundle.js" type="text/javascript"></script>
+	<!--end::Page Vendors -->
+	<!--begin::Page Snippets -->
+	<script src="assets/app/js/dashboard.js" type="text/javascript"></script>
+	<!--end::Page Snippets -->
+	<!-- zoom image -->
+	<script src="js/jquery.viewbox.min.js"></script>
+	<!-- pdf -->
+	<script src="js/pdf.compatibility.js"></script>
+	<script src="js/pdf.js"></script>
+	<!-- <script src="//code.jquery.com/jquery-1.11.2.min.js"></script> -->
+	<script src="js/jquery.touchSwipe.min.js"></script>
+	<script src="js/jquery.touchPDF.js"></script>
+	<script src="js/jquery.panzoom.js"></script>
+	<script src="js/jquery.mousewheel.js"></script>
+
+
 	<script>
-		if({{ Auth::user()->gender }}==1){
+		if ({{Auth::user()->gender}} == 1) {
+				
 			document.getElementById("male").checked = true;
-		}else{
+		} else {
+			
 			document.getElementById("female").checked = true;
 		}
 
 		$(function() {
-			$("button").on("click",function(event){
+			$("button").on("click", function(event) {
 				e.preventDefault();
-				$(".hidden-control").attr("type","text");
+				$(".hidden-control").attr("type", "text");
 				$("form").submit();
 			});
-			
+
 		});
 	</script>
 	<script>
@@ -1210,156 +634,215 @@ License: You must have a valid license purchased only from themeforest(the above
 	<script>
 		if ({{session() -> has('message')}}) {
 			console.log("jalan");
-		toastr.options = {
-			"closeButton": true,
-			"debug": false,
-			"newestOnTop": false,
-			"progressBar": false,
-			"positionClass": "toast-top-center",
-			"preventDuplicates": true,
-			"onclick": null,
-			"showDuration": "300",
-			"hideDuration": "1000",
-			"timeOut": "5000",
-			"extendedTimeOut": "1000",
-			"showEasing": "swing",
-			"hideEasing": "linear",
-			"showMethod": "fadeIn",
-			"hideMethod": "fadeOut"
-		};
+			toastr.options = {
+				"closeButton": true,
+				"debug": false,
+				"newestOnTop": false,
+				"progressBar": false,
+				"positionClass": "toast-top-center",
+				"preventDuplicates": true,
+				"onclick": null,
+				"showDuration": "300",
+				"hideDuration": "1000",
+				"timeOut": "5000",
+				"extendedTimeOut": "1000",
+				"showEasing": "swing",
+				"hideEasing": "linear",
+				"showMethod": "fadeIn",
+				"hideMethod": "fadeOut"
+			};
 
-		toastr.success("Profil Anda telah diperbarui", "Sukses");
-	}
+			toastr.success("Profil Anda telah diperbarui", "Sukses");
+		}
 	</script>
 
 	<script>
 		$(document).ready(function() {
 
-		$('select[name="provinsi"]').on('change', function(){
-		var kabupatenId = $('select[name="provinsi"]').val();
-		if(kabupatenId) {
-			$.ajax({
-			url: '/appbimbel/public/kabupaten/get/'+kabupatenId,
-			type:"GET",
-			dataType:"json",
-			beforeSend: function(){
-				$('#loader').css("visibility", "visible");
-			},
+			$('select[name="provinsi"]').on('change', function() {
+				var kabupatenId = $('select[name="provinsi"]').val();
+				if (kabupatenId) {
+					$.ajax({
+						url: '/appbimbel/public/kabupaten/get/' + kabupatenId,
+						type: "GET",
+						dataType: "json",
+						beforeSend: function() {
+							$('#loader').css("visibility", "visible");
+						},
 
-			success:function(data) {
+						success: function(data) {
 
-				$('select[name="kabupaten"]').empty();
-				$('select[name="kecamatan"]').empty();
-				$('select[name="kelurahan"]').empty();
-				$('select[name="kabupaten"]').append('<option value="">' + 'Pilih Kabupaten' + '</option>');
-				$('select[name="kecamatan"]').append('<option value="">' + 'Pilih Kecamatan' + '</option>');
-				$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
+							$('select[name="kabupaten"]').empty();
+							$('select[name="kecamatan"]').empty();
+							$('select[name="kelurahan"]').empty();
+							$('select[name="kabupaten"]').append('<option value="">' + 'Pilih Kabupaten' + '</option>');
+							$('select[name="kecamatan"]').append('<option value="">' + 'Pilih Kecamatan' + '</option>');
+							$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
 
-				$.each(data, function(key, value){
+							$.each(data, function(key, value) {
 
-					
-					$('select[name="kabupaten"]').append('<option value="'+ key +'">' + value + '</option>');
 
-				});
-			},
-			complete: function(){
-				$('#loader').css("visibility", "hidden");
-			}
-		});
-			} else {
-				$('select[name="kabupaten"]').empty();
-				$('select[name="kecamatan"]').empty();
-				$('select[name="kelurahan"]').empty();
-				$('select[name="kabupaten"]').append('<option value="">' + 'Pilih Kabupaten' + '</option>');		
-				$('select[name="kecamatan"]').append('<option value="">' + 'Pilih Kecamatan' + '</option>');		
-				$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');		
-			}
+								$('select[name="kabupaten"]').append('<option value="' + key + '">' + value + '</option>');
 
-		});
+							});
+						},
+						complete: function() {
+							$('#loader').css("visibility", "hidden");
+						}
+					});
+				} else {
+					$('select[name="kabupaten"]').empty();
+					$('select[name="kecamatan"]').empty();
+					$('select[name="kelurahan"]').empty();
+					$('select[name="kabupaten"]').append('<option value="">' + 'Pilih Kabupaten' + '</option>');
+					$('select[name="kecamatan"]').append('<option value="">' + 'Pilih Kecamatan' + '</option>');
+					$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
+				}
+
+			});
 		});
 
 		$(document).ready(function() {
 
-				$('select[name="kabupaten"]').on('change', function(){
-					var kecamatanId = $(this).val();
-					if(kecamatanId) {
-						$.ajax({
-							url: '/appbimbel/public/kecamatan/get/'+kecamatanId,
-							type:"GET",
-							dataType:"json",
-							beforeSend: function(){
-								$('#loader').css("visibility", "visible");
-							},
+			$('select[name="kabupaten"]').on('change', function() {
+				var kecamatanId = $(this).val();
+				if (kecamatanId) {
+					$.ajax({
+						url: '/appbimbel/public/kecamatan/get/' + kecamatanId,
+						type: "GET",
+						dataType: "json",
+						beforeSend: function() {
+							$('#loader').css("visibility", "visible");
+						},
 
-							success:function(data) {
+						success: function(data) {
 
-								$('select[name="kecamatan"]').empty();
-								$('select[name="kelurahan"]').empty();
-								$('select[name="kecamatan"]').append('<option value="">' + 'Pilih Kecamatan' + '</option>');
-								$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
+							$('select[name="kecamatan"]').empty();
+							$('select[name="kelurahan"]').empty();
+							$('select[name="kecamatan"]').append('<option value="">' + 'Pilih Kecamatan' + '</option>');
+							$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
 
-								$.each(data, function(key, value){
+							$.each(data, function(key, value) {
 
-									$('select[name="kecamatan"]').append('<option value="'+ key +'">' + value + '</option>');
+								$('select[name="kecamatan"]').append('<option value="' + key + '">' + value + '</option>');
 
-								});
-							},
-							complete: function(){
-								$('#loader').css("visibility", "hidden");
-							}
-						});
-					} else {
-						$('select[name="kecamatan"]').empty();
-						$('select[name="kelurahan"]').empty();
-						$('select[name="kecamatan"]').append('<option value="">' + 'Pilih Kecamatan' + '</option>');
-						$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
-					}
+							});
+						},
+						complete: function() {
+							$('#loader').css("visibility", "hidden");
+						}
+					});
+				} else {
+					$('select[name="kecamatan"]').empty();
+					$('select[name="kelurahan"]').empty();
+					$('select[name="kecamatan"]').append('<option value="">' + 'Pilih Kecamatan' + '</option>');
+					$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
+				}
 
-				});
-				});
+			});
+		});
 
 		$(document).ready(function() {
 
-		$('select[name="kecamatan"]').on('change', function(){
-			var kelurahanId = $(this).val();
-			if(kelurahanId) {
-				$.ajax({
-					url: '/appbimbel/public/kelurahan/get/'+kelurahanId,
-					type:"GET",
-					dataType:"json",
-					beforeSend: function(){
-						$('#loader').css("visibility", "visible");
-					},
+			$('select[name="kecamatan"]').on('change', function() {
+				var kelurahanId = $(this).val();
+				if (kelurahanId) {
+					$.ajax({
+						url: '/appbimbel/public/kelurahan/get/' + kelurahanId,
+						type: "GET",
+						dataType: "json",
+						beforeSend: function() {
+							$('#loader').css("visibility", "visible");
+						},
 
-					success:function(data) {
+						success: function(data) {
 
-						$('select[name="kelurahan"]').empty();
-						$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
+							$('select[name="kelurahan"]').empty();
+							$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
 
-						$.each(data, function(key, value){
+							$.each(data, function(key, value) {
 
-							$('select[name="kelurahan"]').append('<option value="'+ key +'">' + value + '</option>');
+								$('select[name="kelurahan"]').append('<option value="' + key + '">' + value + '</option>');
 
-						});
-					},
-					complete: function(){
-						$('#loader').css("visibility", "hidden");
-					}
-				});
-			} else {
-				$('select[name="kelurahan"]').empty();
-				$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
-			}
+							});
+						},
+						complete: function() {
+							$('#loader').css("visibility", "hidden");
+						}
+					});
+				} else {
+					$('select[name="kelurahan"]').empty();
+					$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
+				}
 
-});
-});
+			});
+		});
 </script>
 <!-- zoom image -->
-<script type="text/javascript">
-  $(document).ready(function () {
-    $('img.thumbnail').imgZoom();
-  });
+<script >
+$('.thumbnail').viewbox({
+  template: '<div class="viewbox-container"><div class="viewbox-body"><div class="viewbox-header"></div><div class="viewbox-content"></div><div class="viewbox-footer"></div></div></div>',
+  // loading spinner
+  loader: '<div class="loader"><div class="spinner"><div class="double-bounce1"></div><div class="double-bounce2"></div></div></div>',
+  setTitle: true,
+  margin: 20,
+  resizeDuration: 300,
+  openDuration: 200,
+  closeDuration: 200,
+  closeButton: true,
+  navButtons: false,
+  closeOnSideClick: true,
+  nextOnContentClick: true,
+  useGestures: true
+});
 </script>
+
+<script type="text/javascript">
+$(function() {
+  $("#myPDF").pdf( 
+    source: "demo.pdf",
+    // MORE SETTINGS HERE
+  } );
+});
+</script>
+<script>
+// Path of PDF file to display
+source: null,
+// Title of the PDF to be displayed in the toolbar
+title: "TouchPDF",
+// Array of tabs to display on the side.
+tabs: [],
+// Default background color for all tabs.
+// Available colors are "green", "yellow", "orange", "brown",
+// "blue", "white", "black" and you can define your own colors with CSS.
+tabsColor: "beige",
+// Disable zooming of PDF document.
+disable<a href="https://www.jqueryscript.net/zoom/">Zoom</a>: false,
+// Disable swipe to next/prev page of PDF document.
+disableSwipe: false,
+// Disable all internal and external links on PDF document
+disableLinks: false,
+// Disable the arrow keys for next/previous page and +/- for zooming
+disableKeys: false,
+// Force resize of PDF viewer on window resize
+redrawOnWindowResize: true,
+// Show a toolbar on top of the document with title,
+// page number and buttons for next/prev pages and zooming
+showToolbar: true,
+// A handler triggered when PDF document is loaded
+loaded: null,
+// A handler triggered each time a new page is displayed
+changed: null,
+// Text or HTML displayed on white page shown before document is loaded
+loadingHeight: 841,
+// Height in px of white page shown before document is loaded
+loadingWidth: 595,
+// Width in px of white page shown before document is loaded
+loadingHTML: "Loading PDF"
+</script>
+
+
+
 	<!--end::Base Scripts -->
 </body>
 <!-- end::Body -->

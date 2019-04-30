@@ -6,7 +6,10 @@ use DB;
 use File;
 use App\Tbsiswa;
 use App\Tbdetailsiswa;
+use Illuminate\Support\Carbon;
 use Dotenv\Regex\Success;
+use Image;
+
 class HomeSiswaController extends Controller
 {
     public function __construct()
@@ -15,6 +18,27 @@ class HomeSiswaController extends Controller
     }
     public function dashboardsiswa()
     {
+        $tahun = Carbon::now()->isoFormat('YY');
+        $bulan = Carbon::now()->format('m');
+        $noidsiswa = 'S' . $bulan . $tahun;
+        if(Tbsiswa::where('idtbSiswa', Auth::user()->idtbSiswa)->value('NoIDSiswa')==NULL){
+            
+            if(strlen((string)Auth::user()->idtbSiswa)==1){
+                Tbsiswa::where('idtbSiswa', Auth::user()->idtbSiswa)->update(['NoIDSiswa' => $noidsiswa.'0000'.Auth::user()->idtbSiswa]);
+            }else if(strlen((string)Auth::user()->idtbSiswa)==2){
+                Tbsiswa::where('idtbSiswa', Auth::user()->idtbSiswa)->update(['NoIDSiswa' => $noidsiswa.'000'.Auth::user()->idtbSiswa]);
+            }
+            else if(strlen((string)Auth::user()->idtbSiswa)==3){
+                Tbsiswa::where('idtbSiswa', Auth::user()->idtbSiswa)->update(['NoIDSiswa' => $noidsiswa.'00'.Auth::user()->idtbSiswa]);
+            }
+            else if(strlen((string)Auth::user()->idtbSiswa)==4){
+                Tbsiswa::where('idtbSiswa', Auth::user()->idtbSiswa)->update(['NoIDSiswa' => $noidsiswa.'0'.Auth::user()->idtbSiswa]);
+            }
+            else {
+                Tbsiswa::where('idtbSiswa', Auth::user()->idtbSiswa)->update(['NoIDSiswa' => $noidsiswa.Auth::user()->idtbSiswa]);
+        }
+        }
+
         $mentor=DB::table('tbmentor')
                     ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
                     ->get();
@@ -110,12 +134,17 @@ class HomeSiswaController extends Controller
         } else {
             Tbdetailsiswa::where('idtbDetailSiswa', Auth::user()->idtbSiswa)->update(['statusKomplit' => '4']);
         }
-        return view('myprofilesiswa' , ['ProfilSiswa' => $showing , 's' => $siswa ]);
-
+        return view('myprofilesiswa' , ['ProfilSiswa' => $showing,'s'=>$siswa] , ['isCompleted' => $showing,'s'=>$siswa]);
     }
     public function calendarsiswa(){
-       
-        return view('calendarsiswa');
+        $siswa = DB::table('tbsiswa')->where('idtbSiswa', Auth::user()->idtbSiswa)->first();
+        $showing = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->first();
+        return view('calendarsiswa' , ['ProfilSiswa' => $showing,'s'=>$siswa] , ['isCompleted' => $showing,'s'=>$siswa]);
+    }
+    public function multimediasiswa(){
+        $siswa = DB::table('tbsiswa')->where('idtbSiswa', Auth::user()->idtbSiswa)->first();
+        $showing = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->first();
+        return view('multimediasiswa' , ['ProfilSiswa' => $showing,'s'=>$siswa] , ['isCompleted' => $showing,'s'=>$siswa]);
     }
     public function update($idtbSiswa, Request $request)
     {
@@ -145,13 +174,19 @@ class HomeSiswaController extends Controller
         $Tbdetailsiswa->jenjang= $request['jenjang'];
         $Tbdetailsiswa->tingkatPendidikan= $request['tingkatPendidikan'];
         $Tbdetailsiswa->prodiSiswa=$request['prodiSiswa'];
-        $foto = $request->file('foto');
-        $tujuan_upload = 'data_fileSiswa';
-        if ($request->hasFile('foto')) {
+        $foto = $request->file('fotoProfile');
+        // $tujuan_upload = 'data_fileSiswa';
+        if ($request->hasFile('fotoProfile')) {
             $show = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->value('fotoProfile');
             $nama_foto = time() . "_" . $foto->getClientOriginalName();
-            $foto->move($tujuan_upload, $nama_foto);
-            File::delete($tujuan_upload . '/' . $show);
+            $tujuan_upload2 = public_path('/data_fileSiswa2');
+            $thumb_img = Image::make($foto->getRealPath())->resize(100, 100);
+            $thumb_img->save($tujuan_upload2.'/'.$nama_foto,80);
+            File::delete($tujuan_upload2 . '/' . $show);
+            $tujuan_upload2 = public_path('/data_fileSiswa') ;
+            
+            $foto->move($tujuan_upload2, $nama_foto);
+            File::delete($tujuan_upload2 . '/' . $show);
             $Tbdetailsiswa->fotoProfile = $nama_foto;
         } else { }
         $Tbdetailsiswa->save();

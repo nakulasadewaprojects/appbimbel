@@ -141,14 +141,15 @@ class HomeController extends Controller
         $Tbmentor->gender = $request['gender'];
         $Tbmentor->noTlpn = $request['noTlpn'];
         $Tbmentor->save();
-        //  $this->validate($request, [
-        // 	'foto' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
-        //     'fileIjazah'=>'required|file|mimes:jpeg,png,jpg,pdf|max:2048',
-        //     'fileKTP'=>'required|file|image|mimes:jpeg,png,jpg|max:2048',
-        //     'pendidikanTerakhir'=>'required',
-        //     'statusPendidikan'=>'required',
-        //     'No_Identitas'=>'required'
-        // ]);
+
+         $this->validate($request, [
+        	'foto' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
+            'fileIjazah'=>'required|file|mimes:pdf|max:2048',
+            'fileKTP'=>'required|file|image|mimes:jpeg,png,jpg|max:2048',
+            'pendidikanTerakhir'=>'required',
+            'statusPendidikan'=>'required',
+            'No_Identitas'=>'required'
+        ]);
         $Tbdetailmentor = Tbdetailmentor::find($idmentor);
         $Tbdetailmentor->pendidikanTerakhir = $request['pendidikanTerakhir'];
         $Tbdetailmentor->statusPendidikan = $request['statusPendidikan'];
@@ -170,9 +171,16 @@ class HomeController extends Controller
         $fileKTP = $request->file('fileKTP');
         if ($request->hasFile('fileKTP')) {
             $show = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->value('fileKTP');
+            // $namafileKTP = time() . "_" . $fileKTP->getClientOriginalName();
             $namafileKTP = time() . "_" . $fileKTP->getClientOriginalName();
-            $fileKTP->move($tujuan_upload, $namafileKTP);
-            File::delete($tujuan_upload . '/' . $show);
+            $tujuan_upload2 = public_path('/data_file2');
+            $thumb_img = Image::make($fileKTP->getRealPath())->resize(100, 100);
+            $thumb_img->save($tujuan_upload2.'/'.$namafileKTP,80);
+            File::delete($tujuan_upload2 . '/' . $show);
+            $tujuan_upload2 = public_path('/data_file') ;
+
+            $fileKTP->move($tujuan_upload2, $namafileKTP);
+            File::delete($tujuan_upload2 . '/' . $show);
             $Tbdetailmentor->fileKTP = $namafileKTP;
         } else { }
         $fileIjazah = $request->file('fileIjazah');

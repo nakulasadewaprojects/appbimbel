@@ -25,7 +25,12 @@
 											</div>
 											<div class="m-card-profile__pic">
 												<div class="m-card-profile__pic-wrapper">
-													<img src="{{ url('/data_fileSiswa/'.$isCompleted->fotoProfile) }}" height="100px" width="100px" alt=""/>
+													@if(DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->value('fotoProfile')==NULL)
+													<img src="{{ url('/data_fileSiswa/default_photo_profile.png') }}" height="100px" width="100px" alt="Anda Belum Upload Foto"/>
+													@else
+													<a href="{{ url('/data_fileSiswa/'.$isCompleted->fotoProfile) }}" class="thumbnail"><img src="{{ url('/data_fileSiswa2/'.$isCompleted->fotoProfile) }}" alt=""/></a>
+													@endif
+												
 												</div>
 											</div>
 											<div class="m-card-profile__details">
@@ -196,10 +201,11 @@
 														</label>
 														<div class="col-3">
 															<label class="custom-file">
-																				<input type="file" name="foto">
+																				<input type="file" name="fotoProfile">
 															</label>
 															 @if($isCompleted->fotoProfile!=null)
-															<img width="50px" height="50px" src="{{ url('/data_fileSiswa/'.$isCompleted->fotoProfile) }}" alt="tidak ada foto"> @else
+															 <a href="{{ url('/data_fileSiswa/'.$isCompleted->fotoProfile) }}" class="thumbnail"><img width="50px" height="50px" src="{{ url('/data_fileSiswa2/'.$isCompleted->fotoProfile) }}" alt="tidak ada foto"></a>
+															 @else
 															Tidak Ada Foto
 															 @endif
 														</div>

@@ -3,6 +3,22 @@
 			
 			<div class="m-grid__item m-grid__item--fluid m-wrapper">
 				<!-- BEGIN: Subheader -->
+				@if (DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->value('statKomplit')!==6)
+						<div class="m-alert m-alert--icon alert alert-warning" role="alert">
+							<div class="m-alert__icon">
+								<i class="la la-warning"></i>
+							</div>
+							<div class="m-alert__text">
+								<strong>
+									Luar biasa!
+								</strong>
+								Silakan lengkapi profil Anda agar dapat menerima siswa.								
+							</div>
+							<div class="m-alert__actions" style="width: 160px;">
+								<a class="btn btn-info btn-sm m-btn m-btn--pill m-btn--wide" href="profile">Lengkapi Sekarang</a>
+							</div>
+						</div>
+						@endif
 				<div class="m-subheader ">
 					<div class="d-flex align-items-center">
 						<div class="mr-auto">
@@ -86,7 +102,7 @@
 										</div>
 										<div class="m-card-profile__pic">
 											<div class="m-card-profile__pic-wrapper">
-												<img src="{{ url('/data_file2/'.$isCompleted->foto) }}" width="100px" height="100px" alt="" />
+											<a href="{{ url('/data_file/'.$isCompleted->foto) }}" class="thumbnail"><img src="{{ url('/data_file2/'.$isCompleted->foto) }}" alt="" />
 											</div>
 										</div>
 										<div class="m-card-profile__details">
@@ -404,8 +420,14 @@
 															Alamat :
 														</span>
 														<span class="m-widget13__text m-widget13__text-bolder">
-															{{  Auth::user()->alamat }}
+															{{  Auth::user()->alamat }} ,  
+															{{DB::table('kelurahan')->where('id', Auth::user()->kelurahan)->value('nama')}} ,
+															{{DB::table('kecamatan')->where('id', Auth::user()->kecamatan)->value('nama')}} ,
+															{{DB::table('kota_kabupaten')->where('id', Auth::user()->kota)->value('nama')}} ,
+															{{DB::table('provinsi')->where('id', Auth::user()->provinsi)->value('nama')}} 
 														</span>
+														
+														
 													</div>
 													<div class="m-widget13__item">
 														<span class="m-widget13__desc m--align-right">
