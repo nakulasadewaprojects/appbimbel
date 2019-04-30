@@ -25,8 +25,11 @@
 							</div>
 							<div class="m-card-profile__pic">
 								<div class="m-card-profile__pic-wrapper">
-								<!-- <a href="puppy.jpg"><img class="thumbnail" src="puppy_small.jpg" alt="Puppy" /></a> -->
-								<a href="{{ url('/data_file/'.$isCompleted->foto) }}" class="thumbnail">	<img src="{{ url('/data_file2/'.$isCompleted->foto) }}"  alt="Tidak Ada Foto" /></a>
+									@if(DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->value('foto')==NULL)
+									<img src="{{ url('/data_fileSiswa/default_photo_profile.png') }}" height="100px" width="100px" alt="Anda Belum Upload Foto" />
+									@else
+									<a href="{{ url('/data_file/'.$isCompleted->foto) }}" class="thumbnail"> <img src="{{ url('/data_file2/'.$isCompleted->foto) }}" alt="Tidak Ada Foto" /></a>
+									@endif
 								</div>
 							</div>
 							<div class="m-card-profile__details">
@@ -212,12 +215,12 @@
 										</label>
 										<div class="col-7">
 											<select class="form-control m-input" name="provinsi" type="text">
-																	<option value="">Pilih Provinsi</option>
-																	@foreach ($p as $a)
-																	<option value="{{ $a->id }}" {{ Auth::user()->provinsi ==  $a->id  ? 'selected' : ''}}> {{$a->nama}}</option>																																																															
-																	@endforeach
-																	
-															</select>
+												<option value="">Pilih Provinsi</option>
+												@foreach ($p as $a)
+												<option value="{{ $a->id }}" {{ Auth::user()->provinsi ==  $a->id  ? 'selected' : ''}}> {{$a->nama}}</option>
+												@endforeach
+
+											</select>
 										</div>
 									</div>
 
@@ -289,7 +292,7 @@
 												3. Lengkapi Data
 											</h3>
 										</div>
-									</div>								
+									</div>
 									<div class="form-group m-form__group row">
 										<label for="example-text-input" class="col-3 col-form-label">
 											Pendidikan Terakhir
@@ -309,19 +312,19 @@
 
 									<div class="form-group m-form__group row">
 										<label for="example-text-input" class="col-3 col-form-label">
-															Foto
+											Foto
 										</label>
 										<div class="col-3">
 											<label class="custom-file">
-													<input type="file" name="foto">
-													<!-- <span class="invalid-feedback" role="alert">
+												<input type="file" name="foto">
+												<!-- <span class="invalid-feedback" role="alert">
 																<strong>{{ $errors->first('foto') }}</strong>
 													</span> -->
-												</label> 
+											</label>
 											@if($isCompleted->foto!=null)
-												<a href="{{ url('/data_file/'.$isCompleted->foto) }}" class="thumbnail"><img width="50px" height="50px" src="{{ url('/data_file2/'.$isCompleted->foto) }}"  alt=""></a>
-											 @else
-											Tidak Ada Foto 
+											<a href="{{ url('/data_file/'.$isCompleted->foto) }}" class="thumbnail"><img width="50px" height="50px" src="{{ url('/data_file2/'.$isCompleted->foto) }}" alt=""></a>
+											@else
+											Tidak Ada Foto
 											@endif
 										</div>
 									</div>
@@ -342,12 +345,12 @@
 										<div class="col-3">
 											<label class="custom-file">
 												<input type="file" name="fileKTP">
-													<!-- <span class="invalid-feedback" role="alert">
+												<!-- <span class="invalid-feedback" role="alert">
 																<strong>{{ $errors->first('fileKTP') }}</strong>
 													</span> -->
 											</label>
-											 @if($isCompleted->fileKTP!=null)
-											 <a href="{{ url('/data_file/'.$isCompleted->fileKTP) }}" class="thumbnail"><img width="50px" height="50px" src="{{ url('/data_file2/'.$isCompleted->fileKTP) }}"></a> 
+											@if($isCompleted->fileKTP!=null)
+											<a href="{{ url('/data_file/'.$isCompleted->fileKTP) }}" class="thumbnail"><img width="50px" height="50px" src="{{ url('/data_file2/'.$isCompleted->fileKTP) }}"></a>
 											@else Tidak Ada File @endif
 										</div>
 									</div>
@@ -367,7 +370,7 @@
 													<i class="fa fa-file-pdf-o"></i>
 												</div>
 												<div class="m-demo-icon__class" id="myPDF">
-												<a target="_blank" href="{{ url('/data_file/'.$isCompleted->fileIjazah) }}">{{ $isCompleted->fileIjazah }}"<a/>
+													<a target="_blank" href="{{ url('/data_file/'.$isCompleted->fileIjazah) }}">{{ $isCompleted->fileIjazah }}"<a />
 												</div>
 											</div>
 											@else Tidak Ada File @endif
@@ -382,7 +385,7 @@
 										Pengalaman
 									</label>
 									<div class="col-7">
-										<input class="form-control m-input" type="text" name="pengalaman" value="{{ $isCompleted->pengalaman }}">																				
+										<input class="form-control m-input" type="text" name="pengalaman" value="{{ $isCompleted->pengalaman }}">
 									</div>
 								</div>
 								<div class="m-portlet__foot m-portlet__foot--fit">

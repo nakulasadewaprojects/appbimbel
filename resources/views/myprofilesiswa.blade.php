@@ -145,6 +145,10 @@
 														</span>
 														<span class="m-widget13__text m-widget13__text-bolder">
 															{{ Auth::user()->alamat }}
+															{{DB::table('kelurahan')->where('id', Auth::user()->kelurahan)->value('nama')}} ,
+															{{DB::table('kecamatan')->where('id', Auth::user()->kecamatan)->value('nama')}} ,
+															{{DB::table('kota_kabupaten')->where('id', Auth::user()->kota)->value('nama')}} ,
+															{{DB::table('provinsi')->where('id', Auth::user()->provinsi)->value('nama')}}
 														</span>
 													</div>
 													<div class="m-widget13__item">
