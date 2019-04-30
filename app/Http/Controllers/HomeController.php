@@ -143,9 +143,9 @@ class HomeController extends Controller
         $Tbmentor->save();
 
          $this->validate($request, [
-        	'foto' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
-            'fileIjazah'=>'required|file|mimes:pdf|max:2048',
-            'fileKTP'=>'required|file|image|mimes:jpeg,png,jpg|max:2048',
+        	'foto' => 'file|image|mimes:jpeg,png,jpg|max:2048',
+            'fileIjazah'=>'file|mimes:pdf|max:2048',
+            'fileKTP'=>'file|image|mimes:jpeg,png,jpg|max:2048',
             'pendidikanTerakhir'=>'required',
             'statusPendidikan'=>'required',
             'No_Identitas'=>'required'
