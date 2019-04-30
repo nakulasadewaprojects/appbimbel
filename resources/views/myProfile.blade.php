@@ -415,6 +415,43 @@
 														{{  Auth::user()->noTlpn }}
 														</span>
 													</div>
+													<div class="m-widget13__item">
+														<span class="m-widget13__desc m--align-right">
+															Status Pendidikan :
+														</span>
+														<span class="m-widget13__text m-widget13__text-bolder">
+														@if($isCompleted->statusPendidikan!=2) 
+														selesai
+														@else
+														masih pendidikan
+														@endif
+														</span>
+													</div>
+													<div class="m-widget13__item">
+														<span class="m-widget13__desc m--align-right">
+															Pendidikan Terakhir :
+														</span>
+														<span class="m-widget13__text m-widget13__text-bolder">
+
+														@if($isCompleted->pendidikanTerakhir==1) 
+														SD
+														@elseif($isCompleted->pendidikanTerakhir==2) 
+														SMP
+														@elseif($isCompleted->pendidikanTerakhir==3)
+														SMA
+														@elseif($isCompleted->pendidikanTerakhir==4)
+														SMK
+														@elseif($isCompleted->pendidikanTerakhir==5)
+														D III
+														@elseif($isCompleted->pendidikanTerakhir==6)
+														S1
+														@elseif($isCompleted->pendidikanTerakhir==7)
+														S2
+														@else
+														S3
+														@endif
+														</span>
+													</div>
 													
 											
 													<!-- <div class="m-widget13__action m--align-right">

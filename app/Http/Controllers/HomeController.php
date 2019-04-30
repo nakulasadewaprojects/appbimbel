@@ -37,7 +37,7 @@ class HomeController extends Controller
         $show4 = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->pluck('fileKTP')->toArray();
         $show5 = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->pluck('fileIjazah')->toArray();
         $show6 = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->pluck('pengalaman')->toArray();
-        $show7 = array_merge($show, $show1, $show2, $show3, $show4, $show5, $show6);
+        $show7 = array_merge($show, $show1, $show2, $show3, $show4, $show5, $show6 );
         $counting = count(array_filter($show7, "is_null"));
 
         if ($counting == 7) {
@@ -71,7 +71,7 @@ class HomeController extends Controller
         $show4 = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->pluck('fileKTP')->toArray();
         $show5 = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->pluck('fileIjazah')->toArray();
         $show6 = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->pluck('pengalaman')->toArray();
-        $show7 = array_merge($show, $show1, $show2, $show3, $show4, $show5, $show6 );
+        $show7 = array_merge($show, $show1, $show2, $show3, $show4, $show5, $show6);
         $counting = count(array_filter($show7, "is_null"));
         if ($counting == 7) {
             Tbdetailmentor::where('idtbRiwayatTutor', Auth::user()->idmentor)->update(['statKomplit' => '0']);
@@ -87,7 +87,6 @@ class HomeController extends Controller
             Tbdetailmentor::where('idtbRiwayatTutor', Auth::user()->idmentor)->update(['statKomplit' => '5']);
         } else if ($counting == 1) {
             Tbdetailmentor::where('idtbRiwayatTutor', Auth::user()->idmentor)->update(['statKomplit' => '6']);
-
         } else {
             Tbdetailmentor::where('idtbRiwayatTutor', Auth::user()->idmentor)->update(['statKomplit' => '7']);
         }
@@ -99,9 +98,10 @@ class HomeController extends Controller
         $provinsi  = DB::table('provinsi')->get();
         $kabupaten = DB::table('kota_kabupaten')->get();
         $kecamatan = DB::table('kecamatan')->get();
+        $pete = DB::table('tbjenjangpendidikan')->get();
         $kelurahan = DB::table('kelurahan')->get();
-        return view('profile', ['isCompleted' => $show, 'p' => $provinsi, 'b' => $kabupaten, 'c' => $kecamatan, 'd' => $kelurahan]);
-        //return  $provinsi;
+        return view('profile', ['isCompleted' => $show, 'p' => $provinsi, 'b' => $kabupaten, 'c' => $kecamatan, 'd' => $kelurahan,'pt'=>$pete]);
+        // return DB::table('tbdetailmentor')->where('idmentor', Auth::user()->idmentor)->value('statusPendidikan');
     }
     public function getKabupaten($id)
     {

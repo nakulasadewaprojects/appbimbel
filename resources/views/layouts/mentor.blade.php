@@ -1190,6 +1190,22 @@ License: You must have a valid license purchased only from themeforest(the above
 			
 		});
 	</script>
+	<script>
+		if({{DB::table('tbdetailmentor')->where('idmentor', Auth::user()->idmentor)->value('statusPendidikan') }}==1){
+			document.getElementById("selesai").checked = true;
+		}else{
+			document.getElementById("masihpendidikan").checked = true;
+		}
+
+		$(function() {
+			$("button").on("click",function(event){
+				e.preventDefault();
+				$(".hidden-control").attr("type","text");
+				$("form").submit();
+			});
+			
+		});
+	</script>
 
 	<script>
 		if ({{session() -> has('message')}}) {
