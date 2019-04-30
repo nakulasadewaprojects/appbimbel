@@ -7,8 +7,9 @@ use File;
 use App\Tbsiswa;
 use App\Tbdetailsiswa;
 use Illuminate\Support\Carbon;
-
 use Dotenv\Regex\Success;
+use Image;
+
 class HomeSiswaController extends Controller
 {
     public function __construct()
@@ -174,12 +175,18 @@ class HomeSiswaController extends Controller
         $Tbdetailsiswa->tingkatPendidikan= $request['tingkatPendidikan'];
         $Tbdetailsiswa->prodiSiswa=$request['prodiSiswa'];
         $foto = $request->file('fotoProfile');
-        $tujuan_upload = 'data_fileSiswa';
+        // $tujuan_upload = 'data_fileSiswa';
         if ($request->hasFile('fotoProfile')) {
             $show = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->value('fotoProfile');
             $nama_foto = time() . "_" . $foto->getClientOriginalName();
-            $foto->move($tujuan_upload, $nama_foto);
-            File::delete($tujuan_upload . '/' . $show);
+            $tujuan_upload2 = public_path('/data_fileSiswa2');
+            $thumb_img = Image::make($foto->getRealPath())->resize(100, 100);
+            $thumb_img->save($tujuan_upload2.'/'.$nama_foto,80);
+            File::delete($tujuan_upload2 . '/' . $show);
+            $tujuan_upload2 = public_path('/data_fileSiswa') ;
+            
+            $foto->move($tujuan_upload2, $nama_foto);
+            File::delete($tujuan_upload2 . '/' . $show);
             $Tbdetailsiswa->fotoProfile = $nama_foto;
         } else { }
         $Tbdetailsiswa->save();

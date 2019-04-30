@@ -102,7 +102,7 @@
 										</div>
 										<div class="m-card-profile__pic">
 											<div class="m-card-profile__pic-wrapper">
-												<img src="{{ url('/data_file2/'.$isCompleted->foto) }}" width="100px" height="100px" alt="" />
+											<a href="{{ url('/data_file/'.$isCompleted->foto) }}" class="thumbnail"><img src="{{ url('/data_file2/'.$isCompleted->foto) }}" alt="" />
 											</div>
 										</div>
 										<div class="m-card-profile__details">

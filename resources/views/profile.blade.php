@@ -306,6 +306,7 @@
 											<input class="form-control m-input" type="text" name="statusPendidikan" value="{{ $isCompleted->statusPendidikan }}">
 										</div>
 									</div>
+
 									<div class="form-group m-form__group row">
 										<label for="example-text-input" class="col-3 col-form-label">
 															Foto
@@ -313,7 +314,10 @@
 										<div class="col-3">
 											<label class="custom-file">
 													<input type="file" name="foto">
-											</label> 
+													<!-- <span class="invalid-feedback" role="alert">
+																<strong>{{ $errors->first('foto') }}</strong>
+													</span> -->
+												</label> 
 											@if($isCompleted->foto!=null)
 												<a href="{{ url('/data_file/'.$isCompleted->foto) }}" class="thumbnail"><img width="50px" height="50px" src="{{ url('/data_file2/'.$isCompleted->foto) }}"  alt=""></a>
 											 @else
@@ -338,7 +342,9 @@
 										<div class="col-3">
 											<label class="custom-file">
 												<input type="file" name="fileKTP">
-																	<!-- <span class="custom-file-control"></span> -->
+													<!-- <span class="invalid-feedback" role="alert">
+																<strong>{{ $errors->first('fileKTP') }}</strong>
+													</span> -->
 											</label>
 											 @if($isCompleted->fileKTP!=null)
 											 <a href="{{ url('/data_file/'.$isCompleted->fileKTP) }}" class="thumbnail"><img width="50px" height="50px" src="{{ url('/data_file2/'.$isCompleted->fileKTP) }}"></a> 

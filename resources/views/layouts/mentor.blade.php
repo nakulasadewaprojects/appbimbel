@@ -573,6 +573,7 @@ License: You must have a valid license purchased only from themeforest(the above
 		<i class="la la-arrow-up"></i>
 	</div>
 	<!-- end::Scroll Top -->
+	<!-- zoom image-->
 	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 	<!--begin::Base Scripts -->
 	<script src="assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
@@ -583,6 +584,7 @@ License: You must have a valid license purchased only from themeforest(the above
 	<!--begin::Page Snippets -->
 	<script src="assets/app/js/dashboard.js" type="text/javascript"></script>
 	<!--end::Page Snippets -->
+	<!-- zoom image -->
 	<script src="js/jquery.viewbox.min.js"></script>
 	<!-- pdf -->
 	<script src="js/pdf.compatibility.js"></script>
@@ -761,12 +763,6 @@ License: You must have a valid license purchased only from themeforest(the above
 		});
 </script>
 <!-- zoom image -->
-<!-- <script type="text/javascript">
-  $(document).ready(function () {
-    $('img.thumbnail').imgZoom();
-  });
-</script> -->
-
 <script >
 $('.thumbnail').viewbox({
   template: '<div class="viewbox-container"><div class="viewbox-body"><div class="viewbox-header"></div><div class="viewbox-content"></div><div class="viewbox-footer"></div></div></div>',
