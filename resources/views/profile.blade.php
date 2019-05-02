@@ -299,18 +299,32 @@
 									</div>
 									<div class="form-group m-form__group row">
 										<label for="example-text-input" class="col-3 col-form-label">
-											Pendidikan Terakhir
-										</label>
-										<div class="col-4">
-											<input class="form-control m-input" type="text" name="pendidikanTerakhir" value="{{ $isCompleted->pendidikanTerakhir }}">
+														Pendidikan Terakhir
+													</label>
+										<div class="col-7">
+											<select class="form-control m-input" name="pendidikanTerakhir" type="text" id="pendidikanTerakhir">
+															<option value=""> Pilih Pendidikan Terakhir </option>
+										 					@foreach ($pt as $a)
+															<option value="{{ $a->idMasterPendidikan }}"{{ $isCompleted->pendidikanTerakhir ==  $a->idMasterPendidikan  ? 'selected' : ''}}>{{$a->jenjangPendidikan}}</option>
+															@endforeach
+											</select>
 										</div>
 									</div>
 									<div class="form-group m-form__group row">
-										<label for="example-text-input" class="col-3 col-form-label">
-											Status Pendidikan
-										</label>
-										<div class="col-4">
-											<input class="form-control m-input" type="text" name="statusPendidikan" value="{{ $isCompleted->statusPendidikan }}">
+										<label for="example-text-input" class="col-3 col-form-label text-md-right">
+															Status Pendidikan
+														</label>
+										<div class="col-3">
+											<label class="m-radio m-radio--bold m-radio--state-brand">
+																<input type="radio" name="statusPendidikan" id="selesai" value="1">
+																Selesai 
+																<span></span>
+														</label>
+											<label class="m-radio m-radio--bold m-radio--state-brand">
+																<input type="radio" name="statusPendidikan" id="masihpendidikan" value="2">
+																Masih Pendidikan
+																<span></span>
+														</label>
 										</div>
 									</div>
 
@@ -390,7 +404,7 @@
 								</div>
 
 								<div class="form-group m-form__group row">
-									<label for="example-text-input" class="col-2 col-form-label">
+									<label for="example-text-input" class="col-3 col-form-label">
 										Pengalaman
 									</label>
 									<div class="col-7">
