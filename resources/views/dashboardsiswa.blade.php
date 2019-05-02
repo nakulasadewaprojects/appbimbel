@@ -39,7 +39,7 @@
 		<div class="d-flex align-items-center">
 			<div class="mr-auto">
 				<h3 class="m-subheader__title ">
-					Rekomendasi Mentor
+					Daftar Mentor
 				</h3>
 			</div>
 		</div>
