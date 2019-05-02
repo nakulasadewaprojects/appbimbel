@@ -7,4 +7,5 @@ return [
     'mentor_masuk' => 'Login Mentor',
     'siswa_daftar' => 'Pendaftaran Siswa',
     'siswa_masuk' => 'Login Siswa',
+    'verifikasi' => 'Verifikasi email',
 ];
