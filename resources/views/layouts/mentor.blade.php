@@ -594,7 +594,7 @@ License: You must have a valid license purchased only from themeforest(the above
 	<script src="js/jquery.touchPDF.js"></script>
 	<script src="js/jquery.panzoom.js"></script>
 	<script src="js/jquery.mousewheel.js"></script>
-
+	<script src="js/select2.js" type="text/javascript"></script>
 
 	<script>
 		if ({{Auth::user()->gender}} == 1) {
