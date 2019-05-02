@@ -202,11 +202,9 @@ class HomeController extends Controller
         
         $prodi=$request['prodi'];
         $prodi2=implode(', ',$prodi);
-        // $input=$request->except('prodi');
-        $input['prodi']=$prodi2;
-        
-        $Tbdetailmentor->prodi = $input; 
+       
+        $Tbdetailmentor->prodi = $prodi2; 
         $Tbdetailmentor->save();
-        return $input;       
+        return redirect('/myProfile')->with('message','IT WORKS!');       
     }
 }
