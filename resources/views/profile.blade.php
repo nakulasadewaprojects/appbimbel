@@ -132,7 +132,8 @@
 											username
 										</label>
 										<div class="col-7">
-											<input class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" type="text" value="{{ Auth::user()->username }}"> @if ($errors->has('username'))
+											<input class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" type="text" value="{{ Auth::user()->username }}"> 
+											@if ($errors->has('username'))
 											<span class="invalid-feedback" role="alert">
 												<strong>{{ $errors->first('username') }}</strong>
 											</span> @endif
@@ -143,7 +144,8 @@
 											Nama Depan
 										</label>
 										<div class="col-7">
-											<input class="form-control{{ $errors->has('NamaDepan') ? ' is-invalid' : '' }}" name="NamaDepan" type="text" value="{{ Auth::user()->nm_depan }}"> @if ($errors->has('NamaDepan'))
+											<input class="form-control{{ $errors->has('NamaDepan') ? ' is-invalid' : '' }}" name="NamaDepan" type="text" value="{{ Auth::user()->nm_depan }}"> 
+											@if ($errors->has('NamaDepan'))
 											<span class="invalid-feedback" role="alert">
 												<strong>{{ $errors->first('NamaDepan') }}</strong>
 											</span> @endif
@@ -154,7 +156,8 @@
 											Nama Belakang
 										</label>
 										<div class="col-7">
-											<input class="form-control{{ $errors->has('NamaBelakang') ? ' is-invalid' : '' }}" name="NamaBelakang" type="text" value="{{ Auth::user()->nm_belakang }}"> @if ($errors->has('NamaBelakang'))
+											<input class="form-control{{ $errors->has('NamaBelakang') ? ' is-invalid' : '' }}" name="NamaBelakang" type="text" value="{{ Auth::user()->nm_belakang }}"> 
+											@if ($errors->has('NamaBelakang'))
 											<span class="invalid-feedback" role="alert">
 												<strong>{{ $errors->first('NamaBelakang') }}</strong>
 											</span> @endif
@@ -190,7 +193,8 @@
 											No Telepon
 										</label>
 										<div class="col-7">
-											<input class="form-control{{ $errors->has('noTlpn') ? ' is-invalid' : '' }}" type="text" name="noTlpn" value="{{ Auth::user()->noTlpn }}"> @if ($errors->has('noTlpn'))
+											<input class="form-control{{ $errors->has('noTlpn') ? ' is-invalid' : '' }}" type="text" name="noTlpn" value="{{ Auth::user()->noTlpn }}"> 
+											@if ($errors->has('noTlpn'))
 											<span class="invalid-feedback" role="alert">
 												<strong>{{ $errors->first('noTlpn') }}</strong>
 											</span> @endif
@@ -311,13 +315,14 @@
 										<label for="example-text-input" class="col-3 col-form-label">
 															Foto
 										</label>
-										<div class="col-3">
+										<div class="col-4">
 											<label class="custom-file">
-													<input type="file" name="foto">
-													<!-- <span class="invalid-feedback" role="alert">
+													<input class="form-control {{ $errors->has('foto') ? ' is-invalid' : '' }}" type="file"  accept="image/*" name="foto">
+													@if ($errors->has('foto'))
+													<span class="invalid-feedback" role="alert">
 																<strong>{{ $errors->first('foto') }}</strong>
-													</span> -->
-												</label> 
+													</span>@endif
+												</label>
 											@if($isCompleted->foto!=null)
 												<a href="{{ url('/data_file/'.$isCompleted->foto) }}" class="thumbnail"><img width="50px" height="50px" src="{{ url('/data_file2/'.$isCompleted->foto) }}"  alt=""></a>
 											 @else
@@ -339,12 +344,13 @@
 										<label for="example-text-input" class="col-3 col-form-label">
 											File KTP
 										</label>
-										<div class="col-3">
+										<div class="col-4">
 											<label class="custom-file">
-												<input type="file" name="fileKTP">
-													<!-- <span class="invalid-feedback" role="alert">
+												<input class="form-control{{ $errors->has('fileKTP') ? ' is-invalid' : '' }}" type="file" accept="image/*" name="fileKTP">
+												@if ($errors->has('fileKTP'))	
+												<span class="invalid-feedback" role="alert">
 																<strong>{{ $errors->first('fileKTP') }}</strong>
-													</span> -->
+													</span>@endif
 											</label>
 											 @if($isCompleted->fileKTP!=null)
 											 <a href="{{ url('/data_file/'.$isCompleted->fileKTP) }}" class="thumbnail"><img width="50px" height="50px" src="{{ url('/data_file2/'.$isCompleted->fileKTP) }}"></a> 
@@ -355,10 +361,13 @@
 										<label for="example-text-input" class="col-3 col-form-label">
 											File Ijazah
 										</label>
-										<div class="col-3">
+										<div class="col-4">
 											<label class="custom-file">
-												<input type="file" name="fileIjazah">
-												<!-- <span class="custom-file-control"></span> -->
+												<input class="form-control{{ $errors->has('fileIjazah') ? ' is-invalid' : '' }}" type="file"  accept="application/pdf" name="fileIjazah">
+												@if ($errors->has('fileIjazah'))
+												<span class="invalid-feedback" role="alert">
+																<strong>{{ $errors->first('fileIjazah') }}</strong>
+													</span>@endif
 											</label>
 											<!-- <div class="col-md-2"> -->
 											@if($isCompleted->fileIjazah!=null)
@@ -382,7 +391,7 @@
 										Pengalaman
 									</label>
 									<div class="col-7">
-										<input class="form-control m-input" type="text" name="pengalaman" value="{{ $isCompleted->pengalaman }}">																				
+										<textarea class="form-control m-input" type="text" rows="3" name="pengalaman" >{{ $isCompleted->pengalaman }}</textarea>																				
 									</div>
 								</div>
 								<div class="m-portlet__foot m-portlet__foot--fit">

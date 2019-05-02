@@ -61,8 +61,25 @@ class HomeSiswaController extends Controller
             Tbdetailsiswa::where('idtbDetailSiswa', Auth::user()->idtbSiswa)->update(['statusKomplit' => '4']);
         }
         Tbdetailsiswa::where('idtbDetailSiswa', Auth::user()->idtbSiswa)->update(['idtbSiswa' => Auth::user()->idtbSiswa]);
-        return view('dashboardsiswa', ['isCompleted' => $showing,'mentor'=>$mentor]);
-        // return  $mentor;
+        $getprodi = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->value('prodiSiswa');
+        $getexplode = explode(', ',$getprodi);
+        if(count($getexplode)==1){
+            $getMentor  = DB::table('tbdetailmentor')->join('tbmentor','tbdetailmentor.idmentor','=','tbmentor.idmentor')->where('prodi', 'like', '%'.$getexplode[0].'%')->where('statusTutor', '=', 1)->where('statKomplit', '=', 7)->get();
+        }elseif(count($getexplode)==2){
+            $getMentor  = DB::table('tbdetailmentor')->join('tbmentor','tbdetailmentor.idmentor','=','tbmentor.idmentor')->where('statusTutor', '=', 1)->where('statKomplit', '=', 7)->where(function($q){$getprodi = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->value('prodiSiswa');$getexplode = explode(', ',$getprodi);$q->where('prodi', 'like', '%'.$getexplode[0].'%')->orWhere('prodi', 'like', '%'.$getexplode[1].'%');})->get();
+        }elseif(count($getexplode)==3){
+            $getMentor  = DB::table('tbdetailmentor')->join('tbmentor','tbdetailmentor.idmentor','=','tbmentor.idmentor')->where('statusTutor', '=', 1)->where('statKomplit', '=', 7)->where(function($q){$getprodi = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->value('prodiSiswa');$getexplode = explode(', ',$getprodi);$q->where('prodi', 'like', '%'.$getexplode[0].'%')->orWhere('prodi', 'like', '%'.$getexplode[1].'%')->orWhere('prodi', 'like', '%'.$getexplode[2].'%');})->get();
+        }elseif(count($getexplode)==4){
+            $getMentor  = DB::table('tbdetailmentor')->join('tbmentor','tbdetailmentor.idmentor','=','tbmentor.idmentor')->where('statusTutor', '=', 1)->where('statKomplit', '=', 7)->where(function($q){$getprodi = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->value('prodiSiswa');$getexplode = explode(', ',$getprodi);$q->where('prodi', 'like', '%'.$getexplode[0].'%')->orWhere('prodi', 'like', '%'.$getexplode[1].'%')->orWhere('prodi', 'like', '%'.$getexplode[2].'%')->orWhere('prodi', 'like', '%'.$getexplode[3].'%');})->get();            
+        }elseif(count($getexplode)==5){
+            $getMentor  = DB::table('tbdetailmentor')->join('tbmentor','tbdetailmentor.idmentor','=','tbmentor.idmentor')->where('statusTutor', '=', 1)->where('statKomplit', '=', 7)->where(function($q){$getprodi = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->value('prodiSiswa');$getexplode = explode(', ',$getprodi);$q->where('prodi', 'like', '%'.$getexplode[0].'%')->orWhere('prodi', 'like', '%'.$getexplode[1].'%')->orWhere('prodi', 'like', '%'.$getexplode[2].'%')->orWhere('prodi', 'like', '%'.$getexplode[3].'%')->orWhere('prodi', 'like', '%'.$getexplode[4].'%');})->get();                        
+        }  
+        else{
+
+        }
+        return view('dashboardsiswa', ['isCompleted' => $showing,'mentor'=>$getMentor]);
+        
+        // return $getMentor;
     }
     public function profilesiswa()
     {
