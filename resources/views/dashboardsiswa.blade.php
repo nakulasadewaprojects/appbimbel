@@ -63,11 +63,13 @@
 							</div>
 							<div class="m-card-profile__details">
 								<span class="m-card-profile__name">
+										{{$dm->username}}
 												{{ $dm->nm_depan }} {{ $dm->nm_belakang }}
 											</span>
 								<a href="" class="m-card-profile__email m-link">
 												{{ $dm->alamat  }}
 											</a>
+											{{$dm->prodi}}
 							</div>
 						</div>
 

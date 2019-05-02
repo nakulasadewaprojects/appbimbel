@@ -16,7 +16,7 @@ class CreateTbdetailsiswasTable extends Migration
         Schema::create('tbdetailsiswa', function (Blueprint $table) {
             $table->bigIncrements('idtbDetailSiswa');
             $table->string('namaWali')->nullable();
-            $table->integer('pendidikanSiswa')->nullable();
+            $table->string('pendidikanSiswa')->nullable();
             $table->integer('jenjang')->nullable();
             $table->integer('tingkatPendidikan')->nullable();
             $table->longText('prodiSiswa')->nullable();
