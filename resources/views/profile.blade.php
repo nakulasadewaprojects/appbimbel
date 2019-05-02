@@ -322,6 +322,18 @@
 									</div>
 
 									<div class="form-group m-form__group row">
+										<label class="col-form-label col-lg-3 col-sm-12">
+											Prodi Mentor
+										</label>
+										<div class="col-lg-4 col-md-9 col-sm-12">
+									<select class="form-control m-select2" id="m_select2_3" name="prodi[]" multiple="multiple">																							
+													@foreach ($prodi as $a)
+													<option value="{{ $a->MatPel }}"{{ $isCompleted->prodi ==  $a->MatPel  ? 'selected' : ''}}>{{$a->MatPel}}</option>
+													@endforeach																																			
+											</select>
+										</div>
+									</div>																					 
+									<div class="form-group m-form__group row">
 										<label for="example-text-input" class="col-3 col-form-label">
 															Foto
 										</label>
@@ -390,7 +402,7 @@
 										</div>
 									</div>
 								</div>
-
+								
 								<div class="form-group m-form__group row">
 									<label for="example-text-input" class="col-3 col-form-label">
 										Pengalaman
