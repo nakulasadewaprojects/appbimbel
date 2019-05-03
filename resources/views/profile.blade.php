@@ -144,55 +144,6 @@
 									</div>
 									<div class="form-group m-form__group row">
 										<label for="example-text-input" class="col-2 col-form-label">
-											Nama Depan
-										</label>
-										<div class="col-7">
-											<input class="form-control{{ $errors->has('NamaDepan') ? ' is-invalid' : '' }}" name="NamaDepan" type="text" value="{{ Auth::user()->nm_depan }}"> 
-											@if ($errors->has('NamaDepan'))
-											<span class="invalid-feedback" role="alert">
-												<strong>{{ $errors->first('NamaDepan') }}</strong>
-											</span> @endif
-										</div>
-									</div>
-									<div class="form-group m-form__group row">
-										<label for="example-text-input" class="col-2 col-form-label">
-											Nama Belakang
-										</label>
-										<div class="col-7">
-											<input class="form-control{{ $errors->has('NamaBelakang') ? ' is-invalid' : '' }}" name="NamaBelakang" type="text" value="{{ Auth::user()->nm_belakang }}"> 
-											@if ($errors->has('NamaBelakang'))
-											<span class="invalid-feedback" role="alert">
-												<strong>{{ $errors->first('NamaBelakang') }}</strong>
-											</span> @endif
-										</div>
-									</div>
-									<div class="form-group m-form__group row">
-										<label for="example-text-input" class="col-2 col-form-label">
-											TTL
-										</label>
-										<div class="col-7">
-											<input class="form-control m-input" type="text" value="Lumajang 17 April 1997">
-										</div>
-									</div>
-									<div class="form-group m-form__group row">
-										<label for="example-text-input" class="col-2 col-form-label text-md-right">
-											Jenis Kelamin
-										</label>
-										<div class="col-2">
-											<label class="m-radio m-radio--bold m-radio--state-brand">
-												<input type="radio" name="gender" id="male" value="1">
-												Laki-Laki
-												<span></span>
-											</label>
-											<label class="m-radio m-radio--bold m-radio--state-brand">
-												<input type="radio" name="gender" id="female" value="2">
-												Perempuan
-												<span></span>
-											</label>
-										</div>
-									</div>
-									<div class="form-group m-form__group row">
-										<label for="example-text-input" class="col-2 col-form-label">
 											No Telepon
 										</label>
 										<div class="col-7">
@@ -329,6 +280,31 @@
 									</div>
 
 									<div class="form-group m-form__group row">
+										<label class="col-form-label col-lg-3 col-sm-12">
+											Prodi Mentor
+										</label>
+										<div class="col-lg-4 col-md-9 col-sm-12">
+											
+									<select class="form-control m-select2" id="m_select2_3" name="prodi[]" multiple="multiple">																							
+													
+										{{-- OTOMATIS --}}
+										@foreach($prodi as $p)
+										<option value="{{$p->MatPel}}" @if(strpos($getprodi, $p->MatPel )!== false) selected @endif > {{$p->MatPel}}</option>
+										@endforeach
+
+										{{-- MANUAL --}}
+										{{-- <option value="Bhs. Indonesia" @if(strpos($getprodi, 'Bhs. Indonesia' )!== false) selected @endif>Bhs. Indonesia</option>
+										<option value="Matematika" @if(strpos($getprodi, 'Matematika')!== false) selected @endif>Matematika</option>
+										<option value="IPA" @if(strpos($getprodi, 'IPA')!== false) selected @endif>IPA</option>
+										<option value="IPS" @if(strpos($getprodi, 'IPS')!== false) selected @endif>IPS</option>
+										<option value="Bhs. Inggris" @if(strpos($getprodi, 'Bhs. Inggris')!== false) selected @endif>Bhs. Inggris</option> --}}
+																																															
+											</select>
+										</div>
+									</div>	
+
+																													 
+									<div class="form-group m-form__group row">
 										<label for="example-text-input" class="col-3 col-form-label">
 											Foto
 										</label>
@@ -402,7 +378,7 @@
 										</div>
 									</div>
 								</div>
-
+								
 								<div class="form-group m-form__group row">
 									<label for="example-text-input" class="col-3 col-form-label">
 										Pengalaman

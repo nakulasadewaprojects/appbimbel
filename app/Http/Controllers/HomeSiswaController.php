@@ -134,7 +134,7 @@ class HomeSiswaController extends Controller
         }
         return view('dashboardsiswa', ['isCompleted' => $showing,'mentor'=>$getMentor]);
         
-        // return count($getexplode);
+        // return $getexplode;
     }
     public function profilesiswa()
     {
