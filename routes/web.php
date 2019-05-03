@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,3 +42,4 @@ Route::get('/kecamatan/get/{id}', 'HomeController@getKecamatan');
 Route::get('/kelurahan/get/{id}', 'HomeController@getKelurahan');
 Route::put('/profilesiswa/update/{idmentor}', 'HomeSiswaController@update');
 Route::get('/multimediasiswa', 'HomeSiswaController@multimediasiswa');
+Route::get('/filter', 'FilterController@FilterTingkatPendidikan');
