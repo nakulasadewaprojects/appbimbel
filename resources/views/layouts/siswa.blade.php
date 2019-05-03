@@ -627,7 +627,7 @@
 		<!-- end::Scroll Top -->
 	  <!-- begin::Quick Nav -->
 	  <ul class="m-nav-sticky" style="margin-top: 30px;">
-			<li class="m-nav-sticky__item" title="Tingkat Pendiidikan Mentor" >
+			<li class="m-nav-sticky__item" data-toggle="m-tooltip" title="Pendiidikan Terakhir Mentor" data-placement="left" >
 			<a href="filter">
 					<i class="la la-comments-o"></i>
 				</a>
@@ -846,6 +846,58 @@ $('.thumbnail').viewbox({
   nextOnContentClick: true,
   useGestures: true
 });
+</script>
+
+<script>
+
+$(document).ready(function(){
+	$('#cek1').change(function () {
+    console.log("cek1 jalan");
+	$.ajax({
+
+	})
+ });
+});
+// $(document).ready(function(){
+// 	$('select[name="cek1"]').on('change',(function () {
+// 		var cekId=$('select[name="cek1"]').val();
+// 		if(cekId){
+// 			$.ajax({
+// 				type: "GET",
+// 				url: '/appbimbel/public/filterPendidikan/get' + cekId,
+// 				cache: false,
+//        			 // dataType: 'json',
+// 				data: 'action1=' + data1,
+// 				success: function (data) {
+//             data = JSON.parse(data);
+//             $('#response').val(data.response);
+//         }
+// 			},
+// 			)
+// 		}
+    
+	
+//  });
+// });
+
+// $("cek1").change(function () {
+//     var value = $(this).val();
+//     $.ajax({
+//         type: "GET",
+// 		url:'/appbimbel/public/filterPendidikan/get' ,
+// 		dataType: 'json',
+//         async: true,
+//         data: {
+//             action1: value // as you are getting in php $_POST['action1'] 
+//         },
+//         success: function (msg) {
+//             alert('Success');
+//             if (msg != 'success') {
+//                 alert('Fail');
+//             }
+//         }
+//     });
+// });
 </script>
 
 </body>

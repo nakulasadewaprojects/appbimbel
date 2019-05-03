@@ -21,6 +21,7 @@ class HomeSiswaController extends Controller
         $tahun = Carbon::now()->isoFormat('YY');
         $bulan = Carbon::now()->format('m');
         $noidsiswa = 'S' . $bulan . $tahun;
+        $siswa2  = DB::table('tbsiswa')->get();
         if(Tbsiswa::where('idtbSiswa', Auth::user()->idtbSiswa)->value('NoIDSiswa')==NULL){
             
             if(strlen((string)Auth::user()->idtbSiswa)==1){
@@ -132,10 +133,32 @@ class HomeSiswaController extends Controller
         else{
 
         }
-        return view('dashboardsiswa', ['isCompleted' => $showing,'mentor'=>$getMentor]);
+        
+        return view('dashboardsiswa', ['isCompleted' => $showing,'mentor'=>$getMentor,'s'=>$siswa2]);
         
         // return $getexplode;
     }
+    public function getFilterPendidikan( Request $request){
+        if($request['pendidikan']==1){
+            $mentor=DB::table('tbmentor')
+            ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')->where('statKomplit',7)->where('statusTutor',1)->where('pendidikanTerakhir',3)->orWhere('pendidikanTerakhir',4)->orWhere('pendidikanTerakhir',5);
+            $grup=$mentor->orderBy('pendidikanTerakhir','DESC')->get();
+        } elseif($request['pendidikan']==2){
+            $mentor=DB::table('tbmentor')
+            ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')->where('statKomplit',7)->where('statusTutor',1)->where('pendidikanTerakhir',6)->orWhere('pendidikanTerakhir',7)->orWhere('pendidikanTerakhir',8);
+            $grup=$mentor->orderBy('pendidikanTerakhir','DESC')->get();
+        }else{
+            $mentor=DB::table('tbmentor')
+            ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')->where('statKomplit',7)->where('statusTutor',1);
+            if($request->hasAny('bhsIndonesia')){
+                $mentor2=DB::table('tbmentor')
+            ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')->where('statKomplit',7)->where('statusTutor',1)->where('prodi','bahasa indonesia');
+            }
+            $grup=$mentor2->orderBy('pendidikanTerakhir','DESC')->get();
+        }
+        return json_encode($grup);
+    }
+
     public function profilesiswa()
     {
         $provinsi  = DB::table('provinsi')->get();
@@ -186,6 +209,7 @@ class HomeSiswaController extends Controller
         $kelurahan = DB::table("kelurahan")->where("kecamatan_id", $id)->pluck("nama", "id");
         return json_encode($kelurahan);
     }
+  
     public function myprofilsiswa(){
         $siswa = DB::table('tbsiswa')->where('idtbSiswa', Auth::user()->idtbSiswa)->first();
         $showing = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->first();
