@@ -197,13 +197,14 @@ class HomeController extends Controller
         } else { }
         $Tbdetailmentor->No_Identitas = $request['No_Identitas'];
         $Tbdetailmentor->pengalaman = $request['pengalaman'];
-        
-       
-       
-        
-        $prodi=$request['prodi'];
-        $prodi2=implode(', ',$prodi);
-        $Tbdetailmentor->prodi = $prodi2; 
+       if($request->hasAny('prodi')){
+            $prodi=$request['prodi'];
+            $prodi2=implode(', ',$prodi);
+            $Tbdetailmentor->prodi = $prodi2; 
+        }else{
+            $prodi=$request['prodi'];
+            $Tbdetailmentor->prodi = $prodi; 
+        }
         $Tbdetailmentor->save();
         return redirect('/myProfile')->with('message','IT WORKS!');      
         
