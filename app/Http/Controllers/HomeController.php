@@ -103,9 +103,10 @@ class HomeController extends Controller
         $kelurahan = DB::table('kelurahan')->get();
         $pete = DB::table('tbjenjangpendidikan')->get();
         $prodimentor = DB::table('mastermatpel')->get();
-        return view('profile', ['isCompleted' => $show, 'p' => $provinsi, 'b' => $kabupaten, 'c' => $kecamatan, 'd' => $kelurahan,'pt'=>$pete, 'prodi'=>$prodimentor]);
-        // return DB::table('tbdetailmentor')->where('idmentor', Auth::user()->idmentor)->value('statusPendidikan');
-    }
+        $prodi=DB::table('tbdetailmentor')->where('idmentor', Auth::user()->idmentor)->value('prodi');
+        $prodi2=implode(' ',[$prodi]);
+        return view('profile', ['getprodi'=>$prodi2,'isCompleted' => $show, 'p' => $provinsi, 'b' => $kabupaten, 'c' => $kecamatan, 'd' => $kelurahan,'pt'=>$pete, 'prodi'=>$prodimentor]);
+       }
     public function getKabupaten($id)
     {
         $kabupaten = DB::table("kota_kabupaten")->where("provinsi_id", $id)->pluck("nama", "id");
@@ -202,9 +203,9 @@ class HomeController extends Controller
         
         $prodi=$request['prodi'];
         $prodi2=implode(', ',$prodi);
-       
         $Tbdetailmentor->prodi = $prodi2; 
         $Tbdetailmentor->save();
-        return redirect('/myProfile')->with('message','IT WORKS!');       
+        return redirect('/myProfile')->with('message','IT WORKS!');      
+        
     }
 }
