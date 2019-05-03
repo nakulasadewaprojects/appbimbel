@@ -25,6 +25,7 @@ class CreateTbdetailmentorsTable extends Migration
             $table->unsignedBigInteger('idmentor')->nullable();
             $table->foreign('idmentor')->references('idmentor')->on('tbmentor');
             $table->text('pengalaman')->nullable();
+            $table->longText('prodi')->nullable();
             
         });
     }
