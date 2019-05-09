@@ -88,7 +88,7 @@
 								</div>
 								<div class="m-checkbox-list">
 									<label class="m-checkbox">
-										<input id="IPA" name="IPA" type="checkbox">
+										<input id="ipa" name="ipa" type="checkbox">
 										IPA
 										<span></span>
 									</label>
@@ -96,7 +96,7 @@
 								</div>
 								<div class="m-checkbox-list">
 									<label class="m-checkbox">
-										<input id="IPS" name="IPS" type="checkbox">
+										<input id="ips" name="ips" type="checkbox">
 										IPS
 										<span></span>
 									</label>

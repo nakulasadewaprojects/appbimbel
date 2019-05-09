@@ -56,9 +56,21 @@ class CarimentorController extends Controller{
         $tbmentor=DB::table('tbmentor')
         ->whereIN("idmentor",$tbdetailmentor)->Where("statusTutor",1)->get();
        }
-        
-        
          return json_encode( $tbmentor);
+    }
+
+    public function getFilter(){
+        $prodi=DB::table("tbdetailmentor")->get("prodi");
+        $pisah=explode(', ',$prodi);
+        // $a=$pisah['bahasa indonesia'];
+        // $a=$pisah;
+        $pisah=[];
+  
+                $columnprodi='prodi';
+                $tbdetailmentor = DB::table('tbdetailmentor')
+                ->where($columnprodi, 'LIKE', '%'.$pisah['bahasa indonesia'].'%'  )
+                ->pluck("idmentor");
+        return json_encode(  $pisah);
 
     }
 }

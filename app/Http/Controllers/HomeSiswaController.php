@@ -139,24 +139,475 @@ class HomeSiswaController extends Controller
         // return $getexplode;
     }
     public function getFilterPendidikan( Request $request){
-        if($request['pendidikan']==1){
+        if($request['pendidikan']==1){ //SMA, SMK, D3
             $mentor=DB::table('tbmentor')
-            ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')->where('statKomplit',7)->where('statusTutor',1)->where('pendidikanTerakhir',3)->orWhere('pendidikanTerakhir',4)->orWhere('pendidikanTerakhir',5);
-            $grup=$mentor->orderBy('pendidikanTerakhir','DESC')->get();
-        } elseif($request['pendidikan']==2){
-            $mentor=DB::table('tbmentor')
-            ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')->where('statKomplit',7)->where('statusTutor',1)->where('pendidikanTerakhir',6)->orWhere('pendidikanTerakhir',7)->orWhere('pendidikanTerakhir',8);
-            $grup=$mentor->orderBy('pendidikanTerakhir','DESC')->get();
-        }else{
-            $mentor=DB::table('tbmentor')
-            ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')->where('statKomplit',7)->where('statusTutor',1);
+            ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+            ->where('statKomplit',7)
+            ->where('statusTutor',1)
+            ->whereIN('pendidikanTerakhir',[3,4,5]);
+            $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+            ->get();
             if($request->hasAny('bhsIndonesia')){
-                $mentor2=DB::table('tbmentor')
-            ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')->where('statKomplit',7)->where('statusTutor',1)->where('prodi','bahasa indonesia');
+                $mentor->where('prodi','like','%Indonesia%');
+                $grup= $mentor->orderBy('pendidikanTerakhir','DESC')
+                ->get('prodi');
+                // $grup=['a'];
+                if($request->hasAny('mtk')){
+                    $mentor->orWhere('prodi','like','%Matematika%');
+                    $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                    ->get('prodi');
+                    // $grup=["b"];
+                    // if($request->hasAny('ipa')){
+                    //     $mentor->orWhere('prodi','like','%IPA%');
+                    //     $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                    //     ->get('prodi');
+                    //     // $grup=["c"];
+                    //     if($request->hasAny('ips')){
+                    //         $mentor->orWhere('prodi','like','%IPS%');
+                    //         // $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                    //         // ->get('prodi');
+                    //         $grup=["d"];
+                    //         if($request->hasAny('bhsInggris')){
+                    //             $mentor->orWhere('prodi','like','%Bhs. Inggris%');
+                    //             $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                    //             ->get('prodi');
+                    //             $grup=["e"];
+
+                    //       }
+                    //     }
+                       
+                    // }
+                }
+                if($request->hasAny('ipa')){
+                    $mentor->orWhere('prodi','like','%IPA%');
+                    $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                    ->get('prodi');
+                    // $grup=["f"];
+                    if($request->hasAny('ips')){
+                        $mentor->orWhere('prodi','like','%IPS%');
+                        $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                        ->get('prodi');
+                        // $grup=["d"];
+                        if($request->hasAny('bhsInggris')){
+                            $mentor->orWhere('prodi','like','%Bhs. Inggris%');
+                            $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                            ->get('prodi');
+                            // $grup=["e"];
+                      }
+                    }  
+                }
+                if($request->hasAny('ips')){
+                    $mentor->orWhere('prodi','like','%IPS%');
+                    $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                    ->get('prodi');
+                    // $grup=["d"];
+                    if($request->hasAny('bhsInggris')){
+                        $mentor->orWhere('prodi','like','%Bhs. Inggris%');
+                        $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                        ->get('prodi');
+                        // $grup=["e"];
+                  }
+                }
+                if($request->hasAny('bhsInggris')){
+                    $mentor->orWhere('prodi','like','%Bhs. Inggris%');
+                    $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                    ->get('prodi');
+                    // $grup=["e"];
+              }
+                
             }
-            $grup=$mentor2->orderBy('pendidikanTerakhir','DESC')->get();
+             if($request->hasAny('mtk')){
+            $mentor->where('prodi','like','%Matematika%');
+              $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+              ->get('prodi');
+            // $grup=['a'];
+            if($request->hasAny('ipa')){
+                $mentor->orWhere('prodi','like','%IPA%');
+                $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                    ->get('prodi');
+                if($request->hasAny('ips')){
+                    $mentor->orWhere('prodi','like','%IPS%');
+                    $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                    ->get('prodi'); 
+                    if($request->hasAny('bhsInggris')){
+                        $mentor->orWhere('prodi','like','%Bhs. Inggris%');
+                        $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                        ->get('prodi');
+                        // $grup=['bbb'];
+                    }
+                }  
+            }
+            if($request->hasAny('ips')){
+                $mentor->orWhere('prodi','like','%IPS%');
+                $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                ->get('prodi');
+                // $grup=['bbb']; 
+                if($request->hasAny('bhsInggris')){
+                    $mentor->orWhere('prodi','like','%Bhs. Inggris%');
+                    $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                    ->get('prodi');
+                    // $grup=['bbb'];
+                }
+            }
+            if($request->hasAny('bhsInggris')){
+                $mentor->orWhere('prodi','like','%Bhs. Inggris%');
+                $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                ->get('prodi');
+                // $grup=['bbb'];
+            }
         }
-        return json_encode($grup);
+            if($request->hasAny('ipa')){
+                $mentor->where('prodi','like','%IPA%');
+                  $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                  ->get('prodi');
+                // $grup=['a'];
+                if($request->hasAny('ips')){
+                    $mentor->orWhere('prodi','like','%IPS%');
+                      $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                      ->get('prodi');
+                    // $grup=['b'];
+                    if($request->hasAny('bhsInggris')){
+                        $mentor->orWhere('prodi','like','%Bhs. Inggris%');
+                        $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                        ->get('prodi');
+                        // $grup=['bbb'];
+                    }  
+                }
+                if($request->hasAny('bhsInggris')){
+                    $mentor->orWhere('prodi','like','%Bhs. Inggris%');
+                    $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                    ->get('prodi');
+                    // $grup=['bbb'];
+                }  
+            }
+            if($request->hasAny('ips')){
+                $mentor->where('prodi','like','%IPS%');
+                  $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                  ->get('prodi');
+                // $grup=['a'];
+                if($request->hasAny('bhsInggris')){
+                    $mentor->orWhere('prodi','like','%Bhs. Inggris%');
+                    $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                    ->get('prodi');
+                    // $grup=['bbb'];
+                }  
+
+            }
+            if($request->hasAny('bhsInggris')){
+                $mentor->where('prodi','like','%Bhs. Inggris%');
+                $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                ->get('prodi');
+                // $grup=['bbb'];
+            } 
+        }
+         elseif($request['pendidikan']==2){ //S1, S2, S3
+            $mentor=DB::table('tbmentor')
+            ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+            ->where('statKomplit',7)
+            ->where('statusTutor',1)
+            ->whereIN('pendidikanTerakhir',[6,7,8]);
+            $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+            ->get();
+            // $grup=['c'];
+            if($request->hasAny('bhsIndonesia')){
+                $mentor->where('prodi','like','%Indonesia%');
+                $grup= $mentor->orderBy('pendidikanTerakhir','DESC')
+                ->get('prodi');
+                // $grup=['a'];
+                if($request->hasAny('mtk')){
+                    $mentor->orWhere('prodi','like','%Matematika%');
+                    $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                    ->get('prodi');
+                    // $grup=["b"];
+                    // if($request->hasAny('ipa')){
+                    //     $mentor->orWhere('prodi','like','%IPA%');
+                    //     $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                    //     ->get('prodi');
+                    //     // $grup=["c"];
+                    //     if($request->hasAny('ips')){
+                    //         $mentor->orWhere('prodi','like','%IPS%');
+                    //         // $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                    //         // ->get('prodi');
+                    //         $grup=["d"];
+                    //         if($request->hasAny('bhsInggris')){
+                    //             $mentor->orWhere('prodi','like','%Bhs. Inggris%');
+                    //             $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                    //             ->get('prodi');
+                    //             $grup=["e"];
+
+                    //       }
+                    //     }
+                       
+                    // }
+                }
+                if($request->hasAny('ipa')){
+                    $mentor->orWhere('prodi','like','%IPA%');
+                    $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                    ->get('prodi');
+                    // $grup=["f"];
+                    if($request->hasAny('ips')){
+                        $mentor->orWhere('prodi','like','%IPS%');
+                        $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                        ->get('prodi');
+                        // $grup=["d"];
+                        if($request->hasAny('bhsInggris')){
+                            $mentor->orWhere('prodi','like','%Bhs. Inggris%');
+                            $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                            ->get('prodi');
+                            // $grup=["e"];
+                      }
+                    }  
+                }
+                if($request->hasAny('ips')){
+                    $mentor->orWhere('prodi','like','%IPS%');
+                    $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                    ->get('prodi');
+                    // $grup=["d"];
+                    if($request->hasAny('bhsInggris')){
+                        $mentor->orWhere('prodi','like','%Bhs. Inggris%');
+                        $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                        ->get('prodi');
+                        // $grup=["e"];
+                  }
+                }
+                if($request->hasAny('bhsInggris')){
+                    $mentor->orWhere('prodi','like','%Bhs. Inggris%');
+                    $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                    ->get('prodi');
+                    // $grup=["e"];
+              }
+                
+            }
+            if($request->hasAny('mtk')){
+                $mentor->where('prodi','like','%Matematika%');
+                  $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                  ->get('prodi');
+                // $grup=['a'];
+                if($request->hasAny('ipa')){
+                    $mentor->orWhere('prodi','like','%IPA%');
+                    $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                        ->get('prodi');
+                    if($request->hasAny('ips')){
+                        $mentor->orWhere('prodi','like','%IPS%');
+                        $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                        ->get('prodi'); 
+                        if($request->hasAny('bhsInggris')){
+                            $mentor->orWhere('prodi','like','%Bhs. Inggris%');
+                            $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                            ->get('prodi');
+                            // $grup=['bbb'];
+                        }
+                    }  
+                }
+                if($request->hasAny('ips')){
+                    $mentor->orWhere('prodi','like','%IPS%');
+                    $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                    ->get('prodi');
+                    // $grup=['bbb']; 
+                    if($request->hasAny('bhsInggris')){
+                        $mentor->orWhere('prodi','like','%Bhs. Inggris%');
+                        $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                        ->get('prodi');
+                        // $grup=['bbb'];
+                    }
+                }
+                if($request->hasAny('bhsInggris')){
+                    $mentor->orWhere('prodi','like','%Bhs. Inggris%');
+                    $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                    ->get('prodi');
+                    // $grup=['bbb'];
+                }
+            }
+            if($request->hasAny('ipa')){
+                $mentor->where('prodi','like','%IPA%');
+                  $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                  ->get('prodi');
+                // $grup=['a'];
+                if($request->hasAny('ips')){
+                    $mentor->orWhere('prodi','like','%IPS%');
+                      $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                      ->get('prodi');
+                    // $grup=['b'];
+                    if($request->hasAny('bhsInggris')){
+                        $mentor->orWhere('prodi','like','%Bhs. Inggris%');
+                        $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                        ->get('prodi');
+                        // $grup=['bbb'];
+                    }  
+                }
+                if($request->hasAny('bhsInggris')){
+                    $mentor->orWhere('prodi','like','%Bhs. Inggris%');
+                    $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                    ->get('prodi');
+                    // $grup=['bbb'];
+                }  
+            }
+            if($request->hasAny('ips')){
+                $mentor->where('prodi','like','%IPS%');
+                  $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                  ->get('prodi');
+                // $grup=['a'];
+                if($request->hasAny('bhsInggris')){
+                    $mentor->orWhere('prodi','like','%Bhs. Inggris%');
+                    $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                    ->get('prodi');
+                    // $grup=['bbb'];
+                }  
+
+}
+
+        }
+        elseif($request['pendidikan']==3){ // SEMUA JENJANG
+            $mentor=DB::table('tbmentor')
+            ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+            ->where('statKomplit',7)
+            ->where('statusTutor',1);
+            $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+            ->get();
+            // $grup=["aho"];
+            if($request->hasAny('bhsIndonesia')){
+              $mentor->where('prodi','like','%Bhs. Indonesia%');
+              $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+              ->get('prodi');
+                if($request->hasAny('mtk')){
+                    $mentor->orWhere('prodi','like','%Matematika%');
+                    $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                    ->get('prodi');
+                    // $grup=["taho"];
+                    if($request->hasAny('ipa')){
+                        $mentor->orWhere('prodi','like','%IPA%');
+                        $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                        ->get('prodi');
+                        $grup=["taho"];
+                        if($request->hasAny('ips')){
+                            $mentor->orWhere('prodi','like','%IPS%');
+                            $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                            ->get('prodi');
+                            if($request->hasAny('bhsInggris')){
+                                $mentor->orWhere('prodi','like','%Bhs. Inggris%');
+                                $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                                ->get('prodi');
+                          }
+                      }
+                  }
+                 
+              }
+              if($request->hasAny('ipa')){
+                $mentor->orWhere('prodi','like','%IPA%');
+                $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                ->get('prodi');
+                if($request->hasAny('ips')){
+                    $mentor->orWhere('prodi','like','%IPS%');
+                    $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                    ->get('prodi');
+                    if($request->hasAny('bhsInggris')){
+                        $mentor->orWhere('prodi','like','%Bhs. Inggris%');
+                        $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                        ->get('prodi');
+                  }
+                }
+                if($request->hasAny('bhsInggris')){
+                    $mentor->orWhere('prodi','like','%Bhs. Inggris%');
+                    $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                    ->get('prodi');
+              }
+            }
+                if($request->hasAny('ips')){
+                    $mentor->orWhere('prodi','like','%IPS%');
+                    $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                    ->get('prodi');
+                    if($request->hasAny('bhsInggris')){
+                        $mentor->orWhere('prodi','like','%Bhs. Inggris%');
+                        $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                        ->get('prodi');
+                }
+                }
+                if($request->hasAny('bhsInggris')){
+                    $mentor->orWhere('prodi','like','%Bhs. Inggris%');
+                    // $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                    // ->get('prodi');
+                    // $grup=['a'];
+                
+          }
+        }
+        if($request->hasAny('mtk')){
+            $mentor->where('prodi','like','%Matematika%');
+              $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+              ->get('prodi');
+            // $grup=['a'];
+            if($request->hasAny('ipa')){
+                $mentor->orWhere('prodi','like','%IPA%');
+                $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                    ->get('prodi');
+                if($request->hasAny('ips')){
+                    $mentor->orWhere('prodi','like','%IPS%');
+                    $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                    ->get('prodi'); 
+                    if($request->hasAny('bhsInggris')){
+                        $mentor->orWhere('prodi','like','%Bhs. Inggris%');
+                        $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                        ->get('prodi');
+                        // $grup=['bbb'];
+                    }
+                }  
+            }
+            if($request->hasAny('ips')){
+                $mentor->orWhere('prodi','like','%IPS%');
+                $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                ->get('prodi');
+                // $grup=['bbb']; 
+                if($request->hasAny('bhsInggris')){
+                    $mentor->orWhere('prodi','like','%Bhs. Inggris%');
+                    $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                    ->get('prodi');
+                    // $grup=['bbb'];
+                }
+            }
+            if($request->hasAny('bhsInggris')){
+                $mentor->orWhere('prodi','like','%Bhs. Inggris%');
+                $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                ->get('prodi');
+                // $grup=['bbb'];
+            }
+        }
+        if($request->hasAny('ipa')){
+            $mentor->where('prodi','like','%IPA%');
+              $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+              ->get('prodi');
+            // $grup=['a'];
+            if($request->hasAny('ips')){
+                $mentor->orWhere('prodi','like','%IPS%');
+                //   $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                //   ->get('prodi');
+                $grup=['b'];
+                if($request->hasAny('bhsInggris')){
+                    $mentor->orWhere('prodi','like','%Bhs. Inggris%');
+                    $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                    ->get('prodi');
+                    // $grup=['bbb'];
+                }  
+            }
+        }
+        if($request->hasAny('ips')){
+            $mentor->where('prodi','like','%IPS%');
+              $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+              ->get('prodi');
+            // $grup=['a'];
+            if($request->hasAny('bhsInggris')){
+                $mentor->orWhere('prodi','like','%Bhs. Inggris%');
+                $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+                ->get('prodi');
+                // $grup=['bbb'];
+            }
+        } 
+        if($request->hasAny('bhsInggris')){
+            $mentor->where('prodi','like','%Bhs. Inggris%');
+            $grup=$mentor->orderBy('pendidikanTerakhir','DESC')
+            ->get('prodi');
+            // $grup=['bbb'];
+        }  
+        }
+        return count($grup)." ".json_encode( $grup);
     }
 
     public function profilesiswa()
