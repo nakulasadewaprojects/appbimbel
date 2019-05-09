@@ -49,7 +49,7 @@
 			<div class="m-portlet m-portlet--full-height  ">
 				<div class="m-portlet__body">
 					<div class="m-card-profile">
-						<form class="m-form" method="GET" action="filterPendidikan/get" enctype="multipart/form-data">
+						<form class="m-form" method="GET" action="filter/get" enctype="multipart/form-data">
 							<div class="form-group m-form__group row">
 								<label for="example-text-input" class="col-2 col-form-label">
 									Pendidikan Terakhir
@@ -72,7 +72,7 @@
 								</label>
 								<div class="m-checkbox-list">
 									<label class="m-checkbox">
-										<input id="bhsIndonesia" name="bhsIndonesia" type="checkbox">
+										<input id="bhsIndonesia" name="bin" type="checkbox">
 										Bahasa Indonesia
 										<span></span>
 									</label>
@@ -104,12 +104,72 @@
 								</div>
 								<div class="m-checkbox-list">
 									<label class="m-checkbox">
-										<input id="bhsInggris" name="bhsInggris" type="checkbox">
+										<input id="bhsInggris" name="big" type="checkbox">
 										Bahasa Inggris
 										<span></span>
 									</label>
 
 								</div>
+							
+							</div>
+							<div class="m-form__group form-group">
+								<label for="">
+									Alamat
+								</label>
+													<div class="form-group m-form__group row">
+													<label for="example-text-input" class="col-2 col-form-label">
+														Provinsi
+													</label>
+													<div class="col-7">
+													<select class="form-control m-input" name="provinsi" type="text">
+															<option value="0">Semua Provinsi</option>
+															@foreach ($p as $a)
+															<option value="{{ $a->id }}" {{ Auth::user()->provinsi ==  $a->id  ? 'selected' : ''}}> {{$a->nama}}</option>																																																															
+															@endforeach
+															
+													</select>
+													</div>
+													</div>
+													<div class="form-group m-form__group row">
+													<label for="example-text-input" class="col-2 col-form-label">
+														Kabupaten
+													</label>
+													<div class="col-7">
+													<select class="form-control m-input" name="kabupaten" type="text" id="kabupaten">															
+															<option value="0">Semua Kabupaten</option>
+															@foreach ($b as $a)																
+															<option value="{{ $a->id }}"{{ Auth::user()->kota ==  $a->id  ? 'selected' : ''}}>{{$a->nama}}</option>																																		
+															@endforeach
+													</select>
+													</div>
+												</div>
+												<div class="form-group m-form__group row">
+													<label for="example-text-input" class="col-2 col-form-label">
+														Kecamatan
+													</label>
+													<div class="col-7">
+													<select class="form-control m-input" name="kecamatan" type="text" id="kecamatan">
+															<option value="0">Semua Kecamatan </option>
+															@foreach ($c as $a)
+															<option value="{{ $a->id }}"{{ Auth::user()->kecamatan ==  $a->id  ? 'selected' : ''}}>{{$a->nama}}</option>																																																	
+															@endforeach
+													</select>
+													</div>
+												</div>
+												<div class="form-group m-form__group row">
+													<label for="example-text-input" class="col-2 col-form-label">
+														Kelurahan
+													</label>
+													<div class="col-7">
+														<select class="form-control m-input" name="kelurahan" type="text" id="kelurahan">
+															<option value="0">Semua Kelurahan </option>
+										 					@foreach ($d as $a)
+															<option value="{{ $a->id }}"{{ Auth::user()->kelurahan ==  $a->id  ? 'selected' : ''}}>{{$a->nama}}</option>
+															@endforeach
+														</select>
+													</div>
+												</div>
+												</div>
 							
 							</div>
 							<button type="submit" class="btn m-btn--pill">

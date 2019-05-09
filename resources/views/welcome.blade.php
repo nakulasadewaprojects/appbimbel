@@ -17,7 +17,7 @@
   <div class="landing-page">
     <div class="page-content">
       <h1>App Bimbel</h1>
-        <h2>AKAN SEGERA LIRIS PADA</h2>
+        <h2>AKAN SEGERA LIRIS</h2>
         <h2 id="demo"></h2>
       @if (Auth::guard('web')->check())
       <a href="{{ url('/dashboard') }}">Dashboard</a> @elseif ( Auth::guard('siswa')->check())
