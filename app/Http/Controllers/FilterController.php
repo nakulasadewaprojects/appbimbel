@@ -27,27 +27,47 @@ class FilterController extends Controller
             ->whereIN('pendidikanTerakhir',[3,4,5])
             ->get("prodi");
   //=================================================================================ISI 1=====================================================================================
-            if($request->hasAny('bin') ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->whereIN('pendidikanTerakhir',[3,4,5])
-                ->get("prodi");
-            }
-            if($request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL ){
+            //BIN, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+            if($request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
               ->where('statKomplit',7)
               ->where('statusTutor',1)
               ->where('prodi','like','%Bhs. Indonesia%')
               ->where('provinsi',$request['provinsi'])
-              ->where('provinsi',$request['kabupaten'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[3,4,5])
               ->get('prodi');
             }
-            if($request->hasAny('bin') && $request['provinsi']!==NULL){
+            //BIN, PROVINSI, KABUPATEN, KECAMATAN,
+            if($request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit',7)
+              ->where('statusTutor',1)
+              ->where('prodi','like','%Bhs. Indonesia%')
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->whereIN('pendidikanTerakhir',[3,4,5])
+              ->get('prodi');
+            }
+            //BIN, PROVINSI, KABUPATEN
+            if($request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit',7)
+              ->where('statusTutor',1)
+              ->where('prodi','like','%Bhs. Indonesia%')
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->whereIN('pendidikanTerakhir',[3,4,5])
+              ->get('prodi');
+            }
+            //BIN, PROVINSI
+            if($request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
                 $grup=DB::table('tbmentor')
                 ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
                 ->where('statKomplit',7)
@@ -57,7 +77,8 @@ class FilterController extends Controller
                 ->whereIN('pendidikanTerakhir',[3,4,5])
                 ->get("prodi");
             }
-            if($request->hasAny('bin') && $request['provinsi']==0 ){
+            //BIN DAN SEMUA LOKASI
+            if($request->hasAny('bin') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
                 $grup=DB::table('tbmentor')
                 ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
                 ->where('statKomplit',7)
