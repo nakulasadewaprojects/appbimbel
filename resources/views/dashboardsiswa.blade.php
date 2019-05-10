@@ -249,9 +249,11 @@
 										</div>
 										<div class="m-widget5__stats1">
 											<br>
-											<button type="button" class="btn btn-outline-success btn-sm m-btn m-btn--custom">
-												Detail
-											</button>
+											<a href="detailmentor">
+												<button type="button" class="btn btn-outline-success btn-sm m-btn m-btn--custom">
+													Detail
+												</button>
+											</a>
 										</div>
 									</div>
 
@@ -387,7 +389,7 @@
 											</button>
 										</div>
 									</div>
-									
+
 									<!--end::m-widget5-->
 								</div>
 							</div>

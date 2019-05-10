@@ -43,4 +43,5 @@ Route::get('/kelurahan/get/{id}', 'AlamatController@getKelurahan');
 Route::put('/profilesiswa/update/{idmentor}', 'HomeSiswaController@update');
 Route::get('/multimediasiswa', 'HomeSiswaController@multimediasiswa');
 Route::get('/filter/get', 'FilterController@Filter');
+Route::get('/detailmentor', 'HomeSiswaController@detailmentor');
 // Route::get('/filterPendidikan/get', 'FilterController@Filter');

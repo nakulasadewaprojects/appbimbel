@@ -16,6 +16,10 @@ class HomeSiswaController extends Controller
     {
         $this->middleware('auth:siswa');
     }
+    public function detailmentor()
+    {   
+        return view ('detailmentor');
+    }
     public function dashboardsiswa()
     {
         $provinsi  = DB::table('provinsi')->get();
