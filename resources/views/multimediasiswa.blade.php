@@ -2,25 +2,23 @@
 @section('content')
 <div class="m-grid__item m-grid__item--fluid m-wrapper">
     @if (DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->value('statusKomplit')!==4)
-	<div class="m-alert m-alert--icon alert alert-warning" role="alert">
-		<div class="m-alert__icon">
-			<i class="la la-warning"></i>
-		</div>
-		<div class="m-alert__text">
-			<strong>
-									Luar biasa!
-								</strong> Silakan lengkapi profil Anda agar dapat mesen mentor.
-		</div>
-		<div class="m-alert__actions" style="width: 160px;">
-			<a class="btn btn-info btn-sm m-btn m-btn--pill m-btn--wide" href="profilesiswa">Lengkapi Sekarang</a>
-		</div>
-	</div>
-	@endif
+    <div class="m-alert m-alert--icon alert alert-warning" role="alert">
+        <div class="m-alert__icon">
+            <i class="la la-warning"></i>
+        </div>
+        <div class="m-alert__text">
+            <strong>
+                Luar biasa!
+            </strong> Silakan lengkapi profil Anda agar dapat mesen mentor.
+        </div>
+        <div class="m-alert__actions" style="width: 160px;">
+            <a class="btn btn-info btn-sm m-btn m-btn--pill m-btn--wide" href="profilesiswa">Lengkapi Sekarang</a>
+        </div>
+    </div>
+    @endif
 
     <div class="m-content">
-
         <div class="col-xl-13">
-            <!--begin:: Widgets/Download Files-->
             <div class="m-portlet m-portlet--full-height ">
                 <div class="m-portlet__head">
                     <div class="m-portlet__head-caption">
@@ -30,10 +28,8 @@
                             </h3>
                         </div>
                     </div>
-                    
                 </div>
                 <div class="m-portlet__body">
-                    <!--begin::m-widget4-->
                     <div class="m-widget4">
                         <div class="m-widget4__item">
                             <div class="m-widget4__img m-widget4__img--icon">
@@ -126,13 +122,11 @@
                             </div>
                         </div>
                     </div>
-                    <!--end::Widget 9-->
                 </div>
             </div>
-            <!--end:: Widgets/Download Files-->
         </div>
-        <!--End::Main Portlet-->
     </div>
+
 </div>
 </div>
 @endsection

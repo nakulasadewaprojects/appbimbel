@@ -368,7 +368,7 @@
 													<i class="flaticon-user-ok"></i>
 												</span>
 											</span>
-											
+
 										</a>
 										<div class="m-dropdown__wrapper">
 											<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
@@ -376,7 +376,7 @@
 												<div class="m-dropdown__header m--align-center">
 													<div class="m-card-user m-card-user--skin-light">
 														<div class="m-card-user__pic">
-														<img src="{{ url('/data_fileSiswa/'.$isCompleted->fotoProfile) }}" height="70px" width="100px" alt="" />
+															<img src="{{ url('/data_fileSiswa/'.$isCompleted->fotoProfile) }}" height="70px" width="100px" alt="" />
 														</div>
 														<div class="m-card-user__details">
 															<span class="m-card-user__name m--font-weight-500">
@@ -602,7 +602,7 @@
 									</span>
 								</a>
 							</li>
-						
+
 							<li class="m-nav__item m-nav__item">
 								<a href="#" class="m-nav__link" data-toggle="m-tooltip" title="Support Center" data-placement="left">
 									<i class="m-nav__link-icon flaticon-info m--icon-font-size-lg3"></i>
@@ -619,358 +619,358 @@
 	<!-- begin::Quick Sidebar -->
 
 	<!-- end::Quick Sidebar -->
-		<!-- begin::Scroll Top -->
-		<div class="m-scroll-top m-scroll-top--skin-top" data-toggle="m-scroll-top" data-scroll-offset="500" data-scroll-speed="300">
-			<i class="la la-arrow-up"></i>
-		</div>
-		<!-- end::Scroll Top -->
-		<!-- end::Scroll Top -->
-	  <!-- begin::Quick Nav -->
-	  <ul class="m-nav-sticky" style="margin-top: 30px;">
-			<li class="m-nav-sticky__item" data-toggle="m-tooltip" title="Pendiidikan Terakhir Mentor" data-placement="left" >
+	<!-- begin::Scroll Top -->
+	<div class="m-scroll-top m-scroll-top--skin-top" data-toggle="m-scroll-top" data-scroll-offset="500" data-scroll-speed="300">
+		<i class="la la-arrow-up"></i>
+	</div>
+	<!-- end::Scroll Top -->
+	<!-- end::Scroll Top -->
+	<!-- begin::Quick Nav -->
+	<ul class="m-nav-sticky" style="margin-top: 30px;">
+		<li class="m-nav-sticky__item" data-toggle="m-tooltip" title="Pendiidikan Terakhir Mentor" data-placement="left">
 			<a href="filter">
-					<i class="la la-comments-o"></i>
-				</a>
-			</li>
-			
-			<li class="m-nav-sticky__item" data-toggle="m-tooltip" title="Lokasi Mentor" data-placement="left">
-				<a href="https://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" target="_blank">
-					<i class="la la-cart-arrow-down"></i>
-				</a>
-			</li>
-			<li class="m-nav-sticky__item" data-toggle="m-tooltip" title="Rating Mentor" data-placement="left">
-				<a href="http://keenthemes.com/metronic/documentation.html" target="_blank">
-					<i class="la la-code-fork"></i>
-				</a>
-			</li>
-			<li class="m-nav-sticky__item" data-toggle="m-tooltip" title="Prodi Mentor" data-placement="left">
-				<a href="http://keenthemes.com/forums/forum/support/metronic5/" target="_blank">
-					<i class="la la-life-ring"></i>
-				</a>
-			</li>
-		</ul>
-		<!-- begin::Quick Nav -->
+				<i class="la la-comments-o"></i>
+			</a>
+		</li>
 
-		<!-- zoom image -->
-		<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-		<!--begin::Base Scripts -->
-		<script src="assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
-		<script src="assets/demo/demo6/base/scripts.bundle.js" type="text/javascript"></script>
-		<!--end::Base Scripts -->
-		<!--begin::Page Vendors -->
-		<script src="assets/vendors/custom/fullcalendar/fullcalendar.bundle.js" type="text/javascript"></script>
-		<!--end::Page Vendors -->
-		<!--begin::Page Snippets -->
-		<script src="assets/app/js/dashboard.js" type="text/javascript"></script>
-		<!--end::Page Snippets -->
-		<!-- zoom image -->
-		<script src="js/jquery.viewbox.min.js"></script>
+		<li class="m-nav-sticky__item" data-toggle="m-tooltip" title="Lokasi Mentor" data-placement="left">
+			<a href="https://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" target="_blank">
+				<i class="la la-cart-arrow-down"></i>
+			</a>
+		</li>
+		<li class="m-nav-sticky__item" data-toggle="m-tooltip" title="Rating Mentor" data-placement="left">
+			<a href="http://keenthemes.com/metronic/documentation.html" target="_blank">
+				<i class="la la-code-fork"></i>
+			</a>
+		</li>
+		<li class="m-nav-sticky__item" data-toggle="m-tooltip" title="Prodi Mentor" data-placement="left">
+			<a href="http://keenthemes.com/forums/forum/support/metronic5/" target="_blank">
+				<i class="la la-life-ring"></i>
+			</a>
+		</li>
+	</ul>
+	<!-- begin::Quick Nav -->
 
-		<script>
+	<!-- zoom image -->
+	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+	<!--begin::Base Scripts -->
+	<script src="assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
+	<script src="assets/demo/demo6/base/scripts.bundle.js" type="text/javascript"></script>
+	<!--end::Base Scripts -->
+	<!--begin::Page Vendors -->
+	<script src="assets/vendors/custom/fullcalendar/fullcalendar.bundle.js" type="text/javascript"></script>
+	<!--end::Page Vendors -->
+	<!--begin::Page Snippets -->
+	<script src="assets/app/js/dashboard.js" type="text/javascript"></script>
+	<!--end::Page Snippets -->
+	<!-- zoom image -->
+	<script src="js/jquery.viewbox.min.js"></script>
+
+	<script>
 		var pathname = window.location.pathname;
-		if(pathname=='/appbimbel/public/dashboardsiswa'){
+		if (pathname == '/appbimbel/public/dashboardsiswa') {
 			$(document).ready(function() {
-		
-		$('select[name="provinsi"]').on('change', function() {
-			var kabupatenId = $('select[name="provinsi"]').val();
-			if (kabupatenId) {
-				$.ajax({
-					url: '/appbimbel/public/kabupaten/get/' + kabupatenId,
-					type: "GET",
-					dataType: "json",
-					beforeSend: function() {
-						$('#loader').css("visibility", "visible");
-					},
 
-					success: function(data) {
+				$('select[name="provinsi"]').on('change', function() {
+					var kabupatenId = $('select[name="provinsi"]').val();
+					if (kabupatenId) {
+						$.ajax({
+							url: '/appbimbel/public/kabupaten/get/' + kabupatenId,
+							type: "GET",
+							dataType: "json",
+							beforeSend: function() {
+								$('#loader').css("visibility", "visible");
+							},
 
+							success: function(data) {
+
+								$('select[name="kabupaten"]').empty();
+								$('select[name="kecamatan"]').empty();
+								$('select[name="kelurahan"]').empty();
+								$('select[name="kabupaten"]').append('<option value="">' + 'Semua Kabupaten' + '</option>');
+								$('select[name="kecamatan"]').append('<option value="">' + 'Semua Kecamatan' + '</option>');
+								$('select[name="kelurahan"]').append('<option value="">' + 'Semua Kelurahan' + '</option>');
+
+								$.each(data, function(key, value) {
+
+
+									$('select[name="kabupaten"]').append('<option value="' + key + '">' + value + '</option>');
+
+								});
+							},
+							complete: function() {
+								$('#loader').css("visibility", "hidden");
+							}
+						});
+					} else {
 						$('select[name="kabupaten"]').empty();
 						$('select[name="kecamatan"]').empty();
 						$('select[name="kelurahan"]').empty();
 						$('select[name="kabupaten"]').append('<option value="">' + 'Semua Kabupaten' + '</option>');
 						$('select[name="kecamatan"]').append('<option value="">' + 'Semua Kecamatan' + '</option>');
 						$('select[name="kelurahan"]').append('<option value="">' + 'Semua Kelurahan' + '</option>');
-
-						$.each(data, function(key, value) {
-
-
-							$('select[name="kabupaten"]').append('<option value="' + key + '">' + value + '</option>');
-
-						});
-					},
-					complete: function() {
-						$('#loader').css("visibility", "hidden");
 					}
+
 				});
-			} else {
-				$('select[name="kabupaten"]').empty();
-				$('select[name="kecamatan"]').empty();
-				$('select[name="kelurahan"]').empty();
-				$('select[name="kabupaten"]').append('<option value="">' + 'Semua Kabupaten' + '</option>');
-				$('select[name="kecamatan"]').append('<option value="">' + 'Semua Kecamatan' + '</option>');
-				$('select[name="kelurahan"]').append('<option value="">' + 'Semua Kelurahan' + '</option>');
-			}
+			});
 
-		});
-	});
+			$(document).ready(function() {
 
-	$(document).ready(function() {
+				$('select[name="kabupaten"]').on('change', function() {
+					var kecamatanId = $(this).val();
+					if (kecamatanId) {
+						$.ajax({
+							url: '/appbimbel/public/kecamatan/get/' + kecamatanId,
+							type: "GET",
+							dataType: "json",
+							beforeSend: function() {
+								$('#loader').css("visibility", "visible");
+							},
 
-		$('select[name="kabupaten"]').on('change', function() {
-			var kecamatanId = $(this).val();
-			if (kecamatanId) {
-				$.ajax({
-					url: '/appbimbel/public/kecamatan/get/' + kecamatanId,
-					type: "GET",
-					dataType: "json",
-					beforeSend: function() {
-						$('#loader').css("visibility", "visible");
-					},
+							success: function(data) {
 
-					success: function(data) {
+								$('select[name="kecamatan"]').empty();
+								$('select[name="kelurahan"]').empty();
+								$('select[name="kecamatan"]').append('<option value="">' + 'Semua Kecamatan' + '</option>');
+								$('select[name="kelurahan"]').append('<option value="">' + 'Semua Kelurahan' + '</option>');
 
+								$.each(data, function(key, value) {
+
+									$('select[name="kecamatan"]').append('<option value="' + key + '">' + value + '</option>');
+
+								});
+							},
+							complete: function() {
+								$('#loader').css("visibility", "hidden");
+							}
+						});
+					} else {
 						$('select[name="kecamatan"]').empty();
 						$('select[name="kelurahan"]').empty();
 						$('select[name="kecamatan"]').append('<option value="">' + 'Semua Kecamatan' + '</option>');
 						$('select[name="kelurahan"]').append('<option value="">' + 'Semua Kelurahan' + '</option>');
-
-						$.each(data, function(key, value) {
-
-							$('select[name="kecamatan"]').append('<option value="' + key + '">' + value + '</option>');
-
-						});
-					},
-					complete: function() {
-						$('#loader').css("visibility", "hidden");
 					}
+
 				});
-			} else {
-				$('select[name="kecamatan"]').empty();
-				$('select[name="kelurahan"]').empty();
-				$('select[name="kecamatan"]').append('<option value="">' + 'Semua Kecamatan' + '</option>');
-				$('select[name="kelurahan"]').append('<option value="">' + 'Semua Kelurahan' + '</option>');
-			}
+			});
 
-		});
-	});
+			$(document).ready(function() {
 
-	$(document).ready(function() {
+				$('select[name="kecamatan"]').on('change', function() {
+					var kelurahanId = $(this).val();
+					if (kelurahanId) {
+						$.ajax({
+							url: '/appbimbel/public/kelurahan/get/' + kelurahanId,
+							type: "GET",
+							dataType: "json",
+							beforeSend: function() {
+								$('#loader').css("visibility", "visible");
+							},
 
-		$('select[name="kecamatan"]').on('change', function() {
-			var kelurahanId = $(this).val();
-			if (kelurahanId) {
-				$.ajax({
-					url: '/appbimbel/public/kelurahan/get/' + kelurahanId,
-					type: "GET",
-					dataType: "json",
-					beforeSend: function() {
-						$('#loader').css("visibility", "visible");
-					},
+							success: function(data) {
 
-					success: function(data) {
+								$('select[name="kelurahan"]').empty();
+								$('select[name="kelurahan"]').append('<option value="">' + 'Semua Kelurahan' + '</option>');
 
+								$.each(data, function(key, value) {
+
+									$('select[name="kelurahan"]').append('<option value="' + key + '">' + value + '</option>');
+
+								});
+							},
+							complete: function() {
+								$('#loader').css("visibility", "hidden");
+							}
+						});
+					} else {
 						$('select[name="kelurahan"]').empty();
 						$('select[name="kelurahan"]').append('<option value="">' + 'Semua Kelurahan' + '</option>');
-
-						$.each(data, function(key, value) {
-
-							$('select[name="kelurahan"]').append('<option value="' + key + '">' + value + '</option>');
-
-						});
-					},
-					complete: function() {
-						$('#loader').css("visibility", "hidden");
 					}
+
 				});
-			} else {
-				$('select[name="kelurahan"]').empty();
-				$('select[name="kelurahan"]').append('<option value="">' + 'Semua Kelurahan' + '</option>');
-			}
-
-		});
-	});
-		}else{
-
-		$(document).ready(function() {
-		
-			$('select[name="provinsi"]').on('change', function() {
-				var kabupatenId = $('select[name="provinsi"]').val();
-				if (kabupatenId) {
-					$.ajax({
-						url: '/appbimbel/public/kabupaten/get/' + kabupatenId,
-						type: "GET",
-						dataType: "json",
-						beforeSend: function() {
-							$('#loader').css("visibility", "visible");
-						},
-
-						success: function(data) {
-
-							$('select[name="kabupaten"]').empty();
-							$('select[name="kecamatan"]').empty();
-							$('select[name="kelurahan"]').empty();
-							$('select[name="kabupaten"]').append('<option value="">' + 'Pilih Kabupaten' + '</option>');
-							$('select[name="kecamatan"]').append('<option value="">' + 'Pilih Kecamatan' + '</option>');
-							$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
-
-							$.each(data, function(key, value) {
-
-
-								$('select[name="kabupaten"]').append('<option value="' + key + '">' + value + '</option>');
-
-							});
-						},
-						complete: function() {
-							$('#loader').css("visibility", "hidden");
-						}
-					});
-				} else {
-					$('select[name="kabupaten"]').empty();
-					$('select[name="kecamatan"]').empty();
-					$('select[name="kelurahan"]').empty();
-					$('select[name="kabupaten"]').append('<option value="">' + 'Pilih Kabupaten' + '</option>');
-					$('select[name="kecamatan"]').append('<option value="">' + 'Pilih Kecamatan' + '</option>');
-					$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
-				}
-
 			});
-		});
+		} else {
 
-		$(document).ready(function() {
+			$(document).ready(function() {
 
-			$('select[name="kabupaten"]').on('change', function() {
-				var kecamatanId = $(this).val();
-				if (kecamatanId) {
-					$.ajax({
-						url: '/appbimbel/public/kecamatan/get/' + kecamatanId,
-						type: "GET",
-						dataType: "json",
-						beforeSend: function() {
-							$('#loader').css("visibility", "visible");
-						},
+				$('select[name="provinsi"]').on('change', function() {
+					var kabupatenId = $('select[name="provinsi"]').val();
+					if (kabupatenId) {
+						$.ajax({
+							url: '/appbimbel/public/kabupaten/get/' + kabupatenId,
+							type: "GET",
+							dataType: "json",
+							beforeSend: function() {
+								$('#loader').css("visibility", "visible");
+							},
 
-						success: function(data) {
+							success: function(data) {
 
-							$('select[name="kecamatan"]').empty();
-							$('select[name="kelurahan"]').empty();
-							$('select[name="kecamatan"]').append('<option value="">' + 'Pilih Kecamatan' + '</option>');
-							$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
+								$('select[name="kabupaten"]').empty();
+								$('select[name="kecamatan"]').empty();
+								$('select[name="kelurahan"]').empty();
+								$('select[name="kabupaten"]').append('<option value="">' + 'Pilih Kabupaten' + '</option>');
+								$('select[name="kecamatan"]').append('<option value="">' + 'Pilih Kecamatan' + '</option>');
+								$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
 
-							$.each(data, function(key, value) {
+								$.each(data, function(key, value) {
 
-								$('select[name="kecamatan"]').append('<option value="' + key + '">' + value + '</option>');
 
-							});
-						},
-						complete: function() {
-							$('#loader').css("visibility", "hidden");
-						}
-					});
-				} else {
-					$('select[name="kecamatan"]').empty();
-					$('select[name="kelurahan"]').empty();
-					$('select[name="kecamatan"]').append('<option value="">' + 'Pilih Kecamatan' + '</option>');
-					$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
-				}
+									$('select[name="kabupaten"]').append('<option value="' + key + '">' + value + '</option>');
 
+								});
+							},
+							complete: function() {
+								$('#loader').css("visibility", "hidden");
+							}
+						});
+					} else {
+						$('select[name="kabupaten"]').empty();
+						$('select[name="kecamatan"]').empty();
+						$('select[name="kelurahan"]').empty();
+						$('select[name="kabupaten"]').append('<option value="">' + 'Pilih Kabupaten' + '</option>');
+						$('select[name="kecamatan"]').append('<option value="">' + 'Pilih Kecamatan' + '</option>');
+						$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
+					}
+
+				});
 			});
-		});
 
-		$(document).ready(function() {
+			$(document).ready(function() {
 
-			$('select[name="kecamatan"]').on('change', function() {
-				var kelurahanId = $(this).val();
-				if (kelurahanId) {
-					$.ajax({
-						url: '/appbimbel/public/kelurahan/get/' + kelurahanId,
-						type: "GET",
-						dataType: "json",
-						beforeSend: function() {
-							$('#loader').css("visibility", "visible");
-						},
+				$('select[name="kabupaten"]').on('change', function() {
+					var kecamatanId = $(this).val();
+					if (kecamatanId) {
+						$.ajax({
+							url: '/appbimbel/public/kecamatan/get/' + kecamatanId,
+							type: "GET",
+							dataType: "json",
+							beforeSend: function() {
+								$('#loader').css("visibility", "visible");
+							},
 
-						success: function(data) {
+							success: function(data) {
 
-							$('select[name="kelurahan"]').empty();
-							$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
+								$('select[name="kecamatan"]').empty();
+								$('select[name="kelurahan"]').empty();
+								$('select[name="kecamatan"]').append('<option value="">' + 'Pilih Kecamatan' + '</option>');
+								$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
 
-							$.each(data, function(key, value) {
+								$.each(data, function(key, value) {
 
-								$('select[name="kelurahan"]').append('<option value="' + key + '">' + value + '</option>');
+									$('select[name="kecamatan"]').append('<option value="' + key + '">' + value + '</option>');
 
-							});
-						},
-						complete: function() {
-							$('#loader').css("visibility", "hidden");
-						}
-					});
-				} else {
-					$('select[name="kelurahan"]').empty();
-					$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
-				}
+								});
+							},
+							complete: function() {
+								$('#loader').css("visibility", "hidden");
+							}
+						});
+					} else {
+						$('select[name="kecamatan"]').empty();
+						$('select[name="kelurahan"]').empty();
+						$('select[name="kecamatan"]').append('<option value="">' + 'Pilih Kecamatan' + '</option>');
+						$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
+					}
 
+				});
 			});
-		});
+
+			$(document).ready(function() {
+
+				$('select[name="kecamatan"]').on('change', function() {
+					var kelurahanId = $(this).val();
+					if (kelurahanId) {
+						$.ajax({
+							url: '/appbimbel/public/kelurahan/get/' + kelurahanId,
+							type: "GET",
+							dataType: "json",
+							beforeSend: function() {
+								$('#loader').css("visibility", "visible");
+							},
+
+							success: function(data) {
+
+								$('select[name="kelurahan"]').empty();
+								$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
+
+								$.each(data, function(key, value) {
+
+									$('select[name="kelurahan"]').append('<option value="' + key + '">' + value + '</option>');
+
+								});
+							},
+							complete: function() {
+								$('#loader').css("visibility", "hidden");
+							}
+						});
+					} else {
+						$('select[name="kelurahan"]').empty();
+						$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
+					}
+
+				});
+			});
 		}
-		</script>
+	</script>
 
-		<script>
-			if ({
-					{
-						session() - > has('message')
-					}
-				}) {
-				toastr.options = {
-					"closeButton": true,
-					"debug": false,
-					"newestOnTop": false,
-					"progressBar": false,
-					"positionClass": "toast-top-center",
-					"preventDuplicates": true,
-					"onclick": null,
-					"showDuration": "300",
-					"hideDuration": "1000",
-					"timeOut": "5000",
-					"extendedTimeOut": "1000",
-					"showEasing": "swing",
-					"hideEasing": "linear",
-					"showMethod": "fadeIn",
-					"hideMethod": "fadeOut"
-				};
+	<script>
+		if ({
+				{
+					session() - > has('message')
+				}
+			}) {
+			toastr.options = {
+				"closeButton": true,
+				"debug": false,
+				"newestOnTop": false,
+				"progressBar": false,
+				"positionClass": "toast-top-center",
+				"preventDuplicates": true,
+				"onclick": null,
+				"showDuration": "300",
+				"hideDuration": "1000",
+				"timeOut": "5000",
+				"extendedTimeOut": "1000",
+				"showEasing": "swing",
+				"hideEasing": "linear",
+				"showMethod": "fadeIn",
+				"hideMethod": "fadeOut"
+			};
 
-				toastr.success("Profil Anda telah diperbarui", "Sukses");
-			}
-		</script>
+			toastr.success("Profil Anda telah diperbarui", "Sukses");
+		}
+	</script>
 
-		<script>
-			if ({
-					{
-						Auth::user() - > gender
-					}
-				} == 1) {
-				document.getElementById("male").checked = true;
-			} else {
-				document.getElementById("female").checked = true;
-			}
-		</script>
-<!-- zoom image -->
-<script >
-$('.thumbnail').viewbox({
-  template: '<div class="viewbox-container"><div class="viewbox-body"><div class="viewbox-header"></div><div class="viewbox-content"></div><div class="viewbox-footer"></div></div></div>',
-  // loading spinner
-  loader: '<div class="loader"><div class="spinner"><div class="double-bounce1"></div><div class="double-bounce2"></div></div></div>',
-  setTitle: true,
-  margin: 20,
-  resizeDuration: 300,
-  openDuration: 200,
-  closeDuration: 200,
-  closeButton: true,
-  navButtons: false,
-  closeOnSideClick: true,
-  nextOnContentClick: true,
-  useGestures: true
-});
-</script>
+	<script>
+		if ({
+				{
+					Auth::user() - > gender
+				}
+			} == 1) {
+			document.getElementById("male").checked = true;
+		} else {
+			document.getElementById("female").checked = true;
+		}
+	</script>
+	<!-- zoom image -->
+	<script>
+		$('.thumbnail').viewbox({
+			template: '<div class="viewbox-container"><div class="viewbox-body"><div class="viewbox-header"></div><div class="viewbox-content"></div><div class="viewbox-footer"></div></div></div>',
+			// loading spinner
+			loader: '<div class="loader"><div class="spinner"><div class="double-bounce1"></div><div class="double-bounce2"></div></div></div>',
+			setTitle: true,
+			margin: 20,
+			resizeDuration: 300,
+			openDuration: 200,
+			closeDuration: 200,
+			closeButton: true,
+			navButtons: false,
+			closeOnSideClick: true,
+			nextOnContentClick: true,
+			useGestures: true
+		});
+	</script>
 
 </body>
 

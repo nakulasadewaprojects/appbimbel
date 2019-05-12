@@ -671,6 +671,7 @@
 												</span>
 											</div>
 											<div class="m-widget13__action m--align-right">
+											<a href="dashboardsiswa">
 												<button type="button" class="m-widget__detalis  btn m-btn--pill  btn-accent">
 													Ajukan
 												</button>
