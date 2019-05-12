@@ -56,10 +56,10 @@
 								</label>
 								<div class="col-7">
 									<select class="form-control m-input" name="pendidikan" type="text">
-										<option value="3">Semua Jenjang Pendidikan</option>
-
-										<option value="1"> SMA, SMK, D3</option>
-										<option value="2"> S1, S2, S3</option>
+										<option value="4">Semua Jenjang Pendidikan</option>
+										<option value="1"> SMA, SMK</option>
+										<option value="2"> D3</option>										
+										<option value="3"> S1, S2, S3</option>
 
 
 

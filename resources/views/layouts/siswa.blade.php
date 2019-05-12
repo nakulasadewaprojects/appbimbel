@@ -665,7 +665,31 @@
 		<!--end::Page Snippets -->
 		<!-- zoom image -->
 		<script src="js/jquery.viewbox.min.js"></script>
+		<!-- <script>
+			$(document).ready(function(){
+				$('select[name="pendidikan"]').on('change',function(){
+				var pendidikanId = $('select[name="pendidikan"]').val()
+				$('select[name="provinsi"]').val()
+				;
+				console.log(pendidikanId);
+				// if(pendidikanId){
+				// 	$.ajax({
+				// 		url: '/appbimbel/public/filter/get',
+				// 		type: "GET",
+				// 		dataType: "json",
+				// 		beforeSend: function(){
+				// 		$('#loader').css("visibility", "visible");							
+				// 		},
+				// 		success: function(data) {
 
+				// 		}
+				// 	})
+				// }
+			});
+			});
+			
+		</script> -->
+		
 		<script>
 		var pathname = window.location.pathname;
 		if(pathname=='/appbimbel/public/dashboardsiswa'){
