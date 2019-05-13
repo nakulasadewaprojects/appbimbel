@@ -29,6 +29,10 @@ class HomeController extends Controller
     {
         return view('home');
     }
+    public function detailmentor()
+    {   
+        return view ('detailmentor');
+    }
     public function dashboard()
     {
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();

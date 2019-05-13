@@ -16,6 +16,15 @@ class HomeSiswaController extends Controller
     {
         $this->middleware('auth:siswa');
     }
+    public function detailmentor($id)
+    {   
+        $showing = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->first();
+        $showmentor=DB::table('tbmentor')
+                    ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+                    ->where('tbmentor.idmentor', $id)->first();
+        // $showing = DB::table('tbdetailmentor')->where('idmentor', $id)->first();        
+        return view ('detailmentor',['showmentor' => $showmentor,'isCompleted' => $showing]);
+    }
     public function dashboardsiswa(Request $request)
     {
         $provinsi  = DB::table('provinsi')->get();

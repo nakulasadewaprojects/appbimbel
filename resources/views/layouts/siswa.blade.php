@@ -23,37 +23,14 @@
 		App Bimbel
 	</title>
 
-	<link href="assets/vendors/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+	<link href="http://localhost/appbimbel/public/assets/vendors/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
 	<!--end::Page Vendors -->
-	<link href="assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
-	<link href="assets/demo/demo6/base/style.bundle.css" rel="stylesheet" type="text/css" />
+	<link href="http://localhost/appbimbel/public/assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
+	<link href="http://localhost/appbimbel/public/assets/demo/demo6/base/style.bundle.css" rel="stylesheet" type="text/css" />
 	<!--end::Base Styles -->
-	<link rel="shortcut icon" href="assets/demo/demo6/media/img/logo/favicon.ico" />
+	<link rel="shortcut icon" href="http://localhost/appbimbel/public/assets/demo/demo6/media/img/logo/favicon.ico" />
 	<!-- zoom image css  -->
-	<link rel="stylesheet" href="css/viewbox.css">
-	<script>
-			$(document).ready(function(){
-		 $("#formFilter").on('click',(function(evt){
-            evt.preventDefault();
-            $.ajax({
-                // url: "/appbimbel/public/dashboardsiswa",
-                type: "GET",
-                data:  {pend: $("#pend").val(), bin: $("#bin").val(), mtk: $("#mtk").val(), ipa: $("#ipa").val(), 
-				ips: $("#ips").val(), big: $("#big").val(), prov: $("#prov").val(), kab: $("#kab").val(),
-				kec: $("#kec").val(), kel: $("#kel").val() },
-                processData: false,
-                contentType: false,
-                success: function(data){
-                    console.log(data)
-                },
-                error: function(msg){
-                    console.log(msg)
-                }           
-            });
-		}));
-		});
-		
-</script>
+	<link rel="stylesheet" href="http://localhost/appbimbel/public/css/viewbox.css">
 </head>
 
 <body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-light m-aside-left--fixed m-aside-left--offcanvas m-aside-left--minimize m-brand--minimize m-footer--push m-aside--offcanvas-default">
@@ -67,8 +44,8 @@
 					<div class="m-stack__item m-brand  m-brand--skin-light ">
 						<div class="m-stack m-stack--ver m-stack--general">
 							<div class="m-stack__item m-stack__item--middle m-brand__logo">
-								<a href="dashboardsiswa" class="m-brand__logo-wrapper">
-									<img alt="" src="assets/demo/demo6/media/img/logo/logo.png" />
+								<a href="http://localhost/appbimbel/public/dashboardsiswa" class="m-brand__logo-wrapper">
+									<img alt="" src="http://localhost/appbimbel/public/assets/demo/demo6/media/img/logo/logo.png" />
 								</a>
 							</div>
 							<div class="m-stack__item m-stack__item--middle m-brand__tools">
@@ -391,7 +368,7 @@
 													<i class="flaticon-user-ok"></i>
 												</span>
 											</span>
-											
+
 										</a>
 										<div class="m-dropdown__wrapper">
 											<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
@@ -399,7 +376,7 @@
 												<div class="m-dropdown__header m--align-center">
 													<div class="m-card-user m-card-user--skin-light">
 														<div class="m-card-user__pic">
-														<img src="{{ url('/data_fileSiswa/'.$isCompleted->fotoProfile) }}" height="70px" width="100px" alt="" />
+															<img src="{{ url('/data_fileSiswa/'.$isCompleted->fotoProfile) }}" height="70px" width="100px" alt="" />
 														</div>
 														<div class="m-card-user__details">
 															<span class="m-card-user__name m--font-weight-500">
@@ -420,7 +397,7 @@
 																</span>
 															</li>
 															<li class="m-nav__item">
-																<a href="myprofilesiswa" class="m-nav__link">
+																<a href="http://localhost/appbimbel/public/myprofilesiswa" class="m-nav__link">
 																	<i class="m-nav__link-icon flaticon-profile-1"></i>
 																	<span class="m-nav__link-title">
 																		<span class="m-nav__link-wrap">
@@ -487,7 +464,7 @@
 								<span class="m-menu__arrow"></span>
 								<ul class="m-menu__subnav">
 									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
-										<a href="dashboardsiswa" class="m-menu__link ">
+										<a href="http://localhost/appbimbel/public/dashboardsiswa" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -497,7 +474,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
-										<a href="calendarsiswa" class="m-menu__link ">
+										<a href="http://localhost/appbimbel/public/calendarsiswa" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -507,7 +484,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
-										<a href="multimediasiswa" class="m-menu__link ">
+										<a href="http://localhost/appbimbel/public/multimediasiswa" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -517,7 +494,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
-										<a href="calendarsiswa" class="m-menu__link ">
+										<a href="http://localhost/appbimbel/public/calendarsiswa" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -527,7 +504,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
-										<a href="calendarsiswa" class="m-menu__link ">
+										<a href="http://localhost/appbimbel/public/calendarsiswa" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -537,7 +514,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
-										<a href="calendarsiswa" class="m-menu__link ">
+										<a href="http://localhost/appbimbel/public/calendarsiswa" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -547,7 +524,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
-										<a href="calendarsiswa" class="m-menu__link ">
+										<a href="http://localhost/appbimbel/public/calendarsiswa" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -557,7 +534,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
-										<a href="calendarsiswa" class="m-menu__link ">
+										<a href="http://localhost/appbimbel/public/calendarsiswa" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -567,7 +544,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
-										<a href="calendarsiswa" class="m-menu__link ">
+										<a href="http://localhost/appbimbel/public/calendarsiswa" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -577,7 +554,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
-										<a href="calendarsiswa" class="m-menu__link ">
+										<a href="http://localhost/appbimbel/public/calendarsiswa" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -625,7 +602,7 @@
 									</span>
 								</a>
 							</li>
-						
+
 							<li class="m-nav__item m-nav__item">
 								<a href="#" class="m-nav__link" data-toggle="m-tooltip" title="Support Center" data-placement="left">
 									<i class="m-nav__link-icon flaticon-info m--icon-font-size-lg3"></i>
@@ -642,15 +619,15 @@
 	<!-- begin::Quick Sidebar -->
 
 	<!-- end::Quick Sidebar -->
-		<!-- begin::Scroll Top -->
-		<div class="m-scroll-top m-scroll-top--skin-top" data-toggle="m-scroll-top" data-scroll-offset="500" data-scroll-speed="300">
-			<i class="la la-arrow-up"></i>
-		</div>
-		<!-- end::Scroll Top -->
-		<!-- end::Scroll Top -->
-	  <!-- begin::Quick Nav -->
-	  <ul class="m-nav-sticky" style="margin-top: 30px;">
-			<li class="m-nav-sticky__item" data-toggle="m-tooltip" title="Pendiidikan Terakhir Mentor" data-placement="left" >
+	<!-- begin::Scroll Top -->
+	<div class="m-scroll-top m-scroll-top--skin-top" data-toggle="m-scroll-top" data-scroll-offset="500" data-scroll-speed="300">
+		<i class="la la-arrow-up"></i>
+	</div>
+	<!-- end::Scroll Top -->
+	<!-- end::Scroll Top -->
+	<!-- begin::Quick Nav -->
+	<ul class="m-nav-sticky" style="margin-top: 30px;">
+		<li class="m-nav-sticky__item" data-toggle="m-tooltip" title="Pendiidikan Terakhir Mentor" data-placement="left">
 			<a href="filter">
 					<i class="la la-comments-o"></i>
 				</a>
@@ -677,325 +654,323 @@
 		<!-- zoom image -->
 		<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 		<!--begin::Base Scripts -->
-		<script src="assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
-		<script src="assets/demo/demo6/base/scripts.bundle.js" type="text/javascript"></script>
+		<script src="http://localhost/appbimbel/public/assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
+		<script src="http://localhost/appbimbel/public/assets/demo/demo6/base/scripts.bundle.js" type="text/javascript"></script>
 		<!--end::Base Scripts -->
 		<!--begin::Page Vendors -->
-		<script src="assets/vendors/custom/fullcalendar/fullcalendar.bundle.js" type="text/javascript"></script>
+		<script src="http://localhost/appbimbel/public/assets/vendors/custom/fullcalendar/fullcalendar.bundle.js" type="text/javascript"></script>
 		<!--end::Page Vendors -->
 		<!--begin::Page Snippets -->
-		<script src="assets/app/js/dashboard.js" type="text/javascript"></script>
+		<script src="http://localhost/appbimbel/public/assets/app/js/dashboard.js" type="text/javascript"></script>
 		<!--end::Page Snippets -->
-		<!-- zoom image -->
-		<script src="js/jquery.viewbox.min.js"></script>
 		<!-- multiple select -->
-		<script src="js/select2.js" type="text/javascript"></script>
-		
+		<script src="http://localhost/appbimbel/public/js/select2.js" type="text/javascript"></script>
+		<script src="http://localhost/appbimbel/public/js/jquery.viewbox.min.js"></script>
 		<script>
 		var pathname = window.location.pathname;
-		if(pathname=='/appbimbel/public/dashboardsiswa'){
+		if (pathname == '/appbimbel/public/dashboardsiswa') {
 			$(document).ready(function() {
-		
-		$('select[name="provinsi"]').on('change', function() {
-			var kabupatenId = $('select[name="provinsi"]').val();
-			if (kabupatenId) {
-				$.ajax({
-					url: '/appbimbel/public/kabupaten/get/' + kabupatenId,
-					type: "GET",
-					dataType: "json",
-					beforeSend: function() {
-						$('#loader').css("visibility", "visible");
-					},
 
-					success: function(data) {
+				$('select[name="provinsi"]').on('change', function() {
+					var kabupatenId = $('select[name="provinsi"]').val();
+					if (kabupatenId) {
+						$.ajax({
+							url: '/appbimbel/public/kabupaten/get/' + kabupatenId,
+							type: "GET",
+							dataType: "json",
+							beforeSend: function() {
+								$('#loader').css("visibility", "visible");
+							},
 
+							success: function(data) {
+
+								$('select[name="kabupaten"]').empty();
+								$('select[name="kecamatan"]').empty();
+								$('select[name="kelurahan"]').empty();
+								$('select[name="kabupaten"]').append('<option value="">' + 'Semua Kabupaten' + '</option>');
+								$('select[name="kecamatan"]').append('<option value="">' + 'Semua Kecamatan' + '</option>');
+								$('select[name="kelurahan"]').append('<option value="">' + 'Semua Kelurahan' + '</option>');
+
+								$.each(data, function(key, value) {
+
+
+									$('select[name="kabupaten"]').append('<option value="' + key + '">' + value + '</option>');
+
+								});
+							},
+							complete: function() {
+								$('#loader').css("visibility", "hidden");
+							}
+						});
+					} else {
 						$('select[name="kabupaten"]').empty();
 						$('select[name="kecamatan"]').empty();
 						$('select[name="kelurahan"]').empty();
 						$('select[name="kabupaten"]').append('<option value="">' + 'Semua Kabupaten' + '</option>');
 						$('select[name="kecamatan"]').append('<option value="">' + 'Semua Kecamatan' + '</option>');
 						$('select[name="kelurahan"]').append('<option value="">' + 'Semua Kelurahan' + '</option>');
-
-						$.each(data, function(key, value) {
-
-
-							$('select[name="kabupaten"]').append('<option value="' + key + '">' + value + '</option>');
-
-						});
-					},
-					complete: function() {
-						$('#loader').css("visibility", "hidden");
 					}
+
 				});
-			} else {
-				$('select[name="kabupaten"]').empty();
-				$('select[name="kecamatan"]').empty();
-				$('select[name="kelurahan"]').empty();
-				$('select[name="kabupaten"]').append('<option value="">' + 'Semua Kabupaten' + '</option>');
-				$('select[name="kecamatan"]').append('<option value="">' + 'Semua Kecamatan' + '</option>');
-				$('select[name="kelurahan"]').append('<option value="">' + 'Semua Kelurahan' + '</option>');
-			}
+			});
 
-		});
-	});
+			$(document).ready(function() {
 
-	$(document).ready(function() {
+				$('select[name="kabupaten"]').on('change', function() {
+					var kecamatanId = $(this).val();
+					if (kecamatanId) {
+						$.ajax({
+							url: '/appbimbel/public/kecamatan/get/' + kecamatanId,
+							type: "GET",
+							dataType: "json",
+							beforeSend: function() {
+								$('#loader').css("visibility", "visible");
+							},
 
-		$('select[name="kabupaten"]').on('change', function() {
-			var kecamatanId = $(this).val();
-			if (kecamatanId) {
-				$.ajax({
-					url: '/appbimbel/public/kecamatan/get/' + kecamatanId,
-					type: "GET",
-					dataType: "json",
-					beforeSend: function() {
-						$('#loader').css("visibility", "visible");
-					},
+							success: function(data) {
 
-					success: function(data) {
+								$('select[name="kecamatan"]').empty();
+								$('select[name="kelurahan"]').empty();
+								$('select[name="kecamatan"]').append('<option value="">' + 'Semua Kecamatan' + '</option>');
+								$('select[name="kelurahan"]').append('<option value="">' + 'Semua Kelurahan' + '</option>');
 
+								$.each(data, function(key, value) {
+
+									$('select[name="kecamatan"]').append('<option value="' + key + '">' + value + '</option>');
+
+								});
+							},
+							complete: function() {
+								$('#loader').css("visibility", "hidden");
+							}
+						});
+					} else {
 						$('select[name="kecamatan"]').empty();
 						$('select[name="kelurahan"]').empty();
 						$('select[name="kecamatan"]').append('<option value="">' + 'Semua Kecamatan' + '</option>');
 						$('select[name="kelurahan"]').append('<option value="">' + 'Semua Kelurahan' + '</option>');
-
-						$.each(data, function(key, value) {
-
-							$('select[name="kecamatan"]').append('<option value="' + key + '">' + value + '</option>');
-
-						});
-					},
-					complete: function() {
-						$('#loader').css("visibility", "hidden");
 					}
+
 				});
-			} else {
-				$('select[name="kecamatan"]').empty();
-				$('select[name="kelurahan"]').empty();
-				$('select[name="kecamatan"]').append('<option value="">' + 'Semua Kecamatan' + '</option>');
-				$('select[name="kelurahan"]').append('<option value="">' + 'Semua Kelurahan' + '</option>');
-			}
+			});
 
-		});
-	});
+			$(document).ready(function() {
 
-	$(document).ready(function() {
+				$('select[name="kecamatan"]').on('change', function() {
+					var kelurahanId = $(this).val();
+					if (kelurahanId) {
+						$.ajax({
+							url: '/appbimbel/public/kelurahan/get/' + kelurahanId,
+							type: "GET",
+							dataType: "json",
+							beforeSend: function() {
+								$('#loader').css("visibility", "visible");
+							},
 
-		$('select[name="kecamatan"]').on('change', function() {
-			var kelurahanId = $(this).val();
-			if (kelurahanId) {
-				$.ajax({
-					url: '/appbimbel/public/kelurahan/get/' + kelurahanId,
-					type: "GET",
-					dataType: "json",
-					beforeSend: function() {
-						$('#loader').css("visibility", "visible");
-					},
+							success: function(data) {
 
-					success: function(data) {
+								$('select[name="kelurahan"]').empty();
+								$('select[name="kelurahan"]').append('<option value="">' + 'Semua Kelurahan' + '</option>');
 
+								$.each(data, function(key, value) {
+
+									$('select[name="kelurahan"]').append('<option value="' + key + '">' + value + '</option>');
+
+								});
+							},
+							complete: function() {
+								$('#loader').css("visibility", "hidden");
+							}
+						});
+					} else {
 						$('select[name="kelurahan"]').empty();
 						$('select[name="kelurahan"]').append('<option value="">' + 'Semua Kelurahan' + '</option>');
-
-						$.each(data, function(key, value) {
-
-							$('select[name="kelurahan"]').append('<option value="' + key + '">' + value + '</option>');
-
-						});
-					},
-					complete: function() {
-						$('#loader').css("visibility", "hidden");
 					}
+
 				});
-			} else {
-				$('select[name="kelurahan"]').empty();
-				$('select[name="kelurahan"]').append('<option value="">' + 'Semua Kelurahan' + '</option>');
-			}
-
-		});
-	});
-		}else{
-
-		$(document).ready(function() {
-		
-			$('select[name="provinsi"]').on('change', function() {
-				var kabupatenId = $('select[name="provinsi"]').val();
-				if (kabupatenId) {
-					$.ajax({
-						url: '/appbimbel/public/kabupaten/get/' + kabupatenId,
-						type: "GET",
-						dataType: "json",
-						beforeSend: function() {
-							$('#loader').css("visibility", "visible");
-						},
-
-						success: function(data) {
-
-							$('select[name="kabupaten"]').empty();
-							$('select[name="kecamatan"]').empty();
-							$('select[name="kelurahan"]').empty();
-							$('select[name="kabupaten"]').append('<option value="">' + 'Pilih Kabupaten' + '</option>');
-							$('select[name="kecamatan"]').append('<option value="">' + 'Pilih Kecamatan' + '</option>');
-							$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
-
-							$.each(data, function(key, value) {
-
-
-								$('select[name="kabupaten"]').append('<option value="' + key + '">' + value + '</option>');
-
-							});
-						},
-						complete: function() {
-							$('#loader').css("visibility", "hidden");
-						}
-					});
-				} else {
-					$('select[name="kabupaten"]').empty();
-					$('select[name="kecamatan"]').empty();
-					$('select[name="kelurahan"]').empty();
-					$('select[name="kabupaten"]').append('<option value="">' + 'Pilih Kabupaten' + '</option>');
-					$('select[name="kecamatan"]').append('<option value="">' + 'Pilih Kecamatan' + '</option>');
-					$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
-				}
-
 			});
-		});
+		} else {
 
-		$(document).ready(function() {
+			$(document).ready(function() {
 
-			$('select[name="kabupaten"]').on('change', function() {
-				var kecamatanId = $(this).val();
-				if (kecamatanId) {
-					$.ajax({
-						url: '/appbimbel/public/kecamatan/get/' + kecamatanId,
-						type: "GET",
-						dataType: "json",
-						beforeSend: function() {
-							$('#loader').css("visibility", "visible");
-						},
+				$('select[name="provinsi"]').on('change', function() {
+					var kabupatenId = $('select[name="provinsi"]').val();
+					if (kabupatenId) {
+						$.ajax({
+							url: '/appbimbel/public/kabupaten/get/' + kabupatenId,
+							type: "GET",
+							dataType: "json",
+							beforeSend: function() {
+								$('#loader').css("visibility", "visible");
+							},
 
-						success: function(data) {
+							success: function(data) {
 
-							$('select[name="kecamatan"]').empty();
-							$('select[name="kelurahan"]').empty();
-							$('select[name="kecamatan"]').append('<option value="">' + 'Pilih Kecamatan' + '</option>');
-							$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
+								$('select[name="kabupaten"]').empty();
+								$('select[name="kecamatan"]').empty();
+								$('select[name="kelurahan"]').empty();
+								$('select[name="kabupaten"]').append('<option value="">' + 'Pilih Kabupaten' + '</option>');
+								$('select[name="kecamatan"]').append('<option value="">' + 'Pilih Kecamatan' + '</option>');
+								$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
 
-							$.each(data, function(key, value) {
+								$.each(data, function(key, value) {
 
-								$('select[name="kecamatan"]').append('<option value="' + key + '">' + value + '</option>');
 
-							});
-						},
-						complete: function() {
-							$('#loader').css("visibility", "hidden");
-						}
-					});
-				} else {
-					$('select[name="kecamatan"]').empty();
-					$('select[name="kelurahan"]').empty();
-					$('select[name="kecamatan"]').append('<option value="">' + 'Pilih Kecamatan' + '</option>');
-					$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
-				}
+									$('select[name="kabupaten"]').append('<option value="' + key + '">' + value + '</option>');
 
+								});
+							},
+							complete: function() {
+								$('#loader').css("visibility", "hidden");
+							}
+						});
+					} else {
+						$('select[name="kabupaten"]').empty();
+						$('select[name="kecamatan"]').empty();
+						$('select[name="kelurahan"]').empty();
+						$('select[name="kabupaten"]').append('<option value="">' + 'Pilih Kabupaten' + '</option>');
+						$('select[name="kecamatan"]').append('<option value="">' + 'Pilih Kecamatan' + '</option>');
+						$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
+					}
+
+				});
 			});
-		});
 
-		$(document).ready(function() {
+			$(document).ready(function() {
 
-			$('select[name="kecamatan"]').on('change', function() {
-				var kelurahanId = $(this).val();
-				if (kelurahanId) {
-					$.ajax({
-						url: '/appbimbel/public/kelurahan/get/' + kelurahanId,
-						type: "GET",
-						dataType: "json",
-						beforeSend: function() {
-							$('#loader').css("visibility", "visible");
-						},
+				$('select[name="kabupaten"]').on('change', function() {
+					var kecamatanId = $(this).val();
+					if (kecamatanId) {
+						$.ajax({
+							url: '/appbimbel/public/kecamatan/get/' + kecamatanId,
+							type: "GET",
+							dataType: "json",
+							beforeSend: function() {
+								$('#loader').css("visibility", "visible");
+							},
 
-						success: function(data) {
+							success: function(data) {
 
-							$('select[name="kelurahan"]').empty();
-							$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
+								$('select[name="kecamatan"]').empty();
+								$('select[name="kelurahan"]').empty();
+								$('select[name="kecamatan"]').append('<option value="">' + 'Pilih Kecamatan' + '</option>');
+								$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
 
-							$.each(data, function(key, value) {
+								$.each(data, function(key, value) {
 
-								$('select[name="kelurahan"]').append('<option value="' + key + '">' + value + '</option>');
+									$('select[name="kecamatan"]').append('<option value="' + key + '">' + value + '</option>');
 
-							});
-						},
-						complete: function() {
-							$('#loader').css("visibility", "hidden");
-						}
-					});
-				} else {
-					$('select[name="kelurahan"]').empty();
-					$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
-				}
+								});
+							},
+							complete: function() {
+								$('#loader').css("visibility", "hidden");
+							}
+						});
+					} else {
+						$('select[name="kecamatan"]').empty();
+						$('select[name="kelurahan"]').empty();
+						$('select[name="kecamatan"]').append('<option value="">' + 'Pilih Kecamatan' + '</option>');
+						$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
+					}
 
+				});
 			});
-		});
+
+			$(document).ready(function() {
+
+				$('select[name="kecamatan"]').on('change', function() {
+					var kelurahanId = $(this).val();
+					if (kelurahanId) {
+						$.ajax({
+							url: '/appbimbel/public/kelurahan/get/' + kelurahanId,
+							type: "GET",
+							dataType: "json",
+							beforeSend: function() {
+								$('#loader').css("visibility", "visible");
+							},
+
+							success: function(data) {
+
+								$('select[name="kelurahan"]').empty();
+								$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
+
+								$.each(data, function(key, value) {
+
+									$('select[name="kelurahan"]').append('<option value="' + key + '">' + value + '</option>');
+
+								});
+							},
+							complete: function() {
+								$('#loader').css("visibility", "hidden");
+							}
+						});
+					} else {
+						$('select[name="kelurahan"]').empty();
+						$('select[name="kelurahan"]').append('<option value="">' + 'Pilih Kelurahan' + '</option>');
+					}
+
+				});
+			});
 		}
-		</script>
+	</script>
 
-		<script>
-			if ({
-					{
-						session() - > has('message')
-					}
-				}) {
-				toastr.options = {
-					"closeButton": true,
-					"debug": false,
-					"newestOnTop": false,
-					"progressBar": false,
-					"positionClass": "toast-top-center",
-					"preventDuplicates": true,
-					"onclick": null,
-					"showDuration": "300",
-					"hideDuration": "1000",
-					"timeOut": "5000",
-					"extendedTimeOut": "1000",
-					"showEasing": "swing",
-					"hideEasing": "linear",
-					"showMethod": "fadeIn",
-					"hideMethod": "fadeOut"
-				};
+	<script>
+		if ({
+				{
+					session() - > has('message')
+				}
+			}) {
+			toastr.options = {
+				"closeButton": true,
+				"debug": false,
+				"newestOnTop": false,
+				"progressBar": false,
+				"positionClass": "toast-top-center",
+				"preventDuplicates": true,
+				"onclick": null,
+				"showDuration": "300",
+				"hideDuration": "1000",
+				"timeOut": "5000",
+				"extendedTimeOut": "1000",
+				"showEasing": "swing",
+				"hideEasing": "linear",
+				"showMethod": "fadeIn",
+				"hideMethod": "fadeOut"
+			};
 
-				toastr.success("Profil Anda telah diperbarui", "Sukses");
-			}
-		</script>
+			toastr.success("Profil Anda telah diperbarui", "Sukses");
+		}
+	</script>
 
-		<script>
-			if ({
-					{
-						Auth::user() - > gender
-					}
-				} == 1) {
-				document.getElementById("male").checked = true;
-			} else {
-				document.getElementById("female").checked = true;
-			}
-		</script>
-<!-- zoom image -->
-<script >
-$('.thumbnail').viewbox({
-  template: '<div class="viewbox-container"><div class="viewbox-body"><div class="viewbox-header"></div><div class="viewbox-content"></div><div class="viewbox-footer"></div></div></div>',
-  // loading spinner
-  loader: '<div class="loader"><div class="spinner"><div class="double-bounce1"></div><div class="double-bounce2"></div></div></div>',
-  setTitle: true,
-  margin: 20,
-  resizeDuration: 300,
-  openDuration: 200,
-  closeDuration: 200,
-  closeButton: true,
-  navButtons: false,
-  closeOnSideClick: true,
-  nextOnContentClick: true,
-  useGestures: true
-});
-</script>
+	<script>
+		if ({
+				{
+					Auth::user() - > gender
+				}
+			} == 1) {
+			document.getElementById("male").checked = true;
+		} else {
+			document.getElementById("female").checked = true;
+		}
+	</script>
+	<!-- zoom image -->
+	<script>
+		$('.thumbnail').viewbox({
+			template: '<div class="viewbox-container"><div class="viewbox-body"><div class="viewbox-header"></div><div class="viewbox-content"></div><div class="viewbox-footer"></div></div></div>',
+			// loading spinner
+			loader: '<div class="loader"><div class="spinner"><div class="double-bounce1"></div><div class="double-bounce2"></div></div></div>',
+			setTitle: true,
+			margin: 20,
+			resizeDuration: 300,
+			openDuration: 200,
+			closeDuration: 200,
+			closeButton: true,
+			navButtons: false,
+			closeOnSideClick: true,
+			nextOnContentClick: true,
+			useGestures: true
+		});
+	</script>
 
 </body>
 
