@@ -156,19 +156,20 @@
 															</select>
 														</div>
 													</div>
-													<div class="form-group m-form__group row">
-														<label for="example-text-input" class="col-2 col-form-label" >
-															Prodi Siswa
-														</label>
-														<div class="col-7">
-															<input class="form-control{{ $errors->has('prodiSiswa') ? ' is-invalid' : '' }}" type="text" name="prodiSiswa" value="{{ $isCompleted->prodiSiswa }}"">
-															@if ($errors->has('prodiSiswa'))
-                                            						<span class="invalid-feedback" role="alert">
-                                        								<strong>{{ $errors->first('prodiSiswa') }}</strong>
-																	</span> 
-																@endif
-														</div>
+												<div class="form-group m-form__group row">
+													<label class="col-form-label col-lg-2 col-sm-12">
+														Prodi Siswa
+													</label>
+													<div class="col-lg-7 col-md-12 col-sm-16">
+														<select class="form-control m-select2" id="m_select2_3" name="prodi[]" multiple="multiple">																								
+															@foreach($prodi as $pr)
+															<option value="{{$pr->MatPel}}" @if(strpos($getprodi, $pr->MatPel )!== false) selected @endif > {{$pr->MatPel}}</option>
+															@endforeach																																												
+														</select>
 													</div>
+												</div>	
+	
+
 													<div class="form-group m-form__group row">
 														<label for="example-text-input" class="col-2 col-form-label">
 															No Telepon

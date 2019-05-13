@@ -31,6 +31,29 @@
 	<link rel="shortcut icon" href="assets/demo/demo6/media/img/logo/favicon.ico" />
 	<!-- zoom image css  -->
 	<link rel="stylesheet" href="css/viewbox.css">
+	<script>
+			$(document).ready(function(){
+		 $("#formFilter").on('click',(function(evt){
+            evt.preventDefault();
+            $.ajax({
+                // url: "/appbimbel/public/dashboardsiswa",
+                type: "GET",
+                data:  {pend: $("#pend").val(), bin: $("#bin").val(), mtk: $("#mtk").val(), ipa: $("#ipa").val(), 
+				ips: $("#ips").val(), big: $("#big").val(), prov: $("#prov").val(), kab: $("#kab").val(),
+				kec: $("#kec").val(), kel: $("#kel").val() },
+                processData: false,
+                contentType: false,
+                success: function(data){
+                    console.log(data)
+                },
+                error: function(msg){
+                    console.log(msg)
+                }           
+            });
+		}));
+		});
+		
+</script>
 </head>
 
 <body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-light m-aside-left--fixed m-aside-left--offcanvas m-aside-left--minimize m-brand--minimize m-footer--push m-aside--offcanvas-default">
@@ -665,30 +688,8 @@
 		<!--end::Page Snippets -->
 		<!-- zoom image -->
 		<script src="js/jquery.viewbox.min.js"></script>
-		<!-- <script>
-			$(document).ready(function(){
-				$('select[name="pendidikan"]').on('change',function(){
-				var pendidikanId = $('select[name="pendidikan"]').val()
-				$('select[name="provinsi"]').val()
-				;
-				console.log(pendidikanId);
-				// if(pendidikanId){
-				// 	$.ajax({
-				// 		url: '/appbimbel/public/filter/get',
-				// 		type: "GET",
-				// 		dataType: "json",
-				// 		beforeSend: function(){
-				// 		$('#loader').css("visibility", "visible");							
-				// 		},
-				// 		success: function(data) {
-
-				// 		}
-				// 	})
-				// }
-			});
-			});
-			
-		</script> -->
+		<!-- multiple select -->
+		<script src="js/select2.js" type="text/javascript"></script>
 		
 		<script>
 		var pathname = window.location.pathname;
