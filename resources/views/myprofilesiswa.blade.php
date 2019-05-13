@@ -9,8 +9,8 @@
 						</div>
 						<div class="m-alert__text">
 							<strong>
-													Luar biasa!
-												</strong> Silakan lengkapi profil Anda agar dapat mesen mentor.
+									Luar biasa!
+							</strong> Silakan lengkapi profil Anda agar dapat mesen mentor.
 						</div>
 						<div class="m-alert__actions" style="width: 160px;">
 							<a class="btn btn-info btn-sm m-btn m-btn--pill m-btn--wide" href="profilesiswa">Lengkapi Sekarang</a>
@@ -237,7 +237,7 @@
 															{{ $ProfilSiswa->prodiSiswa }}
 														</span>
 													</div>
-											
+																								
 												</div>
 											</div>
 										</div>
@@ -247,6 +247,145 @@
 							</div>
 						</div>
 					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-xl-11 ">
+						<!--begin:: Widgets/Best Sellers-->
+						<div class="m-portlet m-portlet--full-height ">
+							<div class="m-portlet__head">
+								<div class="m-portlet__head-caption">
+									<div class="m-portlet__head-title">
+										<h3 class="m-portlet__head-text">
+											Data Mentor
+										</h3>
+									</div>
+								</div>
+							</div>
+							<div class="m-portlet__body">
+								<!--begin::Content-->
+								<div class="tab-content">
+									<div class="tab-pane active" id="m_widget5_tab1_content" aria-expanded="true">
+										<!--begin::m-widget5-->
+										<div class="m-widget5">
+											<div class="m-widget5__item">
+												<div class="m-widget5__pic">
+													<img class="m-widget7__img" src="assets/app/media/img//products/product6.jpg" alt="">
+												</div>
+												<div class="m-widget5__content">
+													<h4 class="m-widget5__title">
+														Elma Khoirotun Nafiah
+													</h4>
+													<span class="m-widget5__desc">
+														B.Indonesia, Matematika
+													</span>
+													<div class="m-widget5__info">
+														<span class="m-widget5__author">
+															3 Bulan
+														</span>
+													</div>
+												</div>
+												<div class="m-widget5__stats1">
+													<span class="m-widget5__number">
+														5 Mei- 5 Juli 2019
+													</span>
+													<br>
+													<span class="m-widget5__sales">
+														Month
+													</span>
+												</div>
+												<div class="m-widget5__stats2">
+													<span class="m-widget5__number">
+														Senin- Kamis
+													</span>
+													<br>
+													<span class="m-widget5__votes">
+														Day
+													</span>
+												</div>
+											</div>
+											<div class="m-widget5__item">
+												<div class="m-widget5__pic">
+													<img class="m-widget7__img" src="assets/app/media/img//products/product10.jpg" alt="">
+												</div>
+												<div class="m-widget5__content">
+													<h4 class="m-widget5__title">
+														Elga Wardatun jannah
+													</h4>
+													<span class="m-widget5__desc">
+														IPA, IPS
+													</span>
+													<div class="m-widget5__info">
+														<span class="m-widget5__author">
+														2 Bulan 	
+														</span>
+													</div>
+												</div>
+												<div class="m-widget5__stats1">
+													<span class="m-widget5__number">
+														1 jan- 1 Feb 2020
+													</span>
+													<br>
+													<span class="m-widget5__sales">
+														Month
+													</span>
+												</div>
+												<div class="m-widget5__stats2">
+													<span class="m-widget5__number">
+														Kamis- Minggu
+													</span>
+													<br>
+													<span class="m-widget5__votes">
+														Day
+													</span>
+												</div>
+											</div>
+											<div class="m-widget5__item">
+												<div class="m-widget5__pic">
+													<img class="m-widget7__img" src="assets/app/media/img//products/product11.jpg" alt="">
+												</div>
+												<div class="m-widget5__content">
+													<h4 class="m-widget5__title">
+														Siti Fatimah
+													</h4>
+													<span class="m-widget5__desc">
+														IPA, Matematika, B.Indonesia
+													</span>
+													<div class="m-widget5__info">
+														<span class="m-widget5__author">
+														4 Bulan 	
+														</span>													
+													</div>
+												</div>
+												<div class="m-widget5__stats1">
+													<span class="m-widget5__number">
+														1 Mar- 1 Jun 2020
+													</span>
+													<br>
+													<span class="m-widget5__sales">
+													Month
+													</span>
+												</div>
+												<div class="m-widget5__stats2">
+													<span class="m-widget5__number">
+														Senin- Rabu
+													</span>
+													<br>
+													<span class="m-widget5__votes">
+														Day
+													</span>
+												</div>
+											</div>
+										</div>
+										<!--end::m-widget5-->
+									</div>																		
+								</div>
+								<!--end::Content-->
+							</div>
+						</div>
+						<!--end:: Widgets/Best Sellers-->
+					</div>
+					
 				</div>
 			</div>
 		</div>

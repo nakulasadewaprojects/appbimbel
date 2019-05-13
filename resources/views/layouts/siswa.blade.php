@@ -494,7 +494,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
-										<a href="calendarsiswa" class="m-menu__link ">
+										<a href="multimediasiswa" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -544,7 +544,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
-										<a href="calendarsiswa" class="m-menu__link ">
+										<a href="jadwalsiswa" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
