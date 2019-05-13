@@ -1,4 +1,4 @@
-@extends('layouts.mentor') 
+@extends('layouts.siswa') 
 @section('content')
 			<div class="m-grid__item m-grid__item--fluid m-wrapper">
 				<!-- BEGIN: Subheader -->
@@ -29,10 +29,10 @@
 										</div>
 										<div class="m-card-profile__details">
 											<span class="m-card-profile__name">
-												{{$isCompleted->username}}
+												{{$showmentor->username}}
 											</span>
 											<a href="" class="m-card-profile__email m-link">
-												{{$isCompleted->email}}
+												{{$showmentor->email}}
 											</a>
 										</div>
 									</div>									
@@ -58,7 +58,7 @@
 													Username :
 												</span>
 												<span class="m-widget13__text m-widget13__text-bolder">
-												{{ $isCompleted->username }}
+												{{ $showmentor->username }}
 												</span>
 											</div>
 											<div class="m-widget13__item">
@@ -66,7 +66,7 @@
 													Alamat Email :
 												</span>
 												<span class="m-widget13__text m-widget13__text-bolder">
-												{{ $isCompleted->email }}
+												{{ $showmentor->email }}
 												</span>
 											</div>
 											<div class="m-widget13__item">
@@ -74,7 +74,7 @@
 													Nama Depan :
 												</span>
 												<span class="m-widget13__text m-widget13__text-bolder">
-												{{ $isCompleted->nm_depan }}
+												{{ $showmentor->nm_depan }}
 												</span>
 											</div>
 											<div class="m-widget13__item">
@@ -82,7 +82,7 @@
 													Nama Belakang :
 												</span>
 												<span class="m-widget13__text m-widget13__text-bolder">
-												{{ $isCompleted->nm_belakang }}
+												{{ $showmentor->nm_belakang }}
 												</span>
 											</div>
 											<div class="m-widget13__item">
@@ -90,7 +90,7 @@
 													Jenis Kelamin :
 												</span>
 												<span class="m-widget13__text m-widget13__text-bolder">
-												@if($isCompleted->gender!=2) 
+												@if($showmentor->gender!=2) 
 												laki laki
 												@else
 												perempuan
@@ -102,11 +102,11 @@
 													Alamat :
 												</span>
 												<span class="m-widget13__text m-widget13__text-bolder">
-													{{  $isCompleted->alamat }} ,  
-													{{DB::table('kelurahan')->where('id', $isCompleted->kelurahan)->value('nama')}} ,
-													{{DB::table('kecamatan')->where('id', $isCompleted->kecamatan)->value('nama')}} ,
-													{{DB::table('kota_kabupaten')->where('id', $isCompleted->kota)->value('nama')}} ,
-													{{DB::table('provinsi')->where('id', $isCompleted->provinsi)->value('nama')}} 
+													{{  $showmentor->alamat }} ,  
+													{{DB::table('kelurahan')->where('id', $showmentor->kelurahan)->value('nama')}} ,
+													{{DB::table('kecamatan')->where('id', $showmentor->kecamatan)->value('nama')}} ,
+													{{DB::table('kota_kabupaten')->where('id', $showmentor->kota)->value('nama')}} ,
+													{{DB::table('provinsi')->where('id', $showmentor->provinsi)->value('nama')}} 
 												</span>
 												
 												
@@ -116,7 +116,7 @@
 													Nomor Telepon :
 												</span>
 												<span class="m-widget13__text m-widget13__text-bolder">
-												{{  $isCompleted->noTlpn }}
+												{{  $showmentor->noTlpn }}
 												</span>
 											</div>
 											<div class="m-widget13__item">
@@ -124,7 +124,7 @@
 													Status Pendidikan :
 												</span>
 												<span class="m-widget13__text m-widget13__text-bolder">
-												@if($isCompleted->statusPendidikan!=2) 
+												@if($showmentor->statusPendidikan!=2) 
 												selesai
 												@else
 												masih pendidikan
@@ -137,19 +137,19 @@
 												</span>
 												<span class="m-widget13__text m-widget13__text-bolder">
 
-												@if($isCompleted->pendidikanTerakhir==1) 
+												@if($showmentor->pendidikanTerakhir==1) 
 												SD
-												@elseif($isCompleted->pendidikanTerakhir==2) 
+												@elseif($showmentor->pendidikanTerakhir==2) 
 												SMP
-												@elseif($isCompleted->pendidikanTerakhir==3)
+												@elseif($showmentor->pendidikanTerakhir==3)
 												SMA
-												@elseif($isCompleted->pendidikanTerakhir==4)
+												@elseif($showmentor->pendidikanTerakhir==4)
 												SMK
-												@elseif($isCompleted->pendidikanTerakhir==5)
+												@elseif($showmentor->pendidikanTerakhir==5)
 												D III
-												@elseif($isCompleted->pendidikanTerakhir==6)
+												@elseif($showmentor->pendidikanTerakhir==6)
 												S1
-												@elseif($isCompleted->pendidikanTerakhir==7)
+												@elseif($showmentor->pendidikanTerakhir==7)
 												S2
 												@else
 												S3
@@ -172,6 +172,7 @@
 							</div>
 					</div>
 				</div>
+			</div>
 			</div>
 		
 			@endsection

@@ -28,9 +28,9 @@
 	<link href="http://localhost/appbimbel/public/assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
 	<link href="http://localhost/appbimbel/public/assets/demo/demo6/base/style.bundle.css" rel="stylesheet" type="text/css" />
 	<!--end::Base Styles -->
-	<link rel="shortcut icon" href="assets/demo/demo6/media/img/logo/favicon.ico" />
+	<link rel="shortcut icon" href="http://localhost/appbimbel/public/assets/demo/demo6/media/img/logo/favicon.ico" />
 	<!-- zoom image css  -->
-	<link rel="stylesheet" href="css/viewbox.css">
+	<link rel="stylesheet" href="http://localhost/appbimbel/public/css/viewbox.css">
 </head>
 
 <body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-light m-aside-left--fixed m-aside-left--offcanvas m-aside-left--minimize m-brand--minimize m-footer--push m-aside--offcanvas-default">
@@ -44,8 +44,8 @@
 					<div class="m-stack__item m-brand  m-brand--skin-light ">
 						<div class="m-stack m-stack--ver m-stack--general">
 							<div class="m-stack__item m-stack__item--middle m-brand__logo">
-								<a href="dashboardsiswa" class="m-brand__logo-wrapper">
-									<img alt="" src="assets/demo/demo6/media/img/logo/logo.png" />
+								<a href="http://localhost/appbimbel/public/dashboardsiswa" class="m-brand__logo-wrapper">
+									<img alt="" src="http://localhost/appbimbel/public/assets/demo/demo6/media/img/logo/logo.png" />
 								</a>
 							</div>
 							<div class="m-stack__item m-stack__item--middle m-brand__tools">
@@ -397,7 +397,7 @@
 																</span>
 															</li>
 															<li class="m-nav__item">
-																<a href="myprofilesiswa" class="m-nav__link">
+																<a href="http://localhost/appbimbel/public/myprofilesiswa" class="m-nav__link">
 																	<i class="m-nav__link-icon flaticon-profile-1"></i>
 																	<span class="m-nav__link-title">
 																		<span class="m-nav__link-wrap">
@@ -654,17 +654,17 @@
 		<!-- zoom image -->
 		<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 		<!--begin::Base Scripts -->
-		<script src="assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
-		<script src="assets/demo/demo6/base/scripts.bundle.js" type="text/javascript"></script>
+		<script src="http://localhost/appbimbel/public/assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
+		<script src="http://localhost/appbimbel/public/assets/demo/demo6/base/scripts.bundle.js" type="text/javascript"></script>
 		<!--end::Base Scripts -->
 		<!--begin::Page Vendors -->
-		<script src="assets/vendors/custom/fullcalendar/fullcalendar.bundle.js" type="text/javascript"></script>
+		<script src="http://localhost/appbimbel/public/assets/vendors/custom/fullcalendar/fullcalendar.bundle.js" type="text/javascript"></script>
 		<!--end::Page Vendors -->
 		<!--begin::Page Snippets -->
-		<script src="assets/app/js/dashboard.js" type="text/javascript"></script>
+		<script src="http://localhost/appbimbel/public/assets/app/js/dashboard.js" type="text/javascript"></script>
 		<!--end::Page Snippets -->
 		<!-- zoom image -->
-		<script src="js/jquery.viewbox.min.js"></script>
+		<script src="http://localhost/appbimbel/public/js/jquery.viewbox.min.js"></script>
 		<!-- <script>
 			$(document).ready(function(){
 				$('select[name="pendidikan"]').on('change',function(){
