@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,8 +37,10 @@ Route::get('/myprofilesiswa', 'HomeSiswaController@myprofilsiswa');
 Route::get('/calendarsiswa', 'HomeSiswaController@calendarsiswa');
 Route::put('/profilesiswa/update/{idtbSiswa}', 'HomeSiswaController@update');
 Route::put('/profile/update/{idmentor}', 'HomeController@update');
-Route::get('/kabupaten/get/{id}', 'HomeController@getKabupaten');
-Route::get('/kecamatan/get/{id}', 'HomeController@getKecamatan');
-Route::get('/kelurahan/get/{id}', 'HomeController@getKelurahan');
+Route::get('/kabupaten/get/{id}', 'AlamatController@getKabupaten');
+Route::get('/kecamatan/get/{id}', 'AlamatController@getKecamatan');
+Route::get('/kelurahan/get/{id}', 'AlamatController@getKelurahan');
 Route::put('/profilesiswa/update/{idmentor}', 'HomeSiswaController@update');
 Route::get('/multimediasiswa', 'HomeSiswaController@multimediasiswa');
+Route::get('/filter/get', 'FilterController@Filter');
+// Route::get('/filterPendidikan/get', 'FilterController@Filter');

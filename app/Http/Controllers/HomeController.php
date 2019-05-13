@@ -107,21 +107,7 @@ class HomeController extends Controller
         $prodi2=implode(' ',[$prodi]);
         return view('profile', ['getprodi'=>$prodi2,'isCompleted' => $show, 'p' => $provinsi, 'b' => $kabupaten, 'c' => $kecamatan, 'd' => $kelurahan,'pt'=>$pete, 'prodi'=>$prodimentor]);
        }
-    public function getKabupaten($id)
-    {
-        $kabupaten = DB::table("kota_kabupaten")->where("provinsi_id", $id)->pluck("nama", "id");
-        return json_encode($kabupaten);
-    }
-    public function getKecamatan($id)
-    {
-        $kecamatan = DB::table("kecamatan")->where("kab_kota_id", $id)->pluck("nama", "id");
-        return json_encode($kecamatan);
-    }
-    public function getKelurahan($id)
-    {
-        $kelurahan = DB::table("kelurahan")->where("kecamatan_id", $id)->pluck("nama", "id");
-        return json_encode($kelurahan);
-    }
+    
     public function update($idmentor, Request $request)
     {
         $this->validate($request, [
