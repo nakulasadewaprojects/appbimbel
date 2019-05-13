@@ -629,44 +629,68 @@
 	<ul class="m-nav-sticky" style="margin-top: 30px;">
 		<li class="m-nav-sticky__item" data-toggle="m-tooltip" title="Pendiidikan Terakhir Mentor" data-placement="left">
 			<a href="filter">
-				<i class="la la-comments-o"></i>
-			</a>
-		</li>
+					<i class="la la-comments-o"></i>
+				</a>
+			</li>
+			
+			<li class="m-nav-sticky__item" data-toggle="m-tooltip" title="Lokasi Mentor" data-placement="left">
+				<a href="https://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" target="_blank">
+					<i class="la la-cart-arrow-down"></i>
+				</a>
+			</li>
+			<li class="m-nav-sticky__item" data-toggle="m-tooltip" title="Rating Mentor" data-placement="left">
+				<a href="http://keenthemes.com/metronic/documentation.html" target="_blank">
+					<i class="la la-code-fork"></i>
+				</a>
+			</li>
+			<li class="m-nav-sticky__item" data-toggle="m-tooltip" title="Prodi Mentor" data-placement="left">
+				<a href="http://keenthemes.com/forums/forum/support/metronic5/" target="_blank">
+					<i class="la la-life-ring"></i>
+				</a>
+			</li>
+		</ul>
+		<!-- begin::Quick Nav -->
 
-		<li class="m-nav-sticky__item" data-toggle="m-tooltip" title="Lokasi Mentor" data-placement="left">
-			<a href="https://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" target="_blank">
-				<i class="la la-cart-arrow-down"></i>
-			</a>
-		</li>
-		<li class="m-nav-sticky__item" data-toggle="m-tooltip" title="Rating Mentor" data-placement="left">
-			<a href="http://keenthemes.com/metronic/documentation.html" target="_blank">
-				<i class="la la-code-fork"></i>
-			</a>
-		</li>
-		<li class="m-nav-sticky__item" data-toggle="m-tooltip" title="Prodi Mentor" data-placement="left">
-			<a href="http://keenthemes.com/forums/forum/support/metronic5/" target="_blank">
-				<i class="la la-life-ring"></i>
-			</a>
-		</li>
-	</ul>
-	<!-- begin::Quick Nav -->
+		<!-- zoom image -->
+		<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+		<!--begin::Base Scripts -->
+		<script src="assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
+		<script src="assets/demo/demo6/base/scripts.bundle.js" type="text/javascript"></script>
+		<!--end::Base Scripts -->
+		<!--begin::Page Vendors -->
+		<script src="assets/vendors/custom/fullcalendar/fullcalendar.bundle.js" type="text/javascript"></script>
+		<!--end::Page Vendors -->
+		<!--begin::Page Snippets -->
+		<script src="assets/app/js/dashboard.js" type="text/javascript"></script>
+		<!--end::Page Snippets -->
+		<!-- zoom image -->
+		<script src="js/jquery.viewbox.min.js"></script>
+		<!-- <script>
+			$(document).ready(function(){
+				$('select[name="pendidikan"]').on('change',function(){
+				var pendidikanId = $('select[name="pendidikan"]').val()
+				$('select[name="provinsi"]').val()
+				;
+				console.log(pendidikanId);
+				// if(pendidikanId){
+				// 	$.ajax({
+				// 		url: '/appbimbel/public/filter/get',
+				// 		type: "GET",
+				// 		dataType: "json",
+				// 		beforeSend: function(){
+				// 		$('#loader').css("visibility", "visible");							
+				// 		},
+				// 		success: function(data) {
 
-	<!-- zoom image -->
-	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-	<!--begin::Base Scripts -->
-	<script src="assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
-	<script src="assets/demo/demo6/base/scripts.bundle.js" type="text/javascript"></script>
-	<!--end::Base Scripts -->
-	<!--begin::Page Vendors -->
-	<script src="assets/vendors/custom/fullcalendar/fullcalendar.bundle.js" type="text/javascript"></script>
-	<!--end::Page Vendors -->
-	<!--begin::Page Snippets -->
-	<script src="assets/app/js/dashboard.js" type="text/javascript"></script>
-	<!--end::Page Snippets -->
-	<!-- zoom image -->
-	<script src="js/jquery.viewbox.min.js"></script>
-
-	<script>
+				// 		}
+				// 	})
+				// }
+			});
+			});
+			
+		</script> -->
+		
+		<script>
 		var pathname = window.location.pathname;
 		if (pathname == '/appbimbel/public/dashboardsiswa') {
 			$(document).ready(function() {
