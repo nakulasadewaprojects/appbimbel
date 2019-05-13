@@ -240,7 +240,7 @@
 												</div>
 												<div class="m-widget5__stats1">
 													<br>
-													<a href="detailmentor">
+													<a href="detailmentor/{{$m->idmentor}}">
 													<button type="button" class="btn btn-outline-success btn-sm m-btn m-btn--custom">
 														Detail
 													</button>

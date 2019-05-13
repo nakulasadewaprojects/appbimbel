@@ -23,10 +23,10 @@
 		App Bimbel
 	</title>
 
-	<link href="assets/vendors/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+	<link href="http://localhost/appbimbel/public/assets/vendors/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
 	<!--end::Page Vendors -->
-	<link href="assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
-	<link href="assets/demo/demo6/base/style.bundle.css" rel="stylesheet" type="text/css" />
+	<link href="http://localhost/appbimbel/public/assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
+	<link href="http://localhost/appbimbel/public/assets/demo/demo6/base/style.bundle.css" rel="stylesheet" type="text/css" />
 	<!--end::Base Styles -->
 	<link rel="shortcut icon" href="assets/demo/demo6/media/img/logo/favicon.ico" />
 	<!-- zoom image css  -->
