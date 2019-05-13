@@ -638,7 +638,8 @@
 		<!--end::Page Snippets -->
 		<!-- zoom image -->
 		<script src="js/jquery.viewbox.min.js"></script>
-
+		<script src="js/select2.js" type="text/javascript"></script>
+		
 <script>
 	$(document).ready(function() {
 

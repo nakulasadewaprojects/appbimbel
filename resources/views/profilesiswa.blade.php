@@ -157,6 +157,19 @@
 														</div>
 													</div>
 													<div class="form-group m-form__group row">
+														<label class="col-form-label col-lg-2 col-sm-12">
+															Prodi Siswa
+														</label>
+														<div class="col-lg-7 col-md-12 col-sm-16">
+																<select class="form-control m-select2" id="m_select2_3" name="prodisiswa[]" multiple="multiple">
+																		@foreach($prodisiswa as $ps)
+																		<option value="{{$ps->MatPel}}" @if(strpos($getprodisiswa, $ps->MatPel )!== false) selected @endif > {{$ps->MatPel}}</option>
+																		@endforeach
+																</select>
+														</div>
+													</div>
+
+													{{-- <div class="form-group m-form__group row">
 														<label for="example-text-input" class="col-2 col-form-label" >
 															Prodi Siswa
 														</label>
@@ -168,7 +181,7 @@
 																	</span> 
 																@endif
 														</div>
-													</div>
+													</div> --}}
 													<div class="form-group m-form__group row">
 														<label for="example-text-input" class="col-2 col-form-label">
 															No Telepon
