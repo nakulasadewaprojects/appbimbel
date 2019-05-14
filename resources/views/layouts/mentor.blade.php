@@ -23,8 +23,8 @@ License: You must have a valid license purchased only from themeforest(the above
 
 	<!-- zoom image -->
 
-	<!-- <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}" ></script>
-	<script type="text/javascript" src="{{ asset('js/jquery.imgzoom.pack.js') }}"></script> -->
+	<!-- <script type="text/javascript" src="{{ asset('http://localhost/appbimbel/public/js/jquery.min.js') }}" ></script>
+	<script type="text/javascript" src="{{ asset('http://localhost/appbimbel/public/js/jquery.imgzoom.pack.js') }}"></script> -->
 	
 
 
@@ -45,16 +45,17 @@ License: You must have a valid license purchased only from themeforest(the above
 		});
 	</script>
 	<!--end::Web font -->
-	<link href="assets/vendors/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+	<link href="http://localhost/appbimbel/public/assets/vendors/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
 	<!--begin::Base Styles -->
-	<link href="assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
-	<link href="assets/demo/demo6/base/style.bundle.css" rel="stylesheet" type="text/css" />
+	
+	<link href="http://localhost/appbimbel/public/assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
+	<link href="http://localhost/appbimbel/public/assets/demo/demo6/base/style.bundle.css" rel="stylesheet" type="text/css" />
 	<!--end::Base Styles -->
-	<link rel="shortcut icon" href="assets/demo/demo6/media/img/logo/favicon.ico" />
+	<link rel="shortcut icon" href="http://localhost/appbimbel/public/assets/demo/demo6/media/img/logo/favicon.ico" />
 		<!-- zoom image css  -->
-	<link rel="stylesheet" href="css/viewbox.css">
+	<link rel="stylesheet" href="http://localhost/appbimbel/public/css/viewbox.css">
 	<!-- pdf  -->
-	<link href="css/jquery.touchPDF.css" rel="stylesheet">
+	<link href="http://localhost/appbimbel/public/css/jquery.touchPDF.css" rel="stylesheet">
 
 
 	
@@ -75,7 +76,7 @@ License: You must have a valid license purchased only from themeforest(the above
 						<div class="m-stack m-stack--ver m-stack--general">
 							<div class="m-stack__item m-stack__item--middle m-brand__logo">
 								<a href="dashboard" class="m-brand__logo-wrapper">
-									<img alt="" src="assets/demo/demo6/media/img/logo/logo.png" />
+									<img alt="" src="http://localhost/appbimbel/public/assets/demo/demo6/media/img/logo/logo.png" />
 								</a>
 								<h3 class="m-header__title">
 									Apps
@@ -576,25 +577,25 @@ License: You must have a valid license purchased only from themeforest(the above
 	<!-- zoom image-->
 	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 	<!--begin::Base Scripts -->
-	<script src="assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
-	<script src="assets/demo/demo6/base/scripts.bundle.js" type="text/javascript"></script>
+	<script src="http://localhost/appbimbel/public/assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
+	<script src="http://localhost/appbimbel/public/assets/demo/demo6/base/scripts.bundle.js" type="text/javascript"></script>
 	<!--begin::Page Vendors -->
-	<script src="assets/vendors/custom/fullcalendar/fullcalendar.bundle.js" type="text/javascript"></script>
+	<script src="http://localhost/appbimbel/public/assets/vendors/custom/fullcalendar/fullcalendar.bundle.js" type="text/javascript"></script>
 	<!--end::Page Vendors -->
 	<!--begin::Page Snippets -->
-	<script src="assets/app/js/dashboard.js" type="text/javascript"></script>
+	<script src="http://localhost/appbimbel/public/assets/app/js/dashboard.js" type="text/javascript"></script>
 	<!--end::Page Snippets -->
 	<!-- zoom image -->
-	<script src="js/jquery.viewbox.min.js"></script>
+	<script src="http://localhost/appbimbel/public/js/jquery.viewbox.min.js"></script>
 	<!-- pdf -->
-	<script src="js/pdf.compatibility.js"></script>
-	<script src="js/pdf.js"></script>
+	<script src="http://localhost/appbimbel/public/js/pdf.compatibility.js"></script>
+	<script src="http://localhost/appbimbel/public/js/pdf.js"></script>
 	<!-- <script src="//code.jquery.com/jquery-1.11.2.min.js"></script> -->
-	<script src="js/jquery.touchSwipe.min.js"></script>
-	<script src="js/jquery.touchPDF.js"></script>
-	<script src="js/jquery.panzoom.js"></script>
-	<script src="js/jquery.mousewheel.js"></script>
-	<script src="js/select2.js" type="text/javascript"></script>
+	<script src="http://localhost/appbimbel/public/js/jquery.touchSwipe.min.js"></script>
+	<script src="http://localhost/appbimbel/public/js/jquery.touchPDF.js"></script>
+	<script src="http://localhost/appbimbel/public/js/jquery.panzoom.js"></script>
+	<script src="http://localhost/appbimbel/public/js/jquery.mousewheel.js"></script>
+	<script src="http://localhost/appbimbel/public/js/select2.js" type="text/javascript"></script>
 
 	<script>
 		if ({{Auth::user()->gender}} == 1) {
