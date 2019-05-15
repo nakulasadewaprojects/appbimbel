@@ -46,7 +46,7 @@
 										<div class="m-portlet__head-caption">
 											<div class="m-portlet__head-title">
 												<h3 class="m-portlet__head-text">
-													Detail
+													Detail Mentor
 												</h3>
 											</div>
 										</div>
@@ -154,6 +154,14 @@
 												@else
 												S3
 												@endif
+												</span>
+											</div>
+											<div class="m-widget13__item">
+												<span class="m-widget13__desc m--align-right">
+													Prodi Mentor :
+												</span>
+												<span class="m-widget13__text m-widget13__text-bolder">
+													{{ $showmentor->prodi }}
 												</span>
 											</div>
 											<div class="m-widget13__action m--align-right">

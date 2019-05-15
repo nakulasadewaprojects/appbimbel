@@ -213,10 +213,14 @@
 														@endif
 														</span>
 													</div>
-													
-											
-													
-													
+													<div class="m-widget13__item">
+														<span class="m-widget13__desc m--align-right">
+															Prodi Mentor :
+														</span>
+														<span class="m-widget13__text m-widget13__text-bolder">
+															{{ $isCompleted->prodi }}
+														</span>
+													</div>
 									</div>
 								</div>
 							</div>
