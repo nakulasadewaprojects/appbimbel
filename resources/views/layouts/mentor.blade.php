@@ -491,17 +491,17 @@ License: You must have a valid license purchased only from themeforest(the above
 												<span></span>
 											</i>
 											<span class="m-menu__link-text">
-												Timesheet
+												Approval
 											</span>
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
-										<a href="inner.html" class="m-menu__link ">
+										<a href="" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
 											<span class="m-menu__link-text">
-												Payroll
+												List Jadwal  Mentor
 											</span>
 										</a>
 									</li>

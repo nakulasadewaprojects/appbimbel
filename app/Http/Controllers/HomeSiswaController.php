@@ -8971,8 +8971,6 @@ class HomeSiswaController extends Controller
         $kelurahan = DB::table("kelurahan")->where("kecamatan_id", $id)->pluck("nama", "id");
         return json_encode($kelurahan);
     }
-
-    
   
     public function myprofilsiswa(){
         $siswa = DB::table('tbsiswa')->where('idtbSiswa', Auth::user()->idtbSiswa)->first();
@@ -8994,8 +8992,12 @@ class HomeSiswaController extends Controller
         } else {
             Tbdetailsiswa::where('idtbDetailSiswa', Auth::user()->idtbSiswa)->update(['statusKomplit' => '4']);
         }
-        
         return view('myprofilesiswa' , ['ProfilSiswa' => $showing,'s'=>$siswa] , ['isCompleted' => $showing,'s'=>$siswa]);
+    }
+    public function jadwalsiswa(){
+        $siswa = DB::table('tbsiswa')->where('idtbSiswa', Auth::user()->idtbSiswa)->first();
+        $showing = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->first();
+        return view('jadwalsiswa' , ['ProfilSiswa' => $showing,'s'=>$siswa] , ['isCompleted' => $showing,'s'=>$siswa]);
     }
     public function calendarsiswa(){
         $siswa = DB::table('tbsiswa')->where('idtbSiswa', Auth::user()->idtbSiswa)->first();
@@ -9042,6 +9044,7 @@ class HomeSiswaController extends Controller
             $prodi=$request['prodi'];
             $Tbdetailsiswa->prodiSiswa = $prodi; 
         }
+        // $Tbdetailsiswa->prodiSiswa=$request['prodi'];
         $foto = $request->file('fotoProfile');
         // $tujuan_upload = 'data_fileSiswa';
         if ($request->hasFile('fotoProfile')) {
