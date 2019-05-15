@@ -74,7 +74,7 @@
 								<br>
 								<div class="col-13">
 									<select class="form-control m-input" id="pend" name="pendidikan" type="text">
-										<option value="4"  @if(strpos($url, '4' )!== false) selected @endif>Semua Jenjang</option>
+										<option value="4"  @if(strpos($url,'4' )!== false) selected @endif>Semua Jenjang</option>
 										<option value="1" @if(strpos($url,'1' )!== false) selected @endif> SMA, SMK</option>
 										<option value="2" @if(strpos($url,'2' )!== false) selected @endif> D3</option>
 										<option value="3" @if(strpos($url,'3' )!== false) selected @endif> S1, S2, S3</option>
@@ -145,8 +145,9 @@
 										<div class="col-12">
 											<select class="form-control m-input" id="prov" name="provinsi" type="text">
 												<option value="0">Semua Provinsi</option>
+												{{$idp}}
 												@foreach ($p as $a)
-												<option value="{{ $a->id }}" @if(strpos($url, 'provinsi=$a->id'  )) selected @endif> {{$a->nama}}</option>
+												<option value="{{ $a->id }}" @if(strpos($url, '$idp' )!== false) selected @endif> {{$a->nama}}</option>
 												@endforeach
 
 											</select>

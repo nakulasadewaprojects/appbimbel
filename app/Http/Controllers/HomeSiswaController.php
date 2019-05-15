@@ -25,9 +25,35 @@ class HomeSiswaController extends Controller
         // $showing = DB::table('tbdetailmentor')->where('idmentor', $id)->first();        
         return view ('detailmentor',['showmentor' => $showmentor,'isCompleted' => $showing]);
     }
+    public function formAjukan($id){
+      $showing = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->first();
+      $showsiswa=DB::table('tbsiswa')
+      ->join('tbdetailsiswa','tbsiswa.idtbSiswa','=','tbdetailsiswa.idtbSiswa')
+      ->where('tbsiswa.idtbSiswa', Auth::user()->idtbSiswa)->first();
+      $showmentor=DB::table('tbmentor')
+      ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+      ->where('tbmentor.idmentor', $id)->first();
+      $getprodi = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', $id)->value('prodi');
+        $getexplode = explode(', ',$getprodi);
+      return view ('formAjukan', ['showsiswa'=> $showsiswa,'isCompleted' => $showing, 'showmentor' => $showmentor, 'explode'=>$getexplode ]);
+      // return $getexplode;
+    }
+
+    public function ajukan(Request $request){
+      DB::table('scedulebimbel')->insert([
+        'durasi' => $request->durasi,
+        'startBimbel' => $request->start,
+        'endBimbel' => $request->end,
+      ]);
+      return redirect('/dashboardsiswa');
+
+    }
+
+    
     public function dashboardsiswa(Request $request)
     {
         $provinsi  = DB::table('provinsi')->get();
+        $idprovinsi  = DB::table('provinsi')->pluck('id');
         $kabupaten = DB::table('kota_kabupaten')->get();
         $kecamatan = DB::table('kecamatan')->get();
         $kelurahan = DB::table('kelurahan')->get();
@@ -8884,13 +8910,10 @@ class HomeSiswaController extends Controller
       // $url=$request->fullUrl();
       // $url = $request->path();
     
-        return view('dashboardsiswa', ['isCompleted' => $showing,'grup'=> $grup, 'url'=>$url, 'mentor'=>$getMentor,'s'=>$siswa2, 'p' => $provinsi, 'b' => $kabupaten, 'c' => $kecamatan, 'd' => $kelurahan]);
+        return view('dashboardsiswa', ['isCompleted' => $showing,'idp'=>$idprovinsi,'grup'=> $grup, 'url'=>$url, 'mentor'=>$getMentor,'s'=>$siswa2, 'p' => $provinsi, 'b' => $kabupaten, 'c' => $kecamatan, 'd' => $kelurahan]);
         
         // return $getexplode;
     }
-
-    
-
     public function profilesiswa()
     {
         // $showing = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->first();
