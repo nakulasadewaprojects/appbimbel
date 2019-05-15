@@ -49,7 +49,7 @@
 	</div>
 	<div class="m-content">
 		<div class="row">
-		<div class="col-xl-12">
+			<div class="col-xl-12">
 				<div class="m-portlet  ">
 					<div class="m-portlet__head">
 						<div class="m-portlet__head-caption">
@@ -260,7 +260,7 @@
 					<!--end:: Widgets/Authors Profit-->
 				</div>
 			</div>
-			
+
 
 
 
