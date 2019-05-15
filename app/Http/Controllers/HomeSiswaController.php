@@ -109,7 +109,7 @@ class HomeSiswaController extends Controller
             ->where('prodi', 'like', '%'.$getexplode[0].'%')
             ->where('statusTutor', '=', 1)
             ->where('statKomplit', '=', 7)
-            ->get();
+            ->paginate(5);    
         }elseif(count($getexplode)==2){
             $getMentor  = DB::table('tbdetailmentor')
             ->join('tbmentor','tbdetailmentor.idmentor','=','tbmentor.idmentor')
@@ -122,7 +122,7 @@ class HomeSiswaController extends Controller
                 $getexplode = explode(', ',$getprodi);
                 $q->where('prodi', 'like', '%'.$getexplode[0].'%')
                 ->orWhere('prodi', 'like', '%'.$getexplode[1].'%');})
-                ->get();
+                ->paginate(5);    
         }elseif(count($getexplode)==3){
             $getMentor  = DB::table('tbdetailmentor')
             ->join('tbmentor','tbdetailmentor.idmentor','=','tbmentor.idmentor')
@@ -136,7 +136,7 @@ class HomeSiswaController extends Controller
                 $q->where('prodi', 'like', '%'.$getexplode[0].'%')
                 ->orWhere('prodi', 'like', '%'.$getexplode[1].'%')
                 ->orWhere('prodi', 'like', '%'.$getexplode[2].'%');})
-                ->get();
+                ->paginate(5);    
         }elseif(count($getexplode)==4){
             $getMentor  = DB::table('tbdetailmentor')
             ->join('tbmentor','tbdetailmentor.idmentor','=','tbmentor.idmentor')
@@ -151,7 +151,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi', 'like', '%'.$getexplode[1].'%')
                 ->orWhere('prodi', 'like', '%'.$getexplode[2].'%')
                 ->orWhere('prodi', 'like', '%'.$getexplode[3].'%');})
-                ->get();            
+                ->paginate(5);            
         }elseif(count($getexplode)==5){
             $getMentor  = DB::table('tbdetailmentor')
             ->join('tbmentor','tbdetailmentor.idmentor','=','tbmentor.idmentor')
@@ -167,7 +167,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi', 'like', '%'.$getexplode[2].'%')
                 ->orWhere('prodi', 'like', '%'.$getexplode[3].'%')
                 ->orWhere('prodi', 'like', '%'.$getexplode[4].'%');})
-                ->get();                        
+                ->paginate(5);                        
         }  
         else{
 
@@ -180,7 +180,7 @@ class HomeSiswaController extends Controller
             ->where('statKomplit',7)
             ->where('statusTutor',1)
             ->whereIN('pendidikanTerakhir',[3,4])
-            ->get();
+            ->paginate(5);
   //=================================================================================ISI 1=====================================================================================
             //BIN, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
             if($request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
@@ -194,7 +194,7 @@ class HomeSiswaController extends Controller
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //BIN, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -207,7 +207,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //BIN, PROVINSI, KABUPATEN
             if($request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -219,7 +219,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //BIN, PROVINSI
             if($request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -230,7 +230,7 @@ class HomeSiswaController extends Controller
                 ->where('prodi','like','%Bhs. Indonesia%')
                 ->where('provinsi',$request['provinsi'])
                 ->whereIN('pendidikanTerakhir',[3,4])
-                ->get();
+                ->paginate(5);
             }
             //BIN DAN SEMUA LOKASI
             if($request->hasAny('bin') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -240,7 +240,7 @@ class HomeSiswaController extends Controller
                 ->where('statusTutor',1)
                 ->where('prodi','like','%Bhs. Indonesia%')
                 ->whereIN('pendidikanTerakhir',[3,4])
-                ->get();
+                ->paginate(5);
             }
           
           //MTK, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
@@ -255,7 +255,7 @@ class HomeSiswaController extends Controller
             ->where('kecamatan',$request['kecamatan'])
             ->where('kelurahan',$request['kelurahan'])
             ->whereIN('pendidikanTerakhir',[3,4])
-            ->get();
+            ->paginate(5);
           }
           //MTK, PROVINSI, KABUPATEN, KECAMATAN,
           if($request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -268,7 +268,7 @@ class HomeSiswaController extends Controller
             ->where('kota',$request['kabupaten'])
             ->where('kecamatan',$request['kecamatan'])
             ->whereIN('pendidikanTerakhir',[3,4])
-            ->get();
+            ->paginate(5);
           }
           //MTK, PROVINSI, KABUPATEN
           if($request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -280,7 +280,7 @@ class HomeSiswaController extends Controller
             ->where('provinsi',$request['provinsi'])
             ->where('kota',$request['kabupaten'])
             ->whereIN('pendidikanTerakhir',[3,4])
-            ->get();
+            ->paginate(5);
           }
           //MTK, PROVINSI
           if($request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -291,7 +291,7 @@ class HomeSiswaController extends Controller
               ->where('prodi','like','%Matematika%')
               ->where('provinsi',$request['provinsi'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
           }
           //MTK DAN SEMUA LOKASI
           if($request->hasAny('mtk') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -301,7 +301,7 @@ class HomeSiswaController extends Controller
               ->where('statusTutor',1)
               ->where('prodi','like','%Matematika%')
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
           }
 
          //IPA, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
@@ -316,7 +316,7 @@ class HomeSiswaController extends Controller
           ->where('kecamatan',$request['kecamatan'])
           ->where('kelurahan',$request['kelurahan'])
           ->whereIN('pendidikanTerakhir',[3,4])
-          ->get();
+          ->paginate(5);
         }
         //IPA, PROVINSI, KABUPATEN, KECAMATAN,
         if($request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -329,7 +329,7 @@ class HomeSiswaController extends Controller
           ->where('kota',$request['kabupaten'])
           ->where('kecamatan',$request['kecamatan'])
           ->whereIN('pendidikanTerakhir',[3,4])
-          ->get();
+          ->paginate(5);
         }
         //IPA, PROVINSI, KABUPATEN
         if($request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -341,7 +341,7 @@ class HomeSiswaController extends Controller
           ->where('provinsi',$request['provinsi'])
           ->where('kota',$request['kabupaten'])
           ->whereIN('pendidikanTerakhir',[3,4])
-          ->get();
+          ->paginate(5);
         }
         //IPA, PROVINSI
         if($request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -352,7 +352,7 @@ class HomeSiswaController extends Controller
             ->where('prodi','like','%IPA%')
             ->where('provinsi',$request['provinsi'])
             ->whereIN('pendidikanTerakhir',[3,4])
-            ->get();
+            ->paginate(5);
         }
         //IPA DAN SEMUA LOKASI
         if($request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -362,7 +362,7 @@ class HomeSiswaController extends Controller
             ->where('statusTutor',1)
             ->where('prodi','like','%IPA%')
             ->whereIN('pendidikanTerakhir',[3,4])
-            ->get();
+            ->paginate(5);
         }
 
        //IPS, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
@@ -377,7 +377,7 @@ class HomeSiswaController extends Controller
         ->where('kecamatan',$request['kecamatan'])
         ->where('kelurahan',$request['kelurahan'])
         ->whereIN('pendidikanTerakhir',[3,4])
-        ->get();
+        ->paginate(5);
       }
       //IPS, PROVINSI, KABUPATEN, KECAMATAN,
       if($request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -390,7 +390,7 @@ class HomeSiswaController extends Controller
         ->where('kota',$request['kabupaten'])
         ->where('kecamatan',$request['kecamatan'])
         ->whereIN('pendidikanTerakhir',[3,4])
-        ->get();
+        ->paginate(5);
       }
       //IPS, PROVINSI, KABUPATEN
       if($request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -402,7 +402,7 @@ class HomeSiswaController extends Controller
         ->where('provinsi',$request['provinsi'])
         ->where('kota',$request['kabupaten'])
         ->whereIN('pendidikanTerakhir',[3,4])
-        ->get();
+        ->paginate(5);
       }
       //IPS, PROVINSI
       if($request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -413,7 +413,7 @@ class HomeSiswaController extends Controller
           ->where('prodi','like','%IPS%')
           ->where('provinsi',$request['provinsi'])
           ->whereIN('pendidikanTerakhir',[3,4])
-          ->get();
+          ->paginate(5);
       }
       //IPS DAN SEMUA LOKASI
       if($request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -423,7 +423,7 @@ class HomeSiswaController extends Controller
           ->where('statusTutor',1)
           ->where('prodi','like','%IPS%')
           ->whereIN('pendidikanTerakhir',[3,4])
-          ->get();
+          ->paginate(5);
       }
 
       //BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
@@ -438,7 +438,7 @@ class HomeSiswaController extends Controller
         ->where('kecamatan',$request['kecamatan'])
         ->where('kelurahan',$request['kelurahan'])
         ->whereIN('pendidikanTerakhir',[3,4])
-        ->get();
+        ->paginate(5);
       }
       //BIG, PROVINSI, KABUPATEN, KECAMATAN,
       if($request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -451,7 +451,7 @@ class HomeSiswaController extends Controller
         ->where('kota',$request['kabupaten'])
         ->where('kecamatan',$request['kecamatan'])
         ->whereIN('pendidikanTerakhir',[3,4])
-        ->get();
+        ->paginate(5);
       }
       //BIG, PROVINSI, KABUPATEN
       if($request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -463,7 +463,7 @@ class HomeSiswaController extends Controller
         ->where('provinsi',$request['provinsi'])
         ->where('kota',$request['kabupaten'])
         ->whereIN('pendidikanTerakhir',[3,4])
-        ->get();
+        ->paginate(5);
       }
       //BIG, PROVINSI
       if($request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -474,7 +474,7 @@ class HomeSiswaController extends Controller
           ->where('prodi','like','%Bhs. Inggris%')
           ->where('provinsi',$request['provinsi'])
           ->whereIN('pendidikanTerakhir',[3,4])
-          ->get();
+          ->paginate(5);
       }
       //BIG DAN SEMUA LOKASI
       if($request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -484,7 +484,7 @@ class HomeSiswaController extends Controller
           ->where('statusTutor',1)
           ->where('prodi','like','%Bhs. Inggris%')
           ->whereIN('pendidikanTerakhir',[3,4])
-          ->get();
+          ->paginate(5);
       }
   //=================================================================================ISI 2=====================================================================================
   //=================================================================================BIN & MTK =====================================================================================
@@ -506,7 +506,7 @@ class HomeSiswaController extends Controller
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -523,7 +523,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK, PROVINSI, KABUPATEN
             if($request->hasAny('bin') && $request->hasAny('mtk') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -538,7 +538,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK, PROVINSI
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -551,7 +551,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%Matematika%')
                 ->where('provinsi',$request['provinsi'])
                 ->whereIN('pendidikanTerakhir',[3,4])
-                ->get();
+                ->paginate(5);
             }
             //BIN & MTK DAN SEMUA LOKASI
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -562,7 +562,7 @@ class HomeSiswaController extends Controller
                 ->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Matematika%')
                 ->whereIN('pendidikanTerakhir',[3,4])
-                ->get();
+                ->paginate(5);
             }
 
                //=================================================================================BIN & IPA =====================================================================================
@@ -584,7 +584,7 @@ class HomeSiswaController extends Controller
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //BIN & IPA, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('bin') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -601,7 +601,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //BIN & IPA, PROVINSI, KABUPATEN
             if($request->hasAny('bin') && $request->hasAny('ipa') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -616,7 +616,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //BIN & IPA, PROVINSI
             if($request->hasAny('bin') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -629,7 +629,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%IPA%')
                 ->where('provinsi',$request['provinsi'])
                 ->whereIN('pendidikanTerakhir',[3,4])
-                ->get();
+                ->paginate(5);
             }
             //BIN & IPA DAN SEMUA LOKASI
             if($request->hasAny('bin') && $request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -640,7 +640,7 @@ class HomeSiswaController extends Controller
                 ->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%IPA%')
                 ->whereIN('pendidikanTerakhir',[3,4])
-                ->get();
+                ->paginate(5);
             }
 
              //=================================================================================BIN & IPS =====================================================================================
@@ -662,7 +662,7 @@ class HomeSiswaController extends Controller
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //BIN & IPS, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('bin') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -679,7 +679,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //BIN & IPS, PROVINSI, KABUPATEN
             if($request->hasAny('bin') && $request->hasAny('ips') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -694,7 +694,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //BIN & IPS, PROVINSI
             if($request->hasAny('bin') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -707,7 +707,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%IPS%')
                 ->where('provinsi',$request['provinsi'])
                 ->whereIN('pendidikanTerakhir',[3,4])
-                ->get();
+                ->paginate(5);
             }
             //BIN & IPS DAN SEMUA LOKASI
             if($request->hasAny('bin') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -718,7 +718,7 @@ class HomeSiswaController extends Controller
                 ->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%IPS%')
                 ->whereIN('pendidikanTerakhir',[3,4])
-                ->get();
+                ->paginate(5);
             }
 
               //=================================================================================BIN & BIG =====================================================================================
@@ -740,7 +740,7 @@ class HomeSiswaController extends Controller
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //BIN & BIG, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('bin') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -757,7 +757,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //BIN & BIG, PROVINSI, KABUPATEN
             if($request->hasAny('bin') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -772,7 +772,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //BIN & BIG, PROVINSI
             if($request->hasAny('bin') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -785,7 +785,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->where('provinsi',$request['provinsi'])
                 ->whereIN('pendidikanTerakhir',[3,4])
-                ->get();
+                ->paginate(5);
             }
             //BIN & BIG DAN SEMUA LOKASI
             if($request->hasAny('bin') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -796,7 +796,7 @@ class HomeSiswaController extends Controller
                 ->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->whereIN('pendidikanTerakhir',[3,4])
-                ->get();
+                ->paginate(5);
             }
               
                //=================================================================================MTK & IPA =====================================================================================
@@ -818,7 +818,7 @@ class HomeSiswaController extends Controller
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //MTK & IPA, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -835,7 +835,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //MTK & IPA, PROVINSI, KABUPATEN
             if($request->hasAny('mtk') && $request->hasAny('ipa') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -850,7 +850,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //MTK & IPA, PROVINSI
             if($request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -863,7 +863,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%IPA%')
                 ->where('provinsi',$request['provinsi'])
                 ->whereIN('pendidikanTerakhir',[3,4])
-                ->get();
+                ->paginate(5);
             }
             //MTK & IPA DAN SEMUA LOKASI
             if($request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -874,7 +874,7 @@ class HomeSiswaController extends Controller
                 ->where('prodi','like','%Matematika%')
                 ->orWhere('prodi','like','%IPA%')
                 ->whereIN('pendidikanTerakhir',[3,4])
-                ->get();
+                ->paginate(5);
             }
 
            //=================================================================================MTK & IPS =====================================================================================
@@ -896,7 +896,7 @@ class HomeSiswaController extends Controller
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //MTK & IPS, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -913,7 +913,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //MTK & IPS, PROVINSI, KABUPATEN
             if($request->hasAny('mtk') && $request->hasAny('ips') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -928,7 +928,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //MTK & IPS, PROVINSI
             if($request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -941,7 +941,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%IPS%')
                 ->where('provinsi',$request['provinsi'])
                 ->whereIN('pendidikanTerakhir',[3,4])
-                ->get();
+                ->paginate(5);
             }
             //MTK & IPS DAN SEMUA LOKASI
             if($request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -952,7 +952,7 @@ class HomeSiswaController extends Controller
                 ->where('prodi','like','%Matematika%')
                 ->orWhere('prodi','like','%IPS%')
                 ->whereIN('pendidikanTerakhir',[3,4])
-                ->get();
+                ->paginate(5);
             }
 
                 //=================================================================================MTK & BIG =====================================================================================
@@ -974,7 +974,7 @@ class HomeSiswaController extends Controller
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //MTK & BIG, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -991,7 +991,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //MTK & BIG, PROVINSI, KABUPATEN
             if($request->hasAny('mtk') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -1006,7 +1006,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //MTK & BIG, PROVINSI
             if($request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -1019,7 +1019,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->where('provinsi',$request['provinsi'])
                 ->whereIN('pendidikanTerakhir',[3,4])
-                ->get();
+                ->paginate(5);
             }
             //MTK & BIG DAN SEMUA LOKASI
             if($request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -1030,7 +1030,7 @@ class HomeSiswaController extends Controller
                 ->where('prodi','like','%Matematika%')
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->whereIN('pendidikanTerakhir',[3,4])
-                ->get();
+                ->paginate(5);
             }
                   //=================================================================================IPA & IPS =====================================================================================
 
@@ -1051,7 +1051,7 @@ class HomeSiswaController extends Controller
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -1068,7 +1068,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //IPA & IPS, PROVINSI, KABUPATEN
             if($request->hasAny('ipa') && $request->hasAny('ips') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -1083,7 +1083,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //IPA & IPS, PROVINSI
             if($request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -1096,7 +1096,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%IPS%')
                 ->where('provinsi',$request['provinsi'])
                 ->whereIN('pendidikanTerakhir',[3,4])
-                ->get();
+                ->paginate(5);
             }
             //IPA & IPS DAN SEMUA LOKASI
             if($request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -1107,7 +1107,7 @@ class HomeSiswaController extends Controller
                 ->where('prodi','like','%IPA%')
                 ->orWhere('prodi','like','%IPS%')
                 ->whereIN('pendidikanTerakhir',[3,4])
-                ->get();
+                ->paginate(5);
             }
                //=================================================================================IPA & BIG =====================================================================================
 
@@ -1128,7 +1128,7 @@ class HomeSiswaController extends Controller
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //IPA & BIG, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -1145,7 +1145,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //IPA & BIG, PROVINSI, KABUPATEN
             if($request->hasAny('ipa') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -1160,7 +1160,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //IPA & BIG, PROVINSI
             if($request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -1173,7 +1173,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->where('provinsi',$request['provinsi'])
                 ->whereIN('pendidikanTerakhir',[3,4])
-                ->get();
+                ->paginate(5);
             }
             //IPA & BIG DAN SEMUA LOKASI
             if($request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -1184,7 +1184,7 @@ class HomeSiswaController extends Controller
                 ->where('prodi','like','%IPA%')
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->whereIN('pendidikanTerakhir',[3,4])
-                ->get();
+                ->paginate(5);
             }
                //=================================================================================IPS & BIG =====================================================================================
 
@@ -1205,7 +1205,7 @@ class HomeSiswaController extends Controller
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -1222,7 +1222,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //IPS & BIG, PROVINSI, KABUPATEN
             if($request->hasAny('ips') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -1237,7 +1237,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //IPS & BIG, PROVINSI
             if($request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -1250,7 +1250,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->where('provinsi',$request['provinsi'])
                 ->whereIN('pendidikanTerakhir',[3,4])
-                ->get();
+                ->paginate(5);
             }
             //IPS & BIG DAN SEMUA LOKASI
             if($request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -1261,7 +1261,7 @@ class HomeSiswaController extends Controller
                 ->where('prodi','like','%IPS%')
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->whereIN('pendidikanTerakhir',[3,4])
-                ->get();
+                ->paginate(5);
             }
   //=================================================================================ISI 3=====================================================================================
               //=================================================================================BIN & MTK & IPA=====================================================================================
@@ -1288,7 +1288,7 @@ class HomeSiswaController extends Controller
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPA, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -1309,7 +1309,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPA, PROVINSI, KABUPATEN
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -1327,7 +1327,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPA, PROVINSI
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -1342,7 +1342,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%IPA%')
                 ->where('provinsi',$request['provinsi'])
                 ->whereIN('pendidikanTerakhir',[3,4])
-                ->get();
+                ->paginate(5);
             }
             //BIN & MTK & IPA, DAN SEMUA LOKASI
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -1354,7 +1354,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%Matematika%')
                 ->orWhere('prodi','like','%IPA%')
                 ->whereIN('pendidikanTerakhir',[3,4])
-                ->get();
+                ->paginate(5);
             }
                 //=================================================================================BIN & MTK & IPS=====================================================================================
 
@@ -1380,7 +1380,7 @@ class HomeSiswaController extends Controller
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPS, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -1401,7 +1401,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPS, PROVINSI, KABUPATEN
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -1419,7 +1419,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPS, PROVINSI
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -1434,7 +1434,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%IPS%')
                 ->where('provinsi',$request['provinsi'])
                 ->whereIN('pendidikanTerakhir',[3,4])
-                ->get();
+                ->paginate(5);
             }
             //BIN & MTK & IPS DAN SEMUA LOKASI
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -1446,7 +1446,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%Matematika%')
                 ->orWhere('prodi','like','%IPS%')
                 ->whereIN('pendidikanTerakhir',[3,4])
-                ->get();
+                ->paginate(5);
             }
               //=================================================================================BIN & MTK & BIG=====================================================================================
 
@@ -1472,7 +1472,7 @@ class HomeSiswaController extends Controller
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & BIG, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -1493,7 +1493,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & BIG, PROVINSI, KABUPATEN
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -1511,7 +1511,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & BIG, PROVINSI
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -1526,7 +1526,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->where('provinsi',$request['provinsi'])
                 ->whereIN('pendidikanTerakhir',[3,4])
-                ->get();
+                ->paginate(5);
             }
             //BIN & MTK & BIG DAN SEMUA LOKASI
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -1538,7 +1538,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%Matematika%')
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->whereIN('pendidikanTerakhir',[3,4])
-                ->get();
+                ->paginate(5);
             }
               //=================================================================================MTK & IPA & IPS=====================================================================================
 
@@ -1564,7 +1564,7 @@ class HomeSiswaController extends Controller
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             // MTK & IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -1585,7 +1585,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //MTK & IPA & IPS, PROVINSI, KABUPATEN
             if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -1603,7 +1603,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             // MTK & IPA & IPS, PROVINSI
             if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -1618,7 +1618,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%IPS%')
                 ->where('provinsi',$request['provinsi'])
                 ->whereIN('pendidikanTerakhir',[3,4])
-                ->get();
+                ->paginate(5);
             }
             //MTK & IPA & IPS, DAN SEMUA LOKASI
             if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -1630,7 +1630,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%IPA%')
                 ->orwhere('prodi','like','%IPS%')
                 ->whereIN('pendidikanTerakhir',[3,4])
-                ->get();
+                ->paginate(5);
             }
                         //=================================================================================IPA & IPS & BIG =====================================================================================
 
@@ -1656,7 +1656,7 @@ class HomeSiswaController extends Controller
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             // IPA & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -1677,7 +1677,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //IPA & IPS & BIG, PROVINSI, KABUPATEN
             if($request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -1695,7 +1695,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //IPA & IPS & BIG, PROVINSI
             if($request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -1710,7 +1710,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->where('provinsi',$request['provinsi'])
                 ->whereIN('pendidikanTerakhir',[3,4])
-                ->get();
+                ->paginate(5);
             }
             //IPA & IPS & BIG, DAN SEMUA LOKASI
             if($request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -1722,7 +1722,7 @@ class HomeSiswaController extends Controller
                 ->orwhere('prodi','like','%IPS%')
                 ->orwhere('prodi','like','%Bhs. Inggris%')
                 ->whereIN('pendidikanTerakhir',[3,4])
-                ->get();
+                ->paginate(5);
             }
   //=================================================================================ISI 4=====================================================================================
                //=================================================================================BIN & MTK & IPA & IPS=====================================================================================
@@ -1754,7 +1754,7 @@ class HomeSiswaController extends Controller
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -1779,7 +1779,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPA & IPS, PROVINSI, KABUPATEN
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -1800,7 +1800,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPA & IPS, PROVINSI
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -1817,7 +1817,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%IPS%')
                 ->where('provinsi',$request['provinsi'])
                 ->whereIN('pendidikanTerakhir',[3,4])
-                ->get();
+                ->paginate(5);
             }
             //BIN & MTK & IPA, DAN SEMUA LOKASI
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -1830,7 +1830,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%IPA%')
                 ->orWhere('prodi','like','%IPS%')
                 ->whereIN('pendidikanTerakhir',[3,4])
-                ->get();
+                ->paginate(5);
             }
 
             //=================================================================================BIN & MTK & IPA & BIG =====================================================================================
@@ -1861,7 +1861,7 @@ class HomeSiswaController extends Controller
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPA & BIG, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -1886,7 +1886,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPA & BIG, PROVINSI, KABUPATEN
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -1907,7 +1907,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPA & BIG, PROVINSI
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -1924,7 +1924,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->where('provinsi',$request['provinsi'])
                 ->whereIN('pendidikanTerakhir',[3,4])
-                ->get();
+                ->paginate(5);
             }
             //BIN & MTK & IPA & BIG, DAN SEMUA LOKASI
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -1937,7 +1937,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%IPA%')
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->whereIN('pendidikanTerakhir',[3,4])
-                ->get();
+                ->paginate(5);
             }
                 //=================================================================================BIN & MTK & IPS & BIG=====================================================================================
 
@@ -1968,7 +1968,7 @@ class HomeSiswaController extends Controller
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -1993,7 +1993,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPS & BIG, PROVINSI, KABUPATEN
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -2014,7 +2014,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPS & BIG, PROVINSI
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -2031,7 +2031,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->where('provinsi',$request['provinsi'])
                 ->whereIN('pendidikanTerakhir',[3,4])
-                ->get();
+                ->paginate(5);
             }
             //BIN & MTK & IPS & BIG DAN SEMUA LOKASI
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -2044,7 +2044,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%IPS%')
                 ->orWhere('prodi','like','%bhs. Inggris%')
                 ->whereIN('pendidikanTerakhir',[3,4])
-                ->get();
+                ->paginate(5);
             }
                 //=================================================================================BIN & MTK & IPS & BIG =====================================================================================
 
@@ -2075,7 +2075,7 @@ class HomeSiswaController extends Controller
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -2100,7 +2100,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPS & BIG, PROVINSI, KABUPATEN
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -2121,7 +2121,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPS & BIG, PROVINSI
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big')&& $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -2138,7 +2138,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->where('provinsi',$request['provinsi'])
                 ->whereIN('pendidikanTerakhir',[3,4])
-                ->get();
+                ->paginate(5);
             }
             //BIN & MTK & IPS DAN SEMUA LOKASI
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -2151,7 +2151,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%IPS%')
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->whereIN('pendidikanTerakhir',[3,4])
-                ->get();
+                ->paginate(5);
             }
               //=================================================================================MTK & IPA & IPS & BIG=====================================================================================
 
@@ -2182,7 +2182,7 @@ class HomeSiswaController extends Controller
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             // MTK & IPA & IPS & big, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -2207,7 +2207,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //MTK & IPA & IPS & BIG, PROVINSI, KABUPATEN
             if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -2228,7 +2228,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             // MTK & IPA & IPS & BIG, PROVINSI
             if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips')  && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -2245,7 +2245,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->where('provinsi',$request['provinsi'])
                 ->whereIN('pendidikanTerakhir',[3,4])
-                ->get();
+                ->paginate(5);
             }
             //MTK & IPA & IPS & BIG, DAN SEMUA LOKASI
             if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -2258,7 +2258,7 @@ class HomeSiswaController extends Controller
                 ->orwhere('prodi','like','%IPS%')
                 ->orwhere('prodi','like','%Bhs. Inggris%')
                 ->whereIN('pendidikanTerakhir',[3,4])
-                ->get();
+                ->paginate(5);
             }
   //=================================================================================ISI 5=====================================================================================
               //=================================================================================BIN & MTK & IPA & IPS & BIG=====================================================================================
@@ -2295,7 +2295,7 @@ class HomeSiswaController extends Controller
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPA & IPS & big, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -2324,7 +2324,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPA & IPS & Big, PROVINSI, KABUPATEN
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -2348,7 +2348,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPA & IPS & BIG, PROVINSI
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -2367,7 +2367,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->where('provinsi',$request['provinsi'])
                 ->whereIN('pendidikanTerakhir',[3,4])
-                ->get();
+                ->paginate(5);
             }
             //BIN & MTK & IPA & BIG, DAN SEMUA LOKASI
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -2381,7 +2381,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%IPS%')
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->whereIN('pendidikanTerakhir',[3,4])
-                ->get();
+                ->paginate(5);
             }
             $url=$request->fullUrl();
         }
@@ -2391,7 +2391,7 @@ class HomeSiswaController extends Controller
           ->where('statKomplit',7)
           ->where('statusTutor',1)
           ->whereIN('pendidikanTerakhir',[5,9])
-          ->get();
+          ->paginate(5);
           //=================================================================================ISI 1=====================================================================================
             //BIN, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
             if($request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
@@ -2405,7 +2405,7 @@ class HomeSiswaController extends Controller
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[5,9])
-              ->get();
+              ->paginate(5);
             }
             //BIN, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -2418,7 +2418,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[5,9])
-              ->get();
+              ->paginate(5);
             }
             //BIN, PROVINSI, KABUPATEN
             if($request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -2430,7 +2430,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[5,9])
-              ->get();
+              ->paginate(5);
             }
             //BIN, PROVINSI
             if($request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -2441,7 +2441,7 @@ class HomeSiswaController extends Controller
                 ->where('prodi','like','%Bhs. Indonesia%')
                 ->where('provinsi',$request['provinsi'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
             }
             //BIN DAN SEMUA LOKASI
             if($request->hasAny('bin') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -2451,7 +2451,7 @@ class HomeSiswaController extends Controller
                 ->where('statusTutor',1)
                 ->where('prodi','like','%Bhs. Indonesia%')
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
             }
           
           //MTK, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
@@ -2466,7 +2466,7 @@ class HomeSiswaController extends Controller
             ->where('kecamatan',$request['kecamatan'])
             ->where('kelurahan',$request['kelurahan'])
             ->whereIN('pendidikanTerakhir',[5,9])
-            ->get();
+            ->paginate(5);
           }
           //MTK, PROVINSI, KABUPATEN, KECAMATAN,
           if($request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -2479,7 +2479,7 @@ class HomeSiswaController extends Controller
             ->where('kota',$request['kabupaten'])
             ->where('kecamatan',$request['kecamatan'])
             ->whereIN('pendidikanTerakhir',[5,9])
-            ->get();
+            ->paginate(5);
           }
           //MTK, PROVINSI, KABUPATEN
           if($request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -2491,7 +2491,7 @@ class HomeSiswaController extends Controller
             ->where('provinsi',$request['provinsi'])
             ->where('kota',$request['kabupaten'])
             ->whereIN('pendidikanTerakhir',[5,9])
-            ->get();
+            ->paginate(5);
           }
           //MTK, PROVINSI
           if($request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -2502,7 +2502,7 @@ class HomeSiswaController extends Controller
               ->where('prodi','like','%Matematika%')
               ->where('provinsi',$request['provinsi'])
               ->whereIN('pendidikanTerakhir',[5,9])
-              ->get();
+              ->paginate(5);
           }
           //MTK DAN SEMUA LOKASI
           if($request->hasAny('mtk') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -2512,7 +2512,7 @@ class HomeSiswaController extends Controller
               ->where('statusTutor',1)
               ->where('prodi','like','%Matematika%')
               ->whereIN('pendidikanTerakhir',[5,9])
-              ->get();
+              ->paginate(5);
           }
 
          //IPA, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
@@ -2527,7 +2527,7 @@ class HomeSiswaController extends Controller
           ->where('kecamatan',$request['kecamatan'])
           ->where('kelurahan',$request['kelurahan'])
           ->whereIN('pendidikanTerakhir',[5,9])
-          ->get();
+          ->paginate(5);
         }
         //IPA, PROVINSI, KABUPATEN, KECAMATAN,
         if($request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -2540,7 +2540,7 @@ class HomeSiswaController extends Controller
           ->where('kota',$request['kabupaten'])
           ->where('kecamatan',$request['kecamatan'])
           ->whereIN('pendidikanTerakhir',[5,9])
-          ->get();
+          ->paginate(5);
         }
         //IPA, PROVINSI, KABUPATEN
         if($request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -2552,7 +2552,7 @@ class HomeSiswaController extends Controller
           ->where('provinsi',$request['provinsi'])
           ->where('kota',$request['kabupaten'])
           ->whereIN('pendidikanTerakhir',[5,9])
-          ->get();
+          ->paginate(5);
         }
         //IPA, PROVINSI
         if($request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -2563,7 +2563,7 @@ class HomeSiswaController extends Controller
             ->where('prodi','like','%IPA%')
             ->where('provinsi',$request['provinsi'])
             ->whereIN('pendidikanTerakhir',[5,9])
-            ->get();
+            ->paginate(5);
         }
         //IPA DAN SEMUA LOKASI
         if($request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -2573,7 +2573,7 @@ class HomeSiswaController extends Controller
             ->where('statusTutor',1)
             ->where('prodi','like','%IPA%')
             ->whereIN('pendidikanTerakhir',[5,9])
-            ->get();
+            ->paginate(5);
         }
 
        //IPS, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
@@ -2588,7 +2588,7 @@ class HomeSiswaController extends Controller
         ->where('kecamatan',$request['kecamatan'])
         ->where('kelurahan',$request['kelurahan'])
         ->whereIN('pendidikanTerakhir',[5,9])
-        ->get();
+        ->paginate(5);
       }
       //IPS, PROVINSI, KABUPATEN, KECAMATAN,
       if($request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -2601,7 +2601,7 @@ class HomeSiswaController extends Controller
         ->where('kota',$request['kabupaten'])
         ->where('kecamatan',$request['kecamatan'])
         ->whereIN('pendidikanTerakhir',[5,9])
-        ->get();
+        ->paginate(5);
       }
       //IPS, PROVINSI, KABUPATEN
       if($request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -2613,7 +2613,7 @@ class HomeSiswaController extends Controller
         ->where('provinsi',$request['provinsi'])
         ->where('kota',$request['kabupaten'])
         ->whereIN('pendidikanTerakhir',[5,9])
-        ->get();
+        ->paginate(5);
       }
       //IPS, PROVINSI
       if($request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -2624,7 +2624,7 @@ class HomeSiswaController extends Controller
           ->where('prodi','like','%IPS%')
           ->where('provinsi',$request['provinsi'])
           ->whereIN('pendidikanTerakhir',[5,9])
-          ->get();
+          ->paginate(5);
       }
       //IPS DAN SEMUA LOKASI
       if($request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -2634,7 +2634,7 @@ class HomeSiswaController extends Controller
           ->where('statusTutor',1)
           ->where('prodi','like','%IPS%')
           ->whereIN('pendidikanTerakhir',[5,9])
-          ->get();
+          ->paginate(5);
       }
 
       //BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
@@ -2649,7 +2649,7 @@ class HomeSiswaController extends Controller
         ->where('kecamatan',$request['kecamatan'])
         ->where('kelurahan',$request['kelurahan'])
         ->whereIN('pendidikanTerakhir',[5,9])
-        ->get();
+        ->paginate(5);
       }
       //BIG, PROVINSI, KABUPATEN, KECAMATAN,
       if($request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -2662,7 +2662,7 @@ class HomeSiswaController extends Controller
         ->where('kota',$request['kabupaten'])
         ->where('kecamatan',$request['kecamatan'])
         ->whereIN('pendidikanTerakhir',[5,9])
-        ->get();
+        ->paginate(5);
       }
       //BIG, PROVINSI, KABUPATEN
       if($request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -2674,7 +2674,7 @@ class HomeSiswaController extends Controller
         ->where('provinsi',$request['provinsi'])
         ->where('kota',$request['kabupaten'])
         ->whereIN('pendidikanTerakhir',[5,9])
-        ->get();
+        ->paginate(5);
       }
       //BIG, PROVINSI
       if($request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -2685,7 +2685,7 @@ class HomeSiswaController extends Controller
           ->where('prodi','like','%Bhs. Inggris%')
           ->where('provinsi',$request['provinsi'])
           ->whereIN('pendidikanTerakhir',[5,9])
-          ->get();
+          ->paginate(5);
       }
       //BIG DAN SEMUA LOKASI
       if($request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -2695,7 +2695,7 @@ class HomeSiswaController extends Controller
           ->where('statusTutor',1)
           ->where('prodi','like','%Bhs. Inggris%')
           ->whereIN('pendidikanTerakhir',[5,9])
-          ->get();
+          ->paginate(5);
       }
       //=================================================================================ISI 2=====================================================================================
   //=================================================================================BIN & MTK =====================================================================================
@@ -2717,7 +2717,7 @@ class HomeSiswaController extends Controller
                 ->where('kecamatan',$request['kecamatan'])
                 ->where('kelurahan',$request['kelurahan'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
               }
               //BIN & MTK, PROVINSI, KABUPATEN, KECAMATAN,
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -2734,7 +2734,7 @@ class HomeSiswaController extends Controller
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
               }
               //BIN & MTK, PROVINSI, KABUPATEN
               if($request->hasAny('bin') && $request->hasAny('mtk') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -2749,7 +2749,7 @@ class HomeSiswaController extends Controller
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
               }
               //BIN & MTK, PROVINSI
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -2762,7 +2762,7 @@ class HomeSiswaController extends Controller
                   ->orWhere('prodi','like','%Matematika%')
                   ->where('provinsi',$request['provinsi'])
                   ->whereIN('pendidikanTerakhir',[5,9])
-                  ->get();
+                  ->paginate(5);
               }
               //BIN & MTK DAN SEMUA LOKASI
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -2773,7 +2773,7 @@ class HomeSiswaController extends Controller
                   ->where('prodi','like','%Bhs. Indonesia%')
                   ->orWhere('prodi','like','%Matematika%')
                   ->whereIN('pendidikanTerakhir',[5,9])
-                  ->get();
+                  ->paginate(5);
               }
   
                  //=================================================================================BIN & IPA =====================================================================================
@@ -2795,7 +2795,7 @@ class HomeSiswaController extends Controller
                 ->where('kecamatan',$request['kecamatan'])
                 ->where('kelurahan',$request['kelurahan'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
               }
               //BIN & IPA, PROVINSI, KABUPATEN, KECAMATAN,
               if($request->hasAny('bin') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -2812,7 +2812,7 @@ class HomeSiswaController extends Controller
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
               }
               //BIN & IPA, PROVINSI, KABUPATEN
               if($request->hasAny('bin') && $request->hasAny('ipa') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -2827,7 +2827,7 @@ class HomeSiswaController extends Controller
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
               }
               //BIN & IPA, PROVINSI
               if($request->hasAny('bin') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -2840,7 +2840,7 @@ class HomeSiswaController extends Controller
                   ->orWhere('prodi','like','%IPA%')
                   ->where('provinsi',$request['provinsi'])
                   ->whereIN('pendidikanTerakhir',[5,9])
-                  ->get();
+                  ->paginate(5);
               }
               //BIN & IPA DAN SEMUA LOKASI
               if($request->hasAny('bin') && $request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -2851,7 +2851,7 @@ class HomeSiswaController extends Controller
                   ->where('prodi','like','%Bhs. Indonesia%')
                   ->orWhere('prodi','like','%IPA%')
                   ->whereIN('pendidikanTerakhir',[5,9])
-                  ->get();
+                  ->paginate(5);
               }
   
                //=================================================================================BIN & IPS =====================================================================================
@@ -2873,7 +2873,7 @@ class HomeSiswaController extends Controller
                 ->where('kecamatan',$request['kecamatan'])
                 ->where('kelurahan',$request['kelurahan'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
               }
               //BIN & IPS, PROVINSI, KABUPATEN, KECAMATAN,
               if($request->hasAny('bin') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -2890,7 +2890,7 @@ class HomeSiswaController extends Controller
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
               }
               //BIN & IPS, PROVINSI, KABUPATEN
               if($request->hasAny('bin') && $request->hasAny('ips') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -2905,7 +2905,7 @@ class HomeSiswaController extends Controller
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
               }
               //BIN & IPS, PROVINSI
               if($request->hasAny('bin') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -2918,7 +2918,7 @@ class HomeSiswaController extends Controller
                   ->orWhere('prodi','like','%IPS%')
                   ->where('provinsi',$request['provinsi'])
                   ->whereIN('pendidikanTerakhir',[5,9])
-                  ->get();
+                  ->paginate(5);
               }
               //BIN & IPS DAN SEMUA LOKASI
               if($request->hasAny('bin') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -2929,7 +2929,7 @@ class HomeSiswaController extends Controller
                   ->where('prodi','like','%Bhs. Indonesia%')
                   ->orWhere('prodi','like','%IPS%')
                   ->whereIN('pendidikanTerakhir',[5,9])
-                  ->get();
+                  ->paginate(5);
               }
   
                 //=================================================================================BIN & BIG =====================================================================================
@@ -2951,7 +2951,7 @@ class HomeSiswaController extends Controller
                 ->where('kecamatan',$request['kecamatan'])
                 ->where('kelurahan',$request['kelurahan'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
               }
               //BIN & BIG, PROVINSI, KABUPATEN, KECAMATAN,
               if($request->hasAny('bin') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -2968,7 +2968,7 @@ class HomeSiswaController extends Controller
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
               }
               //BIN & BIG, PROVINSI, KABUPATEN
               if($request->hasAny('bin') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -2983,7 +2983,7 @@ class HomeSiswaController extends Controller
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
               }
               //BIN & BIG, PROVINSI
               if($request->hasAny('bin') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -2996,7 +2996,7 @@ class HomeSiswaController extends Controller
                   ->orWhere('prodi','like','%Bhs. Inggris%')
                   ->where('provinsi',$request['provinsi'])
                   ->whereIN('pendidikanTerakhir',[5,9])
-                  ->get();
+                  ->paginate(5);
               }
               //BIN & BIG DAN SEMUA LOKASI
               if($request->hasAny('bin') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -3007,7 +3007,7 @@ class HomeSiswaController extends Controller
                   ->where('prodi','like','%Bhs. Indonesia%')
                   ->orWhere('prodi','like','%Bhs. Inggris%')
                   ->whereIN('pendidikanTerakhir',[5,9])
-                  ->get();
+                  ->paginate(5);
               }
                 
                  //=================================================================================MTK & IPA =====================================================================================
@@ -3029,7 +3029,7 @@ class HomeSiswaController extends Controller
                 ->where('kecamatan',$request['kecamatan'])
                 ->where('kelurahan',$request['kelurahan'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
               }
               //MTK & IPA, PROVINSI, KABUPATEN, KECAMATAN,
               if($request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -3046,7 +3046,7 @@ class HomeSiswaController extends Controller
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
               }
               //MTK & IPA, PROVINSI, KABUPATEN
               if($request->hasAny('mtk') && $request->hasAny('ipa') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -3061,7 +3061,7 @@ class HomeSiswaController extends Controller
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
               }
               //MTK & IPA, PROVINSI
               if($request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -3074,7 +3074,7 @@ class HomeSiswaController extends Controller
                   ->orWhere('prodi','like','%IPA%')
                   ->where('provinsi',$request['provinsi'])
                   ->whereIN('pendidikanTerakhir',[5,9])
-                  ->get();
+                  ->paginate(5);
               }
               //MTK & IPA DAN SEMUA LOKASI
               if($request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -3085,7 +3085,7 @@ class HomeSiswaController extends Controller
                   ->where('prodi','like','%Matematika%')
                   ->orWhere('prodi','like','%IPA%')
                   ->whereIN('pendidikanTerakhir',[5,9])
-                  ->get();
+                  ->paginate(5);
               }
   
              //=================================================================================MTK & IPS =====================================================================================
@@ -3107,7 +3107,7 @@ class HomeSiswaController extends Controller
                 ->where('kecamatan',$request['kecamatan'])
                 ->where('kelurahan',$request['kelurahan'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
               }
               //MTK & IPS, PROVINSI, KABUPATEN, KECAMATAN,
               if($request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -3124,7 +3124,7 @@ class HomeSiswaController extends Controller
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
               }
               //MTK & IPS, PROVINSI, KABUPATEN
               if($request->hasAny('mtk') && $request->hasAny('ips') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -3139,7 +3139,7 @@ class HomeSiswaController extends Controller
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
               }
               //MTK & IPS, PROVINSI
               if($request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -3152,7 +3152,7 @@ class HomeSiswaController extends Controller
                   ->orWhere('prodi','like','%IPS%')
                   ->where('provinsi',$request['provinsi'])
                   ->whereIN('pendidikanTerakhir',[5,9])
-                  ->get();
+                  ->paginate(5);
               }
               //MTK & IPS DAN SEMUA LOKASI
               if($request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -3163,7 +3163,7 @@ class HomeSiswaController extends Controller
                   ->where('prodi','like','%Matematika%')
                   ->orWhere('prodi','like','%IPS%')
                   ->whereIN('pendidikanTerakhir',[5,9])
-                  ->get();
+                  ->paginate(5);
               }
   
                   //=================================================================================MTK & BIG =====================================================================================
@@ -3185,7 +3185,7 @@ class HomeSiswaController extends Controller
                 ->where('kecamatan',$request['kecamatan'])
                 ->where('kelurahan',$request['kelurahan'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
               }
               //MTK & BIG, PROVINSI, KABUPATEN, KECAMATAN,
               if($request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -3202,7 +3202,7 @@ class HomeSiswaController extends Controller
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
               }
               //MTK & BIG, PROVINSI, KABUPATEN
               if($request->hasAny('mtk') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -3217,7 +3217,7 @@ class HomeSiswaController extends Controller
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
               }
               //MTK & BIG, PROVINSI
               if($request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -3230,7 +3230,7 @@ class HomeSiswaController extends Controller
                   ->orWhere('prodi','like','%Bhs. Inggris%')
                   ->where('provinsi',$request['provinsi'])
                   ->whereIN('pendidikanTerakhir',[5,9])
-                  ->get();
+                  ->paginate(5);
               }
               //MTK & BIG DAN SEMUA LOKASI
               if($request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -3241,7 +3241,7 @@ class HomeSiswaController extends Controller
                   ->where('prodi','like','%Matematika%')
                   ->orWhere('prodi','like','%Bhs. Inggris%')
                   ->whereIN('pendidikanTerakhir',[5,9])
-                  ->get();
+                  ->paginate(5);
               }
                     //=================================================================================IPA & IPS =====================================================================================
   
@@ -3262,7 +3262,7 @@ class HomeSiswaController extends Controller
                 ->where('kecamatan',$request['kecamatan'])
                 ->where('kelurahan',$request['kelurahan'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
               }
               //IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN,
               if($request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -3279,7 +3279,7 @@ class HomeSiswaController extends Controller
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
               }
               //IPA & IPS, PROVINSI, KABUPATEN
               if($request->hasAny('ipa') && $request->hasAny('ips') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -3294,7 +3294,7 @@ class HomeSiswaController extends Controller
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
               }
               //IPA & IPS, PROVINSI
               if($request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -3307,7 +3307,7 @@ class HomeSiswaController extends Controller
                   ->orWhere('prodi','like','%IPS%')
                   ->where('provinsi',$request['provinsi'])
                   ->whereIN('pendidikanTerakhir',[5,9])
-                  ->get();
+                  ->paginate(5);
               }
               //IPA & IPS DAN SEMUA LOKASI
               if($request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -3318,7 +3318,7 @@ class HomeSiswaController extends Controller
                   ->where('prodi','like','%IPA%')
                   ->orWhere('prodi','like','%IPS%')
                   ->whereIN('pendidikanTerakhir',[5,9])
-                  ->get();
+                  ->paginate(5);
               }
                  //=================================================================================IPA & BIG =====================================================================================
   
@@ -3339,7 +3339,7 @@ class HomeSiswaController extends Controller
                 ->where('kecamatan',$request['kecamatan'])
                 ->where('kelurahan',$request['kelurahan'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
               }
               //IPA & BIG, PROVINSI, KABUPATEN, KECAMATAN,
               if($request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -3356,7 +3356,7 @@ class HomeSiswaController extends Controller
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
               }
               //IPA & BIG, PROVINSI, KABUPATEN
               if($request->hasAny('ipa') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -3371,7 +3371,7 @@ class HomeSiswaController extends Controller
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
               }
               //IPA & BIG, PROVINSI
               if($request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -3384,7 +3384,7 @@ class HomeSiswaController extends Controller
                   ->orWhere('prodi','like','%Bhs. Inggris%')
                   ->where('provinsi',$request['provinsi'])
                   ->whereIN('pendidikanTerakhir',[5,9])
-                  ->get();
+                  ->paginate(5);
               }
               //IPA & BIG DAN SEMUA LOKASI
               if($request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -3395,7 +3395,7 @@ class HomeSiswaController extends Controller
                   ->where('prodi','like','%IPA%')
                   ->orWhere('prodi','like','%Bhs. Inggris%')
                   ->whereIN('pendidikanTerakhir',[5,9])
-                  ->get();
+                  ->paginate(5);
               }
                  //=================================================================================IPS & BIG =====================================================================================
   
@@ -3416,7 +3416,7 @@ class HomeSiswaController extends Controller
                 ->where('kecamatan',$request['kecamatan'])
                 ->where('kelurahan',$request['kelurahan'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
               }
               //IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN,
               if($request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -3433,7 +3433,7 @@ class HomeSiswaController extends Controller
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
               }
               //IPS & BIG, PROVINSI, KABUPATEN
               if($request->hasAny('ips') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -3448,7 +3448,7 @@ class HomeSiswaController extends Controller
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
               }
               //IPS & BIG, PROVINSI
               if($request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -3461,7 +3461,7 @@ class HomeSiswaController extends Controller
                   ->orWhere('prodi','like','%Bhs. Inggris%')
                   ->where('provinsi',$request['provinsi'])
                   ->whereIN('pendidikanTerakhir',[5,9])
-                  ->get();
+                  ->paginate(5);
               }
               //IPS & BIG DAN SEMUA LOKASI
               if($request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -3472,7 +3472,7 @@ class HomeSiswaController extends Controller
                   ->where('prodi','like','%IPS%')
                   ->orWhere('prodi','like','%Bhs. Inggris%')
                   ->whereIN('pendidikanTerakhir',[5,9])
-                  ->get();
+                  ->paginate(5);
               }
                //=================================================================================ISI 3=====================================================================================
               //=================================================================================BIN & MTK & IPA=====================================================================================
@@ -3499,7 +3499,7 @@ class HomeSiswaController extends Controller
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[5,9])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPA, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -3520,7 +3520,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[5,9])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPA, PROVINSI, KABUPATEN
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -3538,7 +3538,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[5,9])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPA, PROVINSI
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -3553,7 +3553,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%IPA%')
                 ->where('provinsi',$request['provinsi'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
             }
             //BIN & MTK & IPA, DAN SEMUA LOKASI
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -3565,7 +3565,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%Matematika%')
                 ->orWhere('prodi','like','%IPA%')
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
             }
                 //=================================================================================BIN & MTK & IPS=====================================================================================
 
@@ -3591,7 +3591,7 @@ class HomeSiswaController extends Controller
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[5,9])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPS, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -3612,7 +3612,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[5,9])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPS, PROVINSI, KABUPATEN
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -3630,7 +3630,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[5,9])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPS, PROVINSI
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -3645,7 +3645,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%IPS%')
                 ->where('provinsi',$request['provinsi'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
             }
             //BIN & MTK & IPS DAN SEMUA LOKASI
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -3657,7 +3657,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%Matematika%')
                 ->orWhere('prodi','like','%IPS%')
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
             }
               //=================================================================================BIN & MTK & BIG=====================================================================================
 
@@ -3683,7 +3683,7 @@ class HomeSiswaController extends Controller
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[5,9])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & BIG, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -3704,7 +3704,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[5,9])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & BIG, PROVINSI, KABUPATEN
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -3722,7 +3722,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[5,9])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & BIG, PROVINSI
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -3737,7 +3737,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->where('provinsi',$request['provinsi'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
             }
             //BIN & MTK & BIG DAN SEMUA LOKASI
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -3749,7 +3749,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%Matematika%')
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
             }
               //=================================================================================MTK & IPA & IPS=====================================================================================
 
@@ -3775,7 +3775,7 @@ class HomeSiswaController extends Controller
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[5,9])
-              ->get();
+              ->paginate(5);
             }
             // MTK & IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -3796,7 +3796,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[5,9])
-              ->get();
+              ->paginate(5);
             }
             //MTK & IPA & IPS, PROVINSI, KABUPATEN
             if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -3814,7 +3814,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[5,9])
-              ->get();
+              ->paginate(5);
             }
             // MTK & IPA & IPS, PROVINSI
             if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -3829,7 +3829,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%IPS%')
                 ->where('provinsi',$request['provinsi'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
             }
             //MTK & IPA & IPS, DAN SEMUA LOKASI
             if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -3841,7 +3841,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%IPA%')
                 ->orwhere('prodi','like','%IPS%')
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
             }
                         //=================================================================================IPA & IPS & BIG =====================================================================================
 
@@ -3867,7 +3867,7 @@ class HomeSiswaController extends Controller
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[5,9])
-              ->get();
+              ->paginate(5);
             }
             // IPA & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -3888,7 +3888,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[5,9])
-              ->get();
+              ->paginate(5);
             }
             //IPA & IPS & BIG, PROVINSI, KABUPATEN
             if($request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -3906,7 +3906,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[5,9])
-              ->get();
+              ->paginate(5);
             }
             //IPA & IPS & BIG, PROVINSI
             if($request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -3921,7 +3921,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->where('provinsi',$request['provinsi'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
             }
             //IPA & IPS & BIG, DAN SEMUA LOKASI
             if($request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -3933,7 +3933,7 @@ class HomeSiswaController extends Controller
                 ->orwhere('prodi','like','%IPS%')
                 ->orwhere('prodi','like','%Bhs. Inggris%')
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
             }
             //=================================================================================ISI 4=====================================================================================
                //=================================================================================BIN & MTK & IPA & IPS=====================================================================================
@@ -3965,7 +3965,7 @@ class HomeSiswaController extends Controller
                 ->where('kecamatan',$request['kecamatan'])
                 ->where('kelurahan',$request['kelurahan'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
               }
               //BIN & MTK & IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN,
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -3990,7 +3990,7 @@ class HomeSiswaController extends Controller
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
               }
               //BIN & MTK & IPA & IPS, PROVINSI, KABUPATEN
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -4011,7 +4011,7 @@ class HomeSiswaController extends Controller
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
               }
               //BIN & MTK & IPA & IPS, PROVINSI
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -4028,7 +4028,7 @@ class HomeSiswaController extends Controller
                   ->orWhere('prodi','like','%IPS%')
                   ->where('provinsi',$request['provinsi'])
                   ->whereIN('pendidikanTerakhir',[5,9])
-                  ->get();
+                  ->paginate(5);
               }
               //BIN & MTK & IPA, DAN SEMUA LOKASI
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -4041,7 +4041,7 @@ class HomeSiswaController extends Controller
                   ->orWhere('prodi','like','%IPA%')
                   ->orWhere('prodi','like','%IPS%')
                   ->whereIN('pendidikanTerakhir',[5,9])
-                  ->get();
+                  ->paginate(5);
               }
   
               //=================================================================================BIN & MTK & IPA & BIG =====================================================================================
@@ -4072,7 +4072,7 @@ class HomeSiswaController extends Controller
                 ->where('kecamatan',$request['kecamatan'])
                 ->where('kelurahan',$request['kelurahan'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
               }
               //BIN & MTK & IPA & BIG, PROVINSI, KABUPATEN, KECAMATAN,
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -4097,7 +4097,7 @@ class HomeSiswaController extends Controller
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
               }
               //BIN & MTK & IPA & BIG, PROVINSI, KABUPATEN
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -4118,7 +4118,7 @@ class HomeSiswaController extends Controller
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
               }
               //BIN & MTK & IPA & BIG, PROVINSI
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -4135,7 +4135,7 @@ class HomeSiswaController extends Controller
                   ->orWhere('prodi','like','%Bhs. Inggris%')
                   ->where('provinsi',$request['provinsi'])
                   ->whereIN('pendidikanTerakhir',[5,9])
-                  ->get();
+                  ->paginate(5);
               }
               //BIN & MTK & IPA & BIG, DAN SEMUA LOKASI
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -4148,7 +4148,7 @@ class HomeSiswaController extends Controller
                   ->orWhere('prodi','like','%IPA%')
                   ->orWhere('prodi','like','%Bhs. Inggris%')
                   ->whereIN('pendidikanTerakhir',[5,9])
-                  ->get();
+                  ->paginate(5);
               }
                   //=================================================================================BIN & MTK & IPS & BIG=====================================================================================
   
@@ -4179,7 +4179,7 @@ class HomeSiswaController extends Controller
                 ->where('kecamatan',$request['kecamatan'])
                 ->where('kelurahan',$request['kelurahan'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
               }
               //BIN & MTK & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN,
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -4204,7 +4204,7 @@ class HomeSiswaController extends Controller
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
               }
               //BIN & MTK & IPS & BIG, PROVINSI, KABUPATEN
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -4225,7 +4225,7 @@ class HomeSiswaController extends Controller
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
               }
               //BIN & MTK & IPS & BIG, PROVINSI
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -4242,7 +4242,7 @@ class HomeSiswaController extends Controller
                   ->orWhere('prodi','like','%Bhs. Inggris%')
                   ->where('provinsi',$request['provinsi'])
                   ->whereIN('pendidikanTerakhir',[5,9])
-                  ->get();
+                  ->paginate(5);
               }
               //BIN & MTK & IPS & BIG DAN SEMUA LOKASI
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -4255,7 +4255,7 @@ class HomeSiswaController extends Controller
                   ->orWhere('prodi','like','%IPS%')
                   ->orWhere('prodi','like','%bhs. Inggris%')
                   ->whereIN('pendidikanTerakhir',[5,9])
-                  ->get();
+                  ->paginate(5);
               }
                   //=================================================================================BIN & MTK & IPS & BIG =====================================================================================
   
@@ -4286,7 +4286,7 @@ class HomeSiswaController extends Controller
                 ->where('kecamatan',$request['kecamatan'])
                 ->where('kelurahan',$request['kelurahan'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
               }
               //BIN & MTK & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN,
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -4311,7 +4311,7 @@ class HomeSiswaController extends Controller
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
               }
               //BIN & MTK & IPS & BIG, PROVINSI, KABUPATEN
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -4332,7 +4332,7 @@ class HomeSiswaController extends Controller
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
               }
               //BIN & MTK & IPS & BIG, PROVINSI
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big')&& $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -4349,7 +4349,7 @@ class HomeSiswaController extends Controller
                   ->orWhere('prodi','like','%Bhs. Inggris%')
                   ->where('provinsi',$request['provinsi'])
                   ->whereIN('pendidikanTerakhir',[5,9])
-                  ->get();
+                  ->paginate(5);
               }
               //BIN & MTK & IPS DAN SEMUA LOKASI
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -4362,7 +4362,7 @@ class HomeSiswaController extends Controller
                   ->orWhere('prodi','like','%IPS%')
                   ->orWhere('prodi','like','%Bhs. Inggris%')
                   ->whereIN('pendidikanTerakhir',[5,9])
-                  ->get();
+                  ->paginate(5);
               }
                 //=================================================================================MTK & IPA & IPS & BIG=====================================================================================
   
@@ -4393,7 +4393,7 @@ class HomeSiswaController extends Controller
                 ->where('kecamatan',$request['kecamatan'])
                 ->where('kelurahan',$request['kelurahan'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
               }
               // MTK & IPA & IPS & big, PROVINSI, KABUPATEN, KECAMATAN,
               if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -4418,7 +4418,7 @@ class HomeSiswaController extends Controller
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
               }
               //MTK & IPA & IPS & BIG, PROVINSI, KABUPATEN
               if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -4439,7 +4439,7 @@ class HomeSiswaController extends Controller
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
               }
               // MTK & IPA & IPS & BIG, PROVINSI
               if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips')  && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -4456,7 +4456,7 @@ class HomeSiswaController extends Controller
                   ->orWhere('prodi','like','%Bhs. Inggris%')
                   ->where('provinsi',$request['provinsi'])
                   ->whereIN('pendidikanTerakhir',[5,9])
-                  ->get();
+                  ->paginate(5);
               }
               //MTK & IPA & IPS & BIG, DAN SEMUA LOKASI
               if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -4469,7 +4469,7 @@ class HomeSiswaController extends Controller
                   ->orwhere('prodi','like','%IPS%')
                   ->orwhere('prodi','like','%Bhs. Inggris%')
                   ->whereIN('pendidikanTerakhir',[5,9])
-                  ->get();
+                  ->paginate(5);
               }
               //=================================================================================ISI 5=====================================================================================
               //=================================================================================BIN & MTK & IPA & IPS & BIG=====================================================================================
@@ -4506,7 +4506,7 @@ class HomeSiswaController extends Controller
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[5,9])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPA & IPS & big, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -4535,7 +4535,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[5,9])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPA & IPS & Big, PROVINSI, KABUPATEN
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -4559,7 +4559,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[5,9])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPA & IPS & BIG, PROVINSI
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -4578,7 +4578,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->where('provinsi',$request['provinsi'])
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
             }
             //BIN & MTK & IPA & BIG, DAN SEMUA LOKASI
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -4592,7 +4592,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%IPS%')
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->whereIN('pendidikanTerakhir',[5,9])
-                ->get();
+                ->paginate(5);
             }
             $url=$request->fullUrl();
         }
@@ -4602,7 +4602,7 @@ class HomeSiswaController extends Controller
           ->where('statKomplit',7)
           ->where('statusTutor',1)
           ->whereIN('pendidikanTerakhir',[6,7,8])
-          ->get();
+          ->paginate(5);
            //=================================================================================ISI 1=====================================================================================
                     //=================================================================================BIN=====================================================================================
            
@@ -4618,7 +4618,7 @@ class HomeSiswaController extends Controller
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             //BIN, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -4631,7 +4631,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             //BIN, PROVINSI, KABUPATEN
             if($request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -4643,7 +4643,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             //BIN, PROVINSI
             if($request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -4654,7 +4654,7 @@ class HomeSiswaController extends Controller
                 ->where('prodi','like','%Bhs. Indonesia%')
                 ->where('provinsi',$request['provinsi'])
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
             }
             //BIN DAN SEMUA LOKASI
             if($request->hasAny('bin') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -4664,7 +4664,7 @@ class HomeSiswaController extends Controller
                 ->where('statusTutor',1)
                 ->where('prodi','like','%Bhs. Indonesia%')
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
             }
                     //=================================================================================MTK=====================================================================================
           
@@ -4680,7 +4680,7 @@ class HomeSiswaController extends Controller
             ->where('kecamatan',$request['kecamatan'])
             ->where('kelurahan',$request['kelurahan'])
             ->whereIN('pendidikanTerakhir',[6,7,8])
-            ->get();
+            ->paginate(5);
           }
           //MTK, PROVINSI, KABUPATEN, KECAMATAN,
           if($request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -4693,7 +4693,7 @@ class HomeSiswaController extends Controller
             ->where('kota',$request['kabupaten'])
             ->where('kecamatan',$request['kecamatan'])
             ->whereIN('pendidikanTerakhir',[6,7,8])
-            ->get();
+            ->paginate(5);
           }
           //MTK, PROVINSI, KABUPATEN
           if($request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -4705,7 +4705,7 @@ class HomeSiswaController extends Controller
             ->where('provinsi',$request['provinsi'])
             ->where('kota',$request['kabupaten'])
             ->whereIN('pendidikanTerakhir',[6,7,8])
-            ->get();
+            ->paginate(5);
           }
           //MTK, PROVINSI
           if($request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -4716,7 +4716,7 @@ class HomeSiswaController extends Controller
               ->where('prodi','like','%Matematika%')
               ->where('provinsi',$request['provinsi'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
           }
           //MTK DAN SEMUA LOKASI
           if($request->hasAny('mtk') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -4726,7 +4726,7 @@ class HomeSiswaController extends Controller
               ->where('statusTutor',1)
               ->where('prodi','like','%Matematika%')
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
           }
                     //=================================================================================IPA=====================================================================================
 
@@ -4742,7 +4742,7 @@ class HomeSiswaController extends Controller
           ->where('kecamatan',$request['kecamatan'])
           ->where('kelurahan',$request['kelurahan'])
           ->whereIN('pendidikanTerakhir',[6,7,8])
-          ->get();
+          ->paginate(5);
         }
         //IPA, PROVINSI, KABUPATEN, KECAMATAN,
         if($request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -4755,7 +4755,7 @@ class HomeSiswaController extends Controller
           ->where('kota',$request['kabupaten'])
           ->where('kecamatan',$request['kecamatan'])
           ->whereIN('pendidikanTerakhir',[6,7,8])
-          ->get();
+          ->paginate(5);
         }
         //IPA, PROVINSI, KABUPATEN
         if($request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -4767,7 +4767,7 @@ class HomeSiswaController extends Controller
           ->where('provinsi',$request['provinsi'])
           ->where('kota',$request['kabupaten'])
           ->whereIN('pendidikanTerakhir',[6,7,8])
-          ->get();
+          ->paginate(5);
         }
         //IPA, PROVINSI
         if($request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -4778,7 +4778,7 @@ class HomeSiswaController extends Controller
             ->where('prodi','like','%IPA%')
             ->where('provinsi',$request['provinsi'])
             ->whereIN('pendidikanTerakhir',[6,7,8])
-            ->get();
+            ->paginate(5);
         }
         //IPA DAN SEMUA LOKASI
         if($request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -4788,7 +4788,7 @@ class HomeSiswaController extends Controller
             ->where('statusTutor',1)
             ->where('prodi','like','%IPA%')
             ->whereIN('pendidikanTerakhir',[6,7,8])
-            ->get();
+            ->paginate(5);
         }
                     //=================================================================================ips=====================================================================================
 
@@ -4804,7 +4804,7 @@ class HomeSiswaController extends Controller
         ->where('kecamatan',$request['kecamatan'])
         ->where('kelurahan',$request['kelurahan'])
         ->whereIN('pendidikanTerakhir',[6,7,8])
-        ->get();
+        ->paginate(5);
       }
       //IPS, PROVINSI, KABUPATEN, KECAMATAN,
       if($request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -4817,7 +4817,7 @@ class HomeSiswaController extends Controller
         ->where('kota',$request['kabupaten'])
         ->where('kecamatan',$request['kecamatan'])
         ->whereIN('pendidikanTerakhir',[6,7,8])
-        ->get();
+        ->paginate(5);
       }
       //IPS, PROVINSI, KABUPATEN
       if($request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -4829,7 +4829,7 @@ class HomeSiswaController extends Controller
         ->where('provinsi',$request['provinsi'])
         ->where('kota',$request['kabupaten'])
         ->whereIN('pendidikanTerakhir',[6,7,8])
-        ->get();
+        ->paginate(5);
       }
       //IPS, PROVINSI
       if($request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -4840,7 +4840,7 @@ class HomeSiswaController extends Controller
           ->where('prodi','like','%IPS%')
           ->where('provinsi',$request['provinsi'])
           ->whereIN('pendidikanTerakhir',[6,7,8])
-          ->get();
+          ->paginate(5);
       }
       //IPS DAN SEMUA LOKASI
       if($request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -4850,7 +4850,7 @@ class HomeSiswaController extends Controller
           ->where('statusTutor',1)
           ->where('prodi','like','%IPS%')
           ->whereIN('pendidikanTerakhir',[6,7,8])
-          ->get();
+          ->paginate(5);
       }
                     //=================================================================================BIG=====================================================================================
     
@@ -4866,7 +4866,7 @@ class HomeSiswaController extends Controller
         ->where('kecamatan',$request['kecamatan'])
         ->where('kelurahan',$request['kelurahan'])
         ->whereIN('pendidikanTerakhir',[6,7,8])
-        ->get();
+        ->paginate(5);
       }
       //BIG, PROVINSI, KABUPATEN, KECAMATAN,
       if($request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -4879,7 +4879,7 @@ class HomeSiswaController extends Controller
         ->where('kota',$request['kabupaten'])
         ->where('kecamatan',$request['kecamatan'])
         ->whereIN('pendidikanTerakhir',[6,7,8])
-        ->get();
+        ->paginate(5);
       }
       //BIG, PROVINSI, KABUPATEN
       if($request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -4891,7 +4891,7 @@ class HomeSiswaController extends Controller
         ->where('provinsi',$request['provinsi'])
         ->where('kota',$request['kabupaten'])
         ->whereIN('pendidikanTerakhir',[6,7,8])
-        ->get();
+        ->paginate(5);
       }
       //BIG, PROVINSI
       if($request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -4902,7 +4902,7 @@ class HomeSiswaController extends Controller
           ->where('prodi','like','%Bhs. Inggris%')
           ->where('provinsi',$request['provinsi'])
           ->whereIN('pendidikanTerakhir',[6,7,8])
-          ->get();
+          ->paginate(5);
       }
       //BIG DAN SEMUA LOKASI
       if($request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -4912,7 +4912,7 @@ class HomeSiswaController extends Controller
           ->where('statusTutor',1)
           ->where('prodi','like','%Bhs. Inggris%')
           ->whereIN('pendidikanTerakhir',[6,7,8])
-          ->get();
+          ->paginate(5);
       }
       //=================================================================================ISI 2=====================================================================================
   //=================================================================================BIN & MTK =====================================================================================
@@ -4934,7 +4934,7 @@ class HomeSiswaController extends Controller
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -4951,7 +4951,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK, PROVINSI, KABUPATEN
             if($request->hasAny('bin') && $request->hasAny('mtk') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -4966,7 +4966,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK, PROVINSI
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -4979,7 +4979,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%Matematika%')
                 ->where('provinsi',$request['provinsi'])
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
             }
             //BIN & MTK DAN SEMUA LOKASI
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -4990,7 +4990,7 @@ class HomeSiswaController extends Controller
                 ->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Matematika%')
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
             }
 
                //=================================================================================BIN & IPA =====================================================================================
@@ -5012,7 +5012,7 @@ class HomeSiswaController extends Controller
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             //BIN & IPA, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('bin') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -5029,7 +5029,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             //BIN & IPA, PROVINSI, KABUPATEN
             if($request->hasAny('bin') && $request->hasAny('ipa') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -5044,7 +5044,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             //BIN & IPA, PROVINSI
             if($request->hasAny('bin') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -5057,7 +5057,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%IPA%')
                 ->where('provinsi',$request['provinsi'])
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
             }
             //BIN & IPA DAN SEMUA LOKASI
             if($request->hasAny('bin') && $request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -5068,7 +5068,7 @@ class HomeSiswaController extends Controller
                 ->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%IPA%')
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
             }
 
              //=================================================================================BIN & IPS =====================================================================================
@@ -5090,7 +5090,7 @@ class HomeSiswaController extends Controller
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             //BIN & IPS, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('bin') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -5107,7 +5107,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             //BIN & IPS, PROVINSI, KABUPATEN
             if($request->hasAny('bin') && $request->hasAny('ips') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -5122,7 +5122,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             //BIN & IPS, PROVINSI
             if($request->hasAny('bin') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -5135,7 +5135,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%IPS%')
                 ->where('provinsi',$request['provinsi'])
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
             }
             //BIN & IPS DAN SEMUA LOKASI
             if($request->hasAny('bin') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -5146,7 +5146,7 @@ class HomeSiswaController extends Controller
                 ->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%IPS%')
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
             }
 
               //=================================================================================BIN & BIG =====================================================================================
@@ -5168,7 +5168,7 @@ class HomeSiswaController extends Controller
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             //BIN & BIG, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('bin') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -5185,7 +5185,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             //BIN & BIG, PROVINSI, KABUPATEN
             if($request->hasAny('bin') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -5200,7 +5200,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             //BIN & BIG, PROVINSI
             if($request->hasAny('bin') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -5213,7 +5213,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->where('provinsi',$request['provinsi'])
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
             }
             //BIN & BIG DAN SEMUA LOKASI
             if($request->hasAny('bin') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -5224,7 +5224,7 @@ class HomeSiswaController extends Controller
                 ->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
             }
               
                //=================================================================================MTK & IPA =====================================================================================
@@ -5246,7 +5246,7 @@ class HomeSiswaController extends Controller
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             //MTK & IPA, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -5263,7 +5263,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             //MTK & IPA, PROVINSI, KABUPATEN
             if($request->hasAny('mtk') && $request->hasAny('ipa') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -5278,7 +5278,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             //MTK & IPA, PROVINSI
             if($request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -5291,7 +5291,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%IPA%')
                 ->where('provinsi',$request['provinsi'])
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
             }
             //MTK & IPA DAN SEMUA LOKASI
             if($request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -5302,7 +5302,7 @@ class HomeSiswaController extends Controller
                 ->where('prodi','like','%Matematika%')
                 ->orWhere('prodi','like','%IPA%')
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
             }
 
            //=================================================================================MTK & IPS =====================================================================================
@@ -5324,7 +5324,7 @@ class HomeSiswaController extends Controller
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             //MTK & IPS, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -5341,7 +5341,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             //MTK & IPS, PROVINSI, KABUPATEN
             if($request->hasAny('mtk') && $request->hasAny('ips') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -5356,7 +5356,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             //MTK & IPS, PROVINSI
             if($request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -5369,7 +5369,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%IPS%')
                 ->where('provinsi',$request['provinsi'])
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
             }
             //MTK & IPS DAN SEMUA LOKASI
             if($request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -5380,7 +5380,7 @@ class HomeSiswaController extends Controller
                 ->where('prodi','like','%Matematika%')
                 ->orWhere('prodi','like','%IPS%')
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
             }
 
                 //=================================================================================MTK & BIG =====================================================================================
@@ -5402,7 +5402,7 @@ class HomeSiswaController extends Controller
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             //MTK & BIG, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -5419,7 +5419,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             //MTK & BIG, PROVINSI, KABUPATEN
             if($request->hasAny('mtk') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -5434,7 +5434,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             //MTK & BIG, PROVINSI
             if($request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -5447,7 +5447,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->where('provinsi',$request['provinsi'])
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
             }
             //MTK & BIG DAN SEMUA LOKASI
             if($request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -5458,7 +5458,7 @@ class HomeSiswaController extends Controller
                 ->where('prodi','like','%Matematika%')
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
             }
                   //=================================================================================IPA & IPS =====================================================================================
 
@@ -5479,7 +5479,7 @@ class HomeSiswaController extends Controller
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             //IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -5496,7 +5496,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             //IPA & IPS, PROVINSI, KABUPATEN
             if($request->hasAny('ipa') && $request->hasAny('ips') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -5511,7 +5511,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             //IPA & IPS, PROVINSI
             if($request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -5524,7 +5524,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%IPS%')
                 ->where('provinsi',$request['provinsi'])
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
             }
             //IPA & IPS DAN SEMUA LOKASI
             if($request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -5535,7 +5535,7 @@ class HomeSiswaController extends Controller
                 ->where('prodi','like','%IPA%')
                 ->orWhere('prodi','like','%IPS%')
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
             }
                //=================================================================================IPA & BIG =====================================================================================
 
@@ -5556,7 +5556,7 @@ class HomeSiswaController extends Controller
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             //IPA & BIG, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -5573,7 +5573,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             //IPA & BIG, PROVINSI, KABUPATEN
             if($request->hasAny('ipa') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -5588,7 +5588,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             //IPA & BIG, PROVINSI
             if($request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -5601,7 +5601,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->where('provinsi',$request['provinsi'])
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
             }
             //IPA & BIG DAN SEMUA LOKASI
             if($request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -5612,7 +5612,7 @@ class HomeSiswaController extends Controller
                 ->where('prodi','like','%IPA%')
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
             }
                //=================================================================================IPS & BIG =====================================================================================
 
@@ -5633,7 +5633,7 @@ class HomeSiswaController extends Controller
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             //IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -5650,7 +5650,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             //IPS & BIG, PROVINSI, KABUPATEN
             if($request->hasAny('ips') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -5665,7 +5665,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             //IPS & BIG, PROVINSI
             if($request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -5678,7 +5678,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->where('provinsi',$request['provinsi'])
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
             }
             //IPS & BIG DAN SEMUA LOKASI
             if($request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -5689,7 +5689,7 @@ class HomeSiswaController extends Controller
                 ->where('prodi','like','%IPS%')
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
             }
             //=================================================================================ISI 3=====================================================================================
               //=================================================================================BIN & MTK & IPA=====================================================================================
@@ -5716,7 +5716,7 @@ class HomeSiswaController extends Controller
                 ->where('kecamatan',$request['kecamatan'])
                 ->where('kelurahan',$request['kelurahan'])
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
               }
               //BIN & MTK & IPA, PROVINSI, KABUPATEN, KECAMATAN,
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -5737,7 +5737,7 @@ class HomeSiswaController extends Controller
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
               }
               //BIN & MTK & IPA, PROVINSI, KABUPATEN
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -5755,7 +5755,7 @@ class HomeSiswaController extends Controller
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
               }
               //BIN & MTK & IPA, PROVINSI
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -5770,7 +5770,7 @@ class HomeSiswaController extends Controller
                   ->orWhere('prodi','like','%IPA%')
                   ->where('provinsi',$request['provinsi'])
                   ->whereIN('pendidikanTerakhir',[6,7,8])
-                  ->get();
+                  ->paginate(5);
               }
               //BIN & MTK & IPA, DAN SEMUA LOKASI
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -5782,7 +5782,7 @@ class HomeSiswaController extends Controller
                   ->orWhere('prodi','like','%Matematika%')
                   ->orWhere('prodi','like','%IPA%')
                   ->whereIN('pendidikanTerakhir',[6,7,8])
-                  ->get();
+                  ->paginate(5);
               }
                   //=================================================================================BIN & MTK & IPS=====================================================================================
   
@@ -5808,7 +5808,7 @@ class HomeSiswaController extends Controller
                 ->where('kecamatan',$request['kecamatan'])
                 ->where('kelurahan',$request['kelurahan'])
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
               }
               //BIN & MTK & IPS, PROVINSI, KABUPATEN, KECAMATAN,
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -5829,7 +5829,7 @@ class HomeSiswaController extends Controller
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
               }
               //BIN & MTK & IPS, PROVINSI, KABUPATEN
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -5847,7 +5847,7 @@ class HomeSiswaController extends Controller
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
               }
               //BIN & MTK & IPS, PROVINSI
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -5862,7 +5862,7 @@ class HomeSiswaController extends Controller
                   ->orWhere('prodi','like','%IPS%')
                   ->where('provinsi',$request['provinsi'])
                   ->whereIN('pendidikanTerakhir',[6,7,8])
-                  ->get();
+                  ->paginate(5);
               }
               //BIN & MTK & IPS DAN SEMUA LOKASI
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -5874,7 +5874,7 @@ class HomeSiswaController extends Controller
                   ->orWhere('prodi','like','%Matematika%')
                   ->orWhere('prodi','like','%IPS%')
                   ->whereIN('pendidikanTerakhir',[6,7,8])
-                  ->get();
+                  ->paginate(5);
               }
                 //=================================================================================BIN & MTK & BIG=====================================================================================
   
@@ -5900,7 +5900,7 @@ class HomeSiswaController extends Controller
                 ->where('kecamatan',$request['kecamatan'])
                 ->where('kelurahan',$request['kelurahan'])
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
               }
               //BIN & MTK & BIG, PROVINSI, KABUPATEN, KECAMATAN,
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -5921,7 +5921,7 @@ class HomeSiswaController extends Controller
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
               }
               //BIN & MTK & BIG, PROVINSI, KABUPATEN
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -5939,7 +5939,7 @@ class HomeSiswaController extends Controller
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
               }
               //BIN & MTK & BIG, PROVINSI
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -5954,7 +5954,7 @@ class HomeSiswaController extends Controller
                   ->orWhere('prodi','like','%Bhs. Inggris%')
                   ->where('provinsi',$request['provinsi'])
                   ->whereIN('pendidikanTerakhir',[6,7,8])
-                  ->get();
+                  ->paginate(5);
               }
               //BIN & MTK & BIG DAN SEMUA LOKASI
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -5966,7 +5966,7 @@ class HomeSiswaController extends Controller
                   ->orWhere('prodi','like','%Matematika%')
                   ->orWhere('prodi','like','%Bhs. Inggris%')
                   ->whereIN('pendidikanTerakhir',[6,7,8])
-                  ->get();
+                  ->paginate(5);
               }
                 //=================================================================================MTK & IPA & IPS=====================================================================================
   
@@ -5992,7 +5992,7 @@ class HomeSiswaController extends Controller
                 ->where('kecamatan',$request['kecamatan'])
                 ->where('kelurahan',$request['kelurahan'])
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
               }
               // MTK & IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN,
               if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -6013,7 +6013,7 @@ class HomeSiswaController extends Controller
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
               }
               //MTK & IPA & IPS, PROVINSI, KABUPATEN
               if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -6031,7 +6031,7 @@ class HomeSiswaController extends Controller
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
               }
               // MTK & IPA & IPS, PROVINSI
               if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -6046,7 +6046,7 @@ class HomeSiswaController extends Controller
                   ->orWhere('prodi','like','%IPS%')
                   ->where('provinsi',$request['provinsi'])
                   ->whereIN('pendidikanTerakhir',[6,7,8])
-                  ->get();
+                  ->paginate(5);
               }
               //MTK & IPA & IPS, DAN SEMUA LOKASI
               if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -6058,7 +6058,7 @@ class HomeSiswaController extends Controller
                   ->orWhere('prodi','like','%IPA%')
                   ->orwhere('prodi','like','%IPS%')
                   ->whereIN('pendidikanTerakhir',[6,7,8])
-                  ->get();
+                  ->paginate(5);
               }
                           //=================================================================================IPA & IPS & BIG =====================================================================================
   
@@ -6084,7 +6084,7 @@ class HomeSiswaController extends Controller
                 ->where('kecamatan',$request['kecamatan'])
                 ->where('kelurahan',$request['kelurahan'])
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
               }
               // IPA & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN,
               if($request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -6105,7 +6105,7 @@ class HomeSiswaController extends Controller
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
               }
               //IPA & IPS & BIG, PROVINSI, KABUPATEN
               if($request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -6123,7 +6123,7 @@ class HomeSiswaController extends Controller
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
               }
               //IPA & IPS & BIG, PROVINSI
               if($request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -6138,7 +6138,7 @@ class HomeSiswaController extends Controller
                   ->orWhere('prodi','like','%Bhs. Inggris%')
                   ->where('provinsi',$request['provinsi'])
                   ->whereIN('pendidikanTerakhir',[6,7,8])
-                  ->get();
+                  ->paginate(5);
               }
               //IPA & IPS & BIG, DAN SEMUA LOKASI
               if($request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -6150,7 +6150,7 @@ class HomeSiswaController extends Controller
                   ->orwhere('prodi','like','%IPS%')
                   ->orwhere('prodi','like','%Bhs. Inggris%')
                   ->whereIN('pendidikanTerakhir',[6,7,8])
-                  ->get();
+                  ->paginate(5);
               }
               //=================================================================================ISI 4=====================================================================================
                //=================================================================================BIN & MTK & IPA & IPS=====================================================================================
@@ -6182,7 +6182,7 @@ class HomeSiswaController extends Controller
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -6207,7 +6207,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPA & IPS, PROVINSI, KABUPATEN
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -6228,7 +6228,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPA & IPS, PROVINSI
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -6245,7 +6245,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%IPS%')
                 ->where('provinsi',$request['provinsi'])
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
             }
             //BIN & MTK & IPA, DAN SEMUA LOKASI
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -6258,7 +6258,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%IPA%')
                 ->orWhere('prodi','like','%IPS%')
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
             }
 
             //=================================================================================BIN & MTK & IPA & BIG =====================================================================================
@@ -6289,7 +6289,7 @@ class HomeSiswaController extends Controller
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPA & BIG, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -6314,7 +6314,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPA & BIG, PROVINSI, KABUPATEN
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -6335,7 +6335,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPA & BIG, PROVINSI
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -6352,7 +6352,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->where('provinsi',$request['provinsi'])
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
             }
             //BIN & MTK & IPA & BIG, DAN SEMUA LOKASI
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -6365,7 +6365,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%IPA%')
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
             }
                 //=================================================================================BIN & MTK & IPS & BIG=====================================================================================
 
@@ -6396,7 +6396,7 @@ class HomeSiswaController extends Controller
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -6421,7 +6421,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPS & BIG, PROVINSI, KABUPATEN
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -6442,7 +6442,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPS & BIG, PROVINSI
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -6459,7 +6459,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->where('provinsi',$request['provinsi'])
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
             }
             //BIN & MTK & IPS & BIG DAN SEMUA LOKASI
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -6472,7 +6472,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%IPS%')
                 ->orWhere('prodi','like','%bhs. Inggris%')
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
             }
                 //=================================================================================BIN & MTK & IPS & BIG =====================================================================================
 
@@ -6503,7 +6503,7 @@ class HomeSiswaController extends Controller
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -6528,7 +6528,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPS & BIG, PROVINSI, KABUPATEN
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -6549,7 +6549,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPS & BIG, PROVINSI
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big')&& $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -6566,7 +6566,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->where('provinsi',$request['provinsi'])
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
             }
             //BIN & MTK & IPS DAN SEMUA LOKASI
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -6579,7 +6579,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%IPS%')
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
             }
               //=================================================================================MTK & IPA & IPS & BIG=====================================================================================
 
@@ -6610,7 +6610,7 @@ class HomeSiswaController extends Controller
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             // MTK & IPA & IPS & big, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -6635,7 +6635,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             //MTK & IPA & IPS & BIG, PROVINSI, KABUPATEN
             if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -6656,7 +6656,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->get();
+              ->paginate(5);
             }
             // MTK & IPA & IPS & BIG, PROVINSI
             if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips')  && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -6673,7 +6673,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->where('provinsi',$request['provinsi'])
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
             }
             //MTK & IPA & IPS & BIG, DAN SEMUA LOKASI
             if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -6686,7 +6686,7 @@ class HomeSiswaController extends Controller
                 ->orwhere('prodi','like','%IPS%')
                 ->orwhere('prodi','like','%Bhs. Inggris%')
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
             }
             //=================================================================================ISI 5=====================================================================================
               //=================================================================================BIN & MTK & IPA & IPS & BIG=====================================================================================
@@ -6723,7 +6723,7 @@ class HomeSiswaController extends Controller
                 ->where('kecamatan',$request['kecamatan'])
                 ->where('kelurahan',$request['kelurahan'])
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
               }
               //BIN & MTK & IPA & IPS & big, PROVINSI, KABUPATEN, KECAMATAN,
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -6752,7 +6752,7 @@ class HomeSiswaController extends Controller
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
               }
               //BIN & MTK & IPA & IPS & Big, PROVINSI, KABUPATEN
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -6776,7 +6776,7 @@ class HomeSiswaController extends Controller
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
                 ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->get();
+                ->paginate(5);
               }
               //BIN & MTK & IPA & IPS & BIG, PROVINSI
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -6795,7 +6795,7 @@ class HomeSiswaController extends Controller
                   ->orWhere('prodi','like','%Bhs. Inggris%')
                   ->where('provinsi',$request['provinsi'])
                   ->whereIN('pendidikanTerakhir',[6,7,8])
-                  ->get();
+                  ->paginate(5);
               }
               //BIN & MTK & IPA & BIG, DAN SEMUA LOKASI
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -6809,7 +6809,7 @@ class HomeSiswaController extends Controller
                   ->orWhere('prodi','like','%IPS%')
                   ->orWhere('prodi','like','%Bhs. Inggris%')
                   ->whereIN('pendidikanTerakhir',[6,7,8])
-                  ->get();
+                  ->paginate(5);
               }
              $url= $request->fullUrl();
         }
@@ -6819,7 +6819,7 @@ class HomeSiswaController extends Controller
             ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
             ->where('statKomplit',7)
             ->where('statusTutor',1)
-            ->get();
+            ->paginate(5);
              //=================================================================================ISI 1=====================================================================================
                     //=================================================================================BIN=====================================================================================
            
@@ -6834,7 +6834,7 @@ class HomeSiswaController extends Controller
             ->where('kota',$request['kabupaten'])
             ->where('kecamatan',$request['kecamatan'])
             ->where('kelurahan',$request['kelurahan'])
-            ->get();
+            ->paginate(5);
           }
           //BIN, PROVINSI, KABUPATEN, KECAMATAN,
           if($request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -6846,7 +6846,7 @@ class HomeSiswaController extends Controller
             ->where('provinsi',$request['provinsi'])
             ->where('kota',$request['kabupaten'])
             ->where('kecamatan',$request['kecamatan'])
-            ->get();
+            ->paginate(5);
           }
           //BIN, PROVINSI, KABUPATEN
           if($request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -6857,7 +6857,7 @@ class HomeSiswaController extends Controller
             ->where('prodi','like','%Bhs. Indonesia%')
             ->where('provinsi',$request['provinsi'])
             ->where('kota',$request['kabupaten'])
-            ->get();
+            ->paginate(5);
           }
           //BIN, PROVINSI
           if($request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -6867,7 +6867,7 @@ class HomeSiswaController extends Controller
               ->where('statusTutor',1)
               ->where('prodi','like','%Bhs. Indonesia%')
               ->where('provinsi',$request['provinsi'])
-              ->get();
+              ->paginate(5);
           }
           //BIN DAN SEMUA LOKASI
           if($request->hasAny('bin') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -6876,7 +6876,7 @@ class HomeSiswaController extends Controller
               ->where('statKomplit',7)
               ->where('statusTutor',1)
               ->where('prodi','like','%Bhs. Indonesia%')
-              ->get();
+              ->paginate(5);
           }
                   //=================================================================================MTK=====================================================================================
         
@@ -6891,7 +6891,7 @@ class HomeSiswaController extends Controller
           ->where('kota',$request['kabupaten'])
           ->where('kecamatan',$request['kecamatan'])
           ->where('kelurahan',$request['kelurahan'])
-          ->get();
+          ->paginate(5);
         }
         //MTK, PROVINSI, KABUPATEN, KECAMATAN,
         if($request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -6903,7 +6903,7 @@ class HomeSiswaController extends Controller
           ->where('provinsi',$request['provinsi'])
           ->where('kota',$request['kabupaten'])
           ->where('kecamatan',$request['kecamatan'])
-          ->get();
+          ->paginate(5);
         }
         //MTK, PROVINSI, KABUPATEN
         if($request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -6914,7 +6914,7 @@ class HomeSiswaController extends Controller
           ->where('prodi','like','%Matematika%')
           ->where('provinsi',$request['provinsi'])
           ->where('kota',$request['kabupaten'])
-          ->get();
+          ->paginate(5);
         }
         //MTK, PROVINSI
         if($request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -6924,7 +6924,7 @@ class HomeSiswaController extends Controller
             ->where('statusTutor',1)
             ->where('prodi','like','%Matematika%')
             ->where('provinsi',$request['provinsi'])
-            ->get();
+            ->paginate(5);
         }
         //MTK DAN SEMUA LOKASI
         if($request->hasAny('mtk') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -6933,7 +6933,7 @@ class HomeSiswaController extends Controller
             ->where('statKomplit',7)
             ->where('statusTutor',1)
             ->where('prodi','like','%Matematika%')
-            ->get();
+            ->paginate(5);
         }
                   //=================================================================================IPA=====================================================================================
 
@@ -6948,7 +6948,7 @@ class HomeSiswaController extends Controller
         ->where('kota',$request['kabupaten'])
         ->where('kecamatan',$request['kecamatan'])
         ->where('kelurahan',$request['kelurahan'])
-        ->get();
+        ->paginate(5);
       }
       //IPA, PROVINSI, KABUPATEN, KECAMATAN,
       if($request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -6960,7 +6960,7 @@ class HomeSiswaController extends Controller
         ->where('provinsi',$request['provinsi'])
         ->where('kota',$request['kabupaten'])
         ->where('kecamatan',$request['kecamatan'])
-        ->get();
+        ->paginate(5);
       }
       //IPA, PROVINSI, KABUPATEN
       if($request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -6971,7 +6971,7 @@ class HomeSiswaController extends Controller
         ->where('prodi','like','%IPA%')
         ->where('provinsi',$request['provinsi'])
         ->where('kota',$request['kabupaten'])
-        ->get();
+        ->paginate(5);
       }
       //IPA, PROVINSI
       if($request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -6981,7 +6981,7 @@ class HomeSiswaController extends Controller
           ->where('statusTutor',1)
           ->where('prodi','like','%IPA%')
           ->where('provinsi',$request['provinsi'])
-          ->get();
+          ->paginate(5);
       }
       //IPA DAN SEMUA LOKASI
       if($request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -6990,7 +6990,7 @@ class HomeSiswaController extends Controller
           ->where('statKomplit',7)
           ->where('statusTutor',1)
           ->where('prodi','like','%IPA%')
-          ->get();
+          ->paginate(5);
       }
                   //=================================================================================ips=====================================================================================
 
@@ -7005,7 +7005,7 @@ class HomeSiswaController extends Controller
       ->where('kota',$request['kabupaten'])
       ->where('kecamatan',$request['kecamatan'])
       ->where('kelurahan',$request['kelurahan'])
-      ->get();
+      ->paginate(5);
     }
     //IPS, PROVINSI, KABUPATEN, KECAMATAN,
     if($request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -7017,7 +7017,7 @@ class HomeSiswaController extends Controller
       ->where('provinsi',$request['provinsi'])
       ->where('kota',$request['kabupaten'])
       ->where('kecamatan',$request['kecamatan'])
-      ->get();
+      ->paginate(5);
     }
     //IPS, PROVINSI, KABUPATEN
     if($request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -7028,7 +7028,7 @@ class HomeSiswaController extends Controller
       ->where('prodi','like','%IPS%')
       ->where('provinsi',$request['provinsi'])
       ->where('kota',$request['kabupaten'])
-      ->get();
+      ->paginate(5);
     }
     //IPS, PROVINSI
     if($request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -7038,7 +7038,7 @@ class HomeSiswaController extends Controller
         ->where('statusTutor',1)
         ->where('prodi','like','%IPS%')
         ->where('provinsi',$request['provinsi'])
-        ->get();
+        ->paginate(5);
     }
     //IPS DAN SEMUA LOKASI
     if($request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -7047,7 +7047,7 @@ class HomeSiswaController extends Controller
         ->where('statKomplit',7)
         ->where('statusTutor',1)
         ->where('prodi','like','%IPS%')
-        ->get();
+        ->paginate(5);
     }
                   //=================================================================================BIG=====================================================================================
   
@@ -7062,7 +7062,7 @@ class HomeSiswaController extends Controller
       ->where('kota',$request['kabupaten'])
       ->where('kecamatan',$request['kecamatan'])
       ->where('kelurahan',$request['kelurahan'])
-      ->get();
+      ->paginate(5);
     }
     //BIG, PROVINSI, KABUPATEN, KECAMATAN,
     if($request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -7074,7 +7074,7 @@ class HomeSiswaController extends Controller
       ->where('provinsi',$request['provinsi'])
       ->where('kota',$request['kabupaten'])
       ->where('kecamatan',$request['kecamatan'])
-      ->get();
+      ->paginate(5);
     }
     //BIG, PROVINSI, KABUPATEN
     if($request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -7085,7 +7085,7 @@ class HomeSiswaController extends Controller
       ->where('prodi','like','%Bhs. Inggris%')
       ->where('provinsi',$request['provinsi'])
       ->where('kota',$request['kabupaten'])
-      ->get();
+      ->paginate(5);
     }
     //BIG, PROVINSI
     if($request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -7095,7 +7095,7 @@ class HomeSiswaController extends Controller
         ->where('statusTutor',1)
         ->where('prodi','like','%Bhs. Inggris%')
         ->where('provinsi',$request['provinsi'])
-        ->get();
+        ->paginate(5);
     }
     //BIG DAN SEMUA LOKASI
     if($request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -7104,7 +7104,7 @@ class HomeSiswaController extends Controller
         ->where('statKomplit',7)
         ->where('statusTutor',1)
         ->where('prodi','like','%Bhs. Inggris%')
-        ->get();
+        ->paginate(5);
     }
       //=================================================================================ISI 2=====================================================================================
   //=================================================================================BIN & MTK =====================================================================================
@@ -7125,7 +7125,7 @@ class HomeSiswaController extends Controller
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
                 ->where('kelurahan',$request['kelurahan'])
-                ->get();
+                ->paginate(5);
               }
               //BIN & MTK, PROVINSI, KABUPATEN, KECAMATAN,
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -7141,7 +7141,7 @@ class HomeSiswaController extends Controller
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
-                ->get();
+                ->paginate(5);
               }
               //BIN & MTK, PROVINSI, KABUPATEN
               if($request->hasAny('bin') && $request->hasAny('mtk') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -7155,7 +7155,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%Matematika%')
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
-                ->get();
+                ->paginate(5);
               }
               //BIN & MTK, PROVINSI
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -7167,7 +7167,7 @@ class HomeSiswaController extends Controller
                   ->where('provinsi',$request['provinsi'])
                   ->orWhere('prodi','like','%Matematika%')
                   ->where('provinsi',$request['provinsi'])
-                  ->get();
+                  ->paginate(5);
               }
               //BIN & MTK DAN SEMUA LOKASI
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -7177,7 +7177,7 @@ class HomeSiswaController extends Controller
                   ->where('statusTutor',1)
                   ->where('prodi','like','%Bhs. Indonesia%')
                   ->orWhere('prodi','like','%Matematika%')
-                  ->get();
+                  ->paginate(5);
               }
   
                  //=================================================================================BIN & IPA =====================================================================================
@@ -7198,7 +7198,7 @@ class HomeSiswaController extends Controller
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
                 ->where('kelurahan',$request['kelurahan'])
-                ->get();
+                ->paginate(5);
               }
               //BIN & IPA, PROVINSI, KABUPATEN, KECAMATAN,
               if($request->hasAny('bin') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -7214,7 +7214,7 @@ class HomeSiswaController extends Controller
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
-                ->get();
+                ->paginate(5);
               }
               //BIN & IPA, PROVINSI, KABUPATEN
               if($request->hasAny('bin') && $request->hasAny('ipa') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -7228,7 +7228,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%IPA%')
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
-                ->get();
+                ->paginate(5);
               }
               //BIN & IPA, PROVINSI
               if($request->hasAny('bin') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -7240,7 +7240,7 @@ class HomeSiswaController extends Controller
                   ->where('provinsi',$request['provinsi'])
                   ->orWhere('prodi','like','%IPA%')
                   ->where('provinsi',$request['provinsi'])
-                  ->get();
+                  ->paginate(5);
               }
               //BIN & IPA DAN SEMUA LOKASI
               if($request->hasAny('bin') && $request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -7250,7 +7250,7 @@ class HomeSiswaController extends Controller
                   ->where('statusTutor',1)
                   ->where('prodi','like','%Bhs. Indonesia%')
                   ->orWhere('prodi','like','%IPA%')
-                  ->get();
+                  ->paginate(5);
               }
   
                //=================================================================================BIN & IPS =====================================================================================
@@ -7271,7 +7271,7 @@ class HomeSiswaController extends Controller
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
                 ->where('kelurahan',$request['kelurahan'])
-                ->get();
+                ->paginate(5);
               }
               //BIN & IPS, PROVINSI, KABUPATEN, KECAMATAN,
               if($request->hasAny('bin') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -7287,7 +7287,7 @@ class HomeSiswaController extends Controller
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
-                ->get();
+                ->paginate(5);
               }
               //BIN & IPS, PROVINSI, KABUPATEN
               if($request->hasAny('bin') && $request->hasAny('ips') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -7301,7 +7301,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%IPS%')
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
-                ->get();
+                ->paginate(5);
               }
               //BIN & IPS, PROVINSI
               if($request->hasAny('bin') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -7313,7 +7313,7 @@ class HomeSiswaController extends Controller
                   ->where('provinsi',$request['provinsi'])
                   ->orWhere('prodi','like','%IPS%')
                   ->where('provinsi',$request['provinsi'])
-                  ->get();
+                  ->paginate(5);
               }
               //BIN & IPS DAN SEMUA LOKASI
               if($request->hasAny('bin') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -7323,7 +7323,7 @@ class HomeSiswaController extends Controller
                   ->where('statusTutor',1)
                   ->where('prodi','like','%Bhs. Indonesia%')
                   ->orWhere('prodi','like','%IPS%')
-                  ->get();
+                  ->paginate(5);
               }
   
                 //=================================================================================BIN & BIG =====================================================================================
@@ -7344,7 +7344,7 @@ class HomeSiswaController extends Controller
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
                 ->where('kelurahan',$request['kelurahan'])
-                ->get();
+                ->paginate(5);
               }
               //BIN & BIG, PROVINSI, KABUPATEN, KECAMATAN,
               if($request->hasAny('bin') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -7360,7 +7360,7 @@ class HomeSiswaController extends Controller
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
-                ->get();
+                ->paginate(5);
               }
               //BIN & BIG, PROVINSI, KABUPATEN
               if($request->hasAny('bin') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -7374,7 +7374,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
-                ->get();
+                ->paginate(5);
               }
               //BIN & BIG, PROVINSI
               if($request->hasAny('bin') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -7386,7 +7386,7 @@ class HomeSiswaController extends Controller
                   ->where('provinsi',$request['provinsi'])
                   ->orWhere('prodi','like','%Bhs. Inggris%')
                   ->where('provinsi',$request['provinsi'])
-                  ->get();
+                  ->paginate(5);
               }
               //BIN & BIG DAN SEMUA LOKASI
               if($request->hasAny('bin') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -7396,7 +7396,7 @@ class HomeSiswaController extends Controller
                   ->where('statusTutor',1)
                   ->where('prodi','like','%Bhs. Indonesia%')
                   ->orWhere('prodi','like','%Bhs. Inggris%')
-                  ->get();
+                  ->paginate(5);
               }
                 
                  //=================================================================================MTK & IPA =====================================================================================
@@ -7417,7 +7417,7 @@ class HomeSiswaController extends Controller
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
                 ->where('kelurahan',$request['kelurahan'])
-                ->get();
+                ->paginate(5);
               }
               //MTK & IPA, PROVINSI, KABUPATEN, KECAMATAN,
               if($request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -7433,7 +7433,7 @@ class HomeSiswaController extends Controller
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
-                ->get();
+                ->paginate(5);
               }
               //MTK & IPA, PROVINSI, KABUPATEN
               if($request->hasAny('mtk') && $request->hasAny('ipa') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -7447,7 +7447,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%IPA%')
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
-                ->get();
+                ->paginate(5);
               }
               //MTK & IPA, PROVINSI
               if($request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -7459,7 +7459,7 @@ class HomeSiswaController extends Controller
                   ->where('provinsi',$request['provinsi'])
                   ->orWhere('prodi','like','%IPA%')
                   ->where('provinsi',$request['provinsi'])
-                  ->get();
+                  ->paginate(5);
               }
               //MTK & IPA DAN SEMUA LOKASI
               if($request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -7469,7 +7469,7 @@ class HomeSiswaController extends Controller
                   ->where('statusTutor',1)
                   ->where('prodi','like','%Matematika%')
                   ->orWhere('prodi','like','%IPA%')
-                  ->get();
+                  ->paginate(5);
               }
   
              //=================================================================================MTK & IPS =====================================================================================
@@ -7490,7 +7490,7 @@ class HomeSiswaController extends Controller
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
                 ->where('kelurahan',$request['kelurahan'])
-                ->get();
+                ->paginate(5);
               }
               //MTK & IPS, PROVINSI, KABUPATEN, KECAMATAN,
               if($request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -7506,7 +7506,7 @@ class HomeSiswaController extends Controller
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
-                ->get();
+                ->paginate(5);
               }
               //MTK & IPS, PROVINSI, KABUPATEN
               if($request->hasAny('mtk') && $request->hasAny('ips') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -7520,7 +7520,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%IPS%')
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
-                ->get();
+                ->paginate(5);
               }
               //MTK & IPS, PROVINSI
               if($request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -7532,7 +7532,7 @@ class HomeSiswaController extends Controller
                   ->where('provinsi',$request['provinsi'])
                   ->orWhere('prodi','like','%IPS%')
                   ->where('provinsi',$request['provinsi'])
-                  ->get();
+                  ->paginate(5);
               }
               //MTK & IPS DAN SEMUA LOKASI
               if($request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -7542,7 +7542,7 @@ class HomeSiswaController extends Controller
                   ->where('statusTutor',1)
                   ->where('prodi','like','%Matematika%')
                   ->orWhere('prodi','like','%IPS%')
-                  ->get();
+                  ->paginate(5);
               }
   
                   //=================================================================================MTK & BIG =====================================================================================
@@ -7563,7 +7563,7 @@ class HomeSiswaController extends Controller
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
                 ->where('kelurahan',$request['kelurahan'])
-                ->get();
+                ->paginate(5);
               }
               //MTK & BIG, PROVINSI, KABUPATEN, KECAMATAN,
               if($request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -7579,7 +7579,7 @@ class HomeSiswaController extends Controller
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
-                ->get();
+                ->paginate(5);
               }
               //MTK & BIG, PROVINSI, KABUPATEN
               if($request->hasAny('mtk') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -7593,7 +7593,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
-                ->get();
+                ->paginate(5);
               }
               //MTK & BIG, PROVINSI
               if($request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -7605,7 +7605,7 @@ class HomeSiswaController extends Controller
                   ->where('provinsi',$request['provinsi'])
                   ->orWhere('prodi','like','%Bhs. Inggris%')
                   ->where('provinsi',$request['provinsi'])
-                  ->get();
+                  ->paginate(5);
               }
               //MTK & BIG DAN SEMUA LOKASI
               if($request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -7615,7 +7615,7 @@ class HomeSiswaController extends Controller
                   ->where('statusTutor',1)
                   ->where('prodi','like','%Matematika%')
                   ->orWhere('prodi','like','%Bhs. Inggris%')
-                  ->get();
+                  ->paginate(5);
               }
                     //=================================================================================IPA & IPS =====================================================================================
   
@@ -7635,7 +7635,7 @@ class HomeSiswaController extends Controller
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
                 ->where('kelurahan',$request['kelurahan'])
-                ->get();
+                ->paginate(5);
               }
               //IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN,
               if($request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -7651,7 +7651,7 @@ class HomeSiswaController extends Controller
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
-                ->get();
+                ->paginate(5);
               }
               //IPA & IPS, PROVINSI, KABUPATEN
               if($request->hasAny('ipa') && $request->hasAny('ips') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -7665,7 +7665,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%IPS%')
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
-                ->get();
+                ->paginate(5);
               }
               //IPA & IPS, PROVINSI
               if($request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -7677,7 +7677,7 @@ class HomeSiswaController extends Controller
                   ->where('provinsi',$request['provinsi'])
                   ->orWhere('prodi','like','%IPS%')
                   ->where('provinsi',$request['provinsi'])
-                  ->get();
+                  ->paginate(5);
               }
               //IPA & IPS DAN SEMUA LOKASI
               if($request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -7687,7 +7687,7 @@ class HomeSiswaController extends Controller
                   ->where('statusTutor',1)
                   ->where('prodi','like','%IPA%')
                   ->orWhere('prodi','like','%IPS%')
-                  ->get();
+                  ->paginate(5);
               }
                  //=================================================================================IPA & BIG =====================================================================================
   
@@ -7707,7 +7707,7 @@ class HomeSiswaController extends Controller
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
                 ->where('kelurahan',$request['kelurahan'])
-                ->get();
+                ->paginate(5);
               }
               //IPA & BIG, PROVINSI, KABUPATEN, KECAMATAN,
               if($request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -7723,7 +7723,7 @@ class HomeSiswaController extends Controller
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
-                ->get();
+                ->paginate(5);
               }
               //IPA & BIG, PROVINSI, KABUPATEN
               if($request->hasAny('ipa') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -7737,7 +7737,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
-                ->get();
+                ->paginate(5);
               }
               //IPA & BIG, PROVINSI
               if($request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -7749,7 +7749,7 @@ class HomeSiswaController extends Controller
                   ->where('provinsi',$request['provinsi'])
                   ->orWhere('prodi','like','%Bhs. Inggris%')
                   ->where('provinsi',$request['provinsi'])
-                  ->get();
+                  ->paginate(5);
               }
               //IPA & BIG DAN SEMUA LOKASI
               if($request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -7759,7 +7759,7 @@ class HomeSiswaController extends Controller
                   ->where('statusTutor',1)
                   ->where('prodi','like','%IPA%')
                   ->orWhere('prodi','like','%Bhs. Inggris%')
-                  ->get();
+                  ->paginate(5);
               }
                  //=================================================================================IPS & BIG =====================================================================================
   
@@ -7779,7 +7779,7 @@ class HomeSiswaController extends Controller
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
                 ->where('kelurahan',$request['kelurahan'])
-                ->get();
+                ->paginate(5);
               }
               //IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN,
               if($request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -7795,7 +7795,7 @@ class HomeSiswaController extends Controller
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
-                ->get();
+                ->paginate(5);
               }
               //IPS & BIG, PROVINSI, KABUPATEN
               if($request->hasAny('ips') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -7809,7 +7809,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
-                ->get();
+                ->paginate(5);
               }
               //IPS & BIG, PROVINSI
               if($request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -7821,7 +7821,7 @@ class HomeSiswaController extends Controller
                   ->where('provinsi',$request['provinsi'])
                   ->orWhere('prodi','like','%Bhs. Inggris%')
                   ->where('provinsi',$request['provinsi'])
-                  ->get();
+                  ->paginate(5);
               }
               //IPS & BIG DAN SEMUA LOKASI
               if($request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -7831,7 +7831,7 @@ class HomeSiswaController extends Controller
                   ->where('statusTutor',1)
                   ->where('prodi','like','%IPS%')
                   ->orWhere('prodi','like','%Bhs. Inggris%')
-                  ->get();
+                  ->paginate(5);
               }
               //=================================================================================ISI 3=====================================================================================
               //=================================================================================BIN & MTK & IPA=====================================================================================
@@ -7857,7 +7857,7 @@ class HomeSiswaController extends Controller
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
                 ->where('kelurahan',$request['kelurahan'])
-                ->get();
+                ->paginate(5);
               }
               //BIN & MTK & IPA, PROVINSI, KABUPATEN, KECAMATAN,
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -7877,7 +7877,7 @@ class HomeSiswaController extends Controller
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
-                ->get();
+                ->paginate(5);
               }
               //BIN & MTK & IPA, PROVINSI, KABUPATEN
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -7894,7 +7894,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%IPA%')
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
-                ->get();
+                ->paginate(5);
               }
               //BIN & MTK & IPA, PROVINSI
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -7908,7 +7908,7 @@ class HomeSiswaController extends Controller
                   ->where('provinsi',$request['provinsi'])
                   ->orWhere('prodi','like','%IPA%')
                   ->where('provinsi',$request['provinsi'])
-                  ->get();
+                  ->paginate(5);
               }
               //BIN & MTK & IPA, DAN SEMUA LOKASI
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -7919,7 +7919,7 @@ class HomeSiswaController extends Controller
                   ->where('prodi','like','%Bhs. Indonesia%')
                   ->orWhere('prodi','like','%Matematika%')
                   ->orWhere('prodi','like','%IPA%')
-                  ->get();
+                  ->paginate(5);
               }
                   //=================================================================================BIN & MTK & IPS=====================================================================================
   
@@ -7944,7 +7944,7 @@ class HomeSiswaController extends Controller
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
                 ->where('kelurahan',$request['kelurahan'])
-                ->get();
+                ->paginate(5);
               }
               //BIN & MTK & IPS, PROVINSI, KABUPATEN, KECAMATAN,
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -7964,7 +7964,7 @@ class HomeSiswaController extends Controller
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
-                ->get();
+                ->paginate(5);
               }
               //BIN & MTK & IPS, PROVINSI, KABUPATEN
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -7981,7 +7981,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%IPS%')
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
-                ->get();
+                ->paginate(5);
               }
               //BIN & MTK & IPS, PROVINSI
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -7995,7 +7995,7 @@ class HomeSiswaController extends Controller
                   ->where('provinsi',$request['provinsi'])
                   ->orWhere('prodi','like','%IPS%')
                   ->where('provinsi',$request['provinsi'])
-                  ->get();
+                  ->paginate(5);
               }
               //BIN & MTK & IPS DAN SEMUA LOKASI
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -8006,7 +8006,7 @@ class HomeSiswaController extends Controller
                   ->where('prodi','like','%Bhs. Indonesia%')
                   ->orWhere('prodi','like','%Matematika%')
                   ->orWhere('prodi','like','%IPS%')
-                  ->get();
+                  ->paginate(5);
               }
                 //=================================================================================BIN & MTK & BIG=====================================================================================
   
@@ -8031,7 +8031,7 @@ class HomeSiswaController extends Controller
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
                 ->where('kelurahan',$request['kelurahan'])
-                ->get();
+                ->paginate(5);
               }
               //BIN & MTK & BIG, PROVINSI, KABUPATEN, KECAMATAN,
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -8051,7 +8051,7 @@ class HomeSiswaController extends Controller
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
-                ->get();
+                ->paginate(5);
               }
               //BIN & MTK & BIG, PROVINSI, KABUPATEN
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -8068,7 +8068,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
-                ->get();
+                ->paginate(5);
               }
               //BIN & MTK & BIG, PROVINSI
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -8082,7 +8082,7 @@ class HomeSiswaController extends Controller
                   ->where('provinsi',$request['provinsi'])
                   ->orWhere('prodi','like','%Bhs. Inggris%')
                   ->where('provinsi',$request['provinsi'])
-                  ->get();
+                  ->paginate(5);
               }
               //BIN & MTK & BIG DAN SEMUA LOKASI
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -8093,7 +8093,7 @@ class HomeSiswaController extends Controller
                   ->where('prodi','like','%Bhs. Indonesia%')
                   ->orWhere('prodi','like','%Matematika%')
                   ->orWhere('prodi','like','%Bhs. Inggris%')
-                  ->get();
+                  ->paginate(5);
               }
                 //=================================================================================MTK & IPA & IPS=====================================================================================
   
@@ -8118,7 +8118,7 @@ class HomeSiswaController extends Controller
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
                 ->where('kelurahan',$request['kelurahan'])
-                ->get();
+                ->paginate(5);
               }
               // MTK & IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN,
               if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -8138,7 +8138,7 @@ class HomeSiswaController extends Controller
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
-                ->get();
+                ->paginate(5);
               }
               //MTK & IPA & IPS, PROVINSI, KABUPATEN
               if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -8155,7 +8155,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%IPS%')
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
-                ->get();
+                ->paginate(5);
               }
               // MTK & IPA & IPS, PROVINSI
               if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -8169,7 +8169,7 @@ class HomeSiswaController extends Controller
                   ->where('provinsi',$request['provinsi'])
                   ->orWhere('prodi','like','%IPS%')
                   ->where('provinsi',$request['provinsi'])
-                  ->get();
+                  ->paginate(5);
               }
               //MTK & IPA & IPS, DAN SEMUA LOKASI
               if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -8180,7 +8180,7 @@ class HomeSiswaController extends Controller
                   ->where('prodi','like','%Matematika%')
                   ->orWhere('prodi','like','%IPA%')
                   ->orwhere('prodi','like','%IPS%')
-                  ->get();
+                  ->paginate(5);
               }
                           //=================================================================================IPA & IPS & BIG =====================================================================================
   
@@ -8205,7 +8205,7 @@ class HomeSiswaController extends Controller
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
                 ->where('kelurahan',$request['kelurahan'])
-                ->get();
+                ->paginate(5);
               }
               // IPA & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN,
               if($request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -8225,7 +8225,7 @@ class HomeSiswaController extends Controller
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
-                ->get();
+                ->paginate(5);
               }
               //IPA & IPS & BIG, PROVINSI, KABUPATEN
               if($request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -8242,7 +8242,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
-                ->get();
+                ->paginate(5);
               }
               //IPA & IPS & BIG, PROVINSI
               if($request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -8256,7 +8256,7 @@ class HomeSiswaController extends Controller
                   ->where('provinsi',$request['provinsi'])
                   ->orWhere('prodi','like','%Bhs. Inggris%')
                   ->where('provinsi',$request['provinsi'])
-                  ->get();
+                  ->paginate(5);
               }
               //IPA & IPS & BIG, DAN SEMUA LOKASI
               if($request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -8267,7 +8267,7 @@ class HomeSiswaController extends Controller
                   ->where('prodi','like','%IPA%')
                   ->orwhere('prodi','like','%IPS%')
                   ->orwhere('prodi','like','%Bhs. Inggris%')
-                  ->get();
+                  ->paginate(5);
               }
               //=================================================================================ISI 4=====================================================================================
                //=================================================================================BIN & MTK & IPA & IPS=====================================================================================
@@ -8298,7 +8298,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -8322,7 +8322,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPA & IPS, PROVINSI, KABUPATEN
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -8342,7 +8342,7 @@ class HomeSiswaController extends Controller
               ->orWhere('prodi','like','%IPS%')
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPA & IPS, PROVINSI
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -8358,7 +8358,7 @@ class HomeSiswaController extends Controller
                 ->where('provinsi',$request['provinsi'])
                 ->orWhere('prodi','like','%IPS%')
                 ->where('provinsi',$request['provinsi'])
-                ->get();
+                ->paginate(5);
             }
             //BIN & MTK & IPA, DAN SEMUA LOKASI
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -8370,7 +8370,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%Matematika%')
                 ->orWhere('prodi','like','%IPA%')
                 ->orWhere('prodi','like','%IPS%')
-                ->get();
+                ->paginate(5);
             }
 
             //=================================================================================BIN & MTK & IPA & BIG =====================================================================================
@@ -8400,7 +8400,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPA & BIG, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -8424,7 +8424,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPA & BIG, PROVINSI, KABUPATEN
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -8444,7 +8444,7 @@ class HomeSiswaController extends Controller
               ->orWhere('prodi','like','%Bhs. Inggris%')
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPA & BIG, PROVINSI
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -8460,7 +8460,7 @@ class HomeSiswaController extends Controller
                 ->where('provinsi',$request['provinsi'])
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->where('provinsi',$request['provinsi'])
-                ->get();
+                ->paginate(5);
             }
             //BIN & MTK & IPA & BIG, DAN SEMUA LOKASI
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -8472,7 +8472,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%Matematika%')
                 ->orWhere('prodi','like','%IPA%')
                 ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->get();
+                ->paginate(5);
             }
                 //=================================================================================BIN & MTK & IPS & BIG=====================================================================================
 
@@ -8502,7 +8502,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -8526,7 +8526,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPS & BIG, PROVINSI, KABUPATEN
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -8546,7 +8546,7 @@ class HomeSiswaController extends Controller
               ->orWhere('prodi','like','%Bhs. Inggris%')
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPS & BIG, PROVINSI
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -8562,7 +8562,7 @@ class HomeSiswaController extends Controller
                 ->where('provinsi',$request['provinsi'])
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->where('provinsi',$request['provinsi'])
-                ->get();
+                ->paginate(5);
             }
             //BIN & MTK & IPS & BIG DAN SEMUA LOKASI
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -8574,7 +8574,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%Matematika%')
                 ->orWhere('prodi','like','%IPS%')
                 ->orWhere('prodi','like','%bhs. Inggris%')
-                ->get();
+                ->paginate(5);
             }
                 //=================================================================================BIN & MTK & IPS & BIG =====================================================================================
 
@@ -8604,7 +8604,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -8628,7 +8628,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPS & BIG, PROVINSI, KABUPATEN
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -8648,7 +8648,7 @@ class HomeSiswaController extends Controller
               ->orWhere('prodi','like','%Bhs. Inggris%')
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
-              ->get();
+              ->paginate(5);
             }
             //BIN & MTK & IPS & BIG, PROVINSI
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big')&& $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -8664,7 +8664,7 @@ class HomeSiswaController extends Controller
                 ->where('provinsi',$request['provinsi'])
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->where('provinsi',$request['provinsi'])
-                ->get();
+                ->paginate(5);
             }
             //BIN & MTK & IPS DAN SEMUA LOKASI
             if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -8676,7 +8676,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%Matematika%')
                 ->orWhere('prodi','like','%IPS%')
                 ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->get();
+                ->paginate(5);
             }
               //=================================================================================MTK & IPA & IPS & BIG=====================================================================================
 
@@ -8706,7 +8706,7 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
-              ->get();
+              ->paginate(5);
             }
             // MTK & IPA & IPS & big, PROVINSI, KABUPATEN, KECAMATAN,
             if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -8730,7 +8730,7 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
-              ->get();
+              ->paginate(5);
             }
             //MTK & IPA & IPS & BIG, PROVINSI, KABUPATEN
             if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -8750,7 +8750,7 @@ class HomeSiswaController extends Controller
               ->orWhere('prodi','like','%Bhs. Inggris%')
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
-              ->get();
+              ->paginate(5);
             }
             // MTK & IPA & IPS & BIG, PROVINSI
             if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips')  && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -8766,7 +8766,7 @@ class HomeSiswaController extends Controller
                 ->where('provinsi',$request['provinsi'])
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->where('provinsi',$request['provinsi'])
-                ->get();
+                ->paginate(5);
             }
             //MTK & IPA & IPS & BIG, DAN SEMUA LOKASI
             if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -8778,7 +8778,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%IPA%')
                 ->orwhere('prodi','like','%IPS%')
                 ->orwhere('prodi','like','%Bhs. Inggris%')
-                ->get();
+                ->paginate(5);
             }
             //=================================================================================ISI 5=====================================================================================
               //=================================================================================BIN & MTK & IPA & IPS & BIG=====================================================================================
@@ -8814,7 +8814,7 @@ class HomeSiswaController extends Controller
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
                 ->where('kelurahan',$request['kelurahan'])
-                ->get();
+                ->paginate(5);
               }
               //BIN & MTK & IPA & IPS & big, PROVINSI, KABUPATEN, KECAMATAN,
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
@@ -8842,7 +8842,7 @@ class HomeSiswaController extends Controller
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
                 ->where('kecamatan',$request['kecamatan'])
-                ->get();
+                ->paginate(5);
               }
               //BIN & MTK & IPA & IPS & Big, PROVINSI, KABUPATEN
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
@@ -8865,7 +8865,7 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi','like','%Bhs. Inggris%')
                 ->where('provinsi',$request['provinsi'])
                 ->where('kota',$request['kabupaten'])
-                ->get();
+                ->paginate(5);
               }
               //BIN & MTK & IPA & IPS & BIG, PROVINSI
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -8883,7 +8883,7 @@ class HomeSiswaController extends Controller
                   ->where('provinsi',$request['provinsi'])
                   ->orWhere('prodi','like','%Bhs. Inggris%')
                   ->where('provinsi',$request['provinsi'])
-                  ->get();
+                  ->paginate(5);
               }
               //BIN & MTK & IPA & BIG, DAN SEMUA LOKASI
               if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
@@ -8896,7 +8896,7 @@ class HomeSiswaController extends Controller
                   ->orWhere('prodi','like','%IPA%')
                   ->orWhere('prodi','like','%IPS%')
                   ->orWhere('prodi','like','%Bhs. Inggris%')
-                  ->get();
+                  ->paginate(5);
               } 
       $url=$request->fullUrl();
 

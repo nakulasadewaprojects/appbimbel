@@ -99,6 +99,7 @@
 
 									<!--end::m-widget5-->
 								</div>
+								{{ $mentor->links() }}
 							</div>
 							<!--end::Content-->
 						</div>
@@ -199,9 +200,9 @@
 												<div class="col-12">
 													<select class="form-control m-input" id="prov" name="provinsi" type="text">
 														<option value="0">Semua Provinsi</option>
-														{{$idp}}
+													
 														@foreach ($p as $a)
-														<option value="{{ $a->id }}" @if(strpos($url, '$idp' )!==false) selected @endif> {{$a->nama}}</option>
+														<option value="{{ $a->id }}" @if(strpos($url, '$a->id' )!==false) selected @endif> {{$a->nama}}</option>
 														@endforeach
 
 													</select>
@@ -215,7 +216,7 @@
 													<select class="form-control m-input" name="kabupaten" type="text" id="kab">
 														<option value="0">Semua Kabupaten</option>
 														@foreach ($b as $a)
-														<option value="{{ $a->id }}" {{ Auth::user()->kota ==  $a->id  ? 'selected' : ''}}>{{$a->nama}}</option>
+														<option value="{{ $a->id }}" >{{$a->nama}}</option>
 														@endforeach
 													</select>
 												</div>
@@ -228,7 +229,7 @@
 													<select class="form-control m-input" name="kecamatan" type="text" id="kec">
 														<option value="0">Semua Kecamatan </option>
 														@foreach ($c as $a)
-														<option value="{{ $a->id }}" {{ Auth::user()->kecamatan ==  $a->id  ? 'selected' : ''}}>{{$a->nama}}</option>
+														<option value="{{ $a->id }}" >{{$a->nama}}</option>
 														@endforeach
 													</select>
 												</div>
@@ -241,7 +242,7 @@
 													<select class="form-control m-input" name="kelurahan" type="text" id="kel">
 														<option value="0">Semua Kelurahan </option>
 														@foreach ($d as $a)
-														<option value="{{ $a->id }}" {{ Auth::user()->kelurahan ==  $a->id  ? 'selected' : ''}}>{{$a->nama}}</option>
+														<option value="{{ $a->id }}" >{{$a->nama}}</option>
 														@endforeach
 													</select>
 												</div>
@@ -315,6 +316,10 @@
 
 									<!--end::m-widget5-->
 								</div>
+								@if($grup!==NULL)
+								{{ $grup->links() }}
+								@else
+								@endif
 							</div>
 							<!--end::Content-->
 						</div>
