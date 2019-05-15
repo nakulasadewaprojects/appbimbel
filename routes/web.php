@@ -46,3 +46,5 @@ Route::get('/multimediasiswa', 'HomeSiswaController@multimediasiswa');
 Route::get('/filter/get', 'FilterController@Filter');
 Route::get('/detailmentor/{id}', 'HomeSiswaController@detailmentor');
 // Route::get('/filterPendidikan/get', 'FilterController@Filter');
+Route::get('/formAjukan/{id}', 'HomeSiswaController@formAjukan');
+Route::post('/ajukan', 'HomeSiswaController@ajukan');

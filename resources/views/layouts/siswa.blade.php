@@ -464,7 +464,7 @@
 								<span class="m-menu__arrow"></span>
 								<ul class="m-menu__subnav">
 									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
-										<a href="dashboardsiswa" class="m-menu__link ">
+										<a href="http://localhost/appbimbel/public/dashboardsiswa" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -474,7 +474,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
-										<a href="calendarsiswa" class="m-menu__link ">
+										<a href="http://localhost/appbimbel/public/calendarsiswa" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -484,7 +484,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
-										<a href="multimediasiswa" class="m-menu__link ">
+										<a href="http://localhost/appbimbel/public/multimediasiswa" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -494,7 +494,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
-										<a href="multimediasiswa" class="m-menu__link ">
+										<a href="http://localhost/appbimbel/public/calendarsiswa" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -504,7 +504,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
-										<a href="calendarsiswa" class="m-menu__link ">
+										<a href="http://localhost/appbimbel/public/calendarsiswa" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -514,7 +514,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
-										<a href="calendarsiswa" class="m-menu__link ">
+										<a href="http://localhost/appbimbel/public/calendarsiswa" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -524,7 +524,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
-										<a href="calendarsiswa" class="m-menu__link ">
+										<a href="http://localhost/appbimbel/public/calendarsiswa" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -534,7 +534,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
-										<a href="calendarsiswa" class="m-menu__link ">
+										<a href="http://localhost/appbimbel/public/calendarsiswa" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -544,7 +544,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
-										<a href="jadwalsiswa" class="m-menu__link ">
+										<a href="http://localhost/appbimbel/public/calendarsiswa" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -554,7 +554,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
-										<a href="calendarsiswa" class="m-menu__link ">
+										<a href="http://localhost/appbimbel/public/calendarsiswa" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -663,38 +663,9 @@
 		<!--begin::Page Snippets -->
 		<script src="http://localhost/appbimbel/public/assets/app/js/dashboard.js" type="text/javascript"></script>
 		<!--end::Page Snippets -->
-		<!-- zoom image -->
-		<script src="js/jquery.viewbox.min.js"></script>
-		<script src="js/select2.js" type="text/javascript"></script>
-		
-<script>
-
+		<!-- multiple select -->
+		<script src="http://localhost/appbimbel/public/js/select2.js" type="text/javascript"></script>
 		<script src="http://localhost/appbimbel/public/js/jquery.viewbox.min.js"></script>
-		<!-- <script>
-			$(document).ready(function(){
-				$('select[name="pendidikan"]').on('change',function(){
-				var pendidikanId = $('select[name="pendidikan"]').val()
-				$('select[name="provinsi"]').val()
-				;
-				console.log(pendidikanId);
-				// if(pendidikanId){
-				// 	$.ajax({
-				// 		url: '/appbimbel/public/filter/get',
-				// 		type: "GET",
-				// 		dataType: "json",
-				// 		beforeSend: function(){
-				// 		$('#loader').css("visibility", "visible");							
-				// 		},
-				// 		success: function(data) {
-
-				// 		}
-				// 	})
-				// }
-			});
-			});
-			
-		</script> -->
-		
 		<script>
 		var pathname = window.location.pathname;
 		if (pathname == '/appbimbel/public/dashboardsiswa') {

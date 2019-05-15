@@ -165,7 +165,8 @@
 												</span>
 											</div>
 											<div class="m-widget13__action m--align-right">
-												<a href="dashboardsiswa">
+												<!-- <a href="dashboardsiswa"> -->
+												<a href="http://localhost/appbimbel/public/formAjukan/{{$showmentor->idmentor}}">
 													<button type="button" class="m-widget__detalis  btn m-btn--pill  btn-accent">
 														Ajukan
 													</button>
