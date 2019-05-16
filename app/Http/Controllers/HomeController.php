@@ -66,6 +66,7 @@ class HomeController extends Controller
         Tbdetailmentor::where('idtbRiwayatTutor', Auth::user()->idmentor)->update(['idmentor' => Auth::user()->idmentor]);
         return view('dashboard', ['isCompleted' => $showing]);
     }
+
     public function myprofile()
     {
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
@@ -111,6 +112,12 @@ class HomeController extends Controller
         $prodi2=implode(' ',[$prodi]);
         return view('profile', ['getprodi'=>$prodi2,'isCompleted' => $show, 'p' => $provinsi, 'b' => $kabupaten, 'c' => $kecamatan, 'd' => $kelurahan,'pt'=>$pete, 'prodi'=>$prodimentor]);
        }
+
+       public function tutorial(){
+        $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
+        $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
+        return view('tutorial' , ['isCompleted' => $showing, 'm' => $mentor]);
+    }
     
     public function update($idmentor, Request $request)
     {

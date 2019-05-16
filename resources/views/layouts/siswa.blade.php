@@ -376,7 +376,7 @@
 												<div class="m-dropdown__header m--align-center">
 													<div class="m-card-user m-card-user--skin-light">
 														<div class="m-card-user__pic">
-															<img src="{{ url('/data_fileSiswa/'.$isCompleted->fotoProfile) }}" height="70px" width="100px" alt="" />
+															{{-- s<img src="{{ url('/data_fileSiswa/'.$isCompleted->fotoProfile) }}" height="70px" width="100px" alt="" /> --}}
 														</div>
 														<div class="m-card-user__details">
 															<span class="m-card-user__name m--font-weight-500">
@@ -499,7 +499,7 @@
 												<span></span>
 											</i>
 											<span class="m-menu__link-text">
-												Tutorial
+												Tutorial Siswa
 											</span>
 										</a>
 									</li>
@@ -544,7 +544,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
-										<a href="http://localhost/appbimbel/public/calendarsiswa" class="m-menu__link ">
+										<a href="http://localhost/appbimbel/public/jadwalsiswa" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
