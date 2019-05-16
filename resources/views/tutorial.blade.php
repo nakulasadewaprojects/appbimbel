@@ -1,8 +1,10 @@
 @extends('layouts.mentor') 
 @section('content')
-<div class="col-xl-10   ">
+<div class="m-content">
+<div class="row">
+    <div class="col-xl-10   ">
 <!--begin::Portlet-->
-<div class="m-portlet">
+    <div class="m-portlet">
         <div class="m-portlet__head">
             <div class="m-portlet__head-caption">
                 <div class="m-portlet__head-title">
@@ -106,8 +108,9 @@
             </div>
         </form>
         <!--end::Form-->
-    </div>
-    <!--end::Portlet-->  
-</div>                                             
-                                
+        </div>
+        <   !--end::Portlet-->  
+    </div>                                             
+</div> 
+</div>                             
 @endsection
