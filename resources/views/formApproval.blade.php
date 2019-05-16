@@ -9,43 +9,34 @@
 													<i class="la la-gear"></i>
 												</span>
 												<h3 class="m-portlet__head-text">
-													Form Pengajuan Siswa
+													Form Approval Siswa
 												</h3>
 											</div>
 										</div>
 									</div>
 									<!--begin::Form-->
+									
 									<form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" method="POST" action="http://localhost/appbimbel/public/ajukan">
 										{{ csrf_field() }}
 										<div class="m-portlet__body">
 											<div class="form-group m-form__group row">
-											<input type="hidden" id="id" name="id" value="{{$id}}">
 												<label class="col-lg-1 col-form-label">
-													Nama Siswa:
+													Nama Siswa :
 												</label>
 												<div class="col-lg-3">
-													<input type="text" class="form-control m-input" value="{{$showsiswa->NamaLengkap}}">
+													<input type="text" class="form-control m-input" value="{{$apvBimb->NamaLengkap}}">
 												</div>
 												<label class="col-lg-1 col-form-label">
 													Alamat:
 												</label>
 												<div class="col-lg-3">
-													<div class="m-input-icon m-input-icon--right">
-														<!-- <input type="text" class="form-control m-input" value="{{$showsiswa->alamat}}"> -->
-														
-														{{  $showsiswa->alamat }} ,  
-													{{DB::table('kelurahan')->where('id', $showsiswa->kelurahan)->value('nama')}} ,
-													{{DB::table('kecamatan')->where('id', $showsiswa->kecamatan)->value('nama')}} ,
-													{{DB::table('kota_kabupaten')->where('id', $showsiswa->kota)->value('nama')}} ,
-													{{DB::table('provinsi')->where('id', $showsiswa->provinsi)->value('nama')}}
-															
-													</div>
+													<input type="text" class="form-control m-input" value="{{$apvBimb->alamat}}">
 												</div>
 												<label class="col-lg-1 col-form-label">
 													Nomor Telepon:
 												</label>
 												<div class="col-lg-3">
-													<input type="text" class="form-control m-input"  value="{{$showsiswa->NoTlpn}}">
+													<input type="text" class="form-control m-input"  value="{{$apvBimb->NoTlpn}}">
 												</div>
 											</div>
 											<div class="form-group m-form__group row">
@@ -53,14 +44,14 @@
 													Mulai Bimbel:
 												</label>
 												<div class="col-lg-3">
-												<input class="form-control m-input" type="datetime-local" name="start" id="example-datetime-local-input">
+												<input class="form-control m-input" type="text" name="start" value="{{$apvBimb->startBimbel}}" id="example-datetime-local-input">
 												</div>
 												<label class="col-lg-1 col-form-label">
 													Akhir Bimbel:
 												</label>
 												<div class="col-lg-3">
 													<div class="m-input-icon m-input-icon--right">
-												<input class="form-control m-input" type="datetime-local" name="end" id="example-datetime-local-input">														
+												<input class="form-control m-input" type="text" name="end" value="{{$apvBimb->endBimbel}}" id="example-datetime-local-input">														
 														<span class="m-input-icon__icon m-input-icon__icon--right">
 														</span>
 													</div>
@@ -69,13 +60,7 @@
 													Mata Pelajaran:
 												</label>
 												<div class="col-lg-3">
-													<div class="m-input-icon m-input-icon--right">
-													<select class="form-control m-select2" id="m_select2_3" name="prodi[]" multiple="multiple">																								
-															@foreach ($explode as $s)
-															<option value="{{ $s }}" > {{ $s }}</option>
-															@endforeach																																												
-														</select>
-													</div>
+												<input type="text" class="form-control m-input"  value="{{$apvBimb->prodi}}">													
 												</div>
 											</div>
 										</div>
