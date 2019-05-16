@@ -26,6 +26,7 @@ class HomeSiswaController extends Controller
         return view ('detailmentor',['showmentor' => $showmentor,'isCompleted' => $showing]);
     }
     public function formAjukan($id){
+      
       $showing = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->first();
       $showsiswa=DB::table('tbsiswa')
       ->join('tbdetailsiswa','tbsiswa.idtbSiswa','=','tbdetailsiswa.idtbSiswa')
@@ -35,21 +36,61 @@ class HomeSiswaController extends Controller
       ->where('tbmentor.idmentor', $id)->first();
       $getprodi = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', $id)->value('prodi');
         $getexplode = explode(', ',$getprodi);
-      return view ('formAjukan', ['showsiswa'=> $showsiswa,'isCompleted' => $showing, 'showmentor' => $showmentor, 'explode'=>$getexplode ]);
+      return view ('formAjukan', ['showsiswa'=> $showsiswa,'isCompleted' => $showing, 'showmentor' => $showmentor, 'explode'=>$getexplode,'id'=>$id ]);
       // return $getexplode;
     }
 
     public function ajukan(Request $request){
+      
+      $TbsiswaNoID= DB::table('tbsiswa')->where('idtbSiswa',Auth::user()->idtbSiswa)->value('NoIDSiswa');      
+      $noIDMentor= DB::table('tbmentor')->where('idmentor',$request['id'])->value('NoIDMentor');      
+      // $IDmentor=DB::table('tbmentor')->where('idmentor',)->value('idmentor');
+      $tglentry=Carbon::now();
+      $tahun = Carbon::now()->isoFormat('YY');      
+      $bulan = Carbon::now()->format('m');
+      $noidbimbel = 'A' . $bulan . $tahun;
+        if($request->hasAny('prodi')){
+          $prodi=$request['prodi'];
+          $prodi2=implode(', ',$prodi);
+          $a= $prodi2; 
+      }else{
+          $prodi=$request['prodi'];
+         $a= $prodi; 
+      }
+      DB::table('siswabimbel')->insert([
+        'NoIDBimbel'=>$noidbimbel,
+        'NoIDSiswa'=>$TbsiswaNoID,
+        'prodi'=>$a,
+        'NoIDTutor'=>$noIDMentor,
+        'tglentry'=>$tglentry,
+        'status' => '1',
+        'tglupdate'=>$tglentry
+      ]);
+
+      $dateStart = Carbon::parse($request['start']);
+      $dateEnd = Carbon::parse($request['end']);
+      $diff = $dateStart->diffInDays($dateEnd);
+      $tahun = Carbon::now()->isoFormat('YY');
+        $bulan = Carbon::now()->format('m');
+        $noidbimbel = 'A' . $bulan . $tahun;
       DB::table('scedulebimbel')->insert([
-        'durasi' => $request->durasi,
+        'NoIDBimbel'=>$noidbimbel,
+        'durasi' => $diff,
         'startBimbel' => $request->start,
         'endBimbel' => $request->end,
       ]);
       return redirect('/dashboardsiswa');
-
     }
 
-    
+    public function approval(){
+      $showing = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->first();
+      $showBimbAppv = DB::table('siswabimbel')
+             ->join('scedulebimbel', 'siswabimbel.NoIDBimbel', '=', 'scedulebimbel.NoIDBimbel')
+             ->join('tbsiswa','tbsiswa.NoIDSiswa','=','siswabimbel.NoIDSiswa')
+             ->where('tbsiswa.idtbSiswa', Auth::user()->idtbSiswa)->first();
+      return view ('formApproval',['isCompleted' => $showing, 'apvBimb'=>$showBimbAppv]);
+    }
+
     public function dashboardsiswa(Request $request)
     {
         $provinsi  = DB::table('provinsi')->get();

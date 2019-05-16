@@ -43,6 +43,7 @@ return array(
     'App\\Tbdetailsiswa' => $baseDir . '/app/Tbdetailsiswa.php',
     'App\\Tbmentor' => $baseDir . '/app/Tbmentor.php',
     'App\\Tbsiswa' => $baseDir . '/app/Tbsiswa.php',
+    'App\\siswabimbel' => $baseDir . '/app/siswabimbel.php',
     'BeyondCode\\DumpServer\\DumpServerCommand' => $vendorDir . '/beyondcode/laravel-dump-server/src/DumpServerCommand.php',
     'BeyondCode\\DumpServer\\DumpServerServiceProvider' => $vendorDir . '/beyondcode/laravel-dump-server/src/DumpServerServiceProvider.php',
     'BeyondCode\\DumpServer\\Dumper' => $vendorDir . '/beyondcode/laravel-dump-server/src/Dumper.php',

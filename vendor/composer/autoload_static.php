@@ -417,6 +417,7 @@ class ComposerStaticInit4e1385e5d91b1f84308fb6aead2a1914
         'App\\Tbdetailsiswa' => __DIR__ . '/../..' . '/app/Tbdetailsiswa.php',
         'App\\Tbmentor' => __DIR__ . '/../..' . '/app/Tbmentor.php',
         'App\\Tbsiswa' => __DIR__ . '/../..' . '/app/Tbsiswa.php',
+        'App\\siswabimbel' => __DIR__ . '/../..' . '/app/siswabimbel.php',
         'BeyondCode\\DumpServer\\DumpServerCommand' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/DumpServerCommand.php',
         'BeyondCode\\DumpServer\\DumpServerServiceProvider' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/DumpServerServiceProvider.php',
         'BeyondCode\\DumpServer\\Dumper' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/Dumper.php',
