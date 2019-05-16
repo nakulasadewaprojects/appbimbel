@@ -15,13 +15,13 @@ class CreateSiswabimbel extends Migration
     {
         Schema::create('siswabimbel', function (Blueprint $table) {
             $table->bigIncrements('idsiswaBimbel');
-            $table->string('NoIDBimbel');
-            $table->string('NoIDSiswa');            
-            $table->integer('prodi');
-            $table->string('NoIDTutor');
-            $table->datetime('tglentry');
-            $table->integer('statusBimbel');
-            $table->datetime('tglupdate');
+            $table->string('NoIDBimbel')->nullable();
+            $table->string('NoIDSiswa')->nullable();            
+            $table->string('prodi')->nullable();
+            $table->string('NoIDTutor')->nullable();
+            $table->datetime('tglentry')->nullable();
+            $table->integer('statusBimbel')->nullable();
+            $table->datetime('tglupdate')->nullable();
         });
     }
 

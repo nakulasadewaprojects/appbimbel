@@ -63,7 +63,7 @@ class HomeSiswaController extends Controller
         'prodi'=>$a,
         'NoIDTutor'=>$noIDMentor,
         'tglentry'=>$tglentry,
-        'status' => '1',
+        'statusBimbel' => '1',
         'tglupdate'=>$tglentry
       ]);
 
