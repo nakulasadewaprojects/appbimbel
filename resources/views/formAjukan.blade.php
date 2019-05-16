@@ -21,8 +21,9 @@
 										{{ csrf_field() }}
 										<div class="m-portlet__body">
 											<div class="form-group m-form__group row">
+											<input type="hidden" id="id" name="id" value="{{$id}}">
 												<label class="col-lg-1 col-form-label">
-													Nama :
+													Nama Siswa:
 												</label>
 												<div class="col-lg-3">
 													<input type="text" class="form-control m-input" value="{{$showsiswa->NamaLengkap}}">
@@ -46,7 +47,7 @@
 													Nomor Telepon:
 												</label>
 												<div class="col-lg-3">
-													<input type="text" class="form-control m-input"  value="{{$showsiswa->NoTlpn}}"">
+													<input type="text" class="form-control m-input"  value="{{$showsiswa->NoTlpn}}">
 												</div>
 											</div>
 											<div class="form-group m-form__group row">
@@ -67,16 +68,6 @@
 													</div>
 												</div>
 												<label class="col-lg-1 col-form-label">
-													Durasi:
-												</label>
-												<div class="col-lg-3">
-													<div class="m-input-icon m-input-icon--right">
-														<input type="text" class="form-control m-input" placeholder="Durasi BImbel" name="durasi">
-													</div>
-												</div>
-											</div>
-											<div class="form-group m-form__group row">
-											<label class="col-lg-1 col-form-label">
 													Mata Pelajaran:
 												</label>
 												<div class="col-lg-3">
