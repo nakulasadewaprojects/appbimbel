@@ -1,5 +1,7 @@
 @extends('layouts.siswa') 
-@section('content')           
+@section('content')   
+<div class="m-content">
+		<div class="row">        
                                 <!--begin::Portlet-->
                                 <div class="m-portlet">
 									<div class="m-portlet__head">
@@ -97,6 +99,8 @@
 									</form>
 									<!--end::Form-->
 								</div>
+				</div>
+								<!--end::Portlet-->
+		</div>
 </div>
-                                <!--end::Portlet-->
  @endsection

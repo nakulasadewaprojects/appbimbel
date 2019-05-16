@@ -486,7 +486,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<span class="m-menu__arrow"></span>
 								<ul class="m-menu__subnav">
 									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
-										<a href="inner.html" class="m-menu__link ">
+										<a href="TerimaTolak" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -511,10 +511,20 @@ License: You must have a valid license purchased only from themeforest(the above
 												<span></span>
 											</i>
 											<span class="m-menu__link-text">
-												Contacts
+												Multimedia
 											</span>
 										</a>
 									</li>
+									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
+											<a href="http://localhost/appbimbel/public/tutorial" class="m-menu__link ">
+												<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+													<span></span>
+												</i>
+												<span class="m-menu__link-text">
+												Tutorial
+												</span>
+											</a>
+										</li>
 								</ul>
 							</div>
 						</li>
