@@ -46,9 +46,9 @@ class HomeSiswaController extends Controller
       $noIDMentor= DB::table('tbmentor')->where('idmentor',$request['id'])->value('NoIDMentor');      
       // $IDmentor=DB::table('tbmentor')->where('idmentor',)->value('idmentor');
       $tglentry=Carbon::now();
-      $tahun = Carbon::now()->isoFormat('YY');      
-      $bulan = Carbon::now()->format('m');
-      $noidbimbel = 'A' . $bulan . $tahun;
+      $detik = Carbon::now()->isoFormat('s');      
+      $menit = Carbon::now()->isoformat('m');
+      $noidbimbel = 'A' . $menit . $detik;
         if($request->hasAny('prodi')){
           $prodi=$request['prodi'];
           $prodi2=implode(', ',$prodi);
@@ -70,9 +70,6 @@ class HomeSiswaController extends Controller
       $dateStart = Carbon::parse($request['start']);
       $dateEnd = Carbon::parse($request['end']);
       $diff = $dateStart->diffInDays($dateEnd);
-      $tahun = Carbon::now()->isoFormat('YY');
-        $bulan = Carbon::now()->format('m');
-        $noidbimbel = 'A' . $bulan . $tahun;
       DB::table('scedulebimbel')->insert([
         'NoIDBimbel'=>$noidbimbel,
         'durasi' => $diff,
@@ -87,8 +84,10 @@ class HomeSiswaController extends Controller
       $showBimbAppv = DB::table('siswabimbel')
              ->join('scedulebimbel', 'siswabimbel.NoIDBimbel', '=', 'scedulebimbel.NoIDBimbel')
              ->join('tbsiswa','tbsiswa.NoIDSiswa','=','siswabimbel.NoIDSiswa')
-             ->where('tbsiswa.idtbSiswa', Auth::user()->idtbSiswa)->first();
+             ->join('tbmentor','tbmentor.NoIDMentor','=','siswabimbel.NoIDTutor')
+             ->where('siswabimbel.NoIDSiswa', Auth::user()->NoIDSiswa)->get();
       return view ('formApproval',['isCompleted' => $showing, 'apvBimb'=>$showBimbAppv]);
+      // return  $showBimbAppv;
     }
 
     public function dashboardsiswa(Request $request)
@@ -9103,7 +9102,5 @@ class HomeSiswaController extends Controller
         } else { }
         $Tbdetailsiswa->save();
         return redirect('/myprofilesiswa')->with('message', 'IT WORKS!');
-      
-      
     }
 }

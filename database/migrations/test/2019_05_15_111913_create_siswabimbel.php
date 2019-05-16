@@ -20,7 +20,7 @@ class CreateSiswabimbel extends Migration
             $table->integer('prodi');
             $table->string('NoIDTutor');
             $table->datetime('tglentry');
-            $table->integer('status');
+            $table->integer('statusBimbel');
             $table->datetime('tglupdate');
         });
     }
