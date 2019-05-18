@@ -1,22 +1,7 @@
 @extends('layouts.siswa')
 @section('content')
-<div class="m-grid__item m-grid__item--fluid m-wrapper">
-    @if (DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->value('statusKomplit')!==4)
-    <div class="m-alert m-alert--icon alert alert-warning" role="alert">
-        <div class="m-alert__icon">
-            <i class="la la-warning"></i>
-        </div>
-        <div class="m-alert__text">
-            <strong>
-                Luar biasa!
-            </strong> Silakan lengkapi profil Anda agar dapat mesen mentor.
-        </div>
-        <div class="m-alert__actions" style="width: 160px;">
-            <a class="btn btn-info btn-sm m-btn m-btn--pill m-btn--wide" href="profilesiswa">Lengkapi Sekarang</a>
-        </div>
-    </div>
-    @endif
 
+<div class="m-grid__item m-grid__item--fluid m-wrapper">
     <div class="m-content">
         <div class="col-xl-12">
             <div class="m-portlet m-portlet--full-height ">
