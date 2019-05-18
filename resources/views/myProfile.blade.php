@@ -221,6 +221,14 @@
 															{{ $isCompleted->prodi }}
 														</span>
 													</div>
+													<div class="m-widget13__item">
+														<span class="m-widget13__desc m--align-right">
+															Pengalaman Kerja/Mengajar :
+														</span>
+														<span class="m-widget13__text m-widget13__text-bolder">
+															{{ $isCompleted->pengalaman }}
+														</span>
+													</div>
 									</div>
 								</div>
 							</div>
