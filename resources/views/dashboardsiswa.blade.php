@@ -202,7 +202,7 @@
 														<option value="0">Semua Provinsi</option>
 													
 														@foreach ($p as $a)
-														<option value="{{ $a->id }}" @if(strpos($url, '$a->id' )!==false) selected @endif> {{$a->nama}}</option>
+														<option value="{{ $a->id }}" > {{$a->nama}}</option>
 														@endforeach
 
 													</select>
@@ -215,9 +215,6 @@
 												<div class="col-12">
 													<select class="form-control m-input" name="kabupaten" type="text" id="kab">
 														<option value="0">Semua Kabupaten</option>
-														@foreach ($b as $a)
-														<option value="{{ $a->id }}" >{{$a->nama}}</option>
-														@endforeach
 													</select>
 												</div>
 											</div>
@@ -228,9 +225,6 @@
 												<div class="col-12">
 													<select class="form-control m-input" name="kecamatan" type="text" id="kec">
 														<option value="0">Semua Kecamatan </option>
-														@foreach ($c as $a)
-														<option value="{{ $a->id }}" >{{$a->nama}}</option>
-														@endforeach
 													</select>
 												</div>
 											</div>
@@ -241,9 +235,6 @@
 												<div class="col-12">
 													<select class="form-control m-input" name="kelurahan" type="text" id="kel">
 														<option value="0">Semua Kelurahan </option>
-														@foreach ($d as $a)
-														<option value="{{ $a->id }}" >{{$a->nama}}</option>
-														@endforeach
 													</select>
 												</div>
 											</div>

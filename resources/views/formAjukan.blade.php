@@ -21,7 +21,7 @@
 										{{ csrf_field() }}
 										<div class="m-portlet__body">
 											<div class="form-group m-form__group row">
-											<input type="hidden" id="id" name="id" value="{{$id}}">
+											<input type="text" id="id" name="id" value="{{$showmentor->NoIDMentor}}">
 												<label class="col-lg-1 col-form-label">
 													Nama Siswa:
 												</label>
@@ -55,14 +55,14 @@
 													Mulai Bimbel:
 												</label>
 												<div class="col-lg-3">
-												<input class="form-control m-input" type="datetime-local" name="start" id="example-datetime-local-input">
+												<input class="form-control m-input" type="datetime-local" name="start" id="example-datetime-local-input" required>
 												</div>
 												<label class="col-lg-1 col-form-label">
 													Akhir Bimbel:
 												</label>
 												<div class="col-lg-3">
 													<div class="m-input-icon m-input-icon--right">
-												<input class="form-control m-input" type="datetime-local" name="end" id="example-datetime-local-input">														
+												<input class="form-control m-input" type="datetime-local" name="end" required id="example-datetime-local-input">														
 														<span class="m-input-icon__icon m-input-icon__icon--right">
 														</span>
 													</div>
@@ -72,7 +72,7 @@
 												</label>
 												<div class="col-lg-3">
 													<div class="m-input-icon m-input-icon--right">
-													<select class="form-control m-select2" id="m_select2_3" name="prodi[]" multiple="multiple">																								
+													<select class="form-control m-select2" id="m_select2_3" name="prodi[]" multiple="multiple" required>																								
 															@foreach ($explode as $s)
 															<option value="{{ $s }}" > {{ $s }}</option>
 															@endforeach																																												
