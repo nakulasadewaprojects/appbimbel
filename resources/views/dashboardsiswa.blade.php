@@ -308,14 +308,7 @@
 					<!--end:: Widgets/Best Sellers-->
 				</div>
 			</div>
-
-
-
-
-
 		</div>
-
-
 	</div>
 </div>
 </div>

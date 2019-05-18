@@ -578,7 +578,7 @@
 	 data-menu-scrollable="true" data-menu-dropdown-timeout="500">
 					<ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow ">
 						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  data-menu-submenu-toggle="hover">
-							<a  href="#" class="m-menu__link m-menu__toggle">
+							<a  href="http://localhost/appbimbel/public/dashboardsiswa" class="m-menu__link m-menu__toggle">
 								<i class="m-menu__link-icon flaticon-layers"></i>
 								<span class="m-menu__link-text">
 											Cari Mentor
@@ -600,18 +600,18 @@
 							</div>
 						</li>
 						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  data-menu-submenu-toggle="hover" data-redirect="true">
-							<a  href="inner.html" class="m-menu__link m-menu__toggle">
+							<a  href="http://localhost/appbimbel/public/calendarsiswa" class="m-menu__link m-menu__toggle">
 								<i class="m-menu__link-icon flaticon-clipboard"></i>
 								<span class="m-menu__link-text">
 									Setting Jadwal
 								</span>
-								<i class="m-menu__ver-arrow la la-angle-right"></i>
+							<i class="m-menu__ver-arrow la la-angle-right"></i>
 							</a>
 							<div class="m-menu__submenu">
 								<span class="m-menu__arrow"></span>
 								<ul class="m-menu__subnav">
 									<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true"  data-redirect="true">
-										<a  href="http://localhost/appbimbel/public/calendarsiswa" class="m-menu__link ">
+										<a  href="" class="m-menu__link ">
 											<span class="m-menu__link-text">
 												Setting Jadwal
 											</span>
@@ -621,7 +621,7 @@
 							</div>
 						</li>
 						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  data-menu-submenu-toggle="hover" data-redirect="true">
-							<a  href="inner.html" class="m-menu__link m-menu__toggle">
+							<a  href="http://localhost/appbimbel/public/calendarsiswa" class="m-menu__link m-menu__toggle">
 								<i class="m-menu__link-icon flaticon-clipboard"></i>
 								<span class="m-menu__link-text">
 									Lihat Jadwal Saya
@@ -642,7 +642,7 @@
 							</div>
 						</li>
 						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  data-menu-submenu-toggle="hover" data-redirect="true">
-							<a  href="inner.html" class="m-menu__link m-menu__toggle">
+							<a  href="http://localhost/appbimbel/public/jadwalsiswa" class="m-menu__link m-menu__toggle">
 								<i class="m-menu__link-icon flaticon-graphic"></i>
 								<span class="m-menu__link-text">
 									Approval
@@ -663,7 +663,7 @@
 							</div>
 						</li>
 						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  data-menu-submenu-toggle="hover" data-redirect="true">
-							<a  href="#" class="m-menu__link m-menu__toggle">
+							<a  href="http://localhost/appbimbel/public/calendarsiswa" class="m-menu__link m-menu__toggle">
 								<i class="m-menu__link-icon flaticon-graphic-1"></i>
 								<span class="m-menu__link-title">
 									<span class="m-menu__link-wrap">
@@ -695,7 +695,7 @@
 							</div>
 						</li>
 						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  data-menu-submenu-toggle="hover" data-redirect="true">
-							<a  href="inner.html" class="m-menu__link m-menu__toggle">
+							<a  href="http://localhost/appbimbel/public/multimediasiswa" class="m-menu__link m-menu__toggle">
 								<i class="m-menu__link-icon flaticon-light"></i>
 								<span class="m-menu__link-text">
 									Quiz
@@ -716,7 +716,7 @@
 							</div>
 						</li>
 						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  data-menu-submenu-toggle="hover" data-redirect="true">
-							<a  href="inner.html" class="m-menu__link m-menu__toggle">
+							<a  href="http://localhost/appbimbel/public/reportsiswa" class="m-menu__link m-menu__toggle">
 								<i class="m-menu__link-icon flaticon-technology"></i>
 								<span class="m-menu__link-text">
 									Report
@@ -737,7 +737,7 @@
 							</div>
 						</li>
 						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  data-menu-submenu-toggle="hover" data-redirect="true">
-							<a  href="inner.html" class="m-menu__link m-menu__toggle">
+							<a  href="http://localhost/appbimbel/public/multimediasiswa" class="m-menu__link m-menu__toggle">
 								<i class="m-menu__link-icon flaticon-share"></i>
 								<span class="m-menu__link-text">
 									Multimedia
@@ -798,7 +798,7 @@
 							</div>
 						</li>
 							<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  data-menu-submenu-toggle="hover" data-redirect="true">
-								<a  href="inner.html" class="m-menu__link m-menu__toggle">
+								<a  href="http://localhost/appbimbel/public/multimediasiswa" class="m-menu__link m-menu__toggle">
 									<i class="m-menu__link-icon flaticon-technology"></i>
 									<span class="m-menu__link-text">
 										Konten
@@ -874,31 +874,6 @@
 	</div>
 	<!-- end::Scroll Top -->
 	<!-- end::Scroll Top -->
-	<!-- begin::Quick Nav -->
-	<ul class="m-nav-sticky" style="margin-top: 30px;">
-		<li class="m-nav-sticky__item" data-toggle="m-tooltip" title="Pendiidikan Terakhir Mentor" data-placement="left">
-			<a href="filter">
-					<i class="la la-comments-o"></i>
-				</a>
-			</li>
-			
-			<li class="m-nav-sticky__item" data-toggle="m-tooltip" title="Lokasi Mentor" data-placement="left">
-				<a href="https://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" target="_blank">
-					<i class="la la-cart-arrow-down"></i>
-				</a>
-			</li>
-			<li class="m-nav-sticky__item" data-toggle="m-tooltip" title="Rating Mentor" data-placement="left">
-				<a href="http://keenthemes.com/metronic/documentation.html" target="_blank">
-					<i class="la la-code-fork"></i>
-				</a>
-			</li>
-			<li class="m-nav-sticky__item" data-toggle="m-tooltip" title="Prodi Mentor" data-placement="left">
-				<a href="http://keenthemes.com/forums/forum/support/metronic5/" target="_blank">
-					<i class="la la-life-ring"></i>
-				</a>
-			</li>
-		</ul>
-		<!-- begin::Quick Nav -->
 
 		<!-- zoom image -->
 		<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
