@@ -25,7 +25,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 	<!-- <script type="text/javascript" src="{{ asset('http://localhost/appbimbel/public/js/jquery.min.js') }}" ></script>
 	<script type="text/javascript" src="{{ asset('http://localhost/appbimbel/public/js/jquery.imgzoom.pack.js') }}"></script> -->
-	
+
 
 
 	<meta name="description" content="User profile view and edit">
@@ -47,18 +47,18 @@ License: You must have a valid license purchased only from themeforest(the above
 	<!--end::Web font -->
 	<link href="http://localhost/appbimbel/public/assets/vendors/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
 	<!--begin::Base Styles -->
-	
+
 	<link href="http://localhost/appbimbel/public/assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
 	<link href="http://localhost/appbimbel/public/assets/demo/demo6/base/style.bundle.css" rel="stylesheet" type="text/css" />
 	<!--end::Base Styles -->
 	<link rel="shortcut icon" href="http://localhost/appbimbel/public/assets/demo/demo6/media/img/logo/favicon.ico" />
-		<!-- zoom image css  -->
+	<!-- zoom image css  -->
 	<link rel="stylesheet" href="http://localhost/appbimbel/public/css/viewbox.css">
 	<!-- pdf  -->
 	<link href="http://localhost/appbimbel/public/css/jquery.touchPDF.css" rel="stylesheet">
 
 
-	
+
 </head>
 <!-- end::Head -->
 <!-- end::Body -->
@@ -398,7 +398,7 @@ License: You must have a valid license purchased only from themeforest(the above
 												<div class="m-dropdown__header m--align-center">
 													<div class="m-card-user m-card-user--skin-light">
 														<div class="m-card-user__pic">
-														<a href="{{ url('/data_file/'.$isCompleted->foto) }}"> <img src="{{ url('/data_file2/'.$isCompleted->foto) }}" class="thumbnail" alt="" />
+															<a href="{{ url('/data_file/'.$isCompleted->foto) }}"> <img src="{{ url('/data_file2/'.$isCompleted->foto) }}" class="thumbnail" alt="" />
 														</div>
 														<div class="m-card-user__details">
 															<span class="m-card-user__name m--font-weight-500">
@@ -501,7 +501,7 @@ License: You must have a valid license purchased only from themeforest(the above
 												<span></span>
 											</i>
 											<span class="m-menu__link-text">
-												List Jadwal  Mentor
+												List Jadwal Mentor
 											</span>
 										</a>
 									</li>
@@ -516,65 +516,64 @@ License: You must have a valid license purchased only from themeforest(the above
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
-											<a href="http://localhost/appbimbel/public/tutorial" class="m-menu__link ">
-												<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-													<span></span>
-												</i>
-												<span class="m-menu__link-text">
+										<a href="http://localhost/appbimbel/public/tutorial" class="m-menu__link ">
+											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+												<span></span>
+											</i>
+											<span class="m-menu__link-text">
 												Tutorial
-												</span>
-											</a>
-										</li>
+											</span>
+										</a>
+									</li>
 								</ul>
 							</div>
 						</li>
 					</ul>
 				</div>
-				<!-- END: Aside Menu -->
 			</div>
 			@yield('content')
 		</div>
-		<!-- end:: Body -->
-		<!-- begin::Footer -->
-		<footer class="m-grid__item		m-footer ">
-			<div class="m-container m-container--fluid m-container--full-height m-page__container">
-				<div class="m-stack m-stack--flex-tablet-and-mobile m-stack--ver m-stack--desktop">
-					<div class="m-stack__item m-stack__item--left m-stack__item--middle m-stack__item--last">
-						<span class="m-footer__copyright">
-							2019 &copy; AppBimbel Kekinian
-							<a href="#" class="m-link">
-								AppBimbel
-							</a>
-						</span>
-					</div>
-					<div class="m-stack__item m-stack__item--right m-stack__item--middle m-stack__item--first">
-						<ul class="m-footer__nav m-nav m-nav--inline m--pull-right">
-							<li class="m-nav__item">
-								<a href="#" class="m-nav__link">
-									<span class="m-nav__link-text">
-										Tentang
-									</span>
-								</a>
-							</li>
-							<li class="m-nav__item">
-								<a href="#" class="m-nav__link">
-									<span class="m-nav__link-text">
-										Kontak
-									</span>
-								</a>
-							</li>
+	</div>
 
-							<li class="m-nav__item m-nav__item">
-								<a href="#" class="m-nav__link" data-toggle="m-tooltip" title="Support Center" data-placement="left">
-									<i class="m-nav__link-icon flaticon-info m--icon-font-size-lg3"></i>
-								</a>
-							</li>
-						</ul>
-					</div>
+	<footer class="m-grid__item		m-footer ">
+		<div class="m-container m-container--fluid m-container--full-height m-page__container">
+			<div class="m-stack m-stack--flex-tablet-and-mobile m-stack--ver m-stack--desktop">
+				<div class="m-stack__item m-stack__item--left m-stack__item--middle m-stack__item--last">
+					<span class="m-footer__copyright">
+						2019 &copy; AppBimbel Kekinian
+						<a href="#" class="m-link">
+							AppBimbel
+						</a>
+					</span>
+				</div>
+				<div class="m-stack__item m-stack__item--right m-stack__item--middle m-stack__item--first">
+					<ul class="m-footer__nav m-nav m-nav--inline m--pull-right">
+						<li class="m-nav__item">
+							<a href="#" class="m-nav__link">
+								<span class="m-nav__link-text">
+									Tentang
+								</span>
+							</a>
+						</li>
+						<li class="m-nav__item">
+							<a href="#" class="m-nav__link">
+								<span class="m-nav__link-text">
+									Kontak
+								</span>
+							</a>
+						</li>
+
+						<li class="m-nav__item m-nav__item">
+							<a href="#" class="m-nav__link" data-toggle="m-tooltip" title="Support Center" data-placement="left">
+								<i class="m-nav__link-icon flaticon-info m--icon-font-size-lg3"></i>
+							</a>
+						</li>
+					</ul>
 				</div>
 			</div>
-		</footer>
-		<!-- end::Footer -->
+		</div>
+	</footer>
+	<!-- end::Footer -->
 	</div>
 	<!-- end:: Page -->
 	<!-- begin::Quick Sidebar -->
@@ -608,11 +607,15 @@ License: You must have a valid license purchased only from themeforest(the above
 	<script src="http://localhost/appbimbel/public/js/select2.js" type="text/javascript"></script>
 
 	<script>
-		if ({{Auth::user()->gender}} == 1) {
-				
+		if ({
+				{
+					Auth::user() - > gender
+				}
+			} == 1) {
+
 			document.getElementById("male").checked = true;
 		} else {
-			
+
 			document.getElementById("female").checked = true;
 		}
 
@@ -626,24 +629,32 @@ License: You must have a valid license purchased only from themeforest(the above
 		});
 	</script>
 	<script>
-		if({{DB::table('tbdetailmentor')->where('idmentor', Auth::user()->idmentor)->value('statusPendidikan') }}==1){
+		if ({
+				{
+					DB::table('tbdetailmentor') - > where('idmentor', Auth::user() - > idmentor) - > value('statusPendidikan')
+				}
+			} == 1) {
 			document.getElementById("selesai").checked = true;
-		}else{
+		} else {
 			document.getElementById("masihpendidikan").checked = true;
 		}
 
 		$(function() {
-			$("button").on("click",function(event){
+			$("button").on("click", function(event) {
 				e.preventDefault();
-				$(".hidden-control").attr("type","text");
+				$(".hidden-control").attr("type", "text");
 				$("form").submit();
 			});
-			
+
 		});
 	</script>
 
 	<script>
-		if ({{session() -> has('message')}}) {
+		if ({
+				{
+					session() - > has('message')
+				}
+			}) {
 			console.log("jalan");
 			toastr.options = {
 				"closeButton": true,
@@ -788,69 +799,69 @@ License: You must have a valid license purchased only from themeforest(the above
 
 			});
 		});
-</script>
-<!-- zoom image -->
-<script >
-$('.thumbnail').viewbox({
-  template: '<div class="viewbox-container"><div class="viewbox-body"><div class="viewbox-header"></div><div class="viewbox-content"></div><div class="viewbox-footer"></div></div></div>',
-  // loading spinner
-  loader: '<div class="loader"><div class="spinner"><div class="double-bounce1"></div><div class="double-bounce2"></div></div></div>',
-  setTitle: true,
-  margin: 20,
-  resizeDuration: 300,
-  openDuration: 200,
-  closeDuration: 200,
-  closeButton: true,
-  navButtons: false,
-  closeOnSideClick: true,
-  nextOnContentClick: true,
-  useGestures: true
-});
-</script>
+	</script>
+	<!-- zoom image -->
+	<script>
+		$('.thumbnail').viewbox({
+			template: '<div class="viewbox-container"><div class="viewbox-body"><div class="viewbox-header"></div><div class="viewbox-content"></div><div class="viewbox-footer"></div></div></div>',
+			// loading spinner
+			loader: '<div class="loader"><div class="spinner"><div class="double-bounce1"></div><div class="double-bounce2"></div></div></div>',
+			setTitle: true,
+			margin: 20,
+			resizeDuration: 300,
+			openDuration: 200,
+			closeDuration: 200,
+			closeButton: true,
+			navButtons: false,
+			closeOnSideClick: true,
+			nextOnContentClick: true,
+			useGestures: true
+		});
+	</script>
 
-<script type="text/javascript">
-$(function() {
-  $("#myPDF").pdf( 
-    source: "demo.pdf",
-    // MORE SETTINGS HERE
-  } );
-});
-</script>
-<script>
-// Path of PDF file to display
-source: null,
-// Title of the PDF to be displayed in the toolbar
-title: "TouchPDF",
-// Array of tabs to display on the side.
-tabs: [],
-// Default background color for all tabs.
-// Available colors are "green", "yellow", "orange", "brown",
-// "blue", "white", "black" and you can define your own colors with CSS.
-tabsColor: "beige",
-// Disable zooming of PDF document.
-disable<a href="https://www.jqueryscript.net/zoom/">Zoom</a>: false,
-// Disable swipe to next/prev page of PDF document.
-disableSwipe: false,
-// Disable all internal and external links on PDF document
-disableLinks: false,
-// Disable the arrow keys for next/previous page and +/- for zooming
-disableKeys: false,
-// Force resize of PDF viewer on window resize
-redrawOnWindowResize: true,
-// Show a toolbar on top of the document with title,
-// page number and buttons for next/prev pages and zooming
-showToolbar: true,
-// A handler triggered when PDF document is loaded
-loaded: null,
-// A handler triggered each time a new page is displayed
-changed: null,
-// Text or HTML displayed on white page shown before document is loaded
-loadingHeight: 841,
-// Height in px of white page shown before document is loaded
-loadingWidth: 595,
-// Width in px of white page shown before document is loaded
-loadingHTML: "Loading PDF"
-</script>
+	<script type="text/javascript">
+		$(function() {
+			$("#myPDF").pdf(
+				source: "demo.pdf",
+				// MORE SETTINGS HERE
+			});
+		});
+	</script>
+	<script>
+		// Path of PDF file to display
+		source: null,
+			// Title of the PDF to be displayed in the toolbar
+			title: "TouchPDF",
+			// Array of tabs to display on the side.
+			tabs: [],
+			// Default background color for all tabs.
+			// Available colors are "green", "yellow", "orange", "brown",
+			// "blue", "white", "black" and you can define your own colors with CSS.
+			tabsColor: "beige",
+			// Disable zooming of PDF document.
+			disable < a href = "https://www.jqueryscript.net/zoom/" > Zoom < /a>: false,
+		// Disable swipe to next/prev page of PDF document.
+		disableSwipe: false,
+			// Disable all internal and external links on PDF document
+			disableLinks: false,
+			// Disable the arrow keys for next/previous page and +/- for zooming
+			disableKeys: false,
+			// Force resize of PDF viewer on window resize
+			redrawOnWindowResize: true,
+			// Show a toolbar on top of the document with title,
+			// page number and buttons for next/prev pages and zooming
+			showToolbar: true,
+			// A handler triggered when PDF document is loaded
+			loaded: null,
+			// A handler triggered each time a new page is displayed
+			changed: null,
+			// Text or HTML displayed on white page shown before document is loaded
+			loadingHeight: 841,
+			// Height in px of white page shown before document is loaded
+			loadingWidth: 595,
+			// Width in px of white page shown before document is loaded
+			loadingHTML: "Loading PDF"
+	</script>
 
 
 

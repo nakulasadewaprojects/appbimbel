@@ -167,7 +167,15 @@
 									<span class="m-widget13__text m-widget13__text-bolder">
 										{{ $showmentor->prodi }}
 									</span>
-								</div>
+							</div>
+							<div class="m-widget13__item">
+								<span class="m-widget13__desc m--align-right">
+									Pengalaman Kerja/Mengajar :
+								</span>
+								<span class="m-widget13__text m-widget13__text-bolder">
+									{{ $showmentor->pengalaman }}
+								</span>
+							</div>
 							<div class="m-widget13__action m--align-right">
 								<!-- <a href="dashboardsiswa"> -->
 								<a href="http://localhost/appbimbel/public/formAjukan/{{$showmentor->idmentor}}">

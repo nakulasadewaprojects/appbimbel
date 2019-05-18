@@ -373,7 +373,7 @@
 								
 								<div class="form-group m-form__group row">
 									<label for="example-text-input" class="col-3 col-form-label">
-										Pengalaman
+										Pengalaman Kerja/Mengajar
 									</label>
 									<div class="col-7">
 										<textarea class="form-control m-input" type="text" rows="3" name="pengalaman" >{{ $isCompleted->pengalaman }}</textarea>																				
