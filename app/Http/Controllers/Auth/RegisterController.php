@@ -7,40 +7,17 @@ use App\Tbmentor;
 use App\Aktivasimentor;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Carbon;
 
 class RegisterController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
-
     use RegistersUsers;
 
-    /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
     protected $redirectTo = '/dashboard';
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('guest');
@@ -51,25 +28,16 @@ class RegisterController extends Controller
         return Auth::guard('web');
     }
 
-
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
     protected function validator(array $data)
     {
         return Validator::make($data, [
             'NoIDMentor' => ['unique:tbmentor'],
             'username' => ['required', 'alpha_num','min:6', 'max:20', 'unique:tbmentor','regex:/^.*(?=.*[a-zA-Z])(?=.*[0-9]).*$/'],
             'first_name' => ['required','min:3', 'max:100','regex:/^[a-zA-Z\s]*$/'],
-            // 'last_name' => ['string', 'max:255'],
             'gender' => ['required', 'numeric', 'min:1', 'max:1'],
-            'email' => ['required', 'string', 'email', 'max:50', 'unique:tbmentor', 'regex:/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/'],
+            'email' => ['required', 'email', 'max:50', 'unique:tbmentor', 'regex:/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/'],
             'password' => [
-                'required', 'string', 'min:8', 'confirmed',
-                 'regex:/^.*(?=.*[a-zA-Z])(?=.*[0-9]).*$/'
+                'required', 'string', 'min:8', 'confirmed','regex:/^.*(?=.*[a-zA-Z])(?=.*[0-9]).*$/'
             ],
         ])->setAttributeNames([
             'first_name' => 'Nama Depan',
@@ -77,37 +45,24 @@ class RegisterController extends Controller
         ]);
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\User
-     */
     protected function create(array $data)
     {
-        // $tahun = Carbon::now()->format('YY');
-        // $bulan = Carbon::now()->format('m');
-        // $noidmentor = 'M' . $bulan . $tahun;
         $user = Tbmentor::create([
-            // 'NoIDMentor' => $noidmentor,
             'username' => $data['username'],
             'nm_depan' => $data['first_name'],
             'nm_belakang' => $data['last_name'],
             'gender' => $data['gender'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            // 'tglregister' => Carbon::now()->addDays(30)->format('Y-m-d H:i:s'), //contoh
             'tglregister' => Carbon::now()->format('Y-m-d H:i:s'),
             'statusAktivasi' => '0',
             'statusTutor' => '1'
         ]);
 
         $user->userData = Aktivasimentor::create([
-            // 'NoIDMentor' => $noidmentor,
-            'statusLimit' => '1'
+           'statusLimit' => '1'
         ]);
         $user->userData1 = Tbdetailmentor::create([
-            // 'NoIDMentor' => $noidmentor,
             'statKomplit' => '0'
         ]);
         return $user;

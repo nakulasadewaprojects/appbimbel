@@ -185,7 +185,7 @@
 										</label>
 										<div class="col-7">
 											<select class="form-control m-input" name="kabupaten" type="text" id="kabupaten">
-												<option value=""> pilih kabupaten</option>
+												<option value="">Pilih Kabupaten</option>
 												@foreach ($b as $a)
 												<option value="{{ $a->id }}" {{ Auth::user()->kota ==  $a->id  ? 'selected' : ''}}>{{$a->nama}}</option>
 												@endforeach
@@ -199,10 +199,10 @@
 										</label>
 										<div class="col-7">
 											<select class="form-control m-input" name="kecamatan" type="text" id="kecamatan">
-												<option value="">pilih kecamatan </option>
-												@foreach ($c as $a)
+												<option value="">Pilih Kecamatan </option>
+												{{-- @foreach ($c as $a)
 												<option value="{{ $a->id }}" {{ Auth::user()->kecamatan ==  $a->id  ? 'selected' : ''}}>{{$a->nama}}</option>
-												@endforeach
+												@endforeach --}}
 											</select>
 										</div>
 									</div>
@@ -213,10 +213,10 @@
 										</label>
 										<div class="col-7">
 											<select class="form-control m-input" name="kelurahan" type="text" id="kelurahan">
-												<option value="">pilih kelurahan </option>
-												@foreach ($d as $a)
+												<option value="">Pilih Kelurahan </option>
+												{{-- @foreach ($d as $a)
 												<option value="{{ $a->id }}" {{ Auth::user()->kelurahan ==  $a->id  ? 'selected' : ''}}>{{$a->nama}}</option>
-												@endforeach
+												@endforeach --}}
 											</select>
 										</div>
 									</div>
@@ -230,14 +230,6 @@
 											<span class="invalid-feedback" role="alert">
 												<strong>{{ $errors->first('alamat') }}</strong>
 											</span> @endif
-										</div>
-									</div>
-									<div class="form-group m-form__group row">
-										<label for="example-text-input" class="col-2 col-form-label">
-											Kode Pos
-										</label>
-										<div class="col-7">
-											<input class="form-control m-input" type="text" value="67371">
 										</div>
 									</div>
 									<div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
