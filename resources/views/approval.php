@@ -1,14 +1,14 @@
 @extends('layouts.siswa')
 @section('content')
 
-    <div class="col-xl-10">
-        <!--begin:: Widgets/Support Tickets -->
+<div class="m-content">
+    <div class="col-xl-12">
         <div class="m-portlet m-portlet--full-height ">
             <div class="m-portlet__head">
                 <div class="m-portlet__head-caption">
                     <div class="m-portlet__head-title">
                         <h3 class="m-portlet__head-text">
-                            List
+                            Approval 
                         </h3>
                     </div>
                 </div>
@@ -78,16 +78,16 @@
                                 </span>
                                 <br>
                                 <span class="m-widget3__time">
-                                    1 Bulan
+                                    2 day ago
                                 </span>
                             </div>
                             <span class="m-widget3__status m--font-info">
-                                Approve
+                                Pending
                             </span>
                         </div>
                         <div class="m-widget3__body">
                             <p class="m-widget3__text">
-                                Matematika, IPA
+                                Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.
                             </p>
                         </div>
                     </div>
@@ -102,16 +102,16 @@
                                 </span>
                                 <br>
                                 <span class="m-widget3__time">
-                                    2 Bulan
+                                    1 day ago
                                 </span>
                             </div>
                             <span class="m-widget3__status m--font-brand">
-                               Non approve
+                                Open
                             </span>
                         </div>
                         <div class="m-widget3__body">
                             <p class="m-widget3__text">
-                                Bhs.Indonesia, IPS
+                                Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.Ut wisi enim ad minim veniam,quis nostrud exerci tation ullamcorper.
                             </p>
                         </div>
                     </div>
@@ -126,23 +126,25 @@
                                 </span>
                                 <br>
                                 <span class="m-widget3__time">
-                                    2 Minggu
+                                    3 weeks ago
                                 </span>
                             </div>
                             <span class="m-widget3__status m--font-success">
-                               Approve
-                            </span>     
+                                Closed
+                            </span>
                         </div>
                         <div class="m-widget3__body">
                             <p class="m-widget3__text">
-                                B.Inggris
+                                Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!--end:: Widgets/Support Tickets -->
     </div>
+</div>
 
- @endsection
+
+</div>
+@endsection

@@ -15,14 +15,14 @@ class CreateSceduletutor extends Migration
     {
         Schema::create('sceduletutor', function (Blueprint $table) {
             $table->bigIncrements('idsceduleTutor');
-            $table->string('days');            
-            $table->time('start');
-            $table->time('end');
-            $table->date('tglprivate');
-            $table->date('tglupdate');
-            $table->integer('status');
-            $table->string('NoIDBimbel');            
-            $table->string('NoScheduleTutor');            
+            $table->string('days')->nullable();            
+            $table->time('start')->nullable();
+            $table->time('end')->nullable();
+            $table->date('tglprivate')->nullable();
+            $table->date('tglupdate')->nullable();
+            $table->integer('status')->nullable();
+            $table->string('NoIDBimbel')->nullable();            
+            $table->string('NoScheduleTutor')->nullable();            
         });
     }
 

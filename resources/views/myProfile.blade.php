@@ -3,7 +3,7 @@
 
 <div class="m-grid__item m-grid__item--fluid m-wrapper">
 	<!-- BEGIN: Subheader -->
-	@if (DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->value('statKomplit')!==6)
+	@if (DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->value('statKomplit')!==7)
 	<div class="m-alert m-alert--icon alert alert-warning" role="alert">
 		<div class="m-alert__icon">
 			<i class="la la-warning"></i>

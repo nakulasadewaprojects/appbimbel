@@ -368,7 +368,6 @@
 													<i class="flaticon-user-ok"></i>
 												</span>
 											</span>
-
 										</a>
 										<div class="m-dropdown__wrapper">
 											<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
@@ -376,7 +375,7 @@
 												<div class="m-dropdown__header m--align-center">
 													<div class="m-card-user m-card-user--skin-light">
 														<div class="m-card-user__pic">
-															{{-- s<img src="{{ url('/data_fileSiswa/'.$isCompleted->fotoProfile) }}" height="70px" width="100px" alt="" /> --}}
+															<img src="{{ url('/data_fileSiswa/'.$isCompleted->fotoProfile) }}" height="70px" width="100px" alt="" />
 														</div>
 														<div class="m-card-user__details">
 															<span class="m-card-user__name m--font-weight-500">
@@ -544,7 +543,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
-										<a href="http://localhost/appbimbel/public/jadwalsiswa" class="m-menu__link ">
+										<a href="http://localhost/appbimbel/public/approval" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>

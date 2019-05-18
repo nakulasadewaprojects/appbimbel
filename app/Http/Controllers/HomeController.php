@@ -123,11 +123,11 @@ class HomeController extends Controller
     {
         $this->validate($request, [
             // 'username' => ['required', 'alpha_num', 'min:6', 'max:50', 'unique:tbmentor,username,' . $idmentor . ',idmentor', 'regex:/^.*(?=.*[a-zA-Z])(?=.*[0-9]).*$/'],
+            'noTlpn' => ['numeric', 'max:15', 'min:10', 'unique:tbmentor,noTlpn,' . $idmentor . ',idmentor'],
             // 'NamaDepan' => ['required', 'string', 'max:255'],
             // 'NamaBelakang' => ['required', 'string', 'max:255'],
             // 'alamat' => ['required', 'string', 'max:255'],
             // // 'gender' => ['required', 'string', 'max:255'],
-            // 'noTlpn' => ['required', 'string', 'max:255', 'unique:tbmentor,noTlpn,' . $idmentor . ',idmentor'],
             // // 'email' => ['required', 'string', 'email', 'max:255', 'unique:tbmentor,email,'.$idmentor.',idmentor', 'regex:/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/']
         ]);
         $Tbmentor = Tbmentor::find($idmentor);
@@ -137,8 +137,6 @@ class HomeController extends Controller
         $Tbmentor->kota = $request['kabupaten'];
         $Tbmentor->kecamatan = $request['kecamatan'];
         $Tbmentor->kelurahan = $request['kelurahan'];
-        $Tbmentor->nm_depan = $request['NamaDepan'];
-        $Tbmentor->nm_belakang = $request['NamaBelakang'];
         $Tbmentor->gender = $request['gender'];
         $Tbmentor->noTlpn = $request['noTlpn'];
         $Tbmentor->save();

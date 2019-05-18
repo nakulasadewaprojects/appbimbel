@@ -24,8 +24,7 @@
 							<h3 class="m-subheader__title ">
 								Lihat Profil Saya
 							</h3>
-						</div>
-						
+						</div>		
 					</div>
 				</div>
 				<!-- END: Subheader -->
@@ -38,6 +37,7 @@
 										<div class="m-card-profile__title m--hide">
 											Your Profile
 										</div>
+										<br><br>
 										<div class="m-card-profile__pic">
 											<div class="m-card-profile__pic-wrapper">
 												<a href="{{ url('/data_fileSiswa/'.$ProfilSiswa->fotoProfile) }}" class="thumbnail"><img src="{{ url('/data_fileSiswa2/'.$ProfilSiswa->fotoProfile) }}" alt="" /></a>
@@ -248,7 +248,7 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-xl-11 ">
+						<div class="col-xl-12 ">
 							<!--begin:: Widgets/Best Sellers-->
 							<div class="m-portlet m-portlet--full-height ">
 								<div class="m-portlet__head">

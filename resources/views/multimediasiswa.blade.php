@@ -18,7 +18,7 @@
     @endif
 
     <div class="m-content">
-        <div class="col-xl-13">
+        <div class="col-xl-12">
             <div class="m-portlet m-portlet--full-height ">
                 <div class="m-portlet__head">
                     <div class="m-portlet__head-caption">

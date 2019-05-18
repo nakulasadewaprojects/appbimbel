@@ -135,7 +135,7 @@
 											username
 										</label>
 										<div class="col-7">
-											<input required class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" type="text" value="{{ Auth::user()->username }}"> 
+											<input readonly class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" type="text" value="{{ Auth::user()->username }}"> 
 											@if ($errors->has('username'))
 											<span class="invalid-feedback" role="alert">
 												<strong>{{ $errors->first('username') }}</strong>
@@ -147,7 +147,7 @@
 											No Telepon
 										</label>
 										<div class="col-7">
-											<input class="form-control{{ $errors->has('noTlpn') ? ' is-invalid' : '' }}" type="text" name="noTlpn" value="{{ Auth::user()->noTlpn }}"> 
+											<input required class="form-control{{ $errors->has('noTlpn') ? ' is-invalid' : '' }}" type="text" name="noTlpn" value="{{ Auth::user()->noTlpn }}"> 
 											@if ($errors->has('noTlpn'))
 											<span class="invalid-feedback" role="alert">
 												<strong>{{ $errors->first('noTlpn') }}</strong>
@@ -226,7 +226,7 @@
 											Alamat
 										</label>
 										<div class="col-7">
-											<input class="form-control{{ $errors->has('alamat') ? ' is-invalid' : '' }}" name="alamat" type="text" value="{{ Auth::user()->alamat }}"> @if ($errors->has('alamat'))
+											<input required class="form-control{{ $errors->has('alamat') ? ' is-invalid' : '' }}" name="alamat" type="text" value="{{ Auth::user()->alamat }}"> @if ($errors->has('alamat'))
 											<span class="invalid-feedback" role="alert">
 												<strong>{{ $errors->first('alamat') }}</strong>
 											</span> @endif
