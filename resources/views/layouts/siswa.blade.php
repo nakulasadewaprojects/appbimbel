@@ -915,7 +915,7 @@
 		<!-- multiple select -->
 		<script src="http://localhost/appbimbel/public/js/select2.js" type="text/javascript"></script>
 		<script src="http://localhost/appbimbel/public/js/jquery.viewbox.min.js"></script>
-		<script src="http://localhost/appbimbel/public/data-local.js" type="text/javascript"></script>
+		<script src="http://localhost/appbimbel/public/js/data-local.js" type="text/javascript"></script>
 		<script>
 		var pathname = window.location.pathname;
 		if (pathname == '/appbimbel/public/dashboardsiswa') {
