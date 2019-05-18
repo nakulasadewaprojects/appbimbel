@@ -109,7 +109,7 @@
         </form>
         <!--end::Form-->
         </div>
-        <   !--end::Portlet-->  
+        <!--end::Portlet-->  
     </div>                                             
 </div> 
 </div>                             

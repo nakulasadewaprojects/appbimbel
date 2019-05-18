@@ -22,30 +22,54 @@
 							Cari Jadwal Mengajar
 						</h2>
 						<form class="m-form">
-							<div class="m-input-icon m-input-icon--fixed m-input-icon--fixed-large m-input-icon--right">
-								<input type="text" class="form-control form-control-lg m-input m-input--pill" placeholder="Cari Jadwal">
-								<span class="m-input-icon__icon m-input-icon__icon--right">
-									<span>
-										<i class="la la-puzzle-piece"></i>
-									</span>
+							<div class="m-input-icon m-input-icon--fixed m-input-icon--fixed-large m-input-icon--right">								
+								<span class="m-input-icon__icon m-input-icon__icon--right">			
 								</span>
 							</div>
 							<div class="m-input-icon m-input-icon--fixed m-input-icon--fixed-md m-input-icon--right">
-								<input type="text" class="form-control form-control-lg m-input m-input--pill" placeholder="Waktu">
 								<span class="m-input-icon__icon m-input-icon__icon--right">
-									<span>
-										<i class="la la-calendar-check-o"></i>
-									</span>
 								</span>
 							</div>
 							<div class="m--margin-top-20 m--visible-tablet-and-mobile"></div>
-							<button type="button" class="btn m-btn--pill m-subheader-search__submit-btn">
-								Cari Jadwal
-							</button>
+							
 						</form>
 					</div>
-					<div class="m-content">
-
+			<div class="m-content">
+					<div class="m-portlet ">
+							<div class="m-portlet__body  m-portlet__body--no-padding">
+								<div class="row m-row--no-padding m-row--col-separator-xl">
+									<div class="col-md-12 col-lg-6 col-xl-3">
+										<!--begin::Total Profit-->
+											<div class="m-widget24">
+												<div class="m-widget24__item">
+													<h4 class="m-widget24__title">
+														Total Frofit
+													</h4>
+													<br>
+													<span class="m-widget24__desc">
+														All Customs Value
+													</span>
+													<span class="m-widget24__stats m--font-brand">
+														$17,800
+													</span>
+													<div class="m--space-10"></div>
+													<div class="progress m-progress--sm">
+														<div class="progress-bar m--bg-brand" role="progressbar" style="width: 78%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+													</div>
+													<span class="m-widget24__change">
+														Change
+													</span>
+													<span class="m-widget24__number">
+														78%
+													</span>
+												</div>
+											</div>
+											
+											<!--end::Total Profit-->
+										</div>
+									</div>
+								</div>
+							</div>
 						<!--begin::Portlet-->
 						<div class="m-portlet">
 								<div class="m-portlet__head">

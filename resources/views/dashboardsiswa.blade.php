@@ -1,8 +1,5 @@
 @extends('layouts.siswa')
 @section('content')
-
-
-
 <div class="m-grid__item m-grid__item--fluid m-wrapper m-grid m-grid--hor">
 	@if (DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->value('statusKomplit')!==4)
 	<div class="m-alert m-alert--icon alert alert-warning" role="alert">
@@ -25,25 +22,18 @@
 		</h2>
 		<form class="m-form">
 			<div class="m-input-icon m-input-icon--fixed m-input-icon--fixed-large m-input-icon--right">
-				<input type="text" class="form-control form-control-lg m-input m-input--pill" placeholder="MatPel">
 				<span class="m-input-icon__icon m-input-icon__icon--right">
 					<span>
-						<i class="la la-puzzle-piece"></i>
 					</span>
 				</span>
 			</div>
 			<div class="m--margin-top-20 m--visible-tablet-and-mobile"></div>
-			<button type="button" class="btn m-btn--pill m-subheader-search__submit-btn">
-				Cari
-			</button>
 		</form>
 	</div>
 	<div class="m-subheader ">
 		<div class="d-flex align-items-center">
 			<div class="mr-auto">
-				<h3 class="m-subheader__title ">
-					Daftar Mentor
-				</h3>
+					
 			</div>
 		</div>
 	</div>
@@ -124,7 +114,7 @@
 								<div class="m-widget4__item">
 									<div class="m-widget4__info">
 										<span class="m-widget4__title">
-											Pendidikan Terakhir
+											Pendidikan Mentor
 										</span>
 										<br>
 										<div class="col-13">

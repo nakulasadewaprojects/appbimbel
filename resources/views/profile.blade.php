@@ -135,7 +135,7 @@
 											username
 										</label>
 										<div class="col-7">
-											<input class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" type="text" value="{{ Auth::user()->username }}"> 
+											<input required class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" type="text" value="{{ Auth::user()->username }}"> 
 											@if ($errors->has('username'))
 											<span class="invalid-feedback" role="alert">
 												<strong>{{ $errors->first('username') }}</strong>
