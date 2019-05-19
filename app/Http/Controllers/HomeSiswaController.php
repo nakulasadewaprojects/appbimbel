@@ -36,14 +36,18 @@ class HomeSiswaController extends Controller
       ->where('tbmentor.idmentor', $id)->first();
       $getprodi = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', $id)->value('prodi');
         $getexplode = explode(', ',$getprodi);
-      return view ('formAjukan', ['showsiswa'=> $showsiswa,'isCompleted' => $showing, 'showmentor' => $showmentor, 'explode'=>$getexplode,'id'=>$id ]);
-      // return $getexplode;
+      $getprodiSiswa = DB::table('tbdetailsiswa')
+      ->join('tbsiswa','tbsiswa.idtbSiswa','=','tbdetailsiswa.idtbSiswa')      
+      ->where('idtbDetailSiswa',  Auth::user()->idtbSiswa)->value('prodiSiswa');
+        $getexplodeSiswa = explode(', ',$getprodiSiswa);
+      return view ('formAjukan', ['showsiswa'=> $showsiswa,'isCompleted' => $showing, 'showmentor' => $showmentor, 'explode'=>$getexplode,'id'=>$id, 'prodiSiswa'=>$getexplodeSiswa  ]);
+      // return $getexplodeSiswa;
     }
 
     public function ajukan(Request $request){
       
       $TbsiswaNoID= DB::table('tbsiswa')->where('idtbSiswa',Auth::user()->idtbSiswa)->value('NoIDSiswa');      
-      $noIDMentor= DB::table('tbmentor')->where('idmentor',$request['id'])->value('NoIDMentor');      
+      // $noIDMentor= DB::table('tbmentor')->where('idmentor',$request['id'])->value('NoIDMentor');      
       // $IDmentor=DB::table('tbmentor')->where('idmentor',)->value('idmentor');
       $tglentry=Carbon::now();
       $detik = Carbon::now()->isoFormat('s');      
@@ -61,21 +65,51 @@ class HomeSiswaController extends Controller
         'NoIDBimbel'=>$noidbimbel,
         'NoIDSiswa'=>$TbsiswaNoID,
         'prodi'=>$a,
-        'NoIDTutor'=>$noIDMentor,
+        'NoIDTutor'=>$request->noIDTutor,
         'tglentry'=>$tglentry,
         'statusBimbel' => '1',
         'tglupdate'=>$tglentry
       ]);
 
-      $dateStart = Carbon::parse($request['start']);
-      $dateEnd = Carbon::parse($request['end']);
-      $diff = $dateStart->diffInDays($dateEnd);
+      $date = strtotime($request['TanggalMulai']);
+      if($request->hasAny('durasi')=='1'){
+        $TanggalSelesai = date("Y-m-d", strtotime("+1 month", $date));
+      }if($request->hasAny('durasi')=='6'){
+        $TanggalSelesai = date("Y-m-d", strtotime("+6 month", $date)); 
+      }if($request->hasAny('durasi')=='12'){
+        $TanggalSelesai = date("Y-m-d", strtotime("+12 month", $date));
+      }
       DB::table('scedulebimbel')->insert([
         'NoIDBimbel'=>$noidbimbel,
-        'durasi' => $diff,
-        'startBimbel' => $request->start,
-        'endBimbel' => $request->end,
+        'durasi' => $request->durasi,
+        'startBimbel' =>  Carbon::parse($request['TanggalMulai'])->format('Y-m-d'),
+        'endBimbel' => $TanggalSelesai 
       ]);
+      if($request->hasAny('hari')){
+        $hari=$request['hari'];
+        $hari2=implode(', ',$hari);
+        $h= $hari2; 
+      }else{
+        $hari=$request['hari'];
+       $h= $hari; 
+      }
+    $time = strtotime($request['waktuMulai']);
+    $WaktuSelesai = date("H:i:s", strtotime("+45 minute", $time));
+    $detik = Carbon::now()->isoFormat('s');      
+    $menit = Carbon::now()->isoformat('m');
+    $noschedulTutor = 'T' . $menit . $detik;
+      DB::table('sceduletutor')->insert([
+        'days'=>$h,
+        'start'=> Carbon::parse($request['waktuMulai'])->format('H:i:s'),
+        'end'=>$WaktuSelesai,
+        'tglprivate'=>  Carbon::parse($request['TanggalMulai'])->format('Y-m-d'),
+        'tglupdate'=> $tglentry,
+        'status'=>'1',
+        'NoIDBimbel'=>$noidbimbel ,
+        'NoScheduleTutor'=>$noschedulTutor
+      ]);
+
+
       return redirect('/dashboardsiswa');
     }
 

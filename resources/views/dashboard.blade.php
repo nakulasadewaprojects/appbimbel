@@ -61,29 +61,34 @@
 									</div>
 								</div>
 								<!--begin::Form-->
-								<form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" method="POST" action="http://localhost/appbimbel/public/ajukan">
+								<form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" id="formPengajuan" method="POST" action="http://localhost/appbimbel/public/pengajuan">
 									{{ csrf_field() }}
 									<div class="m-portlet__body">
 										<div class="form-group m-form__group row">
+										<input type="hidden" id="id" name="id" value="{{$pengajuan->NoIDBimbel}}">											
 											<label class="col-lg-1 col-form-label">
-												Nama :
+												Nama Siswa:
 											</label>
 											<div class="col-lg-3">
-												<input type="text" class="form-control m-input">
+												<input type="text" class="form-control m-input" value="{{$pengajuan->NamaLengkap}}">
 											</div>
 											<label class="col-lg-1 col-form-label">
 												Alamat:
 											</label>
 											<div class="col-lg-3">
 												<div class="m-input-icon m-input-icon--right">
-																										
+												{{  $pengajuan->alamat }} ,  
+													{{DB::table('kelurahan')->where('id', $pengajuan->kelurahan)->value('nama')}} ,
+													{{DB::table('kecamatan')->where('id', $pengajuan->kecamatan)->value('nama')}} ,
+													{{DB::table('kota_kabupaten')->where('id', $pengajuan->kota)->value('nama')}} ,
+													{{DB::table('provinsi')->where('id', $pengajuan->provinsi)->value('nama')}}														
 												</div>
 											</div>
 											<label class="col-lg-1 col-form-label">
 												Nomor Telepon:
 											</label>
 											<div class="col-lg-3">
-												<input type="text" class="form-control m-input">
+												<input type="text" class="form-control m-input" value="{{$pengajuan->NoTlpn}}">
 											</div>
 										</div>
 										<div class="form-group m-form__group row">
@@ -91,14 +96,14 @@
 												Mulai Bimbel:
 											</label>
 											<div class="col-lg-3">
-											<input class="form-control m-input" type="datetime-local" name="start" id="example-datetime-local-input">
+											<input class="form-control m-input" type="text" name="start" value="{{$pengajuan->startBimbel}}">
 											</div>
 											<label class="col-lg-1 col-form-label">
 												Akhir Bimbel:
 											</label>
 											<div class="col-lg-3">
 												<div class="m-input-icon m-input-icon--right">
-											<input class="form-control m-input" type="datetime-local" name="end" id="example-datetime-local-input">														
+											<input class="form-control m-input" type="text" name="end" value="{{$pengajuan->endBimbel}}">														
 													<span class="m-input-icon__icon m-input-icon__icon--right">
 													</span>
 												</div>
@@ -108,7 +113,7 @@
 											</label>
 											<div class="col-lg-3">
 												<div class="m-input-icon m-input-icon--right">
-													<input type="text" class="form-control m-input" placeholder="Durasi BImbel" name="durasi">
+													<input type="text" class="form-control m-input" name="durasi" value="{{$pengajuan->durasi}} hari" >
 												</div>
 											</div>
 										</div>
@@ -118,9 +123,7 @@
 											</label>
 											<div class="col-lg-3">
 												<div class="m-input-icon m-input-icon--right">
-												<select class="form-control m-select2" id="m_select2_3" name="prodi[]" multiple="multiple">																								
-																																																									
-													</select>
+												<input type="text" class="form-control m-input" name="durasi" value="{{$pengajuan->prodi}}" >
 												</div>
 											</div>
 										</div>
@@ -130,7 +133,7 @@
 											<div class="row">
 												<div class="col-lg-5"></div>
 												<div class="col-lg-7">
-													<button type="button" class="btn btn-primary m-btn m-btn--custom">
+													<button type="submit" class="btn btn-primary m-btn m-btn--custom">
 														Terima
 													</button>
 													<button type="button" class="btn btn-danger m-btn m-btn--custom">
