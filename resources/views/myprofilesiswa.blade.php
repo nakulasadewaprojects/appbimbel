@@ -2,7 +2,7 @@
 @section('content')
 			<!-- END: Left Aside -->
 			<div class="m-grid__item m-grid__item--fluid m-wrapper">
-					@if (DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->value('statusKomplit')!==4)
+					@if (DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->value('statusKomplit')!==6)
 					<div class="m-alert m-alert--icon alert alert-warning" role="alert">
 						<div class="m-alert__icon">
 							<i class="la la-warning"></i>

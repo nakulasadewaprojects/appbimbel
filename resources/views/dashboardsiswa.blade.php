@@ -1,7 +1,7 @@
 @extends('layouts.siswa')
 @section('content')
 <div class="m-grid__item m-grid__item--fluid m-wrapper m-grid m-grid--hor">
-	@if (DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->value('statusKomplit')!==4)
+	@if (DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->value('statusKomplit')!==6)
 	<div class="m-alert m-alert--icon alert alert-warning" role="alert">
 		<div class="m-alert__icon">
 			<i class="la la-warning"></i>
@@ -79,6 +79,9 @@
 								<!--begin::m-widget5-->
 								<div class="m-widget5">
 
+									@if($isCompleted->statusKomplit!==6)
+									Rekomendasi mentor akan muncul setelah profil Anda lengkap
+									@else
 									@foreach($mentor as $m)
 									<div class="m-widget5__item">
 										<div class="m-widget5__pic">
@@ -107,11 +110,12 @@
 										</div>
 									</div>
 									@endforeach
+									{{ $mentor->links() }}
 									{{-- {{ $mentor->links() }} --}}
-
+									@endif
+									
 									<!--end::m-widget5-->
 								</div>
-								{{ $mentor->links() }}
 							</div>
 							<!--end::Content-->
 						</div>

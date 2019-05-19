@@ -127,18 +127,24 @@ class HomeSiswaController extends Controller
         $show1 = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->pluck('pendidikanSiswa')->toArray();
         $show2 = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->pluck('jenjang')->toArray();
         $show3 = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->pluck('prodiSiswa')->toArray();
-        $show4 = array_merge($show, $show1, $show2, $show3);
-        $counting = count(array_filter($show4, "is_null"));
-        if ($counting == 4) {
+        $show4 = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->pluck('tingkatPendidikan')->toArray();
+        $show5 = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->pluck('fotoProfile')->toArray();
+        $show6 = array_merge($show, $show1, $show2, $show3,$show4, $show5);
+        $counting = count(array_filter($show6, "is_null"));
+        if ($counting == 6) {
             Tbdetailsiswa::where('idtbDetailSiswa', Auth::user()->idtbSiswa)->update(['statusKomplit' => '0']);
-        } else if ($counting == 3) {
+        } else if ($counting == 5) {
             Tbdetailsiswa::where('idtbDetailSiswa', Auth::user()->idtbSiswa)->update(['statusKomplit' => '1']);
-        } else if ($counting == 2) {
+        } else if ($counting == 4) {
             Tbdetailsiswa::where('idtbDetailSiswa', Auth::user()->idtbSiswa)->update(['statusKomplit' => '2']);
-        } else if ($counting == 1) {
+        } else if ($counting == 3) {
             Tbdetailsiswa::where('idtbDetailSiswa', Auth::user()->idtbSiswa)->update(['statusKomplit' => '3']);
-        } else {
+        } else if ($counting == 2) {
             Tbdetailsiswa::where('idtbDetailSiswa', Auth::user()->idtbSiswa)->update(['statusKomplit' => '4']);
+        } else if ($counting == 1) {
+            Tbdetailsiswa::where('idtbDetailSiswa', Auth::user()->idtbSiswa)->update(['statusKomplit' => '5']);
+        } else {
+            Tbdetailsiswa::where('idtbDetailSiswa', Auth::user()->idtbSiswa)->update(['statusKomplit' => '6']);
         }
         Tbdetailsiswa::where('idtbDetailSiswa', Auth::user()->idtbSiswa)->update(['idtbSiswa' => Auth::user()->idtbSiswa]);
         $getprodi = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->value('prodiSiswa');
@@ -210,7 +216,7 @@ class HomeSiswaController extends Controller
                 ->paginate(5);                        
         }  
         else{
-
+          $getmentor=NULL;
         }
 
    
@@ -8965,23 +8971,24 @@ class HomeSiswaController extends Controller
         $show2 = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->pluck('jenjang')->toArray();       
         $show3 = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->pluck('prodiSiswa')->toArray(); 
         $show4 = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->pluck('tingkatPendidikan')->toArray();
-        $show5 = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->value('jenjang');
-        $show6 = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->value('tingkatpendidikan'); 
-        $show7 = array_merge($show, $show1, $show2, $show3, $show4,  );
-        $counting = count(array_filter($show7, "is_null"));
+        $show5 = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->pluck('fotoProfile')->toArray();
+        $show6 = array_merge($show, $show1, $show2, $show3, $show4, $show5 );
+        $counting = count(array_filter($show6, "is_null"));
 
-        if ($counting == 5) {
+        if ($counting == 6) {
             Tbdetailsiswa::where('idtbDetailSiswa', Auth::user()->idtbSiswa)->update(['statusKomplit' => '0']);
-        } else if ($counting == 4) {
+        } else if ($counting == 5) {
             Tbdetailsiswa::where('idtbDetailSiswa', Auth::user()->idtbSiswa)->update(['statusKomplit' => '1']);
-        } else if ($counting == 3) {
+        } else if ($counting == 4) {
             Tbdetailsiswa::where('idtbDetailSiswa', Auth::user()->idtbSiswa)->update(['statusKomplit' => '2']);
-        } else if ($counting == 2) {
+        } else if ($counting == 3) {
             Tbdetailsiswa::where('idtbDetailSiswa', Auth::user()->idtbSiswa)->update(['statusKomplit' => '3']);
-        } else if($counting == 1) {
+        } else if ($counting == 2) {
             Tbdetailsiswa::where('idtbDetailSiswa', Auth::user()->idtbSiswa)->update(['statusKomplit' => '4']);
+        } else if($counting == 1) {
+            Tbdetailsiswa::where('idtbDetailSiswa', Auth::user()->idtbSiswa)->update(['statusKomplit' => '5']);
         } else {
-        Tbdetailsiswa::where('idtbDetailSiswa', Auth::user()->idtbSiswa)->update(['statusKomplit' => '5']);
+        Tbdetailsiswa::where('idtbDetailSiswa', Auth::user()->idtbSiswa)->update(['statusKomplit' => '6']);
     }
         $showing = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->first();
         $provinsi  = DB::table('provinsi')->get();
@@ -8993,7 +9000,7 @@ class HomeSiswaController extends Controller
         $prodisiswa = DB::table('mastermatpel')->get();
         $prodi=DB::table('tbdetailsiswa')->where('idtbSiswa', Auth::user()->idtbSiswa)->value('prodiSiswa');
         $prodi2=implode(' ',[$prodi]);
-        return view('profilesiswa', ['getprodi'=>$prodi2, 'isCompleted' => $showing , 'p' => $provinsi, 'b' => $kabupaten, 'c' => $kecamatan, 'd' => $kelurahan, 'j' => $jenjang, 'tp' => $tingkatPendidikan, 'jenjang' => $show5, 'tingkatpendidikan' => $show6,  'prodi'=>$prodisiswa]);
+        return view('profilesiswa', ['getprodi'=>$prodi2, 'isCompleted' => $showing , 'p' => $provinsi, 'b' => $kabupaten, 'c' => $kecamatan, 'd' => $kelurahan, 'j' => $jenjang, 'tp' => $tingkatPendidikan, 'prodi'=>$prodisiswa]);
     }
 
     public function getKabupaten($id)
@@ -9019,18 +9026,24 @@ class HomeSiswaController extends Controller
         $show1 = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->pluck('pendidikanSiswa')->toArray();
         $show2 = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->pluck('jenjang')->toArray();
         $show3 = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->pluck('prodiSiswa')->toArray();
-        $show4 = array_merge($show, $show1, $show2, $show3);
-        $counting = count(array_filter($show4, "is_null"));
-        if ($counting == 4) {
+        $show4 = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->pluck('tingkatPendidikan')->toArray();
+        $show5 = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->pluck('fotoProfile')->toArray();
+        $show6 = array_merge($show, $show1, $show2, $show3,$show4, $show5);
+        $counting = count(array_filter($show6, "is_null"));
+        if ($counting == 6) {
             Tbdetailsiswa::where('idtbDetailSiswa', Auth::user()->idtbSiswa)->update(['statusKomplit' => '0']);
-        } else if ($counting == 3) {
+        } else if ($counting == 5) {
             Tbdetailsiswa::where('idtbDetailSiswa', Auth::user()->idtbSiswa)->update(['statusKomplit' => '1']);
-        } else if ($counting == 2) {
+        } else if ($counting == 4) {
             Tbdetailsiswa::where('idtbDetailSiswa', Auth::user()->idtbSiswa)->update(['statusKomplit' => '2']);
-        } else if ($counting == 1) {
+        } else if ($counting == 3) {
             Tbdetailsiswa::where('idtbDetailSiswa', Auth::user()->idtbSiswa)->update(['statusKomplit' => '3']);
-        } else {
+        } else if ($counting == 2) {
             Tbdetailsiswa::where('idtbDetailSiswa', Auth::user()->idtbSiswa)->update(['statusKomplit' => '4']);
+        } else if ($counting == 1) {
+            Tbdetailsiswa::where('idtbDetailSiswa', Auth::user()->idtbSiswa)->update(['statusKomplit' => '5']);
+        } else {
+            Tbdetailsiswa::where('idtbDetailSiswa', Auth::user()->idtbSiswa)->update(['statusKomplit' => '6']);
         }
         return view('myprofilesiswa' , ['ProfilSiswa' => $showing,'s'=>$siswa] , ['isCompleted' => $showing,'s'=>$siswa]);
     }
@@ -9061,15 +9074,16 @@ class HomeSiswaController extends Controller
     }
     public function update($idtbSiswa, Request $request)
     {
-        // $this->validate($request, [
-        // $this->validate($request, [
-        //     // 'username' => ['required', 'string', 'min:3', 'max:255', 'unique:tbsiswa,username,' . $idtbSiswa . ',idtbSiswa', 'regex:/^.*(?=.*[a-zA-Z])(?=.*[0-9]).*$/'],
-        //     // 'NamaLengkap' => ['required', 'string', 'max:255'],
-        //     'alamat' => ['required', 'string', 'max:255'],
-        //     // 'gender' => ['required', 'string', 'max:255'],
-        //     'NoTlpn' => ['required', 'string', 'max:255', 'unique:tbsiswa,NoTlpn,' . $idtbSiswa . ',idtbSiswa'],
-        //     'email' => ['required', 'string', 'email', 'max:255', 'unique:tbsiswa,email,' . $idtbSiswa . ',idtbSiswa', 'regex:/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/']
-        // ]);
+        
+        $this->validate($request, [
+            // 'username' => ['required', 'string', 'min:3', 'max:255', 'unique:tbsiswa,username,' . $idtbSiswa . ',idtbSiswa', 'regex:/^.*(?=.*[a-zA-Z])(?=.*[0-9]).*$/'],
+            'namaWali' => ['alpha', 'max:50'],
+            'pendidikanSiswa' => [ 'regex:/[\w+]/', 'max:200'],
+            'alamat' => ['max:255','regex:/[ .,()\-\/\w+]/'],
+            // 'gender' => ['required', 'string', 'max:255'],
+            'NoTlpn' => [ 'numeric', 'digits_between:10,15', 'unique:tbsiswa,NoTlpn,' . $idtbSiswa . ',idtbSiswa'],
+            'email' => [ 'email', 'unique:tbsiswa,email,' . $idtbSiswa . ',idtbSiswa', 'regex:/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/']
+        ]);
   
         $Tbsiswa=Tbsiswa::find($idtbSiswa);
         $Tbsiswa->alamat=$request['alamat'];
@@ -9081,6 +9095,9 @@ class HomeSiswaController extends Controller
         $Tbsiswa->kelurahan= $request['kelurahan'];
         $Tbsiswa->save();
         
+        $this->validate($request, [
+        	'fotoProfile' => 'file|image|mimes:jpeg,png,jpg|max:2048'
+        ]);
         $Tbdetailsiswa=Tbdetailsiswa::find($idtbSiswa);
         $Tbdetailsiswa->namaWali=$request['namaWali'];
         $Tbdetailsiswa->pendidikanSiswa=$request['pendidikanSiswa'];

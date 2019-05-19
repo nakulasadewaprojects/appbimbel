@@ -108,7 +108,7 @@
 															Nama Wali
 														</label>
 														<div class="col-7">
-														<input class="form-control{{ $errors->has('namaWali') ? ' is-invalid' : '' }}" type="text" name="namaWali" value="{{$isCompleted->namaWali}}">
+														<input required class="form-control{{ $errors->has('namaWali') ? ' is-invalid' : '' }}" type="text" name="namaWali" value="{{$isCompleted->namaWali}}">
 																@if ($errors->has('namaWali'))
                                             						<span class="invalid-feedback" role="alert">
                                         								<strong>{{ $errors->first('namaWali') }}</strong>
@@ -121,7 +121,7 @@
 															Nama Sekolah 
 														</label>
 														<div class="col-7">
-															<input class="form-control{{ $errors->has('pendidikanSiswa') ? ' is-invalid' : '' }}" type="text" name="pendidikanSiswa" value="{{$isCompleted->pendidikanSiswa}}">
+															<input required class="form-control{{ $errors->has('pendidikanSiswa') ? ' is-invalid' : '' }}" type="text" name="pendidikanSiswa" value="{{$isCompleted->pendidikanSiswa}}">
 																@if ($errors->has('pendidikanSiswa'))
                                             						<span class="invalid-feedback" role="alert">
                                         								<strong>{{ $errors->first('pendidikanSiswa') }}</strong>
@@ -134,10 +134,10 @@
 															Jenjang
 														</label>
 														<div class="col-7">
-														<select class="form-control m-input" name="jenjang" type="text">
+														<select required class="form-control m-input" name="jenjang" type="text">
 																<option value="">Pilih Jenjang</option>
 																@foreach ($j as $a)
-																<option value="{{ $a->idMasterPendidikan }}" {{ $jenjang ==  $a->idMasterPendidikan   ? 'selected' : ''}}> {{$a->jenjangPendidikan}}</option>																																																															
+																<option value="{{ $a->idMasterPendidikan }}" {{ $isCompleted->jenjang ==  $a->idMasterPendidikan   ? 'selected' : ''}}> {{$a->jenjangPendidikan}}</option>																																																															
 																@endforeach																
 														</select>
 														</div>
@@ -147,13 +147,14 @@
 															Tingkat Pendidikan
 														</label>
 														<div class="col-7">
-															<select class="form-control m-input" name="tingkatPendidikan" type="text">
+															<select required class="form-control m-input" name="tingkatPendidikan" type="text">
 																<option value="">Pilih Tingkat Pendidikan</option>
 																@foreach ($tp as $a)
-																<option value="{{ $a->idtingkat }}" {{ $tingkatpendidikan ==  $a->idtingkat   ? 'selected' : ''}}> {{$a->keterangan}}</option>																																																															
+																<option value="{{ $a->idtingkat }}" {{ $isCompleted->tingkatPendidikan ==  $a->idtingkat   ? 'selected' : ''}}> {{$a->keterangan}}</option>																																																															
 																@endforeach
 																
 															</select>
+															<font size="2">*Anda akan mendapatkan tentor sesuai dengan tingkat pendidikan yang dipilih.</font>
 														</div>
 													</div>
 												<div class="form-group m-form__group row">
@@ -161,7 +162,7 @@
 														Prodi Siswa
 													</label>
 													<div class="col-lg-7 col-md-12 col-sm-16">
-														<select class="form-control m-select2" id="m_select2_3" name="prodi[]" multiple="multiple">																								
+														<select required  class="form-control m-select2" id="m_select2_3" name="prodi[]" multiple="multiple">																								
 															@foreach($prodi as $pr)
 															<option value="{{$pr->MatPel}}" @if(strpos($getprodi, $pr->MatPel )!== false) selected @endif > {{$pr->MatPel}}</option>
 															@endforeach																																												
@@ -175,7 +176,7 @@
 															No Telepon
 														</label>
 														<div class="col-7">
-															<input class="form-control{{ $errors->has('NoTlpn') ? ' is-invalid' : '' }}" type="text" name="NoTlpn" value="{{ Auth::user()->NoTlpn }}">
+															<input required class="form-control{{ $errors->has('NoTlpn') ? ' is-invalid' : '' }}" type="text" name="NoTlpn" value="{{ Auth::user()->NoTlpn }}">
 																@if ($errors->has('NoTlpn'))
                                             						<span class="invalid-feedback" role="alert">
                                        									 <strong>{{ $errors->first('NoTlpn') }}</strong>
@@ -188,7 +189,7 @@
 															Email
 														</label>
 														<div class="col-7">
-															<input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" type="email" value="{{ Auth::user()->email }}">
+															<input required class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" type="email" value="{{ Auth::user()->email }}">
 																@if ($errors->has('email'))
                                             						<span class="invalid-feedback" role="alert">
                                         								<strong>{{ $errors->first('email') }}</strong>
@@ -197,18 +198,19 @@
 														</div>
 													</div>
 													<div class="form-group m-form__group row">
-														<label for="example-text-input" class="col-3 col-form-label">
+														<label for="example-text-input" class="col-2 col-form-label">
 																			Foto
 														</label>
-														<div class="col-3">
+														<div class="col-4">
 															<label class="custom-file">
-																				<input type="file" name="fotoProfile">
-															</label>
-															 @if($isCompleted->fotoProfile!=null)
-															 <a href="{{ url('/data_fileSiswa/'.$isCompleted->fotoProfile) }}" class="thumbnail"><img width="50px" height="50px" src="{{ url('/data_fileSiswa2/'.$isCompleted->fotoProfile) }}" alt="tidak ada foto"></a>
-															 @else
-															Tidak Ada Foto
-															 @endif
+															<input type="file"  accept="image/*" name="fotoProfile">
+															<font size="2">*Ukuran Maksimal file Foto adalah 2MB</font>
+														</label>
+														 @if($isCompleted->fotoProfile!=null)
+														 <a href="{{ url('/data_fileSiswa/'.$isCompleted->fotoProfile) }}" class="thumbnail"><img width="50px" height="50px" src="{{ url('/data_fileSiswa2/'.$isCompleted->fotoProfile) }}" alt="tidak ada foto"></a>
+														 @else
+														Tidak Ada Foto
+														 @endif
 														</div>
 													</div>
 													<div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
@@ -224,7 +226,7 @@
 														Provinsi
 													</label>
 													<div class="col-7">
-													<select class="form-control m-input" name="provinsi" type="text">
+													<select required class="form-control m-input" name="provinsi" type="text">
 															<option value="">Pilih Provinsi</option>
 															@foreach ($p as $a)
 															<option value="{{ $a->id }}" {{ Auth::user()->provinsi ==  $a->id  ? 'selected' : ''}}> {{$a->nama}}</option>																																																															
@@ -238,7 +240,7 @@
 														Kabupaten
 													</label>
 													<div class="col-7">
-													<select class="form-control m-input" name="kabupaten" type="text" id="kabupaten">															
+													<select required class="form-control m-input" name="kabupaten" type="text" id="kabupaten">															
 															<option value="">Pilih Kabupaten</option>
 															@foreach ($b as $a)																
 															<option value="{{ $a->id }}"{{ Auth::user()->kota ==  $a->id  ? 'selected' : ''}}>{{$a->nama}}</option>																																		
@@ -251,7 +253,7 @@
 														Kecamatan
 													</label>
 													<div class="col-7">
-													<select class="form-control m-input" name="kecamatan" type="text" id="kecamatan">
+													<select required class="form-control m-input" name="kecamatan" type="text" id="kecamatan">
 															<option value="">Pilih Kecamatan </option>
 															@foreach ($c as $a)
 															<option value="{{ $a->id }}"{{ Auth::user()->kecamatan ==  $a->id  ? 'selected' : ''}}>{{$a->nama}}</option>																																																	
@@ -264,7 +266,7 @@
 														Kelurahan
 													</label>
 													<div class="col-7">
-														<select class="form-control m-input" name="kelurahan" type="text" id="kelurahan">
+														<select required class="form-control m-input" name="kelurahan" type="text" id="kelurahan">
 															<option value="">Pilih Kelurahan </option>
 										 					@foreach ($d as $a)
 															<option value="{{ $a->id }}"{{ Auth::user()->kelurahan ==  $a->id  ? 'selected' : ''}}>{{$a->nama}}</option>
@@ -277,7 +279,7 @@
 															Alamat
 														</label>
 														<div class="col-7">
-															<input class="form-control{{ $errors->has('alamat') ? ' is-invalid' : '' }}" name="alamat" type="text" value="{{ Auth::user()->alamat }}">
+															<input required class="form-control{{ $errors->has('alamat') ? ' is-invalid' : '' }}" name="alamat" type="text" value="{{ Auth::user()->alamat }}">
 															@if ($errors->has('alamat'))
                                             						<span class="invalid-feedback" role="alert">
                                         								<strong>{{ $errors->first('alamat') }}</strong>
@@ -292,10 +294,7 @@
 															<div class="col-2"></div>
 															<div class="col-7">
 																<button type="submit" class="btn btn-accent m-btn m-btn--air m-btn--custom">
-																	Save changes
-																</button>
-																<button type="reset" class="btn btn-secondary m-btn m-btn--air m-btn--custom">
-																	Cancel
+																	Simpan Perubahan
 																</button>
 															</div>
 														</div>

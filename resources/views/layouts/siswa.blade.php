@@ -356,7 +356,11 @@
 												<div class="m-dropdown__header m--align-center">
 													<div class="m-card-user m-card-user--skin-light">
 														<div class="m-card-user__pic">
-															<img src="{{ url('/data_fileSiswa/'.$isCompleted->fotoProfile) }}" height="70px" width="100px" alt="" />
+																@if(DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->value('fotoProfile')==NULL)
+																<img src="{{ url('/data_fileSiswa/default_photo_profile.png') }}" height="70px" width="100px" alt="Anda Belum Upload Foto"/>
+																@else
+																<a href="{{ url('/data_fileSiswa/'.$isCompleted->fotoProfile) }}" class="thumbnail"><img src="{{ url('/data_fileSiswa2/'.$isCompleted->fotoProfile) }}" alt=""/></a>
+																@endif
 														</div>
 														<div class="m-card-user__details">
 															<span class="m-card-user__name m--font-weight-500">
@@ -971,11 +975,7 @@
 		</script>
 
 		<script>
-			if ({
-					{
-						session() - > has('message')
-					}
-				}) {
+			if ({{session()->has('message')}}){
 				toastr.options = {
 					"closeButton": true,
 					"debug": false,
@@ -999,11 +999,7 @@
 		</script>
 
 		<script>
-			if ({
-					{
-						Auth::user() - > gender
-					}
-				} == 1) {
+			if ({{Auth::user()->gender}} == 1) {
 				document.getElementById("male").checked = true;
 			} else {
 				document.getElementById("female").checked = true;
