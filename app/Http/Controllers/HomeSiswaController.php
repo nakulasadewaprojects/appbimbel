@@ -108,9 +108,20 @@ class HomeSiswaController extends Controller
         'NoIDBimbel'=>$noidbimbel ,
         'NoScheduleTutor'=>$noschedulTutor
       ]);
-
-
       return redirect('/dashboardsiswa');
+    }
+
+    public function jadwalsiswa(){
+      $siswa = DB::table('tbsiswa')->where('idtbSiswa', Auth::user()->idtbSiswa)->first();
+      $showing = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->first();
+      $jadwalBimb=DB::table('siswabimbel')
+      ->join('scedulebimbel', 'siswabimbel.NoIDBimbel', '=', 'scedulebimbel.NoIDBimbel')
+      ->join('sceduletutor', 'sceduletutor.NoIDBimbel', '=', 'scedulebimbel.NoIDBimbel')
+      ->join('tbsiswa','tbsiswa.NoIDSiswa','=','siswabimbel.NoIDSiswa')
+      ->join('tbmentor','tbmentor.NoIDMentor','=','siswabimbel.NoIDTutor')
+      ->where('siswabimbel.NoIDSiswa', Auth::user()->NoIDSiswa)->get();
+      return view('jadwalsiswa' , ['ProfilSiswa' => $showing,'s'=>$siswa] , ['isCompleted' => $showing,'s'=>$siswa, 'jadwal'=>$jadwalBimb]);
+      // return $jadwalBimb;
     }
 
     public function approval(){
@@ -9068,11 +9079,7 @@ class HomeSiswaController extends Controller
         }
         return view('myprofilesiswa' , ['ProfilSiswa' => $showing,'s'=>$siswa] , ['isCompleted' => $showing,'s'=>$siswa]);
     }
-    public function jadwalsiswa(){
-        $siswa = DB::table('tbsiswa')->where('idtbSiswa', Auth::user()->idtbSiswa)->first();
-        $showing = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->first();
-        return view('jadwalsiswa' , ['ProfilSiswa' => $showing,'s'=>$siswa] , ['isCompleted' => $showing,'s'=>$siswa]);
-    }
+  
     public function calendarsiswa(){
         $siswa = DB::table('tbsiswa')->where('idtbSiswa', Auth::user()->idtbSiswa)->first();
         $showing = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->first();

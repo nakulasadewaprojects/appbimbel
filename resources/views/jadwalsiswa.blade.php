@@ -13,7 +13,7 @@
                             </h3>
                         </div>
                     </div>
-                    <div class="m-portlet__head-tools">
+                    {{-- <div class="m-portlet__head-tools">
                         <ul class="m-portlet__nav">
                             <li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover" aria-expanded="true">
                                 <a href="#" class="m-portlet__nav-link m-portlet__nav-link--icon m-portlet__nav-link--icon-xl m-dropdown__toggle">
@@ -64,83 +64,48 @@
                                 </div>
                             </li>
                         </ul>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="m-portlet__body">
+                    @foreach ($jadwal as $j)
                     <div class="m-widget3">
                         <div class="m-widget3__item">
                             <div class="m-widget3__header">
                                 <div class="m-widget3__user-img">
                                     <img class="m-widget3__img" src="assets/app/media/img/users/user1.jpg" alt="">
+                                    {{-- @if(DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->value('fotoProfile')==NULL)
+													<img src="{{ url('/data_fileSiswa/default_photo_profile.png') }}" height="50px" width="50px"/>
+													@else
+													<a href="{{ url('/data_fileSiswa/'.$j->fotoProfile) }}" class="thumbnail"><img src="{{ url('/data_fileSiswa2/'.$isCompleted->fotoProfile) }}" alt=""/></a>
+													@endif --}}
                                 </div>
                                 <div class="m-widget3__info">
                                     <span class="m-widget3__username">
-                                        Melania Trump
+                                        {{$j->nm_depan}} {{$j->nm_belakang}}
                                     </span>
                                     <br>
                                     <span class="m-widget3__time">
-                                        2 day ago
+                                        {{$j->prodi}}
                                     </span>
                                 </div>
-                                <span class="m-widget3__status m--font-info">
-                                    Pending
+                                <span class="m-widget3__status m--font-info">  
+                                    @if($j->statusBimbel==1) 
+                                        Pending
+                                    @elseif($j->statusBimbel==2)
+                                        Approval
+                                    @else
+                                        Cancel
+                                    @endif
                                 </span>
                             </div>
                             <div class="m-widget3__body">
                                 <p class="m-widget3__text">
-                                    Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="m-widget3__item">
-                            <div class="m-widget3__header">
-                                <div class="m-widget3__user-img">
-                                    <img class="m-widget3__img" src="assets/app/media/img/users/user4.jpg" alt="">
-                                </div>
-                                <div class="m-widget3__info">
-                                    <span class="m-widget3__username">
-                                        Lebron King James
-                                    </span>
-                                    <br>
-                                    <span class="m-widget3__time">
-                                        1 day ago
-                                    </span>
-                                </div>
-                                <span class="m-widget3__status m--font-brand">
-                                    Open
-                                </span>
-                            </div>
-                            <div class="m-widget3__body">
-                                <p class="m-widget3__text">
-                                    Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.Ut wisi enim ad minim veniam,quis nostrud exerci tation ullamcorper.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="m-widget3__item">
-                            <div class="m-widget3__header">
-                                <div class="m-widget3__user-img">
-                                    <img class="m-widget3__img" src="assets/app/media/img/users/user5.jpg" alt="">
-                                </div>
-                                <div class="m-widget3__info">
-                                    <span class="m-widget3__username">
-                                        Deb Gibson
-                                    </span>
-                                    <br>
-                                    <span class="m-widget3__time">
-                                        3 weeks ago
-                                    </span>
-                                </div>
-                                <span class="m-widget3__status m--font-success">
-                                    Closed
-                                </span>
-                            </div>
-                            <div class="m-widget3__body">
-                                <p class="m-widget3__text">
-                                    Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.
+                                    {{$j->tglprivate}}, {{$j->days}}, {{$j->start}} - {{$j->end}}
                                 </p>
                             </div>
                         </div>
                     </div>
+                    @endforeach
                 </div>
             </div>
         </div>
