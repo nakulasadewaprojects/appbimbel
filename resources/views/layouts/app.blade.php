@@ -15,6 +15,7 @@
         @elseif(Route::current()->getName()==='registersiswa') {{ __('messages.siswa_daftar') }} 
         @elseif(Route::current()->getName()==='loginsiswa') {{ __('messages.siswa_masuk') }}
         @elseif(Route::current()->getName()==='verification.notice') {{ __('messages.verifikasi') }}
+        @elseif(Route::current()->getName()==='password.request') {{ __('messages.lupa_password') }}
         @endif
     </title>
 
