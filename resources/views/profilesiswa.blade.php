@@ -118,7 +118,7 @@
 													</div>
 													<div class="form-group m-form__group row">
 														<label for="example-text-input" class="col-2 col-form-label">
-															Pendidikan Siswa
+															Nama Sekolah 
 														</label>
 														<div class="col-7">
 															<input class="form-control{{ $errors->has('pendidikanSiswa') ? ' is-invalid' : '' }}" type="text" name="pendidikanSiswa" value="{{$isCompleted->pendidikanSiswa}}">

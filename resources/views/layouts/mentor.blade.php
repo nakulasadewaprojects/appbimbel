@@ -1,17 +1,4 @@
 <!DOCTYPE html>
-<!-- 
-Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 4
-Version: 5.0.5
-Author: KeenThemes
-Website: http://www.keenthemes.com/
-Contact: support@keenthemes.com
-Follow: www.twitter.com/keenthemes
-Dribbble: www.dribbble.com/keenthemes
-Like: www.facebook.com/keenthemes
-Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
-Renew Support: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
-License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
--->
 <html lang="en">
 <!-- begin::Head -->
 
@@ -25,7 +12,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 	<!-- <script type="text/javascript" src="{{ asset('http://localhost/appbimbel/public/js/jquery.min.js') }}" ></script>
 	<script type="text/javascript" src="{{ asset('http://localhost/appbimbel/public/js/jquery.imgzoom.pack.js') }}"></script> -->
-	
+
 
 
 	<meta name="description" content="User profile view and edit">
@@ -44,34 +31,19 @@ License: You must have a valid license purchased only from themeforest(the above
 			}
 		});
 	</script>
-	<!--end::Web font -->
 	<link href="http://localhost/appbimbel/public/assets/vendors/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
-	<!--begin::Base Styles -->
-	
 	<link href="http://localhost/appbimbel/public/assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
 	<link href="http://localhost/appbimbel/public/assets/demo/demo6/base/style.bundle.css" rel="stylesheet" type="text/css" />
-	<!--end::Base Styles -->
 	<link rel="shortcut icon" href="http://localhost/appbimbel/public/assets/demo/demo6/media/img/logo/favicon.ico" />
-		<!-- zoom image css  -->
 	<link rel="stylesheet" href="http://localhost/appbimbel/public/css/viewbox.css">
-	<!-- pdf  -->
 	<link href="http://localhost/appbimbel/public/css/jquery.touchPDF.css" rel="stylesheet">
 
-
-	
 </head>
-<!-- end::Head -->
-<!-- end::Body -->
-
-
 <body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-light m-aside-left--fixed m-aside-left--offcanvas m-aside-left--minimize m-brand--minimize m-footer--push m-aside--offcanvas-default">
-	<!-- begin:: Page -->
 	<div class="m-grid m-grid--hor m-grid--root m-page">
-		<!-- BEGIN: Header -->
 		<header class="m-grid__item    m-header " data-minimize-offset="200" data-minimize-mobile-offset="200">
 			<div class="m-container m-container--fluid m-container--full-height">
 				<div class="m-stack m-stack--ver m-stack--desktop">
-					<!-- BEGIN: Brand -->
 					<div class="m-stack__item m-brand  m-brand--skin-light ">
 						<div class="m-stack m-stack--ver m-stack--general">
 							<div class="m-stack__item m-stack__item--middle m-brand__logo">
@@ -83,32 +55,24 @@ License: You must have a valid license purchased only from themeforest(the above
 								</h3>
 							</div>
 							<div class="m-stack__item m-stack__item--middle m-brand__tools">
-								<!-- BEGIN: Responsive Aside Left Menu Toggler -->
 								<a href="javascript:;" id="m_aside_left_offcanvas_toggle" class="m-brand__icon m-brand__toggler m-brand__toggler--left m--visible-tablet-and-mobile-inline-block">
 									<span></span>
 								</a>
-								<!-- END -->
-								<!-- BEGIN: Responsive Header Menu Toggler -->
 								<a id="m_aside_header_menu_mobile_toggle" href="javascript:;" class="m-brand__icon m-brand__toggler m--visible-tablet-and-mobile-inline-block">
 									<span></span>
 								</a>
-								<!-- END -->
-								<!-- BEGIN: Topbar Toggler -->
 								<a id="m_aside_header_topbar_mobile_toggle" href="javascript:;" class="m-brand__icon m--visible-tablet-and-mobile-inline-block">
 									<i class="flaticon-more"></i>
 								</a>
-								<!-- BEGIN: Topbar Toggler -->
 							</div>
 						</div>
 					</div>
-					<!-- END: Brand -->
 					<div class="m-stack__item m-stack__item--fluid m-header-head" id="m_header_nav">
 						<div class="m-header__title">
 							<h3 class="m-header__title-text">
 								Mentor Dashboard
 							</h3>
 						</div>
-						<!-- BEGIN: Topbar -->
 						<div id="m_header_topbar" class="m-topbar  m-stack m-stack--ver m-stack--general">
 							<div class="m-stack__item m-topbar__nav-wrapper">
 								<ul class="m-topbar__nav m-nav m-nav--inline">
@@ -321,8 +285,6 @@ License: You must have a valid license purchased only from themeforest(the above
 													</div>
 												</div>
 											</div>
-
-
 										</div>
 									</li>
 									<li class="m-nav__item m-topbar__quick-actions m-dropdown m-dropdown--skin-light m-dropdown--large m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push m-dropdown--mobile-full-width m-dropdown--skin-light" data-dropdown-toggle="click">
@@ -398,7 +360,7 @@ License: You must have a valid license purchased only from themeforest(the above
 												<div class="m-dropdown__header m--align-center">
 													<div class="m-card-user m-card-user--skin-light">
 														<div class="m-card-user__pic">
-														<a href="{{ url('/data_file/'.$isCompleted->foto) }}"> <img src="{{ url('/data_file2/'.$isCompleted->foto) }}" class="thumbnail" alt="" />
+															<a href="{{ url('/data_file/'.$isCompleted->foto) }}"> <img src="{{ url('/data_file2/'.$isCompleted->foto) }}" class="thumbnail" alt="" />
 														</div>
 														<div class="m-card-user__details">
 															<span class="m-card-user__name m--font-weight-500">
@@ -454,166 +416,208 @@ License: You must have a valid license purchased only from themeforest(the above
 											</div>
 										</div>
 									</li>
-
 								</ul>
 							</div>
 						</div>
-						<!-- END: Topbar -->
 					</div>
 				</div>
 			</div>
 		</header>
-		<!-- END: Header -->
-		<!-- begin::Body -->
 		<div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
-			<!-- BEGIN: Left Aside -->
 			<button class="m-aside-left-close  m-aside-left-close--skin-light " id="m_aside_left_close_btn">
 				<i class="la la-close"></i>
 			</button>
 			<div id="m_aside_left" class="m-grid__item	m-aside-left  m-aside-left--skin-light ">
-				<!-- BEGIN: Aside Menu -->
 				<div id="m_ver_menu" class="m-aside-menu  m-aside-menu--skin-light m-aside-menu--submenu-skin-light " data-menu-vertical="true" data-menu-scrollable="true" data-menu-dropdown-timeout="500">
 					<ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow ">
 						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover">
-							<a href="#" class="m-menu__link m-menu__toggle">
-								<i class="m-menu__link-icon flaticon-layers"></i>
-								<span class="m-menu__link-text">
-									Menu
-								</span>
-								<i class="m-menu__ver-arrow la la-angle-right"></i>
+							<a href="http://localhost/appbimbel/public/tutorial" class="m-menu__link">
+								<i class="m-menu__link-icon flaticon-clipboard"></i>		
 							</a>
 							<div class="m-menu__submenu">
 								<span class="m-menu__arrow"></span>
-								<ul class="m-menu__subnav">
+								<ul class="m-menu__subnav">						
 									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
-										<a href="TerimaTolak" class="m-menu__link ">
+										<div class="m-menu__link ">
+											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+												<span></span>
+											</i>
+											<span class="m-menu__link-text">
+												Jadwal
+											</span>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover">
+							<a href="http://localhost/appbimbel/public/tutorial" class="m-menu__link">
+								<i class="m-menu__link-icon flaticon-interface"></i>		
+							</a>
+							<div class="m-menu__submenu">
+								<span class="m-menu__arrow"></span>
+								<ul class="m-menu__subnav">						
+									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
+										<div class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
 											<span class="m-menu__link-text">
 												Approval
 											</span>
-										</a>
+										</div>
 									</li>
+								</ul>
+							</div>
+						</li>
+						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover">
+							<a href="http://localhost/appbimbel/public/tutorial" class="m-menu__link">
+								<i class="m-menu__link-icon flaticon-list-1"></i>		
+							</a>
+							<div class="m-menu__submenu">
+								<span class="m-menu__arrow"></span>
+								<ul class="m-menu__subnav">						
 									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
-										<a href="" class="m-menu__link ">
+										<div class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
 											<span class="m-menu__link-text">
-												List Jadwal  Mentor
+												Tutorial
 											</span>
-										</a>
+										</div>
 									</li>
+								</ul>
+							</div>
+						</li>
+						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover">
+							<a href="http://localhost/appbimbel/public/tutorial" class="m-menu__link">
+								<i class="m-menu__link-icon flaticon-multimedia-1"></i>		
+							</a>
+							<div class="m-menu__submenu">
+								<span class="m-menu__arrow"></span>
+								<ul class="m-menu__subnav">						
 									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
-										<a href="inner.html" class="m-menu__link ">
+										<div class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
 											<span class="m-menu__link-text">
 												Multimedia
 											</span>
-										</a>
+										</div>
 									</li>
+								</ul>
+							</div>
+						</li>
+						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover">
+							<a href="http://localhost/appbimbel/public/tutorial" class="m-menu__link">
+								<i class="m-menu__link-icon flaticon-coins"></i>
+							</a>
+							<div class="m-menu__submenu">
+								<span class="m-menu__arrow"></span>
+								<ul class="m-menu__subnav">
 									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
-											<a href="http://localhost/appbimbel/public/tutorial" class="m-menu__link ">
-												<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-													<span></span>
-												</i>
-												<span class="m-menu__link-text">
-												Tutorial
-												</span>
-											</a>
-										</li>
+										<div class="m-menu__link ">
+											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+												<span></span>
+											</i>
+											<span class="m-menu__link-text">
+												Informasi Payment
+											</span>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover">
+							<a href="http://localhost/appbimbel/public/tutorial" class="m-menu__link">
+								<i class="m-menu__link-icon flaticon-analytics"></i>
+							</a>
+							<div class="m-menu__submenu">
+								<span class="m-menu__arrow"></span>
+								<ul class="m-menu__subnav">
+									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
+										<div class="m-menu__link ">
+											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+												<span></span>
+											</i>
+											<span class="m-menu__link-text">
+												Report
+											</span>
+										</div>
+									</li>
 								</ul>
 							</div>
 						</li>
 					</ul>
 				</div>
-				<!-- END: Aside Menu -->
 			</div>
-			@yield('content')
-		</div>
-		<!-- end:: Body -->
-		<!-- begin::Footer -->
-		<footer class="m-grid__item		m-footer ">
-			<div class="m-container m-container--fluid m-container--full-height m-page__container">
-				<div class="m-stack m-stack--flex-tablet-and-mobile m-stack--ver m-stack--desktop">
-					<div class="m-stack__item m-stack__item--left m-stack__item--middle m-stack__item--last">
-						<span class="m-footer__copyright">
-							2019 &copy; AppBimbel Kekinian
-							<a href="#" class="m-link">
-								AppBimbel
-							</a>
-						</span>
-					</div>
-					<div class="m-stack__item m-stack__item--right m-stack__item--middle m-stack__item--first">
-						<ul class="m-footer__nav m-nav m-nav--inline m--pull-right">
-							<li class="m-nav__item">
-								<a href="#" class="m-nav__link">
-									<span class="m-nav__link-text">
-										Tentang
-									</span>
-								</a>
-							</li>
-							<li class="m-nav__item">
-								<a href="#" class="m-nav__link">
-									<span class="m-nav__link-text">
-										Kontak
-									</span>
-								</a>
-							</li>
 
-							<li class="m-nav__item m-nav__item">
-								<a href="#" class="m-nav__link" data-toggle="m-tooltip" title="Support Center" data-placement="left">
-									<i class="m-nav__link-icon flaticon-info m--icon-font-size-lg3"></i>
-								</a>
-							</li>
-						</ul>
-					</div>
+			@yield('content')
+			
+		</div>
+	</div>
+	<footer class="m-grid__item		m-footer ">
+		<div class="m-container m-container--fluid m-container--full-height m-page__container">
+			<div class="m-stack m-stack--flex-tablet-and-mobile m-stack--ver m-stack--desktop">
+				<div class="m-stack__item m-stack__item--left m-stack__item--middle m-stack__item--last">
+					<span class="m-footer__copyright">
+						2019 &copy; AppBimbel Kekinian
+						<a href="#" class="m-link">
+							AppBimbel
+						</a>
+					</span>
+				</div>
+				<div class="m-stack__item m-stack__item--right m-stack__item--middle m-stack__item--first">
+					<ul class="m-footer__nav m-nav m-nav--inline m--pull-right">
+						<li class="m-nav__item">
+							<a href="#" class="m-nav__link">
+								<span class="m-nav__link-text">
+									Tentang
+								</span>
+							</a>
+						</li>
+						<li class="m-nav__item">
+							<a href="#" class="m-nav__link">
+								<span class="m-nav__link-text">
+									Kontak
+								</span>
+							</a>
+						</li>
+						<li class="m-nav__item m-nav__item">
+							<a href="#" class="m-nav__link" data-toggle="m-tooltip" title="Support Center" data-placement="left">
+								<i class="m-nav__link-icon flaticon-info m--icon-font-size-lg3"></i>
+							</a>
+						</li>
+					</ul>
 				</div>
 			</div>
-		</footer>
-		<!-- end::Footer -->
+		</div>
+	</footer>
+
 	</div>
-	<!-- end:: Page -->
-	<!-- begin::Quick Sidebar -->
-	<!-- end::Quick Sidebar -->
-	<!-- begin::Scroll Top -->
 	<div class="m-scroll-top m-scroll-top--skin-top" data-toggle="m-scroll-top" data-scroll-offset="500" data-scroll-speed="300">
 		<i class="la la-arrow-up"></i>
 	</div>
-	<!-- end::Scroll Top -->
-	<!-- zoom image-->
 	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-	<!--begin::Base Scripts -->
 	<script src="http://localhost/appbimbel/public/assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
 	<script src="http://localhost/appbimbel/public/assets/demo/demo6/base/scripts.bundle.js" type="text/javascript"></script>
-	<!--begin::Page Vendors -->
 	<script src="http://localhost/appbimbel/public/assets/vendors/custom/fullcalendar/fullcalendar.bundle.js" type="text/javascript"></script>
-	<!--end::Page Vendors -->
-	<!--begin::Page Snippets -->
 	<script src="http://localhost/appbimbel/public/assets/app/js/dashboard.js" type="text/javascript"></script>
-	<!--end::Page Snippets -->
-	<!-- zoom image -->
 	<script src="http://localhost/appbimbel/public/js/jquery.viewbox.min.js"></script>
-	<!-- pdf -->
 	<script src="http://localhost/appbimbel/public/js/pdf.compatibility.js"></script>
 	<script src="http://localhost/appbimbel/public/js/pdf.js"></script>
-	<!-- <script src="//code.jquery.com/jquery-1.11.2.min.js"></script> -->
 	<script src="http://localhost/appbimbel/public/js/jquery.touchSwipe.min.js"></script>
 	<script src="http://localhost/appbimbel/public/js/jquery.touchPDF.js"></script>
 	<script src="http://localhost/appbimbel/public/js/jquery.panzoom.js"></script>
 	<script src="http://localhost/appbimbel/public/js/jquery.mousewheel.js"></script>
 	<script src="http://localhost/appbimbel/public/js/select2.js" type="text/javascript"></script>
-
 	<script>
-		if ({{Auth::user()->gender}} == 1) {
-				
-			document.getElementById("male").checked = true;
+		if ({{DB::table('tbdetailmentor')->where('idmentor', Auth::user()->idmentor)->value('statusPendidikan')}} == 1) {
+			document.getElementById("selesai").checked = true;
 		} else {
-			
-			document.getElementById("female").checked = true;
+			document.getElementById("masihpendidikan").checked = true;
 		}
 
 		$(function() {
@@ -625,25 +629,9 @@ License: You must have a valid license purchased only from themeforest(the above
 
 		});
 	</script>
-	<script>
-		if({{DB::table('tbdetailmentor')->where('idmentor', Auth::user()->idmentor)->value('statusPendidikan') }}==1){
-			document.getElementById("selesai").checked = true;
-		}else{
-			document.getElementById("masihpendidikan").checked = true;
-		}
-
-		$(function() {
-			$("button").on("click",function(event){
-				e.preventDefault();
-				$(".hidden-control").attr("type","text");
-				$("form").submit();
-			});
-			
-		});
-	</script>
 
 	<script>
-		if ({{session() -> has('message')}}) {
+		if ({{session()->has('message')}}) {
 			console.log("jalan");
 			toastr.options = {
 				"closeButton": true,
@@ -788,69 +776,69 @@ License: You must have a valid license purchased only from themeforest(the above
 
 			});
 		});
-</script>
-<!-- zoom image -->
-<script >
-$('.thumbnail').viewbox({
-  template: '<div class="viewbox-container"><div class="viewbox-body"><div class="viewbox-header"></div><div class="viewbox-content"></div><div class="viewbox-footer"></div></div></div>',
-  // loading spinner
-  loader: '<div class="loader"><div class="spinner"><div class="double-bounce1"></div><div class="double-bounce2"></div></div></div>',
-  setTitle: true,
-  margin: 20,
-  resizeDuration: 300,
-  openDuration: 200,
-  closeDuration: 200,
-  closeButton: true,
-  navButtons: false,
-  closeOnSideClick: true,
-  nextOnContentClick: true,
-  useGestures: true
-});
-</script>
+	</script>
+	<!-- zoom image -->
+	<script>
+		$('.thumbnail').viewbox({
+			template: '<div class="viewbox-container"><div class="viewbox-body"><div class="viewbox-header"></div><div class="viewbox-content"></div><div class="viewbox-footer"></div></div></div>',
+			// loading spinner
+			loader: '<div class="loader"><div class="spinner"><div class="double-bounce1"></div><div class="double-bounce2"></div></div></div>',
+			setTitle: true,
+			margin: 20,
+			resizeDuration: 300,
+			openDuration: 200,
+			closeDuration: 200,
+			closeButton: true,
+			navButtons: false,
+			closeOnSideClick: true,
+			nextOnContentClick: true,
+			useGestures: true
+		});
+	</script>
 
-<script type="text/javascript">
-$(function() {
-  $("#myPDF").pdf( 
-    source: "demo.pdf",
-    // MORE SETTINGS HERE
-  } );
-});
-</script>
-<script>
-// Path of PDF file to display
-source: null,
-// Title of the PDF to be displayed in the toolbar
-title: "TouchPDF",
-// Array of tabs to display on the side.
-tabs: [],
-// Default background color for all tabs.
-// Available colors are "green", "yellow", "orange", "brown",
-// "blue", "white", "black" and you can define your own colors with CSS.
-tabsColor: "beige",
-// Disable zooming of PDF document.
-disable<a href="https://www.jqueryscript.net/zoom/">Zoom</a>: false,
-// Disable swipe to next/prev page of PDF document.
-disableSwipe: false,
-// Disable all internal and external links on PDF document
-disableLinks: false,
-// Disable the arrow keys for next/previous page and +/- for zooming
-disableKeys: false,
-// Force resize of PDF viewer on window resize
-redrawOnWindowResize: true,
-// Show a toolbar on top of the document with title,
-// page number and buttons for next/prev pages and zooming
-showToolbar: true,
-// A handler triggered when PDF document is loaded
-loaded: null,
-// A handler triggered each time a new page is displayed
-changed: null,
-// Text or HTML displayed on white page shown before document is loaded
-loadingHeight: 841,
-// Height in px of white page shown before document is loaded
-loadingWidth: 595,
-// Width in px of white page shown before document is loaded
-loadingHTML: "Loading PDF"
-</script>
+	<script type="text/javascript">
+		$(function() {
+			$("#myPDF").pdf(
+				source: "demo.pdf",
+				// MORE SETTINGS HERE
+			});
+		});
+	</script>
+	<script>
+		// Path of PDF file to display
+		source: null,
+			// Title of the PDF to be displayed in the toolbar
+			title: "TouchPDF",
+			// Array of tabs to display on the side.
+			tabs: [],
+			// Default background color for all tabs.
+			// Available colors are "green", "yellow", "orange", "brown",
+			// "blue", "white", "black" and you can define your own colors with CSS.
+			tabsColor: "beige",
+			// Disable zooming of PDF document.
+			disable < a href = "https://www.jqueryscript.net/zoom/" > Zoom < /a>: false,
+		// Disable swipe to next/prev page of PDF document.
+		disableSwipe: false,
+			// Disable all internal and external links on PDF document
+			disableLinks: false,
+			// Disable the arrow keys for next/previous page and +/- for zooming
+			disableKeys: false,
+			// Force resize of PDF viewer on window resize
+			redrawOnWindowResize: true,
+			// Show a toolbar on top of the document with title,
+			// page number and buttons for next/prev pages and zooming
+			showToolbar: true,
+			// A handler triggered when PDF document is loaded
+			loaded: null,
+			// A handler triggered each time a new page is displayed
+			changed: null,
+			// Text or HTML displayed on white page shown before document is loaded
+			loadingHeight: 841,
+			// Height in px of white page shown before document is loaded
+			loadingWidth: 595,
+			// Width in px of white page shown before document is loaded
+			loadingHTML: "Loading PDF"
+	</script>
 
 
 

@@ -9019,9 +9019,9 @@ class HomeSiswaController extends Controller
     }
         $showing = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->first();
         $provinsi  = DB::table('provinsi')->get();
-        $kabupaten = DB::table('kota_kabupaten')->get();
-        $kecamatan = DB::table('kecamatan')->get();
-        $kelurahan = DB::table('kelurahan')->get();
+        $kabupaten = DB::table('kota_kabupaten')->where('provinsi_id', Auth::user()->provinsi )->get();
+        $kecamatan = DB::table('kecamatan')->where('kab_kota_id', Auth::user()->kota )->get();        
+        $kelurahan = DB::table('kelurahan')->where('kecamatan_id', Auth::user()->kecamatan )->get();
         $jenjang = DB::table('tbjenjangpendidikan')->get();
         $tingkatPendidikan = DB::table('tbtingkatpendidikan')->get();
         $prodisiswa = DB::table('mastermatpel')->get();
@@ -9082,6 +9082,16 @@ class HomeSiswaController extends Controller
         $siswa = DB::table('tbsiswa')->where('idtbSiswa', Auth::user()->idtbSiswa)->first();
         $showing = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->first();
         return view('multimediasiswa' , ['ProfilSiswa' => $showing,'s'=>$siswa] , ['isCompleted' => $showing,'s'=>$siswa]);
+    }
+    public function reportsiswa(){
+      $siswa = DB::table('tbsiswa')->where('idtbSiswa', Auth::user()->idtbSiswa)->first();
+      $showing = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->first();
+      return view('reportsiswa' , ['ProfilSiswa' => $showing,'s'=>$siswa] , ['isCompleted' => $showing,'s'=>$siswa]);
+    }
+  public function informasipayment(){
+      $siswa = DB::table('tbsiswa')->where('idtbSiswa', Auth::user()->idtbSiswa)->first();
+      $showing = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->first();
+      return view('informasipayment' , ['ProfilSiswa' => $showing,'s'=>$siswa] , ['isCompleted' => $showing,'s'=>$siswa]);
     }
     public function update($idtbSiswa, Request $request)
     {

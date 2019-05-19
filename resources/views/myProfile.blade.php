@@ -3,7 +3,7 @@
 
 <div class="m-grid__item m-grid__item--fluid m-wrapper">
 	<!-- BEGIN: Subheader -->
-	@if (DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->value('statKomplit')!==6)
+	@if (DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->value('statKomplit')!==7)
 	<div class="m-alert m-alert--icon alert alert-warning" role="alert">
 		<div class="m-alert__icon">
 			<i class="la la-warning"></i>
@@ -219,6 +219,14 @@
 														</span>
 														<span class="m-widget13__text m-widget13__text-bolder">
 															{{ $isCompleted->prodi }}
+														</span>
+													</div>
+													<div class="m-widget13__item">
+														<span class="m-widget13__desc m--align-right">
+															Pengalaman Kerja/Mengajar :
+														</span>
+														<span class="m-widget13__text m-widget13__text-bolder">
+															{{ $isCompleted->pengalaman }}
 														</span>
 													</div>
 									</div>

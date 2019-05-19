@@ -36,10 +36,10 @@ return [
     'date_format' => 'The :attribute does not match the format :format.',
     'different' => 'The :attribute and :other must be different.',
     'digits' => 'The :attribute must be :digits digits.',
-    'digits_between' => 'The :attribute must be between :min and :max digits.',
+    'digits_between' => ':attribute harus :min - :max digit.',
     'dimensions' => 'The :attribute has invalid image dimensions.',
     'distinct' => 'The :attribute field has a duplicate value.',
-    'email' => 'The :attribute must be a valid email address.',
+    'email' => 'Harus alamat e-mail yang valid.',
     'exists' => 'The selected :attribute is invalid.',
     'file' => 'The :attribute must be a file.',
     'filled' => 'The :attribute field must have a value.',
@@ -76,10 +76,10 @@ return [
         'array' => 'The :attribute must not have more than :value items.',
     ],
     'max' => [
-        'numeric' => 'The :attribute may not be greater than :max.',
-        'file' => 'The :attribute may not be greater than :max kilobytes.',
-        'string' => 'The :attribute may not be greater than :max characters.',
-        'array' => 'The :attribute may not have more than :max items.',
+        'numeric' => ':attribute tidak boleh lebih dari :max karakter',
+        'file' => ':attribute tidak boleh lebih dari :max kilobytes.',
+        'string' => ':attribute tidak boleh lebih dari :max characters.',
+        'array' => ':attribute tidak boleh lebih dari :max items.',
     ],
     'mimes' => ':attribute harus berformat :values.',
     'mimetypes' => 'The :attribute must be a file of type: :values.',
@@ -91,7 +91,7 @@ return [
     ],
     'not_in' => 'The selected :attribute is invalid.',
     'not_regex' => 'Format :attribute tidak valid.',
-    'numeric' => 'Kolom :attribute must be a number.',
+    'numeric' => 'Kolom :attribute harus berupa angka.',
     'present' => 'The :attribute field must be present.',
     'regex' => 'Format :attribute tidak valid.',
     'required' => 'Kolom :attribute harus diisi.',
@@ -109,10 +109,10 @@ return [
         'array' => 'The :attribute must contain :size items.',
     ],
     'starts_with' => 'The :attribute must start with one of the following: :values',
-    'string' => 'The :attribute must be a string.',
+    'string' => ':attribute harus berupa string.',
     'timezone' => 'The :attribute must be a valid zone.',
     'unique' => ':attribute sudah digunakan.',
-    'uploaded' => 'The :attribute failed to upload.',
+    'uploaded' => ':attribute gagal diupload.',
     'url' => 'The :attribute format is invalid.',
     'uuid' => 'The :attribute must be a valid UUID.',
 
@@ -146,5 +146,7 @@ return [
     */
 
     'attributes' => ['fileKTP' => 'File KTP'],
+    'attributes' => ['noTlpn' => 'Nomor Telepon'],
+    'attributes' => ['alamat' => 'Alamat'],
 
 ];

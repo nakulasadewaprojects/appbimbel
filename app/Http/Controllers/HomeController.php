@@ -102,13 +102,13 @@ class HomeController extends Controller
     public function profile()
     {
         $show = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
-        $provinsi  = DB::table('provinsi')->get();
-        $kabupaten = DB::table('kota_kabupaten')->get();
-        $kecamatan = DB::table('kecamatan')->get();        
-        $kelurahan = DB::table('kelurahan')->get();
+        $prodi=DB::table('tbdetailmentor')->where('idmentor', Auth::user()->idmentor)->value('prodi');
+        $provinsi  = DB::table('provinsi')->orderBy('nama', 'asc')->get();
+        $kabupaten = DB::table('kota_kabupaten')->where('provinsi_id', Auth::user()->provinsi )->get();
+        $kecamatan = DB::table('kecamatan')->where('kab_kota_id', Auth::user()->kota )->get();        
+        $kelurahan = DB::table('kelurahan')->where('kecamatan_id', Auth::user()->kecamatan )->get();
         $pete = DB::table('tbjenjangpendidikan')->get();
         $prodimentor = DB::table('mastermatpel')->get();
-        $prodi=DB::table('tbdetailmentor')->where('idmentor', Auth::user()->idmentor)->value('prodi');
         $prodi2=implode(' ',[$prodi]);
         return view('profile', ['getprodi'=>$prodi2,'isCompleted' => $show, 'p' => $provinsi, 'b' => $kabupaten, 'c' => $kecamatan, 'd' => $kelurahan,'pt'=>$pete, 'prodi'=>$prodimentor]);
        }
@@ -123,11 +123,8 @@ class HomeController extends Controller
     {
         $this->validate($request, [
             // 'username' => ['required', 'alpha_num', 'min:6', 'max:50', 'unique:tbmentor,username,' . $idmentor . ',idmentor', 'regex:/^.*(?=.*[a-zA-Z])(?=.*[0-9]).*$/'],
-            // 'NamaDepan' => ['required', 'string', 'max:255'],
-            // 'NamaBelakang' => ['required', 'string', 'max:255'],
-            // 'alamat' => ['required', 'string', 'max:255'],
-            // // 'gender' => ['required', 'string', 'max:255'],
-            // 'noTlpn' => ['required', 'string', 'max:255', 'unique:tbmentor,noTlpn,' . $idmentor . ',idmentor'],
+            'noTlpn' => ['numeric', 'digits_between:10,15', 'unique:tbmentor,noTlpn,' . $idmentor . ',idmentor'],
+            'alamat' => ['required', 'max:255','regex:/[ .,()\-\/\w+]/'],
             // // 'email' => ['required', 'string', 'email', 'max:255', 'unique:tbmentor,email,'.$idmentor.',idmentor', 'regex:/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/']
         ]);
         $Tbmentor = Tbmentor::find($idmentor);
@@ -137,19 +134,14 @@ class HomeController extends Controller
         $Tbmentor->kota = $request['kabupaten'];
         $Tbmentor->kecamatan = $request['kecamatan'];
         $Tbmentor->kelurahan = $request['kelurahan'];
-        $Tbmentor->nm_depan = $request['NamaDepan'];
-        $Tbmentor->nm_belakang = $request['NamaBelakang'];
-        $Tbmentor->gender = $request['gender'];
         $Tbmentor->noTlpn = $request['noTlpn'];
         $Tbmentor->save();
 
          $this->validate($request, [
-        	// 'foto' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
-            // 'fileIjazah'=>'required|file|mimes:pdf|max:2048',
-            // 'fileKTP'=>'required|file|image|mimes:jpeg,png,jpg|max:2048',
-            // 'pendidikanTerakhir'=>'required',
-            // 'statusPendidikan'=>'required',
-            // 'No_Identitas'=>'required'
+        	'foto' => 'file|image|mimes:jpeg,png,jpg|max:2048',
+            'fileIjazah'=>'file|mimes:pdf|max:2048',
+            'fileKTP'=>'file|image|mimes:jpeg,png,jpg|max:2048',
+            'No_Identitas'=>'numeric'
         ]);
         $Tbdetailmentor = Tbdetailmentor::find($idmentor);
         $Tbdetailmentor->pendidikanTerakhir = $request['pendidikanTerakhir'];

@@ -78,6 +78,10 @@ class RegisterSiswaController extends Controller
                 'required', 'string', 'min:8', 'confirmed',
                  'regex:/^.*(?=.*[a-zA-Z])(?=.*[0-9]).*$/'
             ],
+        ])->setAttributeNames([
+            'NoTlpn' => 'Nomor Telepon',
+            'NamaLengkap' => 'Nama Lengkap',
+            'username' => 'Username'
         ]);
     }
 

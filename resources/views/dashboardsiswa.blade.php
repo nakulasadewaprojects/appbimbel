@@ -1,8 +1,5 @@
 @extends('layouts.siswa')
 @section('content')
-
-
-
 <div class="m-grid__item m-grid__item--fluid m-wrapper m-grid m-grid--hor">
 	@if (DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->value('statusKomplit')!==4)
 	<div class="m-alert m-alert--icon alert alert-warning" role="alert">
@@ -19,31 +16,46 @@
 		</div>
 	</div>
 	@endif
-	<div class="m-subheader-search">
+	{{-- <div class="m-subheader-search">
 		<h2 class="m-subheader-search__title">
 			Cari Mentor
 		</h2>
 		<form class="m-form">
 			<div class="m-input-icon m-input-icon--fixed m-input-icon--fixed-large m-input-icon--right">
-				<input type="text" class="form-control form-control-lg m-input m-input--pill" placeholder="MatPel">
 				<span class="m-input-icon__icon m-input-icon__icon--right">
 					<span>
-						<i class="la la-puzzle-piece"></i>
 					</span>
 				</span>
 			</div>
 			<div class="m--margin-top-20 m--visible-tablet-and-mobile"></div>
-			<button type="button" class="btn m-btn--pill m-subheader-search__submit-btn">
-				Cari
-			</button>
 		</form>
-	</div>
+	</div> --}}
+	
+	<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+		<div class="carousel-inner">
+		  <div class="carousel-item active">
+			<img class="d-block w-100" src="http://localhost/appbimbel/public/assets/img/siswa.jpg" alt="First slide">
+		  </div>
+		  <div class="carousel-item">
+			<img class="d-block w-100" src="http://localhost/appbimbel/public/assets/img/belajar.jpg" alt="Second slide">
+		  </div>
+		  <div class="carousel-item">
+			<img class="d-block w-100" src="http://localhost/appbimbel/public/assets/img/bimbel.jpg" alt="Third slide">
+		  </div>
+		</div>
+		<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+		  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		  <span class="sr-only">Previous</span>
+		</a>
+		<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+		  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+		  <span class="sr-only">Next</span>
+		</a>
+	  </div>
 	<div class="m-subheader ">
 		<div class="d-flex align-items-center">
 			<div class="mr-auto">
-				<h3 class="m-subheader__title ">
-					Daftar Mentor
-				</h3>
+					
 			</div>
 		</div>
 	</div>
@@ -124,7 +136,7 @@
 								<div class="m-widget4__item">
 									<div class="m-widget4__info">
 										<span class="m-widget4__title">
-											Pendidikan Terakhir
+											Pendidikan Mentor
 										</span>
 										<br>
 										<div class="col-13">
@@ -202,7 +214,7 @@
 														<option value="0">Semua Provinsi</option>
 													
 														@foreach ($p as $a)
-														<option value="{{ $a->id }}" @if(strpos($url, '$a->id' )!==false) selected @endif> {{$a->nama}}</option>
+														<option value="{{ $a->id }}" > {{$a->nama}}</option>
 														@endforeach
 
 													</select>
@@ -215,9 +227,6 @@
 												<div class="col-12">
 													<select class="form-control m-input" name="kabupaten" type="text" id="kab">
 														<option value="0">Semua Kabupaten</option>
-														@foreach ($b as $a)
-														<option value="{{ $a->id }}" >{{$a->nama}}</option>
-														@endforeach
 													</select>
 												</div>
 											</div>
@@ -228,9 +237,6 @@
 												<div class="col-12">
 													<select class="form-control m-input" name="kecamatan" type="text" id="kec">
 														<option value="0">Semua Kecamatan </option>
-														@foreach ($c as $a)
-														<option value="{{ $a->id }}" >{{$a->nama}}</option>
-														@endforeach
 													</select>
 												</div>
 											</div>
@@ -241,9 +247,6 @@
 												<div class="col-12">
 													<select class="form-control m-input" name="kelurahan" type="text" id="kel">
 														<option value="0">Semua Kelurahan </option>
-														@foreach ($d as $a)
-														<option value="{{ $a->id }}" >{{$a->nama}}</option>
-														@endforeach
 													</select>
 												</div>
 											</div>
@@ -327,14 +330,7 @@
 					<!--end:: Widgets/Best Sellers-->
 				</div>
 			</div>
-
-
-
-
-
 		</div>
-
-
 	</div>
 </div>
 </div>

@@ -24,8 +24,7 @@
 							<h3 class="m-subheader__title ">
 								Lihat Profil Saya
 							</h3>
-						</div>
-						
+						</div>		
 					</div>
 				</div>
 				<!-- END: Subheader -->
@@ -40,7 +39,11 @@
 										</div>
 										<div class="m-card-profile__pic">
 											<div class="m-card-profile__pic-wrapper">
-												<a href="{{ url('/data_fileSiswa/'.$ProfilSiswa->fotoProfile) }}" class="thumbnail"><img src="{{ url('/data_fileSiswa2/'.$ProfilSiswa->fotoProfile) }}" alt="" /></a>
+													@if(DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->value('fotoProfile')==NULL)
+													<img src="{{ url('/data_fileSiswa/default_photo_profile.png') }}" height="100px" width="100px" alt="Anda Belum Upload Foto"/>
+													@else
+													<a href="{{ url('/data_fileSiswa/'.$isCompleted->fotoProfile) }}" class="thumbnail"><img src="{{ url('/data_fileSiswa2/'.$isCompleted->fotoProfile) }}" alt=""/></a>
+													@endif
 											</div>
 										</div>
 										<div class="m-card-profile__details">
@@ -248,7 +251,7 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-xl-11 ">
+						<div class="col-xl-12 ">
 							<!--begin:: Widgets/Best Sellers-->
 							<div class="m-portlet m-portlet--full-height ">
 								<div class="m-portlet__head">
