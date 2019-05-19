@@ -22,15 +22,19 @@
 	<title>
 		App Bimbel
 	</title>
-	
-	<link href="http://localhost/appbimbel/public/assets/vendors/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
-	<link href="http://localhost/appbimbel/public/assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
-	<link href="http://localhost/appbimbel/public/assets/demo/demo6/base/style.bundle.css" rel="stylesheet" type="text/css" />
+
+	<link href="http://localhost/appbimbel/public/assets/vendors/custom/fullcalendar/fullcalendar.bundle.css"
+		rel="stylesheet" type="text/css" />
+	<link href="http://localhost/appbimbel/public/assets/vendors/base/vendors.bundle.css" rel="stylesheet"
+		type="text/css" />
+	<link href="http://localhost/appbimbel/public/assets/demo/demo6/base/style.bundle.css" rel="stylesheet"
+		type="text/css" />
 	<link rel="shortcut icon" href="http://localhost/appbimbel/public/assets/demo/demo6/media/img/logo/favicon.ico" />
 	<link rel="stylesheet" href="http://localhost/appbimbel/public/css/viewbox.css">
 </head>
 
-<body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-light m-aside-left--fixed m-aside-left--offcanvas m-aside-left--minimize m-brand--minimize m-footer--push m-aside--offcanvas-default">
+<body
+	class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-light m-aside-left--fixed m-aside-left--offcanvas m-aside-left--minimize m-brand--minimize m-footer--push m-aside--offcanvas-default">
 	<div class="m-grid m-grid--hor m-grid--root m-page">
 		<header class="m-grid__item    m-header " data-minimize-offset="200" data-minimize-mobile-offset="200">
 			<div class="m-container m-container--fluid m-container--full-height">
@@ -38,18 +42,23 @@
 					<div class="m-stack__item m-brand  m-brand--skin-light ">
 						<div class="m-stack m-stack--ver m-stack--general">
 							<div class="m-stack__item m-stack__item--middle m-brand__logo">
-								<a href="http://localhost/appbimbel/public/dashboardsiswa" class="m-brand__logo-wrapper">
-									<img alt="" src="http://localhost/appbimbel/public/assets/demo/demo6/media/img/logo/logo.png" />
+								<a href="http://localhost/appbimbel/public/dashboardsiswa"
+									class="m-brand__logo-wrapper">
+									<img alt=""
+										src="http://localhost/appbimbel/public/assets/demo/demo6/media/img/logo/logo.png" />
 								</a>
 							</div>
 							<div class="m-stack__item m-stack__item--middle m-brand__tools">
-								<a href="javascript:;" id="m_aside_left_offcanvas_toggle" class="m-brand__icon m-brand__toggler m-brand__toggler--left m--visible-tablet-and-mobile-inline-block">
+								<a href="javascript:;" id="m_aside_left_offcanvas_toggle"
+									class="m-brand__icon m-brand__toggler m-brand__toggler--left m--visible-tablet-and-mobile-inline-block">
 									<span></span>
 								</a>
-								<a id="m_aside_header_menu_mobile_toggle" href="javascript:;" class="m-brand__icon m-brand__toggler m--visible-tablet-and-mobile-inline-block">
+								<a id="m_aside_header_menu_mobile_toggle" href="javascript:;"
+									class="m-brand__icon m-brand__toggler m--visible-tablet-and-mobile-inline-block">
 									<span></span>
 								</a>
-								<a id="m_aside_header_topbar_mobile_toggle" href="javascript:;" class="m-brand__icon m--visible-tablet-and-mobile-inline-block">
+								<a id="m_aside_header_topbar_mobile_toggle" href="javascript:;"
+									class="m-brand__icon m--visible-tablet-and-mobile-inline-block">
 									<i class="flaticon-more"></i>
 								</a>
 							</div>
@@ -61,17 +70,22 @@
 								Siswa Dashboard
 							</h3>
 						</div>
-						<button class="m-aside-header-menu-mobile-close  m-aside-header-menu-mobile-close--skin-light " id="m_aside_header_menu_mobile_close_btn">
+						<button class="m-aside-header-menu-mobile-close  m-aside-header-menu-mobile-close--skin-light "
+							id="m_aside_header_menu_mobile_close_btn">
 							<i class="la la-close"></i>
 						</button>
 						<div id="m_header_topbar" class="m-topbar  m-stack m-stack--ver m-stack--general">
-							<div class="m-stack__item m-stack__item--middle m-dropdown m-dropdown--arrow m-dropdown--large m-dropdown--mobile-full-width m-dropdown--align-right m-dropdown--skin-light m-header-search m-header-search--expandable m-header-search--skin-light" id="m_quicksearch" data-search-type="default">
+							<div class="m-stack__item m-stack__item--middle m-dropdown m-dropdown--arrow m-dropdown--large m-dropdown--mobile-full-width m-dropdown--align-right m-dropdown--skin-light m-header-search m-header-search--expandable m-header-search--skin-light"
+								id="m_quicksearch" data-search-type="default">
 							</div>
 							<div class="m-stack__item m-topbar__nav-wrapper">
 								<ul class="m-topbar__nav m-nav m-nav--inline">
-									<li class="m-nav__item m-topbar__notifications m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-right 	m-dropdown--mobile-full-width" data-dropdown-toggle="click">
-										<a href="#" class="m-nav__link m-dropdown__toggle" id="m_topbar_notification_icon">
-											<span class="m-nav__link-badge m-badge m-badge--dot m-badge--dot-small m-badge--danger"></span>
+									<li class="m-nav__item m-topbar__notifications m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-right 	m-dropdown--mobile-full-width"
+										data-dropdown-toggle="click">
+										<a href="#" class="m-nav__link m-dropdown__toggle"
+											id="m_topbar_notification_icon">
+											<span
+												class="m-nav__link-badge m-badge m-badge--dot m-badge--dot-small m-badge--danger"></span>
 											<span class="m-nav__link-icon">
 												<span class="m-nav__link-icon-wrapper">
 													<i class="flaticon-music-2"></i>
@@ -91,30 +105,40 @@
 												</div>
 												<div class="m-dropdown__body">
 													<div class="m-dropdown__content">
-														<ul class="nav nav-tabs m-tabs m-tabs-line m-tabs-line--brand" role="tablist">
+														<ul class="nav nav-tabs m-tabs m-tabs-line m-tabs-line--brand"
+															role="tablist">
 															<li class="nav-item m-tabs__item">
-																<a class="nav-link m-tabs__link active" data-toggle="tab" href="#topbar_notifications_notifications" role="tab">
+																<a class="nav-link m-tabs__link active"
+																	data-toggle="tab"
+																	href="#topbar_notifications_notifications"
+																	role="tab">
 																	Alerts
 																</a>
 															</li>
 															<li class="nav-item m-tabs__item">
-																<a class="nav-link m-tabs__link" data-toggle="tab" href="#topbar_notifications_events" role="tab">
+																<a class="nav-link m-tabs__link" data-toggle="tab"
+																	href="#topbar_notifications_events" role="tab">
 																	Events
 																</a>
 															</li>
 															<li class="nav-item m-tabs__item">
-																<a class="nav-link m-tabs__link" data-toggle="tab" href="#topbar_notifications_logs" role="tab">
+																<a class="nav-link m-tabs__link" data-toggle="tab"
+																	href="#topbar_notifications_logs" role="tab">
 																	Logs
 																</a>
 															</li>
 														</ul>
 														<div class="tab-content">
-															<div class="tab-pane active" id="topbar_notifications_notifications" role="tabpanel">
-																<div class="m-scrollable" data-scrollable="true" data-max-height="250" data-mobile-max-height="200">
-																	<div class="m-list-timeline m-list-timeline--skin-light">
+															<div class="tab-pane active"
+																id="topbar_notifications_notifications" role="tabpanel">
+																<div class="m-scrollable" data-scrollable="true"
+																	data-max-height="250" data-mobile-max-height="200">
+																	<div
+																		class="m-list-timeline m-list-timeline--skin-light">
 																		<div class="m-list-timeline__items">
 																			<div class="m-list-timeline__item">
-																				<span class="m-list-timeline__badge -m-list-timeline__badge--state-success"></span>
+																				<span
+																					class="m-list-timeline__badge -m-list-timeline__badge--state-success"></span>
 																				<span class="m-list-timeline__text">
 																					12 new users registered
 																				</span>
@@ -123,10 +147,12 @@
 																				</span>
 																			</div>
 																			<div class="m-list-timeline__item">
-																				<span class="m-list-timeline__badge"></span>
+																				<span
+																					class="m-list-timeline__badge"></span>
 																				<span class="m-list-timeline__text">
 																					System shutdown
-																					<span class="m-badge m-badge--success m-badge--wide">
+																					<span
+																						class="m-badge m-badge--success m-badge--wide">
 																						pending
 																					</span>
 																				</span>
@@ -135,7 +161,8 @@
 																				</span>
 																			</div>
 																			<div class="m-list-timeline__item">
-																				<span class="m-list-timeline__badge"></span>
+																				<span
+																					class="m-list-timeline__badge"></span>
 																				<span class="m-list-timeline__text">
 																					New invoice received
 																				</span>
@@ -144,10 +171,12 @@
 																				</span>
 																			</div>
 																			<div class="m-list-timeline__item">
-																				<span class="m-list-timeline__badge"></span>
+																				<span
+																					class="m-list-timeline__badge"></span>
 																				<span class="m-list-timeline__text">
 																					DB overloaded 80%
-																					<span class="m-badge m-badge--info m-badge--wide">
+																					<span
+																						class="m-badge m-badge--info m-badge--wide">
 																						settled
 																					</span>
 																				</span>
@@ -156,7 +185,8 @@
 																				</span>
 																			</div>
 																			<div class="m-list-timeline__item">
-																				<span class="m-list-timeline__badge"></span>
+																				<span
+																					class="m-list-timeline__badge"></span>
 																				<span class="m-list-timeline__text">
 																					System error -
 																					<a href="#" class="m-link">
@@ -167,11 +197,15 @@
 																					2 hrs
 																				</span>
 																			</div>
-																			<div class="m-list-timeline__item m-list-timeline__item--read">
-																				<span class="m-list-timeline__badge"></span>
-																				<span href="" class="m-list-timeline__text">
+																			<div
+																				class="m-list-timeline__item m-list-timeline__item--read">
+																				<span
+																					class="m-list-timeline__badge"></span>
+																				<span href=""
+																					class="m-list-timeline__text">
 																					New order received
-																					<span class="m-badge m-badge--danger m-badge--wide">
+																					<span
+																						class="m-badge m-badge--danger m-badge--wide">
 																						urgent
 																					</span>
 																				</span>
@@ -179,8 +213,10 @@
 																					7 hrs
 																				</span>
 																			</div>
-																			<div class="m-list-timeline__item m-list-timeline__item--read">
-																				<span class="m-list-timeline__badge"></span>
+																			<div
+																				class="m-list-timeline__item m-list-timeline__item--read">
+																				<span
+																					class="m-list-timeline__badge"></span>
 																				<span class="m-list-timeline__text">
 																					Production server down
 																				</span>
@@ -189,7 +225,8 @@
 																				</span>
 																			</div>
 																			<div class="m-list-timeline__item">
-																				<span class="m-list-timeline__badge"></span>
+																				<span
+																					class="m-list-timeline__badge"></span>
 																				<span class="m-list-timeline__text">
 																					Production server up
 																				</span>
@@ -201,13 +238,19 @@
 																	</div>
 																</div>
 															</div>
-															<div class="tab-pane" id="topbar_notifications_events" role="tabpanel">
-																<div class="m-scrollable" m-scrollabledata-scrollable="true" data-max-height="250" data-mobile-max-height="200">
-																	<div class="m-list-timeline m-list-timeline--skin-light">
+															<div class="tab-pane" id="topbar_notifications_events"
+																role="tabpanel">
+																<div class="m-scrollable"
+																	m-scrollabledata-scrollable="true"
+																	data-max-height="250" data-mobile-max-height="200">
+																	<div
+																		class="m-list-timeline m-list-timeline--skin-light">
 																		<div class="m-list-timeline__items">
 																			<div class="m-list-timeline__item">
-																				<span class="m-list-timeline__badge m-list-timeline__badge--state1-success"></span>
-																				<a href="" class="m-list-timeline__text">
+																				<span
+																					class="m-list-timeline__badge m-list-timeline__badge--state1-success"></span>
+																				<a href=""
+																					class="m-list-timeline__text">
 																					New order received
 																				</a>
 																				<span class="m-list-timeline__time">
@@ -215,8 +258,10 @@
 																				</span>
 																			</div>
 																			<div class="m-list-timeline__item">
-																				<span class="m-list-timeline__badge m-list-timeline__badge--state1-danger"></span>
-																				<a href="" class="m-list-timeline__text">
+																				<span
+																					class="m-list-timeline__badge m-list-timeline__badge--state1-danger"></span>
+																				<a href=""
+																					class="m-list-timeline__text">
 																					New invoice received
 																				</a>
 																				<span class="m-list-timeline__time">
@@ -224,8 +269,10 @@
 																				</span>
 																			</div>
 																			<div class="m-list-timeline__item">
-																				<span class="m-list-timeline__badge m-list-timeline__badge--state1-success"></span>
-																				<a href="" class="m-list-timeline__text">
+																				<span
+																					class="m-list-timeline__badge m-list-timeline__badge--state1-success"></span>
+																				<a href=""
+																					class="m-list-timeline__text">
 																					Production server up
 																				</a>
 																				<span class="m-list-timeline__time">
@@ -233,8 +280,10 @@
 																				</span>
 																			</div>
 																			<div class="m-list-timeline__item">
-																				<span class="m-list-timeline__badge m-list-timeline__badge--state1-info"></span>
-																				<a href="" class="m-list-timeline__text">
+																				<span
+																					class="m-list-timeline__badge m-list-timeline__badge--state1-info"></span>
+																				<a href=""
+																					class="m-list-timeline__text">
 																					New order received
 																				</a>
 																				<span class="m-list-timeline__time">
@@ -242,8 +291,10 @@
 																				</span>
 																			</div>
 																			<div class="m-list-timeline__item">
-																				<span class="m-list-timeline__badge m-list-timeline__badge--state1-info"></span>
-																				<a href="" class="m-list-timeline__text">
+																				<span
+																					class="m-list-timeline__badge m-list-timeline__badge--state1-info"></span>
+																				<a href=""
+																					class="m-list-timeline__text">
 																					System shutdown
 																				</a>
 																				<span class="m-list-timeline__time">
@@ -251,8 +302,10 @@
 																				</span>
 																			</div>
 																			<div class="m-list-timeline__item">
-																				<span class="m-list-timeline__badge m-list-timeline__badge--state1-info"></span>
-																				<a href="" class="m-list-timeline__text">
+																				<span
+																					class="m-list-timeline__badge m-list-timeline__badge--state1-info"></span>
+																				<a href=""
+																					class="m-list-timeline__text">
 																					Production server down
 																				</a>
 																				<span class="m-list-timeline__time">
@@ -263,9 +316,12 @@
 																	</div>
 																</div>
 															</div>
-															<div class="tab-pane" id="topbar_notifications_logs" role="tabpanel">
-																<div class="m-stack m-stack--ver m-stack--general" style="min-height: 180px;">
-																	<div class="m-stack__item m-stack__item--center m-stack__item--middle">
+															<div class="tab-pane" id="topbar_notifications_logs"
+																role="tabpanel">
+																<div class="m-stack m-stack--ver m-stack--general"
+																	style="min-height: 180px;">
+																	<div
+																		class="m-stack__item m-stack__item--center m-stack__item--middle">
 																		<span class="">
 																			All caught up!
 																			<br>
@@ -280,9 +336,11 @@
 											</div>
 										</div>
 									</li>
-									<li class="m-nav__item m-topbar__quick-actions m-dropdown m-dropdown--skin-light m-dropdown--large m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push m-dropdown--mobile-full-width m-dropdown--skin-light" data-dropdown-toggle="click">
+									<li class="m-nav__item m-topbar__quick-actions m-dropdown m-dropdown--skin-light m-dropdown--large m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push m-dropdown--mobile-full-width m-dropdown--skin-light"
+										data-dropdown-toggle="click">
 										<a href="#" class="m-nav__link m-dropdown__toggle">
-											<span class="m-nav__link-badge m-badge m-badge--dot m-badge--info m--hide"></span>
+											<span
+												class="m-nav__link-badge m-badge m-badge--dot m-badge--info m--hide"></span>
 											<span class="m-nav__link-icon">
 												<span class="m-nav__link-icon-wrapper">
 													<i class="flaticon-share"></i>
@@ -290,7 +348,8 @@
 											</span>
 										</a>
 										<div class="m-dropdown__wrapper">
-											<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
+											<span
+												class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
 											<div class="m-dropdown__inner">
 												<div class="m-dropdown__header m--align-center">
 													<span class="m-dropdown__header-title">
@@ -302,7 +361,8 @@
 												</div>
 												<div class="m-dropdown__body m-dropdown__body--paddingless">
 													<div class="m-dropdown__content">
-														<div class="m-scrollable" data-scrollable="false" data-max-height="380" data-mobile-max-height="200">
+														<div class="m-scrollable" data-scrollable="false"
+															data-max-height="380" data-mobile-max-height="200">
 															<div class="m-nav-grid m-nav-grid--skin-light">
 																<div class="m-nav-grid__row">
 																	<a href="#" class="m-nav-grid__item">
@@ -326,7 +386,8 @@
 																		</span>
 																	</a>
 																	<a href="#" class="m-nav-grid__item">
-																		<i class="m-nav-grid__icon flaticon-clipboard"></i>
+																		<i
+																			class="m-nav-grid__icon flaticon-clipboard"></i>
 																		<span class="m-nav-grid__text">
 																			Completed Tasks
 																		</span>
@@ -339,10 +400,12 @@
 											</div>
 										</div>
 									</li>
-									<li class="m-nav__item m-topbar__user-profile  m-dropdown m-dropdown--medium m-dropdown--arrow  m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light" data-dropdown-toggle="click">
+									<li class="m-nav__item m-topbar__user-profile  m-dropdown m-dropdown--medium m-dropdown--arrow  m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light"
+										data-dropdown-toggle="click">
 										<a href="#" class="m-nav__link m-dropdown__toggle">
 											<span class="m-topbar__userpic m--hide">
-												<img src="assets/app/media/img/users/user4.jpg" class="m--img-rounded m--marginless m--img-centered" alt="" />
+												<img src="assets/app/media/img/users/user4.jpg"
+													class="m--img-rounded m--marginless m--img-centered" alt="" />
 											</span>
 											<span class="m-nav__link-icon m-topbar__usericon">
 												<span class="m-nav__link-icon-wrapper">
@@ -351,22 +414,21 @@
 											</span>
 										</a>
 										<div class="m-dropdown__wrapper">
-											<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
+											<span
+												class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
 											<div class="m-dropdown__inner">
 												<div class="m-dropdown__header m--align-center">
 													<div class="m-card-user m-card-user--skin-light">
 														<div class="m-card-user__pic">
-																@if(DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->value('fotoProfile')==NULL)
-																<img src="{{ url('/data_fileSiswa/default_photo_profile.png') }}" height="70px" width="100px" alt="Anda Belum Upload Foto"/>
-																@else
-																<a href="{{ url('/data_fileSiswa/'.$isCompleted->fotoProfile) }}" class="thumbnail"><img src="{{ url('/data_fileSiswa2/'.$isCompleted->fotoProfile) }}" alt=""/></a>
-																@endif
+															<img src="{{ url('/data_fileSiswa/'.$isCompleted->fotoProfile) }}"
+																height="70px" width="100px" alt="" />
 														</div>
 														<div class="m-card-user__details">
 															<span class="m-card-user__name m--font-weight-500">
 																{{ Auth::user()->username }}
 															</span>
-															<a href="" class="m-card-user__email m--font-weight-300 m-link">
+															<a href=""
+																class="m-card-user__email m--font-weight-300 m-link">
 																{{ Auth::user()->email }}
 															</a>
 														</div>
@@ -381,7 +443,8 @@
 																</span>
 															</li>
 															<li class="m-nav__item">
-																<a href="http://localhost/appbimbel/public/myprofilesiswa" class="m-nav__link">
+																<a href="http://localhost/appbimbel/public/myprofilesiswa"
+																	class="m-nav__link">
 																	<i class="m-nav__link-icon flaticon-profile-1"></i>
 																	<span class="m-nav__link-title">
 																		<span class="m-nav__link-wrap">
@@ -402,11 +465,15 @@
 															</li>
 															<li class="m-nav__separator m-nav__separator--fit"></li>
 															<li class="m-nav__item">
-																<a href="{{ route('logoutsiswa') }}" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder" onclick="event.preventDefault();
+																<a href="{{ route('logoutsiswa') }}"
+																	class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder"
+																	onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
 																	Logout
 																</a>
-																<form id="logout-form" action="{{ route('logoutsiswa') }}" method="POST" style="display: none;">
+																<form id="logout-form"
+																	action="{{ route('logoutsiswa') }}" method="POST"
+																	style="display: none;">
 																	@csrf
 																</form>
 															</li>
@@ -428,243 +495,157 @@
 				<i class="la la-close"></i>
 			</button>
 			<div id="m_aside_left" class="m-grid__item	m-aside-left  m-aside-left--skin-light ">
-				<div id="m_ver_menu" class="m-aside-menu  m-aside-menu--skin-light m-aside-menu--submenu-skin-light " data-menu-vertical="true" data-menu-scrollable="true" data-menu-dropdown-timeout="500">
+				<div id="m_ver_menu" class="m-aside-menu  m-aside-menu--skin-light m-aside-menu--submenu-skin-light "
+					data-menu-vertical="true" data-menu-scrollable="true" data-menu-dropdown-timeout="500">
 					<ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow ">
-						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover">
-							<a href="#" class="m-menu__link m-menu__toggle">
-								<i class="m-menu__link-icon flaticon-layers"></i>
-								<span class="m-menu__link-text">
-									Cari Mentor
-								</span>
-								<i class="m-menu__ver-arrow la la-angle-right"></i>
+						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"
+							data-menu-submenu-toggle="hover">
+							<a href="http://localhost/appbimbel/public/dashboardsiswa" class="m-menu__link">
+								<i class="m-menu__link-icon flaticon-users"></i>
 							</a>
 							<div class="m-menu__submenu">
 								<span class="m-menu__arrow"></span>
 								<ul class="m-menu__subnav">
-									<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true">
-										<a href="http://localhost/appbimbel/public/dashboardsiswa" class="m-menu__link ">
+									<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true"
+										data-redirect="true">
+										<div class="m-menu__link ">
 											<span class="m-menu__link-text">
 												Cari Mentor
 											</span>
-										</a>
+										</div>
 									</li>
 								</ul>
 							</div>
 						</li>
-						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover" data-redirect="true">
-							<a href="inner.html" class="m-menu__link m-menu__toggle">
+						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"
+							data-menu-submenu-toggle="hover">
+							<a href="http://localhost/appbimbel/public/calendarsiswa" class="m-menu__link">
 								<i class="m-menu__link-icon flaticon-clipboard"></i>
-								<span class="m-menu__link-text">
-									Setting Jadwal
-								</span>
-								<i class="m-menu__ver-arrow la la-angle-right"></i>
 							</a>
 							<div class="m-menu__submenu">
 								<span class="m-menu__arrow"></span>
 								<ul class="m-menu__subnav">
-									<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true" data-redirect="true">
-										<a href="http://localhost/appbimbel/public/calendarsiswa" class="m-menu__link ">
+									<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true"
+										data-redirect="true">
+										<div class="m-menu__link ">
 											<span class="m-menu__link-text">
-												Setting Jadwal
+												Jadwal
 											</span>
-										</a>
+										</div>
 									</li>
 								</ul>
 							</div>
 						</li>
-						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover" data-redirect="true">
-							<a href="inner.html" class="m-menu__link m-menu__toggle">
-								<i class="m-menu__link-icon flaticon-clipboard"></i>
-								<span class="m-menu__link-text">
-									Lihat Jadwal Saya
-								</span>
-								<i class="m-menu__ver-arrow la la-angle-right"></i>
+						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"
+							data-menu-submenu-toggle="hover">
+							<a href="http://localhost/appbimbel/public/jadwalsiswa" class="m-menu__link">
+								<i class="m-menu__link-icon flaticon-interface"></i>
 							</a>
 							<div class="m-menu__submenu">
 								<span class="m-menu__arrow"></span>
 								<ul class="m-menu__subnav">
-									<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true" data-redirect="true">
-										<a href="http://localhost/appbimbel/public/calendarsiswa" class="m-menu__link ">
-											<span class="m-menu__link-text">
-												Lihat Jadwal Saya
-											</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</li>
-						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover" data-redirect="true">
-							<a href="inner.html" class="m-menu__link m-menu__toggle">
-								<i class="m-menu__link-icon flaticon-graphic"></i>
-								<span class="m-menu__link-text">
-									Approval
-								</span>
-								<i class="m-menu__ver-arrow la la-angle-right"></i>
-							</a>
-							<div class="m-menu__submenu">
-								<span class="m-menu__arrow"></span>
-								<ul class="m-menu__subnav">
-									<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true" data-redirect="true">
-										<a href="http://localhost/appbimbel/public/jadwalsiswa" class="m-menu__link ">
+									<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true"
+										data-redirect="true">
+										<div class="m-menu__link ">
 											<span class="m-menu__link-text">
 												Approval
 											</span>
-										</a>
+										</div>
 									</li>
 								</ul>
 							</div>
 						</li>
-						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover" data-redirect="true">
-							<a href="#" class="m-menu__link m-menu__toggle">
-								<i class="m-menu__link-icon flaticon-graphic-1"></i>
-								<span class="m-menu__link-title">
-									<span class="m-menu__link-wrap">
-										<span class="m-menu__link-text">
-											Informasi Payment
-										</span>
-
-									</span>
-								</span>
-								<i class="m-menu__ver-arrow la la-angle-right"></i>
+						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"
+							data-menu-submenu-toggle="hover">
+							<a href="http://localhost/appbimbel/public/calendarsiswa" class="m-menu__link">
+								<i class="m-menu__link-icon flaticon-coins"></i>
 							</a>
 							<div class="m-menu__submenu">
 								<span class="m-menu__arrow"></span>
 								<ul class="m-menu__subnav">
-									<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true" data-redirect="true">
-										<a href="http://localhost/appbimbel/public/calendarsiswa" class="m-menu__link ">
-											<span class="m-menu__link-title">
-												<span class="m-menu__link-wrap">
-													<span class="m-menu__link-text">
-														Informasi Payment
-													</span>
-													<span class="m-menu__link-badge">
-													</span>
-												</span>
-											</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</li>
-						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover" data-redirect="true">
-							<a href="inner.html" class="m-menu__link m-menu__toggle">
-								<i class="m-menu__link-icon flaticon-light"></i>
-								<span class="m-menu__link-text">
-									Quiz
-								</span>
-								<i class="m-menu__ver-arrow la la-angle-right"></i>
-							</a>
-							<div class="m-menu__submenu">
-								<span class="m-menu__arrow"></span>
-								<ul class="m-menu__subnav">
-									<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true" data-redirect="true">
-										<a href="http://localhost/appbimbel/public/multimediasiswa" class="m-menu__link ">
+									<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true"
+										data-redirect="true">
+										<div class="m-menu__link ">
 											<span class="m-menu__link-text">
-												Quiz
+												Informasi Payment
 											</span>
-										</a>
+										</div>
 									</li>
 								</ul>
 							</div>
 						</li>
-						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover" data-redirect="true">
-							<a href="inner.html" class="m-menu__link m-menu__toggle">
-								<i class="m-menu__link-icon flaticon-technology"></i>
-								<span class="m-menu__link-text">
-									Report
-								</span>
-								<i class="m-menu__ver-arrow la la-angle-right"></i>
+						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"
+							data-menu-submenu-toggle="hover">
+							<a href="http://localhost/appbimbel/public/multimediasiswa" class="m-menu__link">
+								<i class="m-menu__link-icon flaticon-multimedia-1"></i>
 							</a>
 							<div class="m-menu__submenu">
 								<span class="m-menu__arrow"></span>
 								<ul class="m-menu__subnav">
-									<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true" data-redirect="true">
-										<a href="http://localhost/appbimbel/public/reportsiswa" class="m-menu__link ">
-											<span class="m-menu__link-text">
-												Report
-											</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</li>
-						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover" data-redirect="true">
-							<a href="inner.html" class="m-menu__link m-menu__toggle">
-								<i class="m-menu__link-icon flaticon-share"></i>
-								<span class="m-menu__link-text">
-									Multimedia
-								</span>
-								<i class="m-menu__ver-arrow la la-angle-right"></i>
-							</a>
-							<div class="m-menu__submenu">
-								<span class="m-menu__arrow"></span>
-								<ul class="m-menu__subnav">
-									<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true" data-redirect="true">
-										<a href="http://localhost/appbimbel/public/multimediasiswa" class="m-menu__link ">
+									<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true"
+										data-redirect="true">
+										<div class="m-menu__link ">
 											<span class="m-menu__link-text">
 												Multimedia
 											</span>
-										</a>
+										</div>
 									</li>
 								</ul>
 							</div>
 						</li>
-						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover" data-redirect="true">
-							<a href="http://localhost/appbimbel/public/multimediasiswa" class="m-menu__link m-menu__toggle">
-								<i class="m-menu__link-icon flaticon-pie-chart"></i>
-								<span class="m-menu__link-title">
-									<span class="m-menu__link-wrap">
-										<span class="m-menu__link-text">
-											Tutorial
-										</span>
-										<span class="m-menu__link-badge">
-											<span class="m-badge m-badge--accent m-badge--wide m-badge--rounded">
-												new
-											</span>
-										</span>
-									</span>
-								</span>
-								<i class="m-menu__ver-arrow la la-angle-right"></i>
+						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"
+							data-menu-submenu-toggle="hover">
+							<a href="http://localhost/appbimbel/public/multimediasiswa" class="m-menu__link">
+								<i class="m-menu__link-icon flaticon-list-1"></i>
 							</a>
 							<div class="m-menu__submenu">
 								<span class="m-menu__arrow"></span>
 								<ul class="m-menu__subnav">
-									<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true" data-redirect="true">
-										<a href="http://localhost/appbimbel/public/multimediasiswa" class="m-menu__link ">
-											<span class="m-menu__link-title">
-												<span class="m-menu__link-wrap">
-													<span class="m-menu__link-text">
-														Tutorial
-													</span>
-													<span class="m-menu__link-badge">
-														<span class="m-badge m-badge--accent m-badge--wide m-badge--rounded">
-															new
-														</span>
-													</span>
-												</span>
-											</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</li>
-						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover" data-redirect="true">
-							<a href="inner.html" class="m-menu__link m-menu__toggle">
-								<i class="m-menu__link-icon flaticon-technology"></i>
-								<span class="m-menu__link-text">
-									Konten
-								</span>
-								<i class="m-menu__ver-arrow la la-angle-right"></i>
-							</a>
-							<div class="m-menu__submenu">
-								<span class="m-menu__arrow"></span>
-								<ul class="m-menu__subnav">
-									<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true" data-redirect="true">
-										<a href="http://localhost/appbimbel/public/multimediasiswa" class="m-menu__link ">
+									<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true"
+										data-redirect="true">
+										<div class="m-menu__link ">
 											<span class="m-menu__link-text">
-												Konten
+												Tutorial
 											</span>
-										</a>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"
+							data-menu-submenu-toggle="hover">
+							<a href="http://localhost/appbimbel/public/multimediasiswa" class="m-menu__link">
+								<i class="m-menu__link-icon flaticon-edit"></i>
+							</a>
+							<div class="m-menu__submenu">
+								<span class="m-menu__arrow"></span>
+								<ul class="m-menu__subnav">
+									<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true"
+										data-redirect="true">
+										<div class="m-menu__link ">
+											<span class="m-menu__link-text">
+												Quiz
+											</span>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"
+							data-menu-submenu-toggle="hover">
+							<a href="http://localhost/appbimbel/public/reportsiswa" class="m-menu__link">
+								<i class="m-menu__link-icon flaticon-analytics"></i>
+							</a>
+							<div class="m-menu__submenu">
+								<span class="m-menu__arrow"></span>
+								<ul class="m-menu__subnav">
+									<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true"
+										data-redirect="true">
+										<div class="m-menu__link ">
+											<span class="m-menu__link-text">
+												Report
+											</span>
+										</div>
 									</li>
 								</ul>
 							</div>
@@ -704,7 +685,8 @@
 								</li>
 
 								<li class="m-nav__item m-nav__item">
-									<a href="#" class="m-nav__link" data-toggle="m-tooltip" title="Support Center" data-placement="left">
+									<a href="#" class="m-nav__link" data-toggle="m-tooltip" title="Support Center"
+										data-placement="left">
 										<i class="m-nav__link-icon flaticon-info m--icon-font-size-lg3"></i>
 									</a>
 								</li>
@@ -715,13 +697,17 @@
 			</footer>
 
 		</div>
-		<div class="m-scroll-top m-scroll-top--skin-top" data-toggle="m-scroll-top" data-scroll-offset="500" data-scroll-speed="300">
+		<div class="m-scroll-top m-scroll-top--skin-top" data-toggle="m-scroll-top" data-scroll-offset="500"
+			data-scroll-speed="300">
 			<i class="la la-arrow-up"></i>
 		</div>
 		<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-		<script src="http://localhost/appbimbel/public/assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
-		<script src="http://localhost/appbimbel/public/assets/demo/demo6/base/scripts.bundle.js" type="text/javascript"></script>
-		<script src="http://localhost/appbimbel/public/assets/vendors/custom/fullcalendar/fullcalendar.bundle.js" type="text/javascript"></script>
+		<script src="http://localhost/appbimbel/public/assets/vendors/base/vendors.bundle.js" type="text/javascript">
+		</script>
+		<script src="http://localhost/appbimbel/public/assets/demo/demo6/base/scripts.bundle.js" type="text/javascript">
+		</script>
+		<script src="http://localhost/appbimbel/public/assets/vendors/custom/fullcalendar/fullcalendar.bundle.js"
+			type="text/javascript"></script>
 		<script src="http://localhost/appbimbel/public/assets/app/js/dashboard.js" type="text/javascript"></script>
 		<script src="http://localhost/appbimbel/public/js/select2.js" type="text/javascript"></script>
 		<script src="http://localhost/appbimbel/public/js/jquery.viewbox.min.js"></script>
@@ -975,7 +961,7 @@
 		</script>
 
 		<script>
-			if ({{session()->has('message')}}){
+			if ({{session()->has('message')}}) {
 				toastr.options = {
 					"closeButton": true,
 					"debug": false,

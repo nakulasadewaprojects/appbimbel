@@ -96,8 +96,7 @@
 							</div>
 						</div>
 						<div class="col-xl-9 col-lg-8">
-							<div class="m-portlet m-portlet--full-height m-portlet--tabs  ">
-								
+							<div class="m-portlet m-portlet--full-height m-portlet--tabs  ">					
 								<div class="tab-content">
 									<div class="tab-pane active">
 										<div class="m-portlet m-portlet--full-height ">

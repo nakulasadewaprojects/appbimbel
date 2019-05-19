@@ -70,9 +70,28 @@
 					<div class="m-stack__item m-stack__item--fluid m-header-head" id="m_header_nav">
 						<div class="m-header__title">
 							<h3 class="m-header__title-text">
-								Mentor Dashboard
+								App Bimbel 2019
 							</h3>
 						</div>
+						<div id="m_header_menu" class="m-header-menu m-aside-header-menu-mobile m-aside-header-menu-mobile--offcanvas  m-header-menu--skin-light m-header-menu--submenu-skin-light m-aside-header-menu-mobile--skin-light m-aside-header-menu-mobile--submenu-skin-light "  >
+								<ul class="m-menu__nav  m-menu__nav--submenu-arrow ">
+									<li class="m-menu__item  m-menu__item--active m-menu__item--submenu m-menu__item--rel"  data-menu-submenu-toggle="click" aria-haspopup="true">
+										<div class="m-menu__link m-menu__toggle">
+											<span class="m-menu__item-here"></span>
+											<span class="m-menu__link-text">
+												Dashboard
+											</span>
+										</div>
+									</li>
+									<li class="m-menu__item  m-menu__item--submenu m-menu__item--rel m-menu__item--more m-menu__item--icon-only"  data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
+										<div class="m-menu__link m-menu__toggle">
+											<span class="m-menu__item-here"></span>
+											<i class="m-menu__link-icon flaticon-more-v3"></i>
+											<span class="m-menu__link-text"></span>
+										</div>
+									</li>
+								</ul>
+							</div>
 						<div id="m_header_topbar" class="m-topbar  m-stack m-stack--ver m-stack--general">
 							<div class="m-stack__item m-topbar__nav-wrapper">
 								<ul class="m-topbar__nav m-nav m-nav--inline">
@@ -437,11 +456,8 @@
 							<div class="m-menu__submenu">
 								<span class="m-menu__arrow"></span>
 								<ul class="m-menu__subnav">						
-									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
+									<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true"  data-redirect="true">
 										<div class="m-menu__link ">
-											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-												<span></span>
-											</i>
 											<span class="m-menu__link-text">
 												Jadwal
 											</span>
@@ -457,11 +473,8 @@
 							<div class="m-menu__submenu">
 								<span class="m-menu__arrow"></span>
 								<ul class="m-menu__subnav">						
-									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
+									<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true"  data-redirect="true">
 										<div class="m-menu__link ">
-											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-												<span></span>
-											</i>
 											<span class="m-menu__link-text">
 												Approval
 											</span>
@@ -477,11 +490,8 @@
 							<div class="m-menu__submenu">
 								<span class="m-menu__arrow"></span>
 								<ul class="m-menu__subnav">						
-									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
+									<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true"  data-redirect="true">
 										<div class="m-menu__link ">
-											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-												<span></span>
-											</i>
 											<span class="m-menu__link-text">
 												Tutorial
 											</span>
@@ -497,11 +507,8 @@
 							<div class="m-menu__submenu">
 								<span class="m-menu__arrow"></span>
 								<ul class="m-menu__subnav">						
-									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
+									<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true"  data-redirect="true">
 										<div class="m-menu__link ">
-											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-												<span></span>
-											</i>
 											<span class="m-menu__link-text">
 												Multimedia
 											</span>
@@ -517,11 +524,8 @@
 							<div class="m-menu__submenu">
 								<span class="m-menu__arrow"></span>
 								<ul class="m-menu__subnav">
-									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
+									<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true"  data-redirect="true">
 										<div class="m-menu__link ">
-											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-												<span></span>
-											</i>
 											<span class="m-menu__link-text">
 												Informasi Payment
 											</span>
