@@ -619,6 +619,9 @@
 		<script src="http://localhost/appbimbel/public/js/select2.js" type="text/javascript"></script>
 		<script src="http://localhost/appbimbel/public/js/jquery.viewbox.min.js"></script>
 		<script src="http://localhost/appbimbel/public/js/data-local.js" type="text/javascript"></script>
+		<script src="http://localhost/appbimbel/public/js/bootstrap-datepicker.js" type="text/javascript"></script>
+		<script src="http://localhost/appbimbel/public/js/bootstrap-select.js" type="text/javascript"></script>
+		<script src="http://localhost/appbimbel/public/js/bootstrap-timepicker.js" type="text/javascript"></script>
 		<script>
 			var pathname = window.location.pathname;
 			if (pathname == '/appbimbel/public/dashboardsiswa') {
@@ -868,11 +871,7 @@
 		</script>
 
 		<script>
-			if ({
-					{
-						session() - > has('message')
-					}
-				}) {
+			if ({{session()->has('message')}}) {
 				toastr.options = {
 					"closeButton": true,
 					"debug": false,
@@ -896,11 +895,7 @@
 		</script>
 
 		<script>
-			if ({
-					{
-						Auth::user() - > gender
-					}
-				} == 1) {
+			if ({{Auth::user()->gender}} == 1) {
 				document.getElementById("male").checked = true;
 			} else {
 				document.getElementById("female").checked = true;
