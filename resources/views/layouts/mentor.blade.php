@@ -475,55 +475,101 @@ License: You must have a valid license purchased only from themeforest(the above
 				<div id="m_ver_menu" class="m-aside-menu  m-aside-menu--skin-light m-aside-menu--submenu-skin-light " data-menu-vertical="true" data-menu-scrollable="true" data-menu-dropdown-timeout="500">
 					<ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow ">
 						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover">
-							<a href="#" class="m-menu__link m-menu__toggle">
-								<i class="m-menu__link-icon flaticon-layers"></i>
-								<span class="m-menu__link-text">
-									Menu
-								</span>
-								<i class="m-menu__ver-arrow la la-angle-right"></i>
+							<a href="http://localhost/appbimbel/public/tutorial" class="m-menu__link">
+								<i class="m-menu__link-icon flaticon-layers"></i>		
 							</a>
 							<div class="m-menu__submenu">
 								<span class="m-menu__arrow"></span>
-								<ul class="m-menu__subnav">
+								<ul class="m-menu__subnav">						
 									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
-										<a href="TerimaTolak" class="m-menu__link ">
-											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-												<span></span>
-											</i>
-											<span class="m-menu__link-text">
-												Approval
-											</span>
-										</a>
-									</li>
-									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
-										<a href="" class="m-menu__link ">
-											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-												<span></span>
-											</i>
-											<span class="m-menu__link-text">
-												List Jadwal Mentor
-											</span>
-										</a>
-									</li>
-									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
-										<a href="inner.html" class="m-menu__link ">
-											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-												<span></span>
-											</i>
-											<span class="m-menu__link-text">
-												Multimedia
-											</span>
-										</a>
-									</li>
-									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
-										<a href="http://localhost/appbimbel/public/tutorial" class="m-menu__link ">
+										<div class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
 											<span class="m-menu__link-text">
 												Tutorial
 											</span>
-										</a>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover">
+							<a href="http://localhost/appbimbel/public/tutorial" class="m-menu__link">
+								<i class="m-menu__link-icon flaticon-layers"></i>		
+							</a>
+							<div class="m-menu__submenu">
+								<span class="m-menu__arrow"></span>
+								<ul class="m-menu__subnav">						
+									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
+										<div class="m-menu__link ">
+											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+												<span></span>
+											</i>
+											<span class="m-menu__link-text">
+												Tutorial
+											</span>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover">
+							<a href="http://localhost/appbimbel/public/tutorial" class="m-menu__link">
+								<i class="m-menu__link-icon flaticon-layers"></i>		
+							</a>
+							<div class="m-menu__submenu">
+								<span class="m-menu__arrow"></span>
+								<ul class="m-menu__subnav">						
+									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
+										<div class="m-menu__link ">
+											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+												<span></span>
+											</i>
+											<span class="m-menu__link-text">
+												Tutorial
+											</span>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover">
+							<a href="http://localhost/appbimbel/public/tutorial" class="m-menu__link">
+								<i class="m-menu__link-icon flaticon-layers"></i>		
+							</a>
+							<div class="m-menu__submenu">
+								<span class="m-menu__arrow"></span>
+								<ul class="m-menu__subnav">						
+									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
+										<div class="m-menu__link ">
+											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+												<span></span>
+											</i>
+											<span class="m-menu__link-text">
+												Tutorial
+											</span>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover">
+							<a href="http://localhost/appbimbel/public/tutorial" class="m-menu__link">
+								<i class="m-menu__link-icon flaticon-layers"></i>		
+							</a>
+							<div class="m-menu__submenu">
+								<span class="m-menu__arrow"></span>
+								<ul class="m-menu__subnav">						
+									<li class="m-menu__item " aria-haspopup="true" data-redirect="true">
+										<div class="m-menu__link ">
+											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+												<span></span>
+											</i>
+											<span class="m-menu__link-text">
+												Tutorial
+											</span>
+										</div>
 									</li>
 								</ul>
 							</div>
@@ -531,7 +577,9 @@ License: You must have a valid license purchased only from themeforest(the above
 					</ul>
 				</div>
 			</div>
+
 			@yield('content')
+			
 		</div>
 	</div>
 
