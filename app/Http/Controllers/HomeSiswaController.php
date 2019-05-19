@@ -215,11 +215,6 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi', 'like', '%'.$getexplode[4].'%');})
                 ->paginate(5);                        
         }  
-        else{
-          $getMentor=NULL;
-        }
-
-   
         if($request['pendidikan']==1){ //SMA, SMK, D3
             $grup=DB::table('tbmentor')
             ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
@@ -8952,10 +8947,6 @@ class HomeSiswaController extends Controller
         $grup=NULL;
       
       }
-      // $url= Request::url();
-      // $url=$request->fullUrl();
-      // $url = $request->path();
-    
         return view('dashboardsiswa', ['isCompleted' => $showing,'idp'=>$idprovinsi,'grup'=> $grup, 'url'=>$url, 'mentor'=>$getMentor,'s'=>$siswa2, 'p' => $provinsi, 'b' => $kabupaten, 'c' => $kecamatan, 'd' => $kelurahan]);
         
         // return $getexplode;
@@ -9077,7 +9068,7 @@ class HomeSiswaController extends Controller
         
         $this->validate($request, [
             // 'username' => ['required', 'string', 'min:3', 'max:255', 'unique:tbsiswa,username,' . $idtbSiswa . ',idtbSiswa', 'regex:/^.*(?=.*[a-zA-Z])(?=.*[0-9]).*$/'],
-            'namaWali' => ['alpha', 'max:50'],
+            'namaWali' => ['regex:/[ \w+]/', 'max:50'],
             'pendidikanSiswa' => [ 'regex:/[\w+]/', 'max:200'],
             'alamat' => ['max:255','regex:/[ .,()\-\/\w+]/'],
             // 'gender' => ['required', 'string', 'max:255'],
