@@ -37,10 +37,13 @@
 										<div class="m-card-profile__title m--hide">
 											Your Profile
 										</div>
-										<br><br>
 										<div class="m-card-profile__pic">
 											<div class="m-card-profile__pic-wrapper">
-												<a href="{{ url('/data_fileSiswa/'.$ProfilSiswa->fotoProfile) }}" class="thumbnail"><img src="{{ url('/data_fileSiswa2/'.$ProfilSiswa->fotoProfile) }}" alt="" /></a>
+													@if(DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->value('fotoProfile')==NULL)
+													<img src="{{ url('/data_fileSiswa/default_photo_profile.png') }}" height="100px" width="100px" alt="Anda Belum Upload Foto"/>
+													@else
+													<a href="{{ url('/data_fileSiswa/'.$isCompleted->fotoProfile) }}" class="thumbnail"><img src="{{ url('/data_fileSiswa2/'.$isCompleted->fotoProfile) }}" alt=""/></a>
+													@endif
 											</div>
 										</div>
 										<div class="m-card-profile__details">
