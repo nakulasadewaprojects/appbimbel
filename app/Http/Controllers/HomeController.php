@@ -102,13 +102,13 @@ class HomeController extends Controller
     public function profile()
     {
         $show = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
-        $provinsi  = DB::table('provinsi')->get();
-        $kabupaten = DB::table('kota_kabupaten')->get();
+        $prodi=DB::table('tbdetailmentor')->where('idmentor', Auth::user()->idmentor)->value('prodi');
+        $provinsi  = DB::table('provinsi')->orderBy('nama', 'asc')->get();
+        $kabupaten = DB::table('kota_kabupaten')->where('id', )->get();
         $kecamatan = DB::table('kecamatan')->get();        
         $kelurahan = DB::table('kelurahan')->get();
         $pete = DB::table('tbjenjangpendidikan')->get();
         $prodimentor = DB::table('mastermatpel')->get();
-        $prodi=DB::table('tbdetailmentor')->where('idmentor', Auth::user()->idmentor)->value('prodi');
         $prodi2=implode(' ',[$prodi]);
         return view('profile', ['getprodi'=>$prodi2,'isCompleted' => $show, 'p' => $provinsi, 'b' => $kabupaten, 'c' => $kecamatan, 'd' => $kelurahan,'pt'=>$pete, 'prodi'=>$prodimentor]);
        }
@@ -123,10 +123,10 @@ class HomeController extends Controller
     {
         $this->validate($request, [
             // 'username' => ['required', 'alpha_num', 'min:6', 'max:50', 'unique:tbmentor,username,' . $idmentor . ',idmentor', 'regex:/^.*(?=.*[a-zA-Z])(?=.*[0-9]).*$/'],
-            'noTlpn' => ['numeric', 'max:15', 'min:10', 'unique:tbmentor,noTlpn,' . $idmentor . ',idmentor'],
+            'noTlpn' => ['numeric', 'digits_between:10,15', 'unique:tbmentor,noTlpn,' . $idmentor . ',idmentor'],
             // 'NamaDepan' => ['required', 'string', 'max:255'],
             // 'NamaBelakang' => ['required', 'string', 'max:255'],
-            // 'alamat' => ['required', 'string', 'max:255'],
+            'alamat' => ['required', 'string', 'max:255'],
             // // 'gender' => ['required', 'string', 'max:255'],
             // // 'email' => ['required', 'string', 'email', 'max:255', 'unique:tbmentor,email,'.$idmentor.',idmentor', 'regex:/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/']
         ]);
