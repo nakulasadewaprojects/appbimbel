@@ -1,7 +1,6 @@
 @extends('layouts.siswa')
 @section('content')
 <div class="m-grid__item m-grid__item--fluid m-wrapper">
-	<!-- BEGIN: Subheader -->
 	<div class="m-subheader ">
 		<div class="d-flex align-items-center">
 			<div class="mr-auto">
@@ -11,7 +10,6 @@
 			</div>
 		</div>
 	</div>
-	<!-- END: Subheader -->
 	<div class="m-content">
 		<div class="row">
 			<div class="col-xl-3 col-lg-4">
@@ -177,19 +175,15 @@
 								</span>
 							</div>
 							<div class="m-widget13__action m--align-right">
-								<!-- <a href="dashboardsiswa"> -->
 								<a href="http://localhost/appbimbel/public/formAjukan/{{$showmentor->idmentor}}">
 									<button type="button" class="m-widget__detalis  btn m-btn--pill  btn-accent">
 										Ajukan
 									</button>
+								</a>
 							</div>
-
-
-
 						</div>
 					</div>
 				</div>
-				<!--end:: Widgets/Company Summary-->
 			</div>
 		</div>
 	</div>
