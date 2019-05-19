@@ -1,8 +1,9 @@
-@extends('layouts.siswa')
+@extends('layouts.mentor')
 @section('content')
 
 <div class="m-grid__item m-grid__item--fluid m-wrapper">
     <div class="m-content">
+        <div class="row">
         <div class="col-xl-12">
             <div class="m-portlet m-portlet--full-height ">
                 <div class="m-portlet__head">
@@ -21,8 +22,7 @@
                                 </a>
                                 <div class="m-dropdown__wrapper">
                                     <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
-                                    <div class="m-dropdown__inner">
-                                        
+                                    <div class="m-dropdown__inner">                                       
                                     </div>
                                 </div>
                             </li>
@@ -109,6 +109,6 @@
         </div>
     </div>
 </div>
-
+</div>
 </div>
 @endsection

@@ -33,18 +33,15 @@
 
 	<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 		<div class="carousel-inner">
-			<div class="carousel-item active">
-				<img class="d-block w-100" src="http://localhost/appbimbel/public/assets/img/siswa.jpg"
-					alt="First slide">
-			</div>
-			<div class="carousel-item">
-				<img class="d-block w-100" src="http://localhost/appbimbel/public/assets/img/belajar.jpg"
-					alt="Second slide">
-			</div>
-			<div class="carousel-item">
-				<img class="d-block w-100" src="http://localhost/appbimbel/public/assets/img/bimbel.jpg"
-					alt="Third slide">
-			</div>
+		  <div class="carousel-item active">
+			<img class="d-block w-100" src="http://localhost/appbimbel/public/assets/img/bimbel.jpg" alt="First slide">
+		  </div>
+		  <div class="carousel-item">
+			<img class="d-block w-100" src="http://localhost/appbimbel/public/assets/img/belajar.jpg" alt="Second slide">
+		  </div>
+		  <div class="carousel-item">
+			<img class="d-block w-100" src="http://localhost/appbimbel/public/assets/img/bimbel.jpg" alt="Third slide">
+		  </div>
 		</div>
 		<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
 			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -113,7 +110,7 @@
 											<br><br>
 											<div class="m-checkbox-list">
 												<label class="m-checkbox">
-													<input id="bin" name="bin" type="checkbox" @if(strpos($url,'bin'
+													<input id="bin" onchange="myFunction()" name="bin" type="checkbox" @if(strpos($url,'bin'
 														)!==false) checked @endif>
 													Bahasa Indonesia
 													<span></span>
@@ -121,7 +118,7 @@
 											</div>
 											<div class="m-checkbox-list">
 												<label class="m-checkbox">
-													<input id="mtk" name="mtk" type="checkbox" @if(strpos($url,'mtk'
+													<input id="mtk" onchange="myFunction()" name="mtk" type="checkbox" @if(strpos($url,'mtk'
 														)!==false) checked @endif>
 													Matematika
 													<span></span>
@@ -129,7 +126,7 @@
 											</div>
 											<div class="m-checkbox-list">
 												<label class="m-checkbox">
-													<input id="ipa" name="ipa" type="checkbox" @if(strpos($url,'ipa'
+													<input id="ipa" onchange="myFunction()" name="ipa" type="checkbox" @if(strpos($url,'ipa'
 														)!==false) checked @endif>
 													IPA
 													<span></span>
@@ -137,7 +134,7 @@
 											</div>
 											<div class="m-checkbox-list">
 												<label class="m-checkbox">
-													<input id="ips" name="ips" type="checkbox" @if(strpos($url,'ips'
+													<input id="ips" onchange="myFunction()" name="ips" type="checkbox" @if(strpos($url,'ips'
 														)!==false) checked @endif>
 													IPS
 													<span></span>
@@ -145,7 +142,7 @@
 											</div>
 											<div class="m-checkbox-list">
 												<label class="m-checkbox">
-													<input id="big" name="big" type="checkbox" @if(strpos($url,'big'
+													<input id="big" onchange="myFunction()" name="big" type="checkbox" @if(strpos($url,'big'
 														)!==false) checked @endif>
 													Bahasa Inggris
 													<span></span>
@@ -203,7 +200,7 @@
 														</select>
 													</div>
 												</div>
-												<button type="submit" class="btn">
+												<button type="submit" id="btn" class="btn" disabled>
 													Cari
 												</button>
 											</div>
