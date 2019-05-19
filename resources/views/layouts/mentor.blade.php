@@ -431,7 +431,7 @@
 				<div id="m_ver_menu" class="m-aside-menu  m-aside-menu--skin-light m-aside-menu--submenu-skin-light " data-menu-vertical="true" data-menu-scrollable="true" data-menu-dropdown-timeout="500">
 					<ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow ">
 						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover">
-							<a href="http://localhost/appbimbel/public/tutorial" class="m-menu__link">
+							<a href="http://localhost/appbimbel/public/jadwal" class="m-menu__link">
 								<i class="m-menu__link-icon flaticon-clipboard"></i>		
 							</a>
 							<div class="m-menu__submenu">
@@ -451,7 +451,7 @@
 							</div>
 						</li>
 						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover">
-							<a href="http://localhost/appbimbel/public/tutorial" class="m-menu__link">
+							<a href="http://localhost/appbimbel/public/approvalmentor" class="m-menu__link">
 								<i class="m-menu__link-icon flaticon-interface"></i>		
 							</a>
 							<div class="m-menu__submenu">
@@ -511,7 +511,7 @@
 							</div>
 						</li>
 						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover">
-							<a href="http://localhost/appbimbel/public/tutorial" class="m-menu__link">
+							<a href="http://localhost/appbimbel/public/payment" class="m-menu__link">
 								<i class="m-menu__link-icon flaticon-coins"></i>
 							</a>
 							<div class="m-menu__submenu">
@@ -531,7 +531,7 @@
 							</div>
 						</li>
 						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover">
-							<a href="http://localhost/appbimbel/public/tutorial" class="m-menu__link">
+							<a href="http://localhost/appbimbel/public/report" class="m-menu__link">
 								<i class="m-menu__link-icon flaticon-analytics"></i>
 							</a>
 							<div class="m-menu__submenu">
@@ -613,6 +613,7 @@
 	<script src="http://localhost/appbimbel/public/js/jquery.panzoom.js"></script>
 	<script src="http://localhost/appbimbel/public/js/jquery.mousewheel.js"></script>
 	<script src="http://localhost/appbimbel/public/js/select2.js" type="text/javascript"></script>
+	<script src="http://localhost/appbimbel/public/js/data-local.js" type="text/javascript"></script>
 	<script>
 		if ({{DB::table('tbdetailmentor')->where('idmentor', Auth::user()->idmentor)->value('statusPendidikan')}} == 1) {
 			document.getElementById("selesai").checked = true;

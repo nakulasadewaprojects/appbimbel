@@ -118,6 +118,26 @@ class HomeController extends Controller
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
         return view('tutorial' , ['isCompleted' => $showing, 'm' => $mentor]);
     }
+    public function jadwal(){
+        $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
+        $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
+        return view('jadwal' , ['isCompleted' => $showing, 'm' => $mentor]);
+    }
+    public function approvalmentor(){
+        $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
+        $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
+        return view('approvalmentor' , ['isCompleted' => $showing, 'm' => $mentor]);
+    }
+    public function payment(){
+        $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
+        $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
+        return view('payment' , ['isCompleted' => $showing, 'm' => $mentor]);
+    }
+    public function report(){
+        $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
+        $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
+        return view('report' , ['isCompleted' => $showing, 'm' => $mentor]);
+    }
     
     public function update($idmentor, Request $request)
     {
