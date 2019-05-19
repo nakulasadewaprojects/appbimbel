@@ -494,7 +494,7 @@
 					</div>
 				</li>
 				<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover" data-redirect="true">
-					<a href="inner.html" class="m-menu__link m-menu__toggle">
+					<a href="http://localhost/appbimbel/public/calendarsiswa" class="m-menu__link m-menu__toggle">
 						<i class="m-menu__link-icon flaticon-clipboard"></i>
 						<span class="m-menu__link-text">
 							Lihat Jadwal Saya
@@ -536,7 +536,7 @@
 					</div>
 				</li>
 				<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover" data-redirect="true">
-					<a href="#" class="m-menu__link m-menu__toggle">
+					<a href="http://localhost/appbimbel/public/informasipayment" class="m-menu__link m-menu__toggle">
 						<i class="m-menu__link-icon flaticon-graphic-1"></i>
 						<span class="m-menu__link-title">
 							<span class="m-menu__link-wrap">
@@ -552,7 +552,7 @@
 						<span class="m-menu__arrow"></span>
 						<ul class="m-menu__subnav">
 							<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true" data-redirect="true">
-								<a href="http://localhost/appbimbel/public/calendarsiswa" class="m-menu__link ">
+								<a href="http://localhost/appbimbel/public/informasipayment" class="m-menu__link ">
 									<span class="m-menu__link-title">
 										<span class="m-menu__link-wrap">
 											<span class="m-menu__link-text">
@@ -766,7 +766,9 @@
 	<!-- multiple select -->
 	<script src="http://localhost/appbimbel/public/js/select2.js" type="text/javascript"></script>
 	<script src="http://localhost/appbimbel/public/js/jquery.viewbox.min.js"></script>
+	<!--data table -->
 	<script src="http://localhost/appbimbel/public/js/data-local.js" type="text/javascript"></script>
+	<script src="http://localhost/appbimbel/public/assets/img/belajar.jpg" </script>
 	<script>
 		var pathname = window.location.pathname;
 		if (pathname == '/appbimbel/public/dashboardsiswa') {

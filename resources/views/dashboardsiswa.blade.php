@@ -16,7 +16,7 @@
 		</div>
 	</div>
 	@endif
-	<div class="m-subheader-search">
+	{{-- <div class="m-subheader-search">
 		<h2 class="m-subheader-search__title">
 			Cari Mentor
 		</h2>
@@ -29,7 +29,29 @@
 			</div>
 			<div class="m--margin-top-20 m--visible-tablet-and-mobile"></div>
 		</form>
-	</div>
+	</div> --}}
+	
+	<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+		<div class="carousel-inner">
+		  <div class="carousel-item active">
+			<img class="d-block w-100" src="http://localhost/appbimbel/public/assets/img/siswa.jpg" alt="First slide">
+		  </div>
+		  <div class="carousel-item">
+			<img class="d-block w-100" src="http://localhost/appbimbel/public/assets/img/belajar.jpg" alt="Second slide">
+		  </div>
+		  <div class="carousel-item">
+			<img class="d-block w-100" src="http://localhost/appbimbel/public/assets/img/bimbel.jpg" alt="Third slide">
+		  </div>
+		</div>
+		<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+		  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		  <span class="sr-only">Previous</span>
+		</a>
+		<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+		  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+		  <span class="sr-only">Next</span>
+		</a>
+	  </div>
 	<div class="m-subheader ">
 		<div class="d-flex align-items-center">
 			<div class="mr-auto">
