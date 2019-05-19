@@ -216,7 +216,7 @@ class HomeSiswaController extends Controller
                 ->paginate(5);                        
         }  
         else{
-          $getmentor=NULL;
+          $getMentor=NULL;
         }
 
    
