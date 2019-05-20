@@ -221,7 +221,7 @@
 			</div>
 			@if(Request::fullUrl()=='http://localhost/appbimbel/public/dashboardsiswa')
 			<div class="col-xl-12">
-				<div class="m-portlet">
+			<div class="m-portlet m-portlet--success m-portlet--head-solid-bg m-portlet--head-sm" data-portlet="true" id="m_portlet_tools_2">
 					<div class="m-portlet__head">
 						<div class="m-portlet__head-caption">
 							<div class="m-portlet__head-title">
