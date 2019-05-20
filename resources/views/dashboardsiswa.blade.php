@@ -73,8 +73,7 @@
 						</div>
 					</div>
 					<div class="m-portlet__body  m-portlet__body--no-padding">
-						<form class="m-form" id="formFilter" method="GET" action="dashboardsiswa"
-							enctype="multipart/form-data">
+						<form class="m-form" id="formFilter" method="GET" action="dashboardsiswa" enctype="multipart/form-data">
 							<div class="row m-row--no-padding m-row--col-separator-xl">
 								<div class="col-xl-4">
 									<div class="m-widget14">
