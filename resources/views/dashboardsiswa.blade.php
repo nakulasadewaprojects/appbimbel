@@ -234,9 +234,12 @@
 									@foreach($mentor as $m)
 									<div class="m-widget5__item">
 										<div class="m-widget5__pic">
-											<img class="m-widget7__img"
-												src="assets/app/media/img//products/product6.jpg" alt="">
-										</div>
+												@if($m->foto==NULL)
+												<img src="{{ url('/data_fileSiswa/default_photo_profile.png') }}" height="100px" width="100px" alt="Anda Belum Upload Foto" />
+												@else
+												<img src="{{ url('/data_file2/'.$m->foto) }}" alt="Tidak Ada Foto" />
+												@endif
+											</div>
 										<div class="m-widget5__content">
 											<h4 class="m-widget5__title">
 												{{$m->nm_depan}}

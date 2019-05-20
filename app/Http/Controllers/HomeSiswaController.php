@@ -22,8 +22,9 @@ class HomeSiswaController extends Controller
         $showmentor=DB::table('tbmentor')
                     ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
                     ->where('tbmentor.idmentor', $id)->first();
+        $idmentor=$id;
         // $showing = DB::table('tbdetailmentor')->where('idmentor', $id)->first();        
-        return view ('detailmentor',['showmentor' => $showmentor,'isCompleted' => $showing]);
+        return view ('detailmentor',['showmentor' => $showmentor,'isCompleted' => $showing,'idmentor'=>$idmentor]);
     }
     public function formAjukan($id){
       

@@ -22,11 +22,12 @@
 							</div>
 							<div class="m-card-profile__pic">
 								<div class="m-card-profile__pic-wrapper">
-									@if(DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->value('foto')==NULL)
+									@if(DB::table('tbdetailmentor')->where('idtbRiwayatTutor', $idmentor)->value('foto')==NULL)
 									<img src="{{ url('data_fileSiswa/default_photo_profile.png') }}" height="100px" width="100px" alt="Anda Belum Upload Foto" />
 									@else
-									<a href="{{ url('localhost/public/data_file/'.$isCompleted->foto) }}" class="thumbnail"> <img src="{{ url('localhost/public/data_file2/'.$isCompleted->foto) }}" alt="Tidak Ada Foto" /></a>
+									<a href="{{ url('data_file/'.$showmentor->foto) }}" class="thumbnail"> <img src="{{ url('data_file2/'.$showmentor->foto) }}" alt="Tidak Ada Foto" /></a>
 									@endif
+									
 								</div>
 							</div>
 							<div class="m-card-profile__details">
