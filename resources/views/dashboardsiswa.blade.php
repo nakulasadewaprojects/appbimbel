@@ -69,10 +69,12 @@
 								<h3 class="m-portlet__head-text">
 									Filter Mentor
 								</h3>
+								<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Klik disini</button>
+ 
 							</div>
 						</div>
 					</div>
-					<div class="m-portlet__body  m-portlet__body--no-padding">
+					<div class="m-portlet__body collapse  m-portlet__body--no-padding" id="multiCollapseExample2">
 						<form class="m-form" id="formFilter" method="GET" action="dashboardsiswa"
 							enctype="multipart/form-data">
 							<div class="row m-row--no-padding m-row--col-separator-xl">
@@ -292,7 +294,9 @@
 							<div class="tab-pane active" id="m_widget5_tab1_content" aria-expanded="true">
 								<!--begin::m-widget5-->
 								<div class="m-widget5">
-									@if($grup!==NULL)
+										@if($isCompleted->prodiSiswa==NULL)
+										Hasil pencarian mentor akan muncul setelah data Anda lengkapi
+										@else
 									@foreach($grup as $m)
 									<div class="m-widget5__item">
 										<div class="m-widget5__pic">
@@ -323,8 +327,7 @@
 										</div>
 									</div>
 									@endforeach
-									@else
-									Tidak Ada Hasil Pencarian
+									
 									@endif
 									<!-- {{-- {{ $mentor->links() }} --}} -->
 
