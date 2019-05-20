@@ -28,10 +28,10 @@
 						<div class="m-widget13">
 							<div class="m-widget13__item">
 								<span class="m-widget13__desc m--align-right">
-									Username :
+									Nama Lengkap :
 								</span>
 								<span class="m-widget13__text m-widget13__text-bolder">
-									{{ $showmentor->username }}
+									{{ $showmentor->nm_depan }} {{ $showmentor->nm_belakang }}
 								</span>
 							</div>
 							<div class="m-widget13__item">
@@ -42,22 +42,22 @@
 									{{ $showmentor->email }}
 								</span>
 							</div>
-							<div class="m-widget13__item">
+							{{-- <div class="m-widget13__item">
 								<span class="m-widget13__desc m--align-right">
 									Nama Depan :
 								</span>
 								<span class="m-widget13__text m-widget13__text-bolder">
 									{{ $showmentor->nm_depan }}
 								</span>
-							</div>
-							<div class="m-widget13__item">
+							</div> --}}
+							{{-- <div class="m-widget13__item">
 								<span class="m-widget13__desc m--align-right">
 									Nama Belakang :
 								</span>
 								<span class="m-widget13__text m-widget13__text-bolder">
 									{{ $showmentor->nm_belakang }}
 								</span>
-							</div>
+							</div> --}}
 							<div class="m-widget13__item">
 								<span class="m-widget13__desc m--align-right">
 									Jenis Kelamin :

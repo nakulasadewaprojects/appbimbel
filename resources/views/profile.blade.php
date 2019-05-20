@@ -1,8 +1,7 @@
 @extends('layouts.mentor')
 @section('content')
-<!-- END: Left Aside -->
+
 <div class="m-grid__item m-grid__item--fluid m-wrapper">
-	<!-- BEGIN: Subheader -->
 	<div class="m-subheader ">
 		<div class="d-flex align-items-center">
 			<div class="mr-auto">
@@ -10,14 +9,12 @@
 					Edit Profil Saya
 				</h3>
 			</div>
-
 		</div>
 	</div>
-	<!-- END: Subheader -->
 	<div class="m-content">
 		<div class="row">
 			<div class="col-xl-3 col-lg-4">
-				<div class="m-portlet m-portlet--full-height  ">
+				<div class="m-portlet ">
 					<div class="m-portlet__body">
 						<div class="m-card-profile">
 							<div class="m-card-profile__title m--hide">
@@ -135,7 +132,7 @@
 											username
 										</label>
 										<div class="col-7">
-											<input readonly class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" type="text" value="{{ Auth::user()->username }}"> 
+											<input readonly class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" type="text" value="{{ Auth::user()->username }}">
 											@if ($errors->has('username'))
 											<span class="invalid-feedback" role="alert">
 												<strong>{{ $errors->first('username') }}</strong>
@@ -147,7 +144,7 @@
 											No Telepon
 										</label>
 										<div class="col-7">
-											<input required class="form-control{{ $errors->has('noTlpn') ? ' is-invalid' : '' }}" type="text" name="noTlpn" value="{{ Auth::user()->noTlpn }}"> 
+											<input required class="form-control{{ $errors->has('noTlpn') ? ' is-invalid' : '' }}" type="text" name="noTlpn" value="{{ Auth::user()->noTlpn }}">
 											@if ($errors->has('noTlpn'))
 											<span class="invalid-feedback" role="alert">
 												<strong>{{ $errors->first('noTlpn') }}</strong>
@@ -242,32 +239,32 @@
 									</div>
 									<div class="form-group m-form__group row">
 										<label for="example-text-input" class="col-3 col-form-label">
-														Pendidikan Terakhir
-													</label>
+											Pendidikan Terakhir
+										</label>
 										<div class="col-7">
 											<select class="form-control m-input" name="pendidikanTerakhir" type="text" id="pendidikanTerakhir">
-															<option value=""> Pilih Pendidikan Terakhir </option>
-										 					@foreach ($pt as $a)
-															<option value="{{ $a->idMasterPendidikan }}"{{ $isCompleted->pendidikanTerakhir ==  $a->idMasterPendidikan  ? 'selected' : ''}}>{{$a->jenjangPendidikan}}</option>
-															@endforeach
+												<option value=""> Pilih Pendidikan Terakhir </option>
+												@foreach ($pt as $a)
+												<option value="{{ $a->idMasterPendidikan }}" {{ $isCompleted->pendidikanTerakhir ==  $a->idMasterPendidikan  ? 'selected' : ''}}>{{$a->jenjangPendidikan}}</option>
+												@endforeach
 											</select>
 										</div>
 									</div>
 									<div class="form-group m-form__group row">
 										<label for="example-text-input" class="col-3 col-form-label text-md-right">
-															Status Pendidikan
-														</label>
+											Status Pendidikan
+										</label>
 										<div class="col-3">
 											<label class="m-radio m-radio--bold m-radio--state-brand">
-																<input required type="radio" name="statusPendidikan" id="selesai" value="1">
-																Selesai 
-																<span></span>
-														</label>
+												<input required type="radio" name="statusPendidikan" id="selesai" value="1">
+												Selesai
+												<span></span>
+											</label>
 											<label class="m-radio m-radio--bold m-radio--state-brand">
-																<input required type="radio" name="statusPendidikan" id="masihpendidikan" value="2">
-																Masih Pendidikan
-																<span></span>
-														</label>
+												<input required type="radio" name="statusPendidikan" id="masihpendidikan" value="2">
+												Masih Pendidikan
+												<span></span>
+											</label>
 										</div>
 									</div>
 
@@ -276,37 +273,37 @@
 											Prodi Mentor
 										</label>
 										<div class="col-lg-7 col-md-9 col-sm-12">
-											
-									<select required class="form-control m-select2" id="m_select2_3" name="prodi[]" multiple="multiple">																							
-										@foreach($prodi as $p)
-										<option value="{{$p->MatPel}}" @if(strpos($getprodi, $p->MatPel )!== false) selected @endif > {{$p->MatPel}}</option>
-										@endforeach
+
+											<select required class="form-control m-select2" id="m_select2_3" name="prodi[]" multiple="multiple">
+												@foreach($prodi as $p)
+												<option value="{{$p->MatPel}}" @if(strpos($getprodi, $p->MatPel )!== false) selected @endif > {{$p->MatPel}}</option>
+												@endforeach
 											</select>
 											<font size="2">*Pilih prodi yang ingin Anda ajarkan ke siswa</font>
 										</div>
-									</div>	
+									</div>
 
-																													 
+
 									<div class="form-group m-form__group row">
 										<label for="example-text-input" class="col-3 col-form-label">
 											Foto
 										</label>
 										<div class="col-4">
 											<label class="custom-file">
-													<input class="form-control {{ $errors->has('foto') ? ' is-invalid' : '' }}" type="file"  accept="image/*" name="foto">
-													@if ($errors->has('foto'))
-													<span class="invalid-feedback" role="alert">
-																<strong>{{ $errors->first('foto') }}</strong>
-													</span>@endif
-													<font size="2">*Ukuran Maksimal file foto adalah 2MB</font>
-										
-												</label>
-											</div>
-											@if($isCompleted->foto!=null)
-											<a href="{{ url('/data_file/'.$isCompleted->foto) }}" class="thumbnail"><img width="50px" height="50px" src="{{ url('/data_file2/'.$isCompleted->foto) }}" alt=""></a>
-											@else
-											Anda Belum Upload Foto
-											@endif
+												<input class="form-control {{ $errors->has('foto') ? ' is-invalid' : '' }}" type="file" accept="image/*" name="foto">
+												@if ($errors->has('foto'))
+												<span class="invalid-feedback" role="alert">
+													<strong>{{ $errors->first('foto') }}</strong>
+												</span>@endif
+												<font size="2">*Ukuran Maksimal file foto adalah 2MB</font>
+
+											</label>
+										</div>
+										@if($isCompleted->foto!=null)
+										<a href="{{ url('/data_file/'.$isCompleted->foto) }}" class="thumbnail"><img width="50px" height="50px" src="{{ url('/data_file2/'.$isCompleted->foto) }}" alt=""></a>
+										@else
+										Anda Belum Upload Foto
+										@endif
 									</div>
 									<!-- @foreach($isCompleted as $ft) -->
 									<!-- @endforeach -->
@@ -324,13 +321,13 @@
 										</label>
 										<div class="col-4">
 											<label class="custom-file">
-												<input  class="form-control{{ $errors->has('fileKTP') ? ' is-invalid' : '' }}" type="file" accept="image/*" name="fileKTP">
-												@if ($errors->has('fileKTP'))	
+												<input class="form-control{{ $errors->has('fileKTP') ? ' is-invalid' : '' }}" type="file" accept="image/*" name="fileKTP">
+												@if ($errors->has('fileKTP'))
 												<span class="invalid-feedback" role="alert">
-																<strong>{{ $errors->first('fileKTP') }}</strong>
-													</span>@endif
-													<font size="2">*Ukuran Maksimal file KTP adalah 2MB</font>
-										
+													<strong>{{ $errors->first('fileKTP') }}</strong>
+												</span>@endif
+												<font size="2">*Ukuran Maksimal file KTP adalah 2MB</font>
+
 											</label>
 										</div>
 										@if($isCompleted->fileKTP!=null)
@@ -343,36 +340,36 @@
 										</label>
 										<div class="col-4">
 											<label class="custom-file">
-												<input class="form-control{{ $errors->has('fileIjazah') ? ' is-invalid' : '' }}" type="file"  accept="application/pdf" name="fileIjazah">
+												<input class="form-control{{ $errors->has('fileIjazah') ? ' is-invalid' : '' }}" type="file" accept="application/pdf" name="fileIjazah">
 												@if ($errors->has('fileIjazah'))
 												<span class="invalid-feedback" role="alert">
-																<strong>{{ $errors->first('fileIjazah') }}</strong>
-													</span>@endif
-													<font size="2">*Ukuran Maksimal file ijazah adalah 2MB</font>
-										
+													<strong>{{ $errors->first('fileIjazah') }}</strong>
+												</span>@endif
+												<font size="2">*Ukuran Maksimal file ijazah adalah 2MB</font>
+
 											</label>
 											<!-- <div class="col-md-2"> -->
+										</div>
+										@if($isCompleted->fileIjazah!=null)
+										<div class="m-demo-icon">
+											<div class="m-demo-icon__preview">
+												<i class="fa fa-file-pdf-o"></i>
 											</div>
-											@if($isCompleted->fileIjazah!=null)
-											<div class="m-demo-icon">
-												<div class="m-demo-icon__preview">
-													<i class="fa fa-file-pdf-o"></i>
-												</div>
-												<div class="m-demo-icon__class" id="myPDF">
-													<a target="_blank" href="{{ url('/data_file/'.$isCompleted->fileIjazah) }}">{{ $isCompleted->fileIjazah }}"<a />
-												</div>
+											<div class="m-demo-icon__class" id="myPDF">
+												<a target="_blank" href="{{ url('/data_file/'.$isCompleted->fileIjazah) }}">{{ $isCompleted->fileIjazah }}"<a />
 											</div>
-											@else Anda Belum Upload File Ijazah @endif
-											
+										</div>
+										@else Anda Belum Upload File Ijazah @endif
+
 									</div>
 								</div>
-								
+
 								<div class="form-group m-form__group row">
 									<label for="example-text-input" class="col-3 col-form-label">
 										Pengalaman Kerja/Mengajar
 									</label>
 									<div class="col-7">
-										<textarea class="form-control m-input" type="text" rows="3" name="pengalaman" >{{ $isCompleted->pengalaman }}</textarea>																				
+										<textarea class="form-control m-input" type="text" rows="3" name="pengalaman">{{ $isCompleted->pengalaman }}</textarea>
 									</div>
 								</div>
 								<div class="m-portlet__foot m-portlet__foot--fit">
@@ -398,5 +395,7 @@
 			</div>
 		</div>
 	</div>
+</div>
+
 </div>
 @endsection

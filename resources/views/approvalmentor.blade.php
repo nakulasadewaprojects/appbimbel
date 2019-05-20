@@ -4,6 +4,7 @@
 <div class="m-grid__item m-grid__item--fluid m-wrapper">
     <div class="m-content">
         <div class="row">
+               
         <div class="col-xl-12">
             <div class="m-portlet m-portlet--full-height ">
                 <div class="m-portlet__head">
@@ -31,6 +32,7 @@
                 </div>
                 <div class="m-portlet__body">
                     <div class="m-widget3">
+                            @foreach($apvBimb as $apv )
                         <div class="m-widget3__item">
                             <div class="m-widget3__header">
                                 <div class="m-widget3__user-img">
@@ -38,11 +40,11 @@
                                 </div>
                                 <div class="m-widget3__info">
                                     <span class="m-widget3__username">
-                                        Melania Trump
+                                            {{$apv->nm_depan}} {{$apv->nm_belakang}}
                                     </span>
                                     <br>
                                     <span class="m-widget3__time">
-                                        2 day ago
+                                            {{$apv->prodi}}
                                     </span>
                                 </div>
                                 <span class="m-widget3__status m--font-info">
@@ -55,55 +57,8 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="m-widget3__item">
-                            <div class="m-widget3__header">
-                                <div class="m-widget3__user-img">
-                                    <img class="m-widget3__img" src="assets/app/media/img/users/user4.jpg" alt="">
-                                </div>
-                                <div class="m-widget3__info">
-                                    <span class="m-widget3__username">
-                                        Lebron King James
-                                    </span>
-                                    <br>
-                                    <span class="m-widget3__time">
-                                        1 day ago
-                                    </span>
-                                </div>
-                                <span class="m-widget3__status m--font-brand">
-                                    Open
-                                </span>
-                            </div>
-                            <div class="m-widget3__body">
-                                <p class="m-widget3__text">
-                                    Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.Ut wisi enim ad minim veniam,quis nostrud exerci tation ullamcorper.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="m-widget3__item">
-                            <div class="m-widget3__header">
-                                <div class="m-widget3__user-img">
-                                    <img class="m-widget3__img" src="assets/app/media/img/users/user5.jpg" alt="">
-                                </div>
-                                <div class="m-widget3__info">
-                                    <span class="m-widget3__username">
-                                        Deb Gibson
-                                    </span>
-                                    <br>
-                                    <span class="m-widget3__time">
-                                        3 weeks ago
-                                    </span>
-                                </div>
-                                <span class="m-widget3__status m--font-success">
-                                    Closed
-                                </span>
-                            </div>
-                            <div class="m-widget3__body">
-                                <p class="m-widget3__text">
-                                    Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+            @endforeach
+                </div>
                 </div>
             </div>
         </div>
