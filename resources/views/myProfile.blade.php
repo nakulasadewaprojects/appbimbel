@@ -19,6 +19,7 @@
 		</div>
 	</div>
 	@endif
+
 	<div class="m-subheader ">
 		<div class="d-flex align-items-center">
 			<div class="mr-auto">
@@ -28,7 +29,6 @@
 			</div>
 		</div>
 	</div>
-	<!-- END: Subheader -->
 	<div class="m-content">
 		<div class="row">
 			<div class="col-xl-3 col-lg-4">
@@ -94,141 +94,139 @@
 			</div>
 			<div class="col-xl-9 col-lg-8">
 				<div class="m-portlet m-portlet--full-height m-portlet--tabs  ">
-									<div class="tab-content">
-									<div class="tab-pane active">
-										<div class="m-portlet m-portlet--full-height ">
-											<div class="m-portlet__head">
-												<div class="m-portlet__head-caption">
-													<div class="m-portlet__head-title">
-														<h3 class="m-portlet__head-text">
-															Profil Saya
-														</h3>
-													</div>
-												</div>
-												<div class="m-portlet__head-tools">
-												</div>
-											</div>
-											<div class="m-portlet__body">
-												<div class="m-widget13">
-													<div class="m-widget13__item">
-														<span class="m-widget13__desc m--align-right">
-															Username :
-														</span>
-														<span class="m-widget13__text m-widget13__text-bolder">
-														{{ Auth::user()->username }}
-														</span>
-													</div>
-													<div class="m-widget13__item">
-														<span class="m-widget13__desc m--align-right">
-															Alamat Email :
-														</span>
-														<span class="m-widget13__text m-widget13__text-bolder">
-														{{ Auth::user()->email }}
-														</span>
-													</div>
-													<div class="m-widget13__item">
-														<span class="m-widget13__desc m--align-right">
-															Nama Depan :
-														</span>
-														<span class="m-widget13__text m-widget13__text-bolder">
-														{{ Auth::user()->nm_depan }}
-														</span>
-													</div>
-													<div class="m-widget13__item">
-														<span class="m-widget13__desc m--align-right">
-															Nama Belakang :
-														</span>
-														<span class="m-widget13__text m-widget13__text-bolder">
-														{{ Auth::user()->nm_belakang }}
-														</span>
-													</div>
-													<div class="m-widget13__item">
-														<span class="m-widget13__desc m--align-right">
-															Jenis Kelamin :
-														</span>
-														<span class="m-widget13__text m-widget13__text-bolder">
-														@if($m->gender!=2) 
-														laki laki
-														@else
-														perempuan
-														@endif
-														</span>
-													</div>
-													<div class="m-widget13__item">
-														<span class="m-widget13__desc m--align-right">
-															Alamat :
-														</span>
-														<span class="m-widget13__text m-widget13__text-bolder">
-															{{  Auth::user()->alamat }} ,  
-															{{DB::table('kelurahan')->where('id', Auth::user()->kelurahan)->value('nama')}} ,
-															{{DB::table('kecamatan')->where('id', Auth::user()->kecamatan)->value('nama')}} ,
-															{{DB::table('kota_kabupaten')->where('id', Auth::user()->kota)->value('nama')}} ,
-															{{DB::table('provinsi')->where('id', Auth::user()->provinsi)->value('nama')}} 
-														</span>
-														
-														
-													</div>
-													<div class="m-widget13__item">
-														<span class="m-widget13__desc m--align-right">
-															Nomor Telepon :
-														</span>
-														<span class="m-widget13__text m-widget13__text-bolder">
-														{{  Auth::user()->noTlpn }}
-														</span>
-													</div>
-													<div class="m-widget13__item">
-														<span class="m-widget13__desc m--align-right">
-															Status Pendidikan :
-														</span>
-														<span class="m-widget13__text m-widget13__text-bolder">
-														@if($isCompleted->statusPendidikan!=2) 
-														selesai
-														@else
-														masih pendidikan
-														@endif
-														</span>
-													</div>
-													<div class="m-widget13__item">
-														<span class="m-widget13__desc m--align-right">
-															Pendidikan Terakhir :
-														</span>
-														<span class="m-widget13__text m-widget13__text-bolder">
+					<div class="tab-content">
+						<div class="tab-pane active">
+							<div class="m-portlet m-portlet--success m-portlet--head-solid-bg">
+								<div class="m-portlet__head">
+									<div class="m-portlet__head-caption">
+										<div class="m-portlet__head-title">
+											<h3 class="m-portlet__head-text">
+												Profil Saya
+											</h3>
+										</div>
+									</div>
+								</div>
+								<div class="m-portlet__body">
+									<div class="m-widget13">
+										<div class="m-widget13__item">
+											<span class="m-widget13__desc m--align-right">
+												Username :
+											</span>
+											<span class="m-widget13__text m-widget13__text-bolder">
+												{{ Auth::user()->username }}
+											</span>
+										</div>
+										<div class="m-widget13__item">
+											<span class="m-widget13__desc m--align-right">
+												Alamat Email :
+											</span>
+											<span class="m-widget13__text m-widget13__text-bolder">
+												{{ Auth::user()->email }}
+											</span>
+										</div>
+										<div class="m-widget13__item">
+											<span class="m-widget13__desc m--align-right">
+												Nama Depan :
+											</span>
+											<span class="m-widget13__text m-widget13__text-bolder">
+												{{ Auth::user()->nm_depan }}
+											</span>
+										</div>
+										<div class="m-widget13__item">
+											<span class="m-widget13__desc m--align-right">
+												Nama Belakang :
+											</span>
+											<span class="m-widget13__text m-widget13__text-bolder">
+												{{ Auth::user()->nm_belakang }}
+											</span>
+										</div>
+										<div class="m-widget13__item">
+											<span class="m-widget13__desc m--align-right">
+												Jenis Kelamin :
+											</span>
+											<span class="m-widget13__text m-widget13__text-bolder">
+												@if($m->gender!=2)
+												laki laki
+												@else
+												perempuan
+												@endif
+											</span>
+										</div>
+										<div class="m-widget13__item">
+											<span class="m-widget13__desc m--align-right">
+												Alamat :
+											</span>
+											<span class="m-widget13__text m-widget13__text-bolder">
+												{{ Auth::user()->alamat }} ,
+												{{DB::table('kelurahan')->where('id', Auth::user()->kelurahan)->value('nama')}} ,
+												{{DB::table('kecamatan')->where('id', Auth::user()->kecamatan)->value('nama')}} ,
+												{{DB::table('kota_kabupaten')->where('id', Auth::user()->kota)->value('nama')}} ,
+												{{DB::table('provinsi')->where('id', Auth::user()->provinsi)->value('nama')}}
+											</span>
 
-														@if($isCompleted->pendidikanTerakhir==1) 
-														SD
-														@elseif($isCompleted->pendidikanTerakhir==2) 
-														SMP
-														@elseif($isCompleted->pendidikanTerakhir==3)
-														SMA
-														@elseif($isCompleted->pendidikanTerakhir==4)
-														SMK
-														@elseif($isCompleted->pendidikanTerakhir==5)
-														D III
-														@elseif($isCompleted->pendidikanTerakhir==6)
-														S1
-														@elseif($isCompleted->pendidikanTerakhir==7)
-														S2
-														@else
-														S3
-														@endif
-														</span>
-													</div>
-													<div class="m-widget13__item">
-														<span class="m-widget13__desc m--align-right">
-															Prodi Mentor :
-														</span>
-														<span class="m-widget13__text m-widget13__text-bolder">
-															{{ $isCompleted->prodi }}
-														</span>
-													</div>
-													<div class="m-widget13__item">
-														<span class="m-widget13__desc m--align-right">
-															Pengalaman Kerja/Mengajar :
-														</span>
-														<span class="m-widget13__text m-widget13__text-bolder">
-															{{ $isCompleted->pengalaman }}
-														</span>
-													</div>
+
+										</div>
+										<div class="m-widget13__item">
+											<span class="m-widget13__desc m--align-right">
+												Nomor Telepon :
+											</span>
+											<span class="m-widget13__text m-widget13__text-bolder">
+												{{ Auth::user()->noTlpn }}
+											</span>
+										</div>
+										<div class="m-widget13__item">
+											<span class="m-widget13__desc m--align-right">
+												Status Pendidikan :
+											</span>
+											<span class="m-widget13__text m-widget13__text-bolder">
+												@if($isCompleted->statusPendidikan!=2)
+												selesai
+												@else
+												masih pendidikan
+												@endif
+											</span>
+										</div>
+										<div class="m-widget13__item">
+											<span class="m-widget13__desc m--align-right">
+												Pendidikan Terakhir :
+											</span>
+											<span class="m-widget13__text m-widget13__text-bolder">
+
+												@if($isCompleted->pendidikanTerakhir==1)
+												SD
+												@elseif($isCompleted->pendidikanTerakhir==2)
+												SMP
+												@elseif($isCompleted->pendidikanTerakhir==3)
+												SMA
+												@elseif($isCompleted->pendidikanTerakhir==4)
+												SMK
+												@elseif($isCompleted->pendidikanTerakhir==5)
+												D III
+												@elseif($isCompleted->pendidikanTerakhir==6)
+												S1
+												@elseif($isCompleted->pendidikanTerakhir==7)
+												S2
+												@else
+												S3
+												@endif
+											</span>
+										</div>
+										<div class="m-widget13__item">
+											<span class="m-widget13__desc m--align-right">
+												Prodi Mentor :
+											</span>
+											<span class="m-widget13__text m-widget13__text-bolder">
+												{{ $isCompleted->prodi }}
+											</span>
+										</div>
+										<div class="m-widget13__item">
+											<span class="m-widget13__desc m--align-right">
+												Pengalaman Kerja/Mengajar :
+											</span>
+											<span class="m-widget13__text m-widget13__text-bolder">
+												{{ $isCompleted->pengalaman }}
+											</span>
+										</div>
 									</div>
 								</div>
 							</div>
