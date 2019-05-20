@@ -97,6 +97,9 @@
                                         Cancel
                                     @endif
                                 </span>
+                                <button type="button" class="m-btn m-btn--pill m-btn--hover-brand btn btn-sm btn-secondary" data-toggle="modal" data-target="#m_modal_3">
+                                    Detail
+                                </button>
                             </div>
                             <div class="m-widget3__body">
                                 <p class="m-widget3__text">
