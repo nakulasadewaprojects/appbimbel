@@ -22,7 +22,7 @@
 	<title>
 		App Bimbel
 	</title>
-	
+
 	<link href="http://localhost/appbimbel/public/assets/vendors/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
 	<link href="http://localhost/appbimbel/public/assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
 	<link href="http://localhost/appbimbel/public/assets/demo/demo6/base/style.bundle.css" rel="stylesheet" type="text/css" />
@@ -427,240 +427,137 @@
 				<div id="m_ver_menu" class="m-aside-menu  m-aside-menu--skin-light m-aside-menu--submenu-skin-light " data-menu-vertical="true" data-menu-scrollable="true" data-menu-dropdown-timeout="500">
 					<ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow ">
 						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover">
-							<a href="#" class="m-menu__link m-menu__toggle">
-								<i class="m-menu__link-icon flaticon-layers"></i>
-								<span class="m-menu__link-text">
-									Cari Mentor
-								</span>
-								<i class="m-menu__ver-arrow la la-angle-right"></i>
+							<a href="http://localhost/appbimbel/public/dashboardsiswa" class="m-menu__link">
+								<i class="m-menu__link-icon flaticon-users"></i>
 							</a>
 							<div class="m-menu__submenu">
 								<span class="m-menu__arrow"></span>
 								<ul class="m-menu__subnav">
-									<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true">
-										<a href="http://localhost/appbimbel/public/dashboardsiswa" class="m-menu__link ">
+								<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true"  data-redirect="true">
+										<div class="m-menu__link ">
 											<span class="m-menu__link-text">
 												Cari Mentor
 											</span>
-										</a>
+										</div>
 									</li>
 								</ul>
 							</div>
 						</li>
-						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover" data-redirect="true">
-							<a href="inner.html" class="m-menu__link m-menu__toggle">
+						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover">
+							<a href="http://localhost/appbimbel/public/calendarsiswa" class="m-menu__link">
 								<i class="m-menu__link-icon flaticon-clipboard"></i>
-								<span class="m-menu__link-text">
-									Setting Jadwal
-								</span>
-								<i class="m-menu__ver-arrow la la-angle-right"></i>
 							</a>
 							<div class="m-menu__submenu">
 								<span class="m-menu__arrow"></span>
 								<ul class="m-menu__subnav">
-									<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true" data-redirect="true">
-										<a href="http://localhost/appbimbel/public/calendarsiswa" class="m-menu__link ">
+								<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true"  data-redirect="true">
+										<div class="m-menu__link ">
 											<span class="m-menu__link-text">
-												Setting Jadwal
+												Jadwal
 											</span>
-										</a>
+										</div>
 									</li>
 								</ul>
 							</div>
-						</li>
-						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover" data-redirect="true">
-							<a href="inner.html" class="m-menu__link m-menu__toggle">
-								<i class="m-menu__link-icon flaticon-clipboard"></i>
-								<span class="m-menu__link-text">
-									Lihat Jadwal Saya
-								</span>
-								<i class="m-menu__ver-arrow la la-angle-right"></i>
+						</li>						
+						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover">
+							<a href="http://localhost/appbimbel/public/jadwalsiswa" class="m-menu__link">
+								<i class="m-menu__link-icon flaticon-interface"></i>
 							</a>
 							<div class="m-menu__submenu">
 								<span class="m-menu__arrow"></span>
 								<ul class="m-menu__subnav">
-									<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true" data-redirect="true">
-										<a href="http://localhost/appbimbel/public/calendarsiswa" class="m-menu__link ">
-											<span class="m-menu__link-text">
-												Lihat Jadwal Saya
-											</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</li>
-						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover" data-redirect="true">
-							<a href="inner.html" class="m-menu__link m-menu__toggle">
-								<i class="m-menu__link-icon flaticon-graphic"></i>
-								<span class="m-menu__link-text">
-									Approval
-								</span>
-								<i class="m-menu__ver-arrow la la-angle-right"></i>
-							</a>
-							<div class="m-menu__submenu">
-								<span class="m-menu__arrow"></span>
-								<ul class="m-menu__subnav">
-									<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true" data-redirect="true">
-										<a href="http://localhost/appbimbel/public/jadwalsiswa" class="m-menu__link ">
+								<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true"  data-redirect="true">
+										<div class="m-menu__link ">
 											<span class="m-menu__link-text">
 												Approval
 											</span>
-										</a>
+										</div>
 									</li>
 								</ul>
 							</div>
 						</li>
-						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover" data-redirect="true">
-							<a href="#" class="m-menu__link m-menu__toggle">
-								<i class="m-menu__link-icon flaticon-graphic-1"></i>
-								<span class="m-menu__link-title">
-									<span class="m-menu__link-wrap">
-										<span class="m-menu__link-text">
-											Informasi Payment
-										</span>
-
-									</span>
-								</span>
-								<i class="m-menu__ver-arrow la la-angle-right"></i>
+						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover">
+							<a href="http://localhost/appbimbel/public/calendarsiswa" class="m-menu__link">
+								<i class="m-menu__link-icon flaticon-coins"></i>
 							</a>
 							<div class="m-menu__submenu">
 								<span class="m-menu__arrow"></span>
 								<ul class="m-menu__subnav">
-									<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true" data-redirect="true">
-										<a href="http://localhost/appbimbel/public/calendarsiswa" class="m-menu__link ">
-											<span class="m-menu__link-title">
-												<span class="m-menu__link-wrap">
-													<span class="m-menu__link-text">
-														Informasi Payment
-													</span>
-													<span class="m-menu__link-badge">
-													</span>
-												</span>
-											</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</li>
-						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover" data-redirect="true">
-							<a href="inner.html" class="m-menu__link m-menu__toggle">
-								<i class="m-menu__link-icon flaticon-light"></i>
-								<span class="m-menu__link-text">
-									Quiz
-								</span>
-								<i class="m-menu__ver-arrow la la-angle-right"></i>
-							</a>
-							<div class="m-menu__submenu">
-								<span class="m-menu__arrow"></span>
-								<ul class="m-menu__subnav">
-									<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true" data-redirect="true">
-										<a href="http://localhost/appbimbel/public/multimediasiswa" class="m-menu__link ">
+								<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true"  data-redirect="true">
+										<div class="m-menu__link ">
 											<span class="m-menu__link-text">
-												Quiz
+												Informasi Payment
 											</span>
-										</a>
+										</div>
 									</li>
 								</ul>
 							</div>
 						</li>
-						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover" data-redirect="true">
-							<a href="inner.html" class="m-menu__link m-menu__toggle">
-								<i class="m-menu__link-icon flaticon-technology"></i>
-								<span class="m-menu__link-text">
-									Report
-								</span>
-								<i class="m-menu__ver-arrow la la-angle-right"></i>
+						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover">
+							<a href="http://localhost/appbimbel/public/multimediasiswa" class="m-menu__link">
+								<i class="m-menu__link-icon flaticon-multimedia-1"></i>
 							</a>
 							<div class="m-menu__submenu">
 								<span class="m-menu__arrow"></span>
 								<ul class="m-menu__subnav">
-									<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true" data-redirect="true">
-										<a href="http://localhost/appbimbel/public/reportsiswa" class="m-menu__link ">
-											<span class="m-menu__link-text">
-												Report
-											</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</li>
-						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover" data-redirect="true">
-							<a href="inner.html" class="m-menu__link m-menu__toggle">
-								<i class="m-menu__link-icon flaticon-share"></i>
-								<span class="m-menu__link-text">
-									Multimedia
-								</span>
-								<i class="m-menu__ver-arrow la la-angle-right"></i>
-							</a>
-							<div class="m-menu__submenu">
-								<span class="m-menu__arrow"></span>
-								<ul class="m-menu__subnav">
-									<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true" data-redirect="true">
-										<a href="http://localhost/appbimbel/public/multimediasiswa" class="m-menu__link ">
+									<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true"  data-redirect="true">
+										<div class="m-menu__link ">
 											<span class="m-menu__link-text">
 												Multimedia
 											</span>
-										</a>
+										</div>
 									</li>
 								</ul>
 							</div>
 						</li>
-						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover" data-redirect="true">
-							<a href="http://localhost/appbimbel/public/multimediasiswa" class="m-menu__link m-menu__toggle">
-								<i class="m-menu__link-icon flaticon-pie-chart"></i>
-								<span class="m-menu__link-title">
-									<span class="m-menu__link-wrap">
-										<span class="m-menu__link-text">
-											Tutorial
-										</span>
-										<span class="m-menu__link-badge">
-											<span class="m-badge m-badge--accent m-badge--wide m-badge--rounded">
-												new
-											</span>
-										</span>
-									</span>
-								</span>
-								<i class="m-menu__ver-arrow la la-angle-right"></i>
+						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover">
+							<a href="http://localhost/appbimbel/public/multimediasiswa" class="m-menu__link">
+								<i class="m-menu__link-icon flaticon-list-1"></i>
 							</a>
 							<div class="m-menu__submenu">
 								<span class="m-menu__arrow"></span>
 								<ul class="m-menu__subnav">
-									<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true" data-redirect="true">
-										<a href="http://localhost/appbimbel/public/multimediasiswa" class="m-menu__link ">
-											<span class="m-menu__link-title">
-												<span class="m-menu__link-wrap">
-													<span class="m-menu__link-text">
-														Tutorial
-													</span>
-													<span class="m-menu__link-badge">
-														<span class="m-badge m-badge--accent m-badge--wide m-badge--rounded">
-															new
-														</span>
-													</span>
-												</span>
-											</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</li>
-						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover" data-redirect="true">
-							<a href="inner.html" class="m-menu__link m-menu__toggle">
-								<i class="m-menu__link-icon flaticon-technology"></i>
-								<span class="m-menu__link-text">
-									Konten
-								</span>
-								<i class="m-menu__ver-arrow la la-angle-right"></i>
-							</a>
-							<div class="m-menu__submenu">
-								<span class="m-menu__arrow"></span>
-								<ul class="m-menu__subnav">
-									<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true" data-redirect="true">
-										<a href="http://localhost/appbimbel/public/multimediasiswa" class="m-menu__link ">
+									<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true"  data-redirect="true">
+										<div class="m-menu__link ">
 											<span class="m-menu__link-text">
-												Konten
+												Tutorial
 											</span>
-										</a>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover">
+							<a href="http://localhost/appbimbel/public/multimediasiswa" class="m-menu__link">
+								<i class="m-menu__link-icon flaticon-edit"></i>
+							</a>
+							<div class="m-menu__submenu">
+								<span class="m-menu__arrow"></span>
+								<ul class="m-menu__subnav">
+									<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true"  data-redirect="true">
+										<div class="m-menu__link ">
+											<span class="m-menu__link-text">
+												Quiz
+											</span>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover">
+							<a href="http://localhost/appbimbel/public/reportsiswa" class="m-menu__link">
+								<i class="m-menu__link-icon flaticon-analytics"></i>
+							</a>
+							<div class="m-menu__submenu">
+								<span class="m-menu__arrow"></span>
+								<ul class="m-menu__subnav">
+									<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true"  data-redirect="true">
+										<div class="m-menu__link ">
+											<span class="m-menu__link-text">
+												Report
+											</span>
+										</div>
 									</li>
 								</ul>
 							</div>
@@ -974,11 +871,7 @@
 		</script>
 
 		<script>
-			if ({
-					{
-						session() - > has('message')
-					}
-				}) {
+			if ({{session()->has('message')}}) {
 				toastr.options = {
 					"closeButton": true,
 					"debug": false,
@@ -1002,11 +895,7 @@
 		</script>
 
 		<script>
-			if ({
-					{
-						Auth::user() - > gender
-					}
-				} == 1) {
+			if ({{Auth::user()->gender}} == 1) {
 				document.getElementById("male").checked = true;
 			} else {
 				document.getElementById("female").checked = true;
@@ -1030,6 +919,15 @@
 				useGestures: true
 			});
 		</script>
+			<script>
+				function myFunction() {
+			if (document.getElementById('bin').checked || document.getElementById('mtk').checked || document.getElementById('ipa').checked|| document.getElementById('ips').checked|| document.getElementById('big').checked) {
+			  document.getElementById("btn").disabled = false;
+			} else {
+			  document.getElementById("btn").disabled = true;
+			}
+			}
+					</script>
 
 </body>
 

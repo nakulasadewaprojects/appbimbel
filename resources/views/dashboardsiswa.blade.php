@@ -1,7 +1,7 @@
 @extends('layouts.siswa')
 @section('content')
 <div class="m-grid__item m-grid__item--fluid m-wrapper m-grid m-grid--hor">
-	@if (DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->value('statusKomplit')!==4)
+	@if (DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->value('statusKomplit')!==6)
 	<div class="m-alert m-alert--icon alert alert-warning" role="alert">
 		<div class="m-alert__icon">
 			<i class="la la-warning"></i>
@@ -30,11 +30,11 @@
 			<div class="m--margin-top-20 m--visible-tablet-and-mobile"></div>
 		</form>
 	</div> --}}
-	
+
 	<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 		<div class="carousel-inner">
 		  <div class="carousel-item active">
-			<img class="d-block w-100" src="http://localhost/appbimbel/public/assets/img/siswa.jpg" alt="First slide">
+			<img class="d-block w-100" src="http://localhost/appbimbel/public/assets/img/bimbel.jpg" alt="First slide">
 		  </div>
 		  <div class="carousel-item">
 			<img class="d-block w-100" src="http://localhost/appbimbel/public/assets/img/belajar.jpg" alt="Second slide">
@@ -44,25 +44,177 @@
 		  </div>
 		</div>
 		<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-		  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-		  <span class="sr-only">Previous</span>
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="sr-only">Previous</span>
 		</a>
 		<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-		  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-		  <span class="sr-only">Next</span>
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="sr-only">Next</span>
 		</a>
-	  </div>
+	</div>
 	<div class="m-subheader ">
 		<div class="d-flex align-items-center">
 			<div class="mr-auto">
-					
+
 			</div>
 		</div>
 	</div>
 	<div class="m-content">
 		<div class="row">
 			<div class="col-xl-12">
-				<div class="m-portlet  ">
+				<div class="m-portlet">
+					<div class="m-portlet__head">
+						<div class="m-portlet__head-caption">
+							<div class="m-portlet__head-title">
+								<h3 class="m-portlet__head-text">
+									Filter Mentor
+								</h3>
+							</div>
+						</div>
+					</div>
+					<div class="m-portlet__body  m-portlet__body--no-padding">
+						<form class="m-form" id="formFilter" method="GET" action="dashboardsiswa"
+							enctype="multipart/form-data">
+							<div class="row m-row--no-padding m-row--col-separator-xl">
+								<div class="col-xl-4">
+									<div class="m-widget14">
+										<div class="m-widget14__header m--margin-bottom-30">
+											<span class="m-widget14__title">
+												Pendidikan Mentor
+											</span>
+											<br><br>
+											<span class="m-widget14__title">
+												<div class="col-12">
+													<select class="form-control m-input" id="pend" name="pendidikan"
+														type="text">
+														<option value="4" @if(strpos($url,'4' )!==false) selected
+															@endif>Semua Jenjang</option>
+														<option value="1" @if(strpos($url,'1' )!==false) selected
+															@endif> SMA, SMK</option>
+														<option value="2" @if(strpos($url,'2' )!==false) selected
+															@endif> D3</option>
+														<option value="3" @if(strpos($url,'3' )!==false) selected
+															@endif> S1, S2, S3</option>
+													</select>
+												</div>
+											</span>
+										</div>
+									</div>
+								</div>
+								<div class="col-xl-4">
+									<div class="m-widget14">
+										<div class="m-widget14__header m--margin-bottom-30">
+											<span class="m-widget14__title">
+												Mata Pelajaran
+											</span>
+											<br><br>
+											<div class="m-checkbox-list">
+												<label class="m-checkbox">
+													<input id="bin" onchange="myFunction()" name="bin" type="checkbox" @if(strpos($url,'bin'
+														)!==false) checked @endif>
+													Bahasa Indonesia
+													<span></span>
+												</label>
+											</div>
+											<div class="m-checkbox-list">
+												<label class="m-checkbox">
+													<input id="mtk" onchange="myFunction()" name="mtk" type="checkbox" @if(strpos($url,'mtk'
+														)!==false) checked @endif>
+													Matematika
+													<span></span>
+												</label>
+											</div>
+											<div class="m-checkbox-list">
+												<label class="m-checkbox">
+													<input id="ipa" onchange="myFunction()" name="ipa" type="checkbox" @if(strpos($url,'ipa'
+														)!==false) checked @endif>
+													IPA
+													<span></span>
+												</label>
+											</div>
+											<div class="m-checkbox-list">
+												<label class="m-checkbox">
+													<input id="ips" onchange="myFunction()" name="ips" type="checkbox" @if(strpos($url,'ips'
+														)!==false) checked @endif>
+													IPS
+													<span></span>
+												</label>
+											</div>
+											<div class="m-checkbox-list">
+												<label class="m-checkbox">
+													<input id="big" onchange="myFunction()" name="big" type="checkbox" @if(strpos($url,'big'
+														)!==false) checked @endif>
+													Bahasa Inggris
+													<span></span>
+												</label>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-xl-4">
+									<div class="m-widget14">
+										<div class="m-widget14__header m--margin-bottom-30">
+											<span class="m-widget14__title">
+												Alamat
+											</span>
+											<br>
+											<div class="m-form__group form-group">
+												<div class="form-group m-form__group row">
+													<div class="col-12">
+														<select class="form-control m-input" id="prov" name="provinsi"
+															type="text">
+															<option value="0">Semua Provinsi</option>
+															@foreach ($p as $a)
+															<option value="{{ $a->id }}"> {{$a->nama}}</option>
+															@endforeach
+														</select>
+													</div>
+												</div>
+												<div class="form-group m-form__group row">
+													<label for="example-text-input">
+													</label>
+													<div class="col-12">
+														<select class="form-control m-input" name="kabupaten"
+															type="text" id="kab">
+															<option value="0">Semua Kabupaten</option>
+														</select>
+													</div>
+												</div>
+												<div class="form-group m-form__group row">
+													<label for="example-text-input">
+													</label>
+													<div class="col-12">
+														<select class="form-control m-input" name="kecamatan"
+															type="text" id="kec">
+															<option value="0">Semua Kecamatan </option>
+														</select>
+													</div>
+												</div>
+												<div class="form-group m-form__group row">
+													<label for="example-text-input">
+													</label>
+													<div class="col-12">
+														<select class="form-control m-input" name="kelurahan"
+															type="text" id="kel">
+															<option value="0">Semua Kelurahan </option>
+														</select>
+													</div>
+												</div>
+												<button type="submit" id="btn" class="btn" disabled>
+													Cari
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			@if(Request::fullUrl()=='http://localhost/appbimbel/public/dashboardsiswa')
+			<div class="col-xl-12">
+				<div class="m-portlet">
 					<div class="m-portlet__head">
 						<div class="m-portlet__head-caption">
 							<div class="m-portlet__head-title">
@@ -73,17 +225,21 @@
 						</div>
 					</div>
 					<div class="m-portlet__body">
-						<!--begin::Content-->
 						<div class="tab-content">
 							<div class="tab-pane active" id="m_widget5_tab1_content" aria-expanded="true">
-								<!--begin::m-widget5-->
 								<div class="m-widget5">
-
+									@if($isCompleted->prodiSiswa==NULL)
+									Rekomendasi mentor akan muncul setelah data Anda lengkapi
+									@else
 									@foreach($mentor as $m)
 									<div class="m-widget5__item">
 										<div class="m-widget5__pic">
-											<img class="m-widget7__img" src="assets/app/media/img//products/product6.jpg" alt="">
-										</div>
+												@if($m->foto==NULL)
+												<img src="{{ url('/data_fileSiswa/default_photo_profile.png') }}" height="100px" width="100px" alt="Anda Belum Upload Foto" />
+												@else
+												<img src="{{ url('/data_file2/'.$m->foto) }}" alt="Tidak Ada Foto" />
+												@endif
+											</div>
 										<div class="m-widget5__content">
 											<h4 class="m-widget5__title">
 												{{$m->nm_depan}}
@@ -100,175 +256,26 @@
 										<div class="m-widget5__stats1">
 											<br>
 											<a href="detailmentor/{{$m->idmentor}}">
-												<button type="button" class="btn btn-outline-success btn-sm m-btn m-btn--custom">
+												<button type="button"
+													class="btn btn-outline-success btn-sm m-btn m-btn--custom">
 													Detail
 												</button>
 											</a>
 										</div>
 									</div>
 									@endforeach
+									{{ $mentor->links() }}
+									@endif
 									{{-- {{ $mentor->links() }} --}}
-
-									<!--end::m-widget5-->
 								</div>
-								{{ $mentor->links() }}
-							</div>
-							<!--end::Content-->
-						</div>
-					</div>
-					<!--end:: Widgets/Best Sellers-->
-				</div>
-			</div>
-			<div class="col-xl-3">
-				<div class="m-portlet">
-					<div class="m-portlet__head">
-						<div class="m-portlet__head-caption">
-							<div class="m-portlet__head-title">
-								<h3 class="m-portlet__head-text">
-									Filter Mentor
-								</h3>
 							</div>
 						</div>
 					</div>
-					<div class="m-portlet__body">
-						<div class="m-widget4">
-							<form class="m-form" id="formFilter" method="GET" action="dashboardsiswa" enctype="multipart/form-data">
-								<div class="m-widget4__item">
-									<div class="m-widget4__info">
-										<span class="m-widget4__title">
-											Pendidikan Mentor
-										</span>
-										<br>
-										<div class="col-13">
-											<select class="form-control m-input" id="pend" name="pendidikan" type="text">
-												<option value="4" @if(strpos($url,'4' )!==false) selected @endif>Semua Jenjang</option>
-												<option value="1" @if(strpos($url,'1' )!==false) selected @endif> SMA, SMK</option>
-												<option value="2" @if(strpos($url,'2' )!==false) selected @endif> D3</option>
-												<option value="3" @if(strpos($url,'3' )!==false) selected @endif> S1, S2, S3</option>
-											</select>
-										</div>
-									</div>
-								</div>
-								<div class="m-widget4__item">
-
-									<div class="m-widget4__info">
-										<span class="m-widget4__title">
-											Mata Pelajaran
-										</span>
-										<br>
-										<div class="m-checkbox-list">
-											<label class="m-checkbox">
-												<input id="bin" name="bin" type="checkbox" @if(strpos($url,'bin' )!==false) checked @endif>
-												Bahasa Indonesia
-												<span></span>
-											</label>
-
-										</div>
-										<div class="m-checkbox-list">
-											<label class="m-checkbox">
-												<input id="mtk" name="mtk" type="checkbox" @if(strpos($url,'mtk' )!==false) checked @endif>
-												Matematika
-												<span></span>
-											</label>
-
-										</div>
-										<div class="m-checkbox-list">
-											<label class="m-checkbox">
-												<input id="ipa" name="ipa" type="checkbox" @if(strpos($url,'ipa' )!==false) checked @endif>
-												IPA
-												<span></span>
-											</label>
-
-										</div>
-										<div class="m-checkbox-list">
-											<label class="m-checkbox">
-												<input id="ips" name="ips" type="checkbox" @if(strpos($url,'ips' )!==false) checked @endif>
-												IPS
-												<span></span>
-											</label>
-
-										</div>
-										<div class="m-checkbox-list">
-											<label class="m-checkbox">
-												<input id="big" name="big" type="checkbox" @if(strpos($url,'big' )!==false) checked @endif>
-												Bahasa Inggris
-												<span></span>
-											</label>
-
-										</div>
-									</div>
-
-								</div>
-
-								<div class="m-widget4__item">
-									<div class="m-widget4__info">
-										<span class="m-widget4__title">
-											Alamat
-										</span>
-										<br>
-										<div class="m-form__group form-group">
-
-											<div class="form-group m-form__group row">
-												<div class="col-12">
-													<select class="form-control m-input" id="prov" name="provinsi" type="text">
-														<option value="0">Semua Provinsi</option>
-													
-														@foreach ($p as $a)
-														<option value="{{ $a->id }}" > {{$a->nama}}</option>
-														@endforeach
-
-													</select>
-												</div>
-											</div>
-											<div class="form-group m-form__group row">
-												<label for="example-text-input">
-
-												</label>
-												<div class="col-12">
-													<select class="form-control m-input" name="kabupaten" type="text" id="kab">
-														<option value="0">Semua Kabupaten</option>
-													</select>
-												</div>
-											</div>
-											<div class="form-group m-form__group row">
-												<label for="example-text-input">
-
-												</label>
-												<div class="col-12">
-													<select class="form-control m-input" name="kecamatan" type="text" id="kec">
-														<option value="0">Semua Kecamatan </option>
-													</select>
-												</div>
-											</div>
-											<div class="form-group m-form__group row">
-												<label for="example-text-input">
-
-												</label>
-												<div class="col-12">
-													<select class="form-control m-input" name="kelurahan" type="text" id="kel">
-														<option value="0">Semua Kelurahan </option>
-													</select>
-												</div>
-											</div>
-											<button type="submit" class="btn">
-												Cari
-											</button>
-										</div>
-									</div>
-
-								</div>
-							</form>
-						</div>
-					</div>
-
-					<!--end:: Widgets/Authors Profit-->
 				</div>
 			</div>
-
-
-
-
-			<div class="col-xl-9">
+			@endif
+			@if(Request::fullUrl()!=='http://localhost/appbimbel/public/dashboardsiswa')
+			<div class="col-xl-12">
 				<div class="m-portlet  ">
 					<div class="m-portlet__head">
 						<div class="m-portlet__head-caption">
@@ -289,8 +296,11 @@
 									@foreach($grup as $m)
 									<div class="m-widget5__item">
 										<div class="m-widget5__pic">
-											<img class="m-widget7__img" src="assets/app/media/img//products/product6.jpg" alt="">
-										</div>
+												@if($m->foto==NULL)
+												<img src="{{ url('/data_fileSiswa/default_photo_profile.png') }}" height="100px" width="100px" alt="Anda Belum Upload Foto" />
+												@else
+												<img src="{{ url('/data_file2/'.$m->foto) }}" alt="Tidak Ada Foto" />
+												@endif</div>
 										<div class="m-widget5__content">
 											<h4 class="m-widget5__title">
 												{{$m->nm_depan}}
@@ -306,7 +316,8 @@
 										</div>
 										<div class="m-widget5__stats1">
 											<br>
-											<button type="button" class="btn btn-outline-success btn-sm m-btn m-btn--custom">
+											<button type="button"
+												class="btn btn-outline-success btn-sm m-btn m-btn--custom">
 												Detail
 											</button>
 										</div>
@@ -330,6 +341,7 @@
 					<!--end:: Widgets/Best Sellers-->
 				</div>
 			</div>
+			@endif
 		</div>
 	</div>
 </div>
