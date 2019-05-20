@@ -33,15 +33,15 @@
 
 	<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 		<div class="carousel-inner">
-		  <div class="carousel-item active">
-			<img class="d-block w-100" src="http://localhost/appbimbel/public/assets/img/bimbel.jpg" alt="First slide">
-		  </div>
-		  <div class="carousel-item">
-			<img class="d-block w-100" src="http://localhost/appbimbel/public/assets/img/belajar.jpg" alt="Second slide">
-		  </div>
-		  <div class="carousel-item">
-			<img class="d-block w-100" src="http://localhost/appbimbel/public/assets/img/bimbel.jpg" alt="Third slide">
-		  </div>
+			<div class="carousel-item active">
+				<img class="d-block w-100" src="http://localhost/appbimbel/public/assets/img/bimbel.jpg" alt="First slide">
+			</div>
+			<div class="carousel-item">
+				<img class="d-block w-100" src="http://localhost/appbimbel/public/assets/img/belajar.jpg" alt="Second slide">
+			</div>
+			<div class="carousel-item">
+				<img class="d-block w-100" src="http://localhost/appbimbel/public/assets/img/bimbel.jpg" alt="Third slide">
+			</div>
 		</div>
 		<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
 			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -61,8 +61,8 @@
 	</div>
 	<div class="m-content">
 		<div class="row">
-			<div class="col-xl-12">
-				<div class="m-portlet">
+			<div class="col-lg-12">
+				<div class="m-portlet m-portlet--accent m-portlet--head-solid-bg m-portlet--head-sm" data-portlet="true" id="m_portlet_tools_1">
 					<div class="m-portlet__head">
 						<div class="m-portlet__head-caption">
 							<div class="m-portlet__head-title">
@@ -73,20 +73,28 @@
  
 							</div>
 						</div>
+						<div class="m-portlet__head-tools">
+							<ul class="m-portlet__nav">
+								<li class="m-portlet__nav-item">
+									<a href="" data-portlet-tool="toggle" class="m-portlet__nav-link m-portlet__nav-link--icon">
+										<i class="la la-angle-down"></i>
+									</a>
+								</li>
+							</ul>
+						</div>
 					</div>
-					<div class="m-portlet__body collapse  m-portlet__body--no-padding" id="multiCollapseExample2">
-						<form class="m-form" id="formFilter" method="GET" action="dashboardsiswa"
-							enctype="multipart/form-data">
-							<div class="row m-row--no-padding m-row--col-separator-xl">
+					<div class="m-portlet__body collapse">
+					<form id="formFilter" method="GET" action="dashboardsiswa" enctype="multipart/form-data">
+							<div class="row m-row--no-padding m-row--col-separator-xl">						
 								<div class="col-xl-4">
 									<div class="m-widget14">
-										<div class="m-widget14__header m--margin-bottom-30">
+										<div class="m-widget14__header m--margin-bottom">
 											<span class="m-widget14__title">
 												Pendidikan Mentor
 											</span>
-											<br><br>
 											<span class="m-widget14__title">
-												<div class="col-12">
+												<div class="form-group m-form__group row">
+												<div class="col-10">
 													<select class="form-control m-input" id="pend" name="pendidikan"
 														type="text">
 														<option value="4" @if(strpos($url,'4' )!==false) selected
@@ -99,17 +107,17 @@
 															@endif> S1, S2, S3</option>
 													</select>
 												</div>
+												</div>
 											</span>
 										</div>
 									</div>
 								</div>
 								<div class="col-xl-4">
 									<div class="m-widget14">
-										<div class="m-widget14__header m--margin-bottom-30">
+										<div class="m-widget14__header m--margin-bottom">
 											<span class="m-widget14__title">
 												Mata Pelajaran
 											</span>
-											<br><br>
 											<div class="m-checkbox-list">
 												<label class="m-checkbox">
 													<input id="bin" onchange="myFunction()" name="bin" type="checkbox" @if(strpos($url,'bin'
@@ -155,14 +163,13 @@
 								</div>
 								<div class="col-xl-4">
 									<div class="m-widget14">
-										<div class="m-widget14__header m--margin-bottom-30">
+										<div class="m-widget14__header m--margin-bottom">
 											<span class="m-widget14__title">
 												Alamat
 											</span>
-											<br>
 											<div class="m-form__group form-group">
 												<div class="form-group m-form__group row">
-													<div class="col-12">
+													<div class="col-10">
 														<select class="form-control m-input" id="prov" name="provinsi"
 															type="text">
 															<option value="0">Semua Provinsi</option>
@@ -175,7 +182,7 @@
 												<div class="form-group m-form__group row">
 													<label for="example-text-input">
 													</label>
-													<div class="col-12">
+													<div class="col-10">
 														<select class="form-control m-input" name="kabupaten"
 															type="text" id="kab">
 															<option value="0">Semua Kabupaten</option>
@@ -185,7 +192,7 @@
 												<div class="form-group m-form__group row">
 													<label for="example-text-input">
 													</label>
-													<div class="col-12">
+													<div class="col-10">
 														<select class="form-control m-input" name="kecamatan"
 															type="text" id="kec">
 															<option value="0">Semua Kecamatan </option>
@@ -195,7 +202,7 @@
 												<div class="form-group m-form__group row">
 													<label for="example-text-input">
 													</label>
-													<div class="col-12">
+													<div class="col-10">
 														<select class="form-control m-input" name="kelurahan"
 															type="text" id="kel">
 															<option value="0">Semua Kelurahan </option>
@@ -258,8 +265,7 @@
 										<div class="m-widget5__stats1">
 											<br>
 											<a href="detailmentor/{{$m->idmentor}}">
-												<button type="button"
-													class="btn btn-outline-success btn-sm m-btn m-btn--custom">
+												<button type="button" class="btn btn-outline-success btn-sm m-btn m-btn--custom">
 													Detail
 												</button>
 											</a>
@@ -320,8 +326,7 @@
 										</div>
 										<div class="m-widget5__stats1">
 											<br>
-											<button type="button"
-												class="btn btn-outline-success btn-sm m-btn m-btn--custom">
+											<button type="button" class="btn btn-outline-success btn-sm m-btn m-btn--custom">
 												Detail
 											</button>
 										</div>
