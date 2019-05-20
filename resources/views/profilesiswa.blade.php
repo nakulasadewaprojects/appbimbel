@@ -167,6 +167,8 @@
 															<option value="{{$pr->MatPel}}" @if(strpos($getprodi, $pr->MatPel )!== false) selected @endif > {{$pr->MatPel}}</option>
 															@endforeach																																												
 														</select>
+														<font size="2">*Anda akan mendapatkan tentor sesuai dengan prodi yang dipilih.</font>
+														
 													</div>
 												</div>	
 	
