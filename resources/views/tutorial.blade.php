@@ -13,7 +13,7 @@
                                     <i class="la la-gear"></i>
                                 </span>
                                 <h3 class="m-portlet__head-text">
-                                    Form Upload Tutorial
+                                   Form Upload Tutorial
                                 </h3>
                             </div>
                         </div>
@@ -22,14 +22,7 @@
                     <form class="m-form m-form--label-align-right">
                         <div class="m-portlet__body">
                             <div class="m-form__section m-form__section--first">
-                                <div class="form-group m-form__group row">
-                                    <label class="col-lg-2 col-form-label">
-                                        Id Modul:
-                                    </label>
-                                    <div class="col-lg-6">
-                                        <input type="email" class="form-control m-input">
-                                    </div>
-                                </div>
+                            
                                 <div class="form-group m-form__group row">
                                     <label class="col-lg-2 col-form-label">
                                         Nama Modul:
@@ -38,20 +31,22 @@
                                         <input type="email" class="form-control m-input">
                                     </div>
                                 </div>
+                                
                                 <div class="form-group m-form__group row">
                                     <label class="col-lg-2 col-form-label">
-                                        Tanggal Upload:
+                                        Mata Pelajaran:
                                     </label>
                                     <div class="col-lg-6">
-                                        <input class="form-control m-input" type="datetime-local" name="end" id="example-datetime-local-input">
+                                        <input type="text" class="form-control m-input">
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row">
                                     <label class="col-lg-2 col-form-label">
-                                        Mentor:
+                                        Jenjang Pendidikan :
                                     </label>
                                     <div class="col-lg-6">
-                                        <input type="email" class="form-control m-input">
+                                        <select class="form-control m-input" name="jenjang" type="text">
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row">
@@ -71,22 +66,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group m-form__group row">
-                                    <label class="col-lg-2 col-form-label">
-                                        Jenjang Pendidikan :
-                                    </label>
-                                    <div class="col-lg-6">
-                                        <input type="text" class="form-control m-input">
-                                    </div>
-                                </div>
-                                <div class="form-group m-form__group row">
-                                    <label class="col-lg-2 col-form-label">
-                                        Mata Pelajaran:
-                                    </label>
-                                    <div class="col-lg-6">
-                                        <input type="text" class="form-control m-input">
-                                    </div>
-                                </div>
+                                
                                 <br>
                                 <div class="m-portlet__foot m-portlet__foot--fit">
                                     <div class="m-form__actions m-form__actions">
