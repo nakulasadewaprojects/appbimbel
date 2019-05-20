@@ -126,7 +126,12 @@ class HomeController extends Controller
     public function approvalmentor(){
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
-        return view('approvalmentor' , ['isCompleted' => $showing, 'm' => $mentor]);
+        $showBimbAppv = DB::table('siswabimbel')
+        ->join('scedulebimbel', 'siswabimbel.NoIDBimbel', '=', 'scedulebimbel.NoIDBimbel')
+        ->join('tbsiswa','tbsiswa.NoIDSiswa','=','siswabimbel.NoIDSiswa')
+        ->join('tbmentor','tbmentor.NoIDMentor','=','siswabimbel.NoIDTutor')
+        ->where('siswabimbel.NoIDTutor', Auth::user()->NoIDMentor)->get();
+        return view('approvalmentor' , ['isCompleted' => $showing, 'm' => $mentor,'apvBimb'=>$showBimbAppv]);
     }
     public function payment(){
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
