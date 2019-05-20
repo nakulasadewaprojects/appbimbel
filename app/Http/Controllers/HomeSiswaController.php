@@ -2470,6 +2470,7 @@ class HomeSiswaController extends Controller
                 ->whereIN('pendidikanTerakhir',[3,4])
                 ->paginate(5);
             }
+            $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
             $url=$request->fullUrl();
         }
         elseif($request['pendidikan']==2){ //D3
@@ -4682,6 +4683,8 @@ class HomeSiswaController extends Controller
                 ->paginate(5);
             }
             $url=$request->fullUrl();
+            $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+            
         }
         elseif($request['pendidikan']==3){ //S1, S2, S3
           $grup=DB::table('tbmentor')
@@ -6898,6 +6901,7 @@ class HomeSiswaController extends Controller
                   ->whereIN('pendidikanTerakhir',[6,7,8])
                   ->paginate(5);
               }
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
              $url= $request->fullUrl();
         }
         elseif($request['pendidikan']==4)
@@ -8984,13 +8988,15 @@ class HomeSiswaController extends Controller
                   ->orWhere('prodi','like','%IPS%')
                   ->orWhere('prodi','like','%Bhs. Inggris%')
                   ->paginate(5);
+                
               } 
       $url=$request->fullUrl();
+      $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
 
       }
       else{
         $url=NULL;
-        $grup=NULL;
+        $grup='iwak';
       
       }
         return view('dashboardsiswa', ['isCompleted' => $showing,'idp'=>$idprovinsi,'grup'=> $grup, 'url'=>$url, 'mentor'=>$getMentor,'s'=>$siswa2, 'p' => $provinsi, 'b' => $kabupaten, 'c' => $kecamatan, 'd' => $kelurahan]);

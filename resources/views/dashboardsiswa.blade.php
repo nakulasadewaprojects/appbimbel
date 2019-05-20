@@ -81,7 +81,7 @@
 							</ul>
 						</div>
 					</div>
-					<div class="m-portlet__body collapse">
+					<div class="m-portlet__body @if($grup=='iwak') collapse @else @endif">
 					<form id="formFilter" method="GET" action="dashboardsiswa" enctype="multipart/form-data">
 							<div class="row m-row--no-padding m-row--col-separator-xl">						
 								<div class="col-xl-4">
@@ -93,7 +93,7 @@
 											<span class="m-widget14__title">
 												<div class="form-group m-form__group row">
 												<div class="col-10">
-													<select class="form-control m-input" id="pend" name="pendidikan"
+													<select onchange="myFunction()" class="form-control m-input" id="pend" name="pendidikan"
 														type="text">
 														<option value="4" @if(strpos($url,'4' )!==false) selected
 															@endif>Semua Jenjang</option>
@@ -219,7 +219,7 @@
 					</div>
 				</div>
 			</div>
-			@if(Request::fullUrl()=='http://localhost/appbimbel/public/dashboardsiswa')
+			@if($grup=='iwak')
 			<div class="col-xl-12">
 			<div class="m-portlet m-portlet--success m-portlet--head-solid-bg m-portlet--head-sm" data-portlet="true" id="m_portlet_tools_2">
 					<div class="m-portlet__head">
@@ -272,7 +272,7 @@
 									@endforeach
 									{{ $mentor->links() }}
 									@endif
-									{{-- {{ $mentor->links() }} --}}
+									
 								</div>
 							</div>
 						</div>
@@ -280,9 +280,9 @@
 				</div>
 			</div>
 			@endif
-			@if(Request::fullUrl()!=='http://localhost/appbimbel/public/dashboardsiswa')
+			@if($grup!=='iwak')
 			<div class="col-xl-12">
-				<div class="m-portlet  ">
+				<div class="m-portlet m-portlet--success m-portlet--head-solid-bg m-portlet--head-sm" data-portlet="true" id="m_portlet_tools_2">
 					<div class="m-portlet__head">
 						<div class="m-portlet__head-caption">
 							<div class="m-portlet__head-title">
@@ -324,16 +324,17 @@
 										</div>
 										<div class="m-widget5__stats1">
 											<br>
+											<a href="detailmentor/{{$m->idmentor}}">
 											<button type="button" class="btn btn-outline-success btn-sm m-btn m-btn--custom">
 												Detail
 											</button>
+											</a>
 										</div>
 									</div>
 									@endforeach
 									
 									@endif
-									<!-- {{-- {{ $mentor->links() }} --}} -->
-
+									
 									<!--end::m-widget5-->
 								</div>
 								@if($grup!==NULL)

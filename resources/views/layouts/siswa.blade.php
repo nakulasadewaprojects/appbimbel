@@ -942,7 +942,7 @@
 		</script>
 			<script>
 				function myFunction() {
-			if (document.getElementById('bin').checked || document.getElementById('mtk').checked || document.getElementById('ipa').checked|| document.getElementById('ips').checked|| document.getElementById('big').checked) {
+			if (document.getElementById('bin').checked || document.getElementById('mtk').checked || document.getElementById('ipa').checked|| document.getElementById('ips').checked|| document.getElementById('big').checked || document.getElementById('pend').change || document.getElementById('prov').change || document.getElementById('kab').change || document.getElementById('kec').change || document.getElementById('kel').change) {
 			  document.getElementById("btn").disabled = false;
 			} else {
 			  document.getElementById("btn").disabled = true;
