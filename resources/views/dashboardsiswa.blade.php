@@ -69,8 +69,6 @@
 								<h3 class="m-portlet__head-text">
 									Filter Mentor
 								</h3>
-								<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Klik disini</button>
- 
 							</div>
 						</div>
 						<div class="m-portlet__head-tools">
@@ -223,7 +221,7 @@
 			</div>
 			@if(Request::fullUrl()=='http://localhost/appbimbel/public/dashboardsiswa')
 			<div class="col-xl-12">
-				<div class="m-portlet">
+			<div class="m-portlet m-portlet--success m-portlet--head-solid-bg m-portlet--head-sm" data-portlet="true" id="m_portlet_tools_2">
 					<div class="m-portlet__head">
 						<div class="m-portlet__head-caption">
 							<div class="m-portlet__head-title">
