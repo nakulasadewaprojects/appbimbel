@@ -86,17 +86,17 @@
                                             <span class="m-widget5__votes">
                                                 @if($detail->jenjang==1) 
                                                     SD kelas {{$detail->tingkatPendidikan}}
-                                                @elseif($detail->pendidikanTerakhir==2)
+                                                @elseif($detail->jenjang==2)
                                                     SMP kelas {{$detail->tingkatPendidikan}}
-                                                @elseif($detail->pendidikanTerakhir==3)
+                                                @elseif($detail->jenjang==3)
                                                     SMA kelas {{$detail->tingkatPendidikan}}
-                                                @elseif($detail->pendidikanTerakhir==4)
+                                                @elseif($detail->jenjang==4)
                                                     SMK kelas {{$detail->tingkatPendidikan}}
-                                                @elseif($detail->pendidikanTerakhir==5)
-                                                    D3 Semester {{$detail->tingkatPendidikan}}
-                                                @elseif($detail->pendidikanTerakhir==6)
+                                                @elseif($detail->jenjang==5)
+                                                    D3 Semester 
+                                                @elseif($detail->jenjang==6)
                                                     S1 Semester 
-                                                @elseif($detail->pendidikanTerakhir==7)
+                                                @elseif($detail->jenjang==7)
                                                     S2 Semester
                                                 @else
                                                     S3 Semester

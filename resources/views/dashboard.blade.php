@@ -26,10 +26,10 @@
 			<strong>
 				INFO!
 			</strong>
-			Ada siswa yang mengajukan bimbel, Silakan cek di menu approval
+			Ada siswa yang mengajukan bimbel, Silakan cek di menu pengajuan
 		</div>
 		<div class="m-alert__actions" style="width: 160px;">
-			<a class="btn btn-warning btn-sm m-btn m-btn--pill m-btn--wide" href="http://localhost/appbimbel/public/approvalmentor">Lengkapi Sekarang</a>
+			<a class="btn btn-warning btn-sm m-btn m-btn--pill m-btn--wide" href="http://localhost/appbimbel/public/approvalmentor">Cek Sekarang</a>
 		</div>
 	</div>
 	@endif
