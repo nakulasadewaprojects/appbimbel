@@ -554,7 +554,17 @@
 												<span></span>
 											</i>
 											<span class="m-menu__link-text">
-												Table
+												Input Laporan
+											</span>
+										</a>
+									</li>
+									<li class="m-menu__item " aria-haspopup="true"  data-redirect="true">
+										<a  href="http://localhost/appbimbel/public/report" class="m-menu__link ">
+											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+												<span></span>
+											</i>
+											<span class="m-menu__link-text">
+												Table Report
 											</span>
 										</a>
 									</li>
