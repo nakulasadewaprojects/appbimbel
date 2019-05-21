@@ -277,7 +277,12 @@
 											</span>
 											<div class="m-widget5__info">
 												<span class="m-widget5__author">
-													Alamat: {{$m->alamat}}
+													Kelas 2 SMP
+												</span>
+												</div>
+											<div class="m-widget5__info">
+												<span class="m-widget5__author">
+												{{$m->alamat}}
 												</span>
 											</div>
 										</div>
