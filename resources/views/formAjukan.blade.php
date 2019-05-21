@@ -86,7 +86,7 @@
 										
 								</div>
 								<span class="m-form__help">
-										Prodi mentor yang diajarkan 
+										Prodi mentor yang ajarkan 
 									</span>
 						</div>
 					</div>

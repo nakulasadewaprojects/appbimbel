@@ -17,7 +17,7 @@
 					<div class="m-content">
 						<div class="row">
 							<div class="col-xl-3 col-lg-4">
-								<div class="m-portlet m-portlet--full-height  ">
+								<div class="m-portlet  ">
 									<div class="m-portlet__body">
 										<div class="m-card-profile">
 											<div class="m-card-profile__title m--hide">
@@ -167,6 +167,8 @@
 															<option value="{{$pr->MatPel}}" @if(strpos($getprodi, $pr->MatPel )!== false) selected @endif > {{$pr->MatPel}}</option>
 															@endforeach																																												
 														</select>
+														<font size="2">*Anda akan mendapatkan tentor sesuai dengan prodi yang dipilih.</font>
+														
 													</div>
 												</div>	
 	

@@ -133,8 +133,7 @@ class HomeController extends Controller
             ->join('tbdetailsiswa','tbdetailsiswa.idtbSiswa','=','tbsiswa.idtbSiswa')      
             ->join('tbmentor','tbmentor.NoIDMentor','=','siswabimbel.NoIDTutor')
             ->where('siswabimbel.NoIDTutor', Auth::user()->NoIDMentor)->get();
-        return view('approvalmentor' , ['isCompleted' => $showing, 'm' => $mentor,'jadwal'=>$jadwalBimb]);
-        // return $jadwalBimb;
+        return view('approvalmentor' , ['isCompleted' => $showing, 'm' => $mentor, 'jadwal'=>$jadwalBimb]);
     }
     public function detailApprovalMentor($id){
         $siswa = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();

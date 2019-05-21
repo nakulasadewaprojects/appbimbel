@@ -13,7 +13,23 @@
 			Silakan lengkapi profil Anda agar dapat menerima siswa.
 		</div>
 		<div class="m-alert__actions" style="width: 160px;">
-			<a class="btn btn-info btn-sm m-btn m-btn--pill m-btn--wide" href="profile">Lengkapi Sekarang</a>
+			<a class="btn btn-info btn-sm m-btn m-btn--pill m-btn--wide" href="http://localhost/appbimbel/public/profile">Lengkapi Sekarang</a>
+		</div>
+	</div>
+	@endif
+	@if (DB::table('siswabimbel')->where('NoIDTutor', Auth::user()->NoIDMentor)->value('statusBimbel')==1)
+	<div class="m-alert m-alert--icon alert alert-info" role="alert">
+		<div class="m-alert__icon">
+			<i class="la la-info"></i>
+		</div>
+		<div class="m-alert__text">
+			<strong>
+				INFO!
+			</strong>
+			Ada siswa yang mengajukan bimbel, Silakan cek di menu approval
+		</div>
+		<div class="m-alert__actions" style="width: 160px;">
+			<a class="btn btn-warning btn-sm m-btn m-btn--pill m-btn--wide" href="http://localhost/appbimbel/public/approvalmentor">Lengkapi Sekarang</a>
 		</div>
 	</div>
 	@endif
