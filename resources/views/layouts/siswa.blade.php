@@ -58,15 +58,29 @@
 					<div class="m-stack__item m-stack__item--fluid m-header-head" id="m_header_nav">
 						<div class="m-header__title">
 							<h3 class="m-header__title-text">
-								Siswa Dashboard
+								App Bimbel (Siswa)
 							</h3>
 						</div>
-						<button class="m-aside-header-menu-mobile-close  m-aside-header-menu-mobile-close--skin-light " id="m_aside_header_menu_mobile_close_btn">
-							<i class="la la-close"></i>
-						</button>
+						<div id="m_header_menu" class="m-header-menu m-aside-header-menu-mobile m-aside-header-menu-mobile--offcanvas  m-header-menu--skin-light m-header-menu--submenu-skin-light m-aside-header-menu-mobile--skin-light m-aside-header-menu-mobile--submenu-skin-light "  >
+							<ul class="m-menu__nav  m-menu__nav--submenu-arrow ">
+								<li class="m-menu__item  m-menu__item--active m-menu__item--submenu m-menu__item--rel"  data-menu-submenu-toggle="click" aria-haspopup="true">
+									<div class="m-menu__link m-menu__toggle">
+										<span class="m-menu__item-here"></span>
+										<span class="m-menu__link-text">
+											Dashboard
+										</span>
+									</div>
+								</li>
+								<li class="m-menu__item  m-menu__item--submenu m-menu__item--rel m-menu__item--more m-menu__item--icon-only"  data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
+									<div class="m-menu__link m-menu__toggle">
+										<span class="m-menu__item-here"></span>
+										<i class="m-menu__link-icon flaticon-more-v3"></i>
+										<span class="m-menu__link-text"></span>
+									</div>
+								</li>
+							</ul>
+						</div>		
 						<div id="m_header_topbar" class="m-topbar  m-stack m-stack--ver m-stack--general">
-							<div class="m-stack__item m-stack__item--middle m-dropdown m-dropdown--arrow m-dropdown--large m-dropdown--mobile-full-width m-dropdown--align-right m-dropdown--skin-light m-header-search m-header-search--expandable m-header-search--skin-light" id="m_quicksearch" data-search-type="default">
-							</div>
 							<div class="m-stack__item m-topbar__nav-wrapper">
 								<ul class="m-topbar__nav m-nav m-nav--inline">
 									<li class="m-nav__item m-topbar__notifications m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-right 	m-dropdown--mobile-full-width" data-dropdown-toggle="click">
