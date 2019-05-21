@@ -518,7 +518,7 @@
 							</div>
 						</li>
 						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover">
-							<a href="http://localhost/appbimbel/public/payment" class="m-menu__link">
+							<a href="http://localhost/appbimbel/public/paketbimbel" class="m-menu__link">
 								<i class="m-menu__link-icon flaticon-interface-5"></i>
 							</a>
 							<div class="m-menu__submenu">
@@ -559,7 +559,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true"  data-redirect="true">
-										<a  href="http://localhost/appbimbel/public/report" class="m-menu__link ">
+										<a  href="http://localhost/appbimbel/public/exportexcel" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -596,7 +596,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true"  data-redirect="true">
-										<a  href="http://localhost/appbimbel/public/tutorial" class="m-menu__link ">
+										<a  href="http://localhost/appbimbel/public/datatutorial" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -609,7 +609,7 @@
 							</div>
 						</li>
 						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover">
-							<a href="http://localhost/appbimbel/public/tutorial" class="m-menu__link">
+							<a href="http://localhost/appbimbel/public/multimedia" class="m-menu__link">
 								<i class="m-menu__link-icon flaticon-multimedia-2"></i>		
 							</a>
 							<div class="m-menu__submenu">
