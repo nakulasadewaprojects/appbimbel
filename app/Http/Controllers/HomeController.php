@@ -7,6 +7,7 @@ use App\Tbmentor;
 use File;
 use DB;
 use Image;
+use Illuminate\Support\Carbon;
 use function Opis\Closure\serialize;
 
 class HomeController extends Controller
@@ -156,6 +157,44 @@ class HomeController extends Controller
           return redirect('/approvalmentor');
 
     }
+    public function paketbimbel(){
+        $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
+        $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
+        return view('paketbimbel' , ['isCompleted' => $showing, 'm' => $mentor]);
+    }
+    public function inputpaketbimbel(Request $request){
+        if($request->hasAny('hari')){
+            $hari=$request['hari'];
+            $hari2=implode(', ',$hari);
+            $h= $hari2; 
+          }else{
+            $hari=$request['hari'];
+           $h= $hari; 
+          }
+        if($request->hasAny('matpel')){
+            $matpel=$request['matpel'];
+            $matpel2=implode(', ',$matpel);
+            $m= $matpel2; 
+          }else{
+            $matpel=$request['hari'];
+           $m= $matpel; 
+          }
+        DB::table('paketbimbel')->insert([
+        'NoIDMentor'=>$request->id,
+        'nmpaket'=>$request->nama,
+        'harga'=>$request->harga,
+        'durasi'=>$request->durasi,
+        'hari'=>$h,
+        'wkt_mulai'=>Carbon::parse($request['waktuMulai'])->format('H:i:s'),
+        'wkt_akhir'=>Carbon::parse($request['waktuAkhir'])->format('H:i:s'),
+        'matpel'=>$m,
+        'keterangan'=>$request->keterangan,
+        'statusPaket'=>$request->statusPaket,
+        ]);
+      return redirect('/dashboard');
+
+    }
+
     public function payment(){
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
@@ -170,11 +209,6 @@ class HomeController extends Controller
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
         return view('exportexcel' , ['isCompleted' => $showing, 'm' => $mentor]);
-    }
-    public function paketbimbel(){
-        $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
-        $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
-        return view('paketbimbel' , ['isCompleted' => $showing, 'm' => $mentor]);
     }
     public function tutorial(){
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();

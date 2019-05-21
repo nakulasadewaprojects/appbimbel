@@ -21,7 +21,8 @@
 										</div>
 									</div>
 									<!--begin::Form-->
-									<form class="m-form m-form--label-align-right">
+                                    <form class="m-form m-form--label-align-right"  method="POST" action="http://localhost/appbimbel/public/paketbimbel/input">
+                                        {{ csrf_field() }}
 										<div class="m-portlet__body">
 											<div class="m-form__section m-form__section--first">
                                                     <div class="m-alert m-alert--icon m-alert--icon-solid m-alert--outline alert alert-brand alert-dismissible fade show" role="alert">
@@ -44,10 +45,11 @@
 														Nama Paket:
 													</label>
 													<div class="col-lg-6">
-														<input type="email" class="form-control m-input" >
-														<span class="m-form__help">
+                                                    <input type="hidden"required name="id" class="form-control m-input" value="{{$m->NoIDMentor}}" >
+														<input type="text"required name="nama" class="form-control m-input" >
+														{{-- <span class="m-form__help">
 															Please enter your paket name
-														</span>
+														</span> --}}
 													</div>
                                                 </div>
                                                 <div class="form-group m-form__group row">
@@ -55,9 +57,9 @@
                                                         Harga:
                                                     </label>
                                                     <div class="col-lg-6">
-                                                        <input type="email" class="form-control m-input" >
+                                                        <input type="number" required name="harga" class="form-control m-input" >
                                                         <span class="m-form__help">
-                                                            We'll never share your email with anyone else
+                                                            Tentukan harga paket Anda
                                                         </span>
                                                     </div>
                                                 </div>
@@ -66,9 +68,9 @@
                                                         Durasi:
                                                     </label>
                                                     <div class="col-lg-6">
-                                                        <input type="email" class="form-control m-input">
+                                                        <input type="number" name="durasi" required class="form-control m-input"> 
                                                         <span class="m-form__help">
-                                                            We'll never share your email with anyone else
+                                                            Durasi Bimbel dalam hitungan bulan 
                                                         </span>
                                                     </div>
                                                 </div>												
@@ -77,10 +79,19 @@
                                                             Hari:
                                                         </label>
                                                         <div class="col-lg-6">
-                                                            <input type="email" class="form-control m-input">
-                                                            <span class="m-form__help">
+                                                            {{-- <input type="email" name="hari" class="form-control m-input"> --}}
+                                                            <select class="form-control m-bootstrap-select m_selectpicker" name="hari[]" multiple>
+                                                                <option value="Senin" > Senin</option>
+                                                                <option value="Selasa" > Selasa</option>																																											
+                                                                <option value="Rabu" > Rabu </option>																																											
+                                                                <option value="Kamis" > Kamis</option>																																											
+                                                                <option value="Jumat" > Jumat</option>																																											
+                                                                <option value="Sabtu" > Sabtu</option>																																											
+                                                                <option value="Minggu" > Minggu</option>																																											
+                                                            </select>
+                                                            {{-- <span class="m-form__help">
                                                                 We'll never share your email with anyone else
-                                                            </span>
+                                                            </span> --}}
                                                         </div>
                                                 </div>
                                                 <div class="form-group m-form__group row">
@@ -88,9 +99,10 @@
                                                         Waktu Mulai:
                                                     </label>
                                                     <div class="col-lg-6">
-                                                        <input type="email" class="form-control m-input">
+                                                        {{-- <input type="email" class="form-control m-input"> --}}
+											            <input type='text' class="form-control" id="m_timepicker_1" name="waktuMulai" placeholder="Select time" />
                                                         <span class="m-form__help">
-                                                            We'll never share your email with anyone else
+                                                            Waktu Bimbel selama 45 menit dan istirahat selama 15 menit 
                                                         </span>
                                                     </div>
                                                 </div>
@@ -99,10 +111,11 @@
                                                         Waktu Akhir:
                                                     </label>
                                                     <div class="col-lg-6">
-                                                        <input type="email" class="form-control m-input">
-                                                        <span class="m-form__help">
+											            <input type='text' class="form-control" id="m_timepicker_1" name="waktuAkhir" placeholder="Select time" />
+                                                        {{-- <input type="email" class="form-control m-input"> --}}
+                                                        {{-- <span class="m-form__help">
                                                             We'll never share your email with anyone else
-                                                        </span>
+                                                        </span> --}}
                                                     </div>
                                                 </div>                                          
                                                 <div class="form-group m-form__group row">
@@ -110,9 +123,16 @@
                                                         Mata Pelajaran:
                                                     </label>
                                                     <div class="col-lg-6">
-                                                        <input type="email" class="form-control m-input" >
+                                                        {{-- <input type="email" class="form-control m-input" > --}}
+                                                        <select class="form-control m-bootstrap-select m_selectpicker" required name="matpel[]" multiple>
+                                                                <option value="Bhs.Indonesia" > Bahasa Indonesia</option>
+                                                                <option value="Matematika" > Matematika</option>																																											
+                                                                <option value="IPA" > IPA </option>																																											
+                                                                <option value="IPS" > IPS</option>																																											
+                                                                <option value="Bhs.Inggris" >Bahasa Inggris</option>																																																																																						
+                                                        </select>
                                                         <span class="m-form__help">
-                                                            We'll never share your email with anyone else
+                                                            Pilih Mata Pelajaran yang ingin anda ajarkan
                                                         </span>
                                                     </div>
                                                 </div>
@@ -121,19 +141,30 @@
                                                         Keterangan:
                                                     </label>
                                                     <div class="col-lg-6">
-                                                        <input type="email" class="form-control m-input" >
+                                                        <input type="text" name="keterangan" class="form-control m-input" required >
                                                         <span class="m-form__help">
-                                                            We'll never share your email with anyone else
+                                                            Tambahkan Keterangan yang anda inginkan
                                                         </span>
                                                     </div>
-                                                </div>	                                                                                                        										
+                                                </div>
+                                                <div class="form-group m-form__group row">
+                                                        <label class="col-lg-2 col-form-label">
+                                                            Status Paket:
+                                                        </label>
+                                                        <div class="col-lg-6">
+                                                            <input type="text" name="statusPaket" class="form-control m-input" required >
+                                                            <span class="m-form__help">
+                                                                We'll never share your email with anyone else
+                                                            </span>
+                                                        </div>
+                                                </div>                                                                                                       										
 											</div>
 										<div class="m-portlet__foot m-portlet__foot--fit">
 											<div class="m-form__actions m-form__actions">
 												<div class="row">
 													<div class="col-lg-2"></div>
 													<div class="col-lg-6">
-														<button type="reset" class="btn btn-primary">
+														<button type="submit" class="btn btn-primary">
 															Submit
 														</button>
 														<button type="reset" class="btn btn-secondary">

@@ -90,16 +90,8 @@
                                                     SMP kelas {{$detail->tingkatPendidikan}}
                                                 @elseif($detail->jenjang==3)
                                                     SMA kelas {{$detail->tingkatPendidikan}}
-                                                @elseif($detail->jenjang==4)
-                                                    SMK kelas {{$detail->tingkatPendidikan}}
-                                                @elseif($detail->jenjang==5)
-                                                    D3 Semester 
-                                                @elseif($detail->jenjang==6)
-                                                    S1 Semester 
-                                                @elseif($detail->jenjang==7)
-                                                    S2 Semester
                                                 @else
-                                                    S3 Semester
+                                                    SMK kelas {{$detail->tingkatPendidikan}}
                                                 @endif
                                             </span>
                                         </div>
