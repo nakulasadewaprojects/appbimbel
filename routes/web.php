@@ -38,6 +38,7 @@ Route::get('/approvalmentor', 'HomeController@approvalmentor');
 Route::get('/payment', 'HomeController@payment');
 Route::get('/report', 'HomeController@report');
 Route::get('/paketbimbel', 'HomeController@paketbimbel');
+Route::post('/paketbimbel/input', 'HomeController@inputpaketbimbel');
 Route::get('/datatutorial', 'HomeController@datatutorial');
 Route::get('/exportexcel', 'HomeController@exportexcel');
 Route::get('/multimedia', 'HomeController@multimedia');

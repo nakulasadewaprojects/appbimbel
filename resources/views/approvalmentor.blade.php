@@ -57,9 +57,9 @@
                                     </span>
                                 </div>
                                 <span class="m-widget3__status m--font-info">
-                                    @if($jd->statusBimbel==1)
+                                    @if($jd->statusSchedule==1)
                                     Pending
-                                    @elseif($jd->statusBimbel==2)
+                                    @elseif($jd->statusSchedule==2)
                                     Approval
                                     @else
                                     Cancel

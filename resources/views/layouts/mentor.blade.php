@@ -690,6 +690,9 @@
 	<script src="http://localhost/appbimbel/public/js/jquery.mousewheel.js"></script>
 	<script src="http://localhost/appbimbel/public/js/select2.js" type="text/javascript"></script>
 	<script src="http://localhost/appbimbel/public/js/data-local.js" type="text/javascript"></script>
+	<script src="http://localhost/appbimbel/public/js/bootstrap-select.js" type="text/javascript"></script>
+	<script src="http://localhost/appbimbel/public/js/bootstrap-timepicker.js" type="text/javascript"></script>
+	
 	<script>
 		if ({{DB::table('tbdetailmentor')->where('idmentor', Auth::user()->idmentor)->value('statusPendidikan')}} == 1) {
 			document.getElementById("selesai").checked = true;
