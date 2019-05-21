@@ -113,11 +113,6 @@ class HomeController extends Controller
         return view('profile', ['getprodi'=>$prodi2,'isCompleted' => $show, 'p' => $provinsi, 'b' => $kabupaten, 'c' => $kecamatan, 'd' => $kelurahan,'pt'=>$pete, 'prodi'=>$prodimentor]);
        }
 
-       public function tutorial(){
-        $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
-        $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
-        return view('tutorial' , ['isCompleted' => $showing, 'm' => $mentor]);
-    }
     public function jadwal(){
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
@@ -126,12 +121,40 @@ class HomeController extends Controller
     public function approvalmentor(){
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
-        $showBimbAppv = DB::table('siswabimbel')
+        $jadwalBimb=DB::table('siswabimbel')
+            ->join('scedulebimbel', 'siswabimbel.NoIDBimbel', '=', 'scedulebimbel.NoIDBimbel')
+            ->join('sceduletutor', 'sceduletutor.NoIDBimbel', '=', 'scedulebimbel.NoIDBimbel')
+            ->join('tbsiswa','tbsiswa.NoIDSiswa','=','siswabimbel.NoIDSiswa')
+            ->join('tbdetailsiswa','tbdetailsiswa.idtbSiswa','=','tbsiswa.idtbSiswa')      
+            ->join('tbmentor','tbmentor.NoIDMentor','=','siswabimbel.NoIDTutor')
+            ->where('siswabimbel.NoIDTutor', Auth::user()->NoIDMentor)->get();
+        return view('approvalmentor' , ['isCompleted' => $showing, 'm' => $mentor, 'jadwal'=>$jadwalBimb]);
+    }
+    public function detailApprovalMentor($id){
+        $siswa = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
+        $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
+        $detailBimbelMentor=DB::table('siswabimbel')
         ->join('scedulebimbel', 'siswabimbel.NoIDBimbel', '=', 'scedulebimbel.NoIDBimbel')
+        ->join('sceduletutor', 'sceduletutor.NoIDBimbel', '=', 'scedulebimbel.NoIDBimbel')
         ->join('tbsiswa','tbsiswa.NoIDSiswa','=','siswabimbel.NoIDSiswa')
-        ->join('tbmentor','tbmentor.NoIDMentor','=','siswabimbel.NoIDTutor')
-        ->where('siswabimbel.NoIDTutor', Auth::user()->NoIDMentor)->get();
-        return view('approvalmentor' , ['isCompleted' => $showing, 'm' => $mentor,'apvBimb'=>$showBimbAppv]);
+        ->join('tbmentor','tbmentor.NoIDMentor','=','siswabimbel.NoIDTutor') 
+        ->join('tbdetailsiswa','tbdetailsiswa.idtbSiswa','=','tbsiswa.idtbSiswa')      
+        ->where('siswabimbel.NoIDBimbel', $id)->first();
+        return view('detailApprovalMentor' , ['ProfilSiswa' => $showing,'s'=>$siswa] , ['isCompleted' => $showing,'s'=>$siswa, 'detail'=>$detailBimbelMentor]);
+        
+    }
+    public function TerimaTolakBimbel(Request $request){
+        if($request['submit']=='terima'){
+            $a= 2; 
+        }else{
+            $a=3;
+        }
+        
+        DB::table('siswabimbel')->where('NoIDBimbel',$request->id)->update([
+            'statusBimbel' => $a
+          ]);
+          return redirect('/approvalmentor');
+
     }
     public function payment(){
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
@@ -142,6 +165,31 @@ class HomeController extends Controller
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
         return view('report' , ['isCompleted' => $showing, 'm' => $mentor]);
+    }
+    public function exportexcel(){
+        $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
+        $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
+        return view('exportexcel' , ['isCompleted' => $showing, 'm' => $mentor]);
+    }
+    public function paketbimbel(){
+        $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
+        $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
+        return view('paketbimbel' , ['isCompleted' => $showing, 'm' => $mentor]);
+    }
+    public function tutorial(){
+        $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
+        $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
+        return view('tutorial' , ['isCompleted' => $showing, 'm' => $mentor]);
+    }
+    public function datatutorial(){
+        $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
+        $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
+        return view('datatutorial' , ['isCompleted' => $showing, 'm' => $mentor]);
+    }
+    public function multimedia(){
+        $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
+        $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
+        return view('multimedia' , ['isCompleted' => $showing, 'm' => $mentor]);
     }
     
     public function update($idmentor, Request $request)

@@ -46,6 +46,14 @@ class HomeSiswaController extends Controller
     }
 
     public function ajukan(Request $request){
+      $this->validate($request, [
+        'TanggalMulai' => ['required'],
+        'durasi' => ['required','numeric'],
+        'prodi' => ['required','string'],
+        'hari' => ['required','string'],
+        'waktuMulai'=>['required'],
+        'waktuSelesai'=>['required']
+    ]);
       
       $TbsiswaNoID= DB::table('tbsiswa')->where('idtbSiswa',Auth::user()->idtbSiswa)->value('NoIDSiswa');      
       // $noIDMentor= DB::table('tbmentor')->where('idmentor',$request['id'])->value('NoIDMentor');      
@@ -94,15 +102,13 @@ class HomeSiswaController extends Controller
         $hari=$request['hari'];
        $h= $hari; 
       }
-    $time = strtotime($request['waktuMulai']);
-    $WaktuSelesai = date("H:i:s", strtotime("+45 minute", $time));
     $detik = Carbon::now()->isoFormat('s');      
     $menit = Carbon::now()->isoformat('m');
     $noschedulTutor = 'T' . $menit . $detik;
       DB::table('sceduletutor')->insert([
         'days'=>$h,
         'start'=> Carbon::parse($request['waktuMulai'])->format('H:i:s'),
-        'end'=>$WaktuSelesai,
+        'end'=>Carbon::parse($request['waktuSelesai'])->format('H:i:s'),
         'tglprivate'=>  Carbon::parse($request['TanggalMulai'])->format('Y-m-d'),
         'tglupdate'=> $tglentry,
         'status'=>'1',
@@ -120,9 +126,25 @@ class HomeSiswaController extends Controller
       ->join('sceduletutor', 'sceduletutor.NoIDBimbel', '=', 'scedulebimbel.NoIDBimbel')
       ->join('tbsiswa','tbsiswa.NoIDSiswa','=','siswabimbel.NoIDSiswa')
       ->join('tbmentor','tbmentor.NoIDMentor','=','siswabimbel.NoIDTutor')
+      ->join('tbdetailmentor','tbdetailmentor.idmentor','=','tbmentor.idmentor')      
       ->where('siswabimbel.NoIDSiswa', Auth::user()->NoIDSiswa)->get();
       return view('jadwalsiswa' , ['ProfilSiswa' => $showing,'s'=>$siswa] , ['isCompleted' => $showing,'s'=>$siswa, 'jadwal'=>$jadwalBimb]);
       // return $jadwalBimb;
+    }
+
+    public function detailApproval($id){
+      $siswa = DB::table('tbsiswa')->where('idtbSiswa', Auth::user()->idtbSiswa)->first();
+      $showing = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->first();
+      $detailBimbel=DB::table('siswabimbel')
+      ->join('scedulebimbel', 'siswabimbel.NoIDBimbel', '=', 'scedulebimbel.NoIDBimbel')
+      ->join('sceduletutor', 'sceduletutor.NoIDBimbel', '=', 'scedulebimbel.NoIDBimbel')
+      ->join('tbsiswa','tbsiswa.NoIDSiswa','=','siswabimbel.NoIDSiswa')
+      ->join('tbmentor','tbmentor.NoIDMentor','=','siswabimbel.NoIDTutor') 
+      ->join('tbdetailmentor','tbdetailmentor.idmentor','=','tbmentor.idmentor')      
+      ->where('siswabimbel.NoIDBimbel', $id)->first();
+      return view('detailApproval' , ['ProfilSiswa' => $showing,'s'=>$siswa] , ['isCompleted' => $showing,'s'=>$siswa, 'detail'=>$detailBimbel]);
+      // return $detailBimbel;
+      
     }
 
     public function approval(){

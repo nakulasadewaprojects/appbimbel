@@ -37,6 +37,10 @@ Route::get('/jadwal', 'HomeController@jadwal');
 Route::get('/approvalmentor', 'HomeController@approvalmentor');
 Route::get('/payment', 'HomeController@payment');
 Route::get('/report', 'HomeController@report');
+Route::get('/paketbimbel', 'HomeController@paketbimbel');
+Route::get('/datatutorial', 'HomeController@datatutorial');
+Route::get('/exportexcel', 'HomeController@exportexcel');
+Route::get('/multimedia', 'HomeController@multimedia');
 Route::get('/profilesiswa', 'HomeSiswaController@profilesiswa');
 Route::get('/myprofilesiswa', 'HomeSiswaController@myprofilsiswa');
 Route::get('/calendarsiswa', 'HomeSiswaController@calendarsiswa');
@@ -56,3 +60,7 @@ Route::get('/detailmentor/{id}', 'HomeSiswaController@detailmentor');
 Route::get('/formAjukan/{id}', 'HomeSiswaController@formAjukan');
 Route::post('/ajukan', 'HomeSiswaController@ajukan');
 Route::get('/approval', 'HomeSiswaController@approval');
+Route::get('/detailBimbel/{id}', 'HomeSiswaController@detailApproval');
+Route::get('/detailApprovalBimbel/{id}', 'HomeController@detailApprovalMentor');
+Route::post('/TerimaTolakBimbel', 'HomeController@TerimaTolakBimbel');
+

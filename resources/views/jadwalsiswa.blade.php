@@ -35,12 +35,12 @@
                         <div class="m-widget3__item">
                             <div class="m-widget3__header">
                                 <div class="m-widget3__user-img">
-                                    <img class="m-widget3__img" src="assets/app/media/img/users/user1.jpg" alt="">
-                                    {{-- @if(DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->value('fotoProfile')==NULL)
-													<img src="{{ url('/data_fileSiswa/default_photo_profile.png') }}" height="50px" width="50px"/>
+                                    {{-- <img class="m-widget3__img" src="assets/app/media/img/users/user1.jpg" alt=""> --}}
+                                    @if($j->foto==NULL)
+													<img class="m-widget3__img" src="{{ url('/data_fileSiswa/default_photo_profile.png') }}"/>
 													@else
-													<a href="{{ url('/data_fileSiswa/'.$j->fotoProfile) }}" class="thumbnail"><img src="{{ url('/data_fileSiswa2/'.$isCompleted->fotoProfile) }}" alt=""/></a>
-													@endif --}}
+													<img class="m-widget3__img" src="{{ url('/data_file2/'.$j->foto) }}"/></a>
+									@endif
                                 </div>
                                 <div class="m-widget3__info">
                                     <span class="m-widget3__username">
@@ -48,7 +48,7 @@
                                     </span>
                                     <br>
                                     <span class="m-widget3__time">
-                                        {{$j->prodi}}
+                                        {{$j->prodiBimbel}}
                                     </span>
                                 </div>
                                 <span class="m-widget3__status m--font-info">  
@@ -60,9 +60,11 @@
                                         Cancel
                                     @endif
                                 </span>
-                                <button type="button" class="m-btn m-btn--pill m-btn--hover-brand btn btn-sm btn-secondary" data-toggle="modal" data-target="#m_modal_3">
-                                    Detail
-                                </button>
+                                <a href="detailBimbel/{{$j->NoIDBimbel}}">
+                                    <button type="button" class="m-btn m-btn--pill m-btn--hover-brand btn btn-sm btn-secondary" data-toggle="modal" data-target="#m_modal_3">
+                                        Detail
+                                    </button>
+                                </a>
                             </div>
                             <div class="m-widget3__body">
                                 <p class="m-widget3__text">
