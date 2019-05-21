@@ -118,7 +118,7 @@
 											</span>
 											<div class="m-checkbox-list">
 												<label class="m-checkbox">
-													<input id="bin" onchange="myFunction()" name="bin" type="checkbox" @if(strpos($url,'bin'
+													<input class="myCheckBox" value="true" id="bin" name="bin" type="checkbox" @if(strpos($url,'bin'
 														)!==false) checked @endif>
 													Bahasa Indonesia
 													<span></span>
@@ -126,7 +126,7 @@
 											</div>
 											<div class="m-checkbox-list">
 												<label class="m-checkbox">
-													<input id="mtk" onchange="myFunction()" name="mtk" type="checkbox" @if(strpos($url,'mtk'
+													<input class="myCheckBox" value="true" id="mtk" name="mtk" type="checkbox" @if(strpos($url,'mtk'
 														)!==false) checked @endif>
 													Matematika
 													<span></span>
@@ -134,7 +134,7 @@
 											</div>
 											<div class="m-checkbox-list">
 												<label class="m-checkbox">
-													<input id="ipa" onchange="myFunction()" name="ipa" type="checkbox" @if(strpos($url,'ipa'
+													<input class="myCheckBox"  value="true" id="ipa" name="ipa" type="checkbox" @if(strpos($url,'ipa'
 														)!==false) checked @endif>
 													IPA
 													<span></span>
@@ -142,7 +142,7 @@
 											</div>
 											<div class="m-checkbox-list">
 												<label class="m-checkbox">
-													<input id="ips" onchange="myFunction()" name="ips" type="checkbox" @if(strpos($url,'ips'
+													<input class="myCheckBox" value="true" id="ips"  name="ips" type="checkbox" @if(strpos($url,'ips'
 														)!==false) checked @endif>
 													IPS
 													<span></span>
@@ -150,7 +150,7 @@
 											</div>
 											<div class="m-checkbox-list">
 												<label class="m-checkbox">
-													<input id="big" onchange="myFunction()" name="big" type="checkbox" @if(strpos($url,'big'
+													<input class="myCheckBox" value="true" id="big" name="big" type="checkbox" @if(strpos($url,'big'
 														)!==false) checked @endif>
 													Bahasa Inggris
 													<span></span>
@@ -207,7 +207,7 @@
 														</select>
 													</div>
 												</div>
-												<button type="submit" id="btn" class="btn" disabled>
+												<button type="submit" id="btn" class="btn">
 													Cari
 												</button>
 											</div>
@@ -300,6 +300,8 @@
 								<div class="m-widget5">
 										@if($isCompleted->prodiSiswa==NULL)
 										Hasil pencarian mentor akan muncul setelah data Anda lengkapi
+										@elseif($grup->isEmpty())
+										Tidak Ada Hasil Pencarian
 										@else
 									@foreach($grup as $m)
 									<div class="m-widget5__item">
@@ -337,7 +339,7 @@
 									
 									<!--end::m-widget5-->
 								</div>
-								@if($grup!==NULL)
+								@if($grup!=='iwak')
 								{{ $grup->links() }}
 								@else
 								@endif
