@@ -62,9 +62,9 @@ class RegisterController extends Controller
         $user->userData = Aktivasimentor::create([
            'statusLimit' => '1'
         ]);
-        $user->userData1 = Tbdetailmentor::create([
-            'statKomplit' => '0'
-        ]);
+        // $user->userData1 = Tbdetailmentor::create([
+        //     'statKomplit' => '0'
+        // ]);
         return $user;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Illuminate\Foundation\Auth;
 
+use App\Tbdetailmentor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Registered;
@@ -33,6 +34,13 @@ trait RegistersUsers
         event(new Registered($user = $this->create($request->all())));
 
         $this->guard()->login($user);
+        Tbdetailmentor::create([
+                'statKomplit' => '0',
+                'idmentor' => Auth::user()->idmentor,
+
+            ]);
+
+      
 
         return $this->registered($request, $user)
                         ?: redirect($this->redirectPath());
