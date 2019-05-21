@@ -98,11 +98,11 @@
 														<option value="4" @if(strpos($url,'4' )!==false) selected
 															@endif>Semua Jenjang</option>
 														<option value="1" @if(strpos($url,'1' )!==false) selected
-															@endif> SMA, SMK</option>
+															@endif> SMA/SMK sederajat</option>
 														<option value="2" @if(strpos($url,'2' )!==false) selected
-															@endif> D3</option>
+															@endif> D3 sederajat</option>
 														<option value="3" @if(strpos($url,'3' )!==false) selected
-															@endif> S1, S2, S3</option>
+															@endif> Strata sederajat</option>
 													</select>
 												</div>
 												</div>
@@ -172,7 +172,8 @@
 															type="text">
 															<option value="0">Semua Provinsi</option>
 															@foreach ($p as $a)
-															<option value="{{ $a->id }}"> {{$a->nama}}</option>
+															<option value="{{ $a->id }}" @if(strpos($url, 'provinsi='.strval($a->id) )!==false) selected
+																	@endif> {{$a->nama}}</option>
 															@endforeach
 														</select>
 													</div>
@@ -184,6 +185,11 @@
 														<select class="form-control m-input" name="kabupaten"
 															type="text" id="kab">
 															<option value="0">Semua Kabupaten</option>
+															@foreach ($b as $a)
+															<option value="{{ $a->id }}" @if(strpos($url, 'kabupaten='.strval($a->id) )!==false) selected
+																	@endif> {{$a->nama}}</option>
+															@endforeach
+															
 														</select>
 													</div>
 												</div>
@@ -194,6 +200,12 @@
 														<select class="form-control m-input" name="kecamatan"
 															type="text" id="kec">
 															<option value="0">Semua Kecamatan </option>
+															@if($c!==NULL)
+															@foreach ($c as $a)
+															<option value="{{ $a->id }}" @if(strpos($url, 'kecamatan='.strval($a->id) )!==false) selected
+																	@endif> {{$a->nama}}</option>
+															@endforeach
+															@endif
 														</select>
 													</div>
 												</div>
@@ -204,6 +216,12 @@
 														<select class="form-control m-input" name="kelurahan"
 															type="text" id="kel">
 															<option value="0">Semua Kelurahan </option>
+															@if($k!==NULL)
+															@foreach ($k as $a)
+															<option value="{{ $a->id }}" @if(strpos($url, 'kelurahan='.strval($a->id) )!==false) selected
+																	@endif> {{$a->nama}}</option>
+															@endforeach
+															@endif
 														</select>
 													</div>
 												</div>

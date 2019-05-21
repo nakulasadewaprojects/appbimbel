@@ -140,9 +140,6 @@ class HomeSiswaController extends Controller
     {
         $provinsi  = DB::table('provinsi')->get();
         $idprovinsi  = DB::table('provinsi')->pluck('id');
-        $kabupaten = DB::table('kota_kabupaten')->get();
-        $kecamatan = DB::table('kecamatan')->get();
-        $kelurahan = DB::table('kelurahan')->get();
         $tahun = Carbon::now()->isoFormat('YY');
         $bulan = Carbon::now()->format('m');
         $noidsiswa = 'S' . $bulan . $tahun;
@@ -8999,7 +8996,21 @@ class HomeSiswaController extends Controller
         $grup='iwak';
       
       }
-        return view('dashboardsiswa', ['isCompleted' => $showing,'idp'=>$idprovinsi,'grup'=> $grup, 'url'=>$url, 'mentor'=>$getMentor,'s'=>$siswa2, 'p' => $provinsi, 'b' => $kabupaten, 'c' => $kecamatan, 'd' => $kelurahan]);
+
+      if($request['provinsi']!==NULL){
+        $kabupaten = DB::table('kota_kabupaten')->where('provinsi_id', $request['provinsi'] )->get();
+      }
+      if($request['kabupaten']!==NULL){
+        $kecamatan = DB::table('kecamatan')->where('kab_kota_id', $request['kabupaten'] )->get();
+      }else{
+        $kecamatan=NULL;
+      }
+      if($request['kecamatan']!==NULL){
+        $kelurahan = DB::table('kelurahan')->where('kecamatan_id', $request['kecamatan'] )->get();
+      }else{
+        $kelurahan=NULL;
+      }
+        return view('dashboardsiswa', ['isCompleted' => $showing,'idp'=>$idprovinsi,'grup'=> $grup, 'url'=>$url, 'mentor'=>$getMentor,'s'=>$siswa2, 'p' => $provinsi, 'b' => $kabupaten,'c' => $kecamatan,'k' => $kelurahan]);
         
         // return $getexplode;
     }
