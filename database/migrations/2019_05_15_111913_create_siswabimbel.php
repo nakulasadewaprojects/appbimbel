@@ -17,7 +17,7 @@ class CreateSiswabimbel extends Migration
             $table->bigIncrements('idsiswaBimbel');
             $table->string('NoIDBimbel')->nullable();
             $table->string('NoIDSiswa')->nullable();            
-            $table->string('prodi')->nullable();
+            $table->string('prodiBimbel')->nullable();
             $table->string('NoIDTutor')->nullable();
             $table->datetime('tglentry')->nullable();
             $table->integer('statusBimbel')->nullable();
