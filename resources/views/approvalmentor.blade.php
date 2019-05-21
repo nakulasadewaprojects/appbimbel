@@ -40,13 +40,15 @@
                                         @if($jd->fotoProfile==NULL)
                                             <img class="m-widget3__img" src="{{ url('/data_fileSiswa/default_photo_profile.png') }}"/>
                                         @else
-                                             <img class="m-widget3__img" src="{{ url('/data_file2/'.$jd->fotoProfile) }}"/></a>
+                                             <img class="m-widget3__img" src="{{ url('/data_fileSiswa2/'.$jd->fotoProfile) }}"/></a>
                                         @endif
                                     {{-- <img class="m-widget3__img" src="" alt=""> --}}
                                 </div>
                                 <div class="m-widget3__info">
                                     <span class="m-widget3__username">
                                         {{$jd->NamaLengkap}}
+                                        {{-- {{$jd-> NoIDBimbel}} --}}
+                                        {{-- {{$jd->statusBimbel}} --}}
                                     </span>
                                     <br>
                                     <span class="m-widget3__time"> 
@@ -62,6 +64,7 @@
                                     @else
                                     Cancel
                                     @endif
+                                    
                                 </span>
                                 <a href="detailApprovalBimbel/{{$jd->NoIDBimbel}}">
                                     <button type="button" class="m-btn m-btn--pill m-btn--hover-brand btn btn-sm btn-secondary" data-toggle="modal" data-target="#m_modal_3">

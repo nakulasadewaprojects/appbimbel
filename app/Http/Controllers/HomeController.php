@@ -147,7 +147,20 @@ class HomeController extends Controller
         ->where('siswabimbel.NoIDBimbel', $id)->first();
         return view('detailApprovalMentor' , ['ProfilSiswa' => $showing,'s'=>$siswa] , ['isCompleted' => $showing,'s'=>$siswa, 'detail'=>$detailBimbelMentor]);
         
-      }
+    }
+    public function TerimaTolakBimbel(Request $request){
+        if($request['submit']=='terima'){
+            $a= 2; 
+        }else{
+            $a=3;
+        }
+        
+        DB::table('siswabimbel')->where('NoIDBimbel',$request->id)->update([
+            'statusBimbel' => $a
+          ]);
+          return redirect('/approvalmentor');
+
+    }
     public function payment(){
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();

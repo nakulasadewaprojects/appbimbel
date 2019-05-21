@@ -48,7 +48,7 @@
                                             @if($detail->fotoProfile==NULL)
                                                 <img class="m-widget7__img" src="{{ url('/data_fileSiswa/default_photo_profile.png') }}"/>
                                             @else
-                                                <img class="m-widget7__img" src="{{ url('/data_file2/'.$detail->fotoProfile) }}"/></a>
+                                                <img class="m-widget7__img" src="{{ url('/data_fileSiswa2/'.$detail->fotoProfile) }}"/></a>
                                             @endif
                                             {{-- <img class="m-widget7__img" src="assets/app/media/img//products/product6.jpg" alt=""> --}}
                                         </div>
@@ -201,6 +201,26 @@
                             </div>
                         </div>
                         <!--end::Content-->
+                        {{-- <div class="m-portlet__foot m-portlet__foot--fit"> --}}
+                            <form method="POST" action="http://localhost/appbimbel/public/TerimaTolakBimbel">
+                                {{ csrf_field() }}
+                            <div class="m-form__actions m-form__actions">
+                                <div class="row">
+                                    <div class="col-lg-2"></div>
+                                    <div class="col-lg-6">
+                                        <input type="hidden" name="id" value="{{$detail->NoIDBimbel}}">
+                                        <input type="hidden" name="terima" value="{{$detail->NoIDBimbel}}">
+                                        <button type="submit" name="submit" class="btn btn-primary" value="terima">
+                                            Terima
+                                        </button>
+                                        <button type="submit" name="submit" class="btn btn-danger" value="tolak">
+                                            Tolak
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            </form>
+                        {{-- </div> --}}
                     </div>
                 </div>
                 <!--end:: Widgets/Best Sellers-->
