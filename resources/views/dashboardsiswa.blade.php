@@ -81,7 +81,7 @@
 							</ul>
 						</div>
 					</div>
-					<div class="m-portlet__body collapse">
+					<div class="m-portlet__body @if($grup=='iwak') collapse @else @endif">
 					<form id="formFilter" method="GET" action="dashboardsiswa" enctype="multipart/form-data">
 							<div class="row m-row--no-padding m-row--col-separator-xl">						
 								<div class="col-xl-4">
@@ -93,16 +93,16 @@
 											<span class="m-widget14__title">
 												<div class="form-group m-form__group row">
 												<div class="col-10">
-													<select class="form-control m-input" id="pend" name="pendidikan"
+													<select onchange="myFunction()" class="form-control m-input" id="pend" name="pendidikan"
 														type="text">
 														<option value="4" @if(strpos($url,'4' )!==false) selected
 															@endif>Semua Jenjang</option>
 														<option value="1" @if(strpos($url,'1' )!==false) selected
-															@endif> SMA, SMK</option>
+															@endif> SMA/SMK sederajat</option>
 														<option value="2" @if(strpos($url,'2' )!==false) selected
-															@endif> D3</option>
+															@endif> D3 sederajat</option>
 														<option value="3" @if(strpos($url,'3' )!==false) selected
-															@endif> S1, S2, S3</option>
+															@endif> Strata sederajat</option>
 													</select>
 												</div>
 												</div>
@@ -118,7 +118,7 @@
 											</span>
 											<div class="m-checkbox-list">
 												<label class="m-checkbox">
-													<input id="bin" onchange="myFunction()" name="bin" type="checkbox" @if(strpos($url,'bin'
+													<input class="myCheckBox" value="true" id="bin" name="bin" type="checkbox" @if(strpos($url,'bin'
 														)!==false) checked @endif>
 													Bahasa Indonesia
 													<span></span>
@@ -126,7 +126,7 @@
 											</div>
 											<div class="m-checkbox-list">
 												<label class="m-checkbox">
-													<input id="mtk" onchange="myFunction()" name="mtk" type="checkbox" @if(strpos($url,'mtk'
+													<input class="myCheckBox" value="true" id="mtk" name="mtk" type="checkbox" @if(strpos($url,'mtk'
 														)!==false) checked @endif>
 													Matematika
 													<span></span>
@@ -134,7 +134,7 @@
 											</div>
 											<div class="m-checkbox-list">
 												<label class="m-checkbox">
-													<input id="ipa" onchange="myFunction()" name="ipa" type="checkbox" @if(strpos($url,'ipa'
+													<input class="myCheckBox"  value="true" id="ipa" name="ipa" type="checkbox" @if(strpos($url,'ipa'
 														)!==false) checked @endif>
 													IPA
 													<span></span>
@@ -142,7 +142,7 @@
 											</div>
 											<div class="m-checkbox-list">
 												<label class="m-checkbox">
-													<input id="ips" onchange="myFunction()" name="ips" type="checkbox" @if(strpos($url,'ips'
+													<input class="myCheckBox" value="true" id="ips"  name="ips" type="checkbox" @if(strpos($url,'ips'
 														)!==false) checked @endif>
 													IPS
 													<span></span>
@@ -150,7 +150,7 @@
 											</div>
 											<div class="m-checkbox-list">
 												<label class="m-checkbox">
-													<input id="big" onchange="myFunction()" name="big" type="checkbox" @if(strpos($url,'big'
+													<input class="myCheckBox" value="true" id="big" name="big" type="checkbox" @if(strpos($url,'big'
 														)!==false) checked @endif>
 													Bahasa Inggris
 													<span></span>
@@ -172,7 +172,8 @@
 															type="text">
 															<option value="0">Semua Provinsi</option>
 															@foreach ($p as $a)
-															<option value="{{ $a->id }}"> {{$a->nama}}</option>
+															<option value="{{ $a->id }}" @if(strpos($url, 'provinsi='.strval($a->id) )!==false) selected
+																	@endif> {{$a->nama}}</option>
 															@endforeach
 														</select>
 													</div>
@@ -184,6 +185,13 @@
 														<select class="form-control m-input" name="kabupaten"
 															type="text" id="kab">
 															<option value="0">Semua Kabupaten</option>
+															@if($b!==NULL)
+															@foreach ($b as $a)
+															<option value="{{ $a->id }}" @if(strpos($url, 'kabupaten='.strval($a->id) )!==false) selected
+																	@endif> {{$a->nama}}</option>
+															@endforeach
+															@endif
+															
 														</select>
 													</div>
 												</div>
@@ -194,6 +202,12 @@
 														<select class="form-control m-input" name="kecamatan"
 															type="text" id="kec">
 															<option value="0">Semua Kecamatan </option>
+															@if($c!==NULL)
+															@foreach ($c as $a)
+															<option value="{{ $a->id }}" @if(strpos($url, 'kecamatan='.strval($a->id) )!==false) selected
+																	@endif> {{$a->nama}}</option>
+															@endforeach
+															@endif
 														</select>
 													</div>
 												</div>
@@ -204,12 +218,19 @@
 														<select class="form-control m-input" name="kelurahan"
 															type="text" id="kel">
 															<option value="0">Semua Kelurahan </option>
+															@if($k!==NULL)
+															@foreach ($k as $a)
+															<option value="{{ $a->id }}" @if(strpos($url, 'kelurahan='.strval($a->id) )!==false) selected
+																	@endif> {{$a->nama}}</option>
+															@endforeach
+															@endif
 														</select>
 													</div>
 												</div>
-												<button type="submit" id="btn" class="btn" disabled>
+												<button type="submit" id="btn" class="btn btn-info">
 													Cari
 												</button>
+												<a href="http://localhost/appbimbel/public/dashboardsiswa" class="btn btn-danger">Reset</a>
 											</div>
 										</div>
 									</div>
@@ -219,7 +240,7 @@
 					</div>
 				</div>
 			</div>
-			@if(Request::fullUrl()=='http://localhost/appbimbel/public/dashboardsiswa')
+			@if($grup=='iwak')
 			<div class="col-xl-12">
 			<div class="m-portlet m-portlet--success m-portlet--head-solid-bg m-portlet--head-sm" data-portlet="true" id="m_portlet_tools_2">
 					<div class="m-portlet__head">
@@ -272,7 +293,7 @@
 									@endforeach
 									{{ $mentor->links() }}
 									@endif
-									{{-- {{ $mentor->links() }} --}}
+									
 								</div>
 							</div>
 						</div>
@@ -280,9 +301,9 @@
 				</div>
 			</div>
 			@endif
-			@if(Request::fullUrl()!=='http://localhost/appbimbel/public/dashboardsiswa')
+			@if($grup!=='iwak')
 			<div class="col-xl-12">
-				<div class="m-portlet  ">
+				<div class="m-portlet m-portlet--success m-portlet--head-solid-bg m-portlet--head-sm" data-portlet="true" id="m_portlet_tools_2">
 					<div class="m-portlet__head">
 						<div class="m-portlet__head-caption">
 							<div class="m-portlet__head-title">
@@ -300,6 +321,8 @@
 								<div class="m-widget5">
 										@if($isCompleted->prodiSiswa==NULL)
 										Hasil pencarian mentor akan muncul setelah data Anda lengkapi
+										@elseif($grup->isEmpty())
+										Tidak Ada Hasil Pencarian
 										@else
 									@foreach($grup as $m)
 									<div class="m-widget5__item">
@@ -324,19 +347,20 @@
 										</div>
 										<div class="m-widget5__stats1">
 											<br>
+											<a href="detailmentor/{{$m->idmentor}}">
 											<button type="button" class="btn btn-outline-success btn-sm m-btn m-btn--custom">
 												Detail
 											</button>
+											</a>
 										</div>
 									</div>
 									@endforeach
 									
 									@endif
-									<!-- {{-- {{ $mentor->links() }} --}} -->
-
+									
 									<!--end::m-widget5-->
 								</div>
-								@if($grup!==NULL)
+								@if($grup!=='iwak')
 								{{ $grup->links() }}
 								@else
 								@endif

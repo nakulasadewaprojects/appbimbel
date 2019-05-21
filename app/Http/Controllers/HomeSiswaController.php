@@ -140,9 +140,6 @@ class HomeSiswaController extends Controller
     {
         $provinsi  = DB::table('provinsi')->get();
         $idprovinsi  = DB::table('provinsi')->pluck('id');
-        $kabupaten = DB::table('kota_kabupaten')->get();
-        $kecamatan = DB::table('kecamatan')->get();
-        $kelurahan = DB::table('kelurahan')->get();
         $tahun = Carbon::now()->isoFormat('YY');
         $bulan = Carbon::now()->format('m');
         $noidsiswa = 'S' . $bulan . $tahun;
@@ -2470,6 +2467,7 @@ class HomeSiswaController extends Controller
                 ->whereIN('pendidikanTerakhir',[3,4])
                 ->paginate(5);
             }
+            $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
             $url=$request->fullUrl();
         }
         elseif($request['pendidikan']==2){ //D3
@@ -4682,6 +4680,8 @@ class HomeSiswaController extends Controller
                 ->paginate(5);
             }
             $url=$request->fullUrl();
+            $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+            
         }
         elseif($request['pendidikan']==3){ //S1, S2, S3
           $grup=DB::table('tbmentor')
@@ -6898,6 +6898,7 @@ class HomeSiswaController extends Controller
                   ->whereIN('pendidikanTerakhir',[6,7,8])
                   ->paginate(5);
               }
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
              $url= $request->fullUrl();
         }
         elseif($request['pendidikan']==4)
@@ -8984,16 +8985,34 @@ class HomeSiswaController extends Controller
                   ->orWhere('prodi','like','%IPS%')
                   ->orWhere('prodi','like','%Bhs. Inggris%')
                   ->paginate(5);
+                
               } 
       $url=$request->fullUrl();
+      $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
 
       }
       else{
         $url=NULL;
-        $grup=NULL;
+        $grup='iwak';
       
       }
-        return view('dashboardsiswa', ['isCompleted' => $showing,'idp'=>$idprovinsi,'grup'=> $grup, 'url'=>$url, 'mentor'=>$getMentor,'s'=>$siswa2, 'p' => $provinsi, 'b' => $kabupaten, 'c' => $kecamatan, 'd' => $kelurahan]);
+
+      if($request['provinsi']!==NULL){
+        $kabupaten = DB::table('kota_kabupaten')->where('provinsi_id', $request['provinsi'] )->get();
+      }else{
+        $kabupaten=NULL;
+      }
+      if($request['kabupaten']!==NULL){
+        $kecamatan = DB::table('kecamatan')->where('kab_kota_id', $request['kabupaten'] )->get();
+      }else{
+        $kecamatan=NULL;
+      }
+      if($request['kecamatan']!==NULL){
+        $kelurahan = DB::table('kelurahan')->where('kecamatan_id', $request['kecamatan'] )->get();
+      }else{
+        $kelurahan=NULL;
+      }
+        return view('dashboardsiswa', ['isCompleted' => $showing,'idp'=>$idprovinsi,'grup'=> $grup, 'url'=>$url, 'mentor'=>$getMentor,'s'=>$siswa2, 'p' => $provinsi, 'b' => $kabupaten,'c' => $kecamatan,'k' => $kelurahan]);
         
         // return $getexplode;
     }
