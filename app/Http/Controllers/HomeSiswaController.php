@@ -8999,6 +8999,8 @@ class HomeSiswaController extends Controller
 
       if($request['provinsi']!==NULL){
         $kabupaten = DB::table('kota_kabupaten')->where('provinsi_id', $request['provinsi'] )->get();
+      }else{
+        $kabupaten=NULL;
       }
       if($request['kabupaten']!==NULL){
         $kecamatan = DB::table('kecamatan')->where('kab_kota_id', $request['kabupaten'] )->get();

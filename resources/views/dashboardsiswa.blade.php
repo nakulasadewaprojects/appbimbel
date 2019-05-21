@@ -185,10 +185,12 @@
 														<select class="form-control m-input" name="kabupaten"
 															type="text" id="kab">
 															<option value="0">Semua Kabupaten</option>
+															@if($b!==NULL)
 															@foreach ($b as $a)
 															<option value="{{ $a->id }}" @if(strpos($url, 'kabupaten='.strval($a->id) )!==false) selected
 																	@endif> {{$a->nama}}</option>
 															@endforeach
+															@endif
 															
 														</select>
 													</div>
@@ -225,9 +227,10 @@
 														</select>
 													</div>
 												</div>
-												<button type="submit" id="btn" class="btn">
+												<button type="submit" id="btn" class="btn btn-info">
 													Cari
 												</button>
+												<a href="http://localhost/appbimbel/public/dashboardsiswa" class="btn btn-danger">Reset</a>
 											</div>
 										</div>
 									</div>
