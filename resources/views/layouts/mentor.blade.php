@@ -541,7 +541,7 @@
 											</span>
 										</a>
 									</li><li class="m-menu__item " aria-haspopup="true"  data-redirect="true">
-										<a  href="http://localhost/appbimbel/public/paketbimbel" class="m-menu__link ">
+										<a  href="http://localhost/appbimbel/public/datapaket" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -578,7 +578,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true"  data-redirect="true">
-										<a  href="http://localhost/appbimbel/public/report" class="m-menu__link ">
+										<a  href="http://localhost/appbimbel/public/datareport" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
