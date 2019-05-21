@@ -30,80 +30,52 @@
                     </div>
                 </div>
                 <div class="m-portlet__body">
+                        @foreach($jadwal as $jd)
                     <div class="m-widget3">
                         <div class="m-widget3__item">
                             <div class="m-widget3__header">
+                                
                                 <div class="m-widget3__user-img">
-                                    <img class="m-widget3__img" src="assets/app/media/img/users/user1.jpg" alt="">
+                                        @if($jd->fotoProfile==NULL)
+                                            <img class="m-widget3__img" src="{{ url('/data_fileSiswa/default_photo_profile.png') }}"/>
+                                        @else
+                                             <img class="m-widget3__img" src="{{ url('/data_file2/'.$jd->fotoProfile) }}"/></a>
+                                        @endif
+                                    {{-- <img class="m-widget3__img" src="" alt=""> --}}
                                 </div>
                                 <div class="m-widget3__info">
                                     <span class="m-widget3__username">
-                                        Melania Trump
+                                        {{$jd->NamaLengkap}}
                                     </span>
                                     <br>
-                                    <span class="m-widget3__time">
-                                        2 day ago
+                                    <span class="m-widget3__time"> 
+                                        {{$jd->prodiBimbel}}
+                                        
                                     </span>
                                 </div>
                                 <span class="m-widget3__status m--font-info">
+                                    @if($jd->statusBimbel==1)
                                     Pending
+                                    @elseif($jd->statusBimbel==2)
+                                    Approval
+                                    @else
+                                    Cancel
+                                    @endif
                                 </span>
+                                <a href="detailApprovalBimbel/{{$jd->NoIDBimbel}}">
+                                    <button type="button" class="m-btn m-btn--pill m-btn--hover-brand btn btn-sm btn-secondary" data-toggle="modal" data-target="#m_modal_3">
+                                        Detail
+                                    </button>
+                                </a>
                             </div>
-                            <div class="m-widget3__body">
+                            <div class="m-widget3__info">
                                 <p class="m-widget3__text">
-                                    Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="m-widget3__item">
-                            <div class="m-widget3__header">
-                                <div class="m-widget3__user-img">
-                                    <img class="m-widget3__img" src="assets/app/media/img/users/user4.jpg" alt="">
-                                </div>
-                                <div class="m-widget3__info">
-                                    <span class="m-widget3__username">
-                                        Lebron King James
-                                    </span>
-                                    <br>
-                                    <span class="m-widget3__time">
-                                        1 day ago
-                                    </span>
-                                </div>
-                                <span class="m-widget3__status m--font-brand">
-                                    Open
-                                </span>
-                            </div>
-                            <div class="m-widget3__body">
-                                <p class="m-widget3__text">
-                                    Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.Ut wisi enim ad minim veniam,quis nostrud exerci tation ullamcorper.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="m-widget3__item">
-                            <div class="m-widget3__header">
-                                <div class="m-widget3__user-img">
-                                    <img class="m-widget3__img" src="assets/app/media/img/users/user5.jpg" alt="">
-                                </div>
-                                <div class="m-widget3__info">
-                                    <span class="m-widget3__username">
-                                        Deb Gibson
-                                    </span>
-                                    <br>
-                                    <span class="m-widget3__time">
-                                        3 weeks ago
-                                    </span>
-                                </div>
-                                <span class="m-widget3__status m--font-success">
-                                    Closed
-                                </span>
-                            </div>
-                            <div class="m-widget3__body">
-                                <p class="m-widget3__text">
-                                    Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.
+                                    Mulai Bimbel {{$jd->tglprivate}}. Hari {{$jd->days}}. Waktu {{$jd->start}} - {{$jd->end}}
                                 </p>
                             </div>
                         </div>
                     </div>
+                    @endforeach
                 </div>
             </div>
         </div>

@@ -160,15 +160,90 @@
 					<div class="m-form__section m-form__section--last">
 						<div class="m-form__heading">
 							<h3 class="m-form__heading-title">
-							Pengajuan Bimbel:
+							Pengajuan :
 							</h3>
+						</div>
+						<div class="form-group m-form__group row">
+							<label class="col-lg-2 col-form-label">
+								Mulai Bimbel:
+							</label>
+								<div class="col-lg-6 col-md-9 col-sm-12">
+									<div class='input-group date' id='m_datepicker_2'>
+										<input type='text'  class="form-control m-input" required placeholder="Select date" name="TanggalMulai"/>
+											<span class="input-group-addon">
+												<i class="la la-calendar-check-o"></i>
+											</span>
+									</div>
+								</div>
+						</div>
+						<div class="form-group m-form__group row">
+							<label class="col-lg-2 col-form-label">
+								Durasi Bimbel:
+							</label>
+							<div class="col-lg-6 col-md-9 col-sm-12">
+									<select class="form-control m-bootstrap-select m_selectpicker" required title="Pilih Durasi Bimbel" name="durasi">
+										<optgroup label=" Bulan">
+											<option value="1" > 1 bulan </option>
+										</optgroup>
+										<optgroup label="Semester">
+											<option value="6" > 1 Semester </option>
+											<option value="12" > 2 Semester </option>																																											
+										</optgroup>
+									</select>
+								</div>
+						</div>
+						<div class="form-group m-form__group row">
+							<label class="col-lg-2 col-form-label">
+								Hari Bimbel:
+							</label>
+								<div class="col-lg-6 col-md-9 col-sm-12">
+									<select class="form-control m-bootstrap-select m_selectpicker" required name="hari[]" multiple>
+										<option value="Senin" > Senin</option>
+										<option value="Selasa" > Selasa</option>																																											
+										<option value="Rabu" > Rabu </option>																																											
+										<option value="Kamis" > Kamis</option>																																											
+										<option value="Jumat" > Jumat</option>																																											
+										<option value="Sabtu" > Sabtu</option>																																											
+										<option value="Minggu" > Minggu</option>																																											
+									</select>
+											
+								</div>
+						</div>
+						<div class="form-group m-form__group row">
+							<label class="col-lg-2 col-form-label">
+										Waktu Bimbel :
+							</label>
+								<div class="col-lg-6 col-md-9 col-sm-12">
+									<div class='input-group timepicker'  >
+											<input type='text' class="form-control" id="m_timepicker_1" required name="waktuMulai" placeholder="Select time" type="text"/>
+										<span class="input-group-addon">
+											<i class="la la-clock-o"></i>
+										</span>
+									</div>
+								</div>
+								<span class="m-form__help">
+										Lama Bimbel 45 menit, Istirahat 15 menit
+								</span>
+						</div>
+						<div class="form-group m-form__group row">
+							<label class="col-lg-2 col-form-label">
+									Akhir Bimbel :
+								</label>
+							<div class="col-lg-6 col-md-9 col-sm-12">
+								<div class='input-group timepicker' >
+									<input type='text' class="form-control" id="m_timepicker_1" required name="waktuSelesai" placeholder="Select time" type="text"/>
+									<span class="input-group-addon">
+										<i class="la la-clock-o"></i>
+									</span>
+								</div>
+							</div>
 						</div>
 						<div class="form-group m-form__group row">
 								<label class="col-lg-2 col-form-label">
 									Prodi:
 								</label>
 								<div class="col-lg-6 col-md-9 col-sm-12">
-										<select class="form-control m-bootstrap-select m_selectpicker" name="prodi[]" multiple>
+										<select class="form-control m-bootstrap-select m_selectpicker" required name="prodi[]" multiple>
 												@foreach ($prodiSiswa as $sw)
 												<option value="{{ $sw }}" > {{ $sw }}</option>
 												@endforeach	
@@ -181,100 +256,6 @@
 												Prodi siswa yang dipilih
 											</span>
 						</div>
-						<div class="form-group m-form__group row">
-								<label class="col-lg-2 col-form-label">
-									Durasi:
-								</label>
-								<div class="col-lg-6 col-md-9 col-sm-12">
-										<select class="form-control m-bootstrap-select m_selectpicker" title="Pilih Durasi Bimbel" name="durasi">
-											<optgroup label=" Bulan">
-												<option value="1" > 1 bulan </option>
-											</optgroup>
-											<optgroup label="Semester">
-												<option value="6" > 1 Semester </option>
-												<option value="12" > 2 Semester </option>																																											
-											</optgroup>
-										</select>
-									</div>
-						</div>
-						<div class="form-group m-form__group row">
-								<label class="col-lg-2 col-form-label">
-									Mulai :
-								</label>
-								
-										<div class="col-lg-6 col-md-9 col-sm-12">
-												<div class='input-group date' id='m_datepicker_2'>
-													<input type='text'  class="form-control m-input"  placeholder="Select date" name="TanggalMulai"/>
-													<span class="input-group-addon">
-														<i class="la la-calendar-check-o"></i>
-													</span>
-												</div>
-											</div>
-							</div>
-							{{-- <div class="form-group m-form__group row">
-									<label class="col-lg-2 col-form-label">
-										Akhir :
-									</label>
-									
-											<div class="col-lg-6 col-md-9 col-sm-12">
-													<div class='input-group date' >
-														<input type="text" class="form-control m-input" readonly name="tanggalSelesai">
-														<span class="input-group-addon">
-															<i class="la la-calendar-check-o"></i>
-														</span>
-													</div>
-												</div>
-							</div> --}}
-							<div class="form-group m-form__group row">
-									<label class="col-lg-2 col-form-label">
-										Hari :
-									</label>
-									<div class="col-lg-6 col-md-9 col-sm-12">
-											
-													<select class="form-control m-bootstrap-select m_selectpicker" name="hari[]" multiple>
-															<option value="Senin" > Senin</option>
-															<option value="Selasa" > Selasa</option>																																											
-															<option value="Rabu" > Rabu </option>																																											
-															<option value="Kamis" > Kamis</option>																																											
-															<option value="Jumat" > Jumat</option>																																											
-															<option value="Sabtu" > Sabtu</option>																																											
-															<option value="Minggu" > Minggu</option>																																											
-													</select>
-												
-										</div>
-							</div>
-						<div class="form-group m-form__group row">
-								<label class="col-lg-2 col-form-label">
-										Waktu Bimbel :
-									</label>
-							<div class="col-lg-6 col-md-9 col-sm-12">
-									{{-- <div class="col-lg-4 col-md-9 col-sm-12">
-											<input type='text' class="form-control" id="m_timepicker_1" readonly placeholder="Select time" type="text"/>
-										</div> --}}
-									<div class='input-group timepicker'  >
-											<input type='text' class="form-control" id="m_timepicker_1" name="waktuMulai" placeholder="Select time" type="text"/>
-										<span class="input-group-addon">
-											<i class="la la-clock-o"></i>
-										</span>
-									</div>
-								</div>
-								<span class="m-form__help">
-										Lama Bimbel 45 menit
-									</span>
-						</div>
-						{{-- <div class="form-group m-form__group row">
-							<label class="col-lg-2 col-form-label">
-									Selesai :
-								</label>
-							<div class="col-lg-6 col-md-9 col-sm-12">
-								<div class='input-group timepicker' >
-									<input type="text" class="form-control m-input" name="waktuSelesai" >
-									<span class="input-group-addon">
-										<i class="la la-clock-o"></i>
-									</span>
-								</div>
-							</div>
-						</div> --}}
 					</div>
 					
 				</div>

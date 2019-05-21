@@ -126,8 +126,29 @@ class HomeController extends Controller
     public function approvalmentor(){
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
-        return view('approvalmentor' , ['isCompleted' => $showing, 'm' => $mentor]);
+        $jadwalBimb=DB::table('siswabimbel')
+            ->join('scedulebimbel', 'siswabimbel.NoIDBimbel', '=', 'scedulebimbel.NoIDBimbel')
+            ->join('sceduletutor', 'sceduletutor.NoIDBimbel', '=', 'scedulebimbel.NoIDBimbel')
+            ->join('tbsiswa','tbsiswa.NoIDSiswa','=','siswabimbel.NoIDSiswa')
+            ->join('tbdetailsiswa','tbdetailsiswa.idtbSiswa','=','tbsiswa.idtbSiswa')      
+            ->join('tbmentor','tbmentor.NoIDMentor','=','siswabimbel.NoIDTutor')
+            ->where('siswabimbel.NoIDTutor', Auth::user()->NoIDMentor)->get();
+        return view('approvalmentor' , ['isCompleted' => $showing, 'm' => $mentor,'jadwal'=>$jadwalBimb]);
+        // return $jadwalBimb;
     }
+    public function detailApprovalMentor($id){
+        $siswa = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
+        $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
+        $detailBimbelMentor=DB::table('siswabimbel')
+        ->join('scedulebimbel', 'siswabimbel.NoIDBimbel', '=', 'scedulebimbel.NoIDBimbel')
+        ->join('sceduletutor', 'sceduletutor.NoIDBimbel', '=', 'scedulebimbel.NoIDBimbel')
+        ->join('tbsiswa','tbsiswa.NoIDSiswa','=','siswabimbel.NoIDSiswa')
+        ->join('tbmentor','tbmentor.NoIDMentor','=','siswabimbel.NoIDTutor') 
+        ->join('tbdetailsiswa','tbdetailsiswa.idtbSiswa','=','tbsiswa.idtbSiswa')      
+        ->where('siswabimbel.NoIDBimbel', $id)->first();
+        return view('detailApprovalMentor' , ['ProfilSiswa' => $showing,'s'=>$siswa] , ['isCompleted' => $showing,'s'=>$siswa, 'detail'=>$detailBimbelMentor]);
+        
+      }
     public function payment(){
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();

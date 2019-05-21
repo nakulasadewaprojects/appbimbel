@@ -56,3 +56,5 @@ Route::get('/detailmentor/{id}', 'HomeSiswaController@detailmentor');
 Route::get('/formAjukan/{id}', 'HomeSiswaController@formAjukan');
 Route::post('/ajukan', 'HomeSiswaController@ajukan');
 Route::get('/approval', 'HomeSiswaController@approval');
+Route::get('/detailBimbel/{id}', 'HomeSiswaController@detailApproval');
+Route::get('/detailApprovalBimbel/{id}', 'HomeController@detailApprovalMentor');
