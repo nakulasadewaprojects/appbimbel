@@ -645,7 +645,7 @@
 											</span>
 										</a>
 									</li><li class="m-menu__item " aria-haspopup="true"  data-redirect="true">
-										<a  href="http://localhost/appbimbel/public/multimedia" class="m-menu__link ">
+										<a  href="http://localhost/appbimbel/public/datamultimedia" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -740,6 +740,7 @@
 	<script src="http://localhost/appbimbel/public/js/bootstrap-select.js" type="text/javascript"></script>
 	<script src="http://localhost/appbimbel/public/js/select2.js" type="text/javascript"></script>
 	<script src="http://localhost/appbimbel/public/js/data-local.js" type="text/javascript"></script>
+	<script src="http://localhost/appbimbel/public/js/html-table.js" type="text/javascript"></script>
 	<script src="http://localhost/appbimbel/public/js/bootstrap-select.js" type="text/javascript"></script>
 	<script src="http://localhost/appbimbel/public/js/bootstrap-timepicker.js" type="text/javascript"></script>
 	
