@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\Tbdetailsiswa;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
 
@@ -93,25 +94,41 @@ class RegisterSiswaController extends Controller
      */
     protected function create(array $data)
     {
+        $tahun = Carbon::now()->isoFormat('YY');
+        $bulan = Carbon::now()->format('m');
+        $noidsiswa = 'S' . $bulan . $tahun;
+        $nextId=DB::table('tbsiswa')->max('idtbSiswa') + 1;
+        if(strlen((string)$nextId)==1){
+            $noidsiswa1=$noidsiswa.'0000'.$nextId;
+        }
+        elseif(strlen((string)$nextId)==2){
+            $noidsiswa1=$noidsiswa.'000'.$nextId;
+        }
+        elseif(strlen((string)$nextId)==3){
+            $noidsiswa1=$noidsiswa.'00'.$nextId;
+        }
+        elseif(strlen((string)$nextId)==4){
+            $noidsiswa1=$noidsiswa.'0'.$nextId;
+        }
+        elseif(strlen((string)$nextId)==5){
+            $noidsiswa1=$noidsiswa.$nextId;
+        }
+
         $user = Tbsiswa::create([
-            // 'NoIDSiswa' => $noidSiswa,
-            'username' => $data['username'],
+           'username' => $data['username'],
+           'NoIDSiswa' => $noidsiswa1,
             'password' => Hash::make($data['password']),
             'NamaLengkap' => $data['NamaLengkap'],
-            // 'nm_depan' => $data['first_name'],
-            // 'nm_belakang' => $data['last_name'],
             'gender' => $data['gender'],
             'NoTlpn' => $data['NoTlpn'],
             'email' => $data['email'],
-            // 'password' => Hash::make($data['password']),
-            // 'tglregister' => Carbon::now()->addDays(30)->format('Y-m-d H:i:s'), //contoh
-//            'tglregister' => Carbon::now()->format('Y-m-d H:i:s')
-            // 'statusAktivasi' => '0',
             'status' => '2',
             'tglregister' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
+        // $nextIdtbdetailsiswa=DB::table('tbdetailsiswa')->max('idtbDetailSiswa') + 1;
+
         $user->userData1 = Tbdetailsiswa::create([
-            // 'NoIDMentor' => $noidmentor,
+            'idtbSiswa'=> $nextId,
             'statusKomplit' => '0'
         ]);
         return $user;  
