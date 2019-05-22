@@ -22,10 +22,14 @@ class HomeSiswaController extends Controller
         $showmentor=DB::table('tbmentor')
                     ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
                     ->where('tbmentor.idmentor', $id)->first();
-        $idmentor=$id;
-        // $showing = DB::table('tbdetailmentor')->where('idmentor', $id)->first();        
-        return view ('detailmentor',['showmentor' => $showmentor,'isCompleted' => $showing,'idmentor'=>$idmentor]);
-    }
+        $paketBimbel=DB::table('tbmentor')
+          ->join('paketbimbel','paketbimbel.NoIDMentor','=','tbmentor.NoIDMentor')
+          ->where('tbmentor.idmentor', $id)->first();
+
+        $idmentor=$id;      
+        return view ('detailmentor',['showmentor' => $showmentor,'isCompleted' => $showing,'idmentor'=>$idmentor,'paket'=>$paketBimbel]);
+        // return $paketBimbel;
+      }
     public function formAjukan($id){
       
       $showing = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->first();
@@ -46,14 +50,112 @@ class HomeSiswaController extends Controller
     }
 
     public function ajukan(Request $request){
-      $this->validate($request, [
-        'TanggalMulai' => ['required'],
-        'durasi' => ['required','numeric'],
-        'prodi' => ['required','string'],
-        'hari' => ['required','string'],
-        'waktuMulai'=>['required'],
-        'waktuSelesai'=>['required']
-    ]);
+    //   $this->validate($request, [
+    //     'TanggalMulai' => ['required'],
+    //     'durasi' => ['required','numeric'],
+    //     'prodi' => ['required','string'],
+    //     'hari' => ['required','string'],
+    //     'waktuMulai'=>['required'],
+    //     'waktuSelesai'=>['required']
+    // ]);
+      
+      $TbsiswaNoID= DB::table('tbsiswa')->where('idtbSiswa',Auth::user()->idtbSiswa)->value('NoIDSiswa');      
+      // $noIDMentor= DB::table('tbmentor')->where('idmentor',$request['id'])->value('NoIDMentor');      
+      // $IDmentor=DB::table('tbmentor')->where('idmentor',)->value('idmentor');
+      $tglentry=Carbon::now();
+      // $detik = Carbon::now()->isoFormat('s');      
+      // $menit = Carbon::now()->isoformat('m');
+      // $noidbimbel = 'B' . $menit . $detik.  DB::getPdo()->lastInsertId();
+      $nextId=DB::table('siswabimbel')->max('idsiswaBimbel')+1;
+      $noidbimbel = 'B'. $TbsiswaNoID. $nextId ;
+
+        if($request->hasAny('prodi')){
+          $prodi=$request['prodi'];
+          $prodi2=implode(', ',$prodi);
+          $a= $prodi2; 
+      }else{
+          $prodi=$request['prodi'];
+         $a= $prodi; 
+      }
+      DB::table('siswabimbel')->insert([
+        'NoIDBimbel'=>$noidbimbel,
+        'NoIDSiswa'=>$TbsiswaNoID,
+        'prodiBimbel'=>$a,
+        'NoIDTutor'=>$request->noIDTutor,
+        'tglentry'=>$tglentry,
+        'statusBimbel' => '1',
+        'tglupdate'=>$tglentry
+      ]);
+
+      $date = strtotime($request['TanggalMulai']);
+      if($request->hasAny('durasi')=='1'){
+        $TanggalSelesai = date("Y-m-d", strtotime("+1 month", $date));
+      }if($request->hasAny('durasi')=='6'){
+        $TanggalSelesai = date("Y-m-d", strtotime("+6 month", $date)); 
+      }if($request->hasAny('durasi')=='12'){
+        $TanggalSelesai = date("Y-m-d", strtotime("+12 month", $date));
+      }
+      DB::table('scedulebimbel')->insert([
+        'NoIDBimbel'=>$noidbimbel,
+        'durasi' => $request->durasi,
+        'startBimbel' =>  Carbon::parse($request['TanggalMulai'])->format('Y-m-d'),
+        'endBimbel' => $TanggalSelesai 
+      ]);
+      if($request->hasAny('hari')){
+        $hari=$request['hari'];
+        $hari2=implode(', ',$hari);
+        $h= $hari2; 
+      }else{
+        $hari=$request['hari'];
+       $h= $hari; 
+      }
+    $detik = Carbon::now()->isoFormat('s');      
+    $menit = Carbon::now()->isoformat('m');
+    $noschedulTutor = 'T' . $menit . $detik;
+      DB::table('sceduletutor')->insert([
+        'days'=>$h,
+        'start'=> Carbon::parse($request['waktuMulai'])->format('H:i:s'),
+        'end'=>Carbon::parse($request['waktuSelesai'])->format('H:i:s'),
+        'tglprivate'=>  Carbon::parse($request['TanggalMulai'])->format('Y-m-d'),
+        'tglupdate'=> $tglentry,
+        'statusSchedule'=>'1',
+        'NoIDBimbel'=>$noidbimbel ,
+        'NoScheduleTutor'=>$noschedulTutor
+      ]);
+      return redirect('/dashboardsiswa');
+    }
+    public function formAjukanPaket($id){
+      $showing = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->first();
+      $showsiswa=DB::table('tbsiswa')
+      ->join('tbdetailsiswa','tbsiswa.idtbSiswa','=','tbdetailsiswa.idtbSiswa')
+      ->where('tbsiswa.idtbSiswa', Auth::user()->idtbSiswa)->first();
+      $showmentor=DB::table('tbmentor')
+        ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+        ->where('tbmentor.NoIDMentor', $id)->first();
+      $getprodi = DB::table('tbmentor')
+        ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+        ->where('tbmentor.NoIDMentor', $id)->value('prodi');
+        $getexplode = explode(', ',$getprodi);
+      $getprodiPaket = DB::table('paketbimbel')
+        ->join('tbmentor','tbmentor.NoIDMentor','=','paketbimbel.NoIDMentor')      
+        ->where('tbmentor.NoIDMentor', $id)->value('matpel');
+        $getexplodePaket = explode(', ',$getprodiPaket);
+      $paketBimbel=DB::table('tbmentor')
+        ->join('paketbimbel','paketbimbel.NoIDMentor','=','tbmentor.NoIDMentor')
+        ->where('tbmentor.NoIDMentor', $id)->first();
+      return view ('formAjukanPaket', ['showsiswa'=> $showsiswa,'isCompleted' => $showing, 'showmentor' => $showmentor, 'explode'=>$getexplode,'prodiPaket'=>$getexplodePaket, 'paket'=>$paketBimbel  ]);      
+      // return view ('formAjukanPaket'); 
+      // return  $getexplodePaket;
+    }
+    public function AjukanPaket(Request $request){
+    //   $this->validate($request, [
+    //     'TanggalMulai' => ['required'],
+    //     'durasi' => ['required','numeric'],
+    //     'prodi' => ['required','string'],
+    //     'hari' => ['required','string'],
+    //     'waktuMulai'=>['required'],
+    //     'waktuSelesai'=>['required']
+    // ]);
       
       $TbsiswaNoID= DB::table('tbsiswa')->where('idtbSiswa',Auth::user()->idtbSiswa)->value('NoIDSiswa');      
       // $noIDMentor= DB::table('tbmentor')->where('idmentor',$request['id'])->value('NoIDMentor');      
@@ -61,7 +163,7 @@ class HomeSiswaController extends Controller
       $tglentry=Carbon::now();
       $detik = Carbon::now()->isoFormat('s');      
       $menit = Carbon::now()->isoformat('m');
-      $noidbimbel = 'A' . $menit . $detik;
+      $noidbimbel = 'A' . $menit . $detik. DB::getPdo()->lastInsertId();
         if($request->hasAny('prodi')){
           $prodi=$request['prodi'];
           $prodi2=implode(', ',$prodi);
@@ -115,8 +217,9 @@ class HomeSiswaController extends Controller
         'NoIDBimbel'=>$noidbimbel ,
         'NoScheduleTutor'=>$noschedulTutor
       ]);
-      return redirect('/dashboardsiswa');
+      return redirect('/dashboardsiswa');      
     }
+
 
     public function jadwalsiswa(){
       $siswa = DB::table('tbsiswa')->where('idtbSiswa', Auth::user()->idtbSiswa)->first();

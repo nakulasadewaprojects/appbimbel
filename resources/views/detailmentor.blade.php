@@ -171,6 +171,13 @@
 						</div>
 					</div>
 				</div>
+				@if($paket==NULL)
+				<span class="m-pricing-table-3__description">
+					<span>
+						Tidak Ada Paket Bimbel
+					</span>
+				</span>
+				@else
 				<div class="m-portlet__body">
 					<div class="m-pricing-table-3 m-pricing-table-3--fixed">
 						<div class="m-pricing-table-3__items">
@@ -178,34 +185,46 @@
 								<div class="m-pricing-table-3__item col-lg-4">
 									<div class="m-pricing-table-3__wrapper">
 										<h3 class="m-pricing-table-3__title">
-											Basic
+											{{$paket->nmpaket}}
+										</h3>
+										<h3 class="m-pricing-table-3__title">
+												{{$paket->matpel}}
 										</h3>
 										<span class="m-pricing-table-3__price m-pricing-table-3__price--padding">
-											Free
+											Rp. {{$paket->harga}}											
 										</span>
 										<br>
 										<span class="m-pricing-table-3__description">
+											{{-- <span>
+											{{$paket->matpel}}																							
+											</span>
+											<br> --}}
 											<span>
-												Lorem ipsum dolor sit amet adipiscing elit
+											Durasi {{$paket->durasi}} bulan																																			
 											</span>
 											<br>
 											<span>
-												sed do eiusmod tempors labore et dolore
+											Hari {{$paket->hari}}																																															
 											</span>
 											<br>
 											<span>
-												magna siad enim aliqua
+												Waktu Bimbel pukul {{$paket->wkt_mulai}} sampai {{$paket->wkt_akhir}}																																															
+											</span>
+											<br>
+											<span>
+												Keterangan : {{$paket->keterangan}} 																																															
 											</span>
 											<br>
 										</span>
 										<div class="m-pricing-table-3__btn">
+											<a href="http://localhost/appbimbel/public/formAjukanPaket/{{$paket->NoIDMentor}}">
 											<button type="button" class="btn m-btn--pill  btn-brand m-btn--wide m-btn--uppercase m-btn--bolder m-btn--lg">
-												Download
+												Ajukan
 											</button>
 										</div>
 									</div>
 								</div>
-								<div class="m-pricing-table-3__item m-pricing-table-3__item--focus m--bg-brand col-lg-4">
+								{{-- <div class="m-pricing-table-3__item m-pricing-table-3__item--focus m--bg-brand col-lg-4">
 									<div class="m-pricing-table-3__wrapper">
 										<h3 class="m-pricing-table-3__title m--font-light">
 											Professional
@@ -280,11 +299,12 @@
 											</button>
 										</div>
 									</div>
-								</div>
+								</div> --}}
 							</div>
 						</div>
 					</div>
 				</div>
+				@endif
 			</div>
 		</div>
 		</div>

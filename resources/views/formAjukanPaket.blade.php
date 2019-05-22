@@ -15,13 +15,13 @@
 							<i class="la la-gear"></i>
 						</span>
 						<h3 class="m-portlet__head-text">
-							Form Pengajuan Bimbel
+							Form Pengajuan Paket Bimbel
 						</h3>
 					</div>
 				</div>
 			</div>
 			<!--begin::Form-->
-			<form class="m-form m-form--label-align-right"  method="POST" action="http://localhost/appbimbel/public/ajukan">
+			<form class="m-form m-form--label-align-right"  method="POST" action="http://localhost/appbimbel/public/formAjukanPaket/input">
 					{{ csrf_field() }}
 				<div class="m-portlet__body">
 					<div class="m-form__section m-form__section--first">
@@ -76,18 +76,17 @@
 								</label>
 								<div class="col-lg-6">
 										<div class="m-input-icon m-input-icon--right">
-												<input readonly type="text" class="form-control m-input" value="{{$showmentor->prodi}}">
+												<input readonly type="text" class="form-control m-input" value="{{$paket->matpel}}">
 												<span class="m-input-icon__icon m-input-icon__icon--right">
 													<span>
 														<i class="la la-bookmark-o"></i>
 													</span>
 												</span>
 											</div>
-										
+											<span class="m-form__help">
+													Prodi paket mentor yang akan ajarkan 
+											</span>
 								</div>
-								<span class="m-form__help">
-										Prodi mentor yang ajarkan 
-									</span>
 						</div>
 					</div>
 					<div class="m-form__seperator m-form__seperator--dashed"></div>
@@ -106,7 +105,7 @@
 												<span class="input-group-addon">
 													<i class="la la-user"></i>
 												</span>
-												<input type="text" readonly class="form-control m-input"name="namaMentor" value="{{$showsiswa->NamaLengkap}}">
+												<input type="text" readonly class="form-control m-input" name="namaSiswa" value="{{$showsiswa->NamaLengkap}}">
 											</div>
 									{{-- <input type="text" class="form-control m-input" name="namaMentor" value="{{$showmentor->nm_depan}} {{$showmentor->nm_belakang}}"> --}}
 									{{-- <span class="m-form__help">
@@ -168,12 +167,15 @@
 								Mulai Bimbel:
 							</label>
 								<div class="col-lg-6 col-md-9 col-sm-12">
-									<div class='input-group date' id='m_datepicker_3'>
+									<div class='input-group date' id='m_datepicker_2'>
 										<input type='text'  class="form-control m-input" required placeholder="Select date" name="TanggalMulai"/>
 											<span class="input-group-addon">
 												<i class="la la-calendar-check-o"></i>
 											</span>
 									</div>
+									<span class="m-form__help">
+										Harap pilih tanggal sesuai hari bimbel yang diinginkan
+								</span>
 								</div>
 						</div>
 						<div class="form-group m-form__group row">
@@ -181,7 +183,7 @@
 								Durasi Bimbel:
 							</label>
 							<div class="col-lg-6 col-md-9 col-sm-12">
-									<select class="form-control m-bootstrap-select m_selectpicker" required title="Pilih Durasi Bimbel" name="durasi">
+									{{-- <select class="form-control m-bootstrap-select m_selectpicker" required title="Pilih Durasi Bimbel" name="durasi">
 										<optgroup label=" Bulan">
 											<option value="1" > 1 bulan </option>
 										</optgroup>
@@ -189,7 +191,8 @@
 											<option value="6" > 1 Semester </option>
 											<option value="12" > 2 Semester </option>																																											
 										</optgroup>
-									</select>
+									</select> --}}
+									<input readonly type="text" class="form-control m-input" value="{{$paket->durasi}} bulan">
 								</div>
 						</div>
 						<div class="form-group m-form__group row">
@@ -197,7 +200,7 @@
 								Hari Bimbel:
 							</label>
 								<div class="col-lg-6 col-md-9 col-sm-12">
-									<select class="form-control m-bootstrap-select m_selectpicker" required name="hari[]" multiple>
+									{{-- <select class="form-control m-bootstrap-select m_selectpicker" required name="hari[]" multiple>
 										<option value="Senin" > Senin</option>
 										<option value="Selasa" > Selasa</option>																																											
 										<option value="Rabu" > Rabu </option>																																											
@@ -205,8 +208,8 @@
 										<option value="Jumat" > Jumat</option>																																											
 										<option value="Sabtu" > Sabtu</option>																																											
 										<option value="Minggu" > Minggu</option>																																											
-									</select>
-											
+									</select> --}}
+									<input readonly type="text" class="form-control m-input" value="{{$paket->hari}}">											
 								</div>
 						</div>
 						<div class="form-group m-form__group row">
@@ -215,15 +218,16 @@
 							</label>
 								<div class="col-lg-6 col-md-9 col-sm-12">
 									<div class='input-group timepicker'  >
-											<input type='text' class="form-control" id="m_timepicker_2" required name="waktuMulai" placeholder="Select time" type="text"/>
+											{{-- <input type='text' class="form-control" id="m_timepicker_1" required name="waktuMulai" placeholder="Select time" type="text"/> --}}
+										<input readonly type="text" class="form-control m-input" value="{{$paket->wkt_mulai}}">											
 										<span class="input-group-addon">
 											<i class="la la-clock-o"></i>
 										</span>
 									</div>
+									<span class="m-form__help">
+											Lama Bimbel 45 menit, Istirahat 15 menit
+									</span>
 								</div>
-								<span class="m-form__help">
-										Lama Bimbel 45 menit, Istirahat 15 menit
-								</span>
 						</div>
 						<div class="form-group m-form__group row">
 							<label class="col-lg-2 col-form-label">
@@ -231,7 +235,8 @@
 								</label>
 							<div class="col-lg-6 col-md-9 col-sm-12">
 								<div class='input-group timepicker' >
-									<input type='text' class="form-control" id="m_timepicker_1" required name="waktuSelesai" placeholder="Select time" type="text"/>
+									{{-- <input type='text' class="form-control" id="m_timepicker_1" required name="waktuSelesai" placeholder="Select time" type="text"/> --}}
+									<input readonly type="text" class="form-control m-input" value="{{$paket->wkt_akhir}}">																				
 									<span class="input-group-addon">
 										<i class="la la-clock-o"></i>
 									</span>
@@ -243,18 +248,19 @@
 									Prodi:
 								</label>
 								<div class="col-lg-6 col-md-9 col-sm-12">
-										<select class="form-control m-bootstrap-select m_selectpicker" required name="prodi[]" multiple>
-												@foreach ($prodiSiswa as $sw)
-												<option value="{{ $sw }}" > {{ $sw }}</option>
+										{{-- <select class="form-control m-bootstrap-select m_selectpicker" required name="prodi[]" multiple>
+												@foreach ($prodiPaket as $mp)
+												<option value="{{ $mp }}" > {{ $mp }}</option>
 												@endforeach	
-										</select>
+										</select> --}}
+									<input readonly type="text" class="form-control m-input" value="{{$paket->matpel}}">																				
 										<span class="m-form__help">
-											Harap Pilih Sesuai Mentor ajarkan
+											Prodi bimbel sesuai dengan paket yang ditentukan oleh mentor 
 										</span>
 									</div>
-										<span class="m-form__help">
+										{{-- <span class="m-form__help">
 												Prodi siswa yang dipilih
-											</span>
+											</span> --}}
 						</div>
 					</div>
 					

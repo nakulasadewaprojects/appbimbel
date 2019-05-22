@@ -64,4 +64,8 @@ Route::get('/approval', 'HomeSiswaController@approval');
 Route::get('/detailBimbel/{id}', 'HomeSiswaController@detailApproval');
 Route::get('/detailApprovalBimbel/{id}', 'HomeController@detailApprovalMentor');
 Route::post('/TerimaTolakBimbel', 'HomeController@TerimaTolakBimbel');
+Route::get('/formAjukanPaket/{id}', 'HomeSiswaController@formAjukanPaket');
+Route::post('/formAjukanPaket/input', 'HomeSiswaController@AjukanPaket');
+
+
 
