@@ -165,7 +165,7 @@ class HomeController extends Controller
     public function datapaket(){
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
-        return view('datapaket' , ['isCompleted' => $showing, 'm' => $mentor]);
+        return view('datapaket' , ['isCompleted' => $showing, 'm' => $mentor,]);
     }
     public function inputpaketbimbel(Request $request){
         if($request->hasAny('hari')){
