@@ -379,7 +379,13 @@
 												<div class="m-dropdown__header m--align-center">
 													<div class="m-card-user m-card-user--skin-light">
 														<div class="m-card-user__pic">
-															<a href="{{ url('/data_file/'.$isCompleted->foto) }}"> <img src="{{ url('/data_file2/'.$isCompleted->foto) }}" class="thumbnail" alt="" />
+															<div class="m-card-profile__pic-wrapper">
+																@if(DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->value('foto')==NULL)
+																<img src="{{ url('/data_fileSiswa/default_photo_profile.png') }}" height="50px" width="60px" alt="Anda Belum Upload Foto" />
+																@else
+																<a href="{{ url('/data_file/'.$isCompleted->foto) }}" class="thumbnail"> <img src="{{ url('/data_file2/'.$isCompleted->foto) }}" alt="Tidak Ada Foto" /></a>
+																@endif
+															</div>
 														</div>
 														<div class="m-card-user__details">
 															<span class="m-card-user__name m--font-weight-500">
