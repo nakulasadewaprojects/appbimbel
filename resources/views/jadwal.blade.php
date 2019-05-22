@@ -5,13 +5,14 @@
 	<div class="m-content">
 		<div class="row">
                 <div class="col-xl-12">
+					<div class="m-portlet m-portlet--accent m-portlet--head-solid-bg m-portlet--head-sm" data-portlet="true" id="m_portlet_tools_1">
 									<!--begin:: Widgets/Sales States-->
 									<div class="m-portlet m-portlet--full-height ">
 										<div class="m-portlet__head">
 											<div class="m-portlet__head-caption">
 												<div class="m-portlet__head-title">
 													<h3 class="m-portlet__head-text">
-														Sales Stats
+														Jadwal Mentor
 													</h3>
 												</div>
 											</div>
@@ -177,5 +178,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
+				
+				
+				</div>
+					</div>
  @endsection

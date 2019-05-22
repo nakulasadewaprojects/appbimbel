@@ -31,6 +31,7 @@
 				<div class="m-content">
 					<div class="row">
 						<div class="col-xl-3 col-lg-4">
+							<div class="m-portlet m-portlet--danger m-portlet--head-solid-bg m-portlet--rounded">
 							<div class="m-portlet">
 								<div class="m-portlet__body">
 									<div class="m-card-profile">
@@ -94,8 +95,10 @@
 							
 								</div>
 							</div>
+							</div>
 						</div>
 						<div class="col-xl-9 col-lg-8">
+								<div class="m-portlet m-portlet--success m-portlet--head-solid-bg m-portlet--head-sm" data-portlet="true" id="m_portlet_tools_2">
 							<div class="m-portlet m-portlet--full-height m-portlet--tabs  ">					
 								<div class="tab-content">
 									<div class="tab-pane active">
@@ -246,6 +249,7 @@
 									</div>
 								
 								</div>
+							</div>
 							</div>
 						</div>
 					</div>

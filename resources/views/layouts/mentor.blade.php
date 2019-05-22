@@ -70,28 +70,28 @@
 					<div class="m-stack__item m-stack__item--fluid m-header-head" id="m_header_nav">
 						<div class="m-header__title">
 							<h3 class="m-header__title-text">
-								App Bimbel 
+								App Bimbel (Mentor)
 							</h3>
 						</div>
 						<div id="m_header_menu" class="m-header-menu m-aside-header-menu-mobile m-aside-header-menu-mobile--offcanvas  m-header-menu--skin-light m-header-menu--submenu-skin-light m-aside-header-menu-mobile--skin-light m-aside-header-menu-mobile--submenu-skin-light "  >
-								<ul class="m-menu__nav  m-menu__nav--submenu-arrow ">
-									<li class="m-menu__item  m-menu__item--active m-menu__item--submenu m-menu__item--rel"  data-menu-submenu-toggle="click" aria-haspopup="true">
-										<div class="m-menu__link m-menu__toggle">
-											<span class="m-menu__item-here"></span>
-											<span class="m-menu__link-text">
-												Dashboard
-											</span>
-										</div>
-									</li>
-									<li class="m-menu__item  m-menu__item--submenu m-menu__item--rel m-menu__item--more m-menu__item--icon-only"  data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
-										<div class="m-menu__link m-menu__toggle">
-											<span class="m-menu__item-here"></span>
-											<i class="m-menu__link-icon flaticon-more-v3"></i>
-											<span class="m-menu__link-text"></span>
-										</div>
-									</li>
-								</ul>
-							</div>
+							<ul class="m-menu__nav  m-menu__nav--submenu-arrow ">
+								<li class="m-menu__item  m-menu__item--active m-menu__item--submenu m-menu__item--rel"  data-menu-submenu-toggle="click" aria-haspopup="true">
+									<div class="m-menu__link m-menu__toggle">
+										<span class="m-menu__item-here"></span>
+										<span class="m-menu__link-text">
+											Dashboard
+										</span>
+									</div>
+								</li>
+								<li class="m-menu__item  m-menu__item--submenu m-menu__item--rel m-menu__item--more m-menu__item--icon-only"  data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
+									<div class="m-menu__link m-menu__toggle">
+										<span class="m-menu__item-here"></span>
+										<i class="m-menu__link-icon flaticon-more-v3"></i>
+										<span class="m-menu__link-text"></span>
+									</div>
+								</li>
+							</ul>
+						</div>
 						<div id="m_header_topbar" class="m-topbar  m-stack m-stack--ver m-stack--general">
 							<div class="m-stack__item m-topbar__nav-wrapper">
 								<ul class="m-topbar__nav m-nav m-nav--inline">
@@ -500,27 +500,11 @@
 								</ul>
 							</div>
 						</li>
+						
 						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover">
-							<a href="http://localhost/appbimbel/public/payment" class="m-menu__link">
-								<i class="m-menu__link-icon flaticon-coins"></i>
-							</a>
-							<div class="m-menu__submenu">
-								<span class="m-menu__arrow"></span>
-								<ul class="m-menu__subnav">
-									<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true"  data-redirect="true">
-										<div class="m-menu__link ">
-											<span class="m-menu__link-text">
-												Informasi Payment
-											</span>
-										</div>
-									</li>
-								</ul>
-							</div>
-						</li>
-						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover">
-							<a href="http://localhost/appbimbel/public/paketbimbel" class="m-menu__link">
+							<div class="m-menu__link">
 								<i class="m-menu__link-icon flaticon-interface-5"></i>
-							</a>
+							</div>
 							<div class="m-menu__submenu">
 								<span class="m-menu__arrow"></span>
 								<ul class="m-menu__subnav">
@@ -530,6 +514,25 @@
 												Paket Bimbel
 											</span>
 										</div>
+									</li>
+									<li class="m-menu__item " aria-haspopup="true"  data-redirect="true">
+										<a  href="http://localhost/appbimbel/public/paketbimbel" class="m-menu__link ">
+											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+												<span></span>
+											</i>
+											<span class="m-menu__link-text">
+												Input Paket
+											</span>
+										</a>
+									</li><li class="m-menu__item " aria-haspopup="true"  data-redirect="true">
+										<a  href="http://localhost/appbimbel/public/datapaket" class="m-menu__link ">
+											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+												<span></span>
+											</i>
+											<span class="m-menu__link-text">
+												Data Paket
+											</span>
+										</a>
 									</li>
 								</ul>
 							</div>
@@ -554,7 +557,17 @@
 												<span></span>
 											</i>
 											<span class="m-menu__link-text">
-												Table
+												Input Laporan
+											</span>
+										</a>
+									</li>
+									<li class="m-menu__item " aria-haspopup="true"  data-redirect="true">
+										<a  href="http://localhost/appbimbel/public/datareport" class="m-menu__link ">
+											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+												<span></span>
+											</i>
+											<span class="m-menu__link-text">
+												Table Report
 											</span>
 										</a>
 									</li>
@@ -609,9 +622,9 @@
 							</div>
 						</li>
 						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover">
-							<a href="http://localhost/appbimbel/public/multimedia" class="m-menu__link">
+							<div class="m-menu__link">
 								<i class="m-menu__link-icon flaticon-multimedia-2"></i>		
-							</a>
+							</div>
 							<div class="m-menu__submenu">
 								<span class="m-menu__arrow"></span>
 								<ul class="m-menu__subnav">						
@@ -619,6 +632,42 @@
 										<div class="m-menu__link ">
 											<span class="m-menu__link-text">
 												Multimedia
+											</span>
+										</div>
+									</li>
+									<li class="m-menu__item " aria-haspopup="true"  data-redirect="true">
+										<a  href="http://localhost/appbimbel/public/multimedia" class="m-menu__link ">
+											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+												<span></span>
+											</i>
+											<span class="m-menu__link-text">
+												Upload Multimedia
+											</span>
+										</a>
+									</li><li class="m-menu__item " aria-haspopup="true"  data-redirect="true">
+										<a  href="http://localhost/appbimbel/public/multimedia" class="m-menu__link ">
+											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+												<span></span>
+											</i>
+											<span class="m-menu__link-text">
+												Data Multimedia
+											</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover">
+							<a href="http://localhost/appbimbel/public/payment" class="m-menu__link">
+								<i class="m-menu__link-icon flaticon-coins"></i>
+							</a>
+							<div class="m-menu__submenu">
+								<span class="m-menu__arrow"></span>
+								<ul class="m-menu__subnav">
+									<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true"  data-redirect="true">
+										<div class="m-menu__link ">
+											<span class="m-menu__link-text">
+												Informasi Payment
 											</span>
 										</div>
 									</li>
@@ -688,6 +737,7 @@
 	<script src="http://localhost/appbimbel/public/js/jquery.touchPDF.js"></script>
 	<script src="http://localhost/appbimbel/public/js/jquery.panzoom.js"></script>
 	<script src="http://localhost/appbimbel/public/js/jquery.mousewheel.js"></script>
+	<script src="http://localhost/appbimbel/public/js/bootstrap-select.js" type="text/javascript"></script>
 	<script src="http://localhost/appbimbel/public/js/select2.js" type="text/javascript"></script>
 	<script src="http://localhost/appbimbel/public/js/data-local.js" type="text/javascript"></script>
 	<script src="http://localhost/appbimbel/public/js/bootstrap-select.js" type="text/javascript"></script>

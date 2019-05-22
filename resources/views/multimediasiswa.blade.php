@@ -4,6 +4,7 @@
 <div class="m-grid__item m-grid__item--fluid m-wrapper">
     <div class="m-content">
         <div class="col-xl-12">
+            <div class="m-portlet m-portlet--success m-portlet--head-solid-bg m-portlet--head-sm" data-portlet="true" id="m_portlet_tools_2">
             <div class="m-portlet m-portlet--full-height ">
                 <div class="m-portlet__head">
                     <div class="m-portlet__head-caption">
@@ -109,6 +110,7 @@
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </div>
 

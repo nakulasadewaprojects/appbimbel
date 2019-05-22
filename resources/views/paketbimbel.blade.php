@@ -5,6 +5,7 @@
     <div class="m-content">
         <div class="row">
             <div class="col-md-12">
+                    <div class="m-portlet m-portlet--success m-portlet--head-solid-bg m-portlet--head-sm" data-portlet="true" id="m_portlet_tools_2">
 							<!--begin::Portlet-->
                             <div class="m-portlet">
 									<div class="m-portlet__head">
@@ -181,6 +182,7 @@
                     </div>
                 </div>
             </div>
+        </div>
     </div>
 </div>
 @endsection

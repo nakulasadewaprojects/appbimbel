@@ -162,6 +162,11 @@ class HomeController extends Controller
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
         return view('paketbimbel' , ['isCompleted' => $showing, 'm' => $mentor]);
     }
+    public function datapaket(){
+        $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
+        $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
+        return view('datapaket' , ['isCompleted' => $showing, 'm' => $mentor]);
+    }
     public function inputpaketbimbel(Request $request){
         if($request->hasAny('hari')){
             $hari=$request['hari'];
@@ -205,6 +210,11 @@ class HomeController extends Controller
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
         return view('report' , ['isCompleted' => $showing, 'm' => $mentor]);
     }
+    public function datareport(){
+        $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
+        $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
+        return view('datareport' , ['isCompleted' => $showing, 'm' => $mentor]);
+    }
     public function exportexcel(){
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
@@ -213,7 +223,10 @@ class HomeController extends Controller
     public function tutorial(){
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
-        return view('tutorial' , ['isCompleted' => $showing, 'm' => $mentor]);
+        $prodimentor = DB::table('mastermatpel')->get();
+        $jenjangPendidikan = DB::table('tbjenjangpendidikan')->get();
+        // return $prodimentor;
+        return view('tutorial' , ['isCompleted' => $showing, 'm' => $mentor, 'matpel' => $prodimentor, 'jenjang' => $jenjangPendidikan]);
     }
     public function datatutorial(){
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
@@ -224,6 +237,11 @@ class HomeController extends Controller
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
         return view('multimedia' , ['isCompleted' => $showing, 'm' => $mentor]);
+    }
+    public function datamultimedia(){
+        $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
+        $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
+        return view('datamultimedia' , ['isCompleted' => $showing, 'm' => $mentor]);
     }
     
     public function update($idmentor, Request $request)

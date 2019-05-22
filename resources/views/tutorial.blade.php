@@ -5,6 +5,7 @@
     <div class="m-content">
         <div class="row">
             <div class="col-xl-12">
+                <div class="m-portlet m-portlet--success m-portlet--head-solid-bg m-portlet--head-sm" data-portlet="true" id="m_portlet_tools_2">
                 <div class="m-portlet">
                     <div class="m-portlet__head">
                         <div class="m-portlet__head-caption">
@@ -37,7 +38,11 @@
                                         Mata Pelajaran:
                                     </label>
                                     <div class="col-lg-6">
-                                        <input type="text" class="form-control m-input">
+                                            <select class="form-control m-bootstrap-select m_selectpicker" name="matpel[]" multiple>
+                                                @foreach ($matpel as $mp)
+												<option value="{{ $mp->idMasterMatpel}}" > {{ $mp->MatPel}}</option>
+												@endforeach	
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row">
@@ -46,6 +51,10 @@
                                     </label>
                                     <div class="col-lg-6">
                                         <select class="form-control m-input" name="jenjang" type="text">
+                                                <option value="">Pilih Jenjang </option>
+                                                @foreach ($jenjang as $jp)
+												<option value="{{ $jp->idMasterPendidikan}}" > {{ $jp->jenjangPendidikan}}</option>
+												@endforeach	 
                                         </select>
                                     </div>
                                 </div>
@@ -54,13 +63,13 @@
                                         File Upload
                                     </label>
                                     <div class="col-lg-4 col-md-9 col-sm-12">
-                                        <div class="m-dropzone dropzone m-dropzone--primary" action="inc/api/dropzone/upload.php" id="m-dropzone-two">
+                                        <div class="m-dropzone dropzone m-dropzone--success" action="inc/api/dropzone/upload.php" id="m-dropzone-three">
                                             <div class="m-dropzone__msg dz-message needsclick">
                                                 <h3 class="m-dropzone__msg-title">
                                                     Drop files here or click to upload.
                                                 </h3>
                                                 <span class="m-dropzone__msg-desc">
-                                                    Upload up to 10 files
+                                                    Only image, pdf and psd files are allowed for upload
                                                 </span>
                                             </div>
                                         </div>
@@ -74,7 +83,7 @@
                                             <div class="col-lg-5"></div>
                                             <div class="col-lg-7">
                                                 <button type="button" class="btn btn-primary m-btn m-btn--custom">
-                                                    Save
+                                                    Simpan
                                                 </button>
                                                 <button type="button" class="btn btn-danger m-btn m-btn--custom">
                                                     Batal
@@ -87,6 +96,7 @@
                         </div>
                     </form>
                 </div>
+            </div>
             </div>
         </div>
     </div>

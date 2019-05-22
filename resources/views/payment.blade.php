@@ -5,6 +5,7 @@
 	<div class="m-content">
 		<div class="row">
             <div class="col-xl-12">
+					<div class="m-portlet m-portlet--success m-portlet--head-solid-bg m-portlet--head-sm" data-portlet="true" id="m_portlet_tools_2">
 								<!--begin:: Widgets/Authors Profit-->
 								<div class="m-portlet m-portlet--bordered-semi m-portlet--full-height ">
 									<div class="m-portlet__head">
@@ -127,9 +128,10 @@
 									</div>
 								</div>
 								<!--end:: Widgets/Authors Profit-->
-							</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+					</div>
+				</div>
+            </div>
+        </div>
+    </div>
+</div>
  @endsection
