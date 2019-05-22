@@ -70,11 +70,11 @@ class RegisterSiswaController extends Controller
     {
         return Validator::make($data, [
             'NoIDSiswa' => ['unique:tbsiswa'],
-            'username' => ['required', 'alpha_num','min:6', 'max:20', 'unique:tbsiswa','regex:/^.*(?=.*[a-zA-Z])(?=.*[0-9]).*$/'],
-            'NamaLengkap' => ['required', 'string', 'max:255',],
-            'NoTlpn' => ['required', 'numeric', 'unique:tbsiswa'],
-            'gender' => ['required', 'numeric','min:1', 'max:1'],
-            'email' => ['required', 'string', 'email', 'max:50', 'unique:tbsiswa', 'regex:/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/'],
+            'username' => ['alpha_num','min:6', 'max:20', 'unique:tbsiswa','regex:/^.*(?=.*[a-zA-Z])(?=.*[0-9]).*$/'],
+            'NamaLengkap' => ['string', 'max:255',],
+            'NoTlpn' => ['numeric', 'unique:tbsiswa'],
+            'gender' => ['numeric','min:1', 'max:1'],
+            'email' => ['string', 'email', 'max:50', 'unique:tbsiswa', 'regex:/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/'],
             'password' => [
                 'required', 'string', 'min:8', 'confirmed',
                  'regex:/^.*(?=.*[a-zA-Z])(?=.*[0-9]).*$/'
