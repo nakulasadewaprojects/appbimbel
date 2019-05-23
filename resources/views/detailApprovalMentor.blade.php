@@ -11,7 +11,7 @@
                         <div class="m-portlet__head-caption">
                             <div class="m-portlet__head-title">
                                 <h3 class="m-portlet__head-text">
-                                    Detail Approval Bimbel
+                                    Detail Pengajuan Bimbel
                                 </h3>
                             </div>
                         </div>
@@ -56,10 +56,19 @@
                                             <h4 class="m-widget5__title">
                                                 {{$detail->NamaLengkap}}
                                             </h4>
-                                            <span class="m-widget5__info">
-                                                {{$detail->alamat}}, {{$detail->kelurahan}}, {{$detail->kecamatan}}, 
-                                                {{$detail->kota}}, {{$detail->provinsi}}
+                                            <div class="m-widget5__info">
+                                            <span class="m-widget5__author">
+                                                Alamat : 
                                             </span>
+                                            <br>
+                                            <span class="m-widget5__info-date m--font-info">
+                                                {{ $detail->alamat }} ,
+                                                {{DB::table('kelurahan')->where('id', $detail->kelurahan)->value('nama')}} ,
+                                                {{DB::table('kecamatan')->where('id', $detail->kecamatan)->value('nama')}} ,
+                                                {{DB::table('kota_kabupaten')->where('id', $detail->kota)->value('nama')}} ,
+                                                {{DB::table('provinsi')->where('id', $detail->provinsi)->value('nama')}}
+                                            </span>
+                                            </div>
                                             <div class="m-widget5__info">
                                                     <span class="m-widget5__author">
                                                         Nomor Telepon   :
