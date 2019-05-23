@@ -744,6 +744,7 @@
 	<script src="http://localhost/appbimbel/public/js/bootstrap-select.js" type="text/javascript"></script>
 	<script src="http://localhost/appbimbel/public/js/select2.js" type="text/javascript"></script>
 	<script src="http://localhost/appbimbel/public/js/data-local.js" type="text/javascript"></script>
+	<script src="http://localhost/appbimbel/public/js/bootstrap-datepicker.js" type="text/javascript"></script>
 	<script src="http://localhost/appbimbel/public/js/bootstrap-select.js" type="text/javascript"></script>
 	<script src="http://localhost/appbimbel/public/js/bootstrap-timepicker.js" type="text/javascript"></script>
 	
