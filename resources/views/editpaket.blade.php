@@ -89,9 +89,13 @@
                                                         Mata Pelajaran:
                                                     </label>
                                                     <div class="col-lg-6">
-                                                        <input type="text" name="matpel"class="form-control m-input" value="{{$paketbimbel->matpel}}">
+                                                        {{-- <input type="text" name="matpel"class="form-control m-input" value="{{$paketbimbel->matpel}}"> --}}
                                                     
-                                                     
+                                                        <select required class="form-control m-select2" id="m_select2_3" name="matpel[]" multiple="multiple">
+                                                            @foreach($prodiMentor as $p)
+                                                            <option value="{{$p}}" @if(strpos($getprodi, $p )!== false) selected @endif > {{$p}}</option>
+                                                            @endforeach
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class="form-group m-form__group row">

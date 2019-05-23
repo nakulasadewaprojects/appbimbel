@@ -20,7 +20,8 @@
                         </div>
                     </div>
                     <!--begin::Form-->
-                    <form class="m-form m-form--label-align-right">
+                    <form class="m-form m-form--label-align-right" action="http://localhost/appbimbel/public/tutorial/input" method="POST" enctype="multipart/form-data">
+					    {{ csrf_field() }}
                         <div class="m-portlet__body">
                             <div class="m-form__section m-form__section--first">
                             
@@ -29,7 +30,8 @@
                                         Nama Modul:
                                     </label>
                                     <div class="col-lg-6">
-                                        <input type="email" class="form-control m-input">
+                                         <input type="hidden" name="id" value="{{$noId}}" >
+                                        <input type="text" name="nama"class="form-control m-input">
                                     </div>
                                 </div>
                                 
@@ -38,7 +40,8 @@
                                         Mata Pelajaran:
                                     </label>
                                     <div class="col-lg-6">
-                                            <select class="form-control m-bootstrap-select m_selectpicker" name="matpel[]" multiple>
+                                            <select class="form-control m-bootstrap-select m_selectpicker" name="matpel">
+                                                    <option value="">Pilih Mata Pelajaran </option>                                                
                                                 @foreach ($matpel as $mp)
 												<option value="{{ $mp->idMasterMatpel}}" > {{ $mp->MatPel}}</option>
 												@endforeach	
@@ -50,7 +53,7 @@
                                         Jenjang Pendidikan :
                                     </label>
                                     <div class="col-lg-6">
-                                        <select class="form-control m-input" name="jenjang" type="text">
+                                            <select class="form-control m-bootstrap-select m_selectpicker" type="text" name="jenjang">
                                                 <option value="">Pilih Jenjang </option>
                                                 @foreach ($jenjang as $jp)
 												<option value="{{ $jp->idMasterPendidikan}}" > {{ $jp->jenjangPendidikan}}</option>
@@ -63,7 +66,7 @@
                                         File Upload
                                     </label>
                                     <div class="col-lg-4 col-md-9 col-sm-12">
-                                        <div class="m-dropzone dropzone m-dropzone--success" action="inc/api/dropzone/upload.php" id="m-dropzone-three">
+                                        {{-- <div class="m-dropzone dropzone m-dropzone--success" action="inc/api/dropzone/upload.php" id="m-dropzone-three">
                                             <div class="m-dropzone__msg dz-message needsclick">
                                                 <h3 class="m-dropzone__msg-title">
                                                     Drop files here or click to upload.
@@ -72,7 +75,8 @@
                                                     Only image, pdf and psd files are allowed for upload
                                                 </span>
                                             </div>
-                                        </div>
+                                        </div> --}}
+                                        <input type="file" name="modul" class="form-control m-input">                                        
                                     </div>
                                 </div>
                                 
@@ -82,7 +86,7 @@
                                         <div class="row">
                                             <div class="col-lg-5"></div>
                                             <div class="col-lg-7">
-                                                <button type="button" class="btn btn-primary m-btn m-btn--custom">
+                                                <button type="submit" class="btn btn-primary m-btn m-btn--custom">
                                                     Simpan
                                                 </button>
                                                 <button type="button" class="btn btn-danger m-btn m-btn--custom">

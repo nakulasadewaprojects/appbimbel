@@ -160,12 +160,18 @@ class HomeController extends Controller
     public function paketbimbel(){
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
-        return view('paketbimbel' , ['isCompleted' => $showing, 'm' => $mentor]);
+        $getprodiMentor = DB::table('tbdetailmentor')
+        ->join('tbmentor','tbmentor.idmentor','=','tbdetailmentor.idtbRiwayatTutor')      
+        ->where('idtbRiwayatTutor',  Auth::user()->idmentor)->value('prodi');
+          $getexplodeMentor = explode(', ',$getprodiMentor);
+         
+        return view('paketbimbel' , ['isCompleted' => $showing, 'm' => $mentor,'prodiMentor'=>$getexplodeMentor]);
     }
     public function datapaket(){
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
         $datapaket = DB::table('paketbimbel')->get();
+       
         return view('datapaket' , ['isCompleted' => $showing, 'm' => $mentor, 'paketbimbel' => $datapaket]);
     }
     public function hapus($id){
@@ -173,11 +179,21 @@ class HomeController extends Controller
 	return redirect('/datapaket');
     }   
     public function edit($id){
+    $getprodiMentor = DB::table('tbdetailmentor')
+    ->join('tbmentor','tbmentor.idmentor','=','tbdetailmentor.idtbRiwayatTutor')      
+    ->where('idtbRiwayatTutor',  Auth::user()->idmentor)->value('prodi');
+        $getexplodeMentor = explode(', ',$getprodiMentor);
+    $prodi=DB::table('paketbimbel')->where('idpaket', $id)->value('matpel');
     $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
     $paket = DB::table('paketbimbel')->where('idpaket', $id)->first();
-    return view('editpaket', ['isCompleted' => $showing,'paketbimbel' => $paket]);
+    $prodimentor = DB::table('mastermatpel')->get();
+    $prodi2=implode(' ',[$prodi]);
+    return view('editpaket', ['prodiMentor'=>$getexplodeMentor,'prodi'=>$prodimentor,'getprodi'=>$prodi2,'isCompleted' => $showing,'paketbimbel' => $paket]);
     }   
     public function updatepaket(Request $request){	
+        $prodi=$request->matpel;
+        $prodi2=implode(', ',$prodi);
+        
 	DB::table('paketbimbel')->where('idpaket',$request->id)->update([
 		'nmpaket' => $request->nama,
 		'harga' => $request->harga,
@@ -185,7 +201,7 @@ class HomeController extends Controller
         'hari' => $request->hari,
         'wkt_mulai' => $request->waktumulai,
         'wkt_akhir' => $request->waktuakhir,
-        'matpel' => $request->matpel,
+        'matpel' => $prodi2,
         'keterangan' => $request->keterangan,
         'statusPaket' => $request->statuspaket,
 	]);
@@ -231,7 +247,7 @@ class HomeController extends Controller
         'keterangan'=>$request->keterangan,
         'statusPaket'=>'1',
         ]);
-      return redirect('/datapaket');
+      return redirect('/dashboard');
 
     }
 
@@ -260,8 +276,28 @@ class HomeController extends Controller
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
         $prodimentor = DB::table('mastermatpel')->get();
         $jenjangPendidikan = DB::table('tbjenjangpendidikan')->get();
+        $noIDMentor=DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->value('NoIDMentor');
         // return $prodimentor;
-        return view('tutorial' , ['isCompleted' => $showing, 'm' => $mentor, 'matpel' => $prodimentor, 'jenjang' => $jenjangPendidikan]);
+        return view('tutorial' , ['isCompleted' => $showing, 'm' => $mentor, 'matpel' => $prodimentor, 'jenjang' => $jenjangPendidikan, 'noId'=>$noIDMentor]);
+        // return $noIDMentor;
+    }
+
+    public function inputTutorial(Request $request){
+            $tglentry=Carbon::now();
+            $modul = $request->file('modul');
+            $nama_modul = time().'.'.$modul->getClientOriginalExtension();
+            $tujuan_upload = public_path('/data_modul') ;
+            $modul->move($tujuan_upload, $nama_modul);
+            
+        DB::table('modulsiswa')->insert([
+            'nama_modul'=>$request->nama,
+            'tgl_upload'=>$tglentry,
+            'mentor'=>$request->id,
+            'file'=>$nama_modul,
+            'jenjangpendidikan'=>$request->jenjang,
+            'matpel'=>$request->matpel
+        ]);
+      return redirect('/dashboard');
     }
     public function datatutorial(){
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();

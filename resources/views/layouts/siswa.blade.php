@@ -406,14 +406,6 @@
 																	</span>
 																</a>
 															</li>
-															<li class="m-nav__item">
-																<a href="header/profile.html" class="m-nav__link">
-																	<i class="m-nav__link-icon flaticon-info"></i>
-																	<span class="m-nav__link-text">
-																		Setting
-																	</span>
-																</a>
-															</li>
 															<li class="m-nav__separator m-nav__separator--fit"></li>
 															<li class="m-nav__item">
 																<a href="{{ route('logoutsiswa') }}" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder" onclick="event.preventDefault();
