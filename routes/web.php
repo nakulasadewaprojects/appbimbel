@@ -33,6 +33,7 @@ Route::get('/myProfile', 'HomeController@myprofile');
 Route::get('/profile', 'HomeController@profile');
 Route::post('/profile/update/{idmentor}', 'HomeController@update');
 Route::get('/tutorial', 'HomeController@tutorial');
+Route::post('/tutorial/input', 'HomeController@inputTutorial');
 Route::get('/jadwal', 'HomeController@jadwal');
 Route::get('/approvalmentor', 'HomeController@approvalmentor');
 Route::get('/payment', 'HomeController@payment');

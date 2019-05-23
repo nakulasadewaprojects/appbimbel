@@ -231,7 +231,7 @@ class HomeController extends Controller
         'keterangan'=>$request->keterangan,
         'statusPaket'=>'1',
         ]);
-      return redirect('/datapaket');
+      return redirect('/dashboard');
 
     }
 
@@ -260,11 +260,28 @@ class HomeController extends Controller
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
         $prodimentor = DB::table('mastermatpel')->get();
         $jenjangPendidikan = DB::table('tbjenjangpendidikan')->get();
+        $noIDMentor=DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->value('NoIDMentor');
         // return $prodimentor;
-        return view('tutorial' , ['isCompleted' => $showing, 'm' => $mentor, 'matpel' => $prodimentor, 'jenjang' => $jenjangPendidikan]);
+        return view('tutorial' , ['isCompleted' => $showing, 'm' => $mentor, 'matpel' => $prodimentor, 'jenjang' => $jenjangPendidikan, 'noId'=>$noIDMentor]);
+        // return $noIDMentor;
     }
-    public function inputTutorial(){
-        
+
+    public function inputTutorial(Request $request){
+            $tglentry=Carbon::now();
+            $modul = $request->file('modul');
+            $nama_modul = time().'.'.$modul->getClientOriginalExtension();
+            $tujuan_upload = public_path('/data_modul') ;
+            $modul->move($tujuan_upload, $nama_modul);
+            
+        DB::table('modulsiswa')->insert([
+            'nama_modul'=>$request->nama,
+            'tgl_upload'=>$tglentry,
+            'mentor'=>$request->id,
+            'file'=>$nama_modul,
+            'jenjangpendidikan'=>$request->jenjang,
+            'matpel'=>$request->matpel
+        ]);
+      return redirect('/dashboard');
     }
     public function datatutorial(){
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
