@@ -171,7 +171,7 @@
 						</div>
 					</div>
 				</div>
-				@if($paket==NULL)
+				@if($caripaket==NULL)
 				<span class="m-pricing-table-3__description">
 					<span>
 						Tidak Ada Paket Bimbel
