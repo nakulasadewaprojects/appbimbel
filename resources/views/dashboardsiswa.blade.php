@@ -257,7 +257,7 @@
 							<div class="tab-pane active" id="m_widget5_tab1_content" aria-expanded="true">
 								<div class="m-widget5">
 									@if($isCompleted->statusKomplit!==6)
-									Rekomendasi mentor akan muncul setelah data Anda lengkapi
+									Rekomendasi mentor akan muncul setelah data Anda lengkap
 									@else
 									@foreach($mentor as $m)
 									<div class="m-widget5__item">
