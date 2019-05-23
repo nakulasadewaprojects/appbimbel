@@ -168,7 +168,7 @@
 								Mulai Bimbel:
 							</label>
 								<div class="col-lg-6 col-md-9 col-sm-12">
-									<div class='input-group date' id='m_datepicker_2'>
+									<div class='input-group date' id='m_datepicker_3'>
 										<input type='text'  class="form-control m-input" required placeholder="Select date" name="TanggalMulai"/>
 											<span class="input-group-addon">
 												<i class="la la-calendar-check-o"></i>
@@ -215,7 +215,7 @@
 							</label>
 								<div class="col-lg-6 col-md-9 col-sm-12">
 									<div class='input-group timepicker'  >
-											<input type='text' class="form-control" id="m_timepicker_1" required name="waktuMulai" placeholder="Select time" type="text"/>
+											<input type='text' class="form-control" id="m_timepicker_2" required name="waktuMulai" placeholder="Select time" type="text"/>
 										<span class="input-group-addon">
 											<i class="la la-clock-o"></i>
 										</span>
