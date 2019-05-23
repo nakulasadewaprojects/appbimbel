@@ -77,7 +77,7 @@
 			</div>
 			<div class="col-xl-9 col-lg-8">
 				<div class="tab-content">
-					<div class="m-portlet m-portlet--success m-portlet--head-solid-bg">
+					<div class="m-portlet m-portlet--success m-portlet--head-solid-bg m-portlet--head-sm" data-portlet="true" id="m_portlet_tools_2">
 						<div class="m-portlet__head">
 							<div class="m-portlet__head-caption">
 								<div class="m-portlet__head-title">
