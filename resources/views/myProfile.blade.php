@@ -174,6 +174,7 @@
 												{{ Auth::user()->noTlpn }}
 											</span>
 										</div>
+										<div class="m-form__seperator m-form__seperator--dashed"></div>
 										<div class="m-widget13__item">
 											<span class="m-widget13__desc m--align-right">
 												Status Pendidikan :
@@ -219,6 +220,7 @@
 												{{ $isCompleted->prodi }}
 											</span>
 										</div>
+										<div class="m-form__seperator m-form__seperator--dashed"></div>
 										<div class="m-widget13__item">
 											<span class="m-widget13__desc m--align-right">
 												Pengalaman Kerja/Mengajar :

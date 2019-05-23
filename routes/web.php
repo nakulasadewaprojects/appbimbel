@@ -43,6 +43,7 @@ Route::get('/datatutorial', 'HomeController@datatutorial');
 Route::get('/exportexcel', 'HomeController@exportexcel');
 Route::get('/multimedia', 'HomeController@multimedia');
 Route::get('/datapaket', 'HomeController@datapaket');
+Route::get('/datapaket/hapus/{id}','HomeController@hapus');
 Route::get('/datareport', 'HomeController@datareport');
 Route::get('/datamultimedia', 'HomeController@datamultimedia');
 Route::get('/profilesiswa', 'HomeSiswaController@profilesiswa');
