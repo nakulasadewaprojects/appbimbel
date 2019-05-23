@@ -19,6 +19,10 @@ class HomeSiswaController extends Controller
     public function detailmentor($id)
     {   
         $showing = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->first();
+        $showing1 = DB::table('tbmentor')->where('idmentor', $id )->value('NoIDMentor');
+        
+        $caripaket=DB::table('paketbimbel')
+                    ->where('NoIDMentor', $showing1)->first();
         $showmentor=DB::table('tbmentor')
                     ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
                     ->where('tbmentor.idmentor', $id)->first();
@@ -27,8 +31,8 @@ class HomeSiswaController extends Controller
           ->where('tbmentor.idmentor', $id)->get();
 
         $idmentor=$id;      
-        return view ('detailmentor',['showmentor' => $showmentor,'isCompleted' => $showing,'idmentor'=>$idmentor,'paket'=>$paketBimbel]);
-        // return $paketBimbel;
+        return view ('detailmentor',['caripaket'=>$caripaket,'showmentor' => $showmentor,'isCompleted' => $showing,'idmentor'=>$idmentor,'paket'=>$paketBimbel]);
+        // return $caripaket;
       }
     public function formAjukan($id){
       

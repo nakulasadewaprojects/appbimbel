@@ -20,7 +20,7 @@ class CreateSceduletutor extends Migration
             $table->time('end')->nullable();
             $table->date('tglprivate')->nullable();
             $table->date('tglupdate')->nullable();
-            $table->integer('status')->nullable();
+            $table->integer('statusSchedule')->nullable();
             $table->string('NoIDBimbel')->nullable();            
             $table->string('NoScheduleTutor')->nullable();            
         });

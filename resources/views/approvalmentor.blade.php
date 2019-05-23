@@ -15,20 +15,6 @@
                             </h3>
                         </div>
                     </div>
-                    <div class="m-portlet__head-tools">
-                        <ul class="m-portlet__nav">
-                            <li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover" aria-expanded="true">
-                                <a href="#" class="m-portlet__nav-link m-portlet__nav-link--icon m-portlet__nav-link--icon-xl m-dropdown__toggle">
-                                    <i class="la la-ellipsis-h m--font-brand"></i>
-                                </a>
-                                <div class="m-dropdown__wrapper">
-                                    <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
-                                    <div class="m-dropdown__inner">                                       
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
                 </div>
                 <div class="m-portlet__body">
                         @foreach($jadwal as $jd)
