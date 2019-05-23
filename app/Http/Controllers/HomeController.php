@@ -169,9 +169,29 @@ class HomeController extends Controller
         return view('datapaket' , ['isCompleted' => $showing, 'm' => $mentor, 'paketbimbel' => $datapaket]);
     }
     public function hapus($id){
-	DB::table('paketbimbel')->where('idpaket',$id)->delete();
+    DB::table('paketbimbel')->where('idpaket',$id)->delete();
 	return redirect('/datapaket');
     }   
+    public function edit($id){
+    $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
+    $paket = DB::table('paketbimbel')->where('idpaket', $id)->first();
+    return view('editpaket', ['isCompleted' => $showing,'paketbimbel' => $paket]);
+    }   
+    public function updatepaket(Request $request){	
+	DB::table('paketbimbel')->where('idpaket',$request->id)->update([
+		'nmpaket' => $request->nama,
+		'harga' => $request->harga,
+		'durasi' => $request->durasi,
+        'hari' => $request->hari,
+        'wkt_mulai' => $request->waktumulai,
+        'wkt_akhir' => $request->waktuakhir,
+        'matpel' => $request->matpel,
+        'keterangan' => $request->keterangan,
+        'statusPaket' => $request->statuspaket,
+	]);
+	// alihkan halaman ke halaman pegawai
+	return redirect('/datapaket');
+}
     public function inputpaketbimbel(Request $request){
         if($request->hasAny('hari')){
             $hari=$request['hari'];

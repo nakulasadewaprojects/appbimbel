@@ -102,10 +102,9 @@
 									<td>{{$p->matpel}}</td>
 									<td>{{$p->keterangan}}</td>
 									<td>{{$p->statusPaket}}</td>
-								<td>
-									<a href="/paket/edit/{{ $p->idpaket }}">Edit</a>		
-									{{-- ?<a href="local/paket/hapus/{{ $p->idpaket }}">Hapus</a> --}}
-									<a href="http://localhost/appbimbel/public/datapaket/{{$datapaket->idpaket}}">Hapus</a>
+								<td>										
+									<a href="http://localhost/appbimbel/public/datapaket/edit/{{$p->idpaket}}">Edit</a>
+									<a href="http://localhost/appbimbel/public/datapaket/hapus/{{$p->idpaket}}">Hapus</a>
 								</td>
 								</tr>
 								@endforeach
