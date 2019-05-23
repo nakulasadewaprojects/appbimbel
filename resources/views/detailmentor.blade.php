@@ -183,15 +183,22 @@
 						<div class="m-pricing-table-3__items">
 							<div class="row m-row--no-padding">
 								<div class="m-pricing-table-3__item col-lg-4">
+								@foreach($paket as $p)
 									<div class="m-pricing-table-3__wrapper">
 										<h3 class="m-pricing-table-3__title">
-											{{$paket->nmpaket}}
+											{{-- {{$paket->nmpaket}} --}}
+											{{$p->nmpaket}}
+
 										</h3>
 										<h3 class="m-pricing-table-3__title">
-												{{$paket->matpel}}
+												{{-- {{$paket->matpel}} --}}
+												{{$p->matpel}}
+
 										</h3>
 										<span class="m-pricing-table-3__price m-pricing-table-3__price--padding">
-											Rp. {{$paket->harga}}											
+											{{-- Rp. {{$paket->harga}} --}}
+											Rp. {{$p->harga}}											
+
 										</span>
 										<br>
 										<span class="m-pricing-table-3__description">
@@ -200,29 +207,39 @@
 											</span>
 											<br> --}}
 											<span>
-											Durasi {{$paket->durasi}} bulan																																			
+											{{-- Durasi {{$paket->durasi}} bulan --}}
+											Durasi {{$p->durasi}} bulan																																			
+
 											</span>
 											<br>
 											<span>
-											Hari {{$paket->hari}}																																															
+											{{-- Hari {{$paket->hari}} --}}
+											Hari {{$p->hari}}																																															
+
 											</span>
 											<br>
 											<span>
-												Waktu Bimbel pukul {{$paket->wkt_mulai}} sampai {{$paket->wkt_akhir}}																																															
+												{{-- Waktu Bimbel pukul {{$paket->wkt_mulai}} sampai {{$paket->wkt_akhir}}																																															 --}}
+												Waktu Bimbel pukul {{$p->wkt_mulai}} sampai {{$p->wkt_akhir}}																																															
+
 											</span>
 											<br>
 											<span>
-												Keterangan : {{$paket->keterangan}} 																																															
+												{{-- Keterangan : {{$paket->keterangan}}  --}}
+												Keterangan : {{$p->keterangan}} 																																															
+
 											</span>
 											<br>
 										</span>
 										<div class="m-pricing-table-3__btn">
-											<a href="http://localhost/appbimbel/public/formAjukanPaket/{{$paket->NoIDMentor}}">
+											{{-- <a href="http://localhost/appbimbel/public/formAjukanPaket/{{$paket->NoIDMentor}}"> --}}
+											<a href="http://localhost/appbimbel/public/formAjukanPaket/{{$p->NoIDMentor}}/{{$p->idpaket}}}">
 											<button type="button" class="btn m-btn--pill  btn-brand m-btn--wide m-btn--uppercase m-btn--bolder m-btn--lg">
 												Ajukan
 											</button>
 										</div>
 									</div>
+								@endforeach
 								</div>
 								{{-- <div class="m-pricing-table-3__item m-pricing-table-3__item--focus m--bg-brand col-lg-4">
 									<div class="m-pricing-table-3__wrapper">

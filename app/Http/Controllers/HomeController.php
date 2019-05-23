@@ -181,20 +181,30 @@ class HomeController extends Controller
             $matpel2=implode(', ',$matpel);
             $m= $matpel2; 
           }else{
-            $matpel=$request['hari'];
+            $matpel=$request['matpel'];
            $m= $matpel; 
           }
+        if($request['waktuMulai']==NULL){
+            $jam=$request->waktuMulai;
+        }else{
+           $jam=Carbon::parse($request['waktuMulai'])->format('H:i:s'); 
+        }
+        if($request['waktuAkhir']==NULL){
+            $jamAkhir=$request->waktuAkhir;
+        }else{
+           $jamAkhir=Carbon::parse($request['waktuAkhir'])->format('H:i:s'); 
+        }
         DB::table('paketbimbel')->insert([
         'NoIDMentor'=>$request->id,
         'nmpaket'=>$request->nama,
         'harga'=>$request->harga,
         'durasi'=>$request->durasi,
         'hari'=>$h,
-        'wkt_mulai'=>Carbon::parse($request['waktuMulai'])->format('H:i:s'),
-        'wkt_akhir'=>Carbon::parse($request['waktuAkhir'])->format('H:i:s'),
+        'wkt_mulai'=>$jam,
+        'wkt_akhir'=>$jamAkhir,
         'matpel'=>$m,
         'keterangan'=>$request->keterangan,
-        'statusPaket'=>$request->statusPaket,
+        'statusPaket'=>'1',
         ]);
       return redirect('/dashboard');
 

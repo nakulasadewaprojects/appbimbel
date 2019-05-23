@@ -15,7 +15,7 @@
 													<i class="la la-gear"></i>
 												</span>
 												<h3 class="m-portlet__head-text">
-													Form Paket Bimbel
+													Form Input Paket Bimbel
 												</h3>
 											</div>
 										</div>
@@ -89,10 +89,13 @@
                                                                 <option value="Sabtu" > Sabtu</option>																																											
                                                                 <option value="Minggu" > Minggu</option>																																											
                                                             </select>
-                                                            {{-- <span class="m-form__help">
-                                                                We'll never share your email with anyone else
-                                                            </span> --}}
+                                                            <span class="m-form__help">
+                                                                Tentukan Hari atau Siswa yang memilih hari bimbel
+                                                            </span>
                                                         </div>
+                                                        <span class="m-form__help">
+                                                               *Boleh kosong
+                                                            </span>
                                                 </div>
                                                 <div class="form-group m-form__group row">
                                                     <label class="col-lg-2 col-form-label">
@@ -100,18 +103,24 @@
                                                     </label>
                                                     <div class="col-lg-6">
                                                         {{-- <input type="email" class="form-control m-input"> --}}
-											            <input type='text' class="form-control" id="m_timepicker_1" name="waktuMulai" placeholder="Select time" />
+											            <input type="text" class="form-control" name="waktuMulai" id="m_timepicker_2" placeholder="Select time" />
                                                         <span class="m-form__help">
-                                                            Waktu Bimbel selama 45 menit dan istirahat selama 15 menit 
+                                                            Tentukan waktu atau Siswa yang memilih waktu bimbel 
                                                         </span>
                                                     </div>
+                                                    {{-- <div class="form-control-feedback">
+												Sorry, that username's taken. Try another?
+											</div> --}}
+                                                    <span class="m-form__help" >
+                                                        *Boleh kosong
+                                                     </span>
                                                 </div>
                                                 <div class="form-group m-form__group row">
                                                     <label class="col-lg-2 col-form-label">
                                                         Waktu Akhir:
                                                     </label>
                                                     <div class="col-lg-6">
-											            <input type='text' class="form-control" id="m_timepicker_1" name="waktuAkhir" placeholder="Select time" />
+											            <input type='text' class="form-control" id="m_timepicker_2" name="waktuAkhir" placeholder="Select time" />
                                                         {{-- <input type="email" class="form-control m-input"> --}}
                                                         {{-- <span class="m-form__help">
                                                             We'll never share your email with anyone else
@@ -147,17 +156,20 @@
                                                         </span>
                                                     </div>
                                                 </div>
-                                                <div class="form-group m-form__group row">
+                                                {{-- <div class="form-group m-form__group row">
                                                         <label class="col-lg-2 col-form-label">
                                                             Status Paket:
                                                         </label>
                                                         <div class="col-lg-6">
-                                                            <input type="text" name="statusPaket" class="form-control m-input" required >
+                                                            <select class="form-control m-bootstrap-select m_selectpicker" name="statusPaket">
+                                                                <option value="1" > Aktif</option>
+                                                                <option value="2" > Non Aktif</option>																																																																																						
+                                                            </select>
                                                             <span class="m-form__help">
                                                                 We'll never share your email with anyone else
                                                             </span>
                                                         </div>
-                                                </div>                                                                                                       										
+                                                </div>                                                                                                       										 --}}
 											</div>
 										<div class="m-portlet__foot m-portlet__foot--fit">
 											<div class="m-form__actions m-form__actions">
