@@ -134,12 +134,10 @@
                                                     <div class="col-lg-6">
                                                         {{-- <input type="email" class="form-control m-input" > --}}
                                                         <select class="form-control m-bootstrap-select m_selectpicker" required name="matpel[]" multiple>
-                                                                <option value="Bhs.Indonesia" > Bahasa Indonesia</option>
-                                                                <option value="Matematika" > Matematika</option>																																											
-                                                                <option value="IPA" > IPA </option>																																											
-                                                                <option value="IPS" > IPS</option>																																											
-                                                                <option value="Bhs.Inggris" >Bahasa Inggris</option>																																																																																						
-                                                        </select>
+                                                            @foreach ($prodiMentor as $sw)
+                                                            <option value="{{ $sw }}" > {{ $sw }}</option>
+                                                            @endforeach	
+                                                    </select>
                                                         <span class="m-form__help">
                                                             Pilih Mata Pelajaran yang ingin anda ajarkan
                                                         </span>
