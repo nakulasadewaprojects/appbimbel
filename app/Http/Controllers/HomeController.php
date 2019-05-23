@@ -238,6 +238,9 @@ class HomeController extends Controller
         // return $prodimentor;
         return view('tutorial' , ['isCompleted' => $showing, 'm' => $mentor, 'matpel' => $prodimentor, 'jenjang' => $jenjangPendidikan]);
     }
+    public function inputTutorial(){
+        
+    }
     public function datatutorial(){
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();

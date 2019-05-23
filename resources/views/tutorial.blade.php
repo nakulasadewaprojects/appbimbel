@@ -20,7 +20,8 @@
                         </div>
                     </div>
                     <!--begin::Form-->
-                    <form class="m-form m-form--label-align-right">
+                    <form class="m-form m-form--label-align-right" action="http://localhost/appbimbel/public/tutorial/input" method="POST">
+					    {{ csrf_field() }}
                         <div class="m-portlet__body">
                             <div class="m-form__section m-form__section--first">
                             
@@ -82,7 +83,7 @@
                                         <div class="row">
                                             <div class="col-lg-5"></div>
                                             <div class="col-lg-7">
-                                                <button type="button" class="btn btn-primary m-btn m-btn--custom">
+                                                <button type="submit" class="btn btn-primary m-btn m-btn--custom">
                                                     Simpan
                                                 </button>
                                                 <button type="button" class="btn btn-danger m-btn m-btn--custom">
