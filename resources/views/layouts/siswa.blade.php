@@ -537,7 +537,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true"  data-redirect="true">
-										<a  href="http://localhost/appbimbel/public/reportsiswa" class="m-menu__link ">
+										<a  href="http://localhost/appbimbel/public/multimediasiswa" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -567,7 +567,7 @@
 							</div>
 						</li>
 						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover">
-							<a href="http://localhost/appbimbel/public/multimediasiswa" class="m-menu__link">
+							<a href="http://localhost/appbimbel/public/tutorialsiswa" class="m-menu__link">
 								<i class="m-menu__link-icon flaticon-list-1"></i>
 							</a>
 							<div class="m-menu__submenu">
@@ -584,7 +584,7 @@
 							</div>
 						</li>
 						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover">
-							<a href="http://localhost/appbimbel/public/multimediasiswa" class="m-menu__link">
+							<a href="http://localhost/appbimbel/public/quizsiswa" class="m-menu__link">
 								<i class="m-menu__link-icon flaticon-edit"></i>
 							</a>
 							<div class="m-menu__submenu">
