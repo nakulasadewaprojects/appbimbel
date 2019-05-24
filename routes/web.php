@@ -46,6 +46,7 @@ Route::get('/datapaket/edittutorial/{id}','HomeController@edittutorial');
 Route::post('/datapaket/updatetutorial','HomeController@updatetutorial');
 Route::get('/exportexcel', 'HomeController@exportexcel');
 Route::get('/multimedia', 'HomeController@multimedia');
+Route::post('/multimedia/input', 'HomeController@inputmultimedia'); 
 Route::get('/datapaket', 'HomeController@datapaket');
 Route::get('/datapaket/hapus/{id}','HomeController@hapus');
 Route::get('/datapaket/edit/{id}','HomeController@edit');
