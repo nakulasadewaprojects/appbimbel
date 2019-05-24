@@ -170,8 +170,7 @@ class HomeController extends Controller
     public function datapaket(){
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
-        $datapaket = DB::table('paketbimbel')->get();
-       
+        $datapaket = DB::table('paketbimbel')->get();     
         return view('datapaket' , ['isCompleted' => $showing, 'm' => $mentor, 'paketbimbel' => $datapaket]);
     }
     public function hapus($id){
@@ -188,6 +187,7 @@ class HomeController extends Controller
     $paket = DB::table('paketbimbel')->where('idpaket', $id)->first();
     $prodimentor = DB::table('mastermatpel')->get();
     $prodi2=implode(' ',[$prodi]);
+    // return $getexplodeMentor;
     return view('editpaket', ['prodiMentor'=>$getexplodeMentor,'prodi'=>$prodimentor,'getprodi'=>$prodi2,'isCompleted' => $showing,'paketbimbel' => $paket]);
     }   
     public function updatepaket(Request $request){	
@@ -297,13 +297,18 @@ class HomeController extends Controller
             'jenjangpendidikan'=>$request->jenjang,
             'matpel'=>$request->matpel
         ]);
-      return redirect('/dashboard');
+      return redirect('/datatutorial');
     }
     public function datatutorial(){
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
-        return view('datatutorial' , ['isCompleted' => $showing, 'm' => $mentor]);
+        $datatutorial = DB::table('modulsiswa')->get(); 
+        return view('datatutorial' , ['isCompleted' => $showing, 'm' => $mentor, 'tutorial' => $datatutorial]);
     }
+    public function hapustutorial($id){
+        DB::table('modulsiswa')->where('idmodul',$id)->delete();
+        return redirect('/datatutorial');
+        } 
     public function multimedia(){
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
