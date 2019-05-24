@@ -76,25 +76,28 @@
 												<th title="Field #6">
 													Mata Pelajaran
 												</th>
+												<th title="Field #7">
+													Action
+												</th>
 											</tr>
 										</thead>
-										{{-- <tbody>
-										@foreach($paket as $p)
-										<tr>
+										<tbody>
+										@foreach($tutorial as $t)
+										<tr>											
+											<td>{{$t->nama_modul}}</td>
+											<td>{{$t->tgl_upload}}</td>
+											<td>{{$t->mentor}} bulan</td>											
+											<td>{{$t->file}}</td>
+											<td>{{$t->jenjangpendidikan}}</td>
+											<td>{{$t->matpel}}</td>
 											
-											<td>{{$p->nmpaket}}</td>
-											<td>Rp. {{$p->harga}}</td>
-											<td>{{$p->durasi}} bulan</td>
-											<td>{{$p->hari}}</td>
-											<td>{{$p->wkt_mulai}}</td>
-											<td>{{$p->wkt_akhir}}</td>
-											<td>{{$p->matpel}}</td>
-											<td>{{$p->keterangan}}</td>
-											<td>{{$p->statusPaket}}</td>
-											
+											<td>										
+												<a href="">Edit</a>
+												<a href="http://localhost/appbimbel/public/datatutorial/hapustutorial/{{$t->idmodul}}">Hapus</a>
+											</td>																			
 										</tr>
 										@endforeach
-										</tbody> --}}
+										</tbody> 
 										
 									</table>
 									<!--end: Datatable -->
