@@ -216,145 +216,143 @@
 				@else
 				<div class="m-portlet__body">
 					<div class="m-pricing-table-3 m-pricing-table-3--fixed">
-						<div class="m-pricing-table-3__items">
-							<div class="row m-row--no-padding">
-								<div class="m-pricing-table-3__item col-lg-4">
+						@if($getpaketcount==1)
+						<div class="m-pricing-table-1">
+							<div class="m-pricing-table-1__items row">
 								@foreach($paket as $p)
-									<div class="m-pricing-table-3__wrapper">
-										<h3 class="m-pricing-table-3__title">
-											{{-- {{$paket->nmpaket}} --}}
-											{{$p->nmpaket}}
-
-										</h3>
-										<h3 class="m-pricing-table-3__title">
-												{{-- {{$paket->matpel}} --}}
-												{{$p->matpel}}
-
-										</h3>
-										<span class="m-pricing-table-3__price m-pricing-table-3__price--padding">
-											{{-- Rp. {{$paket->harga}} --}}
-											Rp. {{$p->harga}}											
-
+								<div class="m-pricing-table-1__item col-lg-12">
+									<div class="m-pricing-table-1__visual">
+										<div class="m-pricing-table-1__hexagon1"></div>
+										<div class="m-pricing-table-1__hexagon2"></div>
+										<span class="m-pricing-table-1__icon m--font-brand">
+											<i class="fa flaticon-piggy-bank"></i>
 										</span>
-										<br>
-										<span class="m-pricing-table-3__description">
-											{{-- <span>
-											{{$paket->matpel}}																							
-											</span>
-											<br> --}}
-											<span>
-											{{-- Durasi {{$paket->durasi}} bulan --}}
-											Durasi {{$p->durasi}} bulan																																			
-
-											</span>
-											<br>
-											<span>
-											{{-- Hari {{$paket->hari}} --}}
-											Hari {{$p->hari}}																																															
-
-											</span>
-											<br>
-											<span>
-												{{-- Waktu Bimbel pukul {{$paket->wkt_mulai}} sampai {{$paket->wkt_akhir}}																																															 --}}
-												Waktu Bimbel pukul {{$p->wkt_mulai}} sampai {{$p->wkt_akhir}}																																															
-
-											</span>
-											<br>
-											<span>
-												{{-- Keterangan : {{$paket->keterangan}}  --}}
-												Keterangan : {{$p->keterangan}} 																																															
-
-											</span>
-											<br>
-										</span>
-										<div class="m-pricing-table-3__btn">
-											{{-- <a href="http://localhost/appbimbel/public/formAjukanPaket/{{$paket->NoIDMentor}}"> --}}
-											<a href="http://localhost/appbimbel/public/formAjukanPaket/{{$p->NoIDMentor}}/{{$p->idpaket}}}">
-											<button type="button" class="btn m-btn--pill  btn-brand m-btn--wide m-btn--uppercase m-btn--bolder m-btn--lg">
-												Ajukan
-											</button>
-										</div>
 									</div>
+									<span class="m-pricing-table-1__price">
+										Free
+									</span>
+									<h2 class="m-pricing-table-1__subtitle">
+										1 End Product License
+									</h2>
+									<span class="m-pricing-table-1__description">
+										Lorem ipsum aret
+										<br>
+										sed do eiusmod
+										<br>
+										magna siad ali
+									</span>
+									<div class="m-pricing-table-1__btn">
+										<button type="button" class="btn btn-brand m-btn m-btn--custom m-btn--pill m-btn--wide m-btn--uppercase m-btn--bolder m-btn--sm">
+											Purchase
+										</button>
+									</div>
+								</div>
 								@endforeach
-								</div>
-								{{-- <div class="m-pricing-table-3__item m-pricing-table-3__item--focus m--bg-brand col-lg-4">
-									<div class="m-pricing-table-3__wrapper">
-										<h3 class="m-pricing-table-3__title m--font-light">
-											Professional
-										</h3>
-										<span class="m-pricing-table-3__price">
-											<span class="m-pricing-table-3__label">
-												$
-											</span>
-											<span class="m-pricing-table-3__number m--font-light">
-												29
-											</span>
-											<span class="m-pricing-table-3__text">
-												/&nbsp;&nbsp;Per Installation
-											</span>
-										</span>
-										<br>
-										<span class="m-pricing-table-3__description">
-											<span>
-												Lorem ipsum dolor sit amet adipiscing elit
-											</span>
-											<br>
-											<span>
-												sed do eiusmod tempors labore et dolore
-											</span>
-											<br>
-											<span>
-												magna siad enim aliqua
-											</span>
-											<br>
-										</span>
-										<div class="m-pricing-table-3__btn">
-											<button type="button" class="btn m-btn--pill  btn-light m-btn--label-brand m-btn--wide m-btn--uppercase m-btn--bolder m-btn--lg">
-												Purchase
-											</button>
-										</div>
-									</div>
-								</div>
-								<div class="m-pricing-table-3__item col-lg-4">
-									<div class="m-pricing-table-3__wrapper">
-										<h3 class="m-pricing-table-3__title">
-											Extended
-										</h3>
-										<span class="m-pricing-table-3__price">
-											<span class="m-pricing-table-3__label">
-												$
-											</span>
-											<span class="m-pricing-table-3__number">
-												99
-											</span>
-											<span class="m-pricing-table-3__text">
-												/&nbsp;&nbsp;Per Installation
-											</span>
-										</span>
-										<br>
-										<span class="m-pricing-table-3__description">
-											<span>
-												Lorem ipsum dolor sit amet adipiscing elit
-											</span>
-											<br>
-											<span>
-												sed do eiusmod tempors labore et dolore
-											</span>
-											<br>
-											<span>
-												magna siad enim aliqua
-											</span>
-											<br>
-										</span>
-										<div class="m-pricing-table-3__btn">
-											<button type="button" class="btn m-btn--pill  btn-brand m-btn--wide m-btn--uppercase m-btn--bolder m-btn--lg">
-												Purchase
-											</button>
-										</div>
-									</div>
-								</div> --}}
 							</div>
 						</div>
+						@elseif($getpaketcount==2)
+						<div class="m-pricing-table-1">
+							<div class="m-pricing-table-1__items row">
+								@foreach($paket as $p)
+								<div class="m-pricing-table-1__item col-lg-6">
+									<div class="m-pricing-table-1__visual">
+										<div class="m-pricing-table-1__hexagon1"></div>
+										<div class="m-pricing-table-1__hexagon2"></div>
+										<span class="m-pricing-table-1__icon m--font-brand">
+											<i class="fa flaticon-piggy-bank"></i>
+										</span>
+									</div>
+									<span class="m-pricing-table-1__price">
+										Free
+									</span>
+									<h2 class="m-pricing-table-1__subtitle">
+										1 End Product License
+									</h2>
+									<span class="m-pricing-table-1__description">
+										Lorem ipsum aret
+										<br>
+										sed do eiusmod
+										<br>
+										magna siad ali
+									</span>
+									<div class="m-pricing-table-1__btn">
+										<button type="button" class="btn btn-brand m-btn m-btn--custom m-btn--pill m-btn--wide m-btn--uppercase m-btn--bolder m-btn--sm">
+											Purchase
+										</button>
+									</div>
+								</div>
+								@endforeach
+							</div>
+						</div>
+						@elseif($getpaketcount==3)
+						<div class="m-pricing-table-1">
+							<div class="m-pricing-table-1__items row">
+								@foreach($paket as $p)
+								<div class="m-pricing-table-1__item col-lg-4">
+									<div class="m-pricing-table-1__visual">
+										<div class="m-pricing-table-1__hexagon1"></div>
+										<div class="m-pricing-table-1__hexagon2"></div>
+										<span class="m-pricing-table-1__icon m--font-brand">
+											<i class="fa flaticon-piggy-bank"></i>
+										</span>
+									</div>
+									<span class="m-pricing-table-1__price">
+										Free
+									</span>
+									<h2 class="m-pricing-table-1__subtitle">
+										1 End Product License
+									</h2>
+									<span class="m-pricing-table-1__description">
+										Lorem ipsum aret
+										<br>
+										sed do eiusmod
+										<br>
+										magna siad ali
+									</span>
+									<div class="m-pricing-table-1__btn">
+										<button type="button" class="btn btn-brand m-btn m-btn--custom m-btn--pill m-btn--wide m-btn--uppercase m-btn--bolder m-btn--sm">
+											Purchase
+										</button>
+									</div>
+								</div>
+								@endforeach
+							</div>
+						</div>
+						@elseif($getpaketcount==4)
+						<div class="m-pricing-table-1">
+							<div class="m-pricing-table-1__items row">
+								@foreach($paket as $p)
+								<div class="m-pricing-table-1__item col-lg-3">
+									<div class="m-pricing-table-1__visual">
+										<div class="m-pricing-table-1__hexagon1"></div>
+										<div class="m-pricing-table-1__hexagon2"></div>
+										<span class="m-pricing-table-1__icon m--font-brand">
+											<i class="fa flaticon-piggy-bank"></i>
+										</span>
+									</div>
+									<span class="m-pricing-table-1__price">
+										Free
+									</span>
+									<h2 class="m-pricing-table-1__subtitle">
+										1 End Product License
+									</h2>
+									<span class="m-pricing-table-1__description">
+										Lorem ipsum aret
+										<br>
+										sed do eiusmod
+										<br>
+										magna siad ali
+									</span>
+									<div class="m-pricing-table-1__btn">
+										<button type="button" class="btn btn-brand m-btn m-btn--custom m-btn--pill m-btn--wide m-btn--uppercase m-btn--bolder m-btn--sm">
+											Purchase
+										</button>
+									</div>
+								</div>
+								@endforeach
+							</div>
+						</div>
+						@endif
 					</div>
 				</div>
 				@endif
