@@ -159,13 +159,15 @@ class HomeController extends Controller
     }
     public function paketbimbel(){
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
+        $getpaket = DB::table('paketbimbel')->where('NoIDMentor', Auth::user()->NoIDMentor)->get('idpaket');
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
+        $getpaketcount = count($getpaket);
         $getprodiMentor = DB::table('tbdetailmentor')
         ->join('tbmentor','tbmentor.idmentor','=','tbdetailmentor.idtbRiwayatTutor')      
         ->where('idtbRiwayatTutor',  Auth::user()->idmentor)->value('prodi');
           $getexplodeMentor = explode(', ',$getprodiMentor);
-         
-        return view('paketbimbel' , ['isCompleted' => $showing, 'm' => $mentor,'prodiMentor'=>$getexplodeMentor]);
+        //  return count($getpaket);
+        return view('paketbimbel' , ['getpaketcount'=>$getpaketcount,'isCompleted' => $showing, 'm' => $mentor,'prodiMentor'=>$getexplodeMentor]);
     }
     public function datapaket(){
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
