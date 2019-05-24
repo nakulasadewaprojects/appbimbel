@@ -76,7 +76,10 @@
                                                 </span>
                                             </div>
                                         </div> --}}
-                                        <input type="file" name="modul" class="form-control m-input">                                        
+                                        <input type="file" name="modul" accept="application/pdf" class="form-control m-input">                                        
+                                        <span class="m-form__help">
+                                               *Upload File PDF max 2 mb
+                                            </span>
                                     </div>
                                 </div>
                                 
