@@ -53,6 +53,8 @@ Route::get('/profilesiswa', 'HomeSiswaController@profilesiswa');
 Route::get('/myprofilesiswa', 'HomeSiswaController@myprofilsiswa');
 Route::get('/calendarsiswa', 'HomeSiswaController@calendarsiswa');
 Route::get('/multimediasiswa', 'HomeSiswaController@multimediasiswa');
+Route::get('/tutorialsiswa', 'HomeSiswaController@tutorialsiswa');
+Route::get('/quizsiswa', 'HomeSiswaController@quizsiswa');
 Route::get('/jadwalsiswa', 'HomeSiswaController@jadwalsiswa');
 Route::get('/reportsiswa', 'HomeSiswaController@reportsiswa');
 Route::get('/informasipayment', 'HomeSiswaController@informasipayment');
