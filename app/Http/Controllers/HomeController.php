@@ -309,6 +309,23 @@ class HomeController extends Controller
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
         return view('multimedia' , ['isCompleted' => $showing, 'm' => $mentor]);
     }
+    public function inputmultimedia(Request $request){
+        $tglentry=Carbon::now();
+        $modul = $request->file('modul');
+        $nama_modul = time().'.'.$modul->getClientOriginalExtension();
+        $tujuan_upload = public_path('/data_modul') ;
+        $modul->move($tujuan_upload, $nama_modul);
+        
+    DB::table('modulsiswa')->insert([
+        'nama_modul'=>$request->nama,
+        'tgl_upload'=>$tglentry,
+        'mentor'=>$request->id,
+        'file'=>$nama_modul,
+        'jenjangpendidikan'=>$request->jenjang,
+        'matpel'=>$request->matpel
+    ]);
+    }
+
     public function datamultimedia(){
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
