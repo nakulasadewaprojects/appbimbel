@@ -26,6 +26,24 @@
 					</div>
 					<div class="m-portlet__body">
 						<div class="m-widget13">
+								<h5 class="m-widget13__item">
+								Data Mentor
+								</h5>
+								<div class="m-widget13__item">
+									<span class="m-widget13__desc m--align-right">
+												Foto Mentor :
+									</span>
+									<span class="m-widget13__text m-widget13__text-bolder">										
+										@if($showmentor->foto==NULL)
+										<img src="{{ url('/data_file/default_photo_profile.png') }}" height="200px" width="200px" alt="Anda Belum Upload Foto" />
+										@else
+										{{-- <img src="{{ url('/data_file2/'.$m->foto) }}" alt="Tidak Ada Foto" /> --}}
+										<a href="{{ url('/data_file/'.$showmentor->foto) }}" class="thumbnail"><img width="50px" height="50px" src="{{ url('/data_file2/'.$showmentor->foto) }}" alt=""></a>
+
+										@endif
+									</span>
+								</div>
+									
 							<div class="m-widget13__item">
 								<span class="m-widget13__desc m--align-right">
 									Nama Lengkap :
@@ -92,18 +110,9 @@
 									{{ $showmentor->noTlpn }}
 								</span>
 							</div>
-							<div class="m-widget13__item">
-								<span class="m-widget13__desc m--align-right">
-									Status Pendidikan :
-								</span>
-								<span class="m-widget13__text m-widget13__text-bolder">
-									@if($showmentor->statusPendidikan!=2)
-									selesai
-									@else
-									masih pendidikan
-									@endif
-								</span>
-							</div>
+							<h5 class="m-widget13__item">
+									Riwayat Mentor
+							</h5>
 							<div class="m-widget13__item">
 								<span class="m-widget13__desc m--align-right">
 									Pendidikan Terakhir :
@@ -130,6 +139,40 @@
 								</span>
 							</div>
 							<div class="m-widget13__item">
+								<span class="m-widget13__desc m--align-right">
+									Status Pendidikan :
+								</span>
+								<span class="m-widget13__text m-widget13__text-bolder">
+									@if($showmentor->statusPendidikan!=2)
+										selesai
+									@else
+										masih pendidikan
+									@endif
+								</span>
+							</div>
+							<div class="m-widget13__item">
+									<span class="m-widget13__desc m--align-right">
+												File Ijazah :
+									</span>
+									<span class="m-widget13__text m-widget13__text-bolder">										
+										@if($showmentor->foto==NULL)
+										<img src="{{ url('/data_file/default_photo_profile.png') }}" height="200px" width="200px" alt="Anda Belum Upload Foto" />
+										@else
+										{{-- <img src="{{ url('/data_file2/'.$m->foto) }}" alt="Tidak Ada Foto" /> --}}
+										<a href="{{ url('/data_file/'.$showmentor->fileIjazah) }}" class="thumbnail"><img width="50px" height="50px" src="{{ url('/data_file2/'.$showmentor->fileIjazah) }}" alt=""></a>
+
+										@endif
+									</span>
+								</div>
+								<div class="m-widget13__item">
+										<span class="m-widget13__desc m--align-right">
+											Pengalaman Kerja/Mengajar :
+										</span>
+										<span class="m-widget13__text m-widget13__text-bolder">
+											{{ $showmentor->pengalaman }}
+										</span>
+									</div>
+							<div class="m-widget13__item">
 									<span class="m-widget13__desc m--align-right">
 										Prodi Mentor :
 									</span>
@@ -137,14 +180,7 @@
 										{{ $showmentor->prodi }}
 									</span>
 							</div>
-							<div class="m-widget13__item">
-								<span class="m-widget13__desc m--align-right">
-									Pengalaman Kerja/Mengajar :
-								</span>
-								<span class="m-widget13__text m-widget13__text-bolder">
-									{{ $showmentor->pengalaman }}
-								</span>
-							</div>
+							
 							<div class="m-widget13__action m--align-right">
 								<a href="http://localhost/appbimbel/public/formAjukan/{{$showmentor->idmentor}}">
 									<button type="button" class="m-widget__detalis  btn m-btn--pill  btn-accent">

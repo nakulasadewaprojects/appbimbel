@@ -313,13 +313,13 @@
 											<a href="{{ url('/data_file/'.$isCompleted->fileKTP) }}" class="thumbnail"><img width="50px" height="50px" src="{{ url('/data_file2/'.$isCompleted->fileKTP) }}"></a>
 											@else Anda Belum Upload File KTP @endif
 										</div>
-										<div class="form-group m-form__group row">
+										{{-- <div class="form-group m-form__group row">
 											<label for="example-text-input" class="col-3 col-form-label">
 												File Ijazah
 											</label>
 											<div class="col-4">
 												<label class="custom-file">
-													<input class="form-control{{ $errors->has('fileIjazah') ? ' is-invalid' : '' }}" type="file" accept="application/pdf" name="fileIjazah">
+													<input class="form-control{{ $errors->has('fileIjazah') ? ' is-invalid' : '' }}" type="file" accept="image/*" name="fileIjazah">
 													@if ($errors->has('fileIjazah'))
 													<span class="invalid-feedback" role="alert">
 														<strong>{{ $errors->first('fileIjazah') }}</strong>
@@ -339,7 +339,25 @@
 												</div>
 												@else Anda Belum Upload File Ijazah @endif
 											</div>
-										</div>
+										</div> --}}
+										<div class="form-group m-form__group row">
+												<label for="example-text-input" class="col-3 col-form-label">
+													File Ijazah
+												</label>
+												<div class="col-4">
+													<label class="custom-file">
+														<input class="form-control{{ $errors->has('fileIjazah') ? ' is-invalid' : '' }}" type="file" accept="image/*" name="fileIjazah">
+														@if ($errors->has('fileIjazah'))
+														<span class="invalid-feedback" role="alert">
+															<strong>{{ $errors->first('fileIjazah') }}</strong>
+														</span>@endif
+														<font size="2">*Ukuran Maksimal file Ijazah adalah 2MB</font>
+													</label>
+												</div>
+												@if($isCompleted->fileIjazah!=null)
+												<a href="{{ url('/data_file/'.$isCompleted->fileIjazah) }}" class="thumbnail"><img width="50px" height="50px" src="{{ url('/data_file2/'.$isCompleted->fileIjazah) }}"></a>
+												@else Anda Belum Upload File KTP @endif
+											</div>
 										<div class="form-group m-form__group row">
 											<label for="example-text-input" class="col-3 col-form-label">
 												Pengalaman Kerja/Mengajar
