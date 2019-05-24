@@ -318,19 +318,21 @@ class HomeController extends Controller
     }
     public function inputmultimedia(Request $request){
         $tglentry=Carbon::now();
-        $modul = $request->file('modul');
-        $nama_modul = time().'.'.$modul->getClientOriginalExtension();
-        $tujuan_upload = public_path('/data_modul') ;
-        $modul->move($tujuan_upload, $nama_modul);
+        $multimedia = $request->file('multimedia');
+        $nama_multimedia = time().'.'.$multimedia->getClientOriginalExtension();
+        $tujuan_upload = public_path('/data_multimedia') ;
+        $multimedia->move($tujuan_upload, $nama_multimedia);
+       $TbmentorNoID= DB::table('tbmentor')->where('idmentor',Auth::user()->idmentor)->value('NoIDMentor');      
         
-    DB::table('modulsiswa')->insert([
-        'nama_modul'=>$request->nama,
-        'tgl_upload'=>$tglentry,
-        'mentor'=>$request->id,
-        'file'=>$nama_modul,
-        'jenjangpendidikan'=>$request->jenjang,
-        'matpel'=>$request->matpel
+    DB::table('contentvideo')->insert([
+        'NoIdMentor'=>$TbmentorNoID,
+        'created_at'=>$tglentry,
+        'judul'=>$request->judul,
+        'file'=>$nama_multimedia,
+        'diskripsi'=>$request->deskripsi,
+        'status_video'=>'1'
     ]);
+    return redirect('/dashboard');
     }
 
     public function datamultimedia(){

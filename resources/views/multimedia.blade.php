@@ -20,7 +20,8 @@
                             </div>
                         </div>
                         <!--begin::Form-->
-                        <form class="m-form m-form--label-align-right">
+                        <form class="m-form m-form--label-align-right" action="http://localhost/appbimbel/public/multimedia/input" method="POST" enctype="multipart/form-data">
+                            {{ csrf_field() }}
                             <div class="m-portlet__body">
                                 <div class="m-form__section m-form__section--first">
 
@@ -29,7 +30,7 @@
                                             Judul:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="email" class="form-control m-input">
+                                            <input type="text" class="form-control m-input" name="judul">
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
@@ -48,7 +49,7 @@
                                             Upload Video
                                         </label>
                                         <div class="col-lg-4 col-md-9 col-sm-12">
-                                            <div class="m-dropzone dropzone m-dropzone--primary" action="inc/api/dropzone/upload.php" id="m-dropzone-two">
+                                            {{-- <div class="m-dropzone dropzone m-dropzone--primary" action="inc/api/dropzone/upload.php" id="m-dropzone-two">
                                                 <div class="m-dropzone__msg dz-message needsclick">
                                                     <h3 class="m-dropzone__msg-title">
                                                         Letakkan file disini.
@@ -57,9 +58,10 @@
                                                         Upload hingga 10 file.
                                                     </span>
                                                 </div>
-                                            </div>
+                                            </div> --}}
+                                        <input type="file" name="multimedia" class="form-control m-input">                                        
                                             <span class="m-form__help">
-                                               Upload Konten Video (Tutorial)
+                                               Upload Konten Video (Tutorial) *max 10 mb
                                             </span>
                                         </div>
                                     </div>
@@ -70,7 +72,7 @@
                                             <div class="row">
                                                 <div class="col-lg-4"></div>
                                                 <div class="col-lg-6">
-                                                    <button type="button" class="btn btn-primary m-btn m-btn--custom">
+                                                    <button type="submit" class="btn btn-primary m-btn m-btn--custom">
                                                         Save
                                                     </button>
                                                     <button type="button" class="btn btn-danger m-btn m-btn--custom">
