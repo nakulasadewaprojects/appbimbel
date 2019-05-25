@@ -61,19 +61,22 @@
 												<th title="Field #1">
 													Nama Modul
 												</th>
-												<th title="Field #2">
-													Tanggal Upload
-												</th>
-												<th title="Field #3">
+												{{-- <th title="Field #3">
+													Mentor
+												</th> --}}
+												{{-- <th title="Field #4">
 													File
-												</th>
-												<th title="Field #4">
+												</th> --}}
+												<th title="Field #5">
 													Jenjang Pendidikan
 												</th>
 												<th title="Field #5">
 													Mata Pelajaran
 												</th>
-												<th title="Field #6">
+												<th title="Field #2">
+														Tanggal Upload
+													</th>
+												<th title="Field #7">
 													Action
 												</th>
 											</tr>
@@ -81,11 +84,37 @@
 										<tbody>
 										@foreach($tutorial as $t)
 										<tr>											
-											<td>{{$t->nama_modul}}</td>
-											<td>{{$t->tgl_upload}}</td>										
-											<td>{{$t->file}}</td>
-											<td>{{$t->jenjangpendidikan}}</td>
-											<td>{{$t->matpel}}</td>
+											<td>
+													<img src="assets/app/media/img/files/pdf.svg" height="10px" width="10px" alt="" id="myPDF">
+													<a target="_blank" href="{{ url('/data_modul/'.$t->file) }}">{{$t->nama_modul}}<a />
+											</td>
+											{{-- <td>{{$t->mentor}} bulan</td>											 --}}
+											{{-- <td>{{$t->file}}</td> --}}
+											<td>
+												@if($t->jenjangpendidikan==1)
+												SD
+												@elseif($t->jenjangpendidikan==2)
+												SMP
+												@elseif($t->jenjangpendidikan==3)
+												SMA
+												@else
+												SMK
+												@endif
+											</td>
+											<td>
+													@if($t->matpel==1)
+													Bhs. Indonesia
+													@elseif($t->matpel==2)
+													Matematika
+													@elseif($t->matpel==3)
+													IPA
+													@elseif($t->matpel==4)
+													IPS
+													@else
+													Bhs. Iggris
+													@endif
+											</td>
+											<td>{{$t->tgl_upload}}</td>
 											
 											<td>										
 												<a href="http://localhost/appbimbel/public/datatutorial/edittutorial/{{$t->idmodul}}">Edit</a>

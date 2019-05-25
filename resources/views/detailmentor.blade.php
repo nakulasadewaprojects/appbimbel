@@ -14,7 +14,7 @@
 		<div class="row">			
 			<div class="col-xl-12">
 				<!--begin:: Widgets/Company Summary-->
-				<div class="m-portlet m-portlet--full-height ">
+				<div class="m-portlet m-portlet--success m-portlet--head-solid-bg m-portlet--head-sm" data-portlet="true" id="m_portlet_tools_2">
 					<div class="m-portlet__head">
 						<div class="m-portlet__head-caption">
 							<div class="m-portlet__head-title">
@@ -194,7 +194,7 @@
 				</div>
 			</div>
 		<div class="col-xl-12">
-			<div class="m-portlet">
+			<div class="m-portlet m-portlet--success m-portlet--head-solid-bg m-portlet--head-sm" data-portlet="true" id="m_portlet_tools_2">
 				<div class="m-portlet__head">
 					<div class="m-portlet__head-caption">
 						<div class="m-portlet__head-title">
@@ -207,14 +207,14 @@
 						</div>
 					</div>
 				</div>
-				@if($caripaket==NULL)
-				<span class="m-pricing-table-3__description">
-					<span>
-						Tidak Ada Paket Bimbel
-					</span>
-				</span>
-				@else
 				<div class="m-portlet__body">
+					@if($caripaket==NULL)
+					<span class="m-pricing-table-3__description">
+						<span>
+							<center>Tidak Ada Paket Bimbel</center>
+						</span>
+					</span>
+					@else
 					<div class="m-pricing-table-3 m-pricing-table-3--fixed">
 						@if($getpaketcount==1)
 						<div class="m-pricing-table-1">
@@ -229,22 +229,36 @@
 										</span>
 									</div>
 									<span class="m-pricing-table-1__price">
+										Rp. {{$p->harga}}
 										Free
 									</span>
 									<h2 class="m-pricing-table-1__subtitle">
-										1 End Product License
+										{{$p->nmpaket}}
 									</h2>
 									<span class="m-pricing-table-1__description">
-										Lorem ipsum aret
+										Bimbel selama {{$p->durasi}} bulan
 										<br>
-										sed do eiusmod
+										@if($p->hari!=NULL)
+										Hari {{$p->hari}}
+										@else
+										Hari Tentukan sendiri
+										@endif
 										<br>
-										magna siad ali
+										@if($p->wkt_mulai!=NULL)
+										Jam {{$p->wkt_mulai}} - {{$p->wkt_akhir}}
+										@else
+										Jam Tentukan Sendiri
+										@endif
 									</span>
+									<h2 class="m-pricing-table-1__subtitle">
+										{{$p->keterangan}}
+									</h2>
 									<div class="m-pricing-table-1__btn">
-										<button type="button" class="btn btn-brand m-btn m-btn--custom m-btn--pill m-btn--wide m-btn--uppercase m-btn--bolder m-btn--sm">
-											Purchase
-										</button>
+										<a href="http://localhost/appbimbel/public/formAjukanPaket/{{$p->NoIDMentor}}/{{$p->idpaket}}">
+											<button type="button" class="btn btn-brand m-btn m-btn--custom m-btn--pill m-btn--wide m-btn--uppercase m-btn--bolder m-btn--sm">
+												Ajukan
+											</button>
+										</a>
 									</div>
 								</div>
 								@endforeach
@@ -263,22 +277,35 @@
 										</span>
 									</div>
 									<span class="m-pricing-table-1__price">
-										Free
+											Rp. {{$p->harga}}
 									</span>
 									<h2 class="m-pricing-table-1__subtitle">
-										1 End Product License
+										{{$p->nmpaket}}
 									</h2>
 									<span class="m-pricing-table-1__description">
-										Lorem ipsum aret
+											Bimbel selama {{$p->durasi}} bulan
 										<br>
-										sed do eiusmod
+										@if($p->hari!=NULL)
+										Hari {{$p->hari}}
+										@else
+										Hari Tentukan sendiri
+										@endif
 										<br>
-										magna siad ali
+										@if($p->wkt_mulai!=NULL)
+										Jam {{$p->wkt_mulai}} - {{$p->wkt_akhir}}
+										@else
+										Jam Tentukan Sendiri
+										@endif
 									</span>
+									<h2 class="m-pricing-table-1__subtitle">
+											{{$p->keterangan}}
+										</h2>
 									<div class="m-pricing-table-1__btn">
+									<a href="http://localhost/appbimbel/public/formAjukanPaket/{{$p->NoIDMentor}}/{{$p->idpaket}}">
 										<button type="button" class="btn btn-brand m-btn m-btn--custom m-btn--pill m-btn--wide m-btn--uppercase m-btn--bolder m-btn--sm">
-											Purchase
+											Ajukan
 										</button>
+									</a>
 									</div>
 								</div>
 								@endforeach
@@ -297,22 +324,36 @@
 										</span>
 									</div>
 									<span class="m-pricing-table-1__price">
+										Rp. {{$p->harga}}
 										Free
 									</span>
 									<h2 class="m-pricing-table-1__subtitle">
-										1 End Product License
+										{{$p->nmpaket}}
 									</h2>
 									<span class="m-pricing-table-1__description">
-										Lorem ipsum aret
+										Bimbel selama {{$p->durasi}} bulan
 										<br>
-										sed do eiusmod
+										@if($p->hari!=NULL)
+										Hari {{$p->hari}}
+										@else
+										Hari Tentukan sendiri
+										@endif
 										<br>
-										magna siad ali
+										@if($p->wkt_mulai!=NULL)
+										Jam {{$p->wkt_mulai}} - {{$p->wkt_akhir}}
+										@else
+										Jam Tentukan Sendiri
+										@endif
 									</span>
+									<h2 class="m-pricing-table-1__subtitle">
+										{{$p->keterangan}}
+									</h2>
 									<div class="m-pricing-table-1__btn">
-										<button type="button" class="btn btn-brand m-btn m-btn--custom m-btn--pill m-btn--wide m-btn--uppercase m-btn--bolder m-btn--sm">
-											Purchase
-										</button>
+										<a href="http://localhost/appbimbel/public/formAjukanPaket/{{$p->NoIDMentor}}/{{$p->idpaket}}">
+											<button type="button" class="btn btn-brand m-btn m-btn--custom m-btn--pill m-btn--wide m-btn--uppercase m-btn--bolder m-btn--sm">
+												Ajukan
+											</button>
+										</a>
 									</div>
 								</div>
 								@endforeach
@@ -331,22 +372,36 @@
 										</span>
 									</div>
 									<span class="m-pricing-table-1__price">
+										Rp. {{$p->harga}}
 										Free
 									</span>
 									<h2 class="m-pricing-table-1__subtitle">
-										1 End Product License
+										{{$p->nmpaket}}
 									</h2>
 									<span class="m-pricing-table-1__description">
-										Lorem ipsum aret
+										Bimbel selama {{$p->durasi}} bulan
 										<br>
-										sed do eiusmod
+										@if($p->hari!=NULL)
+										Hari {{$p->hari}}
+										@else
+										Hari Tentukan sendiri
+										@endif
 										<br>
-										magna siad ali
+										@if($p->wkt_mulai!=NULL)
+										Jam {{$p->wkt_mulai}} - {{$p->wkt_akhir}}
+										@else
+										Jam Tentukan Sendiri
+										@endif
 									</span>
+									<h2 class="m-pricing-table-1__subtitle">
+										{{$p->keterangan}}
+									</h2>
 									<div class="m-pricing-table-1__btn">
-										<button type="button" class="btn btn-brand m-btn m-btn--custom m-btn--pill m-btn--wide m-btn--uppercase m-btn--bolder m-btn--sm">
-											Purchase
-										</button>
+										<a href="http://localhost/appbimbel/public/formAjukanPaket/{{$p->NoIDMentor}}/{{$p->idpaket}}">
+											<button type="button" class="btn btn-brand m-btn m-btn--custom m-btn--pill m-btn--wide m-btn--uppercase m-btn--bolder m-btn--sm">
+												Ajukan
+											</button>
+										</a>
 									</div>
 								</div>
 								@endforeach
