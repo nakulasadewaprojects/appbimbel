@@ -160,12 +160,14 @@ class HomeController extends Controller
     public function paketbimbel(){
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
+        $getpaket = DB::table('paketbimbel')->where('NoIDMentor', Auth::user()->NoIDMentor)->get('idpaket');
+        $getpaketcount = count($getpaket);
         $getprodiMentor = DB::table('tbdetailmentor')
         ->join('tbmentor','tbmentor.idmentor','=','tbdetailmentor.idtbRiwayatTutor')      
         ->where('idtbRiwayatTutor',  Auth::user()->idmentor)->value('prodi');
           $getexplodeMentor = explode(', ',$getprodiMentor);
-         
-        return view('paketbimbel' , ['isCompleted' => $showing, 'm' => $mentor,'prodiMentor'=>$getexplodeMentor]);
+        //  return count($getpaket);
+        return view('paketbimbel' , ['getpaketcount'=>$getpaketcount,'isCompleted' => $showing, 'm' => $mentor,'prodiMentor'=>$getexplodeMentor]);
     }
     public function datapaket(){
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
@@ -347,6 +349,25 @@ class HomeController extends Controller
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
         return view('multimedia' , ['isCompleted' => $showing, 'm' => $mentor]);
     }
+    public function inputmultimedia(Request $request){
+        $tglentry=Carbon::now();
+        $multimedia = $request->file('multimedia');
+        $nama_multimedia = time().'.'.$multimedia->getClientOriginalExtension();
+        $tujuan_upload = public_path('/data_multimedia') ;
+        $multimedia->move($tujuan_upload, $nama_multimedia);
+       $TbmentorNoID= DB::table('tbmentor')->where('idmentor',Auth::user()->idmentor)->value('NoIDMentor');      
+        
+    DB::table('contentvideo')->insert([
+        'NoIdMentor'=>$TbmentorNoID,
+        'created_at'=>$tglentry,
+        'judul'=>$request->judul,
+        'file'=>$nama_multimedia,
+        'diskripsi'=>$request->deskripsi,
+        'status_video'=>'1'
+    ]);
+    return redirect('/dashboard');
+    }
+
     public function datamultimedia(){
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
@@ -357,8 +378,8 @@ class HomeController extends Controller
     {
         $this->validate($request, [
             // 'username' => ['required', 'alpha_num', 'min:6', 'max:50', 'unique:tbmentor,username,' . $idmentor . ',idmentor', 'regex:/^.*(?=.*[a-zA-Z])(?=.*[0-9]).*$/'],
-            'noTlpn' => ['numeric', 'digits_between:10,15', 'unique:tbmentor,noTlpn,' . $idmentor . ',idmentor'],
-            'alamat' => ['max:255','regex:/[ .,()\-\/\w+]/'],
+            // 'noTlpn' => ['numeric', 'digits_between:10,15', 'unique:tbmentor,noTlpn,' . $idmentor . ',idmentor'],
+            // 'alamat' => ['max:255','regex:/[ .,()\-\/\w+]/'],
             // // 'email' => ['required', 'string', 'email', 'max:255', 'unique:tbmentor,email,'.$idmentor.',idmentor', 'regex:/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/']
         ]);
         $Tbmentor = Tbmentor::find($idmentor);
@@ -372,16 +393,15 @@ class HomeController extends Controller
         $Tbmentor->save();
 
          $this->validate($request, [
-        	'foto' => 'file|image|mimes:jpeg,png,jpg|max:2048',
-            'fileIjazah'=>'file|mimes:pdf|max:2048',
-            'fileKTP'=>'file|image|mimes:jpeg,png,jpg|max:2048',
-            'No_Identitas'=>'numeric'
+        	// 'foto' => 'file|image|mimes:jpeg,png,jpg|max:2048',
+            // 'fileIjazah'=>'file|image|mimes:jpeg,png,jpg|max:2048',
+            // 'fileKTP'=>'file|image|mimes:jpeg,png,jpg|max:2048',
+            // 'No_Identitas'=>'numeric'
         ]);
         $Tbdetailmentor = Tbdetailmentor::find($idmentor);
         $Tbdetailmentor->pendidikanTerakhir = $request['pendidikanTerakhir'];
         $Tbdetailmentor->statusPendidikan = $request['statusPendidikan'];
         $foto = $request->file('foto');
-        $tujuan_upload = 'data_file';
         if ($request->hasFile('foto')) {
             $show = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->value('foto');
             // $nama_foto = time() . "_" . $foto->getClientOriginalName();
@@ -410,12 +430,26 @@ class HomeController extends Controller
             File::delete($tujuan_upload2 . '/' . $show);
             $Tbdetailmentor->fileKTP = $namafileKTP;
         } else { }
+        // $fileIjazah = $request->file('fileIjazah');
+        // if ($request->hasFile('fileIjazah')) {
+        //     $show = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->value('fileIjazah');
+        //     $namafileIjazah = time() . "_" . $fileIjazah->getClientOriginalName();
+        //     $fileIjazah->move($tujuan_upload, $namafileIjazah);
+        //     File::delete($tujuan_upload . '/' . $show);
+        //     $Tbdetailmentor->fileIjazah = $namafileIjazah;
+        // } else { }
         $fileIjazah = $request->file('fileIjazah');
         if ($request->hasFile('fileIjazah')) {
             $show = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->value('fileIjazah');
             $namafileIjazah = time() . "_" . $fileIjazah->getClientOriginalName();
-            $fileIjazah->move($tujuan_upload, $namafileIjazah);
-            File::delete($tujuan_upload . '/' . $show);
+            $tujuan_upload2 = public_path('/data_file2');
+            $thumb_img = Image::make($fileIjazah->getRealPath())->resize(100, 100);
+            $thumb_img->save($tujuan_upload2.'/'.$namafileIjazah,80);
+            File::delete($tujuan_upload2 . '/' . $show);
+            $tujuan_upload2 = public_path('/data_file') ;
+
+            $fileIjazah->move($tujuan_upload2, $namafileIjazah);
+            File::delete($tujuan_upload2 . '/' . $show);
             $Tbdetailmentor->fileIjazah = $namafileIjazah;
         } else { }
         $Tbdetailmentor->No_Identitas = $request['No_Identitas'];

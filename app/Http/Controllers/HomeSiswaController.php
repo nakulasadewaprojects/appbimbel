@@ -20,7 +20,8 @@ class HomeSiswaController extends Controller
     {   
         $showing = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->first();
         $showing1 = DB::table('tbmentor')->where('idmentor', $id )->value('NoIDMentor');
-        
+        $getpaket = DB::table('paketbimbel')->where('NoIDMentor', $showing1)->get('idpaket');
+        $getpaketcount = count($getpaket);
         $caripaket=DB::table('paketbimbel')
                     ->where('NoIDMentor', $showing1)->first();
         $showmentor=DB::table('tbmentor')
@@ -31,7 +32,7 @@ class HomeSiswaController extends Controller
           ->where('tbmentor.idmentor', $id)->get();
 
         $idmentor=$id;      
-        return view ('detailmentor',['caripaket'=>$caripaket,'showmentor' => $showmentor,'isCompleted' => $showing,'idmentor'=>$idmentor,'paket'=>$paketBimbel]);
+        return view ('detailmentor',['getpaketcount'=>$getpaketcount,'caripaket'=>$caripaket,'showmentor' => $showmentor,'isCompleted' => $showing,'idmentor'=>$idmentor,'paket'=>$paketBimbel]);
         // return $caripaket;
       }
     public function formAjukan($id){
@@ -9238,7 +9239,17 @@ class HomeSiswaController extends Controller
     public function tutorialsiswa(){
       $siswa = DB::table('tbsiswa')->where('idtbSiswa', Auth::user()->idtbSiswa)->first();
       $showing = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->first();
-      return view('tutorialsiswa' , ['ProfilSiswa' => $showing,'s'=>$siswa] , ['isCompleted' => $showing,'s'=>$siswa]);
+      $jenjang= DB::table('tbsiswa')
+        ->join('tbdetailsiswa','tbdetailsiswa.idtbSiswa','=','tbsiswa.idtbSiswa')
+        ->where('tbsiswa.idtbSiswa', Auth::user()->idtbSiswa)->value('jenjang');
+      $getmodul = DB::table('modulsiswa')
+        ->join('siswabimbel','modulsiswa.mentor','=','siswabimbel.NoIDTutor')
+        ->join('tbsiswa','tbsiswa.NoIDSiswa','=','siswabimbel.NoIDSiswa')
+        ->join('tbdetailsiswa','tbdetailsiswa.idtbSiswa','=','tbsiswa.idtbSiswa')  
+        ->where('siswabimbel.NoIDSiswa',  Auth::user()->NoIDSiswa)
+        ->where('modulsiswa.jenjangpendidikan',$jenjang)->get();
+      return view('tutorialsiswa' , ['ProfilSiswa' => $showing,'s'=>$siswa] , ['isCompleted' => $showing,'s'=>$siswa, 'modul'=>$getmodul]);
+      // return  $getmodul;
     }
     public function quizsiswa(){
       $siswa = DB::table('tbsiswa')->where('idtbSiswa', Auth::user()->idtbSiswa)->first();
