@@ -14,7 +14,7 @@
 		<div class="row">			
 			<div class="col-xl-12">
 				<!--begin:: Widgets/Company Summary-->
-				<div class="m-portlet m-portlet--full-height ">
+				<div class="m-portlet m-portlet--success m-portlet--head-solid-bg m-portlet--head-sm" data-portlet="true" id="m_portlet_tools_2">
 					<div class="m-portlet__head">
 						<div class="m-portlet__head-caption">
 							<div class="m-portlet__head-title">
@@ -194,7 +194,7 @@
 				</div>
 			</div>
 		<div class="col-xl-12">
-			<div class="m-portlet">
+			<div class="m-portlet m-portlet--success m-portlet--head-solid-bg m-portlet--head-sm" data-portlet="true" id="m_portlet_tools_2">
 				<div class="m-portlet__head">
 					<div class="m-portlet__head-caption">
 						<div class="m-portlet__head-title">
@@ -207,14 +207,14 @@
 						</div>
 					</div>
 				</div>
-				@if($caripaket==NULL)
-				<span class="m-pricing-table-3__description">
-					<span>
-						Tidak Ada Paket Bimbel
-					</span>
-				</span>
-				@else
 				<div class="m-portlet__body">
+					@if($caripaket==NULL)
+					<span class="m-pricing-table-3__description">
+						<span>
+							<center>Tidak Ada Paket Bimbel</center>
+						</span>
+					</span>
+					@else
 					<div class="m-pricing-table-3 m-pricing-table-3--fixed">
 						@if($getpaketcount==1)
 						<div class="m-pricing-table-1">
@@ -258,6 +258,7 @@
 											<button type="button" class="btn btn-brand m-btn m-btn--custom m-btn--pill m-btn--wide m-btn--uppercase m-btn--bolder m-btn--sm">
 												Ajukan
 											</button>
+										</a>
 									</div>
 								</div>
 								@endforeach
@@ -304,6 +305,7 @@
 										<button type="button" class="btn btn-brand m-btn m-btn--custom m-btn--pill m-btn--wide m-btn--uppercase m-btn--bolder m-btn--sm">
 											Ajukan
 										</button>
+									</a>
 									</div>
 								</div>
 								@endforeach
@@ -351,6 +353,7 @@
 											<button type="button" class="btn btn-brand m-btn m-btn--custom m-btn--pill m-btn--wide m-btn--uppercase m-btn--bolder m-btn--sm">
 												Ajukan
 											</button>
+										</a>
 									</div>
 								</div>
 								@endforeach
@@ -398,6 +401,7 @@
 											<button type="button" class="btn btn-brand m-btn m-btn--custom m-btn--pill m-btn--wide m-btn--uppercase m-btn--bolder m-btn--sm">
 												Ajukan
 											</button>
+										</a>
 									</div>
 								</div>
 								@endforeach
