@@ -207,7 +207,7 @@ class HomeController extends Controller
 	]);
 	// alihkan halaman ke halaman pegawai
 	return redirect('/datapaket');
-}
+    }
     public function inputpaketbimbel(Request $request){
         if($request->hasAny('hari')){
             $hari=$request['hari'];
@@ -256,10 +256,24 @@ class HomeController extends Controller
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
         return view('payment' , ['isCompleted' => $showing, 'm' => $mentor]);
     }
+
     public function report(){
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
         return view('report' , ['isCompleted' => $showing, 'm' => $mentor]);
+    }
+    public function inputreport(Request $request){
+        DB::table('hasilpembelajaran')->insert([
+            'IdMentor'=>$request->id,
+            'TglBimbel'=>$request->tanggalbimbel,
+            'wkt_mulai'=>$request->waktuMulai,
+            'wkt_selesai'=>$request->waktuAkhir,
+            'MatPel'=>$request->matpel,
+            'ModulMatpel'=>$request->modulmatpel,
+            'Aktifitas'=>$request->aktivitas,
+            'Catatan'=>$request->catatan,
+            ]);
+            return redirect('/dashboard');
     }
     public function datareport(){
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
@@ -309,6 +323,25 @@ class HomeController extends Controller
         DB::table('modulsiswa')->where('idmodul',$id)->delete();
         return redirect('/datatutorial');
         } 
+       
+    public function edittutorial($id){
+    $tutorial = DB::table('modulsiswa')->where('idmodul', $id)->first();
+    $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
+    $prodi = DB::table('mastermatpel')->get();
+    $jenjang = DB::table('tbjenjangpendidikan')->get();
+	return view('edittutorial',['isCompleted' => $showing,'tutorial' => $tutorial, 'matpel' => $prodi, 'jenjang' => $jenjang]);
+	// return $tutorial;
+    }
+    public function updatetutorial(Request $request){	      
+	DB::table('modulsiswa')->where('idmodul',$request->id)->update([
+		'nama_modul' => $request->nama,
+		'file' => $request->modul,
+		'jenjangpendidikan' => $request->jenjang,
+        'matpel' => $request->matpel,
+	]);
+	// alihkan halaman ke halaman pegawai
+	return redirect('/datatutorial');
+    }
     public function multimedia(){
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();

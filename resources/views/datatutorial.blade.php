@@ -65,18 +65,15 @@
 													Tanggal Upload
 												</th>
 												<th title="Field #3">
-													Mentor
-												</th>
-												<th title="Field #4">
 													File
 												</th>
-												<th title="Field #5">
+												<th title="Field #4">
 													Jenjang Pendidikan
 												</th>
-												<th title="Field #6">
+												<th title="Field #5">
 													Mata Pelajaran
 												</th>
-												<th title="Field #7">
+												<th title="Field #6">
 													Action
 												</th>
 											</tr>
@@ -85,14 +82,13 @@
 										@foreach($tutorial as $t)
 										<tr>											
 											<td>{{$t->nama_modul}}</td>
-											<td>{{$t->tgl_upload}}</td>
-											<td>{{$t->mentor}} bulan</td>											
+											<td>{{$t->tgl_upload}}</td>										
 											<td>{{$t->file}}</td>
 											<td>{{$t->jenjangpendidikan}}</td>
 											<td>{{$t->matpel}}</td>
 											
 											<td>										
-												<a href="">Edit</a>
+												<a href="http://localhost/appbimbel/public/datatutorial/edittutorial/{{$t->idmodul}}">Edit</a>
 												<a href="http://localhost/appbimbel/public/datatutorial/hapustutorial/{{$t->idmodul}}">Hapus</a>
 											</td>																			
 										</tr>
