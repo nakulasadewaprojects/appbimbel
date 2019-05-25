@@ -60,6 +60,7 @@ Route::get('/multimediasiswa', 'HomeSiswaController@multimediasiswa');
 Route::get('/tutorialsiswa', 'HomeSiswaController@tutorialsiswa');
 Route::get('/quizsiswa', 'HomeSiswaController@quizsiswa');
 Route::get('/jadwalsiswa', 'HomeSiswaController@jadwalsiswa');
+Route::get('/pengajuan', 'HomeSiswaController@pengajuan');
 Route::get('/reportsiswa', 'HomeSiswaController@reportsiswa');
 Route::get('/informasipayment', 'HomeSiswaController@informasipayment');
 Route::put('/profilesiswa/update/{idtbSiswa}', 'HomeSiswaController@update');
