@@ -61,12 +61,9 @@
 												<th title="Field #1">
 													Nama Modul
 												</th>
-												{{-- <th title="Field #3">
-													Mentor
-												</th> --}}
-												{{-- <th title="Field #4">
+												<th title="Field #4">
 													File
-												</th> --}}
+												</th>
 												<th title="Field #5">
 													Jenjang Pendidikan
 												</th>
@@ -85,11 +82,12 @@
 										@foreach($tutorial as $t)
 										<tr>											
 											<td>
-													<img src="assets/app/media/img/files/pdf.svg" height="10px" width="10px" alt="" id="myPDF">
-													<a target="_blank" href="{{ url('/data_modul/'.$t->file) }}">{{$t->nama_modul}}<a />
+												{{$t->nama_modul}}
 											</td>
-											{{-- <td>{{$t->mentor}} bulan</td>											 --}}
-											{{-- <td>{{$t->file}}</td> --}}
+											<td>
+												<img src="assets/app/media/img/files/pdf.svg" height="30px" width="30px" alt="" id="myPDF">
+												<a target="_blank" href="{{ url('/data_modul/'.$t->file) }}">{{$t->file}}<a />
+											</td>
 											<td>
 												@if($t->jenjangpendidikan==1)
 												SD
@@ -116,9 +114,16 @@
 											</td>
 											<td>{{$t->tgl_upload}}</td>
 											
-											<td>										
-												<a href="http://localhost/appbimbel/public/datatutorial/edittutorial/{{$t->idmodul}}">Edit</a>
-												<a href="http://localhost/appbimbel/public/datatutorial/hapustutorial/{{$t->idmodul}}">Hapus</a>
+											<td>
+												<a href="http://localhost/appbimbel/public/datatutorial/hapustutorial/{{$t->idmodul}}" class="btn btn-warning m-btn m-btn--icon m-btn--icon-only">
+														<i class="la la-edit"></i>
+												</a>
+												<a href="http://localhost/appbimbel/public/datatutorial/edittutorial/{{$t->idmodul}}" class="btn btn-danger m-btn m-btn--icon m-btn--icon-only">
+															<i class="la la-folder"></i>
+												</a>
+																								
+												{{-- <a href="http://localhost/appbimbel/public/datatutorial/edittutorial/{{$t->idmodul}}">Edit</a>
+												<a href="http://localhost/appbimbel/public/datatutorial/hapustutorial/{{$t->idmodul}}">Hapus</a> --}}
 											</td>																			
 										</tr>
 										@endforeach
