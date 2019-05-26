@@ -170,16 +170,21 @@ class HomeController extends Controller
         return view('paketbimbel' , ['getpaketcount'=>$getpaketcount,'isCompleted' => $showing, 'm' => $mentor,'prodiMentor'=>$getexplodeMentor]);
     }
     public function datapaket(){
-        $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
-        $datapaket = DB::table('paketbimbel')->get();     
-        return view('datapaket' , ['isCompleted' => $showing, 'm' => $mentor, 'paketbimbel' => $datapaket]);
+        $showing1 = DB::table('tbmentor')->where('NoIDMentor', Auth::user()->NoIDMentor )->value('NoIDMentor');
+        $getpaket = DB::table('paketbimbel')->where('NoIDMentor', $showing1)->get('idpaket');
+        $getpaketcount = count($getpaket);
+        $datapaket = DB::table('paketbimbel')
+        ->join ('tbmentor','paketbimbel.NoIDMentor','=','tbmentor.NoIDMentor')
+        ->where('paketbimbel.NoIDMentor', Auth::user()->NoIDMentor)->get(); 
+        // return $getpaketcount;
+        return view('datapaket' , ['getpaketcount'=>$getpaketcount,'isCompleted' => $showing, 'paket' => $datapaket]);
     }
     public function hapus($id){
     DB::table('paketbimbel')->where('idpaket',$id)->delete();
 	return redirect('/datapaket');
     }   
-    public function edit($id){
+    public function editpaket($id){
     $getprodiMentor = DB::table('tbdetailmentor')
     ->join('tbmentor','tbmentor.idmentor','=','tbdetailmentor.idtbRiwayatTutor')      
     ->where('idtbRiwayatTutor',  Auth::user()->idmentor)->value('prodi');
@@ -207,7 +212,6 @@ class HomeController extends Controller
         'keterangan' => $request->keterangan,
         'statusPaket' => $request->statuspaket,
 	]);
-	// alihkan halaman ke halaman pegawai
 	return redirect('/datapaket');
     }
     public function inputpaketbimbel(Request $request){
@@ -249,7 +253,7 @@ class HomeController extends Controller
         'keterangan'=>$request->keterangan,
         'statusPaket'=>'1',
         ]);
-      return redirect('/dashboard');
+      return redirect('/datapaket');
 
     }
 

@@ -4,216 +4,230 @@
 <div class="m-grid__item m-grid__item--fluid m-wrapper">
 	<div class="m-content">
 		<div class="row">
-			<div class="col-xl-6">
+			<div class="col-xl-12">
 				<!--begin:: Widgets/Tasks -->
-				<div class="m-portlet m-portlet--full-height ">
+				<div class="m-portlet m-portlet--success m-portlet--head-solid-bg m-portlet--head-sm" data-portlet="true" id="m_portlet_tools_2">
 					<div class="m-portlet__head">
 						<div class="m-portlet__head-caption">
 							<div class="m-portlet__head-title">
+								<span class="m-portlet__head-icon">
+									<i class="la la-puzzle-piece"></i>
+								</span>
 								<h3 class="m-portlet__head-text">
-									Tasks
+									Data Paket Bimbel
 								</h3>
 							</div>
 						</div>
 					</div>
 					<div class="m-portlet__body">
-						<div class="tab-content">
-							<div class="tab-pane active" id="m_widget2_tab1_content">
-								<div class="m-widget2">
-									<div class="m-widget2__item m-widget2__item--primary">
-										<div class="m-widget2__checkbox">
-											
-										</div>
-										<div class="m-widget2__desc">
-											<span class="m-widget2__text">
-												Make Metronic Great  Again.Lorem Ipsum Amet
+						<div class="m-pricing-table-3 m-pricing-table-3--fixed">
+							@if($getpaketcount==1)
+							<div class="m-pricing-table-1">
+								<div class="m-pricing-table-1__items row">
+									@foreach($paket as $p)
+									<div class="m-pricing-table-1__item col-lg-6">
+										<div class="m-pricing-table-1__visual">
+											<div class="m-pricing-table-1__hexagon1"></div>
+											<div class="m-pricing-table-1__hexagon2"></div>
+											<span class="m-pricing-table-1__icon m--font-brand">
+												<i class="fa flaticon-piggy-bank"></i>
 											</span>
+										</div>
+										<span class="m-pricing-table-1__price">
+												Rp. {{$p->harga}}
+										</span>
+										<h2 class="m-pricing-table-1__subtitle">
+											{{$p->nmpaket}}
+										</h2>
+										<span class="m-pricing-table-1__description">
+												Bimbel selama {{$p->durasi}} bulan
 											<br>
-											<span class="m-widget2__user-name">
-												<a href="#" class="m-widget2__link">
-													By Bob
-												</a>
-											</span>
-										</div>
-										<div class="m-widget2__actions">
-											<div class="m-widget2__actions-nav">
-												<div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover">
-													<a href="#" class="m-dropdown__toggle">
-														<i class="la la-ellipsis-h"></i>
-													</a>
-													<div class="m-dropdown__wrapper">
-														<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
-														
-													</div>
-												</div>
-											</div>
+											@if($p->hari!=NULL)
+											Hari {{$p->hari}}
+											@else
+											Hari Tentukan sendiri
+											@endif
+											<br>
+											@if($p->wkt_mulai!=NULL)
+											Jam {{$p->wkt_mulai}} - {{$p->wkt_akhir}}
+											@else
+											Jam Tentukan Sendiri
+											@endif
+										</span>
+										<h2 class="m-pricing-table-1__subtitle">
+												{{$p->keterangan}}
+											</h2>
+										<div class="m-pricing-table-1__btn">
+										<a href="http://localhost/appbimbel/public/datapaket/editpaket/{{$p->idpaket}}"> 
+											<button type="button" class="btn btn-info">
+												Edit Paket
+											</button>
+											<button type="button" class="btn btn-success">
+												Non Aktif
+											</button>
+										</a>
 										</div>
 									</div>
-									<div class="m-widget2__item m-widget2__item--warning">
-										<div class="m-widget2__checkbox">
-											
-										</div>
-										<div class="m-widget2__desc">
-											<span class="m-widget2__text">
-												Prepare Docs For Metting On Monday
-											</span>
-											<br>
-											<span class="m-widget2__user-name">
-												<a href="#" class="m-widget2__link">
-													By Sean
-												</a>
-											</span>
-										</div>
-										<div class="m-widget2__actions">
-											<div class="m-widget2__actions-nav">
-												<div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover">
-													<a href="#" class="m-dropdown__toggle">
-														<i class="la la-ellipsis-h"></i>
-													</a>
-													<div class="m-dropdown__wrapper">
-														<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
-														
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="m-widget2__item m-widget2__item--brand">
-										<div class="m-widget2__checkbox">
-											
-										</div>
-										<div class="m-widget2__desc">
-											<span class="m-widget2__text">
-												Make Widgets Great Again.Estudiat Communy Elit
-											</span>
-											<br>
-											<span class="m-widget2__user-name">
-												<a href="#" class="m-widget2__link">
-													By Aziko
-												</a>
-											</span>
-										</div>
-										<div class="m-widget2__actions">
-											<div class="m-widget2__actions-nav">
-												<div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover">
-													<a href="#" class="m-dropdown__toggle">
-														<i class="la la-ellipsis-h"></i>
-													</a>
-													<div class="m-dropdown__wrapper">
-														<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
-														
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="m-widget2__item m-widget2__item--success">
-										<div class="m-widget2__checkbox">
-											
-										</div>
-										<div class="m-widget2__desc">
-											<span class="m-widget2__text">
-												Make Metronic Great Again.Lorem Ipsum
-											</span>
-											<br>
-											<span class="m-widget2__user-name">
-												<a href="#" class="m-widget2__link">
-													By James
-												</a>
-											</span>
-										</div>
-										<div class="m-widget2__actions">
-											<div class="m-widget2__actions-nav">
-												<div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover">
-													<a href="#" class="m-dropdown__toggle">
-														<i class="la la-ellipsis-h"></i>
-													</a>
-													<div class="m-dropdown__wrapper">
-														<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
-														
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="m-widget2__item m-widget2__item--danger">
-										<div class="m-widget2__checkbox">
-											
-										</div>
-										<div class="m-widget2__desc">
-											<span class="m-widget2__text">
-												Completa Financial Report For Emirates Airlines
-											</span>
-											<br>
-											<span class="m-widget2__user-name">
-												<a href="#" class="m-widget2__link">
-													By Bob
-												</a>
-											</span>
-										</div>
-										<div class="m-widget2__actions">
-											<div class="m-widget2__actions-nav">
-												<div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover">
-													<a href="#" class="m-dropdown__toggle">
-														<i class="la la-ellipsis-h"></i>
-													</a>
-													<div class="m-dropdown__wrapper">
-														<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
-													
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="m-widget2__item m-widget2__item--info">
-										<div class="m-widget2__checkbox">
-											
-										</div>
-										<div class="m-widget2__desc">
-											<span class="m-widget2__text">
-												Completa Financial Report For Emirates Airlines
-											</span>
-											<br>
-											<span class="m-widget2__user-name">
-												<a href="#" class="m-widget2__link">
-													By Sean
-												</a>
-											</span>
-										</div>
-										<div class="m-widget2__actions">
-											<div class="m-widget2__actions-nav">
-												<div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover">
-													<a href="#" class="m-dropdown__toggle">
-														<i class="la la-ellipsis-h"></i>
-													</a>
-													<div class="m-dropdown__wrapper">
-														<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
-														
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
+									@endforeach
 								</div>
 							</div>
-							
-							<div class="tab-pane" id="m_widget2_tab2_content"></div>
-							<div class="tab-pane" id="m_widget2_tab3_content"></div>
-						</div>					
-								<div class="row">
-									<div class="col-lg-2"></div>
-									<div class="col-lg-6">
-										<button type="button" class="btn btn-outline-success active">
-											Edit Paket
-										</button>
-										<button type="button" class="btn btn-outline-info active">
-											Nonaktif
-										</button>
+							@elseif($getpaketcount==2)
+							<div class="m-pricing-table-1">
+								<div class="m-pricing-table-1__items row">
+									@foreach($paket as $p)
+									<div class="m-pricing-table-1__item col-lg-6">
+										<div class="m-pricing-table-1__visual">
+											<div class="m-pricing-table-1__hexagon1"></div>
+											<div class="m-pricing-table-1__hexagon2"></div>
+											<span class="m-pricing-table-1__icon m--font-brand">
+												<i class="fa flaticon-piggy-bank"></i>
+											</span>
+										</div>
+										<span class="m-pricing-table-1__price">
+												Rp. {{$p->harga}}
+										</span>
+										<h2 class="m-pricing-table-1__subtitle">
+											{{$p->nmpaket}}
+										</h2>
+										<span class="m-pricing-table-1__description">
+												Bimbel selama {{$p->durasi}} bulan
+											<br>
+											@if($p->hari!=NULL)
+											Hari {{$p->hari}}
+											@else
+											Hari Tentukan sendiri
+											@endif
+											<br>
+											@if($p->wkt_mulai!=NULL)
+											Jam {{$p->wkt_mulai}} - {{$p->wkt_akhir}}
+											@else
+											Jam Tentukan Sendiri
+											@endif
+										</span>
+										<h2 class="m-pricing-table-1__subtitle">
+												{{$p->keterangan}}
+											</h2>
+										<div class="m-pricing-table-1__btn">
+										<a href="http://localhost/appbimbel/public/datapaket/editpaket/{{$p->idpaket}}">
+											<button type="button" class="btn btn-info">
+												Edit Paket
+											</button>
+											<button type="button" class="btn btn-success">
+												Non Aktif
+											</button>
+										</a>
+										</div>
 									</div>
-								</div>						
-					</div>					
+									@endforeach
+								</div>
+							</div>
+							@elseif($getpaketcount==3)
+							<div class="m-pricing-table-1">
+								<div class="m-pricing-table-1__items row">
+									@foreach($paket as $p)
+									<div class="m-pricing-table-1__item col-lg-4">
+										<div class="m-pricing-table-1__visual">
+											<div class="m-pricing-table-1__hexagon1"></div>
+											<div class="m-pricing-table-1__hexagon2"></div>
+											<span class="m-pricing-table-1__icon m--font-brand">
+												<i class="fa flaticon-piggy-bank"></i>
+											</span>
+										</div>
+										<span class="m-pricing-table-1__price">
+											Rp. {{$p->harga}}
+											Free
+										</span>
+										<h2 class="m-pricing-table-1__subtitle">
+											{{$p->nmpaket}}
+										</h2>
+										<span class="m-pricing-table-1__description">
+											Bimbel selama {{$p->durasi}} bulan
+											<br>
+											@if($p->hari!=NULL)
+											Hari {{$p->hari}}
+											@else
+											Hari Tentukan sendiri
+											@endif
+											<br>
+											@if($p->wkt_mulai!=NULL)
+											Jam {{$p->wkt_mulai}} - {{$p->wkt_akhir}}
+											@else
+											Jam Tentukan Sendiri
+											@endif
+										</span>
+										<h2 class="m-pricing-table-1__subtitle">
+											{{$p->keterangan}}
+										</h2>
+										<div class="m-pricing-table-1__btn">
+											<a href="http://localhost/appbimbel/public/datapaket/editpaket/{{$p->idpaket}}">
+												<button type="button" class="btn btn-info">
+													Edit Paket
+												</button>
+												<button type="button" class="btn btn-success">
+													Non Aktif
+												</button>
+											</a>
+										</div>
+									</div>
+									@endforeach
+								</div>
+							</div>
+							@elseif($getpaketcount==4)
+							<div class="m-pricing-table-1">
+								<div class="m-pricing-table-1__items row">
+									@foreach($paket as $p)
+									<div class="m-pricing-table-1__item col-lg-3">
+										<div class="m-pricing-table-1__visual">
+											<div class="m-pricing-table-1__hexagon1"></div>
+											<div class="m-pricing-table-1__hexagon2"></div>
+											<span class="m-pricing-table-1__icon m--font-brand">
+												<i class="fa flaticon-piggy-bank"></i>
+											</span>
+										</div>
+										<span class="m-pricing-table-1__price">
+											Rp. {{$p->harga}}
+											Free
+										</span>
+										<h2 class="m-pricing-table-1__subtitle">
+											{{$p->nmpaket}}
+										</h2>
+										<span class="m-pricing-table-1__description">
+											Bimbel selama {{$p->durasi}} bulan
+											<br>
+											@if($p->hari!=NULL)
+											Hari {{$p->hari}}
+											@else
+											Hari Tentukan sendiri
+											@endif
+											<br>
+											@if($p->wkt_mulai!=NULL)
+											Jam {{$p->wkt_mulai}} - {{$p->wkt_akhir}}
+											@else
+											Jam Tentukan Sendiri
+											@endif
+										</span>
+										<h2 class="m-pricing-table-1__subtitle">
+											{{$p->keterangan}}
+										</h2>
+										<div class="m-pricing-table-1__btn">
+											<a href="http://localhost/appbimbel/public/datapaket/editpaket/{{$p->idpaket}}">
+												<button type="button" class="btn btn-info">
+													Edit Paket
+												</button>
+												<button type="button" class="btn btn-success">
+													Non Aktif
+												</button>
+											</a>
+										</div>
+									</div>
+									@endforeach
+								</div>
+							</div>
+							@endif
+						</div>
+					</div>
+					
 				</div>
-				
 				<!--end:: Widgets/Tasks -->
 			</div>
 		</div>
