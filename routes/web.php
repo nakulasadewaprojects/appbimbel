@@ -51,6 +51,7 @@ Route::get('/datatutorial', 'HomeController@datatutorial');
 Route::get('/datatutorial/hapustutorial/{id}','HomeController@hapustutorial');
 Route::get('/datatutorial/edittutorial/{id}','HomeController@edittutorial');
 Route::post('/datatutorial/updatetutorial','HomeController@updatetutorial');
+Route::get('/exportexcel', 'HomeController@exportexcel');
 Route::get('/multimedia', 'HomeController@multimedia');
 Route::post('/multimedia/input', 'HomeController@inputmultimedia'); 
 Route::get('/datamultimedia', 'HomeController@datamultimedia');
