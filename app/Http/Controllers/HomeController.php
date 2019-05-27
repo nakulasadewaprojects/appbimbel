@@ -261,55 +261,55 @@ class HomeController extends Controller
     public function report(){
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
-        $siswa = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idsiswa)->first();
+        // $siswa = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idsiswa)->first();
 
-        return view('report' , ['isCompleted' => $showing, 'm' => $mentor] , ['isCompleted' => $siswa, 'm' => $siswa] );
+        return view('report' , ['isCompleted' => $showing, 'm' => $mentor] );
     }
-    public function inputreport(Request $request){
-        if($request->hasAny('hari')){
-            $hari=$request['hari'];
-            $hari2=implode(', ',$hari);
-            $h= $hari2; 
-          }else{
-            $hari=$request['hari'];
-           $h= $hari; 
-          }
+    // public function inputreport(Request $request){
+    //     if($request->hasAny('hari')){
+    //         $hari=$request['hari'];
+    //         $hari2=implode(', ',$hari);
+    //         $h= $hari2; 
+    //       }else{
+    //         $hari=$request['hari'];
+    //        $h= $hari; 
+    //       }
 
-          $created_at=Carbon::now();
+    //       $created_at=Carbon::now();
 
-        if($request->hasAny('matpel')){
-            $matpel=$request['matpel'];
-            $matpel2=implode(', ',$matpel);
-            $m= $matpel2; 
-          }else{
-            $matpel=$request['matpel'];
-           $m= $matpel; 
-          }
-        if($request['waktuMulai']==NULL){
-            $jam=$request->waktuMulai;
-        }else{
-           $jam=Carbon::parse($request['waktuMulai'])->format('H:i:s'); 
-        }
-        if($request['waktuAkhir']==NULL){
-            $jamAkhir=$request->waktuAkhir;
-        }else{
-           $jamAkhir=Carbon::parse($request['waktuAkhir'])->format('H:i:s'); 
-        }
-        DB::table('hasilpembelajaran')->insert([
-        'IdMentor'=>$request->idsiswa,
-        'IdSiswa'=>$request->idsiswa,
-        'created_at'=>$created_at,
-        'TglBimbel'=>$request->tglBimbel,
-        'wkt_mulai'=>$jam,
-        'wkt_akhir'=>$jamAkhir,
-        'MatPel'=>$m,
-        'Modulmatpel'=>$request->modul,
-        'Aktifitas'=>$request->aktifitas,
-        'Catatan'=>$request->catatan,
-        ]);
-      return redirect('/dashboard');
+    //     if($request->hasAny('matpel')){
+    //         $matpel=$request['matpel'];
+    //         $matpel2=implode(', ',$matpel);
+    //         $m= $matpel2; 
+    //       }else{
+    //         $matpel=$request['matpel'];
+    //        $m= $matpel; 
+    //       }
+    //     if($request['waktuMulai']==NULL){
+    //         $jam=$request->waktuMulai;
+    //     }else{
+    //        $jam=Carbon::parse($request['waktuMulai'])->format('H:i:s'); 
+    //     }
+    //     if($request['waktuAkhir']==NULL){
+    //         $jamAkhir=$request->waktuAkhir;
+    //     }else{
+    //        $jamAkhir=Carbon::parse($request['waktuAkhir'])->format('H:i:s'); 
+    //     }
+    //     DB::table('hasilpembelajaran')->insert([
+    //     'IdMentor'=>$request->idsiswa,
+    //     'IdSiswa'=>$request->idsiswa,
+    //     'created_at'=>$created_at,
+    //     'TglBimbel'=>$request->tglBimbel,
+    //     'wkt_mulai'=>$jam,
+    //     'wkt_akhir'=>$jamAkhir,
+    //     'MatPel'=>$m,
+    //     'Modulmatpel'=>$request->modul,
+    //     'Aktifitas'=>$request->aktifitas,
+    //     'Catatan'=>$request->catatan,
+    //     ]);
+    //   return redirect('/dashboard');
 
-    }
+    // }
     public function datareport(){
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
