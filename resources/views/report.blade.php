@@ -49,13 +49,22 @@
                                             </div>
                                         </div>
                                     </div>
-                                   
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                            Nama Siswa:
+                                        </label>
+                                        <div class="col-lg-6">
+
+                                            <!-- <input type="hidden" required name="id" class="form-control m-input" value="{{$m->NoIDMentor}}"> -->
+                                            <!-- <input type="hidden" required name="id" class="form-control m-input" value="{{$m->NoIDMentor}}"> -->
+                                            <input type="text" required name="nama" class="form-control m-input">
+                                        </div>
+                                    </div>
                                     <div class="form-group m-form__group row">
                                         <label class="col-lg-2 col-form-label">
                                             Waktu Mulai:
                                         </label>
                                         <div class="col-lg-6">
-                                            {{-- <input type="email" class="form-control m-input"> --}}
                                             <input type='text' class="form-control" id="m_timepicker_1" name="waktuMulai" placeholder="Select time" />
                                             <span class="m-form__help">
                                                 Waktu Bimbel selama 45 menit dan istirahat selama 15 menit
@@ -68,10 +77,6 @@
                                         </label>
                                         <div class="col-lg-6">
                                             <input type='text' class="form-control" id="m_timepicker_1" name="waktuAkhir" placeholder="Select time" />
-                                            {{-- <input type="email" class="form-control m-input"> --}}
-                                            {{-- <span class="m-form__help">
-                                                            We'll never share your email with anyone else
-                                                        </span> --}}
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
@@ -79,7 +84,6 @@
                                             Mata Pelajaran:
                                         </label>
                                         <div class="col-lg-6">
-                                            {{-- <input type="email" class="form-control m-input" > --}}
                                             <select class="form-control m-bootstrap-select m_selectpicker" required name="matpel[]" multiple>
                                                 <option value="Bhs.Indonesia"> Bahasa Indonesia</option>
                                                 <option value="Matematika"> Matematika</option>
@@ -105,12 +109,23 @@
                                     </div>
                                     <div class="form-group m-form__group row">
                                         <label class="col-lg-2 col-form-label">
-                                            Aktivitas:
+                                            Aktifitas:
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <textarea class="form-control m-input" type="text" rows="3" name="keterangan"></textarea>
+                                            <span class="m-form__help">
+                                                Tambahkan Keterangan aktifitas yang telah dilakukan
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                            Catatan:
                                         </label>
                                         <div class="col-lg-6">
                                             <textarea class="form-control m-input" type="text" rows="3" name="aktivitas"></textarea>
                                             <span class="m-form__help">
-                                                Tambahkan aktivitas saat pembelajaran ex:latihan soal
+                                                Tambahkan Catatan untuk siswa
                                             </span>
                                         </div>
                                     </div>
@@ -141,11 +156,9 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                         </form>
-                        <!--end::Form-->
                     </div>
-                    <!--end::Portlet-->
-                    <!--end::Portlet-->
                 </div>
             </div>
         </div>

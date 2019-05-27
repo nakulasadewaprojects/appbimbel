@@ -51,6 +51,7 @@ Route::get('/datatutorial', 'HomeController@datatutorial');
 Route::get('/datatutorial/hapustutorial/{id}','HomeController@hapustutorial');
 Route::get('/datatutorial/edittutorial/{id}','HomeController@edittutorial');
 Route::post('/datatutorial/updatetutorial','HomeController@updatetutorial');
+Route::get('/exportexcel', 'HomeController@exportexcel');
 Route::get('/multimedia', 'HomeController@multimedia');
 Route::post('/multimedia/input', 'HomeController@inputmultimedia'); 
 Route::get('/datamultimedia', 'HomeController@datamultimedia');
@@ -64,6 +65,7 @@ Route::get('/multimediasiswa', 'HomeSiswaController@multimediasiswa');
 Route::get('/tutorialsiswa', 'HomeSiswaController@tutorialsiswa');
 Route::get('/quizsiswa', 'HomeSiswaController@quizsiswa');
 Route::get('/jadwalsiswa', 'HomeSiswaController@jadwalsiswa');
+Route::get('/pengajuan', 'HomeSiswaController@pengajuan');
 Route::get('/reportsiswa', 'HomeSiswaController@reportsiswa');
 Route::get('/informasipayment', 'HomeSiswaController@informasipayment');
 Route::put('/profilesiswa/update/{idtbSiswa}', 'HomeSiswaController@update');
@@ -83,6 +85,7 @@ Route::get('/detailApprovalBimbel/{id}', 'HomeController@detailApprovalMentor');
 Route::post('/TerimaTolakBimbel', 'HomeController@TerimaTolakBimbel');
 Route::get('/formAjukanPaket/{id}/{id2}', 'HomeSiswaController@formAjukanPaket');
 Route::post('/formAjukanPaket/input', 'HomeSiswaController@AjukanPaket');
+Route::get('/siswa/export_excel', 'HomeController@export_excel');
 
 
 

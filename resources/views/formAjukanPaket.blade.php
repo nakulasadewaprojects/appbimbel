@@ -9,7 +9,7 @@
 		<div class="row">
 			<div class="col-lg-10">
 				<!--begin::Portlet-->
-				<div class="m-portlet">
+				<div class="m-portlet m-portlet--success m-portlet--head-solid-bg m-portlet--head-sm" data-portlet="true" id="m_portlet_tools_2">
 					<div class="m-portlet__head">
 						<div class="m-portlet__head-caption">
 							<div class="m-portlet__head-title">
@@ -309,13 +309,13 @@
 						<div class="m-portlet__foot m-portlet__foot--fit">
 							<div class="m-form__actions m-form__actions">
 								<div class="row">
-									<div class="col-lg-2"></div>
-									<div class="col-lg-6">
-										<button type="submit" class="btn btn-primary">
+									<div class="col-lg-4"></div>
+									<div class="col-lg-5">
+										<button type="button" class="btn btn-primary m-btn m-btn--custom">
 											Submit
 										</button>
-										<button type="reset" class="btn btn-secondary">
-											Cancel
+										<button type="button" class="btn btn-danger m-btn m-btn--custom">
+											Batal
 										</button>
 									</div>
 								</div>

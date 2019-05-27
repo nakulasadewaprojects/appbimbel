@@ -44,7 +44,7 @@
                                         <select class="form-control m-input" name="matpel" type="text" id="matpel">
                                             <option value="">Pilih Mata Pelajaran </option>                                                
                                         @foreach ($matpel as $mp)
-                                        <option value="{{ $mp->idMasterMatpel}}" > {{ $mp->MatPel}}</option>
+                                        <option value="{{ $mp->idMasterMatpel}}" {{$tutorial->matpel == $mp->idMasterMatpel ? 'selected' : ''}} > {{ $mp->MatPel}}</option>
                                         @endforeach	
                                 </select>
                                     </div>
@@ -58,7 +58,7 @@
                                         <select class="form-control m-input" name="jenjang" type="text" id="jenjang">
                                                 <option value="">Pilih Jenjang </option>
                                                 @foreach ($jenjang as $jp)
-												<option value="{{ $jp->idMasterPendidikan}}" > {{ $jp->jenjangPendidikan}}</option>
+                                                <option value="{{$jp->idMasterPendidikan}}" {{$tutorial->jenjangpendidikan == $jp->idMasterPendidikan ? 'selected' : ''}} > {{ $jp->jenjangPendidikan}}</option>
 												@endforeach	 
                                         </select>
                                     </div>
@@ -83,6 +83,38 @@
                                                *Upload File PDF max 2 mb
                                             </span>
                                     </div>
+									@if($tutorial->file!=null)
+                                    <div class="m-demo-icon">
+                                        <div class="m-demo-icon__preview">
+                                            <i class="fa fa-file-pdf-o"></i>
+                                        </div>
+                                        <div class="m-demo-icon__class" id="myPDF">
+                                            <a target="_blank" href="{{ url('/data_modul/'.$tutorial->file) }}">{{$tutorial->nama_modul}}"<br>
+                                                @if($tutorial->matpel==1)
+                                                Bhs. Indonesia
+                                                @elseif($tutorial->matpel==2)
+                                                Matematika
+                                                @elseif($tutorial->matpel==3)
+                                                IPA
+                                                @elseif($tutorial->matpel==4)
+                                                IPS
+                                                @else
+                                                Bhs. Iggris
+                                                @endif
+                                                Untuk
+                                                @if($tutorial->jenjangpendidikan==1)
+												SD
+												@elseif($tutorial->jenjangpendidikan==2)
+												SMP
+												@elseif($tutorial->jenjangpendidikan==3)
+												SMA
+												@else
+												SMK
+												@endif
+                                                <a />
+                                        </div>
+                                    </div>
+                                    @else Anda Belum Upload File Ijazah @endif
                                 </div>
                                 
                                 <br>
