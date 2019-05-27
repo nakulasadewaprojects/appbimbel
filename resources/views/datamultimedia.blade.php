@@ -11,7 +11,7 @@
 									<div class="m-portlet__head-caption">
 										<div class="m-portlet__head-title">
 											<h3 class="m-portlet__head-text">
-												Data Mutimedia
+												Data Multimedia
 											</h3>
 										</div>
 									</div>
@@ -59,54 +59,36 @@
 										<thead>
 											<tr>
 												<th title="Field #1">
-													Nama Paket
+													Tanggal Upload
+												</th>
+												<th title="Field #1">
+													Judul
+												</th>												
+												<th title="Field #4">
+													File
 												</th>
 												<th title="Field #2">
-													Harga
-												</th>
-												<th title="Field #3">
-													Durasi
+													Deskripsi
 												</th>
 												<th title="Field #4">
-													Hari
-												</th>
-												<th title="Field #5">
-													Waktu Mulai
-												</th>
-												<th title="Field #6">
-													Waktu Akhir
-												</th>
-												<th title="Field #7">
-													Mata Pelajaran
-												</th>
-												<th title="Field #8">
-													Keterangan
-												</th>
-												<th title="Field #8">
-													Status
-												</th>
-												<th title="Field #8">
 													Action
 												</th>
 											</tr>
 										</thead>
-										{{-- <tbody>
-										@foreach($paket as $p)
+										<tbody>
+										@foreach($multimedia as $m)
 										<tr>
-											
-											<td>{{$p->nmpaket}}</td>
-											<td>Rp. {{$p->harga}}</td>
-											<td>{{$p->durasi}} bulan</td>
-											<td>{{$p->hari}}</td>
-											<td>{{$p->wkt_mulai}}</td>
-											<td>{{$p->wkt_akhir}}</td>
-											<td>{{$p->matpel}}</td>
-											<td>{{$p->keterangan}}</td>
-											<td>{{$p->statusPaket}}</td>
-											
+											<td>{{$m->created_at}}</td>
+											<td>{{$m->judul}}</td>
+											<td>{{$m->file}}</td>
+											<td>{{$m->diskripsi}}</td>
+											<td>										
+												<a href="http://localhost/appbimbel/public/datamultimedia/editmultimedia/{{$m->idcontent}}">Edit</a>
+												<a href="http://localhost/appbimbel/public/datamultimedia/hapusmultimedia/{{$m->idcontent}}">Hapus</a>
+											</td>																					
 										</tr>
 										@endforeach
-										</tbody> --}}
+										</tbody>
 										
 									</table>
 									<!--end: Datatable -->

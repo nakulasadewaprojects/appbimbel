@@ -328,7 +328,7 @@ class HomeController extends Controller
     public function hapustutorial($id){
         DB::table('modulsiswa')->where('idmodul',$id)->delete();
         return redirect('/datatutorial');
-        } 
+    } 
        
     public function edittutorial($id){
     $tutorial = DB::table('modulsiswa')->where('idmodul', $id)->first();
@@ -345,7 +345,6 @@ class HomeController extends Controller
 		'jenjangpendidikan' => $request->jenjang,
         'matpel' => $request->matpel,
 	]);
-	// alihkan halaman ke halaman pegawai
 	return redirect('/datatutorial');
     }
     public function multimedia(){
@@ -369,15 +368,34 @@ class HomeController extends Controller
         'diskripsi'=>$request->deskripsi,
         'status_video'=>'1'
     ]);
-    return redirect('/dashboard');
+    return redirect('/datamultimedia');
     }
 
     public function datamultimedia(){
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
-        return view('datamultimedia' , ['isCompleted' => $showing, 'm' => $mentor]);
+        $datamultimedia = DB::table('contentvideo')->get();
+        return view('datamultimedia' , ['isCompleted' => $showing, 'm' => $mentor, 'multimedia' => $datamultimedia]);
     }
-    
+    public function hapusmultimedia($id){
+        DB::table('contentvideo')->where('idcontent',$id)->delete();
+        return redirect('/datamultimedia');
+    } 
+    public function editmultimedia($id){
+        $multimedia = DB::table('contentvideo')->where('idcontent', $id)->first();
+        $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
+        return view('editmultimedia',['isCompleted' => $showing,'multimedia' => $multimedia]);
+        // return $tutorial;
+        }
+    public function updatemultimedia(Request $request){	      
+    DB::table('contentvideo')->where('idcontent',$request->id)->update([
+        'judul' => $request->judul,
+        'file' => $request->file,
+        'diskripsi' => $request->deskripsi,
+        ]);
+    return redirect('/datamultimedia');
+    }
+
     public function update($idmentor, Request $request)
     {
         $this->validate($request, [
