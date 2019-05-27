@@ -206,8 +206,9 @@
                             <form method="POST" action="http://localhost/appbimbel/public/TerimaTolakBimbel">
                                 {{ csrf_field() }}
                             <div class="m-form__actions m-form__actions">
+                            <div class="m-portlet__body-separator"></div>
                                 <div class="row">
-                                    <div class="col-lg-2"></div>
+                                    <div class="col-lg-4"></div>
                                     <div class="col-lg-6">
                                         <input type="hidden" name="id" value="{{$detail->NoIDBimbel}}">
                                         <input type="hidden" name="terima" value="{{$detail->NoIDBimbel}}">
