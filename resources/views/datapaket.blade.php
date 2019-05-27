@@ -211,10 +211,10 @@
 										</h2>
 										<div class="m-pricing-table-1__btn">
 											<a href="http://localhost/appbimbel/public/datapaket/editpaket/{{$p->idpaket}}">
-												<button type="button" class="btn btn-info">
+												<button type="button" class="btn btn-primary">
 													Edit Paket
 												</button>
-												<button type="button" class="btn btn-success">
+												<button type="button" class="btn btn-danger">
 													Non Aktif
 												</button>
 											</a>

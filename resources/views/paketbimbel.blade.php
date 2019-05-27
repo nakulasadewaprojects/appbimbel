@@ -4,7 +4,7 @@
 <div class="m-grid__item m-grid__item--fluid m-wrapper">
     <div class="m-content">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-10">
                     <div class="m-portlet m-portlet--success m-portlet--head-solid-bg m-portlet--head-sm" data-portlet="true" id="m_portlet_tools_2">
 							<!--begin::Portlet-->
                             <div class="m-portlet">
@@ -172,15 +172,15 @@
 										<div class="m-portlet__foot m-portlet__foot--fit">
 											<div class="m-form__actions m-form__actions">
 												<div class="row">
-													<div class="col-lg-2"></div>
-													<div class="col-lg-6">
-														<button type="submit" @if($getpaketcount==4) disabled @endif class="btn btn-primary">
-															Submit
-														</button>
-														<button type="reset" class="btn btn-secondary">
-															Cancel
-														</button>
-													</div>
+                                                    <div class="col-lg-4"></div>
+                                                    <div class="col-lg-6">
+                                                        <button type="submit" @if($getpaketcount==4) disabled @endif class="btn btn-primary m-btn m-btn--custom">
+                                                            Save
+                                                        </button>
+                                                        <button type="reset" class="btn btn-danger m-btn m-btn--custom">
+                                                            Batal
+                                                        </button>
+                                                    </div>
 												</div>
 											</div>
 										</div>
