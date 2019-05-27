@@ -70,7 +70,7 @@
 												<th title="Field #5">
 													Jenjang Pendidikan
 												</th>
-												<th title="Field #6">
+												<th title="Field #5">
 													Mata Pelajaran
 												</th>
 												<th title="Field #2">

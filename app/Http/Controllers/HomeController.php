@@ -180,16 +180,21 @@ class HomeController extends Controller
         return view('paketbimbel' , ['getpaketcount'=>$getpaketcount,'isCompleted' => $showing, 'm' => $mentor,'prodiMentor'=>$getexplodeMentor]);
     }
     public function datapaket(){
-        $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
-        $datapaket = DB::table('paketbimbel')->get();     
-        return view('datapaket' , ['isCompleted' => $showing, 'm' => $mentor, 'paketbimbel' => $datapaket]);
+        $showing1 = DB::table('tbmentor')->where('NoIDMentor', Auth::user()->NoIDMentor )->value('NoIDMentor');
+        $getpaket = DB::table('paketbimbel')->where('NoIDMentor', $showing1)->get('idpaket');
+        $getpaketcount = count($getpaket);
+        $datapaket = DB::table('paketbimbel')
+        ->join ('tbmentor','paketbimbel.NoIDMentor','=','tbmentor.NoIDMentor')
+        ->where('paketbimbel.NoIDMentor', Auth::user()->NoIDMentor)->get(); 
+        // return $getpaketcount;
+        return view('datapaket' , ['getpaketcount'=>$getpaketcount,'isCompleted' => $showing, 'paket' => $datapaket]);
     }
     public function hapus($id){
     DB::table('paketbimbel')->where('idpaket',$id)->delete();
 	return redirect('/datapaket');
     }   
-    public function edit($id){
+    public function editpaket($id){
     $getprodiMentor = DB::table('tbdetailmentor')
     ->join('tbmentor','tbmentor.idmentor','=','tbdetailmentor.idtbRiwayatTutor')      
     ->where('idtbRiwayatTutor',  Auth::user()->idmentor)->value('prodi');
@@ -217,9 +222,8 @@ class HomeController extends Controller
         'keterangan' => $request->keterangan,
         'statusPaket' => $request->statuspaket,
 	]);
-	// alihkan halaman ke halaman pegawai
 	return redirect('/datapaket');
-}
+    }
     public function inputpaketbimbel(Request $request){
         if($request->hasAny('hari')){
             $hari=$request['hari'];
@@ -259,7 +263,7 @@ class HomeController extends Controller
         'keterangan'=>$request->keterangan,
         'statusPaket'=>'1',
         ]);
-      return redirect('/dashboard');
+      return redirect('/datapaket');
 
     }
 
@@ -268,6 +272,7 @@ class HomeController extends Controller
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
         return view('payment' , ['isCompleted' => $showing, 'm' => $mentor]);
     }
+
     public function report(){
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
@@ -275,51 +280,19 @@ class HomeController extends Controller
 
         return view('report' , ['isCompleted' => $showing, 'm' => $mentor] );
     }
-    // public function inputreport(Request $request){
-    //     if($request->hasAny('hari')){
-    //         $hari=$request['hari'];
-    //         $hari2=implode(', ',$hari);
-    //         $h= $hari2; 
-    //       }else{
-    //         $hari=$request['hari'];
-    //        $h= $hari; 
-    //       }
-
-    //       $created_at=Carbon::now();
-
-    //     if($request->hasAny('matpel')){
-    //         $matpel=$request['matpel'];
-    //         $matpel2=implode(', ',$matpel);
-    //         $m= $matpel2; 
-    //       }else{
-    //         $matpel=$request['matpel'];
-    //        $m= $matpel; 
-    //       }
-    //     if($request['waktuMulai']==NULL){
-    //         $jam=$request->waktuMulai;
-    //     }else{
-    //        $jam=Carbon::parse($request['waktuMulai'])->format('H:i:s'); 
-    //     }
-    //     if($request['waktuAkhir']==NULL){
-    //         $jamAkhir=$request->waktuAkhir;
-    //     }else{
-    //        $jamAkhir=Carbon::parse($request['waktuAkhir'])->format('H:i:s'); 
-    //     }
-    //     DB::table('hasilpembelajaran')->insert([
-    //     'IdMentor'=>$request->idsiswa,
-    //     'IdSiswa'=>$request->idsiswa,
-    //     'created_at'=>$created_at,
-    //     'TglBimbel'=>$request->tglBimbel,
-    //     'wkt_mulai'=>$jam,
-    //     'wkt_akhir'=>$jamAkhir,
-    //     'MatPel'=>$m,
-    //     'Modulmatpel'=>$request->modul,
-    //     'Aktifitas'=>$request->aktifitas,
-    //     'Catatan'=>$request->catatan,
-    //     ]);
-    //   return redirect('/dashboard');
-
-    // }
+    public function inputreport(Request $request){
+        DB::table('hasilpembelajaran')->insert([
+            'IdMentor'=>$request->id,
+            'TglBimbel'=>$request->tanggalbimbel,
+            'wkt_mulai'=>$request->waktuMulai,
+            'wkt_selesai'=>$request->waktuAkhir,
+            'MatPel'=>$request->matpel,
+            'ModulMatpel'=>$request->modulmatpel,
+            'Aktifitas'=>$request->aktivitas,
+            'Catatan'=>$request->catatan,
+            ]);
+            return redirect('/dashboard');
+    }
     public function datareport(){
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
@@ -368,6 +341,25 @@ class HomeController extends Controller
         DB::table('modulsiswa')->where('idmodul',$id)->delete();
         return redirect('/datatutorial');
         } 
+       
+    public function edittutorial($id){
+    $tutorial = DB::table('modulsiswa')->where('idmodul', $id)->first();
+    $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
+    $prodi = DB::table('mastermatpel')->get();
+    $jenjang = DB::table('tbjenjangpendidikan')->get();
+	return view('edittutorial',['isCompleted' => $showing,'tutorial' => $tutorial, 'matpel' => $prodi, 'jenjang' => $jenjang]);
+	// return $tutorial;
+    }
+    public function updatetutorial(Request $request){	      
+	DB::table('modulsiswa')->where('idmodul',$request->id)->update([
+		'nama_modul' => $request->nama,
+		'file' => $request->modul,
+		'jenjangpendidikan' => $request->jenjang,
+        'matpel' => $request->matpel,
+	]);
+	// alihkan halaman ke halaman pegawai
+	return redirect('/datatutorial');
+    }
     public function multimedia(){
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
