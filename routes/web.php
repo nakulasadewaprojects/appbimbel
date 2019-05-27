@@ -80,6 +80,7 @@ Route::get('/detailApprovalBimbel/{id}', 'HomeController@detailApprovalMentor');
 Route::post('/TerimaTolakBimbel', 'HomeController@TerimaTolakBimbel');
 Route::get('/formAjukanPaket/{id}/{id2}', 'HomeSiswaController@formAjukanPaket');
 Route::post('/formAjukanPaket/input', 'HomeSiswaController@AjukanPaket');
+Route::get('/siswa/export_excel', 'HomeController@export_excel');
 
 
 

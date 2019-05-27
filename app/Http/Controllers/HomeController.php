@@ -9,6 +9,11 @@ use DB;
 use Image;
 use Illuminate\Support\Carbon;
 use function Opis\Closure\serialize;
+use App\hasilpembelajaran;
+ 
+use App\Exports\ReportExport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
@@ -30,6 +35,11 @@ class HomeController extends Controller
     {
         return view('home');
     }
+    public function export_excel(Request $request)
+	{
+        $start=$request['start'];
+		return Excel::download(new ReportExport($start), 'report.xlsx');
+	}
     public function detailmentor()
     {   
         return view ('detailmentor');
