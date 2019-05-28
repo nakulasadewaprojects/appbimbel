@@ -1079,6 +1079,25 @@
 			loadingHTML: "Loading PDF"
 	</script>
 
+	{{-- <script>
+		$(document).ready(function(){
+			var siswaId = $('select[name="siswa"]').val();
+			if (siswaId){
+				$.ajax({
+					url: '/appbimbel/public/siswa/get/' + siswaId,
+						type: "GET",
+						dataType: "json",
+						beforeSend: function() {
+							$('#loader').css("visibility", "visible");
+				},
+				success: function(data){
+					console.log(siswaId)
+				}
+				)
+			}
+		}
+	</script> --}}
+
 
 
 	<!--end::Base Scripts -->

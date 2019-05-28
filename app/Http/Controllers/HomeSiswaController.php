@@ -94,11 +94,11 @@ class HomeSiswaController extends Controller
       ]);
 
       $date = strtotime($request['TanggalMulai']);
-      if($request->hasAny('durasi')=='1'){
+      if($request->hasAny('durasi')==1){
         $TanggalSelesai = date("Y-m-d", strtotime("+1 month", $date));
-      }if($request->hasAny('durasi')=='6'){
+      }if($request->hasAny('durasi')==6){
         $TanggalSelesai = date("Y-m-d", strtotime("+6 month", $date)); 
-      }if($request->hasAny('durasi')=='12'){
+      }if($request->hasAny('durasi')==12){
         $TanggalSelesai = date("Y-m-d", strtotime("+12 month", $date));
       }
       DB::table('scedulebimbel')->insert([
@@ -9090,9 +9090,6 @@ class HomeSiswaController extends Controller
         ->where('tbsiswa.idtbSiswa', Auth::user()->idtbSiswa)->value('jenjang');
       $getmodul = DB::table('modulsiswa')
         ->join('siswabimbel','modulsiswa.mentor','=','siswabimbel.NoIDTutor')
-        ->join('tbsiswa','tbsiswa.NoIDSiswa','=','siswabimbel.NoIDSiswa')
-        ->join('tbdetailsiswa','tbdetailsiswa.idtbSiswa','=','tbsiswa.idtbSiswa')  
-        ->where('siswabimbel.NoIDSiswa',  Auth::user()->NoIDSiswa)
         ->where('modulsiswa.jenjangpendidikan',$jenjang)->get();
       return view('tutorialsiswa' , ['ProfilSiswa' => $showing,'s'=>$siswa] , ['isCompleted' => $showing,'s'=>$siswa, 'modul'=>$getmodul]);
       // return  $getmodul;
