@@ -51,12 +51,15 @@
 												</div> --}}
 											</div>
 										</div>
-									</div>
-									<!--end:: Widgets/Sales States-->
+									</li>
+								</ul>
+							</div>
 						</div>
+					</div>
 				</div>
-            </div>
-        </div>
-    </div>
+			</div>
+		</div>
+	</div>
 </div>
- @endsection
+</div>
+@endsection
