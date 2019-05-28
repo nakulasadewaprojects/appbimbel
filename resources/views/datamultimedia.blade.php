@@ -78,7 +78,8 @@
 										<tbody>
 										@foreach($multimedia as $m)
 										<tr>
-											<td>{{$m->created_at}}</td>
+											<td>{{date('d-m-Y', strtotime($m->created_at))}}</td>
+											{{-- <td>{{$m->created_at}}</td> --}}
 											<td>{{$m->judul}}</td>
 											<td>{{$m->file}}</td>
 											<td>{{$m->diskripsi}}</td>

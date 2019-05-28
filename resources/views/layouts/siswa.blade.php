@@ -524,7 +524,7 @@
 												<span></span>
 											</i>
 											<span class="m-menu__link-text">
-												Upload
+												Review
 											</span>
 										</a>
 									</li>
@@ -534,7 +534,7 @@
 												<span></span>
 											</i>
 											<span class="m-menu__link-text">
-												Data Tutorial
+												Data Report
 											</span>
 										</a>
 									</li>

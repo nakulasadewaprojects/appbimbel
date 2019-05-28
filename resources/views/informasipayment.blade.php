@@ -1,101 +1,108 @@
 @extends('layouts.siswa')
 @section('content')
 <div class="m-grid__item m-grid__item--fluid m-wrapper">
-        <div class="m-content">
-                <div class="col-xl-12">
-						<div class="m-portlet m-portlet--success m-portlet--head-solid-bg m-portlet--head-sm" data-portlet="true" id="m_portlet_tools_2">                              
-									<!--begin:: Widgets/Finance Stats-->
-									<div class="m-portlet  m-portlet--full-height ">
-										<div class="m-portlet__head">
-											<div class="m-portlet__head-caption">
-												<div class="m-portlet__head-title">
-													<h3 class="m-portlet__head-text">
-														Informasi Payment
-													</h3>
-												</div>
-											</div>
-											<div class="m-portlet__head-tools">											
-											</div>
+	<div class="m-content">
+		<div class="row">
+			<div class="col-xl-12">
+				<div class="m-portlet m-portlet--accent m-portlet--head-solid-bg m-portlet--head-sm" data-portlet="true" id="m_portlet_tools_1">
+					<div class="m-portlet m-portlet--mobile">
+								<div class="m-portlet__head">
+									<div class="m-portlet__head-caption">
+										<div class="m-portlet__head-title">
+											<h3 class="m-portlet__head-text">
+											 Informasi Payment
+											</h3>
 										</div>
-										<div class="m-portlet__body">
-											<div class="m-widget1 m-widget1--paddingless">
-												<div class="m-widget1__item">
-													<div class="row m-row--no-padding align-items-center">
-														<div class="col">
-															<h3 class="m-widget1__title">
-																IPO Margin
-															</h3>
-															<span class="m-widget1__desc">
-																Awerage IPO Margin
-															</span>
-														</div>
-														<div class="col m--align-right">
-															<span class="m-widget1__number m--font-accent">
-																+24%
-															</span>
-														</div>
-													</div>
-												</div>
-												<div class="m-widget1__item">
-													<div class="row m-row--no-padding align-items-center">
-														<div class="col">
-															<h3 class="m-widget1__title">
-																Payments
-															</h3>
-															<span class="m-widget1__desc">
-																Yearly Expenses
-															</span>
-														</div>
-														<div class="col m--align-right">
-															<span class="m-widget1__number m--font-info">
-																+$560,800
+									</div>
+									<div class="m-portlet__head-tools">
+										<ul class="m-portlet__nav">
+											<li class="m-portlet__nav-item">										
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="m-portlet__body">
+									<!--begin: Search Form -->
+									<div class="m-form m-form--label-align-right m--margin-top-20 m--margin-bottom-30">
+										<div class="row align-items-center">
+											<div class="col-xl-8 order-2 order-xl-1">
+												<div class="form-group m-form__group row align-items-center">
+													<div class="col-md-4">
+														<div class="m-input-icon m-input-icon--left">
+															<input type="text" class="form-control m-input m-input--solid" placeholder="Search..." id="generalSearch">
+															<span class="m-input-icon__icon m-input-icon__icon--left">
+																<span>
+																	<i class="la la-search"></i>
+																</span>
 															</span>
 														</div>
 													</div>
 												</div>
-												<div class="m-widget1__item">
-													<div class="row m-row--no-padding align-items-center">
-														<div class="col">
-															<h3 class="m-widget1__title">
-																Logistics
-															</h3>
-															<span class="m-widget1__desc">
-																Overall Regional Logistics
-															</span>
-														</div>
-														<div class="col m--align-right">
-															<span class="m-widget1__number m--font-warning">
-																-10%
-															</span>
-														</div>
-													</div>
-												</div>
-												<div class="m-widget1__item">
-													<div class="row m-row--no-padding align-items-center">
-														<div class="col">
-															<h3 class="m-widget1__title">
-																Expenses
-															</h3>
-															<span class="m-widget1__desc">
-																Balance
-															</span>
-														</div>
-														<div class="col m--align-right">
-															<span class="m-widget1__number m--font-danger">
-																$345,000
-															</span>
-														</div>
-													</div>
-												</div>
+											</div>
+											<div class="col-xl-4 order-1 order-xl-2 m--align-right">
+												<a href="#" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
+													<span>
+														<i class="la la-cart-plus"></i>
+														<span>
+															New Order
+														</span>
+													</span>
+												</a>
+												<div class="m-separator m-separator--dashed d-xl-none"></div>
 											</div>
 										</div>
 									</div>
-									<!--end:: Widgets/Finance Stats-->
-								
-						</div>
-                </div>   
-        </div>
-    </div> 
-</div>   
-                               
+									<!--end: Search Form -->
+								<!--begin: Datatable -->
+									<table class="m-datatable" id="html_table" width="100%">
+										<thead>
+											<tr>
+												<th title="Field #1">
+													No
+												</th>
+												<th title="Field #2">
+													Tanggal Pembayaran
+												</th>
+												<th title="Field #3">
+													Nama Mentor
+												</th>
+												<th title="Field #4">
+													Matpel 
+												</th>
+												<th title="Field #5">
+													Nilai
+												</th>
+												<th title="Field #8">
+													Action
+												</th>
+											</tr>
+										</thead>
+										{{-- <tbody>
+										@foreach($paket as $p)
+										<tr>
+											
+											<td>{{$p->nmpaket}}</td>
+											<td>Rp. {{$p->harga}}</td>
+											<td>{{$p->durasi}} bulan</td>
+											<td>{{$p->hari}}</td>
+											<td>{{$p->wkt_mulai}}</td>
+											<td>{{$p->wkt_akhir}}</td>
+											<td>{{$p->matpel}}</td>
+											<td>{{$p->keterangan}}</td>
+											<td>{{$p->statusPaket}}</td>
+											
+										</tr>
+										@endforeach
+										</tbody> --}}
+										
+									</table>
+									<!--end: Datatable -->
+								</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>  
+</div>                              
 @endsection
