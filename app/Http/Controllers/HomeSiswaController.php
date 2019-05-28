@@ -50,8 +50,9 @@ class HomeSiswaController extends Controller
       ->join('tbsiswa','tbsiswa.idtbSiswa','=','tbdetailsiswa.idtbSiswa')      
       ->where('idtbDetailSiswa',  Auth::user()->idtbSiswa)->value('prodiSiswa');
         $getexplodeSiswa = explode(', ',$getprodiSiswa);
-      return view ('formAjukan', ['showsiswa'=> $showsiswa,'isCompleted' => $showing, 'showmentor' => $showmentor, 'explode'=>$getexplode,'id'=>$id, 'prodiSiswa'=>$getexplodeSiswa  ]);
-      // return $getexplodeSiswa;
+        $prodiunique=array_intersect($getexplodeSiswa, $getexplode);
+        return view ('formAjukan', ['prodiunique'=>$prodiunique,'showsiswa'=> $showsiswa,'isCompleted' => $showing, 'showmentor' => $showmentor, 'explode'=>$getexplode,'id'=>$id, 'prodiSiswa'=>$getexplodeSiswa  ]);
+      // return $coba;
     }
 
     public function ajukan(Request $request){
@@ -9246,7 +9247,7 @@ class HomeSiswaController extends Controller
     }
     public function multimediasiswa(){
         $siswa = DB::table('tbsiswa')->where('idtbSiswa', Auth::user()->idtbSiswa)->first();
-        $showing = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->first();
+        $showing = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->first();      
         return view('multimediasiswa' , ['ProfilSiswa' => $showing,'s'=>$siswa] , ['isCompleted' => $showing,'s'=>$siswa]);
     }
     public function tutorialsiswa(){

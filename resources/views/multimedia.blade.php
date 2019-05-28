@@ -14,7 +14,7 @@
                                         <i class="la la-gear"></i>
                                     </span>
                                     <h3 class="m-portlet__head-text">
-                                        Form Upload Tutorial
+                                        Form Upload Multimedia
                                     </h3>
                                 </div>
                             </div>

@@ -146,7 +146,7 @@
 												Provinsi
 											</label>
 											<div class="col-7">
-												<select class="form-control m-input" name="provinsi" type="text">
+												<select required class="form-control m-input" name="provinsi" type="text">
 													<option value="">Pilih Provinsi</option>
 													@foreach ($p as $a)
 													<option value="{{ $a->id }}" {{ Auth::user()->provinsi ==  $a->id  ? 'selected' : ''}}> {{$a->nama}}</option>
@@ -161,7 +161,7 @@
 												Kabupaten
 											</label>
 											<div class="col-7">
-												<select class="form-control m-input" name="kabupaten" type="text" id="kabupaten">
+												<select required class="form-control m-input" name="kabupaten" type="text" id="kabupaten">
 													<option value="">Pilih Kabupaten</option>
 													@foreach ($b as $a)
 													<option value="{{ $a->id }}" {{ Auth::user()->kota ==  $a->id  ? 'selected' : ''}}>{{$a->nama}}</option>
@@ -175,7 +175,7 @@
 												Kecamatan
 											</label>
 											<div class="col-7">
-												<select class="form-control m-input" name="kecamatan" type="text" id="kecamatan">
+												<select required class="form-control m-input" name="kecamatan" type="text" id="kecamatan">
 													<option value="">Pilih Kecamatan </option>
 													@foreach ($c as $a)
 													<option value="{{ $a->id }}" {{ Auth::user()->kecamatan ==  $a->id  ? 'selected' : ''}}>{{$a->nama}}</option>
@@ -189,7 +189,7 @@
 												Kelurahan
 											</label>
 											<div class="col-7">
-												<select class="form-control m-input" name="kelurahan" type="text" id="kelurahan">
+												<select required class="form-control m-input" name="kelurahan" type="text" id="kelurahan">
 													<option value="">Pilih Kelurahan </option>
 													@foreach ($d as $a)
 													<option value="{{ $a->id }}" {{ Auth::user()->kelurahan ==  $a->id  ? 'selected' : ''}}>{{$a->nama}}</option>
@@ -222,8 +222,8 @@
 												Pendidikan Terakhir
 											</label>
 											<div class="col-7">
-												<select class="form-control m-input" name="pendidikanTerakhir" type="text" id="pendidikanTerakhir">
-													<option value=""> Pilih Pendidikan Terakhir </option>
+												<select required class="form-control m-input" name="pendidikanTerakhir" type="text" id="pendidikanTerakhir">
+													<option value="">Pilih Pendidikan Terakhir Anda</option>
 													@foreach ($pt as $a)
 													<option value="{{ $a->idMasterPendidikan }}" {{ $isCompleted->pendidikanTerakhir ==  $a->idMasterPendidikan  ? 'selected' : ''}}>{{$a->jenjangPendidikan}}</option>
 													@endforeach
@@ -363,7 +363,7 @@
 												Pengalaman Kerja/Mengajar
 											</label>
 											<div class="col-7">
-												<textarea class="form-control m-input" type="text" rows="5" name="pengalaman">{{ $isCompleted->pengalaman }}</textarea>
+												<textarea required class="form-control m-input" type="text" rows="5" name="pengalaman">{{ $isCompleted->pengalaman }}</textarea>
 											</div>
 										</div>
 										<div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>

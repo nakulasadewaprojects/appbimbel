@@ -24,6 +24,7 @@
                             {{ csrf_field() }}
                             <div class="m-portlet__body">
                                 <div class="m-form__section m-form__section--first">
+                                    
                                     <div class="form-group m-form__group row">
                                         <label class="col-lg-2 col-form-label">
                                             Tanggal Bimbel:
@@ -43,6 +44,8 @@
                                             Nama Siswa:
                                         </label>
                                         <div class="col-lg-6">
+
+                                            <!-- <input type="hidden" required name="id" class="form-control m-input" value="{{$m->NoIDMentor}}"> -->
                                             <!-- <input type="hidden" required name="id" class="form-control m-input" value="{{$m->NoIDMentor}}"> -->
                                             {{-- <input type="text" required name="nama" class="form-control m-input"> --}}
                                             {{-- <span class="m-form__help">
@@ -153,10 +156,11 @@
                                         <div class="col-lg-6">
                                             <textarea class="form-control m-input" type="text" rows="3" name="catatan"></textarea>
                                             <span class="m-form__help">
-                                                Tambahkan Keterangan yang anda inginkan
+                                                Tambahkan Catatan untuk siswa
                                             </span>
                                         </div>
                                     </div>
+                                    
                                 </div>
                                 <div class="m-portlet__foot m-portlet__foot--fit">
                                     <div class="m-form__actions m-form__actions">
@@ -173,11 +177,9 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                         </form>
-                        <!--end::Form-->
                     </div>
-                    <!--end::Portlet-->
-                    <!--end::Portlet-->
                 </div>
             </div>
         </div>

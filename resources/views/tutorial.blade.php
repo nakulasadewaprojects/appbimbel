@@ -4,7 +4,7 @@
 <div class="m-grid__item m-grid__item--fluid m-wrapper">
     <div class="m-content">
         <div class="row">
-            <div class="col-xl-12">
+            <div class="col-xl-10">
                 <div class="m-portlet m-portlet--success m-portlet--head-solid-bg m-portlet--head-sm" data-portlet="true" id="m_portlet_tools_2">
                 <div class="m-portlet">
                     <div class="m-portlet__head">
@@ -87,8 +87,8 @@
                                 <div class="m-portlet__foot m-portlet__foot--fit">
                                     <div class="m-form__actions m-form__actions">
                                         <div class="row">
-                                            <div class="col-lg-5"></div>
-                                            <div class="col-lg-7">
+                                            <div class="col-lg-4"></div>
+                                            <div class="col-lg-6">
                                                 <button type="submit" class="btn btn-primary m-btn m-btn--custom">
                                                     Simpan
                                                 </button>
