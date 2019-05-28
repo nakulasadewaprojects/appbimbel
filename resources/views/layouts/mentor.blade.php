@@ -569,6 +569,16 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true"  data-redirect="true">
+										<a  href="http://localhost/appbimbel/public/datareport" class="m-menu__link ">
+											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+												<span></span>
+											</i>
+											<span class="m-menu__link-text">
+												Nilai Quiz
+											</span>
+										</a>
+									</li>
+									<li class="m-menu__item " aria-haspopup="true"  data-redirect="true">
 										<a  href="http://localhost/appbimbel/public/exportexcel" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
@@ -648,6 +658,42 @@
 											</i>
 											<span class="m-menu__link-text">
 												Data Multimedia
+											</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover">
+							<div class="m-menu__link">
+								<i class="m-menu__link-icon flaticon-list-2"></i>		
+							</div>
+							<div class="m-menu__submenu">
+								<span class="m-menu__arrow"></span>
+								<ul class="m-menu__subnav">						
+									<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true"  data-redirect="true">
+										<div class="m-menu__link ">
+											<span class="m-menu__link-text">
+												Quiz
+											</span>
+										</div>
+									</li>
+									<li class="m-menu__item " aria-haspopup="true"  data-redirect="true">
+										<a  href="http://localhost/appbimbel/public/multimedia" class="m-menu__link ">
+											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+												<span></span>
+											</i>
+											<span class="m-menu__link-text">
+												Upload Quiz
+											</span>
+										</a>
+									</li><li class="m-menu__item " aria-haspopup="true"  data-redirect="true">
+										<a  href="http://localhost/appbimbel/public/datamultimedia" class="m-menu__link ">
+											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+												<span></span>
+											</i>
+											<span class="m-menu__link-text">
+												Data Quiz
 											</span>
 										</a>
 									</li>
