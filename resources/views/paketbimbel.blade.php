@@ -34,11 +34,11 @@
                                             <strong>
                                                 MAKSIMAL
                                             </strong>
-                                            anda dapat membuat 4 paket!
+                                            anda dapat membuat 3 paket!
                                         </div>
-                                        <div class="m-alert__close">
+                                        <!-- <div class="m-alert__close">
                                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <div class="form-group m-form__group row">
                                         <label class="col-lg-2 col-form-label">
