@@ -82,9 +82,14 @@
 											<td>{{$m->judul}}</td>
 											<td>{{$m->file}}</td>
 											<td>{{$m->diskripsi}}</td>
-											<td>										
-												<a href="http://localhost/appbimbel/public/datamultimedia/editmultimedia/{{$m->idcontent}}">Edit</a>
-												<a href="http://localhost/appbimbel/public/datamultimedia/hapusmultimedia/{{$m->idcontent}}">Hapus</a>
+											<td>		
+												<a href="http://localhost/appbimbel/public/datamultimedia/hapusmultimedia/{{$m->idcontent}}" class="btn btn-danger m-btn m-btn--icon m-btn--icon-only">
+													<i class="la la-folder"></i>
+												</a>								
+												<a href="http://localhost/appbimbel/public/datamultimedia/editmultimedia/{{$m->idcontent}}"class="btn btn-warning m-btn m-btn--icon m-btn--icon-only">
+													<i class="la la-edit"></i>
+												</a>
+												
 											</td>																					
 										</tr>
 										@endforeach

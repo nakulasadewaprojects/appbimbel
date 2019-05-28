@@ -39,12 +39,21 @@
                                             Deskripsi:
                                         </label>
                                         <div class="col-lg-6">
-                                            <textarea class="form-control m-input" type="text" rows="3" name="deskripsi" value="{{$multimedia->diskripsi}}"></textarea>
+                                            <textarea class="form-control m-input" type="text" rows="3" name="deskripsi" required value="{{$multimedia->diskripsi}}"></textarea>
                                             <span class="m-form__help">
                                                 Tambahkan deskripisi yang anda inginkan
                                             </span>
                                         </div>
                                     </div>
+                                    {{-- <div class="form-group m-form__group row">
+                                            <label class="col-lg-2 col-form-label">
+                                             Deskripsi:
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="text" name="deskripsi" class="form-control m-input" required value="{{$multimedia->diskripsi}}"}}" >
+                                               
+                                            </div>
+                                    </div> --}}
                                     <div class="form-group m-form__group row">
                                         <label class="col-form-label col-lg-2 col-sm-15">
                                             Upload Video
@@ -74,7 +83,7 @@
                                                 <div class="col-lg-4"></div>
                                                 <div class="col-lg-6">
                                                     <button type="submit" class="btn btn-primary m-btn m-btn--custom">
-                                                        Save
+                                                        Simpan
                                                     </button>
                                                     <button type="button" class="btn btn-danger m-btn m-btn--custom">
                                                         Batal
