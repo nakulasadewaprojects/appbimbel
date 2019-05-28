@@ -287,11 +287,11 @@
 													{{$p->keterangan}}
 												</span>
 											</div>
+											<span class="m-pricing-table-2">
+												Rp.
+											</span>
 											<span class="m-pricing-table-2__price">
 												{{$p->harga}}
-											</span>
-											<span class="m-pricing-table-2__label">
-												Rp
 											</span>
 											<div class="m-pricing-table-2__btn">
 												<a href="http://localhost/appbimbel/public/datapaket/editpaket/{{$p->idpaket}}">
@@ -346,11 +346,11 @@
 													{{$p->keterangan}}
 												</span>
 											</div>
+											<span class="m-pricing-table-2">
+												Rp.
+											</span>
 											<span class="m-pricing-table-2__price">
 												{{$p->harga}}
-											</span>
-											<span class="m-pricing-table-2__label">
-												Rp
 											</span>
 											<div class="m-pricing-table-2__btn">
 												<a href="http://localhost/appbimbel/public/datapaket/editpaket/{{$p->idpaket}}">
