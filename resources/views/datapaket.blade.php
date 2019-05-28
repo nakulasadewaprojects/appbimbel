@@ -36,6 +36,7 @@
 										<span class="m-pricing-table-1__price">
 												Rp. {{$p->harga}}
 										</span>
+										
 										<h2 class="m-pricing-table-1__subtitle">
 											{{$p->nmpaket}}
 										</h2>
@@ -54,6 +55,7 @@
 											Jam Tentukan Sendiri
 											@endif
 										</span>
+										
 										<h2 class="m-pricing-table-1__subtitle">
 												{{$p->keterangan}}
 											</h2>

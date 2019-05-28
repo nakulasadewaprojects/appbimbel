@@ -115,11 +115,11 @@
 											<td>{{$t->tgl_upload}}</td>
 											
 											<td>
-												<a href="http://localhost/appbimbel/public/datatutorial/hapustutorial/{{$t->idmodul}}" class="btn btn-warning m-btn m-btn--icon m-btn--icon-only">
-														<i class="la la-edit"></i>
+												<a href="http://localhost/appbimbel/public/datatutorial/hapustutorial/{{$t->idmodul}}" class="btn btn-danger m-btn m-btn--icon m-btn--icon-only">
+														<i class="la la-folder"></i>
 												</a>
-												<a href="http://localhost/appbimbel/public/datatutorial/edittutorial/{{$t->idmodul}}" class="btn btn-danger m-btn m-btn--icon m-btn--icon-only">
-															<i class="la la-folder"></i>
+												<a href="http://localhost/appbimbel/public/datatutorial/edittutorial/{{$t->idmodul}}" class="btn btn-warning m-btn m-btn--icon m-btn--icon-only">
+													<i class="la la-edit"></i>	
 												</a>
 																								
 												{{-- <a href="http://localhost/appbimbel/public/datatutorial/edittutorial/{{$t->idmodul}}">Edit</a>
