@@ -30,17 +30,17 @@
 											<div class="m-pricing-table-1__hexagon1"></div>
 											<div class="m-pricing-table-1__hexagon2"></div>
 											<span class="m-pricing-table-1__icon m--font-brand">
-												<i class="fa flaticon-piggy-bank"></i>
+												<i class="fa fa-dollar"></i>
 											</span>
 										</div>
 										<span class="m-pricing-table-1__price">
-												Rp. {{$p->harga}}
+											Rp. {{$p->harga}}
 										</span>
 										<h2 class="m-pricing-table-1__subtitle">
 											{{$p->nmpaket}}
 										</h2>
 										<span class="m-pricing-table-1__description">
-												Bimbel selama {{$p->durasi}} bulan
+											Bimbel selama {{$p->durasi}} bulan
 											<br>
 											@if($p->hari!=NULL)
 											Hari {{$p->hari}}
@@ -55,17 +55,17 @@
 											@endif
 										</span>
 										<h2 class="m-pricing-table-1__subtitle">
-												{{$p->keterangan}}
-											</h2>
+											{{$p->keterangan}}
+										</h2>
 										<div class="m-pricing-table-1__btn">
-										<a href="http://localhost/appbimbel/public/datapaket/editpaket/{{$p->idpaket}}"> 
-											<button type="button" class="btn btn-info">
-												Edit Paket
-											</button>
-											<button type="button" class="btn btn-success">
-												Non Aktif
-											</button>
-										</a>
+											<a href="http://localhost/appbimbel/public/datapaket/editpaket/{{$p->idpaket}}">
+												<button type="button" class="btn btn-primary">
+													Edit Paket
+												</button>
+												<button type="button" class="btn btn-danger">
+													Non Aktif
+												</button>
+											</a>
 										</div>
 									</div>
 									@endforeach
@@ -80,17 +80,17 @@
 											<div class="m-pricing-table-1__hexagon1"></div>
 											<div class="m-pricing-table-1__hexagon2"></div>
 											<span class="m-pricing-table-1__icon m--font-brand">
-												<i class="fa flaticon-piggy-bank"></i>
+												<i class="fa fa-euro"></i>
 											</span>
 										</div>
 										<span class="m-pricing-table-1__price">
-												Rp. {{$p->harga}}
+											Rp. {{$p->harga}}
 										</span>
 										<h2 class="m-pricing-table-1__subtitle">
 											{{$p->nmpaket}}
 										</h2>
 										<span class="m-pricing-table-1__description">
-												Bimbel selama {{$p->durasi}} bulan
+											Bimbel selama {{$p->durasi}} bulan
 											<br>
 											@if($p->hari!=NULL)
 											Hari {{$p->hari}}
@@ -105,17 +105,17 @@
 											@endif
 										</span>
 										<h2 class="m-pricing-table-1__subtitle">
-												{{$p->keterangan}}
-											</h2>
+											{{$p->keterangan}}
+										</h2>
 										<div class="m-pricing-table-1__btn">
-										<a href="http://localhost/appbimbel/public/datapaket/editpaket/{{$p->idpaket}}">
-											<button type="button" class="btn btn-info">
-												Edit Paket
-											</button>
-											<button type="button" class="btn btn-success">
-												Non Aktif
-											</button>
-										</a>
+											<a href="http://localhost/appbimbel/public/datapaket/editpaket/{{$p->idpaket}}">
+												<button type="button" class="btn btn-primary">
+													Edit Paket
+												</button>
+												<button type="button" class="btn btn-danger">
+													Non Aktif
+												</button>
+											</a>
 										</div>
 									</div>
 									@endforeach
@@ -130,7 +130,7 @@
 											<div class="m-pricing-table-1__hexagon1"></div>
 											<div class="m-pricing-table-1__hexagon2"></div>
 											<span class="m-pricing-table-1__icon m--font-brand">
-												<i class="fa flaticon-piggy-bank"></i>
+												<i class="fa fa-yen"></i>
 											</span>
 										</div>
 										<span class="m-pricing-table-1__price">
@@ -160,10 +160,10 @@
 										</h2>
 										<div class="m-pricing-table-1__btn">
 											<a href="http://localhost/appbimbel/public/datapaket/editpaket/{{$p->idpaket}}">
-												<button type="button" class="btn btn-info">
+												<button type="button" class="btn btn-primary">
 													Edit Paket
 												</button>
-												<button type="button" class="btn btn-success">
+												<button type="button" class="btn btn-danger">
 													Non Aktif
 												</button>
 											</a>
@@ -181,7 +181,7 @@
 											<div class="m-pricing-table-1__hexagon1"></div>
 											<div class="m-pricing-table-1__hexagon2"></div>
 											<span class="m-pricing-table-1__icon m--font-brand">
-												<i class="fa flaticon-piggy-bank"></i>
+												<i class="fa fa-bitcoin"></i>
 											</span>
 										</div>
 										<span class="m-pricing-table-1__price">
@@ -226,13 +226,13 @@
 							@endif
 						</div>
 					</div>
-					
+
 				</div>
 				<!--end:: Widgets/Tasks -->
 			</div>
 		</div>
 	</div>
-	
+
 </div>
 
 </div>
