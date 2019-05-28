@@ -394,16 +394,13 @@ class HomeSiswaController extends Controller
                 ->orWhere('prodi', 'like', '%'.$getexplode[4].'%');})
                 ->paginate(5);                        
         }  
-        if($request['pendidikan']==1){ //SMA, SMK, D3
-            $grup=DB::table('tbmentor')
-            ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-            ->where('statKomplit',7)
-            ->where('statusTutor',1)
-            ->whereIN('pendidikanTerakhir',[3,4])
-            ->paginate(5);
+            $grup="";
+            $filter="nggak";
+            $url="";
+  //////////////////////////////////////////////////////////////////// ===1  SMA / SMK //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //=================================================================================ISI 1=====================================================================================
             //BIN, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
               ->where('statKomplit',7)
@@ -414,10 +411,10 @@ class HomeSiswaController extends Controller
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+                ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
             }
             //BIN, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
               ->where('statKomplit',7)
@@ -427,10 +424,10 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+                ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
             }
             //BIN, PROVINSI, KABUPATEN
-            if($request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
               ->where('statKomplit',7)
@@ -439,10 +436,10 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+                ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
             }
             //BIN, PROVINSI
-            if($request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
                 $grup=DB::table('tbmentor')
                 ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
                 ->where('statKomplit',7)
@@ -450,21 +447,24 @@ class HomeSiswaController extends Controller
                 ->where('prodi','like','%Bhs. Indonesia%')
                 ->where('provinsi',$request['provinsi'])
                 ->whereIN('pendidikanTerakhir',[3,4])
-                ->paginate(5);
+                  ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
             }
             //BIN DAN SEMUA LOKASI
-            if($request->hasAny('bin') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
                 $grup=DB::table('tbmentor')
                 ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
                 ->where('statKomplit',7)
                 ->where('statusTutor',1)
                 ->where('prodi','like','%Bhs. Indonesia%')
                 ->whereIN('pendidikanTerakhir',[3,4])
-                ->paginate(5);
+                  ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
+                $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+                $filter="iya";
+                $url=$request->fullUrl();
             }
           
           //MTK, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-          if($request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+          if($request['pendidikan']==1 && $request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
             $grup=DB::table('tbmentor')
             ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
             ->where('statKomplit',7)
@@ -475,10 +475,10 @@ class HomeSiswaController extends Controller
             ->where('kecamatan',$request['kecamatan'])
             ->where('kelurahan',$request['kelurahan'])
             ->whereIN('pendidikanTerakhir',[3,4])
-            ->paginate(5);
+              ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
           }
           //MTK, PROVINSI, KABUPATEN, KECAMATAN,
-          if($request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+          if($request['pendidikan']==1 && $request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
             $grup=DB::table('tbmentor')
             ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
             ->where('statKomplit',7)
@@ -488,10 +488,10 @@ class HomeSiswaController extends Controller
             ->where('kota',$request['kabupaten'])
             ->where('kecamatan',$request['kecamatan'])
             ->whereIN('pendidikanTerakhir',[3,4])
-            ->paginate(5);
+              ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
           }
           //MTK, PROVINSI, KABUPATEN
-          if($request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+          if($request['pendidikan']==1 && $request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
             $grup=DB::table('tbmentor')
             ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
             ->where('statKomplit',7)
@@ -500,10 +500,10 @@ class HomeSiswaController extends Controller
             ->where('provinsi',$request['provinsi'])
             ->where('kota',$request['kabupaten'])
             ->whereIN('pendidikanTerakhir',[3,4])
-            ->paginate(5);
+              ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
           }
           //MTK, PROVINSI
-          if($request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+          if($request['pendidikan']==1 && $request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
               ->where('statKomplit',7)
@@ -511,21 +511,21 @@ class HomeSiswaController extends Controller
               ->where('prodi','like','%Matematika%')
               ->where('provinsi',$request['provinsi'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+                ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
           }
           //MTK DAN SEMUA LOKASI
-          if($request->hasAny('mtk') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+          if($request['pendidikan']==1 && $request->hasAny('mtk') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
               ->where('statKomplit',7)
               ->where('statusTutor',1)
               ->where('prodi','like','%Matematika%')
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+                ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
           }
 
          //IPA, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-         if($request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+         if($request['pendidikan']==1 && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
           $grup=DB::table('tbmentor')
           ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
           ->where('statKomplit',7)
@@ -536,10 +536,10 @@ class HomeSiswaController extends Controller
           ->where('kecamatan',$request['kecamatan'])
           ->where('kelurahan',$request['kelurahan'])
           ->whereIN('pendidikanTerakhir',[3,4])
-          ->paginate(5);
+            ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
         }
         //IPA, PROVINSI, KABUPATEN, KECAMATAN,
-        if($request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+        if($request['pendidikan']==1 && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
           $grup=DB::table('tbmentor')
           ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
           ->where('statKomplit',7)
@@ -549,10 +549,10 @@ class HomeSiswaController extends Controller
           ->where('kota',$request['kabupaten'])
           ->where('kecamatan',$request['kecamatan'])
           ->whereIN('pendidikanTerakhir',[3,4])
-          ->paginate(5);
+            ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
         }
         //IPA, PROVINSI, KABUPATEN
-        if($request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+        if($request['pendidikan']==1 && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
           $grup=DB::table('tbmentor')
           ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
           ->where('statKomplit',7)
@@ -561,10 +561,10 @@ class HomeSiswaController extends Controller
           ->where('provinsi',$request['provinsi'])
           ->where('kota',$request['kabupaten'])
           ->whereIN('pendidikanTerakhir',[3,4])
-          ->paginate(5);
+            ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
         }
         //IPA, PROVINSI
-        if($request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+        if($request['pendidikan']==1 && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
             $grup=DB::table('tbmentor')
             ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
             ->where('statKomplit',7)
@@ -572,21 +572,21 @@ class HomeSiswaController extends Controller
             ->where('prodi','like','%IPA%')
             ->where('provinsi',$request['provinsi'])
             ->whereIN('pendidikanTerakhir',[3,4])
-            ->paginate(5);
+              ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
         }
         //IPA DAN SEMUA LOKASI
-        if($request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+        if($request['pendidikan']==1 && $request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
             $grup=DB::table('tbmentor')
             ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
             ->where('statKomplit',7)
             ->where('statusTutor',1)
             ->where('prodi','like','%IPA%')
             ->whereIN('pendidikanTerakhir',[3,4])
-            ->paginate(5);
+              ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
         }
 
        //IPS, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-       if($request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+       if($request['pendidikan']==1 && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
         $grup=DB::table('tbmentor')
         ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
         ->where('statKomplit',7)
@@ -597,10 +597,10 @@ class HomeSiswaController extends Controller
         ->where('kecamatan',$request['kecamatan'])
         ->where('kelurahan',$request['kelurahan'])
         ->whereIN('pendidikanTerakhir',[3,4])
-        ->paginate(5);
+          ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
       }
       //IPS, PROVINSI, KABUPATEN, KECAMATAN,
-      if($request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+      if($request['pendidikan']==1 && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
         $grup=DB::table('tbmentor')
         ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
         ->where('statKomplit',7)
@@ -610,10 +610,10 @@ class HomeSiswaController extends Controller
         ->where('kota',$request['kabupaten'])
         ->where('kecamatan',$request['kecamatan'])
         ->whereIN('pendidikanTerakhir',[3,4])
-        ->paginate(5);
+          ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
       }
       //IPS, PROVINSI, KABUPATEN
-      if($request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+      if($request['pendidikan']==1 && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
         $grup=DB::table('tbmentor')
         ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
         ->where('statKomplit',7)
@@ -622,10 +622,10 @@ class HomeSiswaController extends Controller
         ->where('provinsi',$request['provinsi'])
         ->where('kota',$request['kabupaten'])
         ->whereIN('pendidikanTerakhir',[3,4])
-        ->paginate(5);
+          ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
       }
       //IPS, PROVINSI
-      if($request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+      if($request['pendidikan']==1 && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
           $grup=DB::table('tbmentor')
           ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
           ->where('statKomplit',7)
@@ -633,21 +633,21 @@ class HomeSiswaController extends Controller
           ->where('prodi','like','%IPS%')
           ->where('provinsi',$request['provinsi'])
           ->whereIN('pendidikanTerakhir',[3,4])
-          ->paginate(5);
+            ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
       }
       //IPS DAN SEMUA LOKASI
-      if($request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+      if($request['pendidikan']==1 && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
           $grup=DB::table('tbmentor')
           ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
           ->where('statKomplit',7)
           ->where('statusTutor',1)
           ->where('prodi','like','%IPS%')
           ->whereIN('pendidikanTerakhir',[3,4])
-          ->paginate(5);
+            ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
       }
 
       //BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-      if($request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+      if($request['pendidikan']==1 && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
         $grup=DB::table('tbmentor')
         ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
         ->where('statKomplit',7)
@@ -658,10 +658,10 @@ class HomeSiswaController extends Controller
         ->where('kecamatan',$request['kecamatan'])
         ->where('kelurahan',$request['kelurahan'])
         ->whereIN('pendidikanTerakhir',[3,4])
-        ->paginate(5);
+          ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
       }
       //BIG, PROVINSI, KABUPATEN, KECAMATAN,
-      if($request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+      if($request['pendidikan']==1 && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
         $grup=DB::table('tbmentor')
         ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
         ->where('statKomplit',7)
@@ -671,10 +671,10 @@ class HomeSiswaController extends Controller
         ->where('kota',$request['kabupaten'])
         ->where('kecamatan',$request['kecamatan'])
         ->whereIN('pendidikanTerakhir',[3,4])
-        ->paginate(5);
+          ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
       }
       //BIG, PROVINSI, KABUPATEN
-      if($request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+      if($request['pendidikan']==1 && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
         $grup=DB::table('tbmentor')
         ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
         ->where('statKomplit',7)
@@ -683,10 +683,10 @@ class HomeSiswaController extends Controller
         ->where('provinsi',$request['provinsi'])
         ->where('kota',$request['kabupaten'])
         ->whereIN('pendidikanTerakhir',[3,4])
-        ->paginate(5);
+          ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
       }
       //BIG, PROVINSI
-      if($request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+      if($request['pendidikan']==1 && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
           $grup=DB::table('tbmentor')
           ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
           ->where('statKomplit',7)
@@ -694,1928 +694,1855 @@ class HomeSiswaController extends Controller
           ->where('prodi','like','%Bhs. Inggris%')
           ->where('provinsi',$request['provinsi'])
           ->whereIN('pendidikanTerakhir',[3,4])
-          ->paginate(5);
+            ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
       }
       //BIG DAN SEMUA LOKASI
-      if($request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+      if($request['pendidikan']==1 && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
           $grup=DB::table('tbmentor')
           ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
           ->where('statKomplit',7)
           ->where('statusTutor',1)
           ->where('prodi','like','%Bhs. Inggris%')
           ->whereIN('pendidikanTerakhir',[3,4])
-          ->paginate(5);
+            ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
       }
   //=================================================================================ISI 2=====================================================================================
   //=================================================================================BIN & MTK =====================================================================================
 
               //BIN & MTK, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('bin') && $request->hasAny('mtk')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('mtk')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%Matematika%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Matematika%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK, PROVINSI, KABUPATEN
-            if($request->hasAny('bin') && $request->hasAny('mtk') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('mtk') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Matematika%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK, PROVINSI
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->whereIN('pendidikanTerakhir',[3,4])
-                ->paginate(5);
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[3,4])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK DAN SEMUA LOKASI
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->orWhere('prodi','like','%Matematika%')
-                ->whereIN('pendidikanTerakhir',[3,4])
-                ->paginate(5);
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('mtk') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[3,4])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
 
                //=================================================================================BIN & IPA =====================================================================================
 
           //BIN & IPA, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('bin') && $request->hasAny('ipa')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('ipa')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%IPA%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & IPA, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('bin') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%IPA%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & IPA, PROVINSI, KABUPATEN
-            if($request->hasAny('bin') && $request->hasAny('ipa') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('ipa') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%IPA%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & IPA, PROVINSI
-            if($request->hasAny('bin') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->whereIN('pendidikanTerakhir',[3,4])
-                ->paginate(5);
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[3,4])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & IPA DAN SEMUA LOKASI
-            if($request->hasAny('bin') && $request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->orWhere('prodi','like','%IPA%')
-                ->whereIN('pendidikanTerakhir',[3,4])
-                ->paginate(5);
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[3,4])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
 
              //=================================================================================BIN & IPS =====================================================================================
 
           //BIN & IPS, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('bin') && $request->hasAny('ips')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('ips')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%IPS%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & IPS, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('bin') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%IPS%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & IPS, PROVINSI, KABUPATEN
-            if($request->hasAny('bin') && $request->hasAny('ips') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('ips') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%IPS%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & IPS, PROVINSI
-            if($request->hasAny('bin') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->whereIN('pendidikanTerakhir',[3,4])
-                ->paginate(5);
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[3,4])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & IPS DAN SEMUA LOKASI
-            if($request->hasAny('bin') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->orWhere('prodi','like','%IPS%')
-                ->whereIN('pendidikanTerakhir',[3,4])
-                ->paginate(5);
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[3,4])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
 
               //=================================================================================BIN & BIG =====================================================================================
 
           //BIN & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('bin') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & BIG, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('bin') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & BIG, PROVINSI, KABUPATEN
-            if($request->hasAny('bin') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & BIG, PROVINSI
-            if($request->hasAny('bin') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->whereIN('pendidikanTerakhir',[3,4])
-                ->paginate(5);
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[3,4])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & BIG DAN SEMUA LOKASI
-            if($request->hasAny('bin') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->whereIN('pendidikanTerakhir',[3,4])
-                ->paginate(5);
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[3,4])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
               
                //=================================================================================MTK & IPA =====================================================================================
 
           //MTK & IPA, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('mtk') && $request->hasAny('ipa')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+            if($request['pendidikan']==1 && $request->hasAny('mtk') && $request->hasAny('ipa')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%IPA%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //MTK & IPA, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+            if($request['pendidikan']==1 && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%IPA%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //MTK & IPA, PROVINSI, KABUPATEN
-            if($request->hasAny('mtk') && $request->hasAny('ipa') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+            if($request['pendidikan']==1 && $request->hasAny('mtk') && $request->hasAny('ipa') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%IPA%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //MTK & IPA, PROVINSI
-            if($request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->whereIN('pendidikanTerakhir',[3,4])
-                ->paginate(5);
+            if($request['pendidikan']==1 && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[3,4])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //MTK & IPA DAN SEMUA LOKASI
-            if($request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
-                ->orWhere('prodi','like','%IPA%')
-                ->whereIN('pendidikanTerakhir',[3,4])
-                ->paginate(5);
+            if($request['pendidikan']==1 && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[3,4])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
 
            //=================================================================================MTK & IPS =====================================================================================
 
           //MTK & IPS, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('mtk') && $request->hasAny('ips')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+            if($request['pendidikan']==1 && $request->hasAny('mtk') && $request->hasAny('ips')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%IPS%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //MTK & IPS, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+            if($request['pendidikan']==1 && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%IPS%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //MTK & IPS, PROVINSI, KABUPATEN
-            if($request->hasAny('mtk') && $request->hasAny('ips') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+            if($request['pendidikan']==1 && $request->hasAny('mtk') && $request->hasAny('ips') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%IPS%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //MTK & IPS, PROVINSI
-            if($request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->whereIN('pendidikanTerakhir',[3,4])
-                ->paginate(5);
+            if($request['pendidikan']==1 && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[3,4])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //MTK & IPS DAN SEMUA LOKASI
-            if($request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
-                ->orWhere('prodi','like','%IPS%')
-                ->whereIN('pendidikanTerakhir',[3,4])
-                ->paginate(5);
+            if($request['pendidikan']==1 && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[3,4])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
 
                 //=================================================================================MTK & BIG =====================================================================================
 
           //MTK & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('mtk') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+            if($request['pendidikan']==1 && $request->hasAny('mtk') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //MTK & BIG, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+            if($request['pendidikan']==1 && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //MTK & BIG, PROVINSI, KABUPATEN
-            if($request->hasAny('mtk') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+            if($request['pendidikan']==1 && $request->hasAny('mtk') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //MTK & BIG, PROVINSI
-            if($request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->whereIN('pendidikanTerakhir',[3,4])
-                ->paginate(5);
+            if($request['pendidikan']==1 && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[3,4])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //MTK & BIG DAN SEMUA LOKASI
-            if($request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->whereIN('pendidikanTerakhir',[3,4])
-                ->paginate(5);
+            if($request['pendidikan']==1 && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[3,4])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
                   //=================================================================================IPA & IPS =====================================================================================
 
           //IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('ipa') && $request->hasAny('ips')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+            if($request['pendidikan']==1 && $request->hasAny('ipa') && $request->hasAny('ips')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%IPS%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+            if($request['pendidikan']==1 && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%IPS%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //IPA & IPS, PROVINSI, KABUPATEN
-            if($request->hasAny('ipa') && $request->hasAny('ips') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+            if($request['pendidikan']==1 && $request->hasAny('ipa') && $request->hasAny('ips') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%IPS%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //IPA & IPS, PROVINSI
-            if($request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->whereIN('pendidikanTerakhir',[3,4])
-                ->paginate(5);
+            if($request['pendidikan']==1 && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[3,4])
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //IPA & IPS DAN SEMUA LOKASI
-            if($request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%IPA%')
-                ->orWhere('prodi','like','%IPS%')
-                ->whereIN('pendidikanTerakhir',[3,4])
-                ->paginate(5);
+            if($request['pendidikan']==1 && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[3,4])
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
                //=================================================================================IPA & BIG =====================================================================================
 
           //IPA & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('ipa') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+            if($request['pendidikan']==1 && $request->hasAny('ipa') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //IPA & BIG, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+            if($request['pendidikan']==1 && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //IPA & BIG, PROVINSI, KABUPATEN
-            if($request->hasAny('ipa') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+            if($request['pendidikan']==1 && $request->hasAny('ipa') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //IPA & BIG, PROVINSI
-            if($request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->whereIN('pendidikanTerakhir',[3,4])
-                ->paginate(5);
+            if($request['pendidikan']==1 && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[3,4])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //IPA & BIG DAN SEMUA LOKASI
-            if($request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%IPA%')
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->whereIN('pendidikanTerakhir',[3,4])
-                ->paginate(5);
+            if($request['pendidikan']==1 && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[3,4])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
                //=================================================================================IPS & BIG =====================================================================================
 
           //IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('ips') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+            if($request['pendidikan']==1 && $request->hasAny('ips') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+            if($request['pendidikan']==1 && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //IPS & BIG, PROVINSI, KABUPATEN
-            if($request->hasAny('ips') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+            if($request['pendidikan']==1 && $request->hasAny('ips') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //IPS & BIG, PROVINSI
-            if($request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->whereIN('pendidikanTerakhir',[3,4])
-                ->paginate(5);
+            if($request['pendidikan']==1 && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[3,4])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //IPS & BIG DAN SEMUA LOKASI
-            if($request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%IPS%')
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->whereIN('pendidikanTerakhir',[3,4])
-                ->paginate(5);
+            if($request['pendidikan']==1 && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[3,4])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
   //=================================================================================ISI 3=====================================================================================
               //=================================================================================BIN & MTK & IPA=====================================================================================
 
               //BIN & MTK & IPA, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ipa')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ipa')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan']) 
-              ->orWhere('prodi','like','%IPA%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & IPA, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%IPA%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & IPA, PROVINSI, KABUPATEN
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%IPA%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & IPA, PROVINSI
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[3,4])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->whereIN('pendidikanTerakhir',[3,4])
-                ->paginate(5);
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & IPA, DAN SEMUA LOKASI
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[3,4])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Matematika%')
-                ->orWhere('prodi','like','%IPA%')
-                ->whereIN('pendidikanTerakhir',[3,4])
-                ->paginate(5);
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
                 //=================================================================================BIN & MTK & IPS=====================================================================================
 
               //BIN & MTK & IPS, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ips')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ips')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan']) 
-              ->orWhere('prodi','like','%IPS%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & IPS, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%IPS%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & IPS, PROVINSI, KABUPATEN
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%IPS%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & IPS, PROVINSI
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[3,4])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->whereIN('pendidikanTerakhir',[3,4])
-                ->paginate(5);
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & IPS DAN SEMUA LOKASI
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[3,4])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Matematika%')
-                ->orWhere('prodi','like','%IPS%')
-                ->whereIN('pendidikanTerakhir',[3,4])
-                ->paginate(5);
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
               //=================================================================================BIN & MTK & BIG=====================================================================================
 
               //BIN & MTK & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan']) 
-              ->orWhere('prodi','like','%Bhs. Inggris%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & BIG, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & BIG, PROVINSI, KABUPATEN
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & BIG, PROVINSI
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[3,4])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->whereIN('pendidikanTerakhir',[3,4])
-                ->paginate(5);
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & BIG DAN SEMUA LOKASI
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->orWhere('prodi','like','%Matematika%')
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[3,4])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->whereIN('pendidikanTerakhir',[3,4])
-                ->paginate(5);
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
               //=================================================================================MTK & IPA & IPS=====================================================================================
 
               //MTK & IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('mtk')  && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+            if($request['pendidikan']==1 && $request->hasAny('mtk')  && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan']) 
-              ->orWhere('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%IPS%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             // MTK & IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+            if($request['pendidikan']==1 && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%IPS%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //MTK & IPA & IPS, PROVINSI, KABUPATEN
-            if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+            if($request['pendidikan']==1 && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%IPS%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             // MTK & IPA & IPS, PROVINSI
-            if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
+            if($request['pendidikan']==1 && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[3,4])
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
                 ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->whereIN('pendidikanTerakhir',[3,4])
-                ->paginate(5);
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //MTK & IPA & IPS, DAN SEMUA LOKASI
-            if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
-                ->orWhere('prodi','like','%IPA%')
-                ->orwhere('prodi','like','%IPS%')
-                ->whereIN('pendidikanTerakhir',[3,4])
-                ->paginate(5);
+            if($request['pendidikan']==1 && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[3,4])
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
                         //=================================================================================IPA & IPS & BIG =====================================================================================
 
                //IPA & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+            if($request['pendidikan']==1 && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             // IPA & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+            if($request['pendidikan']==1 && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //IPA & IPS & BIG, PROVINSI, KABUPATEN
-            if($request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+            if($request['pendidikan']==1 && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //IPA & IPS & BIG, PROVINSI
-            if($request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
+            if($request['pendidikan']==1 && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[3,4])
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
                 ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->whereIN('pendidikanTerakhir',[3,4])
-                ->paginate(5);
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //IPA & IPS & BIG, DAN SEMUA LOKASI
-            if($request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%IPA%')
-                ->orwhere('prodi','like','%IPS%')
-                ->orwhere('prodi','like','%Bhs. Inggris%')
-                ->whereIN('pendidikanTerakhir',[3,4])
-                ->paginate(5);
+            if($request['pendidikan']==1 && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[3,4])
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
   //=================================================================================ISI 4=====================================================================================
                //=================================================================================BIN & MTK & IPA & IPS=====================================================================================
 
               //BIN & MTK & IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ipa') && $request->hasAny('ips')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ipa') && $request->hasAny('ips')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan']) 
-              ->orWhere('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%IPS%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%IPS%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & IPA & IPS, PROVINSI, KABUPATEN
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%IPS%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & IPA & IPS, PROVINSI
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[3,4])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
                 ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->whereIN('pendidikanTerakhir',[3,4])
-                ->paginate(5);
+                ->orWhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & IPA, DAN SEMUA LOKASI
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[3,4])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Matematika%')
                 ->orWhere('prodi','like','%IPA%')
-                ->orWhere('prodi','like','%IPS%')
-                ->whereIN('pendidikanTerakhir',[3,4])
-                ->paginate(5);
+                ->orWhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
 
             //=================================================================================BIN & MTK & IPA & BIG =====================================================================================
               //BIN & MTK & IPA & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan']) 
-              ->orWhere('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & IPA & BIG, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & IPA & BIG, PROVINSI, KABUPATEN
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & IPA & BIG, PROVINSI
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[3,4])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
                 ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->whereIN('pendidikanTerakhir',[3,4])
-                ->paginate(5);
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & IPA & BIG, DAN SEMUA LOKASI
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[3,4])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Matematika%')
                 ->orWhere('prodi','like','%IPA%')
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->whereIN('pendidikanTerakhir',[3,4])
-                ->paginate(5);
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
                 //=================================================================================BIN & MTK & IPS & BIG=====================================================================================
 
+        
               //BIN & MTK & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ips') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ips') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan']) 
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & IPS & BIG, PROVINSI, KABUPATEN
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & IPS & BIG, PROVINSI
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big')&& $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[3,4])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
                 ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->whereIN('pendidikanTerakhir',[3,4])
-                ->paginate(5);
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & IPS & BIG DAN SEMUA LOKASI
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->orWhere('prodi','like','%Matematika%')
-                ->orWhere('prodi','like','%IPS%')
-                ->orWhere('prodi','like','%bhs. Inggris%')
-                ->whereIN('pendidikanTerakhir',[3,4])
-                ->paginate(5);
-            }
-                //=================================================================================BIN & MTK & IPS & BIG =====================================================================================
-
-              //BIN & MTK & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ips') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan']) 
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
-            }
-            //BIN & MTK & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-              $grup=DB::table('tbmentor')
-              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
-            }
-            //BIN & MTK & IPS & BIG, PROVINSI, KABUPATEN
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-              $grup=DB::table('tbmentor')
-              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
-            }
-            //BIN & MTK & IPS & BIG, PROVINSI
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big')&& $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->whereIN('pendidikanTerakhir',[3,4])
-                ->paginate(5);
-            }
-            //BIN & MTK & IPS DAN SEMUA LOKASI
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Matematika%')
                 ->orWhere('prodi','like','%IPS%')
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->whereIN('pendidikanTerakhir',[3,4])
-                ->paginate(5);
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
               //=================================================================================MTK & IPA & IPS & BIG=====================================================================================
 
               //MTK & IPA & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('mtk')  && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+            if($request['pendidikan']==1 && $request->hasAny('mtk')  && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan']) 
-              ->orWhere('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             // MTK & IPA & IPS & big, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+            if($request['pendidikan']==1 && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //MTK & IPA & IPS & BIG, PROVINSI, KABUPATEN
-            if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+            if($request['pendidikan']==1 && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             // MTK & IPA & IPS & BIG, PROVINSI
-            if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips')  && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
+            if($request['pendidikan']==1 && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips')  && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[3,4])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
                 ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
                 ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->whereIN('pendidikanTerakhir',[3,4])
-                ->paginate(5);
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //MTK & IPA & IPS & BIG, DAN SEMUA LOKASI
-            if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
+            if($request['pendidikan']==1 && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[3,4])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
                 ->orWhere('prodi','like','%IPA%')
-                ->orwhere('prodi','like','%IPS%')
-                ->orwhere('prodi','like','%Bhs. Inggris%')
-                ->whereIN('pendidikanTerakhir',[3,4])
-                ->paginate(5);
+                ->orWhere('prodi','like','%IPS%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
   //=================================================================================ISI 5=====================================================================================
               //=================================================================================BIN & MTK & IPA & IPS & BIG=====================================================================================
 
               //BIN & MTK & IPA & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan']) 
-              ->orWhere('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & IPA & IPS & big, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & IPA & IPS & Big, PROVINSI, KABUPATEN
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->whereIN('pendidikanTerakhir',[3,4])
-              ->paginate(5);
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & IPA & IPS & BIG, PROVINSI
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->whereIN('pendidikanTerakhir',[3,4])
-                ->paginate(5);
-            }
-            //BIN & MTK & IPA & BIG, DAN SEMUA LOKASI
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[3,4])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Matematika%')
                 ->orWhere('prodi','like','%IPA%')
                 ->orWhere('prodi','like','%IPS%')
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->whereIN('pendidikanTerakhir',[3,4])
-                ->paginate(5);
-            }
-            $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
-            $url=$request->fullUrl();
-        }
-        elseif($request['pendidikan']==2){ //D3
-          $grup=DB::table('tbmentor')
-          ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-          ->where('statKomplit',7)
-          ->where('statusTutor',1)
-          ->whereIN('pendidikanTerakhir',[5,9])
-          ->paginate(5);
-          //=================================================================================ISI 1=====================================================================================
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+          }
+            //BIN & MTK & IPS & IPA & BIG, DAN SEMUA LOKASI
+            if($request['pendidikan']==1 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[3,4])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+          }
+
+
+           //////////////////////////////////////////////////////////////////// ===2   D3    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //=================================================================================ISI 1=====================================================================================
             //BIN, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
               ->where('statKomplit',7)
@@ -2625,11 +2552,11 @@ class HomeSiswaController extends Controller
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
-              ->whereIN('pendidikanTerakhir',[5,9])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[5])
+                ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
             }
             //BIN, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
               ->where('statKomplit',7)
@@ -2638,11 +2565,11 @@ class HomeSiswaController extends Controller
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
-              ->whereIN('pendidikanTerakhir',[5,9])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[5])
+                ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
             }
             //BIN, PROVINSI, KABUPATEN
-            if($request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
               ->where('statKomplit',7)
@@ -2650,33 +2577,36 @@ class HomeSiswaController extends Controller
               ->where('prodi','like','%Bhs. Indonesia%')
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
-              ->whereIN('pendidikanTerakhir',[5,9])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[5])
+                ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
             }
             //BIN, PROVINSI
-            if($request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
                 $grup=DB::table('tbmentor')
                 ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
                 ->where('statKomplit',7)
                 ->where('statusTutor',1)
                 ->where('prodi','like','%Bhs. Indonesia%')
                 ->where('provinsi',$request['provinsi'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
+                ->whereIN('pendidikanTerakhir',[5])
+                  ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
             }
             //BIN DAN SEMUA LOKASI
-            if($request->hasAny('bin') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
                 $grup=DB::table('tbmentor')
                 ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
                 ->where('statKomplit',7)
                 ->where('statusTutor',1)
                 ->where('prodi','like','%Bhs. Indonesia%')
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
+                ->whereIN('pendidikanTerakhir',[5])
+                  ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
+                $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+                $filter="iya";
+                $url=$request->fullUrl();
             }
           
           //MTK, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-          if($request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+          if($request['pendidikan']==2 && $request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
             $grup=DB::table('tbmentor')
             ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
             ->where('statKomplit',7)
@@ -2686,11 +2616,11 @@ class HomeSiswaController extends Controller
             ->where('kota',$request['kabupaten'])
             ->where('kecamatan',$request['kecamatan'])
             ->where('kelurahan',$request['kelurahan'])
-            ->whereIN('pendidikanTerakhir',[5,9])
-            ->paginate(5);
+            ->whereIN('pendidikanTerakhir',[5])
+              ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
           }
           //MTK, PROVINSI, KABUPATEN, KECAMATAN,
-          if($request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+          if($request['pendidikan']==2 && $request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
             $grup=DB::table('tbmentor')
             ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
             ->where('statKomplit',7)
@@ -2699,11 +2629,11 @@ class HomeSiswaController extends Controller
             ->where('provinsi',$request['provinsi'])
             ->where('kota',$request['kabupaten'])
             ->where('kecamatan',$request['kecamatan'])
-            ->whereIN('pendidikanTerakhir',[5,9])
-            ->paginate(5);
+            ->whereIN('pendidikanTerakhir',[5])
+              ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
           }
           //MTK, PROVINSI, KABUPATEN
-          if($request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+          if($request['pendidikan']==2 && $request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
             $grup=DB::table('tbmentor')
             ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
             ->where('statKomplit',7)
@@ -2711,33 +2641,33 @@ class HomeSiswaController extends Controller
             ->where('prodi','like','%Matematika%')
             ->where('provinsi',$request['provinsi'])
             ->where('kota',$request['kabupaten'])
-            ->whereIN('pendidikanTerakhir',[5,9])
-            ->paginate(5);
+            ->whereIN('pendidikanTerakhir',[5])
+              ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
           }
           //MTK, PROVINSI
-          if($request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+          if($request['pendidikan']==2 && $request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
               ->where('statKomplit',7)
               ->where('statusTutor',1)
               ->where('prodi','like','%Matematika%')
               ->where('provinsi',$request['provinsi'])
-              ->whereIN('pendidikanTerakhir',[5,9])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[5])
+                ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
           }
           //MTK DAN SEMUA LOKASI
-          if($request->hasAny('mtk') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+          if($request['pendidikan']==2 && $request->hasAny('mtk') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
               ->where('statKomplit',7)
               ->where('statusTutor',1)
               ->where('prodi','like','%Matematika%')
-              ->whereIN('pendidikanTerakhir',[5,9])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[5])
+                ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
           }
 
          //IPA, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-         if($request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+         if($request['pendidikan']==2 && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
           $grup=DB::table('tbmentor')
           ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
           ->where('statKomplit',7)
@@ -2747,11 +2677,11 @@ class HomeSiswaController extends Controller
           ->where('kota',$request['kabupaten'])
           ->where('kecamatan',$request['kecamatan'])
           ->where('kelurahan',$request['kelurahan'])
-          ->whereIN('pendidikanTerakhir',[5,9])
-          ->paginate(5);
+          ->whereIN('pendidikanTerakhir',[5])
+            ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
         }
         //IPA, PROVINSI, KABUPATEN, KECAMATAN,
-        if($request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+        if($request['pendidikan']==2 && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
           $grup=DB::table('tbmentor')
           ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
           ->where('statKomplit',7)
@@ -2760,11 +2690,11 @@ class HomeSiswaController extends Controller
           ->where('provinsi',$request['provinsi'])
           ->where('kota',$request['kabupaten'])
           ->where('kecamatan',$request['kecamatan'])
-          ->whereIN('pendidikanTerakhir',[5,9])
-          ->paginate(5);
+          ->whereIN('pendidikanTerakhir',[5])
+            ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
         }
         //IPA, PROVINSI, KABUPATEN
-        if($request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+        if($request['pendidikan']==2 && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
           $grup=DB::table('tbmentor')
           ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
           ->where('statKomplit',7)
@@ -2772,33 +2702,33 @@ class HomeSiswaController extends Controller
           ->where('prodi','like','%IPA%')
           ->where('provinsi',$request['provinsi'])
           ->where('kota',$request['kabupaten'])
-          ->whereIN('pendidikanTerakhir',[5,9])
-          ->paginate(5);
+          ->whereIN('pendidikanTerakhir',[5])
+            ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
         }
         //IPA, PROVINSI
-        if($request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+        if($request['pendidikan']==2 && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
             $grup=DB::table('tbmentor')
             ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
             ->where('statKomplit',7)
             ->where('statusTutor',1)
             ->where('prodi','like','%IPA%')
             ->where('provinsi',$request['provinsi'])
-            ->whereIN('pendidikanTerakhir',[5,9])
-            ->paginate(5);
+            ->whereIN('pendidikanTerakhir',[5])
+              ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
         }
         //IPA DAN SEMUA LOKASI
-        if($request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+        if($request['pendidikan']==2 && $request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
             $grup=DB::table('tbmentor')
             ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
             ->where('statKomplit',7)
             ->where('statusTutor',1)
             ->where('prodi','like','%IPA%')
-            ->whereIN('pendidikanTerakhir',[5,9])
-            ->paginate(5);
+            ->whereIN('pendidikanTerakhir',[5])
+              ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
         }
 
        //IPS, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-       if($request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+       if($request['pendidikan']==2 && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
         $grup=DB::table('tbmentor')
         ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
         ->where('statKomplit',7)
@@ -2808,11 +2738,11 @@ class HomeSiswaController extends Controller
         ->where('kota',$request['kabupaten'])
         ->where('kecamatan',$request['kecamatan'])
         ->where('kelurahan',$request['kelurahan'])
-        ->whereIN('pendidikanTerakhir',[5,9])
-        ->paginate(5);
+        ->whereIN('pendidikanTerakhir',[5])
+          ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
       }
       //IPS, PROVINSI, KABUPATEN, KECAMATAN,
-      if($request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+      if($request['pendidikan']==2 && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
         $grup=DB::table('tbmentor')
         ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
         ->where('statKomplit',7)
@@ -2821,11 +2751,11 @@ class HomeSiswaController extends Controller
         ->where('provinsi',$request['provinsi'])
         ->where('kota',$request['kabupaten'])
         ->where('kecamatan',$request['kecamatan'])
-        ->whereIN('pendidikanTerakhir',[5,9])
-        ->paginate(5);
+        ->whereIN('pendidikanTerakhir',[5])
+          ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
       }
       //IPS, PROVINSI, KABUPATEN
-      if($request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+      if($request['pendidikan']==2 && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
         $grup=DB::table('tbmentor')
         ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
         ->where('statKomplit',7)
@@ -2833,33 +2763,33 @@ class HomeSiswaController extends Controller
         ->where('prodi','like','%IPS%')
         ->where('provinsi',$request['provinsi'])
         ->where('kota',$request['kabupaten'])
-        ->whereIN('pendidikanTerakhir',[5,9])
-        ->paginate(5);
+        ->whereIN('pendidikanTerakhir',[5])
+          ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
       }
       //IPS, PROVINSI
-      if($request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+      if($request['pendidikan']==2 && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
           $grup=DB::table('tbmentor')
           ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
           ->where('statKomplit',7)
           ->where('statusTutor',1)
           ->where('prodi','like','%IPS%')
           ->where('provinsi',$request['provinsi'])
-          ->whereIN('pendidikanTerakhir',[5,9])
-          ->paginate(5);
+          ->whereIN('pendidikanTerakhir',[5])
+            ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
       }
       //IPS DAN SEMUA LOKASI
-      if($request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+      if($request['pendidikan']==2 && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
           $grup=DB::table('tbmentor')
           ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
           ->where('statKomplit',7)
           ->where('statusTutor',1)
           ->where('prodi','like','%IPS%')
-          ->whereIN('pendidikanTerakhir',[5,9])
-          ->paginate(5);
+          ->whereIN('pendidikanTerakhir',[5])
+            ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
       }
 
       //BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-      if($request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+      if($request['pendidikan']==2 && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
         $grup=DB::table('tbmentor')
         ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
         ->where('statKomplit',7)
@@ -2869,11 +2799,11 @@ class HomeSiswaController extends Controller
         ->where('kota',$request['kabupaten'])
         ->where('kecamatan',$request['kecamatan'])
         ->where('kelurahan',$request['kelurahan'])
-        ->whereIN('pendidikanTerakhir',[5,9])
-        ->paginate(5);
+        ->whereIN('pendidikanTerakhir',[5])
+          ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
       }
       //BIG, PROVINSI, KABUPATEN, KECAMATAN,
-      if($request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+      if($request['pendidikan']==2 && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
         $grup=DB::table('tbmentor')
         ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
         ->where('statKomplit',7)
@@ -2882,11 +2812,11 @@ class HomeSiswaController extends Controller
         ->where('provinsi',$request['provinsi'])
         ->where('kota',$request['kabupaten'])
         ->where('kecamatan',$request['kecamatan'])
-        ->whereIN('pendidikanTerakhir',[5,9])
-        ->paginate(5);
+        ->whereIN('pendidikanTerakhir',[5])
+          ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
       }
       //BIG, PROVINSI, KABUPATEN
-      if($request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+      if($request['pendidikan']==2 && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
         $grup=DB::table('tbmentor')
         ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
         ->where('statKomplit',7)
@@ -2894,6244 +2824,6146 @@ class HomeSiswaController extends Controller
         ->where('prodi','like','%Bhs. Inggris%')
         ->where('provinsi',$request['provinsi'])
         ->where('kota',$request['kabupaten'])
-        ->whereIN('pendidikanTerakhir',[5,9])
-        ->paginate(5);
+        ->whereIN('pendidikanTerakhir',[5])
+          ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
       }
       //BIG, PROVINSI
-      if($request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+      if($request['pendidikan']==2 && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
           $grup=DB::table('tbmentor')
           ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
           ->where('statKomplit',7)
           ->where('statusTutor',1)
           ->where('prodi','like','%Bhs. Inggris%')
           ->where('provinsi',$request['provinsi'])
-          ->whereIN('pendidikanTerakhir',[5,9])
-          ->paginate(5);
+          ->whereIN('pendidikanTerakhir',[5])
+            ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
       }
       //BIG DAN SEMUA LOKASI
-      if($request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+      if($request['pendidikan']==2 && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
           $grup=DB::table('tbmentor')
           ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
           ->where('statKomplit',7)
           ->where('statusTutor',1)
           ->where('prodi','like','%Bhs. Inggris%')
-          ->whereIN('pendidikanTerakhir',[5,9])
-          ->paginate(5);
+          ->whereIN('pendidikanTerakhir',[5])
+            ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
       }
-      //=================================================================================ISI 2=====================================================================================
+  //=================================================================================ISI 2=====================================================================================
   //=================================================================================BIN & MTK =====================================================================================
 
               //BIN & MTK, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-              if($request->hasAny('bin') && $request->hasAny('mtk')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-              }
-              //BIN & MTK, PROVINSI, KABUPATEN, KECAMATAN,
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-              }
-              //BIN & MTK, PROVINSI, KABUPATEN
-              if($request->hasAny('bin') && $request->hasAny('mtk') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-              }
-              //BIN & MTK, PROVINSI
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Bhs. Indonesia%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%Matematika%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->whereIN('pendidikanTerakhir',[5,9])
-                  ->paginate(5);
-              }
-              //BIN & MTK DAN SEMUA LOKASI
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Bhs. Indonesia%')
-                  ->orWhere('prodi','like','%Matematika%')
-                  ->whereIN('pendidikanTerakhir',[5,9])
-                  ->paginate(5);
-              }
-  
-                 //=================================================================================BIN & IPA =====================================================================================
-  
-            //BIN & IPA, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-              if($request->hasAny('bin') && $request->hasAny('ipa')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-              }
-              //BIN & IPA, PROVINSI, KABUPATEN, KECAMATAN,
-              if($request->hasAny('bin') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-              }
-              //BIN & IPA, PROVINSI, KABUPATEN
-              if($request->hasAny('bin') && $request->hasAny('ipa') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-              }
-              //BIN & IPA, PROVINSI
-              if($request->hasAny('bin') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Bhs. Indonesia%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%IPA%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->whereIN('pendidikanTerakhir',[5,9])
-                  ->paginate(5);
-              }
-              //BIN & IPA DAN SEMUA LOKASI
-              if($request->hasAny('bin') && $request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Bhs. Indonesia%')
-                  ->orWhere('prodi','like','%IPA%')
-                  ->whereIN('pendidikanTerakhir',[5,9])
-                  ->paginate(5);
-              }
-  
-               //=================================================================================BIN & IPS =====================================================================================
-  
-            //BIN & IPS, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-              if($request->hasAny('bin') && $request->hasAny('ips')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-              }
-              //BIN & IPS, PROVINSI, KABUPATEN, KECAMATAN,
-              if($request->hasAny('bin') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-              }
-              //BIN & IPS, PROVINSI, KABUPATEN
-              if($request->hasAny('bin') && $request->hasAny('ips') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-              }
-              //BIN & IPS, PROVINSI
-              if($request->hasAny('bin') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Bhs. Indonesia%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%IPS%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->whereIN('pendidikanTerakhir',[5,9])
-                  ->paginate(5);
-              }
-              //BIN & IPS DAN SEMUA LOKASI
-              if($request->hasAny('bin') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Bhs. Indonesia%')
-                  ->orWhere('prodi','like','%IPS%')
-                  ->whereIN('pendidikanTerakhir',[5,9])
-                  ->paginate(5);
-              }
-  
-                //=================================================================================BIN & BIG =====================================================================================
-  
-            //BIN & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-              if($request->hasAny('bin') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-              }
-              //BIN & BIG, PROVINSI, KABUPATEN, KECAMATAN,
-              if($request->hasAny('bin') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-              }
-              //BIN & BIG, PROVINSI, KABUPATEN
-              if($request->hasAny('bin') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-              }
-              //BIN & BIG, PROVINSI
-              if($request->hasAny('bin') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Bhs. Indonesia%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%Bhs. Inggris%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->whereIN('pendidikanTerakhir',[5,9])
-                  ->paginate(5);
-              }
-              //BIN & BIG DAN SEMUA LOKASI
-              if($request->hasAny('bin') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Bhs. Indonesia%')
-                  ->orWhere('prodi','like','%Bhs. Inggris%')
-                  ->whereIN('pendidikanTerakhir',[5,9])
-                  ->paginate(5);
-              }
-                
-                 //=================================================================================MTK & IPA =====================================================================================
-  
-            //MTK & IPA, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-              if($request->hasAny('mtk') && $request->hasAny('ipa')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-              }
-              //MTK & IPA, PROVINSI, KABUPATEN, KECAMATAN,
-              if($request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-              }
-              //MTK & IPA, PROVINSI, KABUPATEN
-              if($request->hasAny('mtk') && $request->hasAny('ipa') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-              }
-              //MTK & IPA, PROVINSI
-              if($request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Matematika%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%IPA%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->whereIN('pendidikanTerakhir',[5,9])
-                  ->paginate(5);
-              }
-              //MTK & IPA DAN SEMUA LOKASI
-              if($request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Matematika%')
-                  ->orWhere('prodi','like','%IPA%')
-                  ->whereIN('pendidikanTerakhir',[5,9])
-                  ->paginate(5);
-              }
-  
-             //=================================================================================MTK & IPS =====================================================================================
-  
-            //MTK & IPS, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-              if($request->hasAny('mtk') && $request->hasAny('ips')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-              }
-              //MTK & IPS, PROVINSI, KABUPATEN, KECAMATAN,
-              if($request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-              }
-              //MTK & IPS, PROVINSI, KABUPATEN
-              if($request->hasAny('mtk') && $request->hasAny('ips') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-              }
-              //MTK & IPS, PROVINSI
-              if($request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Matematika%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%IPS%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->whereIN('pendidikanTerakhir',[5,9])
-                  ->paginate(5);
-              }
-              //MTK & IPS DAN SEMUA LOKASI
-              if($request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Matematika%')
-                  ->orWhere('prodi','like','%IPS%')
-                  ->whereIN('pendidikanTerakhir',[5,9])
-                  ->paginate(5);
-              }
-  
-                  //=================================================================================MTK & BIG =====================================================================================
-  
-            //MTK & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-              if($request->hasAny('mtk') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-              }
-              //MTK & BIG, PROVINSI, KABUPATEN, KECAMATAN,
-              if($request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-              }
-              //MTK & BIG, PROVINSI, KABUPATEN
-              if($request->hasAny('mtk') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-              }
-              //MTK & BIG, PROVINSI
-              if($request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Matematika%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%Bhs. Inggris%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->whereIN('pendidikanTerakhir',[5,9])
-                  ->paginate(5);
-              }
-              //MTK & BIG DAN SEMUA LOKASI
-              if($request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Matematika%')
-                  ->orWhere('prodi','like','%Bhs. Inggris%')
-                  ->whereIN('pendidikanTerakhir',[5,9])
-                  ->paginate(5);
-              }
-                    //=================================================================================IPA & IPS =====================================================================================
-  
-            //IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-              if($request->hasAny('ipa') && $request->hasAny('ips')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-              }
-              //IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN,
-              if($request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-              }
-              //IPA & IPS, PROVINSI, KABUPATEN
-              if($request->hasAny('ipa') && $request->hasAny('ips') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-              }
-              //IPA & IPS, PROVINSI
-              if($request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%IPA%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%IPS%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->whereIN('pendidikanTerakhir',[5,9])
-                  ->paginate(5);
-              }
-              //IPA & IPS DAN SEMUA LOKASI
-              if($request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%IPA%')
-                  ->orWhere('prodi','like','%IPS%')
-                  ->whereIN('pendidikanTerakhir',[5,9])
-                  ->paginate(5);
-              }
-                 //=================================================================================IPA & BIG =====================================================================================
-  
-            //IPA & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-              if($request->hasAny('ipa') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-              }
-              //IPA & BIG, PROVINSI, KABUPATEN, KECAMATAN,
-              if($request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-              }
-              //IPA & BIG, PROVINSI, KABUPATEN
-              if($request->hasAny('ipa') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-              }
-              //IPA & BIG, PROVINSI
-              if($request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%IPA%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%Bhs. Inggris%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->whereIN('pendidikanTerakhir',[5,9])
-                  ->paginate(5);
-              }
-              //IPA & BIG DAN SEMUA LOKASI
-              if($request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%IPA%')
-                  ->orWhere('prodi','like','%Bhs. Inggris%')
-                  ->whereIN('pendidikanTerakhir',[5,9])
-                  ->paginate(5);
-              }
-                 //=================================================================================IPS & BIG =====================================================================================
-  
-            //IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-              if($request->hasAny('ips') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-              }
-              //IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN,
-              if($request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-              }
-              //IPS & BIG, PROVINSI, KABUPATEN
-              if($request->hasAny('ips') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-              }
-              //IPS & BIG, PROVINSI
-              if($request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%IPS%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%Bhs. Inggris%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->whereIN('pendidikanTerakhir',[5,9])
-                  ->paginate(5);
-              }
-              //IPS & BIG DAN SEMUA LOKASI
-              if($request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%IPS%')
-                  ->orWhere('prodi','like','%Bhs. Inggris%')
-                  ->whereIN('pendidikanTerakhir',[5,9])
-                  ->paginate(5);
-              }
-               //=================================================================================ISI 3=====================================================================================
-              //=================================================================================BIN & MTK & IPA=====================================================================================
-
-              //BIN & MTK & IPA, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ipa')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('mtk')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan']) 
-              ->orWhere('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->whereIN('pendidikanTerakhir',[5,9])
-              ->paginate(5);
-            }
-            //BIN & MTK & IPA, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-              $grup=DB::table('tbmentor')
-              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->whereIN('pendidikanTerakhir',[5,9])
-              ->paginate(5);
-            }
-            //BIN & MTK & IPA, PROVINSI, KABUPATEN
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-              $grup=DB::table('tbmentor')
-              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->whereIN('pendidikanTerakhir',[5,9])
-              ->paginate(5);
-            }
-            //BIN & MTK & IPA, PROVINSI
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-            }
-            //BIN & MTK & IPA, DAN SEMUA LOKASI
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->orWhere('prodi','like','%Matematika%')
-                ->orWhere('prodi','like','%IPA%')
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-            }
-                //=================================================================================BIN & MTK & IPS=====================================================================================
-
-              //BIN & MTK & IPS, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ips')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-              $grup=DB::table('tbmentor')
-              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan']) 
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->whereIN('pendidikanTerakhir',[5,9])
-              ->paginate(5);
-            }
-            //BIN & MTK & IPS, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-              $grup=DB::table('tbmentor')
-              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->whereIN('pendidikanTerakhir',[5,9])
-              ->paginate(5);
-            }
-            //BIN & MTK & IPS, PROVINSI, KABUPATEN
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-              $grup=DB::table('tbmentor')
-              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->whereIN('pendidikanTerakhir',[5,9])
-              ->paginate(5);
-            }
-            //BIN & MTK & IPS, PROVINSI
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-            }
-            //BIN & MTK & IPS DAN SEMUA LOKASI
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->orWhere('prodi','like','%Matematika%')
-                ->orWhere('prodi','like','%IPS%')
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-            }
-              //=================================================================================BIN & MTK & BIG=====================================================================================
-
-              //BIN & MTK & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-              $grup=DB::table('tbmentor')
-              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan']) 
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->whereIN('pendidikanTerakhir',[5,9])
-              ->paginate(5);
-            }
-            //BIN & MTK & BIG, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-              $grup=DB::table('tbmentor')
-              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->whereIN('pendidikanTerakhir',[5,9])
-              ->paginate(5);
-            }
-            //BIN & MTK & BIG, PROVINSI, KABUPATEN
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-              $grup=DB::table('tbmentor')
-              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->whereIN('pendidikanTerakhir',[5,9])
-              ->paginate(5);
-            }
-            //BIN & MTK & BIG, PROVINSI
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-            }
-            //BIN & MTK & BIG DAN SEMUA LOKASI
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->orWhere('prodi','like','%Matematika%')
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-            }
-              //=================================================================================MTK & IPA & IPS=====================================================================================
-
-              //MTK & IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('mtk')  && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-              $grup=DB::table('tbmentor')
-              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan']) 
-              ->orWhere('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->whereIN('pendidikanTerakhir',[5,9])
-              ->paginate(5);
-            }
-            // MTK & IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-              $grup=DB::table('tbmentor')
-              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->whereIN('pendidikanTerakhir',[5,9])
-              ->paginate(5);
-            }
-            //MTK & IPA & IPS, PROVINSI, KABUPATEN
-            if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-              $grup=DB::table('tbmentor')
-              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->whereIN('pendidikanTerakhir',[5,9])
-              ->paginate(5);
-            }
-            // MTK & IPA & IPS, PROVINSI
-            if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-            }
-            //MTK & IPA & IPS, DAN SEMUA LOKASI
-            if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
-                ->orWhere('prodi','like','%IPA%')
-                ->orwhere('prodi','like','%IPS%')
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-            }
-                        //=================================================================================IPA & IPS & BIG =====================================================================================
-
-               //IPA & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-              $grup=DB::table('tbmentor')
-              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->whereIN('pendidikanTerakhir',[5,9])
-              ->paginate(5);
-            }
-            // IPA & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-              $grup=DB::table('tbmentor')
-              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->whereIN('pendidikanTerakhir',[5,9])
-              ->paginate(5);
-            }
-            //IPA & IPS & BIG, PROVINSI, KABUPATEN
-            if($request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-              $grup=DB::table('tbmentor')
-              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->whereIN('pendidikanTerakhir',[5,9])
-              ->paginate(5);
-            }
-            //IPA & IPS & BIG, PROVINSI
-            if($request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-            }
-            //IPA & IPS & BIG, DAN SEMUA LOKASI
-            if($request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%IPA%')
-                ->orwhere('prodi','like','%IPS%')
-                ->orwhere('prodi','like','%Bhs. Inggris%')
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-            }
-            //=================================================================================ISI 4=====================================================================================
-               //=================================================================================BIN & MTK & IPA & IPS=====================================================================================
-
-              //BIN & MTK & IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-              if($request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ipa') && $request->hasAny('ips')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan']) 
-                ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-              }
-              //BIN & MTK & IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN,
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-              }
-              //BIN & MTK & IPA & IPS, PROVINSI, KABUPATEN
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-              }
-              //BIN & MTK & IPA & IPS, PROVINSI
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Bhs. Indonesia%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%Matematika%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%IPA%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%IPS%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->whereIN('pendidikanTerakhir',[5,9])
-                  ->paginate(5);
-              }
-              //BIN & MTK & IPA, DAN SEMUA LOKASI
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Bhs. Indonesia%')
-                  ->orWhere('prodi','like','%Matematika%')
-                  ->orWhere('prodi','like','%IPA%')
-                  ->orWhere('prodi','like','%IPS%')
-                  ->whereIN('pendidikanTerakhir',[5,9])
-                  ->paginate(5);
-              }
-  
-              //=================================================================================BIN & MTK & IPA & BIG =====================================================================================
-                //BIN & MTK & IPA & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-              if($request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan']) 
-                ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-              }
-              //BIN & MTK & IPA & BIG, PROVINSI, KABUPATEN, KECAMATAN,
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-              }
-              //BIN & MTK & IPA & BIG, PROVINSI, KABUPATEN
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-              }
-              //BIN & MTK & IPA & BIG, PROVINSI
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Bhs. Indonesia%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%Matematika%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%IPA%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%Bhs. Inggris%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->whereIN('pendidikanTerakhir',[5,9])
-                  ->paginate(5);
-              }
-              //BIN & MTK & IPA & BIG, DAN SEMUA LOKASI
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Bhs. Indonesia%')
-                  ->orWhere('prodi','like','%Matematika%')
-                  ->orWhere('prodi','like','%IPA%')
-                  ->orWhere('prodi','like','%Bhs. Inggris%')
-                  ->whereIN('pendidikanTerakhir',[5,9])
-                  ->paginate(5);
-              }
-                  //=================================================================================BIN & MTK & IPS & BIG=====================================================================================
-  
-                //BIN & MTK & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-              if($request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ips') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan']) 
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-              }
-              //BIN & MTK & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN,
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-              }
-              //BIN & MTK & IPS & BIG, PROVINSI, KABUPATEN
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-              }
-              //BIN & MTK & IPS & BIG, PROVINSI
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Bhs. Indonesia%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%Matematika%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%IPS%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%Bhs. Inggris%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->whereIN('pendidikanTerakhir',[5,9])
-                  ->paginate(5);
-              }
-              //BIN & MTK & IPS & BIG DAN SEMUA LOKASI
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Bhs. Indonesia%')
-                  ->orWhere('prodi','like','%Matematika%')
-                  ->orWhere('prodi','like','%IPS%')
-                  ->orWhere('prodi','like','%bhs. Inggris%')
-                  ->whereIN('pendidikanTerakhir',[5,9])
-                  ->paginate(5);
-              }
-                  //=================================================================================BIN & MTK & IPS & BIG =====================================================================================
-  
-                //BIN & MTK & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-              if($request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ips') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan']) 
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-              }
-              //BIN & MTK & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN,
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-              }
-              //BIN & MTK & IPS & BIG, PROVINSI, KABUPATEN
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-              }
-              //BIN & MTK & IPS & BIG, PROVINSI
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big')&& $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Bhs. Indonesia%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%Matematika%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%IPS%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%Bhs. Inggris%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->whereIN('pendidikanTerakhir',[5,9])
-                  ->paginate(5);
-              }
-              //BIN & MTK & IPS DAN SEMUA LOKASI
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Bhs. Indonesia%')
-                  ->orWhere('prodi','like','%Matematika%')
-                  ->orWhere('prodi','like','%IPS%')
-                  ->orWhere('prodi','like','%Bhs. Inggris%')
-                  ->whereIN('pendidikanTerakhir',[5,9])
-                  ->paginate(5);
-              }
-                //=================================================================================MTK & IPA & IPS & BIG=====================================================================================
-  
-                //MTK & IPA & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-              if($request->hasAny('mtk')  && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan']) 
-                ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-              }
-              // MTK & IPA & IPS & big, PROVINSI, KABUPATEN, KECAMATAN,
-              if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-              }
-              //MTK & IPA & IPS & BIG, PROVINSI, KABUPATEN
-              if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-              }
-              // MTK & IPA & IPS & BIG, PROVINSI
-              if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips')  && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Matematika%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%IPA%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%IPS%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%Bhs. Inggris%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->whereIN('pendidikanTerakhir',[5,9])
-                  ->paginate(5);
-              }
-              //MTK & IPA & IPS & BIG, DAN SEMUA LOKASI
-              if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Matematika%')
-                  ->orWhere('prodi','like','%IPA%')
-                  ->orwhere('prodi','like','%IPS%')
-                  ->orwhere('prodi','like','%Bhs. Inggris%')
-                  ->whereIN('pendidikanTerakhir',[5,9])
-                  ->paginate(5);
-              }
-              //=================================================================================ISI 5=====================================================================================
-              //=================================================================================BIN & MTK & IPA & IPS & BIG=====================================================================================
-
-              //BIN & MTK & IPA & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-              $grup=DB::table('tbmentor')
-              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan']) 
-              ->orWhere('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->whereIN('pendidikanTerakhir',[5,9])
-              ->paginate(5);
-            }
-            //BIN & MTK & IPA & IPS & big, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-              $grup=DB::table('tbmentor')
-              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->whereIN('pendidikanTerakhir',[5,9])
-              ->paginate(5);
-            }
-            //BIN & MTK & IPA & IPS & Big, PROVINSI, KABUPATEN
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-              $grup=DB::table('tbmentor')
-              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->whereIN('pendidikanTerakhir',[5,9])
-              ->paginate(5);
-            }
-            //BIN & MTK & IPA & IPS & BIG, PROVINSI
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-            }
-            //BIN & MTK & IPA & BIG, DAN SEMUA LOKASI
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->orWhere('prodi','like','%Matematika%')
-                ->orWhere('prodi','like','%IPA%')
-                ->orWhere('prodi','like','%IPS%')
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->whereIN('pendidikanTerakhir',[5,9])
-                ->paginate(5);
-            }
-            $url=$request->fullUrl();
-            $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
-            
-        }
-        elseif($request['pendidikan']==3){ //S1, S2, S3
-          $grup=DB::table('tbmentor')
-          ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-          ->where('statKomplit',7)
-          ->where('statusTutor',1)
-          ->whereIN('pendidikanTerakhir',[6,7,8])
-          ->paginate(5);
-           //=================================================================================ISI 1=====================================================================================
-                    //=================================================================================BIN=====================================================================================
-           
-           //BIN, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-              $grup=DB::table('tbmentor')
-              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
-            }
-            //BIN, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-              $grup=DB::table('tbmentor')
-              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
-            }
-            //BIN, PROVINSI, KABUPATEN
-            if($request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-              $grup=DB::table('tbmentor')
-              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
-            }
-            //BIN, PROVINSI
-            if($request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
-            }
-            //BIN DAN SEMUA LOKASI
-            if($request->hasAny('bin') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
-            }
-                    //=================================================================================MTK=====================================================================================
-          
-          //MTK, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-          if($request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-            $grup=DB::table('tbmentor')
-            ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-            ->where('statKomplit',7)
-            ->where('statusTutor',1)
-            ->where('prodi','like','%Matematika%')
-            ->where('provinsi',$request['provinsi'])
-            ->where('kota',$request['kabupaten'])
-            ->where('kecamatan',$request['kecamatan'])
-            ->where('kelurahan',$request['kelurahan'])
-            ->whereIN('pendidikanTerakhir',[6,7,8])
-            ->paginate(5);
-          }
-          //MTK, PROVINSI, KABUPATEN, KECAMATAN,
-          if($request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-            $grup=DB::table('tbmentor')
-            ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-            ->where('statKomplit',7)
-            ->where('statusTutor',1)
-            ->where('prodi','like','%Matematika%')
-            ->where('provinsi',$request['provinsi'])
-            ->where('kota',$request['kabupaten'])
-            ->where('kecamatan',$request['kecamatan'])
-            ->whereIN('pendidikanTerakhir',[6,7,8])
-            ->paginate(5);
-          }
-          //MTK, PROVINSI, KABUPATEN
-          if($request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-            $grup=DB::table('tbmentor')
-            ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-            ->where('statKomplit',7)
-            ->where('statusTutor',1)
-            ->where('prodi','like','%Matematika%')
-            ->where('provinsi',$request['provinsi'])
-            ->where('kota',$request['kabupaten'])
-            ->whereIN('pendidikanTerakhir',[6,7,8])
-            ->paginate(5);
-          }
-          //MTK, PROVINSI
-          if($request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-              $grup=DB::table('tbmentor')
-              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
-          }
-          //MTK DAN SEMUA LOKASI
-          if($request->hasAny('mtk') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-              $grup=DB::table('tbmentor')
-              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Matematika%')
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
-          }
-                    //=================================================================================IPA=====================================================================================
-
-         //IPA, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-         if($request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-          $grup=DB::table('tbmentor')
-          ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-          ->where('statKomplit',7)
-          ->where('statusTutor',1)
-          ->where('prodi','like','%IPA%')
-          ->where('provinsi',$request['provinsi'])
-          ->where('kota',$request['kabupaten'])
-          ->where('kecamatan',$request['kecamatan'])
-          ->where('kelurahan',$request['kelurahan'])
-          ->whereIN('pendidikanTerakhir',[6,7,8])
-          ->paginate(5);
-        }
-        //IPA, PROVINSI, KABUPATEN, KECAMATAN,
-        if($request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-          $grup=DB::table('tbmentor')
-          ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-          ->where('statKomplit',7)
-          ->where('statusTutor',1)
-          ->where('prodi','like','%IPA%')
-          ->where('provinsi',$request['provinsi'])
-          ->where('kota',$request['kabupaten'])
-          ->where('kecamatan',$request['kecamatan'])
-          ->whereIN('pendidikanTerakhir',[6,7,8])
-          ->paginate(5);
-        }
-        //IPA, PROVINSI, KABUPATEN
-        if($request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-          $grup=DB::table('tbmentor')
-          ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-          ->where('statKomplit',7)
-          ->where('statusTutor',1)
-          ->where('prodi','like','%IPA%')
-          ->where('provinsi',$request['provinsi'])
-          ->where('kota',$request['kabupaten'])
-          ->whereIN('pendidikanTerakhir',[6,7,8])
-          ->paginate(5);
-        }
-        //IPA, PROVINSI
-        if($request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-            $grup=DB::table('tbmentor')
-            ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-            ->where('statKomplit',7)
-            ->where('statusTutor',1)
-            ->where('prodi','like','%IPA%')
-            ->where('provinsi',$request['provinsi'])
-            ->whereIN('pendidikanTerakhir',[6,7,8])
-            ->paginate(5);
-        }
-        //IPA DAN SEMUA LOKASI
-        if($request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-            $grup=DB::table('tbmentor')
-            ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-            ->where('statKomplit',7)
-            ->where('statusTutor',1)
-            ->where('prodi','like','%IPA%')
-            ->whereIN('pendidikanTerakhir',[6,7,8])
-            ->paginate(5);
-        }
-                    //=================================================================================ips=====================================================================================
-
-       //IPS, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-       if($request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-        $grup=DB::table('tbmentor')
-        ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-        ->where('statKomplit',7)
-        ->where('statusTutor',1)
-        ->where('prodi','like','%IPS%')
-        ->where('provinsi',$request['provinsi'])
-        ->where('kota',$request['kabupaten'])
-        ->where('kecamatan',$request['kecamatan'])
-        ->where('kelurahan',$request['kelurahan'])
-        ->whereIN('pendidikanTerakhir',[6,7,8])
-        ->paginate(5);
-      }
-      //IPS, PROVINSI, KABUPATEN, KECAMATAN,
-      if($request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-        $grup=DB::table('tbmentor')
-        ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-        ->where('statKomplit',7)
-        ->where('statusTutor',1)
-        ->where('prodi','like','%IPS%')
-        ->where('provinsi',$request['provinsi'])
-        ->where('kota',$request['kabupaten'])
-        ->where('kecamatan',$request['kecamatan'])
-        ->whereIN('pendidikanTerakhir',[6,7,8])
-        ->paginate(5);
-      }
-      //IPS, PROVINSI, KABUPATEN
-      if($request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-        $grup=DB::table('tbmentor')
-        ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-        ->where('statKomplit',7)
-        ->where('statusTutor',1)
-        ->where('prodi','like','%IPS%')
-        ->where('provinsi',$request['provinsi'])
-        ->where('kota',$request['kabupaten'])
-        ->whereIN('pendidikanTerakhir',[6,7,8])
-        ->paginate(5);
-      }
-      //IPS, PROVINSI
-      if($request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-          $grup=DB::table('tbmentor')
-          ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-          ->where('statKomplit',7)
-          ->where('statusTutor',1)
-          ->where('prodi','like','%IPS%')
-          ->where('provinsi',$request['provinsi'])
-          ->whereIN('pendidikanTerakhir',[6,7,8])
-          ->paginate(5);
-      }
-      //IPS DAN SEMUA LOKASI
-      if($request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-          $grup=DB::table('tbmentor')
-          ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-          ->where('statKomplit',7)
-          ->where('statusTutor',1)
-          ->where('prodi','like','%IPS%')
-          ->whereIN('pendidikanTerakhir',[6,7,8])
-          ->paginate(5);
-      }
-                    //=================================================================================BIG=====================================================================================
-    
-      //BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-      if($request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-        $grup=DB::table('tbmentor')
-        ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-        ->where('statKomplit',7)
-        ->where('statusTutor',1)
-        ->where('prodi','like','%Bhs. Inggris%')
-        ->where('provinsi',$request['provinsi'])
-        ->where('kota',$request['kabupaten'])
-        ->where('kecamatan',$request['kecamatan'])
-        ->where('kelurahan',$request['kelurahan'])
-        ->whereIN('pendidikanTerakhir',[6,7,8])
-        ->paginate(5);
-      }
-      //BIG, PROVINSI, KABUPATEN, KECAMATAN,
-      if($request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-        $grup=DB::table('tbmentor')
-        ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-        ->where('statKomplit',7)
-        ->where('statusTutor',1)
-        ->where('prodi','like','%Bhs. Inggris%')
-        ->where('provinsi',$request['provinsi'])
-        ->where('kota',$request['kabupaten'])
-        ->where('kecamatan',$request['kecamatan'])
-        ->whereIN('pendidikanTerakhir',[6,7,8])
-        ->paginate(5);
-      }
-      //BIG, PROVINSI, KABUPATEN
-      if($request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-        $grup=DB::table('tbmentor')
-        ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-        ->where('statKomplit',7)
-        ->where('statusTutor',1)
-        ->where('prodi','like','%Bhs. Inggris%')
-        ->where('provinsi',$request['provinsi'])
-        ->where('kota',$request['kabupaten'])
-        ->whereIN('pendidikanTerakhir',[6,7,8])
-        ->paginate(5);
-      }
-      //BIG, PROVINSI
-      if($request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-          $grup=DB::table('tbmentor')
-          ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-          ->where('statKomplit',7)
-          ->where('statusTutor',1)
-          ->where('prodi','like','%Bhs. Inggris%')
-          ->where('provinsi',$request['provinsi'])
-          ->whereIN('pendidikanTerakhir',[6,7,8])
-          ->paginate(5);
-      }
-      //BIG DAN SEMUA LOKASI
-      if($request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-          $grup=DB::table('tbmentor')
-          ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-          ->where('statKomplit',7)
-          ->where('statusTutor',1)
-          ->where('prodi','like','%Bhs. Inggris%')
-          ->whereIN('pendidikanTerakhir',[6,7,8])
-          ->paginate(5);
-      }
-      //=================================================================================ISI 2=====================================================================================
-  //=================================================================================BIN & MTK =====================================================================================
-
-              //BIN & MTK, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('bin') && $request->hasAny('mtk')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-              $grup=DB::table('tbmentor')
-              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK, PROVINSI, KABUPATEN
-            if($request->hasAny('bin') && $request->hasAny('mtk') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('mtk') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK, PROVINSI
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK DAN SEMUA LOKASI
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->orWhere('prodi','like','%Matematika%')
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('mtk') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
 
                //=================================================================================BIN & IPA =====================================================================================
 
           //BIN & IPA, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('bin') && $request->hasAny('ipa')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('ipa')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & IPA, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('bin') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & IPA, PROVINSI, KABUPATEN
-            if($request->hasAny('bin') && $request->hasAny('ipa') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('ipa') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & IPA, PROVINSI
-            if($request->hasAny('bin') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & IPA DAN SEMUA LOKASI
-            if($request->hasAny('bin') && $request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->orWhere('prodi','like','%IPA%')
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
 
              //=================================================================================BIN & IPS =====================================================================================
 
           //BIN & IPS, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('bin') && $request->hasAny('ips')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('ips')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & IPS, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('bin') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & IPS, PROVINSI, KABUPATEN
-            if($request->hasAny('bin') && $request->hasAny('ips') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('ips') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & IPS, PROVINSI
-            if($request->hasAny('bin') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & IPS DAN SEMUA LOKASI
-            if($request->hasAny('bin') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->orWhere('prodi','like','%IPS%')
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
 
               //=================================================================================BIN & BIG =====================================================================================
 
           //BIN & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('bin') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & BIG, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('bin') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & BIG, PROVINSI, KABUPATEN
-            if($request->hasAny('bin') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & BIG, PROVINSI
-            if($request->hasAny('bin') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & BIG DAN SEMUA LOKASI
-            if($request->hasAny('bin') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
               
                //=================================================================================MTK & IPA =====================================================================================
 
           //MTK & IPA, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('mtk') && $request->hasAny('ipa')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+            if($request['pendidikan']==2 && $request->hasAny('mtk') && $request->hasAny('ipa')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Matematika%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //MTK & IPA, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+            if($request['pendidikan']==2 && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Matematika%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //MTK & IPA, PROVINSI, KABUPATEN
-            if($request->hasAny('mtk') && $request->hasAny('ipa') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+            if($request['pendidikan']==2 && $request->hasAny('mtk') && $request->hasAny('ipa') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Matematika%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //MTK & IPA, PROVINSI
-            if($request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
+            if($request['pendidikan']==2 && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //MTK & IPA DAN SEMUA LOKASI
-            if($request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
-                ->orWhere('prodi','like','%IPA%')
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
+            if($request['pendidikan']==2 && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
 
            //=================================================================================MTK & IPS =====================================================================================
 
           //MTK & IPS, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('mtk') && $request->hasAny('ips')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+            if($request['pendidikan']==2 && $request->hasAny('mtk') && $request->hasAny('ips')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Matematika%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //MTK & IPS, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+            if($request['pendidikan']==2 && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Matematika%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //MTK & IPS, PROVINSI, KABUPATEN
-            if($request->hasAny('mtk') && $request->hasAny('ips') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+            if($request['pendidikan']==2 && $request->hasAny('mtk') && $request->hasAny('ips') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Matematika%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //MTK & IPS, PROVINSI
-            if($request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
+            if($request['pendidikan']==2 && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //MTK & IPS DAN SEMUA LOKASI
-            if($request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
-                ->orWhere('prodi','like','%IPS%')
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
+            if($request['pendidikan']==2 && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
 
                 //=================================================================================MTK & BIG =====================================================================================
 
           //MTK & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('mtk') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+            if($request['pendidikan']==2 && $request->hasAny('mtk') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Matematika%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //MTK & BIG, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+            if($request['pendidikan']==2 && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Matematika%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //MTK & BIG, PROVINSI, KABUPATEN
-            if($request->hasAny('mtk') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+            if($request['pendidikan']==2 && $request->hasAny('mtk') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Matematika%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //MTK & BIG, PROVINSI
-            if($request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
+            if($request['pendidikan']==2 && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //MTK & BIG DAN SEMUA LOKASI
-            if($request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
+            if($request['pendidikan']==2 && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
                   //=================================================================================IPA & IPS =====================================================================================
 
           //IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('ipa') && $request->hasAny('ips')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+            if($request['pendidikan']==2 && $request->hasAny('ipa') && $request->hasAny('ips')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%IPA%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+            if($request['pendidikan']==2 && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%IPA%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //IPA & IPS, PROVINSI, KABUPATEN
-            if($request->hasAny('ipa') && $request->hasAny('ips') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+            if($request['pendidikan']==2 && $request->hasAny('ipa') && $request->hasAny('ips') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%IPA%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //IPA & IPS, PROVINSI
-            if($request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
+            if($request['pendidikan']==2 && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //IPA & IPS DAN SEMUA LOKASI
-            if($request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%IPA%')
-                ->orWhere('prodi','like','%IPS%')
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
+            if($request['pendidikan']==2 && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
                //=================================================================================IPA & BIG =====================================================================================
 
           //IPA & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('ipa') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+            if($request['pendidikan']==2 && $request->hasAny('ipa') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%IPA%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //IPA & BIG, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+            if($request['pendidikan']==2 && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%IPA%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //IPA & BIG, PROVINSI, KABUPATEN
-            if($request->hasAny('ipa') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+            if($request['pendidikan']==2 && $request->hasAny('ipa') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%IPA%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //IPA & BIG, PROVINSI
-            if($request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
+            if($request['pendidikan']==2 && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //IPA & BIG DAN SEMUA LOKASI
-            if($request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%IPA%')
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
+            if($request['pendidikan']==2 && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
                //=================================================================================IPS & BIG =====================================================================================
 
           //IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('ips') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+            if($request['pendidikan']==2 && $request->hasAny('ips') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%IPS%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+            if($request['pendidikan']==2 && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%IPS%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //IPS & BIG, PROVINSI, KABUPATEN
-            if($request->hasAny('ips') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+            if($request['pendidikan']==2 && $request->hasAny('ips') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%IPS%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //IPS & BIG, PROVINSI
-            if($request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
+            if($request['pendidikan']==2 && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //IPS & BIG DAN SEMUA LOKASI
-            if($request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%IPS%')
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
+            if($request['pendidikan']==2 && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
-            //=================================================================================ISI 3=====================================================================================
+  //=================================================================================ISI 3=====================================================================================
               //=================================================================================BIN & MTK & IPA=====================================================================================
 
               //BIN & MTK & IPA, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-              if($request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ipa')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ipa')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->where('kelurahan',$request['kelurahan'])
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan']) 
-                ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
-              }
-              //BIN & MTK & IPA, PROVINSI, KABUPATEN, KECAMATAN,
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & IPA, PROVINSI, KABUPATEN, KECAMATAN,
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
-              }
-              //BIN & MTK & IPA, PROVINSI, KABUPATEN
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & IPA, PROVINSI, KABUPATEN
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
-              }
-              //BIN & MTK & IPA, PROVINSI
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Bhs. Indonesia%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%Matematika%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%IPA%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->whereIN('pendidikanTerakhir',[6,7,8])
-                  ->paginate(5);
-              }
-              //BIN & MTK & IPA, DAN SEMUA LOKASI
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Bhs. Indonesia%')
-                  ->orWhere('prodi','like','%Matematika%')
-                  ->orWhere('prodi','like','%IPA%')
-                  ->whereIN('pendidikanTerakhir',[6,7,8])
-                  ->paginate(5);
-              }
-                  //=================================================================================BIN & MTK & IPS=====================================================================================
-  
-                //BIN & MTK & IPS, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-              if($request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ips')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & IPA, PROVINSI
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan']) 
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
-              }
-              //BIN & MTK & IPS, PROVINSI, KABUPATEN, KECAMATAN,
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & IPA, DAN SEMUA LOKASI
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
-              }
-              //BIN & MTK & IPS, PROVINSI, KABUPATEN
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+                //=================================================================================BIN & MTK & IPS=====================================================================================
+
+              //BIN & MTK & IPS, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ips')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->where('kelurahan',$request['kelurahan'])
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
-              }
-              //BIN & MTK & IPS, PROVINSI
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Bhs. Indonesia%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%Matematika%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%IPS%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->whereIN('pendidikanTerakhir',[6,7,8])
-                  ->paginate(5);
-              }
-              //BIN & MTK & IPS DAN SEMUA LOKASI
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Bhs. Indonesia%')
-                  ->orWhere('prodi','like','%Matematika%')
-                  ->orWhere('prodi','like','%IPS%')
-                  ->whereIN('pendidikanTerakhir',[6,7,8])
-                  ->paginate(5);
-              }
-                //=================================================================================BIN & MTK & BIG=====================================================================================
-  
-                //BIN & MTK & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-              if($request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & IPS, PROVINSI, KABUPATEN, KECAMATAN,
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan']) 
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & IPS, PROVINSI, KABUPATEN
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & IPS, PROVINSI
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & IPS DAN SEMUA LOKASI
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+              //=================================================================================BIN & MTK & BIG=====================================================================================
+
+              //BIN & MTK & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->where('kelurahan',$request['kelurahan'])
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
-              }
-              //BIN & MTK & BIG, PROVINSI, KABUPATEN, KECAMATAN,
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & BIG, PROVINSI, KABUPATEN, KECAMATAN,
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
-              }
-              //BIN & MTK & BIG, PROVINSI, KABUPATEN
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & BIG, PROVINSI, KABUPATEN
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
-              }
-              //BIN & MTK & BIG, PROVINSI
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Bhs. Indonesia%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%Matematika%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%Bhs. Inggris%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->whereIN('pendidikanTerakhir',[6,7,8])
-                  ->paginate(5);
-              }
-              //BIN & MTK & BIG DAN SEMUA LOKASI
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Bhs. Indonesia%')
-                  ->orWhere('prodi','like','%Matematika%')
-                  ->orWhere('prodi','like','%Bhs. Inggris%')
-                  ->whereIN('pendidikanTerakhir',[6,7,8])
-                  ->paginate(5);
-              }
-                //=================================================================================MTK & IPA & IPS=====================================================================================
-  
-                //MTK & IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-              if($request->hasAny('mtk')  && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan']) 
-                ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
-              }
-              // MTK & IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN,
-              if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
-              }
-              //MTK & IPA & IPS, PROVINSI, KABUPATEN
-              if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
-              }
-              // MTK & IPA & IPS, PROVINSI
-              if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Matematika%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%IPA%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%IPS%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->whereIN('pendidikanTerakhir',[6,7,8])
-                  ->paginate(5);
-              }
-              //MTK & IPA & IPS, DAN SEMUA LOKASI
-              if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Matematika%')
-                  ->orWhere('prodi','like','%IPA%')
-                  ->orwhere('prodi','like','%IPS%')
-                  ->whereIN('pendidikanTerakhir',[6,7,8])
-                  ->paginate(5);
-              }
-                          //=================================================================================IPA & IPS & BIG =====================================================================================
-  
-                 //IPA & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-              if($request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & BIG, PROVINSI
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
-              }
-              // IPA & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN,
-              if($request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & BIG DAN SEMUA LOKASI
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
-              }
-              //IPA & IPS & BIG, PROVINSI, KABUPATEN
-              if($request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+              //=================================================================================MTK & IPA & IPS=====================================================================================
+
+              //MTK & IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+            if($request['pendidikan']==2 && $request->hasAny('mtk')  && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->where('kelurahan',$request['kelurahan'])
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
                 ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
-              }
-              //IPA & IPS & BIG, PROVINSI
-              if($request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%IPA%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%IPS%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%Bhs. Inggris%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->whereIN('pendidikanTerakhir',[6,7,8])
-                  ->paginate(5);
-              }
-              //IPA & IPS & BIG, DAN SEMUA LOKASI
-              if($request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%IPA%')
-                  ->orwhere('prodi','like','%IPS%')
-                  ->orwhere('prodi','like','%Bhs. Inggris%')
-                  ->whereIN('pendidikanTerakhir',[6,7,8])
-                  ->paginate(5);
-              }
-              //=================================================================================ISI 4=====================================================================================
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            // MTK & IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN,
+            if($request['pendidikan']==2 && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //MTK & IPA & IPS, PROVINSI, KABUPATEN
+            if($request['pendidikan']==2 && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            // MTK & IPA & IPS, PROVINSI
+            if($request['pendidikan']==2 && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //MTK & IPA & IPS, DAN SEMUA LOKASI
+            if($request['pendidikan']==2 && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+                        //=================================================================================IPA & IPS & BIG =====================================================================================
+
+               //IPA & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+            if($request['pendidikan']==2 && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->where('kelurahan',$request['kelurahan'])
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            // IPA & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN,
+            if($request['pendidikan']==2 && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //IPA & IPS & BIG, PROVINSI, KABUPATEN
+            if($request['pendidikan']==2 && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //IPA & IPS & BIG, PROVINSI
+            if($request['pendidikan']==2 && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //IPA & IPS & BIG, DAN SEMUA LOKASI
+            if($request['pendidikan']==2 && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+  //=================================================================================ISI 4=====================================================================================
                //=================================================================================BIN & MTK & IPA & IPS=====================================================================================
 
               //BIN & MTK & IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ipa') && $request->hasAny('ips')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ipa') && $request->hasAny('ips')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan']) 
-              ->orWhere('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & IPA & IPS, PROVINSI, KABUPATEN
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & IPA & IPS, PROVINSI
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
                 ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
+                ->orWhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & IPA, DAN SEMUA LOKASI
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Matematika%')
                 ->orWhere('prodi','like','%IPA%')
-                ->orWhere('prodi','like','%IPS%')
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
+                ->orWhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
 
             //=================================================================================BIN & MTK & IPA & BIG =====================================================================================
               //BIN & MTK & IPA & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan']) 
-              ->orWhere('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & IPA & BIG, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & IPA & BIG, PROVINSI, KABUPATEN
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & IPA & BIG, PROVINSI
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
                 ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & IPA & BIG, DAN SEMUA LOKASI
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Matematika%')
                 ->orWhere('prodi','like','%IPA%')
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
                 //=================================================================================BIN & MTK & IPS & BIG=====================================================================================
 
+        
               //BIN & MTK & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ips') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ips') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan']) 
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & IPS & BIG, PROVINSI, KABUPATEN
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & IPS & BIG, PROVINSI
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big')&& $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
                 ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & IPS & BIG DAN SEMUA LOKASI
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->orWhere('prodi','like','%Matematika%')
-                ->orWhere('prodi','like','%IPS%')
-                ->orWhere('prodi','like','%bhs. Inggris%')
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
-            }
-                //=================================================================================BIN & MTK & IPS & BIG =====================================================================================
-
-              //BIN & MTK & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ips') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan']) 
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
-            }
-            //BIN & MTK & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-              $grup=DB::table('tbmentor')
-              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
-            }
-            //BIN & MTK & IPS & BIG, PROVINSI, KABUPATEN
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-              $grup=DB::table('tbmentor')
-              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
-            }
-            //BIN & MTK & IPS & BIG, PROVINSI
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big')&& $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
-            }
-            //BIN & MTK & IPS DAN SEMUA LOKASI
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Matematika%')
                 ->orWhere('prodi','like','%IPS%')
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
               //=================================================================================MTK & IPA & IPS & BIG=====================================================================================
 
               //MTK & IPA & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('mtk')  && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+            if($request['pendidikan']==2 && $request->hasAny('mtk')  && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan']) 
-              ->orWhere('prodi','like','%IPA%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             // MTK & IPA & IPS & big, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+            if($request['pendidikan']==2 && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Matematika%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //MTK & IPA & IPS & BIG, PROVINSI, KABUPATEN
-            if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+            if($request['pendidikan']==2 && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Matematika%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->whereIN('pendidikanTerakhir',[6,7,8])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             // MTK & IPA & IPS & BIG, PROVINSI
-            if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips')  && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
+            if($request['pendidikan']==2 && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips')  && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
                 ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
                 ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //MTK & IPA & IPS & BIG, DAN SEMUA LOKASI
-            if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
+            if($request['pendidikan']==2 && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
                 ->orWhere('prodi','like','%IPA%')
-                ->orwhere('prodi','like','%IPS%')
-                ->orwhere('prodi','like','%Bhs. Inggris%')
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
+                ->orWhere('prodi','like','%IPS%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
-            //=================================================================================ISI 5=====================================================================================
+  //=================================================================================ISI 5=====================================================================================
               //=================================================================================BIN & MTK & IPA & IPS & BIG=====================================================================================
 
               //BIN & MTK & IPA & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-              if($request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->where('kelurahan',$request['kelurahan'])
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan']) 
                 ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
                 ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
-              }
-              //BIN & MTK & IPA & IPS & big, PROVINSI, KABUPATEN, KECAMATAN,
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
-              }
-              //BIN & MTK & IPA & IPS & Big, PROVINSI, KABUPATEN
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->whereIN('pendidikanTerakhir',[6,7,8])
-                ->paginate(5);
-              }
-              //BIN & MTK & IPA & IPS & BIG, PROVINSI
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Bhs. Indonesia%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%Matematika%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%IPA%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%IPS%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%Bhs. Inggris%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->whereIN('pendidikanTerakhir',[6,7,8])
-                  ->paginate(5);
-              }
-              //BIN & MTK & IPA & BIG, DAN SEMUA LOKASI
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Bhs. Indonesia%')
-                  ->orWhere('prodi','like','%Matematika%')
-                  ->orWhere('prodi','like','%IPA%')
-                  ->orWhere('prodi','like','%IPS%')
-                  ->orWhere('prodi','like','%Bhs. Inggris%')
-                  ->whereIN('pendidikanTerakhir',[6,7,8])
-                  ->paginate(5);
-              }
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
               $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
-             $url= $request->fullUrl();
-        }
-        elseif($request['pendidikan']==4)
-        { // SEMUA JENJANG
-          $grup=DB::table('tbmentor')
-            ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-            ->where('statKomplit',7)
-            ->where('statusTutor',1)
-            ->paginate(5);
-             //=================================================================================ISI 1=====================================================================================
-                    //=================================================================================BIN=====================================================================================
-           
-           //BIN, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-           if($request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $filter="iya";
+            }
+            //BIN & MTK & IPA & IPS & big, PROVINSI, KABUPATEN, KECAMATAN,
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & IPA & IPS & Big, PROVINSI, KABUPATEN
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & IPA & IPS & BIG, PROVINSI
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+          }
+            //BIN & MTK & IPS & IPA & BIG, DAN SEMUA LOKASI
+            if($request['pendidikan']==2 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[5])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+          }
+
+           //////////////////////////////////////////////////////////////////// ===3 STRATA //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //=================================================================================ISI 1=====================================================================================
+            //BIN, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit',7)
+              ->where('statusTutor',1)
+              ->where('prodi','like','%Bhs. Indonesia%')
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->where('kelurahan',$request['kelurahan'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+                ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
+            }
+            //BIN, PROVINSI, KABUPATEN, KECAMATAN,
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit',7)
+              ->where('statusTutor',1)
+              ->where('prodi','like','%Bhs. Indonesia%')
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+                ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
+            }
+            //BIN, PROVINSI, KABUPATEN
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit',7)
+              ->where('statusTutor',1)
+              ->where('prodi','like','%Bhs. Indonesia%')
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+                ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
+            }
+            //BIN, PROVINSI
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+                $grup=DB::table('tbmentor')
+                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+                ->where('statKomplit',7)
+                ->where('statusTutor',1)
+                ->where('prodi','like','%Bhs. Indonesia%')
+                ->where('provinsi',$request['provinsi'])
+                ->whereIN('pendidikanTerakhir',[6,7,8])
+                  ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
+            }
+            //BIN DAN SEMUA LOKASI
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+                $grup=DB::table('tbmentor')
+                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+                ->where('statKomplit',7)
+                ->where('statusTutor',1)
+                ->where('prodi','like','%Bhs. Indonesia%')
+                ->whereIN('pendidikanTerakhir',[6,7,8])
+                  ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
+                $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+                $filter="iya";
+                $url=$request->fullUrl();
+            }
+          
+          //MTK, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+          if($request['pendidikan']==3 && $request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
             $grup=DB::table('tbmentor')
             ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
             ->where('statKomplit',7)
             ->where('statusTutor',1)
-            ->where('prodi','like','%Bhs. Indonesia%')
+            ->where('prodi','like','%Matematika%')
             ->where('provinsi',$request['provinsi'])
             ->where('kota',$request['kabupaten'])
             ->where('kecamatan',$request['kecamatan'])
             ->where('kelurahan',$request['kelurahan'])
-            ->paginate(5);
+            ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
           }
-          //BIN, PROVINSI, KABUPATEN, KECAMATAN,
-          if($request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+          //MTK, PROVINSI, KABUPATEN, KECAMATAN,
+          if($request['pendidikan']==3 && $request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
             $grup=DB::table('tbmentor')
             ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
             ->where('statKomplit',7)
             ->where('statusTutor',1)
-            ->where('prodi','like','%Bhs. Indonesia%')
+            ->where('prodi','like','%Matematika%')
             ->where('provinsi',$request['provinsi'])
             ->where('kota',$request['kabupaten'])
             ->where('kecamatan',$request['kecamatan'])
-            ->paginate(5);
+            ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
           }
-          //BIN, PROVINSI, KABUPATEN
-          if($request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+          //MTK, PROVINSI, KABUPATEN
+          if($request['pendidikan']==3 && $request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
             $grup=DB::table('tbmentor')
             ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
             ->where('statKomplit',7)
             ->where('statusTutor',1)
-            ->where('prodi','like','%Bhs. Indonesia%')
+            ->where('prodi','like','%Matematika%')
             ->where('provinsi',$request['provinsi'])
             ->where('kota',$request['kabupaten'])
-            ->paginate(5);
+            ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
           }
-          //BIN, PROVINSI
-          if($request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+          //MTK, PROVINSI
+          if($request['pendidikan']==3 && $request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
               ->where('statKomplit',7)
               ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
+              ->where('prodi','like','%Matematika%')
               ->where('provinsi',$request['provinsi'])
-              ->paginate(5);
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+                ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
           }
-          //BIN DAN SEMUA LOKASI
-          if($request->hasAny('bin') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+          //MTK DAN SEMUA LOKASI
+          if($request['pendidikan']==3 && $request->hasAny('mtk') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
               ->where('statKomplit',7)
               ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->paginate(5);
+              ->where('prodi','like','%Matematika%')
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+                ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
           }
-                  //=================================================================================MTK=====================================================================================
-        
-        //MTK, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-        if($request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+
+         //IPA, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+         if($request['pendidikan']==3 && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
           $grup=DB::table('tbmentor')
           ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
           ->where('statKomplit',7)
           ->where('statusTutor',1)
-          ->where('prodi','like','%Matematika%')
+          ->where('prodi','like','%IPA%')
           ->where('provinsi',$request['provinsi'])
           ->where('kota',$request['kabupaten'])
           ->where('kecamatan',$request['kecamatan'])
           ->where('kelurahan',$request['kelurahan'])
-          ->paginate(5);
+          ->whereIN('pendidikanTerakhir',[6,7,8])
+            ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
         }
-        //MTK, PROVINSI, KABUPATEN, KECAMATAN,
-        if($request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+        //IPA, PROVINSI, KABUPATEN, KECAMATAN,
+        if($request['pendidikan']==3 && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
           $grup=DB::table('tbmentor')
           ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
           ->where('statKomplit',7)
           ->where('statusTutor',1)
-          ->where('prodi','like','%Matematika%')
+          ->where('prodi','like','%IPA%')
           ->where('provinsi',$request['provinsi'])
           ->where('kota',$request['kabupaten'])
           ->where('kecamatan',$request['kecamatan'])
-          ->paginate(5);
+          ->whereIN('pendidikanTerakhir',[6,7,8])
+            ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
         }
-        //MTK, PROVINSI, KABUPATEN
-        if($request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+        //IPA, PROVINSI, KABUPATEN
+        if($request['pendidikan']==3 && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
           $grup=DB::table('tbmentor')
           ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
           ->where('statKomplit',7)
           ->where('statusTutor',1)
-          ->where('prodi','like','%Matematika%')
+          ->where('prodi','like','%IPA%')
           ->where('provinsi',$request['provinsi'])
           ->where('kota',$request['kabupaten'])
-          ->paginate(5);
+          ->whereIN('pendidikanTerakhir',[6,7,8])
+            ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
         }
-        //MTK, PROVINSI
-        if($request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+        //IPA, PROVINSI
+        if($request['pendidikan']==3 && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+            $grup=DB::table('tbmentor')
+            ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+            ->where('statKomplit',7)
+            ->where('statusTutor',1)
+            ->where('prodi','like','%IPA%')
+            ->where('provinsi',$request['provinsi'])
+            ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
+        }
+        //IPA DAN SEMUA LOKASI
+        if($request['pendidikan']==3 && $request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+            $grup=DB::table('tbmentor')
+            ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+            ->where('statKomplit',7)
+            ->where('statusTutor',1)
+            ->where('prodi','like','%IPA%')
+            ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
+        }
+
+       //IPS, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+       if($request['pendidikan']==3 && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+        $grup=DB::table('tbmentor')
+        ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+        ->where('statKomplit',7)
+        ->where('statusTutor',1)
+        ->where('prodi','like','%IPS%')
+        ->where('provinsi',$request['provinsi'])
+        ->where('kota',$request['kabupaten'])
+        ->where('kecamatan',$request['kecamatan'])
+        ->where('kelurahan',$request['kelurahan'])
+        ->whereIN('pendidikanTerakhir',[6,7,8])
+          ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
+      }
+      //IPS, PROVINSI, KABUPATEN, KECAMATAN,
+      if($request['pendidikan']==3 && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+        $grup=DB::table('tbmentor')
+        ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+        ->where('statKomplit',7)
+        ->where('statusTutor',1)
+        ->where('prodi','like','%IPS%')
+        ->where('provinsi',$request['provinsi'])
+        ->where('kota',$request['kabupaten'])
+        ->where('kecamatan',$request['kecamatan'])
+        ->whereIN('pendidikanTerakhir',[6,7,8])
+          ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
+      }
+      //IPS, PROVINSI, KABUPATEN
+      if($request['pendidikan']==3 && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+        $grup=DB::table('tbmentor')
+        ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+        ->where('statKomplit',7)
+        ->where('statusTutor',1)
+        ->where('prodi','like','%IPS%')
+        ->where('provinsi',$request['provinsi'])
+        ->where('kota',$request['kabupaten'])
+        ->whereIN('pendidikanTerakhir',[6,7,8])
+          ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
+      }
+      //IPS, PROVINSI
+      if($request['pendidikan']==3 && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+          $grup=DB::table('tbmentor')
+          ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+          ->where('statKomplit',7)
+          ->where('statusTutor',1)
+          ->where('prodi','like','%IPS%')
+          ->where('provinsi',$request['provinsi'])
+          ->whereIN('pendidikanTerakhir',[6,7,8])
+            ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
+      }
+      //IPS DAN SEMUA LOKASI
+      if($request['pendidikan']==3 && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+          $grup=DB::table('tbmentor')
+          ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+          ->where('statKomplit',7)
+          ->where('statusTutor',1)
+          ->where('prodi','like','%IPS%')
+          ->whereIN('pendidikanTerakhir',[6,7,8])
+            ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
+      }
+
+      //BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+      if($request['pendidikan']==3 && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+        $grup=DB::table('tbmentor')
+        ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+        ->where('statKomplit',7)
+        ->where('statusTutor',1)
+        ->where('prodi','like','%Bhs. Inggris%')
+        ->where('provinsi',$request['provinsi'])
+        ->where('kota',$request['kabupaten'])
+        ->where('kecamatan',$request['kecamatan'])
+        ->where('kelurahan',$request['kelurahan'])
+        ->whereIN('pendidikanTerakhir',[6,7,8])
+          ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
+      }
+      //BIG, PROVINSI, KABUPATEN, KECAMATAN,
+      if($request['pendidikan']==3 && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+        $grup=DB::table('tbmentor')
+        ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+        ->where('statKomplit',7)
+        ->where('statusTutor',1)
+        ->where('prodi','like','%Bhs. Inggris%')
+        ->where('provinsi',$request['provinsi'])
+        ->where('kota',$request['kabupaten'])
+        ->where('kecamatan',$request['kecamatan'])
+        ->whereIN('pendidikanTerakhir',[6,7,8])
+          ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
+      }
+      //BIG, PROVINSI, KABUPATEN
+      if($request['pendidikan']==3 && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+        $grup=DB::table('tbmentor')
+        ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+        ->where('statKomplit',7)
+        ->where('statusTutor',1)
+        ->where('prodi','like','%Bhs. Inggris%')
+        ->where('provinsi',$request['provinsi'])
+        ->where('kota',$request['kabupaten'])
+        ->whereIN('pendidikanTerakhir',[6,7,8])
+          ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
+      }
+      //BIG, PROVINSI
+      if($request['pendidikan']==3 && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+          $grup=DB::table('tbmentor')
+          ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+          ->where('statKomplit',7)
+          ->where('statusTutor',1)
+          ->where('prodi','like','%Bhs. Inggris%')
+          ->where('provinsi',$request['provinsi'])
+          ->whereIN('pendidikanTerakhir',[6,7,8])
+            ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
+      }
+      //BIG DAN SEMUA LOKASI
+      if($request['pendidikan']==3 && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+          $grup=DB::table('tbmentor')
+          ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+          ->where('statKomplit',7)
+          ->where('statusTutor',1)
+          ->where('prodi','like','%Bhs. Inggris%')
+          ->whereIN('pendidikanTerakhir',[6,7,8])
+            ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
+      }
+  //=================================================================================ISI 2=====================================================================================
+  //=================================================================================BIN & MTK =====================================================================================
+
+              //BIN & MTK, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('mtk')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->where('kelurahan',$request['kelurahan'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK, PROVINSI, KABUPATEN, KECAMATAN,
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK, PROVINSI, KABUPATEN
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('mtk') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK, PROVINSI
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK DAN SEMUA LOKASI
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('mtk') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+
+               //=================================================================================BIN & IPA =====================================================================================
+
+          //BIN & IPA, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('ipa')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->where('kelurahan',$request['kelurahan'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & IPA, PROVINSI, KABUPATEN, KECAMATAN,
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & IPA, PROVINSI, KABUPATEN
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('ipa') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & IPA, PROVINSI
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & IPA DAN SEMUA LOKASI
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+
+             //=================================================================================BIN & IPS =====================================================================================
+
+          //BIN & IPS, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('ips')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->where('kelurahan',$request['kelurahan'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & IPS, PROVINSI, KABUPATEN, KECAMATAN,
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & IPS, PROVINSI, KABUPATEN
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('ips') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & IPS, PROVINSI
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & IPS DAN SEMUA LOKASI
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+
+              //=================================================================================BIN & BIG =====================================================================================
+
+          //BIN & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->where('kelurahan',$request['kelurahan'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & BIG, PROVINSI, KABUPATEN, KECAMATAN,
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & BIG, PROVINSI, KABUPATEN
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & BIG, PROVINSI
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & BIG DAN SEMUA LOKASI
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+              
+               //=================================================================================MTK & IPA =====================================================================================
+
+          //MTK & IPA, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+            if($request['pendidikan']==3 && $request->hasAny('mtk') && $request->hasAny('ipa')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->where('kelurahan',$request['kelurahan'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //MTK & IPA, PROVINSI, KABUPATEN, KECAMATAN,
+            if($request['pendidikan']==3 && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //MTK & IPA, PROVINSI, KABUPATEN
+            if($request['pendidikan']==3 && $request->hasAny('mtk') && $request->hasAny('ipa') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //MTK & IPA, PROVINSI
+            if($request['pendidikan']==3 && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //MTK & IPA DAN SEMUA LOKASI
+            if($request['pendidikan']==3 && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+
+           //=================================================================================MTK & IPS =====================================================================================
+
+          //MTK & IPS, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+            if($request['pendidikan']==3 && $request->hasAny('mtk') && $request->hasAny('ips')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->where('kelurahan',$request['kelurahan'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //MTK & IPS, PROVINSI, KABUPATEN, KECAMATAN,
+            if($request['pendidikan']==3 && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //MTK & IPS, PROVINSI, KABUPATEN
+            if($request['pendidikan']==3 && $request->hasAny('mtk') && $request->hasAny('ips') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //MTK & IPS, PROVINSI
+            if($request['pendidikan']==3 && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //MTK & IPS DAN SEMUA LOKASI
+            if($request['pendidikan']==3 && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+
+                //=================================================================================MTK & BIG =====================================================================================
+
+          //MTK & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+            if($request['pendidikan']==3 && $request->hasAny('mtk') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->where('kelurahan',$request['kelurahan'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //MTK & BIG, PROVINSI, KABUPATEN, KECAMATAN,
+            if($request['pendidikan']==3 && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //MTK & BIG, PROVINSI, KABUPATEN
+            if($request['pendidikan']==3 && $request->hasAny('mtk') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //MTK & BIG, PROVINSI
+            if($request['pendidikan']==3 && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //MTK & BIG DAN SEMUA LOKASI
+            if($request['pendidikan']==3 && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+                  //=================================================================================IPA & IPS =====================================================================================
+
+          //IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+            if($request['pendidikan']==3 && $request->hasAny('ipa') && $request->hasAny('ips')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->where('kelurahan',$request['kelurahan'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN,
+            if($request['pendidikan']==3 && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //IPA & IPS, PROVINSI, KABUPATEN
+            if($request['pendidikan']==3 && $request->hasAny('ipa') && $request->hasAny('ips') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //IPA & IPS, PROVINSI
+            if($request['pendidikan']==3 && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //IPA & IPS DAN SEMUA LOKASI
+            if($request['pendidikan']==3 && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+               //=================================================================================IPA & BIG =====================================================================================
+
+          //IPA & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+            if($request['pendidikan']==3 && $request->hasAny('ipa') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->where('kelurahan',$request['kelurahan'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //IPA & BIG, PROVINSI, KABUPATEN, KECAMATAN,
+            if($request['pendidikan']==3 && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //IPA & BIG, PROVINSI, KABUPATEN
+            if($request['pendidikan']==3 && $request->hasAny('ipa') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //IPA & BIG, PROVINSI
+            if($request['pendidikan']==3 && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //IPA & BIG DAN SEMUA LOKASI
+            if($request['pendidikan']==3 && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+               //=================================================================================IPS & BIG =====================================================================================
+
+          //IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+            if($request['pendidikan']==3 && $request->hasAny('ips') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->where('kelurahan',$request['kelurahan'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN,
+            if($request['pendidikan']==3 && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //IPS & BIG, PROVINSI, KABUPATEN
+            if($request['pendidikan']==3 && $request->hasAny('ips') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //IPS & BIG, PROVINSI
+            if($request['pendidikan']==3 && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //IPS & BIG DAN SEMUA LOKASI
+            if($request['pendidikan']==3 && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+  //=================================================================================ISI 3=====================================================================================
+              //=================================================================================BIN & MTK & IPA=====================================================================================
+
+              //BIN & MTK & IPA, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ipa')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->where('kelurahan',$request['kelurahan'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & IPA, PROVINSI, KABUPATEN, KECAMATAN,
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & IPA, PROVINSI, KABUPATEN
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & IPA, PROVINSI
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & IPA, DAN SEMUA LOKASI
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+                //=================================================================================BIN & MTK & IPS=====================================================================================
+
+              //BIN & MTK & IPS, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ips')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->where('kelurahan',$request['kelurahan'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & IPS, PROVINSI, KABUPATEN, KECAMATAN,
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & IPS, PROVINSI, KABUPATEN
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & IPS, PROVINSI
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & IPS DAN SEMUA LOKASI
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+              //=================================================================================BIN & MTK & BIG=====================================================================================
+
+              //BIN & MTK & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->where('kelurahan',$request['kelurahan'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & BIG, PROVINSI, KABUPATEN, KECAMATAN,
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & BIG, PROVINSI, KABUPATEN
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & BIG, PROVINSI
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & BIG DAN SEMUA LOKASI
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+              //=================================================================================MTK & IPA & IPS=====================================================================================
+
+              //MTK & IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+            if($request['pendidikan']==3 && $request->hasAny('mtk')  && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->where('kelurahan',$request['kelurahan'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            // MTK & IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN,
+            if($request['pendidikan']==3 && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //MTK & IPA & IPS, PROVINSI, KABUPATEN
+            if($request['pendidikan']==3 && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            // MTK & IPA & IPS, PROVINSI
+            if($request['pendidikan']==3 && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //MTK & IPA & IPS, DAN SEMUA LOKASI
+            if($request['pendidikan']==3 && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+                        //=================================================================================IPA & IPS & BIG =====================================================================================
+
+               //IPA & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+            if($request['pendidikan']==3 && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->where('kelurahan',$request['kelurahan'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            // IPA & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN,
+            if($request['pendidikan']==3 && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //IPA & IPS & BIG, PROVINSI, KABUPATEN
+            if($request['pendidikan']==3 && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //IPA & IPS & BIG, PROVINSI
+            if($request['pendidikan']==3 && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //IPA & IPS & BIG, DAN SEMUA LOKASI
+            if($request['pendidikan']==3 && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+  //=================================================================================ISI 4=====================================================================================
+               //=================================================================================BIN & MTK & IPA & IPS=====================================================================================
+
+              //BIN & MTK & IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ipa') && $request->hasAny('ips')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->where('kelurahan',$request['kelurahan'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN,
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & IPA & IPS, PROVINSI, KABUPATEN
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & IPA & IPS, PROVINSI
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & IPA, DAN SEMUA LOKASI
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+
+            //=================================================================================BIN & MTK & IPA & BIG =====================================================================================
+              //BIN & MTK & IPA & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->where('kelurahan',$request['kelurahan'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & IPA & BIG, PROVINSI, KABUPATEN, KECAMATAN,
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & IPA & BIG, PROVINSI, KABUPATEN
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & IPA & BIG, PROVINSI
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & IPA & BIG, DAN SEMUA LOKASI
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+                //=================================================================================BIN & MTK & IPS & BIG=====================================================================================
+
+        
+              //BIN & MTK & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ips') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->where('kelurahan',$request['kelurahan'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN,
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & IPS & BIG, PROVINSI, KABUPATEN
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & IPS & BIG, PROVINSI
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big')&& $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & IPS & BIG DAN SEMUA LOKASI
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+              //=================================================================================MTK & IPA & IPS & BIG=====================================================================================
+
+              //MTK & IPA & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+            if($request['pendidikan']==3 && $request->hasAny('mtk')  && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->where('kelurahan',$request['kelurahan'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            // MTK & IPA & IPS & big, PROVINSI, KABUPATEN, KECAMATAN,
+            if($request['pendidikan']==3 && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //MTK & IPA & IPS & BIG, PROVINSI, KABUPATEN
+            if($request['pendidikan']==3 && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            // MTK & IPA & IPS & BIG, PROVINSI
+            if($request['pendidikan']==3 && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips')  && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //MTK & IPA & IPS & BIG, DAN SEMUA LOKASI
+            if($request['pendidikan']==3 && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+  //=================================================================================ISI 5=====================================================================================
+              //=================================================================================BIN & MTK & IPA & IPS & BIG=====================================================================================
+
+              //BIN & MTK & IPA & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->where('kelurahan',$request['kelurahan'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & IPA & IPS & big, PROVINSI, KABUPATEN, KECAMATAN,
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & IPA & IPS & Big, PROVINSI, KABUPATEN
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & IPA & IPS & BIG, PROVINSI
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+          }
+            //BIN & MTK & IPS & IPA & BIG, DAN SEMUA LOKASI
+            if($request['pendidikan']==3 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->whereIN('pendidikanTerakhir',[6,7,8])
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+          }
+
+           //////////////////////////////////////////////////////////////////// ===4 SEMUA JENJANG //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //=================================================================================ISI 1=====================================================================================
+            //BIN, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit',7)
+              ->where('statusTutor',1)
+              ->where('prodi','like','%Bhs. Indonesia%')
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->where('kelurahan',$request['kelurahan'])
+              
+                ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
+            }
+            //BIN, PROVINSI, KABUPATEN, KECAMATAN,
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit',7)
+              ->where('statusTutor',1)
+              ->where('prodi','like','%Bhs. Indonesia%')
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              
+                ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
+            }
+            //BIN, PROVINSI, KABUPATEN
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit',7)
+              ->where('statusTutor',1)
+              ->where('prodi','like','%Bhs. Indonesia%')
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              
+                ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
+            }
+            //BIN, PROVINSI
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+                $grup=DB::table('tbmentor')
+                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+                ->where('statKomplit',7)
+                ->where('statusTutor',1)
+                ->where('prodi','like','%Bhs. Indonesia%')
+                ->where('provinsi',$request['provinsi'])
+                
+                  ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
+            }
+            //BIN DAN SEMUA LOKASI
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+                $grup=DB::table('tbmentor')
+                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+                ->where('statKomplit',7)
+                ->where('statusTutor',1)
+                ->where('prodi','like','%Bhs. Indonesia%')
+                
+                  ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
+                $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+                $filter="iya";
+                $url=$request->fullUrl();
+            }
+          
+          //MTK, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+          if($request['pendidikan']==4 && $request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
             $grup=DB::table('tbmentor')
             ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
             ->where('statKomplit',7)
             ->where('statusTutor',1)
             ->where('prodi','like','%Matematika%')
             ->where('provinsi',$request['provinsi'])
-            ->paginate(5);
-        }
-        //MTK DAN SEMUA LOKASI
-        if($request->hasAny('mtk') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+            ->where('kota',$request['kabupaten'])
+            ->where('kecamatan',$request['kecamatan'])
+            ->where('kelurahan',$request['kelurahan'])
+            
+              ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
+          }
+          //MTK, PROVINSI, KABUPATEN, KECAMATAN,
+          if($request['pendidikan']==4 && $request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
             $grup=DB::table('tbmentor')
             ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
             ->where('statKomplit',7)
             ->where('statusTutor',1)
             ->where('prodi','like','%Matematika%')
-            ->paginate(5);
-        }
-                  //=================================================================================IPA=====================================================================================
+            ->where('provinsi',$request['provinsi'])
+            ->where('kota',$request['kabupaten'])
+            ->where('kecamatan',$request['kecamatan'])
+            
+              ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
+          }
+          //MTK, PROVINSI, KABUPATEN
+          if($request['pendidikan']==4 && $request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+            $grup=DB::table('tbmentor')
+            ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+            ->where('statKomplit',7)
+            ->where('statusTutor',1)
+            ->where('prodi','like','%Matematika%')
+            ->where('provinsi',$request['provinsi'])
+            ->where('kota',$request['kabupaten'])
+            
+              ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
+          }
+          //MTK, PROVINSI
+          if($request['pendidikan']==4 && $request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit',7)
+              ->where('statusTutor',1)
+              ->where('prodi','like','%Matematika%')
+              ->where('provinsi',$request['provinsi'])
+              
+                ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
+          }
+          //MTK DAN SEMUA LOKASI
+          if($request['pendidikan']==4 && $request->hasAny('mtk') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit',7)
+              ->where('statusTutor',1)
+              ->where('prodi','like','%Matematika%')
+              
+                ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
+          }
 
-       //IPA, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-       if($request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-        $grup=DB::table('tbmentor')
-        ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-        ->where('statKomplit',7)
-        ->where('statusTutor',1)
-        ->where('prodi','like','%IPA%')
-        ->where('provinsi',$request['provinsi'])
-        ->where('kota',$request['kabupaten'])
-        ->where('kecamatan',$request['kecamatan'])
-        ->where('kelurahan',$request['kelurahan'])
-        ->paginate(5);
-      }
-      //IPA, PROVINSI, KABUPATEN, KECAMATAN,
-      if($request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-        $grup=DB::table('tbmentor')
-        ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-        ->where('statKomplit',7)
-        ->where('statusTutor',1)
-        ->where('prodi','like','%IPA%')
-        ->where('provinsi',$request['provinsi'])
-        ->where('kota',$request['kabupaten'])
-        ->where('kecamatan',$request['kecamatan'])
-        ->paginate(5);
-      }
-      //IPA, PROVINSI, KABUPATEN
-      if($request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-        $grup=DB::table('tbmentor')
-        ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-        ->where('statKomplit',7)
-        ->where('statusTutor',1)
-        ->where('prodi','like','%IPA%')
-        ->where('provinsi',$request['provinsi'])
-        ->where('kota',$request['kabupaten'])
-        ->paginate(5);
-      }
-      //IPA, PROVINSI
-      if($request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+         //IPA, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+         if($request['pendidikan']==4 && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
           $grup=DB::table('tbmentor')
           ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
           ->where('statKomplit',7)
           ->where('statusTutor',1)
           ->where('prodi','like','%IPA%')
           ->where('provinsi',$request['provinsi'])
-          ->paginate(5);
-      }
-      //IPA DAN SEMUA LOKASI
-      if($request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+          ->where('kota',$request['kabupaten'])
+          ->where('kecamatan',$request['kecamatan'])
+          ->where('kelurahan',$request['kelurahan'])
+          
+            ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
+        }
+        //IPA, PROVINSI, KABUPATEN, KECAMATAN,
+        if($request['pendidikan']==4 && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
           $grup=DB::table('tbmentor')
           ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
           ->where('statKomplit',7)
           ->where('statusTutor',1)
           ->where('prodi','like','%IPA%')
-          ->paginate(5);
-      }
-                  //=================================================================================ips=====================================================================================
+          ->where('provinsi',$request['provinsi'])
+          ->where('kota',$request['kabupaten'])
+          ->where('kecamatan',$request['kecamatan'])
+          
+            ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
+        }
+        //IPA, PROVINSI, KABUPATEN
+        if($request['pendidikan']==4 && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+          $grup=DB::table('tbmentor')
+          ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+          ->where('statKomplit',7)
+          ->where('statusTutor',1)
+          ->where('prodi','like','%IPA%')
+          ->where('provinsi',$request['provinsi'])
+          ->where('kota',$request['kabupaten'])
+          
+            ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
+        }
+        //IPA, PROVINSI
+        if($request['pendidikan']==4 && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+            $grup=DB::table('tbmentor')
+            ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+            ->where('statKomplit',7)
+            ->where('statusTutor',1)
+            ->where('prodi','like','%IPA%')
+            ->where('provinsi',$request['provinsi'])
+            
+              ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
+        }
+        //IPA DAN SEMUA LOKASI
+        if($request['pendidikan']==4 && $request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+            $grup=DB::table('tbmentor')
+            ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+            ->where('statKomplit',7)
+            ->where('statusTutor',1)
+            ->where('prodi','like','%IPA%')
+            
+              ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
+        }
 
-     //IPS, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-     if($request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-      $grup=DB::table('tbmentor')
-      ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-      ->where('statKomplit',7)
-      ->where('statusTutor',1)
-      ->where('prodi','like','%IPS%')
-      ->where('provinsi',$request['provinsi'])
-      ->where('kota',$request['kabupaten'])
-      ->where('kecamatan',$request['kecamatan'])
-      ->where('kelurahan',$request['kelurahan'])
-      ->paginate(5);
-    }
-    //IPS, PROVINSI, KABUPATEN, KECAMATAN,
-    if($request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-      $grup=DB::table('tbmentor')
-      ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-      ->where('statKomplit',7)
-      ->where('statusTutor',1)
-      ->where('prodi','like','%IPS%')
-      ->where('provinsi',$request['provinsi'])
-      ->where('kota',$request['kabupaten'])
-      ->where('kecamatan',$request['kecamatan'])
-      ->paginate(5);
-    }
-    //IPS, PROVINSI, KABUPATEN
-    if($request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-      $grup=DB::table('tbmentor')
-      ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-      ->where('statKomplit',7)
-      ->where('statusTutor',1)
-      ->where('prodi','like','%IPS%')
-      ->where('provinsi',$request['provinsi'])
-      ->where('kota',$request['kabupaten'])
-      ->paginate(5);
-    }
-    //IPS, PROVINSI
-    if($request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+       //IPS, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+       if($request['pendidikan']==4 && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
         $grup=DB::table('tbmentor')
         ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
         ->where('statKomplit',7)
         ->where('statusTutor',1)
         ->where('prodi','like','%IPS%')
         ->where('provinsi',$request['provinsi'])
-        ->paginate(5);
-    }
-    //IPS DAN SEMUA LOKASI
-    if($request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+        ->where('kota',$request['kabupaten'])
+        ->where('kecamatan',$request['kecamatan'])
+        ->where('kelurahan',$request['kelurahan'])
+        
+          ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
+      }
+      //IPS, PROVINSI, KABUPATEN, KECAMATAN,
+      if($request['pendidikan']==4 && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
         $grup=DB::table('tbmentor')
         ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
         ->where('statKomplit',7)
         ->where('statusTutor',1)
         ->where('prodi','like','%IPS%')
-        ->paginate(5);
-    }
-                  //=================================================================================BIG=====================================================================================
-  
-    //BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-    if($request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-      $grup=DB::table('tbmentor')
-      ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-      ->where('statKomplit',7)
-      ->where('statusTutor',1)
-      ->where('prodi','like','%Bhs. Inggris%')
-      ->where('provinsi',$request['provinsi'])
-      ->where('kota',$request['kabupaten'])
-      ->where('kecamatan',$request['kecamatan'])
-      ->where('kelurahan',$request['kelurahan'])
-      ->paginate(5);
-    }
-    //BIG, PROVINSI, KABUPATEN, KECAMATAN,
-    if($request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-      $grup=DB::table('tbmentor')
-      ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-      ->where('statKomplit',7)
-      ->where('statusTutor',1)
-      ->where('prodi','like','%Bhs. Inggris%')
-      ->where('provinsi',$request['provinsi'])
-      ->where('kota',$request['kabupaten'])
-      ->where('kecamatan',$request['kecamatan'])
-      ->paginate(5);
-    }
-    //BIG, PROVINSI, KABUPATEN
-    if($request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-      $grup=DB::table('tbmentor')
-      ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-      ->where('statKomplit',7)
-      ->where('statusTutor',1)
-      ->where('prodi','like','%Bhs. Inggris%')
-      ->where('provinsi',$request['provinsi'])
-      ->where('kota',$request['kabupaten'])
-      ->paginate(5);
-    }
-    //BIG, PROVINSI
-    if($request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+        ->where('provinsi',$request['provinsi'])
+        ->where('kota',$request['kabupaten'])
+        ->where('kecamatan',$request['kecamatan'])
+        
+          ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
+      }
+      //IPS, PROVINSI, KABUPATEN
+      if($request['pendidikan']==4 && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+        $grup=DB::table('tbmentor')
+        ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+        ->where('statKomplit',7)
+        ->where('statusTutor',1)
+        ->where('prodi','like','%IPS%')
+        ->where('provinsi',$request['provinsi'])
+        ->where('kota',$request['kabupaten'])
+        
+          ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
+      }
+      //IPS, PROVINSI
+      if($request['pendidikan']==4 && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+          $grup=DB::table('tbmentor')
+          ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+          ->where('statKomplit',7)
+          ->where('statusTutor',1)
+          ->where('prodi','like','%IPS%')
+          ->where('provinsi',$request['provinsi'])
+          
+            ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
+      }
+      //IPS DAN SEMUA LOKASI
+      if($request['pendidikan']==4 && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+          $grup=DB::table('tbmentor')
+          ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+          ->where('statKomplit',7)
+          ->where('statusTutor',1)
+          ->where('prodi','like','%IPS%')
+          
+            ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
+      }
+
+      //BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+      if($request['pendidikan']==4 && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
         $grup=DB::table('tbmentor')
         ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
         ->where('statKomplit',7)
         ->where('statusTutor',1)
         ->where('prodi','like','%Bhs. Inggris%')
         ->where('provinsi',$request['provinsi'])
-        ->paginate(5);
-    }
-    //BIG DAN SEMUA LOKASI
-    if($request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+        ->where('kota',$request['kabupaten'])
+        ->where('kecamatan',$request['kecamatan'])
+        ->where('kelurahan',$request['kelurahan'])
+        
+          ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
+      }
+      //BIG, PROVINSI, KABUPATEN, KECAMATAN,
+      if($request['pendidikan']==4 && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
         $grup=DB::table('tbmentor')
         ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
         ->where('statKomplit',7)
         ->where('statusTutor',1)
         ->where('prodi','like','%Bhs. Inggris%')
-        ->paginate(5);
-    }
-      //=================================================================================ISI 2=====================================================================================
+        ->where('provinsi',$request['provinsi'])
+        ->where('kota',$request['kabupaten'])
+        ->where('kecamatan',$request['kecamatan'])
+        
+          ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
+      }
+      //BIG, PROVINSI, KABUPATEN
+      if($request['pendidikan']==4 && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+        $grup=DB::table('tbmentor')
+        ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+        ->where('statKomplit',7)
+        ->where('statusTutor',1)
+        ->where('prodi','like','%Bhs. Inggris%')
+        ->where('provinsi',$request['provinsi'])
+        ->where('kota',$request['kabupaten'])
+        
+          ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
+      }
+      //BIG, PROVINSI
+      if($request['pendidikan']==4 && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+          $grup=DB::table('tbmentor')
+          ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+          ->where('statKomplit',7)
+          ->where('statusTutor',1)
+          ->where('prodi','like','%Bhs. Inggris%')
+          ->where('provinsi',$request['provinsi'])
+          
+            ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
+      }
+      //BIG DAN SEMUA LOKASI
+      if($request['pendidikan']==4 && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+          $grup=DB::table('tbmentor')
+          ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+          ->where('statKomplit',7)
+          ->where('statusTutor',1)
+          ->where('prodi','like','%Bhs. Inggris%')
+          
+            ->paginate(5);                 $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));                 $filter="iya";                 $url=$request->fullUrl();
+      }
+  //=================================================================================ISI 2=====================================================================================
   //=================================================================================BIN & MTK =====================================================================================
 
               //BIN & MTK, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-              if($request->hasAny('bin') && $request->hasAny('mtk')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->paginate(5);
-              }
-              //BIN & MTK, PROVINSI, KABUPATEN, KECAMATAN,
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->paginate(5);
-              }
-              //BIN & MTK, PROVINSI, KABUPATEN
-              if($request->hasAny('bin') && $request->hasAny('mtk') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->paginate(5);
-              }
-              //BIN & MTK, PROVINSI
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Bhs. Indonesia%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%Matematika%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->paginate(5);
-              }
-              //BIN & MTK DAN SEMUA LOKASI
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Bhs. Indonesia%')
-                  ->orWhere('prodi','like','%Matematika%')
-                  ->paginate(5);
-              }
-  
-                 //=================================================================================BIN & IPA =====================================================================================
-  
-            //BIN & IPA, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-              if($request->hasAny('bin') && $request->hasAny('ipa')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->paginate(5);
-              }
-              //BIN & IPA, PROVINSI, KABUPATEN, KECAMATAN,
-              if($request->hasAny('bin') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->paginate(5);
-              }
-              //BIN & IPA, PROVINSI, KABUPATEN
-              if($request->hasAny('bin') && $request->hasAny('ipa') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->paginate(5);
-              }
-              //BIN & IPA, PROVINSI
-              if($request->hasAny('bin') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Bhs. Indonesia%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%IPA%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->paginate(5);
-              }
-              //BIN & IPA DAN SEMUA LOKASI
-              if($request->hasAny('bin') && $request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Bhs. Indonesia%')
-                  ->orWhere('prodi','like','%IPA%')
-                  ->paginate(5);
-              }
-  
-               //=================================================================================BIN & IPS =====================================================================================
-  
-            //BIN & IPS, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-              if($request->hasAny('bin') && $request->hasAny('ips')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->paginate(5);
-              }
-              //BIN & IPS, PROVINSI, KABUPATEN, KECAMATAN,
-              if($request->hasAny('bin') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->paginate(5);
-              }
-              //BIN & IPS, PROVINSI, KABUPATEN
-              if($request->hasAny('bin') && $request->hasAny('ips') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->paginate(5);
-              }
-              //BIN & IPS, PROVINSI
-              if($request->hasAny('bin') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Bhs. Indonesia%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%IPS%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->paginate(5);
-              }
-              //BIN & IPS DAN SEMUA LOKASI
-              if($request->hasAny('bin') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Bhs. Indonesia%')
-                  ->orWhere('prodi','like','%IPS%')
-                  ->paginate(5);
-              }
-  
-                //=================================================================================BIN & BIG =====================================================================================
-  
-            //BIN & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-              if($request->hasAny('bin') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->paginate(5);
-              }
-              //BIN & BIG, PROVINSI, KABUPATEN, KECAMATAN,
-              if($request->hasAny('bin') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->paginate(5);
-              }
-              //BIN & BIG, PROVINSI, KABUPATEN
-              if($request->hasAny('bin') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->paginate(5);
-              }
-              //BIN & BIG, PROVINSI
-              if($request->hasAny('bin') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Bhs. Indonesia%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%Bhs. Inggris%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->paginate(5);
-              }
-              //BIN & BIG DAN SEMUA LOKASI
-              if($request->hasAny('bin') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Bhs. Indonesia%')
-                  ->orWhere('prodi','like','%Bhs. Inggris%')
-                  ->paginate(5);
-              }
-                
-                 //=================================================================================MTK & IPA =====================================================================================
-  
-            //MTK & IPA, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-              if($request->hasAny('mtk') && $request->hasAny('ipa')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->paginate(5);
-              }
-              //MTK & IPA, PROVINSI, KABUPATEN, KECAMATAN,
-              if($request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->paginate(5);
-              }
-              //MTK & IPA, PROVINSI, KABUPATEN
-              if($request->hasAny('mtk') && $request->hasAny('ipa') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->paginate(5);
-              }
-              //MTK & IPA, PROVINSI
-              if($request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Matematika%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%IPA%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->paginate(5);
-              }
-              //MTK & IPA DAN SEMUA LOKASI
-              if($request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Matematika%')
-                  ->orWhere('prodi','like','%IPA%')
-                  ->paginate(5);
-              }
-  
-             //=================================================================================MTK & IPS =====================================================================================
-  
-            //MTK & IPS, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-              if($request->hasAny('mtk') && $request->hasAny('ips')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->paginate(5);
-              }
-              //MTK & IPS, PROVINSI, KABUPATEN, KECAMATAN,
-              if($request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->paginate(5);
-              }
-              //MTK & IPS, PROVINSI, KABUPATEN
-              if($request->hasAny('mtk') && $request->hasAny('ips') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->paginate(5);
-              }
-              //MTK & IPS, PROVINSI
-              if($request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Matematika%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%IPS%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->paginate(5);
-              }
-              //MTK & IPS DAN SEMUA LOKASI
-              if($request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Matematika%')
-                  ->orWhere('prodi','like','%IPS%')
-                  ->paginate(5);
-              }
-  
-                  //=================================================================================MTK & BIG =====================================================================================
-  
-            //MTK & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-              if($request->hasAny('mtk') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->paginate(5);
-              }
-              //MTK & BIG, PROVINSI, KABUPATEN, KECAMATAN,
-              if($request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->paginate(5);
-              }
-              //MTK & BIG, PROVINSI, KABUPATEN
-              if($request->hasAny('mtk') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->paginate(5);
-              }
-              //MTK & BIG, PROVINSI
-              if($request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Matematika%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%Bhs. Inggris%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->paginate(5);
-              }
-              //MTK & BIG DAN SEMUA LOKASI
-              if($request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Matematika%')
-                  ->orWhere('prodi','like','%Bhs. Inggris%')
-                  ->paginate(5);
-              }
-                    //=================================================================================IPA & IPS =====================================================================================
-  
-            //IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-              if($request->hasAny('ipa') && $request->hasAny('ips')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->paginate(5);
-              }
-              //IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN,
-              if($request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->paginate(5);
-              }
-              //IPA & IPS, PROVINSI, KABUPATEN
-              if($request->hasAny('ipa') && $request->hasAny('ips') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->paginate(5);
-              }
-              //IPA & IPS, PROVINSI
-              if($request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%IPA%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%IPS%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->paginate(5);
-              }
-              //IPA & IPS DAN SEMUA LOKASI
-              if($request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%IPA%')
-                  ->orWhere('prodi','like','%IPS%')
-                  ->paginate(5);
-              }
-                 //=================================================================================IPA & BIG =====================================================================================
-  
-            //IPA & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-              if($request->hasAny('ipa') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->paginate(5);
-              }
-              //IPA & BIG, PROVINSI, KABUPATEN, KECAMATAN,
-              if($request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->paginate(5);
-              }
-              //IPA & BIG, PROVINSI, KABUPATEN
-              if($request->hasAny('ipa') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->paginate(5);
-              }
-              //IPA & BIG, PROVINSI
-              if($request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%IPA%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%Bhs. Inggris%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->paginate(5);
-              }
-              //IPA & BIG DAN SEMUA LOKASI
-              if($request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%IPA%')
-                  ->orWhere('prodi','like','%Bhs. Inggris%')
-                  ->paginate(5);
-              }
-                 //=================================================================================IPS & BIG =====================================================================================
-  
-            //IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-              if($request->hasAny('ips') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->paginate(5);
-              }
-              //IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN,
-              if($request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->paginate(5);
-              }
-              //IPS & BIG, PROVINSI, KABUPATEN
-              if($request->hasAny('ips') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->paginate(5);
-              }
-              //IPS & BIG, PROVINSI
-              if($request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%IPS%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%Bhs. Inggris%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->paginate(5);
-              }
-              //IPS & BIG DAN SEMUA LOKASI
-              if($request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%IPS%')
-                  ->orWhere('prodi','like','%Bhs. Inggris%')
-                  ->paginate(5);
-              }
-              //=================================================================================ISI 3=====================================================================================
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('mtk')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->where('kelurahan',$request['kelurahan'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK, PROVINSI, KABUPATEN, KECAMATAN,
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK, PROVINSI, KABUPATEN
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('mtk') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK, PROVINSI
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('mtk') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK DAN SEMUA LOKASI
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('mtk') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+
+               //=================================================================================BIN & IPA =====================================================================================
+
+          //BIN & IPA, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('ipa')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->where('kelurahan',$request['kelurahan'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & IPA, PROVINSI, KABUPATEN, KECAMATAN,
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & IPA, PROVINSI, KABUPATEN
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('ipa') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & IPA, PROVINSI
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & IPA DAN SEMUA LOKASI
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+
+             //=================================================================================BIN & IPS =====================================================================================
+
+          //BIN & IPS, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('ips')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->where('kelurahan',$request['kelurahan'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & IPS, PROVINSI, KABUPATEN, KECAMATAN,
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & IPS, PROVINSI, KABUPATEN
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('ips') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & IPS, PROVINSI
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & IPS DAN SEMUA LOKASI
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+
+              //=================================================================================BIN & BIG =====================================================================================
+
+          //BIN & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->where('kelurahan',$request['kelurahan'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & BIG, PROVINSI, KABUPATEN, KECAMATAN,
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & BIG, PROVINSI, KABUPATEN
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & BIG, PROVINSI
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & BIG DAN SEMUA LOKASI
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+              
+               //=================================================================================MTK & IPA =====================================================================================
+
+          //MTK & IPA, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+            if($request['pendidikan']==4 && $request->hasAny('mtk') && $request->hasAny('ipa')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->where('kelurahan',$request['kelurahan'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //MTK & IPA, PROVINSI, KABUPATEN, KECAMATAN,
+            if($request['pendidikan']==4 && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //MTK & IPA, PROVINSI, KABUPATEN
+            if($request['pendidikan']==4 && $request->hasAny('mtk') && $request->hasAny('ipa') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //MTK & IPA, PROVINSI
+            if($request['pendidikan']==4 && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //MTK & IPA DAN SEMUA LOKASI
+            if($request['pendidikan']==4 && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+
+           //=================================================================================MTK & IPS =====================================================================================
+
+          //MTK & IPS, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+            if($request['pendidikan']==4 && $request->hasAny('mtk') && $request->hasAny('ips')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->where('kelurahan',$request['kelurahan'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //MTK & IPS, PROVINSI, KABUPATEN, KECAMATAN,
+            if($request['pendidikan']==4 && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //MTK & IPS, PROVINSI, KABUPATEN
+            if($request['pendidikan']==4 && $request->hasAny('mtk') && $request->hasAny('ips') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //MTK & IPS, PROVINSI
+            if($request['pendidikan']==4 && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //MTK & IPS DAN SEMUA LOKASI
+            if($request['pendidikan']==4 && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+
+                //=================================================================================MTK & BIG =====================================================================================
+
+          //MTK & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+            if($request['pendidikan']==4 && $request->hasAny('mtk') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->where('kelurahan',$request['kelurahan'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //MTK & BIG, PROVINSI, KABUPATEN, KECAMATAN,
+            if($request['pendidikan']==4 && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //MTK & BIG, PROVINSI, KABUPATEN
+            if($request['pendidikan']==4 && $request->hasAny('mtk') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //MTK & BIG, PROVINSI
+            if($request['pendidikan']==4 && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //MTK & BIG DAN SEMUA LOKASI
+            if($request['pendidikan']==4 && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+                  //=================================================================================IPA & IPS =====================================================================================
+
+          //IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+            if($request['pendidikan']==4 && $request->hasAny('ipa') && $request->hasAny('ips')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->where('kelurahan',$request['kelurahan'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN,
+            if($request['pendidikan']==4 && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //IPA & IPS, PROVINSI, KABUPATEN
+            if($request['pendidikan']==4 && $request->hasAny('ipa') && $request->hasAny('ips') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //IPA & IPS, PROVINSI
+            if($request['pendidikan']==4 && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //IPA & IPS DAN SEMUA LOKASI
+            if($request['pendidikan']==4 && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+               //=================================================================================IPA & BIG =====================================================================================
+
+          //IPA & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+            if($request['pendidikan']==4 && $request->hasAny('ipa') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->where('kelurahan',$request['kelurahan'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //IPA & BIG, PROVINSI, KABUPATEN, KECAMATAN,
+            if($request['pendidikan']==4 && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //IPA & BIG, PROVINSI, KABUPATEN
+            if($request['pendidikan']==4 && $request->hasAny('ipa') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //IPA & BIG, PROVINSI
+            if($request['pendidikan']==4 && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //IPA & BIG DAN SEMUA LOKASI
+            if($request['pendidikan']==4 && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+               //=================================================================================IPS & BIG =====================================================================================
+
+          //IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+            if($request['pendidikan']==4 && $request->hasAny('ips') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->where('kelurahan',$request['kelurahan'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN,
+            if($request['pendidikan']==4 && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //IPS & BIG, PROVINSI, KABUPATEN
+            if($request['pendidikan']==4 && $request->hasAny('ips') && $request->hasAny('big') &&  $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //IPS & BIG, PROVINSI
+            if($request['pendidikan']==4 && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //IPS & BIG DAN SEMUA LOKASI
+            if($request['pendidikan']==4 && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Inggris%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+  //=================================================================================ISI 3=====================================================================================
               //=================================================================================BIN & MTK & IPA=====================================================================================
 
               //BIN & MTK & IPA, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-              if($request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ipa')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ipa')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->where('kelurahan',$request['kelurahan'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan']) 
-                ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->paginate(5);
-              }
-              //BIN & MTK & IPA, PROVINSI, KABUPATEN, KECAMATAN,
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & IPA, PROVINSI, KABUPATEN, KECAMATAN,
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->paginate(5);
-              }
-              //BIN & MTK & IPA, PROVINSI, KABUPATEN
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & IPA, PROVINSI, KABUPATEN
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->paginate(5);
-              }
-              //BIN & MTK & IPA, PROVINSI
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Bhs. Indonesia%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%Matematika%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%IPA%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->paginate(5);
-              }
-              //BIN & MTK & IPA, DAN SEMUA LOKASI
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Bhs. Indonesia%')
-                  ->orWhere('prodi','like','%Matematika%')
-                  ->orWhere('prodi','like','%IPA%')
-                  ->paginate(5);
-              }
-                  //=================================================================================BIN & MTK & IPS=====================================================================================
-  
-                //BIN & MTK & IPS, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-              if($request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ips')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & IPA, PROVINSI
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan']) 
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->paginate(5);
-              }
-              //BIN & MTK & IPS, PROVINSI, KABUPATEN, KECAMATAN,
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & IPA, DAN SEMUA LOKASI
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->paginate(5);
-              }
-              //BIN & MTK & IPS, PROVINSI, KABUPATEN
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
+                ->orwhere('prodi','like','%IPA%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+                //=================================================================================BIN & MTK & IPS=====================================================================================
+
+              //BIN & MTK & IPS, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ips')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->where('kelurahan',$request['kelurahan'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->paginate(5);
-              }
-              //BIN & MTK & IPS, PROVINSI
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Bhs. Indonesia%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%Matematika%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%IPS%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->paginate(5);
-              }
-              //BIN & MTK & IPS DAN SEMUA LOKASI
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Bhs. Indonesia%')
-                  ->orWhere('prodi','like','%Matematika%')
-                  ->orWhere('prodi','like','%IPS%')
-                  ->paginate(5);
-              }
-                //=================================================================================BIN & MTK & BIG=====================================================================================
-  
-                //BIN & MTK & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-              if($request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & IPS, PROVINSI, KABUPATEN, KECAMATAN,
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan']) 
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & IPS, PROVINSI, KABUPATEN
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & IPS, PROVINSI
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & IPS DAN SEMUA LOKASI
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orwhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+              //=================================================================================BIN & MTK & BIG=====================================================================================
+
+              //BIN & MTK & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->where('kelurahan',$request['kelurahan'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->paginate(5);
-              }
-              //BIN & MTK & BIG, PROVINSI, KABUPATEN, KECAMATAN,
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & BIG, PROVINSI, KABUPATEN, KECAMATAN,
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->paginate(5);
-              }
-              //BIN & MTK & BIG, PROVINSI, KABUPATEN
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & BIG, PROVINSI, KABUPATEN
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->paginate(5);
-              }
-              //BIN & MTK & BIG, PROVINSI
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Bhs. Indonesia%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%Matematika%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%Bhs. Inggris%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->paginate(5);
-              }
-              //BIN & MTK & BIG DAN SEMUA LOKASI
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Bhs. Indonesia%')
-                  ->orWhere('prodi','like','%Matematika%')
-                  ->orWhere('prodi','like','%Bhs. Inggris%')
-                  ->paginate(5);
-              }
-                //=================================================================================MTK & IPA & IPS=====================================================================================
-  
-                //MTK & IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-              if($request->hasAny('mtk')  && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan']) 
-                ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->paginate(5);
-              }
-              // MTK & IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN,
-              if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->paginate(5);
-              }
-              //MTK & IPA & IPS, PROVINSI, KABUPATEN
-              if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->paginate(5);
-              }
-              // MTK & IPA & IPS, PROVINSI
-              if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Matematika%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%IPA%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%IPS%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->paginate(5);
-              }
-              //MTK & IPA & IPS, DAN SEMUA LOKASI
-              if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Matematika%')
-                  ->orWhere('prodi','like','%IPA%')
-                  ->orwhere('prodi','like','%IPS%')
-                  ->paginate(5);
-              }
-                          //=================================================================================IPA & IPS & BIG =====================================================================================
-  
-                 //IPA & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-              if($request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & BIG, PROVINSI
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->paginate(5);
-              }
-              // IPA & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN,
-              if($request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & BIG DAN SEMUA LOKASI
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->paginate(5);
-              }
-              //IPA & IPS & BIG, PROVINSI, KABUPATEN
-              if($request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+              //=================================================================================MTK & IPA & IPS=====================================================================================
+
+              //MTK & IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+            if($request['pendidikan']==4 && $request->hasAny('mtk')  && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->where('kelurahan',$request['kelurahan'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
                 ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->paginate(5);
-              }
-              //IPA & IPS & BIG, PROVINSI
-              if($request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%IPA%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%IPS%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%Bhs. Inggris%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->paginate(5);
-              }
-              //IPA & IPS & BIG, DAN SEMUA LOKASI
-              if($request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%IPA%')
-                  ->orwhere('prodi','like','%IPS%')
-                  ->orwhere('prodi','like','%Bhs. Inggris%')
-                  ->paginate(5);
-              }
-              //=================================================================================ISI 4=====================================================================================
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            // MTK & IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN,
+            if($request['pendidikan']==4 && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //MTK & IPA & IPS, PROVINSI, KABUPATEN
+            if($request['pendidikan']==4 && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            // MTK & IPA & IPS, PROVINSI
+            if($request['pendidikan']==4 && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //MTK & IPA & IPS, DAN SEMUA LOKASI
+            if($request['pendidikan']==4 && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orwhere('prodi','like','%Matematika%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+                        //=================================================================================IPA & IPS & BIG =====================================================================================
+
+               //IPA & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
+            if($request['pendidikan']==4 && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->where('kelurahan',$request['kelurahan'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            // IPA & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN,
+            if($request['pendidikan']==4 && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //IPA & IPS & BIG, PROVINSI, KABUPATEN
+            if($request['pendidikan']==4 && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //IPA & IPS & BIG, PROVINSI
+            if($request['pendidikan']==4 && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //IPA & IPS & BIG, DAN SEMUA LOKASI
+            if($request['pendidikan']==4 && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              
+              ->where(function($q){
+              $q->where('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orwhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+  //=================================================================================ISI 4=====================================================================================
                //=================================================================================BIN & MTK & IPA & IPS=====================================================================================
 
               //BIN & MTK & IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ipa') && $request->hasAny('ips')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ipa') && $request->hasAny('ips')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan']) 
-              ->orWhere('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->paginate(5);
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & IPA & IPS, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->paginate(5);
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & IPA & IPS, PROVINSI, KABUPATEN
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->paginate(5);
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & IPA & IPS, PROVINSI
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
                 ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->paginate(5);
+                ->orWhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & IPA, DAN SEMUA LOKASI
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Matematika%')
                 ->orWhere('prodi','like','%IPA%')
-                ->orWhere('prodi','like','%IPS%')
-                ->paginate(5);
+                ->orWhere('prodi','like','%IPS%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
 
             //=================================================================================BIN & MTK & IPA & BIG =====================================================================================
               //BIN & MTK & IPA & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan']) 
-              ->orWhere('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->paginate(5);
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & IPA & BIG, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->paginate(5);
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & IPA & BIG, PROVINSI, KABUPATEN
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->paginate(5);
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & IPA & BIG, PROVINSI
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
                 ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->paginate(5);
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & IPA & BIG, DAN SEMUA LOKASI
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Matematika%')
                 ->orWhere('prodi','like','%IPA%')
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->paginate(5);
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
                 //=================================================================================BIN & MTK & IPS & BIG=====================================================================================
 
+        
               //BIN & MTK & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ips') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ips') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan']) 
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->paginate(5);
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->paginate(5);
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & IPS & BIG, PROVINSI, KABUPATEN
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->paginate(5);
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & IPS & BIG, PROVINSI
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big')&& $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
                 ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->paginate(5);
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //BIN & MTK & IPS & BIG DAN SEMUA LOKASI
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->orWhere('prodi','like','%Matematika%')
-                ->orWhere('prodi','like','%IPS%')
-                ->orWhere('prodi','like','%bhs. Inggris%')
-                ->paginate(5);
-            }
-                //=================================================================================BIN & MTK & IPS & BIG =====================================================================================
-
-              //BIN & MTK & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ips') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan']) 
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->paginate(5);
-            }
-            //BIN & MTK & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-              $grup=DB::table('tbmentor')
-              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->paginate(5);
-            }
-            //BIN & MTK & IPS & BIG, PROVINSI, KABUPATEN
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-              $grup=DB::table('tbmentor')
-              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Bhs. Indonesia%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->paginate(5);
-            }
-            //BIN & MTK & IPS & BIG, PROVINSI
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big')&& $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->paginate(5);
-            }
-            //BIN & MTK & IPS DAN SEMUA LOKASI
-            if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Matematika%')
                 ->orWhere('prodi','like','%IPS%')
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->paginate(5);
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
               //=================================================================================MTK & IPA & IPS & BIG=====================================================================================
 
               //MTK & IPA & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-            if($request->hasAny('mtk')  && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+            if($request['pendidikan']==4 && $request->hasAny('mtk')  && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Matematika%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan']) 
-              ->orWhere('prodi','like','%IPA%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
               ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->where('kelurahan',$request['kelurahan'])
-              ->paginate(5);
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             // MTK & IPA & IPS & big, PROVINSI, KABUPATEN, KECAMATAN,
-            if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+            if($request['pendidikan']==4 && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Matematika%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
               ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->where('kecamatan',$request['kecamatan'])
-              ->paginate(5);
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //MTK & IPA & IPS & BIG, PROVINSI, KABUPATEN
-            if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+            if($request['pendidikan']==4 && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
               $grup=DB::table('tbmentor')
               ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-              ->where('statKomplit',7)
-              ->where('statusTutor',1)
-              ->where('prodi','like','%Matematika%')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
               ->where('provinsi',$request['provinsi'])
               ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%IPA%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%IPS%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->orWhere('prodi','like','%Bhs. Inggris%')
-              ->where('provinsi',$request['provinsi'])
-              ->where('kota',$request['kabupaten'])
-              ->paginate(5);
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             // MTK & IPA & IPS & BIG, PROVINSI
-            if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips')  && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
+            if($request['pendidikan']==4 && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips')  && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
                 ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
                 ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->paginate(5);
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
             //MTK & IPA & IPS & BIG, DAN SEMUA LOKASI
-            if($request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Matematika%')
+            if($request['pendidikan']==4 && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Matematika%')
                 ->orWhere('prodi','like','%IPA%')
-                ->orwhere('prodi','like','%IPS%')
-                ->orwhere('prodi','like','%Bhs. Inggris%')
-                ->paginate(5);
+                ->orWhere('prodi','like','%IPS%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
             }
-            //=================================================================================ISI 5=====================================================================================
+  //=================================================================================ISI 5=====================================================================================
               //=================================================================================BIN & MTK & IPA & IPS & BIG=====================================================================================
 
               //BIN & MTK & IPA & IPS & BIG, PROVINSI, KABUPATEN, KECAMATAN, KELURAHAN
-              if($request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('mtk')  && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big')  && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']!==NULL ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              ->where('kelurahan',$request['kelurahan'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan']) 
                 ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
                 ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->where('kelurahan',$request['kelurahan'])
-                ->paginate(5);
-              }
-              //BIN & MTK & IPA & IPS & big, PROVINSI, KABUPATEN, KECAMATAN,
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & IPA & IPS & big, PROVINSI, KABUPATEN, KECAMATAN,
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']!==NULL && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              ->where('kecamatan',$request['kecamatan'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
                 ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
                 ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->where('kecamatan',$request['kecamatan'])
-                ->paginate(5);
-              }
-              //BIN & MTK & IPA & IPS & Big, PROVINSI, KABUPATEN
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
-                $grup=DB::table('tbmentor')
-                ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                ->where('statKomplit',7)
-                ->where('statusTutor',1)
-                ->where('prodi','like','%Bhs. Indonesia%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & IPA & IPS & Big, PROVINSI, KABUPATEN
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']!==NULL && $request['kecamatan']==0 && $request['kelurahan']==0 ){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              ->where('kota',$request['kabupaten'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
                 ->orWhere('prodi','like','%Matematika%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
                 ->orWhere('prodi','like','%IPA%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
                 ->orWhere('prodi','like','%IPS%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->orWhere('prodi','like','%Bhs. Inggris%')
-                ->where('provinsi',$request['provinsi'])
-                ->where('kota',$request['kabupaten'])
-                ->paginate(5);
-              }
-              //BIN & MTK & IPA & IPS & BIG, PROVINSI
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==NULL && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Bhs. Indonesia%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%Matematika%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%IPA%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%IPS%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->orWhere('prodi','like','%Bhs. Inggris%')
-                  ->where('provinsi',$request['provinsi'])
-                  ->paginate(5);
-              }
-              //BIN & MTK & IPA & BIG, DAN SEMUA LOKASI
-              if($request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
-                  $grup=DB::table('tbmentor')
-                  ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
-                  ->where('statKomplit',7)
-                  ->where('statusTutor',1)
-                  ->where('prodi','like','%Bhs. Indonesia%')
-                  ->orWhere('prodi','like','%Matematika%')
-                  ->orWhere('prodi','like','%IPA%')
-                  ->orWhere('prodi','like','%IPS%')
-                  ->orWhere('prodi','like','%Bhs. Inggris%')
-                  ->paginate(5);
-                
-              } 
-      $url=$request->fullUrl();
-      $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+            }
+            //BIN & MTK & IPA & IPS & BIG, PROVINSI
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']!==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              ->where('provinsi',$request['provinsi'])
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+          }
+            //BIN & MTK & IPS & IPA & BIG, DAN SEMUA LOKASI
+            if($request['pendidikan']==4 && $request->hasAny('bin') && $request->hasAny('mtk') && $request->hasAny('ipa') && $request->hasAny('ips') && $request->hasAny('big') && $request['provinsi']==0 && $request['kabupaten']==0  && $request['kecamatan']==0 && $request['kelurahan']==0){
+              $url=$request->fullUrl();
+              $grup=DB::table('tbmentor')
+              ->join('tbdetailmentor','tbmentor.idmentor','=','tbdetailmentor.idmentor')
+              ->where('statKomplit','=',7)
+              ->where('statusTutor','=',1)
+              
+              ->where(function($q){
+              $q->where('prodi','like','%Bhs. Indonesia%')
+                ->orWhere('prodi','like','%Matematika%')
+                ->orWhere('prodi','like','%IPA%')
+                ->orWhere('prodi','like','%IPS%')
+                ->orWhere('prodi','like','%Bhs. Inggris%');})
+                ->paginate(5);   
+              $grup->appends($request->only('pendidikan','bin','mtk','ips','ipa','big','provinsi','kabupaten','kecamatan','kelurahan'));
+              $filter="iya";
+          }
 
-      }
-      else{
-        $url=NULL;
-        $grup='iwak';
-      
-      }
+
+       
 
       if($request['provinsi']!==NULL){
         $kabupaten = DB::table('kota_kabupaten')->where('provinsi_id', $request['provinsi'] )->get();
@@ -9148,7 +8980,7 @@ class HomeSiswaController extends Controller
       }else{
         $kelurahan=NULL;
       }
-        return view('dashboardsiswa', ['isCompleted' => $showing,'idp'=>$idprovinsi,'grup'=> $grup, 'url'=>$url, 'mentor'=>$getMentor,'s'=>$siswa2, 'p' => $provinsi, 'b' => $kabupaten,'c' => $kecamatan,'k' => $kelurahan]);
+        return view('dashboardsiswa', ['filter'=>$filter,'isCompleted' => $showing,'idp'=>$idprovinsi,'grup'=> $grup, 'url'=>$url, 'mentor'=>$getMentor,'s'=>$siswa2, 'p' => $provinsi, 'b' => $kabupaten,'c' => $kecamatan,'k' => $kelurahan]);
         
         // return $getexplode;
     }

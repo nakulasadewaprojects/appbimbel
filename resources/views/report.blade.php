@@ -3,20 +3,18 @@
 
 <div class="m-grid__item m-grid__item--fluid m-wrapper">
     <div class="m-content">
-        <div class="row">
-            <div class="col-md-10">
-                <div class="m-portlet m-portlet--success m-portlet--head-solid-bg m-portlet--head-sm" data-portlet="true" id="m_portlet_tools_2">
-                    <div class="m-portlet">
-                        <div class="m-portlet__head">
-                            <div class="m-portlet__head-caption">
-                                <div class="m-portlet__head-title">
-                                    <span class="m-portlet__head-icon m--hide">
-                                        <i class="la la-gear"></i>
-                                    </span>
-                                    <h3 class="m-portlet__head-text">
-                                        Form Input Laporan
-                                    </h3>
-                                </div>
+        <div class="col-md-12">
+            <div class="m-portlet m-portlet--success m-portlet--head-solid-bg m-portlet--head-sm" data-portlet="true" id="m_portlet_tools_2">
+                <div class="m-portlet">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <span class="m-portlet__head-icon m--hide">
+                                    <i class="la la-gear"></i>
+                                </span>
+                                <h3 class="m-portlet__head-text">
+                                    Form Input Laporan
+                                </h3>
                             </div>
                         </div>
                         <!--begin::Form-->
@@ -39,11 +37,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group m-form__group row">
-                                        <label class="col-lg-2 col-form-label">
-                                            Nama Siswa:
-                                        </label>
-                                        <div class="col-lg-6">
+                                </div>
+                                <div class="form-group m-form__group row">
+                                    <label class="col-lg-2 col-form-label">
+                                        Nama Siswa:
+                                    </label>
+                                    <div class="col-lg-6">
 
                                             <!-- <input type="hidden" required name="id" class="form-control m-input" value="{{$m->NoIDMentor}}"> -->
                                             <!-- <input type="hidden" required name="id" class="form-control m-input" value="{{$m->NoIDMentor}}"> -->
@@ -160,7 +159,6 @@
                                             </span>
                                         </div>
                                     </div>
-                                    
                                 </div>
                                 <div class="m-portlet__foot m-portlet__foot--fit">
                                     <div class="m-form__actions m-form__actions">
@@ -178,12 +176,13 @@
                                     </div>
                                 </div>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+
 </div>
 </div>
 @endsection

@@ -5,16 +5,16 @@
     <div class="m-content">
         <div class="col-xl-12">
             <div class="m-portlet m-portlet--success m-portlet--head-solid-bg m-portlet--head-sm" data-portlet="true" id="m_portlet_tools_2">
-            <div class="m-portlet m-portlet--full-height ">
-                <div class="m-portlet__head">
-                    <div class="m-portlet__head-caption">
-                        <div class="m-portlet__head-title">
-                            <h3 class="m-portlet__head-text">
-                                Pengajuan
-                            </h3>
+                <div class="m-portlet m-portlet--full-height ">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <h3 class="m-portlet__head-text">
+                                    Pengajuan
+                                </h3>
+                            </div>
                         </div>
-                    </div>
-                    {{-- <div class="m-portlet__head-tools">
+                        {{-- <div class="m-portlet__head-tools">
                         <ul class="m-portlet__nav">
                             <li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover" aria-expanded="true">
                                 <a href="#" class="m-portlet__nav-link m-portlet__nav-link--icon m-portlet__nav-link--icon-xl m-dropdown__toggle">
@@ -56,9 +56,9 @@
                                 <span class="m-widget3__status m--font-info">  
                                     @if($j->statusBimbel==1) 
                                         Pending
-                                    @elseif($j->statusBimbel==2)
+                                        @elseif($j->statusBimbel==2)
                                         Approval
-                                    @else
+                                        @else
                                         Cancel
                                     @endif
                                 </span>
@@ -74,14 +74,14 @@
                                 </p>
                             </div>
                         </div>
+                        @endforeach
+                        {{ $jadwal->links() }}
                     </div>
-                    @endforeach
-                    {{ $jadwal->links() }}
                 </div>
             </div>
         </div>
-        </div>
     </div>
+
 </div>
 
 </div>

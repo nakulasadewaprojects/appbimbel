@@ -6,7 +6,6 @@
         <div class="row">
             <div class="col-xl-12">
                 <div class="m-portlet m-portlet--success m-portlet--head-solid-bg m-portlet--head-sm" data-portlet="true" id="m_portlet_tools_2">
-                <div class="m-portlet">
                     <div class="m-portlet__head">
                         <div class="m-portlet__head-caption">
                             <div class="m-portlet__head-title">
@@ -14,27 +13,27 @@
                                     <i class="la la-gear"></i>
                                 </span>
                                 <h3 class="m-portlet__head-text">
-                                   Form Upload Tutorial
+                                    Form Upload Tutorial
                                 </h3>
                             </div>
                         </div>
                     </div>
                     <!--begin::Form-->
                     <form class="m-form m-form--label-align-right" action="http://localhost/appbimbel/public/datatutorial/updatetutorial" method="POST" enctype="multipart/form-data">
-					    {{ csrf_field() }}
+                        {{ csrf_field() }}
                         <div class="m-portlet__body">
                             <div class="m-form__section m-form__section--first">
-                            
+
                                 <div class="form-group m-form__group row">
                                     <label class="col-lg-2 col-form-label">
                                         Nama Modul:
                                     </label>
                                     <div class="col-lg-6">
-                                         <input type="hidden" name="id"  value="{{$tutorial->idmodul}}" >
-                                        <input type="text" name="nama"class="form-control m-input"  value="{{$tutorial->nama_modul}}">
+                                        <input type="hidden" name="id" value="{{$tutorial->idmodul}}">
+                                        <input type="text" name="nama" class="form-control m-input" value="{{$tutorial->nama_modul}}">
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-group m-form__group row">
                                     <label class="col-lg-2 col-form-label">
                                         Mata Pelajaran:
@@ -42,11 +41,11 @@
                                     <div class="col-lg-6">
                                         {{-- <select class="form-control m-bootstrap-select m_selectpicker" name="matpel"> --}}
                                         <select class="form-control m-input" name="matpel" type="text" id="matpel">
-                                            <option value="">Pilih Mata Pelajaran </option>                                                
-                                        @foreach ($matpel as $mp)
-                                        <option value="{{ $mp->idMasterMatpel}}" {{$tutorial->matpel == $mp->idMasterMatpel ? 'selected' : ''}} > {{ $mp->MatPel}}</option>
-                                        @endforeach	
-                                </select>
+                                            <option value="">Pilih Mata Pelajaran </option>
+                                            @foreach ($matpel as $mp)
+                                            <option value="{{ $mp->idMasterMatpel}}" {{$tutorial->matpel == $mp->idMasterMatpel ? 'selected' : ''}}> {{ $mp->MatPel}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group m-form__group row">
@@ -56,10 +55,10 @@
                                     <div class="col-lg-6">
                                         {{-- <select class="form-control m-bootstrap-select m_selectpicker" name="jenjang"> --}}
                                         <select class="form-control m-input" name="jenjang" type="text" id="jenjang">
-                                                <option value="">Pilih Jenjang </option>
-                                                @foreach ($jenjang as $jp)
-                                                <option value="{{$jp->idMasterPendidikan}}" {{$tutorial->jenjangpendidikan == $jp->idMasterPendidikan ? 'selected' : ''}} > {{ $jp->jenjangPendidikan}}</option>
-												@endforeach	 
+                                            <option value="">Pilih Jenjang </option>
+                                            @foreach ($jenjang as $jp)
+                                            <option value="{{$jp->idMasterPendidikan}}" {{$tutorial->jenjangpendidikan == $jp->idMasterPendidikan ? 'selected' : ''}}> {{ $jp->jenjangPendidikan}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -78,12 +77,12 @@
                                                 </span>
                                             </div>
                                         </div> --}}
-                                        <input type="file" name="modul" accept="application/pdf" class="form-control m-input"  value="{{$tutorial->file}}">                                        
+                                        <input type="file" name="modul" accept="application/pdf" class="form-control m-input" value="{{$tutorial->file}}">
                                         <span class="m-form__help">
-                                               *Upload File PDF max 2 mb
-                                            </span>
+                                            *Upload File PDF max 2 mb
+                                        </span>
                                     </div>
-									@if($tutorial->file!=null)
+                                    @if($tutorial->file!=null)
                                     <div class="m-demo-icon">
                                         <div class="m-demo-icon__preview">
                                             <i class="fa fa-file-pdf-o"></i>
@@ -103,20 +102,20 @@
                                                 @endif
                                                 Untuk
                                                 @if($tutorial->jenjangpendidikan==1)
-												SD
-												@elseif($tutorial->jenjangpendidikan==2)
-												SMP
-												@elseif($tutorial->jenjangpendidikan==3)
-												SMA
-												@else
-												SMK
-												@endif
+                                                SD
+                                                @elseif($tutorial->jenjangpendidikan==2)
+                                                SMP
+                                                @elseif($tutorial->jenjangpendidikan==3)
+                                                SMA
+                                                @else
+                                                SMK
+                                                @endif
                                                 <a />
                                         </div>
                                     </div>
                                     @else Anda Belum Upload File Ijazah @endif
                                 </div>
-                                
+
                                 <br>
                                 <div class="m-portlet__foot m-portlet__foot--fit">
                                     <div class="m-form__actions m-form__actions">
@@ -138,13 +137,10 @@
                     </form>
                 </div>
             </div>
-            </div>
         </div>
     </div>
+</div>
 </div>
 
 </div>
 @endsection>
-                                   
-                                
-                                

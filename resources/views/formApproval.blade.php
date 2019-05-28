@@ -9,7 +9,7 @@
 		<div class="row">
 			@foreach($apvBimb as $apv )
 
-			<div class="col-xl-6">
+			<div class="col-xl-12">
 				<!--begin:: Widgets/Finance Summary-->
 				<div class="m-portlet m-portlet--full-height ">
 					<div class="m-portlet__head">
