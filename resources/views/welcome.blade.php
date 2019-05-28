@@ -17,18 +17,18 @@
   <div class="landing-page">
     <div class="page-content">
       <h1>App Bimbel</h1>
-        <h2>AKAN SEGERA LIRIS</h2>
-        <h2 id="demo"></h2>
+        {{-- <h2>AKAN SEGERA LIRIS</h2>
+        <h2 id="demo"></h2> --}}
       @if (Auth::guard('web')->check())
       <a href="{{ url('/dashboard') }}">Dashboard</a> @elseif ( Auth::guard('siswa')->check())
       <a href="{{ url('/dashboardsiswa') }}">Dashboard</a> @else
       <a href="{{ url('mentor/login') }}">Mentor</a>
       <a href="{{ url('siswa/login') }}">Siswa</a> @endif
       <br><br><br>
-      <audio controls>
+      {{-- <audio controls>
         <source src="https://server8.mp3quran.net/afs_dori/014.mp3" type="audio/mpeg">
         </audio>
-        <p>Jangan lupa ngaji ya :)</p>
+        <p>Jangan lupa ngaji ya :)</p> --}}
     </div>
   </div>
 
