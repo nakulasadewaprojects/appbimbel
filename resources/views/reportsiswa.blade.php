@@ -14,7 +14,7 @@
                                         <i class="la la-gear"></i>
                                     </span>
                                     <h3 class="m-portlet__head-text">
-                                        Review Mentor
+                                        Review 
                                     </h3>
                                 </div>
                             </div>
