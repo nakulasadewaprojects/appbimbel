@@ -264,7 +264,7 @@
 								<div class="row">
 									<div class="col-lg-4"></div>
 									<div class="col-lg-6">
-										<button type="button" class="btn btn-primary m-btn m-btn--custom">
+										<button type="submit" class="btn btn-primary m-btn m-btn--custom">
 											Save
 										</button>
 										<button type="button" class="btn btn-danger m-btn m-btn--custom">

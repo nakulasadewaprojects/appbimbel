@@ -39,7 +39,8 @@
                                             Deskripsi:
                                         </label>
                                         <div class="col-lg-6">
-                                            <textarea class="form-control m-input" type="text" rows="3" name="deskripsi" required value="{{$multimedia->diskripsi}}"></textarea>
+                                            {{-- <textarea class="form-control m-input" type="text" rows="3" name="deskripsi" required value="{{$multimedia->diskripsi}}"></textarea> --}}
+                                            <input class="form-control m-input" type="text" name="deskripsi" required value="{{$multimedia->diskripsi}}">                                            
                                             <span class="m-form__help">
                                                 Tambahkan deskripisi yang anda inginkan
                                             </span>
@@ -73,7 +74,14 @@
                                             <span class="m-form__help">
                                                Upload Konten Video (Tutorial) *max 10 mb
                                             </span>
+                                            @if($multimedia->file!=null)
+                                            <video width="200" controls>
+												<source src="{{ url('/data_multimedia/'.$multimedia->file) }}" type="video/mp4" >
+											</video>
+											{{-- <a href="{{ url('/data_file/'.$isCompleted->fileKTP) }}" class="thumbnail"><img width="50px" height="50px" src="{{ url('/data_file2/'.$isCompleted->fileKTP) }}"></a> --}}
+											@else Anda Belum Upload File KTP @endif
                                         </div>
+                                       
                                     </div>
 
                                     <br>

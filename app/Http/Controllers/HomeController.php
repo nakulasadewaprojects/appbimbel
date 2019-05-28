@@ -419,7 +419,11 @@ class HomeController extends Controller
                 $filemodul->move($tujuan_upload, $namafilemodul);
                 File::delete($tujuan_upload . '/' . $show);
                 $modul= $namafilemodul;
-            } else { }	      
+            } else {
+                $show = DB::table('modulsiswa')->where('idmodul', $request->id)->value('file');
+                $namafilemodul = time() . "_" . $filemodul->getClientOriginalName();
+                $modul= $namafilemodul;
+            }	      
         DB::table('modulsiswa')->where('idmodul',$request->id)->update([
             'nama_modul' => $request->nama,
             'file' =>$modul ,
@@ -469,10 +473,22 @@ class HomeController extends Controller
         return view('editmultimedia',['isCompleted' => $showing,'multimedia' => $multimedia]);
         // return $tutorial;
         }
-    public function updatemultimedia(Request $request){	      
-    DB::table('contentvideo')->where('idcontent',$request->id)->update([
+    public function updatemultimedia(Request $request){	
+        $tglentry=Carbon::now();
+        $filemultimedia = $request->file('multimedia');
+        $tujuan_upload = public_path('/data_multimedia');
+        if ($request->hasFile('multimedia')) {
+            $show = DB::table('contentvideo')->where('idcontent', $request->idcontent)->value('file');
+            $namafilemultimedia = time() . "_" . $filemultimedia->getClientOriginalName();
+            $filemultimedia->move($tujuan_upload, $namafilemultimedia);
+            File::delete($tujuan_upload . '/' . $show);
+            $multimedia= $namafilemultimedia;
+        } else { }	  
+
+    DB::table('contentvideo')->where('idcontent',$request->idcontent)->update([
+        'created_at'=>$tglentry,
         'judul' => $request->judul,
-        'file' => $request->file,
+        // 'file' =>  $multimedia,
         'diskripsi' => $request->deskripsi,
         ]);
     return redirect('/datamultimedia');

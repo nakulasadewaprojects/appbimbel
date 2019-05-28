@@ -80,7 +80,11 @@
 										<tr>
 											<td>{{$m->created_at}}</td>
 											<td>{{$m->judul}}</td>
-											<td>{{$m->file}}</td>
+											<td>
+												<video width="200" controls>
+												<source src="{{ url('/data_multimedia/'.$m->file) }}" type="video/mp4" >
+												</video>
+											</td>
 											<td>{{$m->diskripsi}}</td>
 											<td>		
 												<a href="http://localhost/appbimbel/public/datamultimedia/hapusmultimedia/{{$m->idcontent}}" class="btn btn-danger m-btn m-btn--icon m-btn--icon-only">

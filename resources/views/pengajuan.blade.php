@@ -45,12 +45,13 @@
                                 </div>
                                 <div class="m-widget3__info">
                                     <span class="m-widget3__username">
+                                        {{$j->prodiBimbel}}
+                                    </span><br>
+                                    <span class="m-widget3__time">
                                         {{$j->nm_depan}} {{$j->nm_belakang}}
                                     </span>
-                                    <br>
-                                    <span class="m-widget3__time">
-                                        {{$j->prodiBimbel}}
-                                    </span>
+                                    
+                                   
                                 </div>
                                 <span class="m-widget3__status m--font-info">  
                                     @if($j->statusBimbel==1) 
@@ -69,7 +70,7 @@
                             </div>
                             <div class="m-widget3__body">
                                 <p class="m-widget3__text">
-                                    {{$j->tglprivate}}, {{$j->days}}, {{$j->start}} - {{$j->end}}
+                                    {{$j->startBimbel}} - {{$j->endBimbel}} , {{$j->days}}, {{$j->start}} - {{$j->end}}
                                 </p>
                             </div>
                         </div>
