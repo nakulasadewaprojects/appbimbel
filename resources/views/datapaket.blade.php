@@ -137,7 +137,7 @@
 										</div>
 										<span class="m-pricing-table-1__price">
 											Rp. {{$p->harga}}
-											Free
+											
 										</span>
 										<h2 class="m-pricing-table-1__subtitle">
 											{{$p->nmpaket}}
@@ -188,7 +188,7 @@
 										</div>
 										<span class="m-pricing-table-1__price">
 											Rp. {{$p->harga}}
-											Free
+											
 										</span>
 										<h2 class="m-pricing-table-1__subtitle">
 											{{$p->nmpaket}}
