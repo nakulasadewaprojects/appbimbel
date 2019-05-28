@@ -145,8 +145,8 @@ return [
     |
     */
 
-    'attributes' => ['fileKTP' => 'File KTP'],
-    'attributes' => ['noTlpn' => 'Nomor Telepon'],
-    'attributes' => ['alamat' => 'Alamat'],
+    // 'attributes' => ['fileKTP' => 'File KTP'],
+    'attributes' => ['noTlpn' => 'Nomor Telepon','fileKTP' => 'File KTP','alamat' => 'Alamat'],
+    // 'attributes' => ['alamat' => 'Alamat'],
 
 ];

@@ -272,23 +272,47 @@ class HomeController extends Controller
     public function report(){
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
-        // $siswa = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idsiswa)->first();
-
-        return view('report' , ['isCompleted' => $showing, 'm' => $mentor] );
+        $siswaBimb=DB::table('siswabimbel')
+            ->join('tbsiswa','tbsiswa.NoIDSiswa','=','siswabimbel.NoIDSiswa')
+            ->where('siswabimbel.NoIDTutor', Auth::user()->NoIDMentor)->get();
+         $modul=DB::table('modulsiswa')
+            ->join('tbmentor', 'tbmentor.NoIDMentor', '=', 'modulsiswa.mentor')
+            ->where('tbmentor.NoIDMentor', Auth::user()->NoIDMentor)->get();
+        $getprodi =  DB::table('tbmentor')
+            ->join('tbdetailmentor', 'tbmentor.idmentor', '=', 'tbdetailmentor.idmentor')
+        ->where('tbmentor.idmentor', Auth::user()->idmentor )->value('prodi');
+        $getexplode = explode(', ',$getprodi);
+        return view('report' , ['isCompleted' => $showing, 'm' => $mentor, 'siswaBimb'=> $siswaBimb, 'modul'=>$modul, 'prodimentor'=>$getexplode ]);
+        // return  $getexplode;
     }
     public function inputreport(Request $request){
+        $created_at=Carbon::now();
+        $TbMentorNoID= DB::table('tbmentor')->where('idmentor',Auth::user()->idmentor)->value('NoIDMentor');      
+        $nextId=DB::table('siswabimbel')->max('idsiswaBimbel')+1;
+        $noidreport = 'R'. $TbMentorNoID. $nextId ;
+        if($request->hasAny('prodi')){
+            $prodi=$request['prodi'];
+            $prodi2=implode(', ',$prodi);
+            $a= $prodi2; 
+        }else{
+            $prodi=$request['prodi'];
+           $a= $prodi; 
+        }
         DB::table('hasilpembelajaran')->insert([
-            'IdMentor'=>$request->id,
-            'TglBimbel'=>$request->tanggalbimbel,
-            'wkt_mulai'=>$request->waktuMulai,
-            'wkt_selesai'=>$request->waktuAkhir,
-            'MatPel'=>$request->matpel,
-            'ModulMatpel'=>$request->modulmatpel,
+            'no_id'=>$noidreport,
+            'IdMentor'=>$request->idmentor,
+            'IdSiswa'=>$request->siswa,
+            'created_at'=>$created_at,
+            'TglBimbel'=>Carbon::parse($request['tglBimbel'])->format('Y-m-d'),
+            'wkt_mulai'=> Carbon::parse($request['waktuMulai'])->format('H:i:s'),
+            'wkt_selesai'=>Carbon::parse($request['waktuAkhir'])->format('H:i:s'),
+            'MatPel'=>$a,
+            'Modulmatpel'=>$request->modul,
             'Aktifitas'=>$request->aktivitas,
             'Catatan'=>$request->catatan,
             ]);
-            return redirect('/dashboard');
-    }
+          return redirect('/dashboard');
+        }
     public function datareport(){
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
@@ -395,7 +419,11 @@ class HomeController extends Controller
                 $filemodul->move($tujuan_upload, $namafilemodul);
                 File::delete($tujuan_upload . '/' . $show);
                 $modul= $namafilemodul;
-            } else { }	      
+            } else {
+                $show = DB::table('modulsiswa')->where('idmodul', $request->id)->value('file');
+                $namafilemodul = time() . "_" . $filemodul->getClientOriginalName();
+                $modul= $namafilemodul;
+            }	      
         DB::table('modulsiswa')->where('idmodul',$request->id)->update([
             'nama_modul' => $request->nama,
             'file' =>$modul ,
@@ -445,10 +473,22 @@ class HomeController extends Controller
         return view('editmultimedia',['isCompleted' => $showing,'multimedia' => $multimedia]);
         // return $tutorial;
         }
-    public function updatemultimedia(Request $request){	      
-    DB::table('contentvideo')->where('idcontent',$request->id)->update([
+    public function updatemultimedia(Request $request){	
+        $tglentry=Carbon::now();
+        $filemultimedia = $request->file('multimedia');
+        $tujuan_upload = public_path('/data_multimedia');
+        if ($request->hasFile('multimedia')) {
+            $show = DB::table('contentvideo')->where('idcontent', $request->idcontent)->value('file');
+            $namafilemultimedia = time() . "_" . $filemultimedia->getClientOriginalName();
+            $filemultimedia->move($tujuan_upload, $namafilemultimedia);
+            File::delete($tujuan_upload . '/' . $show);
+            $multimedia= $namafilemultimedia;
+        } else { }	  
+
+    DB::table('contentvideo')->where('idcontent',$request->idcontent)->update([
+        'created_at'=>$tglentry,
         'judul' => $request->judul,
-        'file' => $request->file,
+        // 'file' =>  $multimedia,
         'diskripsi' => $request->deskripsi,
         ]);
     return redirect('/datamultimedia');
@@ -457,26 +497,26 @@ class HomeController extends Controller
     public function update($idmentor, Request $request)
     {
         $this->validate($request, [
-            // 'username' => ['required', 'alpha_num', 'min:6', 'max:50', 'unique:tbmentor,username,' . $idmentor . ',idmentor', 'regex:/^.*(?=.*[a-zA-Z])(?=.*[0-9]).*$/'],
-            // 'noTlpn' => ['numeric', 'digits_between:10,15', 'unique:tbmentor,noTlpn,' . $idmentor . ',idmentor'],
-            // 'alamat' => ['max:255','regex:/[ .,()\-\/\w+]/'],
-            // // 'email' => ['required', 'string', 'email', 'max:255', 'unique:tbmentor,email,'.$idmentor.',idmentor', 'regex:/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/']
-        ]);
-        $Tbmentor = Tbmentor::find($idmentor);
-        $Tbmentor->username = $request['username'];
-        $Tbmentor->alamat = $request['alamat'];
-        $Tbmentor->provinsi = $request['provinsi'];
-        $Tbmentor->kota = $request['kabupaten'];
-        $Tbmentor->kecamatan = $request['kecamatan'];
-        $Tbmentor->kelurahan = $request['kelurahan'];
-        $Tbmentor->noTlpn = $request['noTlpn'];
-        $Tbmentor->save();
-
-         $this->validate($request, [
-        	// 'foto' => 'file|image|mimes:jpeg,png,jpg|max:2048',
-            // 'fileIjazah'=>'file|image|mimes:jpeg,png,jpg|max:2048',
-            // 'fileKTP'=>'file|image|mimes:jpeg,png,jpg|max:2048',
-            // 'No_Identitas'=>'numeric'
+            'alamat' => ['regex:/[ .,()\-\/\w+]/','max:255'],
+            'username' => ['alpha_num', 'min:6', 'max:50', 'unique:tbmentor,username,' . $idmentor . ',idmentor', 'regex:/^.*(?=.*[a-zA-Z])(?=.*[0-9]).*$/'],
+            'noTlpn' => ['numeric', 'digits_between:10,15', 'unique:tbmentor,noTlpn,' . $idmentor . ',idmentor'],
+            'email' => ['string', 'email', 'max:255', 'unique:tbmentor,email,'.$idmentor.',idmentor', 'regex:/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/']
+            ]);
+            $Tbmentor = Tbmentor::find($idmentor);
+            $Tbmentor->username = $request['username'];
+            $Tbmentor->alamat = $request['alamat'];
+            $Tbmentor->provinsi = $request['provinsi'];
+            $Tbmentor->kota = $request['kabupaten'];
+            $Tbmentor->kecamatan = $request['kecamatan'];
+            $Tbmentor->kelurahan = $request['kelurahan'];
+            $Tbmentor->noTlpn = $request['noTlpn'];
+            $Tbmentor->save();
+            
+            $this->validate($request, [
+                'foto' => 'file|image|mimes:jpeg,png,jpg|max:2048',
+                'fileIjazah'=>'file|image|mimes:jpeg,png,jpg|max:2048',
+                'fileKTP'=>'file|image|mimes:jpeg,png,jpg|max:2048',
+            'No_Identitas'=>'numeric'
         ]);
         $Tbdetailmentor = Tbdetailmentor::find($idmentor);
         $Tbdetailmentor->pendidikanTerakhir = $request['pendidikanTerakhir'];

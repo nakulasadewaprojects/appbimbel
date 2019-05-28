@@ -16,7 +16,7 @@ class CreateScedulebimbel extends Migration
         Schema::create('scedulebimbel', function (Blueprint $table) {
             $table->bigIncrements('idsceduleBimbel');
             $table->string('NoIDBimbel')->nullable();
-            $table->integer('durasi')->nullable();
+            $table->integer('durasi')->comment('hitungan hari')->nullable();
             $table->datetime('startBimbel')->nullable();
             $table->datetime('endBimbel')->nullable();
         });

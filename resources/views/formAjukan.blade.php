@@ -244,12 +244,12 @@
 									</label>
 									<div class="col-lg-6 col-md-9 col-sm-12">
 										<select class="form-control m-bootstrap-select m_selectpicker" required name="prodi[]" multiple>
-											@foreach ($prodiSiswa as $sw)
+											@foreach ($prodiunique as $sw)
 											<option value="{{ $sw }}"> {{ $sw }}</option>
 											@endforeach
 										</select>
 										<span class="m-form__help">
-											Harap Pilih Sesuai Mentor ajarkan
+											Hanya Prodi yang Mentor Ajarkan Saja yang bisa dipilih
 										</span>
 									</div>
 									<span class="m-form__help">
@@ -264,7 +264,7 @@
 								<div class="row">
 									<div class="col-lg-4"></div>
 									<div class="col-lg-6">
-										<button type="button" class="btn btn-primary m-btn m-btn--custom">
+										<button type="submit" class="btn btn-primary m-btn m-btn--custom">
 											Save
 										</button>
 										<button type="button" class="btn btn-danger m-btn m-btn--custom">
