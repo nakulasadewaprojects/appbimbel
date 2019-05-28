@@ -35,11 +35,7 @@ class HomeController extends Controller
     {
         return view('home');
     }
-    public function export_excel(Request $request)
-	{
-        $start=$request['start'];
-		return Excel::download(new ReportExport($start), 'report.xlsx');
-	}
+    
     public function detailmentor()
     {   
         return view ('detailmentor');
@@ -298,10 +294,51 @@ class HomeController extends Controller
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
         return view('datareport' , ['isCompleted' => $showing, 'm' => $mentor]);
     }
+    public function export_excel(Request $request)
+	{
+        $date=$request['daterange'];
+        $explodedate=explode(' - ', $date);
+        if($request['siswa']=='0' && $request['matpel']=='0'){
+            $a="taho";
+            $siswa=$request['siswa'];
+            $matpel=$request['matpel'];
+        return (new ReportExport)->TglBimbel($explodedate[0],$explodedate[1],$siswa,$matpel,'1')->download('report.xlsx');
+
+        }elseif($request['siswa']!=='0' && $request['matpel']=='0'){
+            $a="tempe";
+            $siswa=$request['siswa'];
+            $matpel=$request['matpel'];
+
+        return (new ReportExport)->TglBimbel($explodedate[0],$explodedate[1],$siswa,$matpel,'2')->download('report.xlsx');
+        
+        }elseif($request['siswa']=='0' && $request['matpel']!=='0'){
+            $a="kentang";
+            $siswa=$request['siswa'];
+            $matpel=$request['matpel'];
+        return (new ReportExport)->TglBimbel($explodedate[0],$explodedate[1],$siswa,$matpel,'3')->download('report.xlsx');
+
+        
+        }elseif($request['siswa']!=='0' && $request['matpel']!=='0'){
+            $a="sosis";
+            $siswa=$request['siswa'];
+            $matpel=$request['matpel'];
+        return (new ReportExport)->TglBimbel($explodedate[0],$explodedate[1],$siswa,$matpel,'4')->download('report.xlsx');
+
+        }
+        
+        // return Excel::download(new ReportExport($start), 'report.xlsx');
+        // return (new ReportExport)->TglBimbel($explodedate[0],$explodedate[1])->download('report.xlsx');
+        // return $a;
+	}
     public function exportexcel(){
+        $getuniquesiswa=hasilpembelajaran::distinct('Idsiswa')->pluck('Idsiswa');
+        $getuniquematpel=hasilpembelajaran::distinct('MatPel')->pluck('Matpel');
+        $getdetailsiswa=DB::table('tbsiswa')
+            ->whereIn('tbsiswa.NoIDSiswa', $getuniquesiswa)->get();
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
-        return view('exportexcel' , ['isCompleted' => $showing, 'm' => $mentor]);
+        return view('exportexcel' , ['getuniquematpel'=>$getuniquematpel,'getdetailsiswa'=>$getdetailsiswa,'isCompleted' => $showing, 'm' => $mentor]);
+        // return $getdetailsiswa;
     }
     public function tutorial(){
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();

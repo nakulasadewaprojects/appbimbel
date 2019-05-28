@@ -223,7 +223,7 @@
 											</label>
 											<div class="col-7">
 												<select class="form-control m-input" name="pendidikanTerakhir" type="text" id="pendidikanTerakhir">
-													<option value=""> Pilih Pendidikan Terakhir </option>
+													<option value="">Pilih Siswa Anda</option>
 													@foreach ($pt as $a)
 													<option value="{{ $a->idMasterPendidikan }}" {{ $isCompleted->pendidikanTerakhir ==  $a->idMasterPendidikan  ? 'selected' : ''}}>{{$a->jenjangPendidikan}}</option>
 													@endforeach

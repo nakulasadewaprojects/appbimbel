@@ -13,4 +13,9 @@ class hasilpembelajaran extends Model
         'idhasilpembelajaran','no_id','IdMentor','IdSiswa', 'created_at','TglBimbel','wkt_mulai','wkt_selesai','MatPel','ModulMatpel','Aktifitas','Catatan'
     ];
 
+    public function tbsiswa()
+{
+    return $this->belongsTo('App\Tbsiswa', 'NoIDSiswa', 'Idsiswa');
+}
+
 }

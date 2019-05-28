@@ -23,14 +23,24 @@
 										<div class="m-portlet__body">
 											<div class="m-widget6">
 												<div class="col-lg-4 col-md-9 col-sm-12">
-													<div class="input-daterange input-group" id="m_datepicker_5">
-														<input type="text" class="form-control m-input" name="start" />
-														<span class="input-group-addon">
-															<i class="la la-ellipsis-h"></i>
-														</span>
-														<input type="text" class="form-control" name="end" />
-													</div>
-													<a href="siswa/export_excel" class="btn btn-success my-3" target="_blank">EXPORT EXCEL</a>
+													<form class="m-form m-form--label-align-right" method="GET" action="http://localhost/appbimbel/public/siswa/export_excel">
+														<input class="form-control m-input" type="text" name="daterange" value=""/>
+														<select class="form-control m-input" name="siswa" type="text" id="pendidikanTerakhir">
+															<option value="0">Semua Siswa</option>
+															@foreach ($getdetailsiswa as $a)
+															<option value="{{ $a->NoIDSiswa }}">{{$a->NamaLengkap}}</option>
+															@endforeach
+														</select>
+														<select class="form-control m-input" name="matpel" type="text" id="pendidikanTerakhir">
+															<option value="0">Semua Mata Pelajaran</option>
+															@foreach ($getuniquematpel as $a)
+															<option value="{{ $a }}">{{$a}}</option>
+															@endforeach
+														</select>
+													<button type="submit" class="btn btn-primary">
+															Export to Excel
+														</button>
+													</form>
 												</div>
 												<div class="m-widget6__head">
 													<div class="m-widget6__item">
