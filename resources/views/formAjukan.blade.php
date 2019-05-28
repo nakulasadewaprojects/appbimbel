@@ -244,12 +244,12 @@
 									</label>
 									<div class="col-lg-6 col-md-9 col-sm-12">
 										<select class="form-control m-bootstrap-select m_selectpicker" required name="prodi[]" multiple>
-											@foreach ($prodiSiswa as $sw)
+											@foreach ($prodiunique as $sw)
 											<option value="{{ $sw }}"> {{ $sw }}</option>
 											@endforeach
 										</select>
 										<span class="m-form__help">
-											Harap Pilih Sesuai Mentor ajarkan
+											Hanya Prodi yang Mentor Ajarkan Saja yang bisa dipilih
 										</span>
 									</div>
 									<span class="m-form__help">

@@ -457,26 +457,26 @@ class HomeController extends Controller
     public function update($idmentor, Request $request)
     {
         $this->validate($request, [
-            // 'username' => ['required', 'alpha_num', 'min:6', 'max:50', 'unique:tbmentor,username,' . $idmentor . ',idmentor', 'regex:/^.*(?=.*[a-zA-Z])(?=.*[0-9]).*$/'],
-            // 'noTlpn' => ['numeric', 'digits_between:10,15', 'unique:tbmentor,noTlpn,' . $idmentor . ',idmentor'],
-            // 'alamat' => ['max:255','regex:/[ .,()\-\/\w+]/'],
-            // // 'email' => ['required', 'string', 'email', 'max:255', 'unique:tbmentor,email,'.$idmentor.',idmentor', 'regex:/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/']
-        ]);
-        $Tbmentor = Tbmentor::find($idmentor);
-        $Tbmentor->username = $request['username'];
-        $Tbmentor->alamat = $request['alamat'];
-        $Tbmentor->provinsi = $request['provinsi'];
-        $Tbmentor->kota = $request['kabupaten'];
-        $Tbmentor->kecamatan = $request['kecamatan'];
-        $Tbmentor->kelurahan = $request['kelurahan'];
-        $Tbmentor->noTlpn = $request['noTlpn'];
-        $Tbmentor->save();
-
-         $this->validate($request, [
-        	// 'foto' => 'file|image|mimes:jpeg,png,jpg|max:2048',
-            // 'fileIjazah'=>'file|image|mimes:jpeg,png,jpg|max:2048',
-            // 'fileKTP'=>'file|image|mimes:jpeg,png,jpg|max:2048',
-            // 'No_Identitas'=>'numeric'
+            'alamat' => ['regex:/[ .,()\-\/\w+]/','max:255'],
+            'username' => ['alpha_num', 'min:6', 'max:50', 'unique:tbmentor,username,' . $idmentor . ',idmentor', 'regex:/^.*(?=.*[a-zA-Z])(?=.*[0-9]).*$/'],
+            'noTlpn' => ['numeric', 'digits_between:10,15', 'unique:tbmentor,noTlpn,' . $idmentor . ',idmentor'],
+            'email' => ['string', 'email', 'max:255', 'unique:tbmentor,email,'.$idmentor.',idmentor', 'regex:/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/']
+            ]);
+            $Tbmentor = Tbmentor::find($idmentor);
+            $Tbmentor->username = $request['username'];
+            $Tbmentor->alamat = $request['alamat'];
+            $Tbmentor->provinsi = $request['provinsi'];
+            $Tbmentor->kota = $request['kabupaten'];
+            $Tbmentor->kecamatan = $request['kecamatan'];
+            $Tbmentor->kelurahan = $request['kelurahan'];
+            $Tbmentor->noTlpn = $request['noTlpn'];
+            $Tbmentor->save();
+            
+            $this->validate($request, [
+                'foto' => 'file|image|mimes:jpeg,png,jpg|max:2048',
+                'fileIjazah'=>'file|image|mimes:jpeg,png,jpg|max:2048',
+                'fileKTP'=>'file|image|mimes:jpeg,png,jpg|max:2048',
+            'No_Identitas'=>'numeric'
         ]);
         $Tbdetailmentor = Tbdetailmentor::find($idmentor);
         $Tbdetailmentor->pendidikanTerakhir = $request['pendidikanTerakhir'];
