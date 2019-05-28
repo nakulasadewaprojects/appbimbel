@@ -670,7 +670,24 @@
 									</li>
 								</ul>
 							</div>
-						</li>											
+						</li>			
+						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover">
+							<a href="http://localhost/appbimbel/public/payment" class="m-menu__link">
+								<i class="m-menu__link-icon flaticon-information"></i>
+							</a>
+							<div class="m-menu__submenu">
+								<span class="m-menu__arrow"></span>
+								<ul class="m-menu__subnav">
+									<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true"  data-redirect="true">
+										<div class="m-menu__link ">
+											<span class="m-menu__link-text">
+												Informasi invoice
+											</span>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</li>									
 					</ul>
 				</div>
 			</div>

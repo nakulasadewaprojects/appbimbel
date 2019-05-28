@@ -5,7 +5,6 @@
 	<div class="m-content">
 		<div class="row">
 			<div class="col-xl-12">
-				<!--begin:: Widgets/Tasks -->
 				<div class="m-portlet m-portlet--success m-portlet--head-solid-bg m-portlet--head-sm" data-portlet="true" id="m_portlet_tools_2">
 					<div class="m-portlet__head">
 						<div class="m-portlet__head-caption">
@@ -20,12 +19,12 @@
 						</div>
 					</div>
 					<div class="m-portlet__body">
-						<div class="m-pricing-table-3 m-pricing-table-3--fixed">
+						<div class="m-pricing-table-1--fixed">
 							@if($getpaketcount==1)
 							<div class="m-pricing-table-1">
 								<div class="m-pricing-table-1__items row">
 									@foreach($paket as $p)
-									<div class="m-pricing-table-1__item col-lg-6">
+									<div class="m-pricing-table-1__item col-lg-3">
 										<div class="m-pricing-table-1__visual">
 											<div class="m-pricing-table-1__hexagon1"></div>
 											<div class="m-pricing-table-1__hexagon2"></div>
@@ -36,7 +35,6 @@
 										<span class="m-pricing-table-1__price">
 											Rp. {{$p->harga}}
 										</span>
-										
 										<h2 class="m-pricing-table-1__subtitle">
 											{{$p->nmpaket}}
 										</h2>
@@ -55,7 +53,6 @@
 											Jam Tentukan Sendiri
 											@endif
 										</span>
-										
 										<h2 class="m-pricing-table-1__subtitle">
 											{{$p->keterangan}}
 										</h2>
@@ -77,7 +74,7 @@
 							<div class="m-pricing-table-1">
 								<div class="m-pricing-table-1__items row">
 									@foreach($paket as $p)
-									<div class="m-pricing-table-1__item col-lg-6">
+									<div class="m-pricing-table-1__item col-lg-3">
 										<div class="m-pricing-table-1__visual">
 											<div class="m-pricing-table-1__hexagon1"></div>
 											<div class="m-pricing-table-1__hexagon2"></div>
@@ -127,7 +124,7 @@
 							<div class="m-pricing-table-1">
 								<div class="m-pricing-table-1__items row">
 									@foreach($paket as $p)
-									<div class="m-pricing-table-1__item col-lg-4">
+									<div class="m-pricing-table-1__item col-lg-3">
 										<div class="m-pricing-table-1__visual">
 											<div class="m-pricing-table-1__hexagon1"></div>
 											<div class="m-pricing-table-1__hexagon2"></div>
@@ -137,7 +134,6 @@
 										</div>
 										<span class="m-pricing-table-1__price">
 											Rp. {{$p->harga}}
-											Free
 										</span>
 										<h2 class="m-pricing-table-1__subtitle">
 											{{$p->nmpaket}}
@@ -183,12 +179,11 @@
 											<div class="m-pricing-table-1__hexagon1"></div>
 											<div class="m-pricing-table-1__hexagon2"></div>
 											<span class="m-pricing-table-1__icon m--font-brand">
-												<i class="fa fa-bitcoin"></i>
+												<i class="fa fa-dollar"></i>
 											</span>
 										</div>
 										<span class="m-pricing-table-1__price">
 											Rp. {{$p->harga}}
-											Free
 										</span>
 										<h2 class="m-pricing-table-1__subtitle">
 											{{$p->nmpaket}}
@@ -228,13 +223,10 @@
 							@endif
 						</div>
 					</div>
-
 				</div>
-				<!--end:: Widgets/Tasks -->
 			</div>
 		</div>
 	</div>
-
 </div>
 
 </div>

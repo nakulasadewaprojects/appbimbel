@@ -5,7 +5,7 @@
 	<div class="m-content">
 		<!--begin::Portlet-->
 		<div class="row">
-			<div class="col-lg-10">
+			<div class="col-lg-12">
 				<!--begin::Portlet-->
 				<div class="m-portlet m-portlet--success m-portlet--head-solid-bg m-portlet--head-sm" data-portlet="true" id="m_portlet_tools_2">
 					<div class="m-portlet__head">
