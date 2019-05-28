@@ -12,7 +12,7 @@
 											<div class="m-portlet__head-caption">
 												<div class="m-portlet__head-title">
 													<h3 class="m-portlet__head-text">
-														Sales Stats
+														Export Excel
 													</h3>
 												</div>
 											</div>
@@ -41,106 +41,14 @@
 															Export to Excel
 														</button>
 													</form>
-												</div>
-												<div class="m-widget6__head">
-													<div class="m-widget6__item">
-														<span class="m-widget6__caption">
-															Sceduled
-														</span>
-														<span class="m-widget6__caption">
-															Count
-														</span>
-														<span class="m-widget6__caption m--align-right">
-															Amount
-														</span>
-													</div>
-												</div>
-												<div class="m-widget6__body">
-													<div class="m-widget6__item">
-														<span class="m-widget6__text">
-															16/13/17
-														</span>
-														<span class="m-widget6__text">
-															67
-														</span>
-														<span class="m-widget6__text m--align-right m--font-boldest m--font-brand">
-															$14,740
-														</span>
-													</div>
-													<div class="m-widget6__item">
-														<span class="m-widget6__text">
-															02/28/17
-														</span>
-														<span class="m-widget6__text">
-															120
-														</span>
-														<span class="m-widget6__text m--align-right m--font-boldest m--font-brand">
-															$11,002
-														</span>
-													</div>
-													<div class="m-widget6__item">
-														<span class="m-widget6__text">
-															03/06/17
-														</span>
-														<span class="m-widget6__text">
-															32
-														</span>
-														<span class="m-widget6__text m--align-right m--font-boldest m--font-brand">
-															$10,900
-														</span>
-													</div>
-													<div class="m-widget6__item">
-														<span class="m-widget6__text">
-															10/21/17
-														</span>
-														<span class="m-widget6__text">
-															130
-														</span>
-														<span class="m-widget6__text m--align-right m--font-boldest m--font-brand">
-															$14,740
-														</span>
-													</div>
-													<div class="m-widget6__item">
-														<span class="m-widget6__text">
-															01/02/17
-														</span>
-														<span class="m-widget6__text">
-															5
-														</span>
-														<span class="m-widget6__text m--align-right m--font-boldest m--font-brand">
-															$18,540
-														</span>
-													</div>
-													<div class="m-widget6__item">
-														<span class="m-widget6__text">
-															03/06/17
-														</span>
-														<span class="m-widget6__text">
-															32
-														</span>
-														<span class="m-widget6__text m--align-right m--font-boldest m--font-brand">
-															$10,900
-														</span>
-													</div>
-													<div class="m-widget6__item">
-														<span class="m-widget6__text">
-															12/31/17
-														</span>
-														<span class="m-widget6__text">
-															201
-														</span>
-														<span class="m-widget6__text m--align-right m--font-boldest m--font-brand">
-															$25,609
-														</span>
-													</div>
-												</div>
-												<div class="m-widget6__foot">
+												</div>																								
+												{{-- <div class="m-widget6__foot">
 													<div class="m-widget6__action m--align-right">
 														<button type="button" class="btn m-btn--pill btn-secondary m-btn m-btn--hover-brand m-btn--custom">
 															Export
 														</button>
 													</div>
-												</div>
+												</div> --}}
 											</div>
 										</div>
 									</div>
