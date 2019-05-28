@@ -5,181 +5,143 @@
 	<div class="m-content">
 		<div class="row">
 			<div class="col-xl-12">
-				<div class="m-portlet m-portlet--accent m-portlet--head-solid-bg m-portlet--head-sm" data-portlet="true" id="m_portlet_tools_1">
-					<!--begin:: Widgets/Sales States-->
-					<div class="m-portlet m-portlet--full-height ">
-						<div class="m-portlet__head">
-							<div class="m-portlet__head-caption">
-								<div class="m-portlet__head-title">
-									<h3 class="m-portlet__head-text">
-										Jadwal Mentor
-									</h3>
-								</div>
-							</div>
-							<div class="m-portlet__head-tools">
-								<ul class="m-portlet__nav">
-									<li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover" aria-expanded="true">
-										<a href="#" class="m-portlet__nav-link m-portlet__nav-link--icon m-portlet__nav-link--icon-xl">
-											<i class="fa fa-genderless m--font-brand"></i>
-										</a>
-										<div class="m-dropdown__wrapper">
-											<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust" style="left: auto; right: 17px;"></span>
-											<div class="m-dropdown__inner">
-												<div class="m-dropdown__body">
-													<div class="m-dropdown__content">
-														<ul class="m-nav">
-															<li class="m-nav__item">
-																<a href="" class="m-nav__link">
-																	<i class="m-nav__link-icon flaticon-share"></i>
-																	<span class="m-nav__link-text">
-																		Activity
-																	</span>
-																</a>
-															</li>
-															<li class="m-nav__item">
-																<a href="" class="m-nav__link">
-																	<i class="m-nav__link-icon flaticon-chat-1"></i>
-																	<span class="m-nav__link-text">
-																		Messages
-																	</span>
-																</a>
-															</li>
-															<li class="m-nav__item">
-																<a href="" class="m-nav__link">
-																	<i class="m-nav__link-icon flaticon-info"></i>
-																	<span class="m-nav__link-text">
-																		FAQ
-																	</span>
-																</a>
-															</li>
-															<li class="m-nav__item">
-																<a href="" class="m-nav__link">
-																	<i class="m-nav__link-icon flaticon-lifebuoy"></i>
-																	<span class="m-nav__link-text">
-																		Support
-																	</span>
-																</a>
-															</li>
-														</ul>
-													</div>
-												</div>
-											</div>
-										</div>
-									</li>
-								</ul>
-							</div>
-						</div>
-						<div class="m-portlet__body">
-							<div class="m-widget6">
-								<div class="m-widget6__head">
-									<div class="m-widget6__item">
-										<span class="m-widget6__caption">
-											Sceduled
-										</span>
-										<span class="m-widget6__caption">
-											Count
-										</span>
-										<span class="m-widget6__caption m--align-right">
-											Amount
-										</span>
-									</div>
-								</div>
-								<div class="m-widget6__body">
-									<div class="m-widget6__item">
-										<span class="m-widget6__text">
-											16/13/17
-										</span>
-										<span class="m-widget6__text">
-											67
-										</span>
-										<span class="m-widget6__text m--align-right m--font-boldest m--font-brand">
-											$14,740
-										</span>
-									</div>
-									<div class="m-widget6__item">
-										<span class="m-widget6__text">
-											02/28/17
-										</span>
-										<span class="m-widget6__text">
-											120
-										</span>
-										<span class="m-widget6__text m--align-right m--font-boldest m--font-brand">
-											$11,002
-										</span>
-									</div>
-									<div class="m-widget6__item">
-										<span class="m-widget6__text">
-											03/06/17
-										</span>
-										<span class="m-widget6__text">
-											32
-										</span>
-										<span class="m-widget6__text m--align-right m--font-boldest m--font-brand">
-											$10,900
-										</span>
-									</div>
-									<div class="m-widget6__item">
-										<span class="m-widget6__text">
-											10/21/17
-										</span>
-										<span class="m-widget6__text">
-											130
-										</span>
-										<span class="m-widget6__text m--align-right m--font-boldest m--font-brand">
-											$14,740
-										</span>
-									</div>
-									<div class="m-widget6__item">
-										<span class="m-widget6__text">
-											01/02/17
-										</span>
-										<span class="m-widget6__text">
-											5
-										</span>
-										<span class="m-widget6__text m--align-right m--font-boldest m--font-brand">
-											$18,540
-										</span>
-									</div>
-									<div class="m-widget6__item">
-										<span class="m-widget6__text">
-											03/06/17
-										</span>
-										<span class="m-widget6__text">
-											32
-										</span>
-										<span class="m-widget6__text m--align-right m--font-boldest m--font-brand">
-											$10,900
-										</span>
-									</div>
-									<div class="m-widget6__item">
-										<span class="m-widget6__text">
-											12/31/17
-										</span>
-										<span class="m-widget6__text">
-											201
-										</span>
-										<span class="m-widget6__text m--align-right m--font-boldest m--font-brand">
-											$25,609
-										</span>
-									</div>
-								</div>
-								<div class="m-widget6__foot">
-									<div class="m-widget6__action m--align-right">
-										<button type="button" class="btn m-btn--pill btn-secondary m-btn m-btn--hover-brand m-btn--custom">
-											Export
-										</button>
-									</div>
-								</div>
+				<div class="m-portlet m-portlet--success m-portlet--head-solid-bg m-portlet--head-sm" data-portlet="true" id="m_portlet_tools_1">
+					<div class="m-portlet__head">
+						<div class="m-portlet__head-caption">
+							<div class="m-portlet__head-title">
+								<h3 class="m-portlet__head-text">
+									Jadwal
+								</h3>
 							</div>
 						</div>
 					</div>
-					<!--end:: Widgets/Sales States-->
+					<div class="m-portlet__body">
+						<div class="tab-content">
+							<div class="tab-pane active" id="m_widget2_tab1_content">
+								<div class="m-widget2">
+									<div class="m-widget2__item m-widget2__item--primary">
+										<div class="m-widget2__checkbox">
+											<label class="m-checkbox m-checkbox--solid m-checkbox--single m-checkbox--brand">
+												<input type="checkbox">
+												<span></span>
+											</label>
+										</div>
+										<div class="m-widget2__desc">
+											<span class="m-widget2__text">
+												Make Metronic Great Again.Lorem Ipsum Amet
+											</span>
+											<br>
+											<span class="m-widget2__user-name">
+												<a href="#" class="m-widget2__link">
+													By Bob
+												</a>
+											</span>
+										</div>
+									</div>
+									<div class="m-widget2__item m-widget2__item--warning">
+										<div class="m-widget2__checkbox">
+											<label class="m-checkbox m-checkbox--solid m-checkbox--single m-checkbox--brand">
+												<input type="checkbox">
+												<span></span>
+											</label>
+										</div>
+										<div class="m-widget2__desc">
+											<span class="m-widget2__text">
+												Prepare Docs For Metting On Monday
+											</span>
+											<br>
+											<span class="m-widget2__user-name">
+												<a href="#" class="m-widget2__link">
+													By Sean
+												</a>
+											</span>
+										</div>
+									</div>
+									<div class="m-widget2__item m-widget2__item--brand">
+										<div class="m-widget2__checkbox">
+											<label class="m-checkbox m-checkbox--solid m-checkbox--single m-checkbox--brand">
+												<input type="checkbox">
+												<span></span>
+											</label>
+										</div>
+										<div class="m-widget2__desc">
+											<span class="m-widget2__text">
+												Make Widgets Great Again.Estudiat Communy Elit
+											</span>
+											<br>
+											<span class="m-widget2__user-name">
+												<a href="#" class="m-widget2__link">
+													By Aziko
+												</a>
+											</span>
+										</div>
+									</div>
+									<div class="m-widget2__item m-widget2__item--success">
+										<div class="m-widget2__checkbox">
+											<label class="m-checkbox m-checkbox--solid m-checkbox--single m-checkbox--brand">
+												<input type="checkbox">
+												<span></span>
+											</label>
+										</div>
+										<div class="m-widget2__desc">
+											<span class="m-widget2__text">
+												Make Metronic Great Again.Lorem Ipsum
+											</span>
+											<br>
+											<span class="m-widget2__user-name">
+												<a href="#" class="m-widget2__link">
+													By James
+												</a>
+											</span>
+										</div>
+									</div>
+									<div class="m-widget2__item m-widget2__item--danger">
+										<div class="m-widget2__checkbox">
+											<label class="m-checkbox m-checkbox--solid m-checkbox--single m-checkbox--brand">
+												<input type="checkbox">
+												<span></span>
+											</label>
+										</div>
+										<div class="m-widget2__desc">
+											<span class="m-widget2__text">
+												Completa Financial Report For Emirates Airlines
+											</span>
+											<br>
+											<span class="m-widget2__user-name">
+												<a href="#" class="m-widget2__link">
+													By Bob
+												</a>
+											</span>
+										</div>
+									</div>
+									<div class="m-widget2__item m-widget2__item--info">
+										<div class="m-widget2__checkbox">
+											<label class="m-checkbox m-checkbox--solid m-checkbox--single m-checkbox--brand">
+												<input type="checkbox">
+												<span></span>
+											</label>
+										</div>
+										<div class="m-widget2__desc">
+											<span class="m-widget2__text">
+												Completa Financial Report For Emirates Airlines
+											</span>
+											<br>
+											<span class="m-widget2__user-name">
+												<a href="#" class="m-widget2__link">
+													By Sean
+												</a>
+											</span>
+										</div>
+									</div>
+								</div>
+							</div>	
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
-
 </div>
+
 </div>
 @endsection
