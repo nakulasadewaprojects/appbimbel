@@ -20,7 +20,7 @@
                             </div>
                         </div>
                         <!--begin::Form-->
-                        <form class="m-form m-form--label-align-right" method="POST" action="http://localhost/appbimbel/public/paketbimbel/input">
+                        <form class="m-form m-form--label-align-right" method="POST" action="http://localhost/appbimbel/public/report/input">
                             {{ csrf_field() }}
                             <div class="m-portlet__body">
                                 <div class="m-form__section m-form__section--first">
@@ -30,7 +30,8 @@
                                         </label>
                                         <div class="col-lg-6 col-md-9 col-sm-12">
                                             <div class='input-group date' id='m_datepicker_3'>
-                                                <input type='text' class="form-control m-input" required placeholder="Select date" name="TanggalMulai" />
+                                            <input type="hidden" required name="idmentor" class="form-control m-input" value="{{$m->NoIDMentor}}"> 
+                                                <input type='text' class="form-control m-input" required placeholder="Select date" name="tglBimbel" />
                                                 <span class="input-group-addon">
                                                     <i class="la la-calendar-check-o"></i>
                                                 </span>
@@ -43,10 +44,16 @@
                                         </label>
                                         <div class="col-lg-6">
                                             <!-- <input type="hidden" required name="id" class="form-control m-input" value="{{$m->NoIDMentor}}"> -->
-                                            <input type="text" required name="nama" class="form-control m-input">
+                                            {{-- <input type="text" required name="nama" class="form-control m-input"> --}}
                                             {{-- <span class="m-form__help">
 															Please enter your paket name
-														</span> --}}
+                                                        </span> --}}
+                                                        <select class="form-control m-bootstrap-select m_selectpicker" name="siswa">
+                                                                <option value="">Pilih Siswa </option>                                                
+                                                            @foreach ($siswaBimb as $sb)
+                                                            <option value="{{ $sb->NoIDSiswa}}" > {{ $sb->NamaLengkap}}</option>
+                                                            @endforeach	
+                                                    </select>
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
@@ -55,7 +62,7 @@
                                         </label>
                                         <div class="col-lg-6">
                                             {{-- <input type="email" class="form-control m-input"> --}}
-                                            <input type='text' class="form-control" id="m_timepicker_1" name="waktuMulai" placeholder="Select time" />
+                                            <input type='text' class="form-control" id="m_timepicker_2" name="waktuMulai" placeholder="Select time" />
                                             <span class="m-form__help">
                                                 Waktu Bimbel selama 45 menit dan istirahat selama 15 menit
                                             </span>
@@ -66,7 +73,7 @@
                                             Waktu Akhir:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type='text' class="form-control" id="m_timepicker_1" name="waktuAkhir" placeholder="Select time" />
+                                            <input type='text' class="form-control" id="m_timepicker_2" name="waktuAkhir" placeholder="Select time" />
                                             {{-- <input type="email" class="form-control m-input"> --}}
                                             {{-- <span class="m-form__help">
                                                             We'll never share your email with anyone else
@@ -79,13 +86,12 @@
                                         </label>
                                         <div class="col-lg-6">
                                             {{-- <input type="email" class="form-control m-input" > --}}
-                                            <select class="form-control m-bootstrap-select m_selectpicker" required name="matpel[]" multiple>
-                                                <option value="Bhs.Indonesia"> Bahasa Indonesia</option>
-                                                <option value="Matematika"> Matematika</option>
-                                                <option value="IPA"> IPA </option>
-                                                <option value="IPS"> IPS</option>
-                                                <option value="Bhs.Inggris">Bahasa Inggris</option>
-                                            </select>
+                                            <select class="form-control m-bootstrap-select m_selectpicker" name="prodi[]" multiple>
+                                                    <option value="">Pilih Mata Pelajaran </option>                                                
+                                                @foreach ($prodimentor as $mp)
+                                                <option value="{{ $mp }}" > {{ $mp}}</option>
+                                                @endforeach	
+                                        </select>
                                             <span class="m-form__help">
                                                 Pilih Mata Pelajaran
                                             </span>
@@ -96,18 +102,56 @@
                                             Modul Mata Pelajaran:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" required name="nama" class="form-control m-input" required>
+                                                <select class="form-control m-bootstrap-select m_selectpicker" name="modul">
+                                                        <option value="">Pilih Modul </option>                                                
+                                                    @foreach ($modul as $mdl)
+                                                    <option value="{{ $mdl->nama_modul }}" >
+                                                        @if($mdl->matpel==1)
+                                                            Bhs. Indonesia
+                                                            @elseif($mdl->matpel==2)
+                                                            Matematika
+                                                            @elseif($mdl->matpel==3)
+                                                            IPA
+                                                            @elseif($mdl->matpel==4)
+                                                            IPS
+                                                            @else
+                                                            Bhs. Iggris
+                                                            @endif
+                                                            
+                                                            @if($mdl->jenjangpendidikan==1)
+                                                            SD
+                                                            @elseif($mdl->jenjangpendidikan==2)
+                                                            SMP
+                                                            @elseif($mdl->jenjangpendidikan==3)
+                                                            SMA
+                                                            @else
+                                                            SMK
+                                                            @endif
+                                                        </option>
+                                                    @endforeach	
+                                            </select>
                                             <span class="m-form__help">
                                                 Materi pembelajaran
                                             </span>
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
+                                            <label class="col-lg-2 col-form-label">
+                                                Aktivitas:
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <textarea class="form-control m-input" type="text" rows="3" name="aktivitas"></textarea>
+                                                <span class="m-form__help">
+                                                    Tambahkan Aktivitas Bimbel
+                                                </span>
+                                            </div>
+                                        </div>
+                                    <div class="form-group m-form__group row">
                                         <label class="col-lg-2 col-form-label">
-                                            Keterangan:
+                                            Catatan:
                                         </label>
                                         <div class="col-lg-6">
-                                            <textarea class="form-control m-input" type="text" rows="3" name="keterangan"></textarea>
+                                            <textarea class="form-control m-input" type="text" rows="3" name="catatan"></textarea>
                                             <span class="m-form__help">
                                                 Tambahkan Keterangan yang anda inginkan
                                             </span>
@@ -119,7 +163,7 @@
                                         <div class="row">
                                             <div class="col-lg-4"></div>
                                             <div class="col-lg-6">
-                                                <button type="button" class="btn btn-primary m-btn m-btn--custom">
+                                                <button type="submit" class="btn btn-primary m-btn m-btn--custom">
                                                     Save
                                                 </button>
                                                 <button type="button" class="btn btn-danger m-btn m-btn--custom">

@@ -258,10 +258,61 @@ class HomeController extends Controller
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
         return view('payment' , ['isCompleted' => $showing, 'm' => $mentor]);
     }
+    // public function getSiswa($id)
+    // {
+    //     $jadwalBimb=DB::table('siswabimbel')
+    //     ->join('scedulebimbel', 'siswabimbel.NoIDBimbel', '=', 'scedulebimbel.NoIDBimbel')
+    //     ->join('sceduletutor', 'sceduletutor.NoIDBimbel', '=', 'scedulebimbel.NoIDBimbel')
+    //     ->join('tbsiswa','tbsiswa.NoIDSiswa','=','siswabimbel.NoIDSiswa')
+    //     ->join('tbdetailsiswa','tbdetailsiswa.idtbSiswa','=','tbsiswa.idtbSiswa')      
+    //     ->join('tbmentor','tbmentor.NoIDMentor','=','siswabimbel.NoIDTutor')
+    //     ->where('siswabimbel.NoIDTutor', Auth::user()->NoIDMentor)->get();  
+    //     // $kabupaten = DB::table("kota_kabupaten")->where("provinsi_id", $id)->pluck("nama", "id");
+    //     return json_encode( $jadwalBimb);
+    // }
     public function report(){
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
-        return view('report' , ['isCompleted' => $showing, 'm' => $mentor]);
+        $siswaBimb=DB::table('siswabimbel')
+            ->join('tbsiswa','tbsiswa.NoIDSiswa','=','siswabimbel.NoIDSiswa')
+            ->where('siswabimbel.NoIDTutor', Auth::user()->NoIDMentor)->get();
+         $modul=DB::table('modulsiswa')
+            ->join('tbmentor', 'tbmentor.NoIDMentor', '=', 'modulsiswa.mentor')
+            ->where('tbmentor.NoIDMentor', Auth::user()->NoIDMentor)->get();
+        $getprodi =  DB::table('tbmentor')
+            ->join('tbdetailmentor', 'tbmentor.idmentor', '=', 'tbdetailmentor.idmentor')
+        ->where('tbmentor.idmentor', Auth::user()->idmentor )->value('prodi');
+        $getexplode = explode(', ',$getprodi);
+        return view('report' , ['isCompleted' => $showing, 'm' => $mentor, 'siswaBimb'=> $siswaBimb, 'modul'=>$modul, 'prodimentor'=>$getexplode ]);
+        // return  $getexplode;
+    }
+    public function inputreport(Request $request){
+        $created_at=Carbon::now();
+        $TbsiswaNoID= DB::table('tbsiswa')->where('idtbSiswa',Auth::user()->idtbSiswa)->value('NoIDSiswa');      
+        $nextId=DB::table('siswabimbel')->max('idsiswaBimbel')+1;
+        $noidreport = 'R'. $TbsiswaNoID. $nextId ;
+        if($request->hasAny('prodi')){
+            $prodi=$request['prodi'];
+            $prodi2=implode(', ',$prodi);
+            $a= $prodi2; 
+        }else{
+            $prodi=$request['prodi'];
+           $a= $prodi; 
+        }
+        DB::table('hasilpembelajaran')->insert([
+            'no_id'=>$noidreport,
+            'IdMentor'=>$request->idmentor,
+            'IdSiswa'=>$request->siswa,
+            'created_at'=>$created_at,
+            'TglBimbel'=>Carbon::parse($request['tglBimbel'])->format('Y-m-d'),
+            'wkt_mulai'=> Carbon::parse($request['waktuMulai'])->format('H:i:s'),
+            'wkt_selesai'=>Carbon::parse($request['waktuAkhir'])->format('H:i:s'),
+            'MatPel'=>$a,
+            'Modulmatpel'=>$request->modul,
+            'Aktifitas'=>$request->aktivitas,
+            'Catatan'=>$request->catatan,
+            ]);
+          return redirect('/dashboard');
     }
     public function datareport(){
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
