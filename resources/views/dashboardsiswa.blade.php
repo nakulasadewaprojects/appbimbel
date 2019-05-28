@@ -81,27 +81,27 @@
 							</ul>
 						</div>
 					</div>
-					<div class="m-portlet__body @if($grup=='iwak') collapse @else @endif">
+					<div class="m-portlet__body @if($filter=='nggak') collapse @else @endif">
 					<form id="formFilter" method="GET" action="dashboardsiswa" enctype="multipart/form-data">
 							<div class="row m-row--no-padding m-row--col-separator-xl">						
 								<div class="col-xl-4">
 									<div class="m-widget14">
 										<div class="m-widget14__header m--margin-bottom">
 											<span class="m-widget14__title">
-												Pendidikan Mentor
+												Pendidikan Mentor 
 											</span>
 											<span class="m-widget14__title">
 												<div class="form-group m-form__group row">
 												<div class="col-10">
 													<select onchange="myFunction()" class="form-control m-input" id="pend" name="pendidikan"
 														type="text">
-														<option value="4" @if(strpos($url,'4' )!==false) selected
+														<option value="4" @if(strpos($url,'pendidikan=4' )!==false) selected
 															@endif>Semua Jenjang</option>
-														<option value="1" @if(strpos($url,'1' )!==false) selected
+														<option value="1" @if(strpos($url,'pendidikan=1' )!==false) selected
 															@endif> SMA/SMK sederajat</option>
-														<option value="2" @if(strpos($url,'2' )!==false) selected
+														<option value="2" @if(strpos($url,'pendidikan=2' )!==false) selected
 															@endif> D3 sederajat</option>
-														<option value="3" @if(strpos($url,'3' )!==false) selected
+														<option value="3" @if(strpos($url,'pendidikan=3' )!==false) selected
 															@endif> Strata sederajat</option>
 													</select>
 												</div>
@@ -240,7 +240,7 @@
 					</div>
 				</div>
 			</div>
-			@if($grup=='iwak')
+			@if($filter=='nggak')
 			<div class="col-xl-12">
 			<div class="m-portlet m-portlet--success m-portlet--head-solid-bg m-portlet--head-sm" data-portlet="true" id="m_portlet_tools_2">
 					<div class="m-portlet__head">
@@ -306,7 +306,7 @@
 				</div>
 			</div>
 			@endif
-			@if($grup!=='iwak')
+			@if($filter=='iya')
 			<div class="col-xl-12">
 				<div class="m-portlet m-portlet--success m-portlet--head-solid-bg m-portlet--head-sm" data-portlet="true" id="m_portlet_tools_2">
 					<div class="m-portlet__head">
