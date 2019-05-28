@@ -224,7 +224,6 @@
 				</div>
 			</div>
 		</div>
-
 	</div>
 </div> -->
 
@@ -255,6 +254,7 @@
 								<div class="m-pricing-table-2__container">
 									<div class="m-pricing-table-2__items row">
 										@foreach($paket as $p)
+										<div class=col-4></div>
 										<div class="m-pricing-table-2__item col-lg-4">
 											<div class="m-pricing-table-2__visual">
 												<div class="m-pricing-table-2__hexagon"></div>
@@ -294,9 +294,16 @@
 												Rp
 											</span>
 											<div class="m-pricing-table-2__btn">
-												<button type="button" class="btn m-btn--pill  btn-info m-btn--wide m-btn--uppercase m-btn--bolder m-btn--lg">
-													Purchase
-												</button>
+												<a href="http://localhost/appbimbel/public/datapaket/editpaket/{{$p->idpaket}}">
+													<button type="button" class="btn btn-primary">
+														Edit
+													</button>
+												</a>
+												<a href="http://localhost/appbimbel/public/datapaket/editpaket/{{$p->idpaket}}">
+													<button type="button" class="btn btn-danger">
+														Off
+													</button>
+												</a>
 											</div>
 										</div>
 										@endforeach
@@ -306,7 +313,8 @@
 								<div class="m-pricing-table-2__container">
 									<div class="m-pricing-table-2__items row">
 										@foreach($paket as $p)
-										<div class="m-pricing-table-2__item col-lg-4">
+										<div class="col-1"></div>
+										<div class="m-pricing-table-2__item col-lg-5">
 											<div class="m-pricing-table-2__visual">
 												<div class="m-pricing-table-2__hexagon"></div>
 												<span class="m-pricing-table-2__icon m--font-info">
@@ -345,9 +353,16 @@
 												Rp
 											</span>
 											<div class="m-pricing-table-2__btn">
-												<button type="button" class="btn m-btn--pill  btn-info m-btn--wide m-btn--uppercase m-btn--bolder m-btn--lg">
-													Purchase
-												</button>
+												<a href="http://localhost/appbimbel/public/datapaket/editpaket/{{$p->idpaket}}">
+													<button type="button" class="btn btn-primary">
+														Edit
+													</button>
+												</a>
+												<a href="http://localhost/appbimbel/public/datapaket/editpaket/{{$p->idpaket}}">
+													<button type="button" class="btn btn-danger">
+														Off
+													</button>
+												</a>
 											</div>
 										</div>
 										@endforeach
@@ -390,15 +405,22 @@
 												</span>
 											</div>
 											<span class="m-pricing-table-2">
-												Rp. 
+												Rp.
 											</span>
 											<span class="m-pricing-table-2__price">
 												{{$p->harga}}
 											</span>
 											<div class="m-pricing-table-2__btn">
-												<button type="button" class="btn m-btn--pill  btn-info m-btn--wide m-btn--uppercase m-btn--bolder m-btn--lg">
-													Purchase
-												</button>
+												<a href="http://localhost/appbimbel/public/datapaket/editpaket/{{$p->idpaket}}">
+													<button type="button" class="btn btn-primary">
+														Edit
+													</button>
+												</a>
+												<a href="http://localhost/appbimbel/public/datapaket/editpaket/{{$p->idpaket}}">
+													<button type="button" class="btn btn-danger">
+														Off
+													</button>
+												</a>
 											</div>
 										</div>
 										@endforeach
@@ -411,8 +433,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
-
+	</div>	
 </div>
 
 </div>
