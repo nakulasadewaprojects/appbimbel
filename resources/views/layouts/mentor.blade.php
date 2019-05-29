@@ -569,7 +569,7 @@
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true"  data-redirect="true">
-										<a  href="http://localhost/appbimbel/public/datareport" class="m-menu__link ">
+										<a  href="http://localhost/appbimbel/public/nilaiquiz" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -679,7 +679,7 @@
 										</div>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true"  data-redirect="true">
-										<a  href="http://localhost/appbimbel/public/multimedia" class="m-menu__link ">
+										<a  href="http://localhost/appbimbel/public/quiz" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -688,7 +688,7 @@
 											</span>
 										</a>
 									</li><li class="m-menu__item " aria-haspopup="true"  data-redirect="true">
-										<a  href="http://localhost/appbimbel/public/datamultimedia" class="m-menu__link ">
+										<a  href="http://localhost/appbimbel/public/dataquiz" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>

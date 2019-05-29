@@ -67,11 +67,11 @@
 								<div class="row m-row--no-padding align-items-center">
 									<div class="col">
 										<h3 class="m-widget1__title">
-											Member Profit
+											Jumlah Siswa
 										</h3>
-										<span class="m-widget1__desc">
+										{{-- <span class="m-widget1__desc">
 											Awerage Weekly Profit
-										</span>
+										</span> --}}
 									</div>
 									<div class="col m--align-right">
 										<span class="m-widget1__number m--font-brand">
@@ -84,11 +84,11 @@
 								<div class="row m-row--no-padding align-items-center">
 									<div class="col">
 										<h3 class="m-widget1__title">
-											Orders
+											Jumlah Pengajuan
 										</h3>
-										<span class="m-widget1__desc">
+										{{-- <span class="m-widget1__desc">
 											Weekly Customer Orders
-										</span>
+										</span> --}}
 									</div>
 									<div class="col m--align-right">
 										<span class="m-widget1__number m--font-danger">
@@ -101,11 +101,11 @@
 								<div class="row m-row--no-padding align-items-center">
 									<div class="col">
 										<h3 class="m-widget1__title">
-											Issue Reports
+											Invoice
 										</h3>
-										<span class="m-widget1__desc">
+										{{-- <span class="m-widget1__desc">
 											System bugs and issues
-										</span>
+										</span> --}}
 									</div>
 									<div class="col m--align-right">
 										<span class="m-widget1__number m--font-success">
@@ -122,11 +122,11 @@
 						<div class="m-widget14">
 							<div class="m-widget14__header m--margin-bottom-30">
 								<h3 class="m-widget14__title">
-									Daily Sales
+									Daily Report
 								</h3>
-								<span class="m-widget14__desc">
+								{{-- <span class="m-widget14__desc">
 									Check out each collumn for more details
-								</span>
+								</span> --}}
 							</div>
 							<div class="m-widget14__chart" style="height:120px;">
 								<canvas  id="m_chart_daily_sales"></canvas>
@@ -139,11 +139,11 @@
 						<div class="m-widget14">
 							<div class="m-widget14__header">
 								<h3 class="m-widget14__title">
-									Profit Share
+									Profit 
 								</h3>
-								<span class="m-widget14__desc">
+								{{-- <span class="m-widget14__desc">
 									Profit Share between customers
-								</span>
+								</span> --}}
 							</div>
 							<div class="row  align-items-center">
 								<div class="col">
@@ -183,6 +183,86 @@
 			</div>
 		</div>
 	</div>
+	<div class="m-content">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="m-portlet m-portlet--success m-portlet--head-solid-bg m-portlet--head-sm" data-portlet="true" id="m_portlet_tools_2">
+                    <div class="m-portlet m-portlet--full-height ">
+                        <div class="m-portlet__head">
+                            <div class="m-portlet__head-caption">
+                                <div class="m-portlet__head-title">
+                                    <h3 class="m-portlet__head-text">
+                                        Pengajuan
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="m-portlet__body">
+                            @foreach($jadwal as $jd)
+                            <div class="m-widget3">
+                                <div class="m-widget3__item">
+                                    <div class="m-widget3__header">
+
+                                        <div class="m-widget3__user-img">
+                                            @if($jd->fotoProfile==NULL)
+                                            <img class="m-widget3__img" src="{{ url('/data_fileSiswa/default_photo_profile.png') }}" />
+                                            @else
+                                            <img class="m-widget3__img" src="{{ url('/data_fileSiswa2/'.$jd->fotoProfile) }}" /></a>
+                                            @endif
+                                            {{-- <img class="m-widget3__img" src="" alt=""> --}}
+                                        </div>
+                                        <div class="m-widget3__info">
+                                            <span class="m-widget3__username">
+                                                {{$jd->NamaLengkap}}
+                                                {{-- {{$jd-> NoIDBimbel}} --}}
+                                                {{-- {{$jd->statusBimbel}} --}}
+                                            </span>
+                                            <br>
+                                            <span class="m-widget3__time">
+                                                {{$jd->prodiBimbel}}
+
+                                            </span>
+                                        </div>
+                                        <span class="m-widget3__status m--font-info">
+                                            @if($jd->statusSchedule==1)
+                                            Pending
+                                            @elseif($jd->statusSchedule==2)
+                                            Approval
+                                            @else
+                                            Cancel
+                                            @endif
+
+                                        </span>
+                                        {{-- <a href="detailApprovalBimbel/{{$jd->NoIDBimbel}}">
+                                            <button type="button" class="m-btn m-btn--pill m-btn--hover-brand btn btn-sm btn-secondary" data-toggle="modal" data-target="#m_modal_3">
+                                                Detail
+                                            </button>
+                                        </a> --}}
+                                    </div>
+                                    <div class="m-widget3__info">
+                                        <p class="m-widget3__text">
+                                            Mulai Bimbel {{$jd->tglprivate}}. Hari {{$jd->days}}. Waktu {{$jd->start}} - {{$jd->end}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+						</div>
+						
+					</div>
+					
+				</div>
+				{{-- <div class="m-alert__actions" style="width: 160px;">
+					<a class="btn btn-warning btn-sm m-btn m-btn--pill m-btn--wide" href="http://localhost/appbimbel/public/approvalmentor">Cek Sekarang</a>
+				</div> --}}
+				<a href="http://localhost/appbimbel/public/approvalmentor">
+					<button type="button" class="m-btn m-btn--pill m-btn--hover-brand btn btn-sm btn-secondary" data-toggle="modal" data-target="#m_modal_3">
+						Cek Sekarang
+					</button>
+				</a>
+            </div>
+        </div>
+    </div>
 </div>
 </div>
 @endsection

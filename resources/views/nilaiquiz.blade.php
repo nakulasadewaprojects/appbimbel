@@ -1,5 +1,6 @@
-@extends('layouts.siswa')
+@extends('layouts.mentor')
 @section('content')
+
 <div class="m-grid__item m-grid__item--fluid m-wrapper">
 	<div class="m-content">
 		<div class="row">
@@ -10,7 +11,7 @@
 							<div class="m-portlet__head-caption">
 								<div class="m-portlet__head-title">
 									<h3 class="m-portlet__head-text">
-										Informasi Payment
+										Nilai Quiz
 									</h3>
 								</div>
 							</div>
@@ -58,24 +59,35 @@
 								<thead>
 									<tr>
 										<th title="Field #1">
-											No
+											Nama 
 										</th>
 										<th title="Field #2">
-											Tgl Pembayaran
+											File
 										</th>
-										<th title="Field #3">
-											Nama Mentor
+									
+										<th title="Field #8">
+											Action
 										</th>
-										<th title="Field #4">
-											Matpel
-										</th>
-										<th title="Field #5">
-											Nilai
-										</th>
-										
 									</tr>
 								</thead>
-								
+								{{-- <tbody>
+										@foreach($paket as $p)
+										<tr>
+											
+											<td>{{$p->nmpaket}}</td>
+								<td>Rp. {{$p->harga}}</td>
+								<td>{{$p->durasi}} bulan</td>
+								<td>{{$p->hari}}</td>
+								<td>{{$p->wkt_mulai}}</td>
+								<td>{{$p->wkt_akhir}}</td>
+								<td>{{$p->matpel}}</td>
+								<td>{{$p->keterangan}}</td>
+								<td>{{$p->statusPaket}}</td>
+
+								</tr>
+								@endforeach
+								</tbody> --}}
+
 							</table>
 							<!--end: Datatable -->
 						</div>
@@ -84,6 +96,7 @@
 			</div>
 		</div>
 	</div>
-</div>  
-</div>                              
+</div>
+
+</div>
 @endsection

@@ -70,8 +70,17 @@ class HomeController extends Controller
         } else {
             Tbdetailmentor::where('idtbRiwayatTutor', Auth::user()->idmentor)->update(['statKomplit' => '7']);
         }
+        $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
+        $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
+        $jadwalBimb=DB::table('siswabimbel')
+            ->join('scedulebimbel', 'siswabimbel.NoIDBimbel', '=', 'scedulebimbel.NoIDBimbel')
+            ->join('sceduletutor', 'sceduletutor.NoIDBimbel', '=', 'scedulebimbel.NoIDBimbel')
+            ->join('tbsiswa','tbsiswa.NoIDSiswa','=','siswabimbel.NoIDSiswa')
+            ->join('tbdetailsiswa','tbdetailsiswa.idtbSiswa','=','tbsiswa.idtbSiswa')      
+            ->join('tbmentor','tbmentor.NoIDMentor','=','siswabimbel.NoIDTutor')
+            ->where('siswabimbel.NoIDTutor', Auth::user()->NoIDMentor)->get();
         Tbdetailmentor::where('idtbRiwayatTutor', Auth::user()->idmentor)->update(['idmentor' => Auth::user()->idmentor]);
-        return view('dashboard', ['isCompleted' => $showing]);
+        return view('dashboard', ['isCompleted' => $showing, 'm' => $mentor, 'jadwal'=>$jadwalBimb]);
     }
 
     public function myprofile()
@@ -267,6 +276,21 @@ class HomeController extends Controller
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
         return view('payment' , ['isCompleted' => $showing, 'm' => $mentor]);
+    }
+    public function quiz(){
+        $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
+        $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
+        return view('quiz' , ['isCompleted' => $showing, 'm' => $mentor]);
+    }
+    public function dataquiz(){
+        $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
+        $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
+        return view('dataquiz' , ['isCompleted' => $showing, 'm' => $mentor]);
+    }
+    public function nilaiquiz(){
+        $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
+        $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
+        return view('nilaiquiz' , ['isCompleted' => $showing, 'm' => $mentor]);
     }
 
     public function report(){
