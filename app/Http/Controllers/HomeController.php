@@ -445,8 +445,8 @@ class HomeController extends Controller
                 $modul= $namafilemodul;
             } else {
                 $show = DB::table('modulsiswa')->where('idmodul', $request->id)->value('file');
-                $namafilemodul = time() . "_" . $filemodul->getClientOriginalName();
-                $modul= $namafilemodul;
+                // $namafilemodul = time() . "_" . $filemodul->getClientOriginalName();
+                $modul= $show;
             }	      
         DB::table('modulsiswa')->where('idmodul',$request->id)->update([
             'nama_modul' => $request->nama,
