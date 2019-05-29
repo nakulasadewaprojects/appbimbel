@@ -66,17 +66,37 @@
                                             File Upload
                                         </label>
                                         <div class="col-lg-4 col-md-9 col-sm-12">
+                                            <input type="file" name="modul" accept="application/pdf" class="form-control m-input">
+
                                             {{-- <div class="m-dropzone dropzone m-dropzone--success" action="inc/api/dropzone/upload.php" id="m-dropzone-three">
                                             <div class="m-dropzone__msg dz-message needsclick">
+                                            <input type="file" name="modul" accept="application/pdf" class="form-control m-input" >
+
                                                 <h3 class="m-dropzone__msg-title">
                                                     Drop files here or click to upload.
                                                 </h3>
                                                 <span class="m-dropzone__msg-desc">
+
                                                     Only image, pdf and psd files are allowed for upload
                                                 </span>
                                             </div>
                                         </div> --}}
-                                            <input type="file" name="modul" accept="application/pdf" class="form-control m-input">
+                                            {{-- <input type="file" name="modul" accept="application/pdf" class="form-control m-input"> --}}
+                                            {{-- <div class="dropzone">
+                                                    <div class="fallback">
+                                                            <input name="file" type="file" multiple />
+                                                          </div>
+                                            </div> --}}
+                                            {{-- <div id="dropzone">
+                                                <div class="dropzone needsclick" id="demo-upload">
+
+                                                    <div class="dz-message needsclick">
+                                                    Drop files here or click to upload.<br />
+                                                    <span class="note needsclick">(This is just a demo dropzone. Selected files are <strong>not</strong> actually uploaded.)</span>
+                                                    </div>
+                                              
+                                                 </div>
+                                            </div> --}}
                                             <span class="m-form__help">
                                                 *Upload File PDF max 2 mb
                                             </span>
@@ -102,6 +122,14 @@
                                 </div>
                             </div>
                         </form>
+                        {{-- <div id="dropzone"><form action="/upload" class="dropzone needsclick" id="demo-upload">
+
+                            <div class="dz-message needsclick">
+                              Drop files here or click to upload.<br />
+                              <span class="note needsclick">(This is just a demo dropzone. Selected files are <strong>not</strong> actually uploaded.)</span>
+                            </div>
+                          
+                          </form></div> --}}
                     </div>
                 </div>
             </div>

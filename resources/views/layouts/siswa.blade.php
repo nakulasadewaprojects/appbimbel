@@ -653,6 +653,7 @@
 		<script src="http://localhost/appbimbel/public/js/bootstrap-datepicker.js" type="text/javascript"></script>
 		<script src="http://localhost/appbimbel/public/js/bootstrap-select.js" type="text/javascript"></script>
 		<script src="http://localhost/appbimbel/public/js/bootstrap-timepicker.js" type="text/javascript"></script>
+		<script src="http://localhost/appbimbel/public/js/dropzone.js" type="text/javascript"></script>		
 		<script>
 			var pathname = window.location.pathname;
 			if (pathname == '/appbimbel/public/dashboardsiswa') {
