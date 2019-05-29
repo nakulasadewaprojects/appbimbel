@@ -524,17 +524,17 @@
 												<span></span>
 											</i>
 											<span class="m-menu__link-text">
-												Upload
+												Review
 											</span>
 										</a>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true"  data-redirect="true">
-										<a  href="http://localhost/appbimbel/public/multimediasiswa" class="m-menu__link ">
+										<a  href="http://localhost/appbimbel/public/datareportsiswa" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
 											<span class="m-menu__link-text">
-												Data Tutorial
+												Data Report
 											</span>
 										</a>
 									</li>

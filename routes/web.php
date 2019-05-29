@@ -37,6 +37,9 @@ Route::post('/tutorial/input', 'HomeController@inputTutorial');
 Route::get('/jadwal', 'HomeController@jadwal');
 Route::get('/approvalmentor', 'HomeController@approvalmentor');
 Route::get('/payment', 'HomeController@payment');
+Route::get('/quiz', 'HomeController@quiz');
+Route::get('/dataquiz', 'HomeController@dataquiz');
+Route::get('/nilaiquiz', 'HomeController@nilaiquiz');
 Route::get('/report', 'HomeController@report');
 Route::get('/siswa/get/{id}', 'HomeController@getSiswa');
 Route::get('/datareport', 'HomeController@datareport');
@@ -68,7 +71,7 @@ Route::get('/quizsiswa', 'HomeSiswaController@quizsiswa');
 Route::get('/jadwalsiswa', 'HomeSiswaController@jadwalsiswa');
 Route::get('/pengajuan', 'HomeSiswaController@pengajuan');
 Route::get('/reportsiswa', 'HomeSiswaController@reportsiswa');
-
+Route::get('/datareportsiswa', 'HomeSiswaController@datareportsiswa');
 Route::get('/informasipayment', 'HomeSiswaController@informasipayment');
 Route::put('/profilesiswa/update/{idtbSiswa}', 'HomeSiswaController@update');
 Route::put('/profile/update/{idmentor}', 'HomeController@update');

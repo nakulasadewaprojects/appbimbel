@@ -5,133 +5,103 @@
 	<div class="m-content">
 		<div class="row">
 			<div class="col-xl-12">
-				<div class="m-portlet m-portlet--success m-portlet--head-solid-bg m-portlet--head-sm" data-portlet="true" id="m_portlet_tools_2">
-					<!--begin:: Widgets/Authors Profit-->
-					<div class="m-portlet m-portlet--bordered-semi m-portlet--full-height ">
+				<div class="m-portlet m-portlet--accent m-portlet--head-solid-bg m-portlet--head-sm" data-portlet="true" id="m_portlet_tools_1">
+					<div class="m-portlet m-portlet--mobile">
 						<div class="m-portlet__head">
 							<div class="m-portlet__head-caption">
 								<div class="m-portlet__head-title">
 									<h3 class="m-portlet__head-text">
-										Authors Profit
+										Informasi Payment
 									</h3>
 								</div>
 							</div>
 							<div class="m-portlet__head-tools">
 								<ul class="m-portlet__nav">
-									<li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover">
-										<a href="#" class="m-portlet__nav-link m-dropdown__toggle dropdown-toggle btn btn--sm m-btn--pill btn-secondary m-btn m-btn--label-brand">
-											All
-										</a>
-
+									<li class="m-portlet__nav-item">
 									</li>
 								</ul>
 							</div>
 						</div>
 						<div class="m-portlet__body">
-							<div class="m-widget4">
-								<div class="m-widget4__item">
-									<div class="m-widget4__img m-widget4__img--logo">
-										<img src="assets/app/media/img/client-logos/logo5.png" alt="">
+							<!--begin: Search Form -->
+							<div class="m-form m-form--label-align-right m--margin-top-20 m--margin-bottom-30">
+								<div class="row align-items-center">
+									<div class="col-xl-8 order-2 order-xl-1">
+										<div class="form-group m-form__group row align-items-center">
+											<div class="col-md-4">
+												<div class="m-input-icon m-input-icon--left">
+													<input type="text" class="form-control m-input m-input--solid" placeholder="Search..." id="generalSearch">
+													<span class="m-input-icon__icon m-input-icon__icon--left">
+														<span>
+															<i class="la la-search"></i>
+														</span>
+													</span>
+												</div>
+											</div>
+										</div>
 									</div>
-									<div class="m-widget4__info">
-										<span class="m-widget4__title">
-											Trump Themes
-										</span>
-										<br>
-										<span class="m-widget4__sub">
-											Make Metronic Great Again
-										</span>
+									<div class="col-xl-4 order-1 order-xl-2 m--align-right">
+										<a href="#" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
+											<span>
+												<i class="la la-cart-plus"></i>
+												<span>
+													New Order
+												</span>
+											</span>
+										</a>
+										<div class="m-separator m-separator--dashed d-xl-none"></div>
 									</div>
-									<span class="m-widget4__ext">
-										<span class="m-widget4__number m--font-brand">
-											+$2500
-										</span>
-									</span>
-								</div>
-								<div class="m-widget4__item">
-									<div class="m-widget4__img m-widget4__img--logo">
-										<img src="assets/app/media/img/client-logos/logo4.png" alt="">
-									</div>
-									<div class="m-widget4__info">
-										<span class="m-widget4__title">
-											StarBucks
-										</span>
-										<br>
-										<span class="m-widget4__sub">
-											Good Coffee & Snacks
-										</span>
-									</div>
-									<span class="m-widget4__ext">
-										<span class="m-widget4__number m--font-brand">
-											-$290
-										</span>
-									</span>
-								</div>
-								<div class="m-widget4__item">
-									<div class="m-widget4__img m-widget4__img--logo">
-										<img src="assets/app/media/img/client-logos/logo3.png" alt="">
-									</div>
-									<div class="m-widget4__info">
-										<span class="m-widget4__title">
-											Phyton
-										</span>
-										<br>
-										<span class="m-widget4__sub">
-											A Programming Language
-										</span>
-									</div>
-									<span class="m-widget4__ext">
-										<span class="m-widget4__number m--font-brand">
-											+$17
-										</span>
-									</span>
-								</div>
-								<div class="m-widget4__item">
-									<div class="m-widget4__img m-widget4__img--logo">
-										<img src="assets/app/media/img/client-logos/logo2.png" alt="">
-									</div>
-									<div class="m-widget4__info">
-										<span class="m-widget4__title">
-											GreenMakers
-										</span>
-										<br>
-										<span class="m-widget4__sub">
-											Make Green Great Again
-										</span>
-									</div>
-									<span class="m-widget4__ext">
-										<span class="m-widget4__number m--font-brand">
-											-$2.50
-										</span>
-									</span>
-								</div>
-								<div class="m-widget4__item">
-									<div class="m-widget4__img m-widget4__img--logo">
-										<img src="assets/app/media/img/client-logos/logo1.png" alt="">
-									</div>
-									<div class="m-widget4__info">
-										<span class="m-widget4__title">
-											FlyThemes
-										</span>
-										<br>
-										<span class="m-widget4__sub">
-											A Let's Fly Fast Again Language
-										</span>
-									</div>
-									<span class="m-widget4__ext">
-										<span class="m-widget4__number m--font-brand">
-											+$200
-										</span>
-									</span>
 								</div>
 							</div>
+							<!--end: Search Form -->
+							<!--begin: Datatable -->
+							<table class="m-datatable" id="html_table" width="100%">
+								<thead>
+									<tr>
+										<th title="Field #1">
+											No
+										</th>
+										<th title="Field #2">
+											Nama Siswa
+										</th>
+										<th title="Field #3">
+											Tanggal
+										</th>
+										<th title="Field #4">
+											Status
+										</th>						
+										<th title="Field #8">
+											Action
+										</th>
+									</tr>
+								</thead>
+								{{-- <tbody>
+										@foreach($paket as $p)
+										<tr>
+											
+											<td>{{$p->nmpaket}}</td>
+								<td>Rp. {{$p->harga}}</td>
+								<td>{{$p->durasi}} bulan</td>
+								<td>{{$p->hari}}</td>
+								<td>{{$p->wkt_mulai}}</td>
+								<td>{{$p->wkt_akhir}}</td>
+								<td>{{$p->matpel}}</td>
+								<td>{{$p->keterangan}}</td>
+								<td>{{$p->statusPaket}}</td>
+
+								</tr>
+								@endforeach
+								</tbody> --}}
+
+							</table>
+							<!--end: Datatable -->
 						</div>
 					</div>
-					<!--end:: Widgets/Authors Profit-->
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
 </div>
 @endsection

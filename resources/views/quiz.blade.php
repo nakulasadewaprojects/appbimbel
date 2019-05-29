@@ -1,10 +1,10 @@
-@extends('layouts.siswa')
+@extends('layouts.mentor')
 @section('content')
 
 <div class="m-grid__item m-grid__item--fluid m-wrapper">
     <div class="m-content">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-xl-12">
                 <div class="m-portlet m-portlet--success m-portlet--head-solid-bg m-portlet--head-sm" data-portlet="true" id="m_portlet_tools_2">
                     <div class="m-portlet">
                         <div class="m-portlet__head">
@@ -14,56 +14,51 @@
                                         <i class="la la-gear"></i>
                                     </span>
                                     <h3 class="m-portlet__head-text">
-                                        Review 
+                                        Form Upload Quiz
                                     </h3>
                                 </div>
                             </div>
                         </div>
                         <!--begin::Form-->
-                        <form class="m-form m-form--label-align-right" method="POST" action="http://localhost/appbimbel/public/report/input">
+                        <form class="m-form m-form--label-align-right" action="http://localhost/appbimbel/public/multimedia/input" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div class="m-portlet__body">
                                 <div class="m-form__section m-form__section--first">
-            
+
                                     <div class="form-group m-form__group row">
                                         <label class="col-lg-2 col-form-label">
-                                            Nilai :
+                                            Judul:
                                         </label>
                                         <div class="col-lg-6">
-                                            <select class="form-control m-bootstrap-select m_selectpicker" required name="matpel[]" multiple>
-                                                <option> 1 </option>
-                                                <option>2 </option>
-                                                <option> 3 </option>
-                                            </select>
+                                            <input type="text" class="form-control m-input" name="judul">
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                            Deskripsi:
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <textarea class="form-control m-input" type="text" rows="3" name="deskripsi"></textarea>
                                             <span class="m-form__help">
-                                                Beri Penilaian
+                                                Tambahkan deskripisi yang anda inginkan
                                             </span>
                                         </div>
                                     </div>
-                                   
-                                    <div class="form-group m-form__group row">
-                                        <label class="col-lg-2 col-form-label">
-                                            Ulasan :
-                                        </label>
-                                        <div class="col-lg-6">
-                                            <textarea class="form-control m-input" type="text" rows="3" name="keterangan"></textarea>
-                                            <span class="m-form__help">
-                                                Beri Ulasan
-                                            </span>
-                                        </div>
-                                    </div>                         
-                                </div>
-                                <div class="m-portlet__foot m-portlet__foot--fit">
-                                    <div class="m-form__actions m-form__actions">
-                                        <div class="row">
-                                            <div class="col-lg-4"></div>
-                                            <div class="col-lg-6">
-                                                <button type="button" class="btn btn-primary m-btn m-btn--custom">
-                                                    Save
-                                                </button>
-                                                <button type="button" class="btn btn-danger m-btn m-btn--custom">
-                                                    Batal
-                                                </button>
+                                    
+
+                                    <br>
+                                    <div class="m-portlet__foot m-portlet__foot--fit">
+                                        <div class="m-form__actions m-form__actions">
+                                            <div class="row">
+                                                <div class="col-lg-4"></div>
+                                                <div class="col-lg-6">
+                                                    <button type="submit" class="btn btn-primary m-btn m-btn--custom">
+                                                        Save
+                                                    </button>
+                                                    <button type="button" class="btn btn-danger m-btn m-btn--custom">
+                                                        Batal
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

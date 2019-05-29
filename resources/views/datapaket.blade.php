@@ -235,7 +235,7 @@
 					<div class="m-pricing-table-2__head">
 						<div class="m-pricing-table-2__title m--font-light">
 							<h1>
-								Data Paket
+								Data Paket @if($getpaketcount==0)Kosong @endif
 							</h1>
 						</div>
 						<div class="btn-group nav m-btn-group m-btn-group--pill m-btn-group--air" role="group">
@@ -435,6 +435,5 @@
 		</div>
 	</div>	
 </div>
-
 </div>
 @endsection

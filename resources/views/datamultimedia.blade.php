@@ -41,53 +41,6 @@
 										</div>
 									</div>
 									<!--end: Search Form -->
-								<!--begin: Datatable -->
-									<table class="m-datatable" id="html_table" width="100%">
-										<thead>
-											<tr>
-												<th title="Field #1">
-													Tanggal Upload
-												</th>
-												<th title="Field #1">
-													Judul
-												</th>												
-												<th title="Field #4">
-													File
-												</th>
-												<th title="Field #2">
-													Deskripsi
-												</th>
-												<th title="Field #4">
-													Action
-												</th>
-											</tr>
-										</thead>
-										<tbody>
-										@foreach($multimedia as $m)
-										<tr>
-											<td>{{$m->created_at}}</td>
-											<td>{{$m->judul}}</td>
-											<td>
-												<video width="200" controls>
-												<source src="{{ url('/data_multimedia/'.$m->file) }}" type="video/mp4" >
-												</video>
-											</td>
-											<td>{{$m->diskripsi}}</td>
-											<td>		
-												<a href="http://localhost/appbimbel/public/datamultimedia/hapusmultimedia/{{$m->idcontent}}" class="btn btn-danger m-btn m-btn--icon m-btn--icon-only">
-													<i class="la la-folder"></i>
-												</a>								
-												<a href="http://localhost/appbimbel/public/datamultimedia/editmultimedia/{{$m->idcontent}}"class="btn btn-warning m-btn m-btn--icon m-btn--icon-only">
-													<i class="la la-edit"></i>
-												</a>
-												
-											</td>																					
-										</tr>
-										@endforeach
-										</tbody>
-										
-									</table>
-									<!--end: Datatable -->
 								</div>
 							</div>
 							<!--end: Search Form -->
@@ -117,7 +70,10 @@
 									<tr>
 										<td>{{$m->created_at}}</td>
 										<td>{{$m->judul}}</td>
-										<td>{{$m->file}}</td>
+										<td><video width="200" controls>
+											<source src="{{ url('/data_multimedia/'.$m->file) }}" type="video/mp4" >
+											</video>
+										</td>
 										<td>{{$m->diskripsi}}</td>
 										<td>
 											<a href="http://localhost/appbimbel/public/datamultimedia/hapusmultimedia/{{$m->idcontent}}" class="btn btn-danger m-btn m-btn--icon m-btn--icon-only">

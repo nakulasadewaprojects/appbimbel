@@ -11,12 +11,13 @@
                             <div class="m-portlet__head-caption">
                                 <div class="m-portlet__head-title">
                                     <h3 class="m-portlet__head-text">
-                                        Approval
+                                        Pengajuan 
                                     </h3>
                                 </div>
                             </div>
                         </div>
                         <div class="m-portlet__body">
+                            @if($jadwal->isEmpty()) <center> Tidak Ada Pengajuan </center> @endif
                             @foreach($jadwal as $jd)
                             <div class="m-widget3">
                                 <div class="m-widget3__item">

@@ -174,7 +174,7 @@
                                         <div class="row">
                                             <div class="col-lg-4"></div>
                                             <div class="col-lg-6">
-                                                <button type="submit" @if($getpaketcount==4) disabled @endif class="btn btn-primary m-btn m-btn--custom">
+                                                <button type="submit" @if($getpaketcount==3) disabled @endif class="btn btn-primary m-btn m-btn--custom">
                                                     Save
                                                 </button>
                                                 <button type="reset" class="btn btn-danger m-btn m-btn--custom">

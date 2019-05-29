@@ -18,31 +18,54 @@
 							</div>
 							<div class="m-portlet__head-tools">
 
-							</div>
-						</div>
-						<div class="m-portlet__body">
-							<div class="m-widget6">
-								<div class="col-lg-4 col-md-9 col-sm-12">
-									<form class="m-form m-form--label-align-right" method="GET" action="http://localhost/appbimbel/public/siswa/export_excel">
-										<input class="form-control m-input" type="text" name="daterange" value="" />
-										<select class="form-control m-input" name="siswa" type="text" id="pendidikanTerakhir">
-											<option value="0">Semua Siswa</option>
-											@foreach ($getdetailsiswa as $a)
-											<option value="{{ $a->NoIDSiswa }}">{{$a->NamaLengkap}}</option>
-											@endforeach
-										</select>
-										<select class="form-control m-input" name="matpel" type="text" id="pendidikanTerakhir">
-											<option value="0">Semua Mata Pelajaran</option>
-											@foreach ($getuniquematpel as $a)
-											<option value="{{ $a }}">{{$a}}</option>
-											@endforeach
-										</select>
-										<button type="submit" class="btn btn-primary">
-											Export to Excel
-										</button>
-									</form>
-								</div>
-								{{-- <div class="m-widget6__foot">
+											</div>
+										</div>
+										<div class="m-portlet__body">
+											<div class="m-widget6">
+												<div class="col-lg-4 col-md-9 col-sm-12">
+													<form class="m-form m-form--label-align-right" method="GET" action="http://localhost/appbimbel/public/siswa/export_excel">
+														<div class="form-group m-form__group row">
+															<label class="col-lg-4 col-form-label">
+																Tanggal :
+															</label>
+															<div class="col-lg-8">
+																<input class="form-control m-input" type="text" name="daterange" value=""/>
+															</div>
+														</div>
+														<div class="form-group m-form__group row">
+															<label class="col-lg-4 col-form-label">
+																Nama Siswa :
+															</label>
+															<div class="col-lg-8">
+																<select class="form-control m-input" name="siswa" type="text" id="pendidikanTerakhir">
+																	<option value="0">Semua Siswa</option>
+																	@foreach ($getdetailsiswa as $a)
+																	<option value="{{ $a->NoIDSiswa }}">{{$a->NamaLengkap}}</option>
+																	@endforeach
+																</select>
+															</div>
+														</div>
+														<div class="form-group m-form__group row">
+															<label class="col-lg-4 col-form-label">
+																	Matpel :
+															</label>
+															<div class="col-lg-8">
+																<select class="form-control m-input" name="matpel" type="text" id="pendidikanTerakhir">
+																	<option value="0">Semua Mata Pelajaran</option>
+																	@foreach ($getuniquematpel as $a)
+																	<option value="{{ $a }}">{{$a}}</option>
+																	@endforeach
+																</select>
+															</div>
+														</div>
+														<div class="col-lg-6">
+															<button type="submit" class="btn btn-primary">
+															Export to Excel
+															</button>
+														</div>
+													</form>
+												</div>																								
+												{{-- <div class="m-widget6__foot">
 													<div class="m-widget6__action m--align-right">
 														<button type="button" class="btn m-btn--pill btn-secondary m-btn m-btn--hover-brand m-btn--custom">
 															Export
