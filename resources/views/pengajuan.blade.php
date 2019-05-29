@@ -30,8 +30,8 @@
                     </div> --}}
                     </div>
                     <div class="m-portlet__body">
-                        @foreach ($jadwal as $j)
                         <div class="m-widget3">
+                            @foreach ($jadwal as $j)
                             <div class="m-widget3__item">
                                 <div class="m-widget3__header">
                                     <div class="m-widget3__user-img">
