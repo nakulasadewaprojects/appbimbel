@@ -59,54 +59,53 @@
 								<thead>
 									<tr>
 										<th title="Field #1">
-											Nama Paket
+											Tanggal Bimbel
 										</th>
 										<th title="Field #2">
-											Harga
-										</th>
-										<th title="Field #3">
-											Durasi
-										</th>
-										<th title="Field #4">
-											Hari
-										</th>
-										<th title="Field #5">
 											Waktu Mulai
 										</th>
+										<th title="Field #3">
+											Waktu Selesai
+										</th>
+										<th title="Field #4">
+											Matpel
+										</th>
+										<th title="Field #5">
+											Modul Matpel
+										</th>
+										<th title="Field #5">
+											Aktifitas
+										</th>
+										<th title="Field #5">
+											Catatan
+										</th>
 										<th title="Field #6">
-											Waktu Akhir
-										</th>
-										<th title="Field #7">
-											Mata Pelajaran
-										</th>
-										<th title="Field #8">
-											Keterangan
-										</th>
-										<th title="Field #8">
-											Status
-										</th>
-										<th title="Field #8">
 											Action
-										</th>
+										</th>									
 									</tr>
 								</thead>
-								{{-- <tbody>
-										@foreach($paket as $p)
-										<tr>
+								<tbody>
+								@foreach($datareport as $d)
+							<tr>
 											
-											<td>{{$p->nmpaket}}</td>
-								<td>Rp. {{$p->harga}}</td>
-								<td>{{$p->durasi}} bulan</td>
-								<td>{{$p->hari}}</td>
-								<td>{{$p->wkt_mulai}}</td>
-								<td>{{$p->wkt_akhir}}</td>
-								<td>{{$p->matpel}}</td>
-								<td>{{$p->keterangan}}</td>
-								<td>{{$p->statusPaket}}</td>
-
+								<td>{{$d->TglBimbel}}</td>
+								<td>{{$d->wkt_mulai}}</td>
+								<td>{{$d->wkt_selesai}}</td>
+								<td>{{$d->MatPel}}</td>
+								<td>{{$d->ModulMatpel}}</td>
+								<td>{{$d->Aktifitas}}</td>
+								<td>{{$d->Catatan}}</td>
+								<td>
+									<a href="http://localhost/appbimbel/public/datareport/hapusreport/{{$d->idhasilpembelajaran}}" class="btn btn-danger m-btn m-btn--icon m-btn--icon-only">
+											<i class="la la-folder"></i>
+									</a>
+									<a href="http://localhost/appbimbel/public/datareport/editrepot/{{$d->idhasilpembelajaran}}" class="btn btn-warning m-btn m-btn--icon m-btn--icon-only">
+										<i class="la la-edit"></i>	
+									</a>
+								</td>
 								</tr>
 								@endforeach
-								</tbody> --}}
+								</tbody>
 
 							</table>
 							<!--end: Datatable -->

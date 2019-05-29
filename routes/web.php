@@ -43,6 +43,8 @@ Route::get('/nilaiquiz', 'HomeController@nilaiquiz');
 Route::get('/report', 'HomeController@report');
 Route::get('/siswa/get/{id}', 'HomeController@getSiswa');
 Route::get('/datareport', 'HomeController@datareport');
+Route::get('/datareport/hapusreport/{id}','HomeController@hapusreport');
+Route::get('/datareport/editreport/{id}','HomeController@editreport');
 Route::post('/report/input', 'HomeController@inputreport');
 Route::get('/exportexcel', 'HomeController@exportexcel');
 Route::get('/paketbimbel', 'HomeController@paketbimbel');
