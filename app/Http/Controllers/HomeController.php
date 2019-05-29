@@ -419,7 +419,7 @@ class HomeController extends Controller
     public function datatutorial(){
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
-        $datatutorial = DB::table('modulsiswa')->get(); 
+        $datatutorial = DB::table('modulsiswa')->where('mentor', Auth::user()->NoIDMentor)->get(); 
         return view('datatutorial' , ['isCompleted' => $showing, 'm' => $mentor, 'tutorial' => $datatutorial]);
     }
     public function hapustutorial($id){
