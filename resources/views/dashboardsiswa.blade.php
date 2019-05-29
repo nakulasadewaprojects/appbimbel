@@ -257,7 +257,7 @@
 							<div class="tab-pane active" id="m_widget5_tab1_content" aria-expanded="true">
 								<div class="m-widget5">
 									@if($isCompleted->statusKomplit!==6)
-									Rekomendasi mentor akan muncul setelah data Anda lengkap
+									<center> Rekomendasi mentor akan muncul setelah data Anda lengkap </center>
 									@else
 									@foreach($mentor as $m)
 									<div class="m-widget5__item">
@@ -325,9 +325,9 @@
 								<!--begin::m-widget5-->
 								<div class="m-widget5">
 										@if($isCompleted->statusKomplit!==6)
-										Hasil pencarian mentor akan muncul setelah data Anda lengkap
+										<center> Hasil pencarian mentor akan muncul setelah data Anda lengkap </center>
 										@elseif($grup->isEmpty())
-										Tidak Ada Hasil Pencarian
+										<center> Tidak Ada Hasil Pencarian </center>
 										@else
 									@foreach($grup as $m)
 									<div class="m-widget5__item">
