@@ -22,67 +22,63 @@
                                 </a>
                                 <div class="m-dropdown__wrapper">
                                     <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
-                                    <div class="m-dropdown__inner">
-                                        
+                                    <div class="m-dropdown__inner">   
                                     </div>
                                 </div>
                             </li>
                         </ul>
                     </div> --}}
-                </div>
-                <div class="m-portlet__body">
-                    @foreach ($jadwal as $j)
-                    <div class="m-widget3">
-                        <div class="m-widget3__item">
-                            <div class="m-widget3__header">
-                                <div class="m-widget3__user-img">
-                                    {{-- <img class="m-widget3__img" src="assets/app/media/img/users/user1.jpg" alt=""> --}}
-                                    @if($j->foto==NULL)
-													<img class="m-widget3__img" src="{{ url('/data_fileSiswa/default_photo_profile.png') }}"/>
-													@else
-													<img class="m-widget3__img" src="{{ url('/data_file2/'.$j->foto) }}"/></a>
-									@endif
-                                </div>
-                                <div class="m-widget3__info">
-                                    <span class="m-widget3__username">
-                                        {{$j->prodiBimbel}}
-                                    </span><br>
-                                    <span class="m-widget3__time">
-                                        {{$j->nm_depan}} {{$j->nm_belakang}}
-                                    </span>
-                                    
-                                   
-                                </div>
-                                <span class="m-widget3__status m--font-info">  
-                                    @if($j->statusBimbel==1) 
+                    </div>
+                    <div class="m-portlet__body">
+                        @foreach ($jadwal as $j)
+                        <div class="m-widget3">
+                            <div class="m-widget3__item">
+                                <div class="m-widget3__header">
+                                    <div class="m-widget3__user-img">
+                                        {{-- <img class="m-widget3__img" src="assets/app/media/img/users/user1.jpg" alt=""> --}}
+                                        @if($j->foto==NULL)
+                                        <img class="m-widget3__img" src="{{ url('/data_fileSiswa/default_photo_profile.png') }}" />
+                                        @else
+                                        <img class="m-widget3__img" src="{{ url('/data_file2/'.$j->foto) }}" /></a>
+                                        @endif
+                                    </div>
+                                    <div class="m-widget3__info">
+                                        <span class="m-widget3__username">
+                                            {{$j->prodiBimbel}}
+                                        </span><br>
+                                        <span class="m-widget3__time">
+                                            {{$j->nm_depan}} {{$j->nm_belakang}}
+                                        </span>
+                                    </div>
+                                    <span class="m-widget3__status m--font-info">
+                                        @if($j->statusBimbel==1)
                                         Pending
                                         @elseif($j->statusBimbel==2)
                                         Approval
                                         @else
                                         Cancel
-                                    @endif
-                                </span>
-                                <a href="detailBimbel/{{$j->NoIDBimbel}}">
-                                    <button type="button" class="m-btn m-btn--pill m-btn--hover-brand btn btn-sm btn-secondary" data-toggle="modal" data-target="#m_modal_3">
-                                        Detail
-                                    </button>
-                                </a>
+                                        @endif
+                                    </span>
+                                    <a href="detailBimbel/{{$j->NoIDBimbel}}">
+                                        <button type="button" class="m-btn m-btn--pill m-btn--hover-brand btn btn-sm btn-secondary" data-toggle="modal" data-target="#m_modal_3">
+                                            Detail
+                                        </button>
+                                    </a>
+                                </div>
+                                <div class="m-widget3__body">
+                                    <p class="m-widget3__text">
+                                        {{$j->startBimbel}} - {{$j->endBimbel}} , {{$j->days}}, {{$j->start}} - {{$j->end}}
+                                    </p>
+                                </div>
                             </div>
-                            <div class="m-widget3__body">
-                                <p class="m-widget3__text">
-                                    {{$j->startBimbel}} - {{$j->endBimbel}} , {{$j->days}}, {{$j->start}} - {{$j->end}}
-                                </p>
-                            </div>
+                            @endforeach
+                            {{ $jadwal->links() }}
                         </div>
-                        @endforeach
-                        {{ $jadwal->links() }}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
-
 </div>
 @endsection
