@@ -17,7 +17,7 @@
 		</div>
 	</div>
 	@endif
-	@if (DB::table('siswabimbel')->where('NoIDTutor', Auth::user()->NoIDMentor)->value('statusBimbel')==1)
+	@if (strpos(DB::table('siswabimbel')->where('NoIDTutor', Auth::user()->NoIDMentor)->get('statusBimbel'), '1') !== false)
 	<div class="m-alert m-alert--icon alert alert-info" role="alert">
 		<div class="m-alert__icon">
 			<i class="la la-info"></i>
