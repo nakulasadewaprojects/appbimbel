@@ -17,15 +17,6 @@
 		</div>
 	</div>
 	@endif
-	<!-- BEGIN: Subheader -->
-	<div class="m-subheader ">
-		<div class="d-flex align-items-center">
-			<div class="mr-auto">
-				
-			</div>
-		</div>
-	</div>
-	<!-- END: Subheader -->
 	<div class="m-content">
 		<div class="row">
 			<div class="col-xl-3 col-lg-4">
