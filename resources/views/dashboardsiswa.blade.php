@@ -405,7 +405,7 @@
 										</div>
 										<div class="m-widget5__content">
 											<h4 class="m-widget5__title">
-												{{$m->nm_depan}}
+												{{$m->nm_depan}} {{$m->nm_belakang}}
 											</h4>
 											<span class="m-widget5__desc m--font-info">
 												{{$m->prodi}}
@@ -473,7 +473,7 @@
 											@endif</div>
 										<div class="m-widget5__content">
 											<h4 class="m-widget5__title">
-												{{$m->nm_depan}}
+												{{$m->nm_depan}} {{$m->nm_belakang}}
 											</h4>
 											<span class="m-widget5__desc m--font-info">
 												{{$m->prodi}}

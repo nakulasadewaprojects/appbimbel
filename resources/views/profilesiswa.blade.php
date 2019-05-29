@@ -1,19 +1,7 @@
 @extends('layouts.siswa')
 @section('content')
-<!-- END: Left Aside -->
-<div class="m-grid__item m-grid__item--fluid m-wrapper">
-	<!-- BEGIN: Subheader -->
-	<div class="m-subheader ">
-		<div class="d-flex align-items-center">
-			<div class="mr-auto">
-				<h3 class="m-subheader__title ">
-					Edit Profil Saya
-				</h3>
-			</div>
 
-		</div>
-	</div>
-	<!-- END: Subheader -->
+<div class="m-grid__item m-grid__item--fluid m-wrapper">
 	<div class="m-content">
 		<div class="row">
 			<div class="col-xl-3 col-lg-4">
@@ -298,8 +286,8 @@
 								<div class="m-portlet__foot m-portlet__foot--fit">
 									<div class="m-form__actions">
 										<div class="row">
-											<div class="col-2"></div>
-											<div class="col-7">
+											<div class="col-5"></div>
+											<div class="col-6">
 												<button type="submit" class="btn btn-accent m-btn m-btn--air m-btn--custom">
 													Simpan Perubahan
 												</button>
