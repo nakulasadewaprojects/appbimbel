@@ -94,11 +94,11 @@ class HomeSiswaController extends Controller
       ]);
 
       $date = strtotime($request['TanggalMulai']);
-      if($request->hasAny('durasi')=='1'){
+      if($request['durasi']==1){
         $TanggalSelesai = date("Y-m-d", strtotime("+1 month", $date));
-      }if($request->hasAny('durasi')=='6'){
+      }elseif($request['durasi']==6){
         $TanggalSelesai = date("Y-m-d", strtotime("+6 month", $date)); 
-      }if($request->hasAny('durasi')=='12'){
+      }elseif($request['durasi']==12){
         $TanggalSelesai = date("Y-m-d", strtotime("+12 month", $date));
       }
       DB::table('scedulebimbel')->insert([
@@ -128,7 +128,7 @@ class HomeSiswaController extends Controller
         'NoIDBimbel'=>$noidbimbel ,
         'NoScheduleTutor'=>$noschedulTutor
       ]);
-      return redirect('/dashboardsiswa');
+      return redirect('/pengajuan');
     }
     public function formAjukanPaket($id,$id2){
       $showing = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->first();

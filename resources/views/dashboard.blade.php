@@ -17,7 +17,7 @@
 		</div>
 	</div>
 	@endif
-	@if (DB::table('siswabimbel')->where('NoIDTutor', Auth::user()->NoIDMentor)->value('statusBimbel')==1)
+	@if (strpos(DB::table('siswabimbel')->where('NoIDTutor', Auth::user()->NoIDMentor)->get('statusBimbel'), '1') !== false)
 	<div class="m-alert m-alert--icon alert alert-info" role="alert">
 		<div class="m-alert__icon">
 			<i class="la la-info"></i>
@@ -36,15 +36,15 @@
 
 	<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 		<div class="carousel-inner">
-		  <div class="carousel-item active">
-			<img class="d-block w-100" src="http://localhost/appbimbel/public/assets/img/siswa.jpg" alt="First slide">
-		  </div>
-		  <div class="carousel-item">
-			<img class="d-block w-100" src="http://localhost/appbimbel/public/assets/img/siswa.jpg" alt="Second slide">
-		  </div>
-		  <div class="carousel-item">
-			<img class="d-block w-100" src="http://localhost/appbimbel/public/assets/img/siswa.jpg" alt="Third slide">
-		  </div>
+			<div class="carousel-item active">
+				<img class="d-block w-100" src="http://localhost/appbimbel/public/assets/img/1.jpg" alt="First slide">
+			</div>
+			<div class="carousel-item">
+				<img class="d-block w-100" src="http://localhost/appbimbel/public/assets/img/2.jpg" alt="Second slide">
+			</div>
+			<div class="carousel-item">
+				<img class="d-block w-100" src="http://localhost/appbimbel/public/assets/img/3.jpg" alt="Third slide">
+			</div>
 		</div>
 		<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
 			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -123,7 +123,7 @@
 						<div class="m-widget14">
 							<div class="m-widget14__header">
 								<h3 class="m-widget14__title">
-									Profit 
+									Profit
 								</h3>
 								{{-- <span class="m-widget14__desc">
 									Profit Share between customers
@@ -166,87 +166,83 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="m-content">
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="m-portlet m-portlet--success m-portlet--head-solid-bg m-portlet--head-sm" data-portlet="true" id="m_portlet_tools_2">
-                    <div class="m-portlet m-portlet--full-height ">
-                        <div class="m-portlet__head">
-                            <div class="m-portlet__head-caption">
-                                <div class="m-portlet__head-title">
-                                    <h3 class="m-portlet__head-text">
-                                        Pengajuan
-                                    </h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="m-portlet__body">
-                            @foreach($jadwal as $jd)
-                            <div class="m-widget3">
-                                <div class="m-widget3__item">
-                                    <div class="m-widget3__header">
-
-                                        <div class="m-widget3__user-img">
-                                            @if($jd->fotoProfile==NULL)
-                                            <img class="m-widget3__img" src="{{ url('/data_fileSiswa/default_photo_profile.png') }}" />
-                                            @else
-                                            <img class="m-widget3__img" src="{{ url('/data_fileSiswa2/'.$jd->fotoProfile) }}" /></a>
-                                            @endif
-                                            {{-- <img class="m-widget3__img" src="" alt=""> --}}
-                                        </div>
-                                        <div class="m-widget3__info">
-                                            <span class="m-widget3__username">
-                                                {{$jd->NamaLengkap}}
-                                                {{-- {{$jd-> NoIDBimbel}} --}}
-                                                {{-- {{$jd->statusBimbel}} --}}
-                                            </span>
-                                            <br>
-                                            <span class="m-widget3__time">
-                                                {{$jd->prodiBimbel}}
-
-                                            </span>
-                                        </div>
-                                        <span class="m-widget3__status m--font-info">
-                                            @if($jd->statusSchedule==1)
-                                            Pending
-                                            @elseif($jd->statusSchedule==2)
-                                            Approval
-                                            @else
-                                            Cancel
-                                            @endif
-
-                                        </span>
-                                        {{-- <a href="detailApprovalBimbel/{{$jd->NoIDBimbel}}">
-                                            <button type="button" class="m-btn m-btn--pill m-btn--hover-brand btn btn-sm btn-secondary" data-toggle="modal" data-target="#m_modal_3">
-                                                Detail
-                                            </button>
-                                        </a> --}}
-                                    </div>
-                                    <div class="m-widget3__info">
-                                        <p class="m-widget3__text">
-                                            Mulai Bimbel {{$jd->tglprivate}}. Hari {{$jd->days}}. Waktu {{$jd->start}} - {{$jd->end}}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            @endforeach
+		<div class="row">
+			<div class="col-xl-12">
+				<div class="m-portlet m-portlet--success m-portlet--head-solid-bg m-portlet--head-sm" data-portlet="true" id="m_portlet_tools_2">
+					<div class="m-portlet m-portlet--full-height ">
+						<div class="m-portlet__head">
+							<div class="m-portlet__head-caption">
+								<div class="m-portlet__head-title">
+									<h3 class="m-portlet__head-text">
+										Pengajuan
+									</h3>
+								</div>
+							</div>
+							<div class="m-portlet__head-tools">
+								<ul class="m-portlet__nav">
+									<li class="m-portlet__nav-item">
+										<a href="http://localhost/appbimbel/public/approvalmentor">
+											<button type="button" class="btn btn-warning btn-sm m-btn m-btn--pill m-btn--wide">
+												Cek Sekarang
+											</button>
+										</a>
+									</li>
+								</ul>
+							</div>
 						</div>
-						
+						<div class="m-portlet__body">
+							@foreach($jadwal as $jd)
+							<div class="m-widget3">
+								<div class="m-widget3__item">
+									<div class="m-widget3__header">
+										<div class="m-widget3__user-img">
+											@if($jd->fotoProfile==NULL)
+											<img class="m-widget3__img" src="{{ url('/data_fileSiswa/default_photo_profile.png') }}" />
+											@else
+											<img class="m-widget3__img" src="{{ url('/data_fileSiswa2/'.$jd->fotoProfile) }}" /></a>
+											@endif
+											{{-- <img class="m-widget3__img" src="" alt=""> --}}
+										</div>
+										<div class="m-widget3__info">
+											<span class="m-widget3__username">
+												{{$jd->NamaLengkap}}
+												{{-- {{$jd-> NoIDBimbel}} --}}
+												{{-- {{$jd->statusBimbel}} --}}
+											</span>
+											<br>
+											<span class="m-widget3__time">
+												{{$jd->prodiBimbel}}
+											</span>
+										</div>
+										<span class="m-widget3__status m--font-info">
+											@if($jd->statusSchedule==1)
+											Pending
+											@elseif($jd->statusSchedule==2)
+											Approval
+											@else
+											Cancel
+											@endif
+										</span>
+										{{-- <a href="detailApprovalBimbel/{{$jd->NoIDBimbel}}">
+										<button type="button" class="m-btn m-btn--pill m-btn--hover-brand btn btn-sm btn-secondary" data-toggle="modal" data-target="#m_modal_3">
+											Detail
+										</button>
+										</a> --}}
+									</div>
+									<div class="m-widget3__info">
+										<p class="m-widget3__text">
+											Mulai Bimbel {{$jd->tglprivate}}. Hari {{$jd->days}}. Waktu {{$jd->start}} - {{$jd->end}}
+										</p>
+									</div>
+								</div>
+							</div>
+							@endforeach
+						</div>
 					</div>
-					
 				</div>
-				{{-- <div class="m-alert__actions" style="width: 160px;">
-					<a class="btn btn-warning btn-sm m-btn m-btn--pill m-btn--wide" href="http://localhost/appbimbel/public/approvalmentor">Cek Sekarang</a>
-				</div> --}}
-				<a href="http://localhost/appbimbel/public/approvalmentor">
-					<button type="button" class="m-btn m-btn--pill m-btn--hover-brand btn btn-sm btn-secondary" data-toggle="modal" data-target="#m_modal_3">
-						Cek Sekarang
-					</button>
-				</a>
-            </div>
-        </div>
-    </div>
+			</div>
+		</div>
+	</div>
 </div>
 </div>
 @endsection
