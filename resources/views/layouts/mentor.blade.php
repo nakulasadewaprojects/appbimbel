@@ -807,6 +807,9 @@
 	{{-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script> --}}
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+	<!-- jQuery for carousel -->
+	<script src="http://localhost/appbimbel/public/js/owl.carousel.min.js"></script>
+	<script src="http://localhost/appbimbel/public/js/owl.custom.js"></script>
 
 	<script>
 		$(function() {

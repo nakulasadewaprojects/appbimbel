@@ -33,7 +33,24 @@
 		</div>
 	</div>
 	@endif
-
+	{{-- <div class="col-md-6">
+		<div class="white-box">			
+			<!-- START carousel-->
+			<div id="carousel-example-captions-1" data-ride="carousel" class="carousel slide">
+				<ol class="carousel-indicators">
+					<li data-target="#carousel-example-captions-1" data-slide-to="0" class="active"></li>
+					<li data-target="#carousel-example-captions-1" data-slide-to="1"></li>
+					<li data-target="#carousel-example-captions-1" data-slide-to="2"></li>
+				</ol>
+				<div role="listbox" class="carousel-inner">
+					<div class="carousel-item active"> <img src="http://localhost/appbimbel/public/assets/img/img4.jpg" alt="First slide image"> </div>
+					<div class="carousel-item"> <img src="http://localhost/appbimbel/public/assets/img/img5.jpg" alt="Second slide image"> </div>
+					<div class="carousel-item"> <img src="http://localhost/appbimbel/public/assets/img/img6.jpg" alt="Third slide image"> </div>
+				</div>
+			</div>
+			<!-- END carousel-->
+		</div>
+	</div> --}}
 	<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 		<div class="carousel-inner">
 			<div class="carousel-item active">
