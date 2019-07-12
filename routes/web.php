@@ -64,6 +64,7 @@ Route::get('/datamultimedia', 'HomeController@datamultimedia');
 Route::get('/datamultimedia/hapusmultimedia/{id}', 'HomeController@hapusmultimedia');
 Route::get('/datamultimedia/editmultimedia/{id}', 'HomeController@editmultimedia');
 Route::post('/datamultimedia/updatemultimedia', 'HomeController@updatemultimedia');
+Route::get('/informasiinvoice', 'HomeController@informasiinvoice');
 Route::get('/profilesiswa', 'HomeSiswaController@profilesiswa');
 Route::get('/myprofilesiswa', 'HomeSiswaController@myprofilsiswa');
 Route::get('/calendarsiswa', 'HomeSiswaController@calendarsiswa');

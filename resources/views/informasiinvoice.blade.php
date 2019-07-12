@@ -11,7 +11,7 @@
                                 <div class="m-portlet__head-caption">
                                     <div class="m-portlet__head-title">
                                         <h3 class="m-portlet__head-text">
-                                           Informasi Payment
+                                           Informasi Invoice
                                         </h3>
                                     </div>
                                 </div>
@@ -86,7 +86,7 @@
                                         <div class="col-md-11">
                                             <div class="pull-right m-t-30 text-right">
                                                 <p>Sub - Total amount: $13,848</p>
-                                                <p>vat (10%) : $138 </p>
+                                                    
                                                 <hr>
                                                 <h3><b>Total :</b> $13,986</h3> </div>
                                             <div class="clearfix"></div>

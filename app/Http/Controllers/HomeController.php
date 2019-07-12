@@ -523,7 +523,12 @@ class HomeController extends Controller
         ]);
     return redirect('/datamultimedia');
     }
-
+    public function informasiinvoice(){
+        $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
+        $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
+        $datamultimedia = DB::table('contentvideo')->get();
+        return view('informasiinvoice' , ['isCompleted' => $showing, 'm' => $mentor, 'multimedia' => $datamultimedia]);
+    }
     public function update($idmentor, Request $request)
     {
         $this->validate($request, [

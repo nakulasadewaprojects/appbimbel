@@ -718,7 +718,7 @@
 							</div>
 						</li>			
 						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover">
-							<a href="http://localhost/appbimbel/public/payment" class="m-menu__link">
+							<a href="http://localhost/appbimbel/public/informasiinvoice" class="m-menu__link">
 								<i class="m-menu__link-icon flaticon-information"></i>
 							</a>
 							<div class="m-menu__submenu">
