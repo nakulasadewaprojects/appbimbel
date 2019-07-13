@@ -519,7 +519,7 @@
 										</div>
 									</li>
 									<li class="m-menu__item " aria-haspopup="true"  data-redirect="true">
-										<a  href="http://localhost/appbimbel/public/reportsiswa" class="m-menu__link ">
+										<a  href="http://localhost/appbimbel/public/reviewMentor" class="m-menu__link ">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -653,7 +653,9 @@
 		<script src="http://localhost/appbimbel/public/js/bootstrap-datepicker.js" type="text/javascript"></script>
 		<script src="http://localhost/appbimbel/public/js/bootstrap-select.js" type="text/javascript"></script>
 		<script src="http://localhost/appbimbel/public/js/bootstrap-timepicker.js" type="text/javascript"></script>
-		<script src="http://localhost/appbimbel/public/js/dropzone.js" type="text/javascript"></script>		
+		<script src="http://localhost/appbimbel/public/js/dropzone.js" type="text/javascript"></script>	
+        <script src="http://localhost/appbimbel/public/js/html-table.js" type="text/javascript"></script>
+
 		<script>
 			var pathname = window.location.pathname;
 			if (pathname == '/appbimbel/public/dashboardsiswa') {

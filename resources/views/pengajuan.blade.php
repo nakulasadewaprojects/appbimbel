@@ -49,6 +49,10 @@
                                     </span><br>
                                     <span class="m-widget3__time">
                                         {{$j->nm_depan}} {{$j->nm_belakang}}
+                                    </span><br/>
+                                    
+                                    <span class="m-widget3__time">
+                                    {{$j->startBimbel}} - {{$j->endBimbel}} , {{$j->days}}, {{$j->start}} - {{$j->end}}
                                     </span>
                                     
                                    
@@ -67,11 +71,6 @@
                                         Detail
                                     </button>
                                 </a>
-                            </div>
-                            <div class="m-widget3__body">
-                                <p class="m-widget3__text">
-                                    {{$j->startBimbel}} - {{$j->endBimbel}} , {{$j->days}}, {{$j->start}} - {{$j->end}}
-                                </p>
                             </div>
                         </div>
                         @endforeach

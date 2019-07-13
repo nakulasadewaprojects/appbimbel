@@ -15,100 +15,37 @@
                         </div>
                     </div>
                 </div>
-                <div class="m-portlet__body">
-                    <div class="m-widget4">
-                        <div class="m-widget4__item">
-                            <div class="m-widget4__img m-widget4__img--icon">
-                                <img src="assets/app/media/img/files/doc.svg" alt="">
+                
+                    <div class="m-portlet__body">
+                        <div class="m-widget4">
+                            @foreach($multimedia as $m)
+                            <div class="m-widget4__item">
+                                <div class="m-widget4__img m-widget4__img--icon">
+                                        
+                                    {{-- <img src="assets/app/media/img/files/doc.svg" alt=""> --}}
+                                    <video width="200" controls>
+                                        <source src="{{ url('/data_multimedia/'.$m->file) }}" type="video/mp4" >
+                                    </video>
+                                </div>
+<!--
+                                <div class="m-widget4__info">
+                                    <span class="m-widget4__text">
+                                        Metronic Documentation
+                                    </span>
+                                </div>
+-->
+                                <div class="m-widget4__ext">
+                                    <a href="#" class="m-widget4__icon">
+                                        <i class="la la-download"></i>
+                                    </a>
+                                </div>
+                                
                             </div>
-                            <div class="m-widget4__info">
-                                <span class="m-widget4__text">
-                                    Metronic Documentation
-                                </span>
-                            </div>
-                            <div class="m-widget4__ext">
-                                <a href="#" class="m-widget4__icon">
-                                    <i class="la la-download"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="m-widget4__item">
-                            <div class="m-widget4__img m-widget4__img--icon">
-                                <img src="assets/app/media/img/files/jpg.svg" alt="">
-                            </div>
-                            <div class="m-widget4__info">
-                                <span class="m-widget4__text">
-                                    Make JPEG Great Again
-                                </span>
-                            </div>
-                            <div class="m-widget4__ext">
-                                <a href="#" class="m-widget4__icon">
-                                    <i class="la la-download"></i>
-                                </a>
+                            @endforeach
                             </div>
                         </div>
-                        <div class="m-widget4__item">
-                            <div class="m-widget4__img m-widget4__img--icon">
-                                <img src="assets/app/media/img/files/pdf.svg" alt="">
-                            </div>
-                            <div class="m-widget4__info">
-                                <span class="m-widget4__text">
-                                    Full Deeveloper Manual For 4.7
-                                </span>
-                            </div>
-                            <div class="m-widget4__ext">
-                                <a href="#" class="m-widget4__icon">
-                                    <i class="la la-download"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="m-widget4__item">
-                            <div class="m-widget4__img m-widget4__img--icon">
-                                <img src="assets/app/media/img/files/javascript.svg" alt="">
-                            </div>
-                            <div class="m-widget4__info">
-                                <span class="m-widget4__text">
-                                    Make JS Great Again
-                                </span>
-                            </div>
-                            <div class="m-widget4__ext">
-                                <a href="#" class="m-widget4__icon">
-                                    <i class="la la-download"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="m-widget4__item">
-                            <div class="m-widget4__img m-widget4__img--icon">
-                                <img src="assets/app/media/img/files/zip.svg" alt="">
-                            </div>
-                            <div class="m-widget4__info">
-                                <span class="m-widget4__text">
-                                    Download Ziped version OF 5.0
-                                </span>
-                            </div>
-                            <div class="m-widget4__ext">
-                                <a href="#" class="m-widget4__icon">
-                                    <i class="la la-download"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="m-widget4__item">
-                            <div class="m-widget4__img m-widget4__img--icon">
-                                <img src="assets/app/media/img/files/pdf.svg" alt="">
-                            </div>
-                            <div class="m-widget4__info">
-                                <span class="m-widget4__text">
-                                    Finance Report 2016/2017
-                                </span>
-                            </div>
-                            <div class="m-widget4__ext">
-                                <a href="#" class="m-widget4__icon">
-                                    <i class="la la-download"></i>
-                                </a>
-                            </div>
-                        </div>
+
                     </div>
-                </div>
             </div>
         </div>
         </div>

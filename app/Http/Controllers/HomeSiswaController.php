@@ -9082,8 +9082,12 @@ class HomeSiswaController extends Controller
     }
     public function multimediasiswa(){
         $siswa = DB::table('tbsiswa')->where('idtbSiswa', Auth::user()->idtbSiswa)->first();
-        $showing = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->first();      
-        return view('multimediasiswa' , ['ProfilSiswa' => $showing,'s'=>$siswa] , ['isCompleted' => $showing,'s'=>$siswa]);
+        $showing = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->first();  
+        $multimedia = DB::table('siswabimbel')
+        ->join('contentvideo', 'siswabimbel.NoIDTutor', '=', 'contentvideo.NoIdMentor')
+        ->where('siswabimbel.NoIDSiswa', Auth::user()->NoIDSiswa)->get();         
+        return view('multimediasiswa' , ['isCompleted' => $showing,'s'=>$siswa,'multimedia'=>$multimedia]);
+        // return  $multimedia;
     }
     public function tutorialsiswa(){
       $siswa = DB::table('tbsiswa')->where('idtbSiswa', Auth::user()->idtbSiswa)->first();
@@ -9103,17 +9107,42 @@ class HomeSiswaController extends Controller
     public function quizsiswa(){
       $siswa = DB::table('tbsiswa')->where('idtbSiswa', Auth::user()->idtbSiswa)->first();
       $showing = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->first();
-      return view('quizsiswa' , ['ProfilSiswa' => $showing,'s'=>$siswa] , ['isCompleted' => $showing,'s'=>$siswa]);
+        $quiz = DB::table('siswabimbel')
+        ->join('quiz', 'siswabimbel.NoIDTutor', '=', 'quiz.NoIdMentor')
+        ->where('siswabimbel.NoIDSiswa', Auth::user()->NoIDSiswa)->get();
+      return view('quizsiswa' , ['isCompleted' => $showing,'s'=>$siswa, 'quiz'=>$quiz]);
     }
-    public function reportsiswa(){
+    public function reviewMentor(){
       $siswa = DB::table('tbsiswa')->where('idtbSiswa', Auth::user()->idtbSiswa)->first();
       $showing = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->first();
-      return view('reportsiswa' , ['ProfilSiswa' => $showing,'s'=>$siswa] , ['isCompleted' => $showing,'s'=>$siswa]);
+        $noidMentor=DB::table('siswabimbel')
+        ->join('tbmentor', 'siswabimbel.NoIDTutor', '=', 'tbmentor.NoIdMentor')
+        ->where('siswabimbel.NoIDSiswa', Auth::user()->NoIDSiswa)->get();
+      return view('reviewMentor' , ['isCompleted' => $showing,'s'=>$siswa,'mentor'=>$noidMentor]);
+//        return $noidMentor;
+    }
+    public function inputReviewMentor(Request $request){
+         $created_at=Carbon::now();
+        $TbSiswaoID= DB::table('tbsiswa')->where('idtbSiswa',Auth::user()->idtbSiswa)->value('NoIDSiswa');      
+//        $nextId=DB::table('siswabimbel')->max('idsiswaBimbel')+1;
+//        $noidreport = 'R'. $TbMentorNoID. $nextId ;
+        
+        DB::table('reviewmentor')->insert([
+            'NoIDMentor'=>$request->noiID,
+            'created_at'=>$created_at,
+            'nilai'=>$request->nilai,
+            'ulasan'=>$request->ulasan,
+            'NoIdSiswa'=>$TbSiswaoID
+            ]);
+          return redirect('/dashboardsiswa');
     }
     public function datareportsiswa(){
       $siswa = DB::table('tbsiswa')->where('idtbSiswa', Auth::user()->idtbSiswa)->first();
       $showing = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->first();
-      return view('datareportsiswa' , ['ProfilSiswa' => $showing,'s'=>$siswa] , ['isCompleted' => $showing,'s'=>$siswa]);
+        $datareport = DB::table('hasilpembelajaran')
+            ->join('tbsiswa','tbsiswa.NoIDSiswa','=','hasilpembelajaran.IdSiswa')
+            ->where('hasilpembelajaran.IdSiswa', Auth::user()->NoIDSiswa)->get();
+      return view('datareportsiswa' , ['isCompleted' => $showing,'s'=>$siswa,'report'=>$datareport]);
     }
   public function informasipayment(){
       $siswa = DB::table('tbsiswa')->where('idtbSiswa', Auth::user()->idtbSiswa)->first();
