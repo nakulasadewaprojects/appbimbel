@@ -2,16 +2,6 @@
 @section('content')
 
 <div class="m-grid__item m-grid__item--fluid m-wrapper">
-
-	<div class="m-subheader ">
-		<div class="d-flex">
-			<div class="mr-auto">
-				<h3 class="m-subheader__title ">
-					Edit Profil Saya
-				</h3>
-			</div>
-		</div>
-	</div>
 	<div class="m-content">
 		<div class="row">
 			<div class="col-xl-3 col-lg-4">

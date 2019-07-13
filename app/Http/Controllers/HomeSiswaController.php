@@ -128,7 +128,7 @@ class HomeSiswaController extends Controller
         'NoIDBimbel'=>$noidbimbel ,
         'NoScheduleTutor'=>$noschedulTutor
       ]);
-      return redirect('/dashboardsiswa');
+      return redirect('/pengajuan');
     }
     public function formAjukanPaket($id,$id2){
       $showing = DB::table('tbdetailsiswa')->where('idtbDetailSiswa', Auth::user()->idtbSiswa)->first();

@@ -34,13 +34,13 @@
 	<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 		<div class="carousel-inner">
 			<div class="carousel-item active">
-				<img class="d-block w-100" src="http://localhost/appbimbel/public/assets/img/siswa.jpg" alt="First slide">
+				<img class="d-block w-100" src="http://localhost/appbimbel/public/assets/img/1.jpg" alt="First slide">
 			</div>
 			<div class="carousel-item">
-				<img class="d-block w-100" src="http://localhost/appbimbel/public/assets/img/siswa.jpg" alt="Second slide">
+				<img class="d-block w-100" src="http://localhost/appbimbel/public/assets/img/2.jpg" alt="Second slide">
 			</div>
 			<div class="carousel-item">
-				<img class="d-block w-100" src="http://localhost/appbimbel/public/assets/img/siswa.jpg" alt="Third slide">
+				<img class="d-block w-100" src="http://localhost/appbimbel/public/assets/img/3.jpg" alt="Third slide">
 			</div>
 		</div>
 		<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -52,16 +52,16 @@
 			<span class="sr-only">Next</span>
 		</a>
 	</div>
-	<div class="m-subheader ">
+	<!-- <div class="m-subheader ">
 		<div class="d-flex align-items-center">
 			<div class="mr-auto">
 
 			</div>
 		</div>
-	</div>
+	</div> -->
 	<div class="m-content">
 		<div class="row">
-			<div class="col-lg-12">
+			<!-- <div class="col-lg-3">
 				<div class="m-portlet m-portlet--accent m-portlet--head-solid-bg m-portlet--head-sm" data-portlet="true" id="m_portlet_tools_1">
 					<div class="m-portlet__head">
 						<div class="m-portlet__head-caption">
@@ -82,156 +82,291 @@
 						</div>
 					</div>
 					<div class="m-portlet__body @if($filter=='nggak') collapse @else @endif">
-					<form id="formFilter" method="GET" action="dashboardsiswa" enctype="multipart/form-data">
-							<div class="row m-row--no-padding m-row--col-separator-xl">						
-								<div class="col-xl-4">
-									<div class="m-widget14">
-										<div class="m-widget14__header m--margin-bottom">
-											<span class="m-widget14__title">
-												Pendidikan Mentor 
-											</span>
-											<span class="m-widget14__title">
-												<div class="form-group m-form__group row">
-												<div class="col-10">
-													<select onchange="myFunction()" class="form-control m-input" id="pend" name="pendidikan"
-														type="text">
-														<option value="4" @if(strpos($url,'pendidikan=4' )!==false) selected
-															@endif>Semua Jenjang</option>
-														<option value="1" @if(strpos($url,'pendidikan=1' )!==false) selected
-															@endif> SMA/SMK sederajat</option>
-														<option value="2" @if(strpos($url,'pendidikan=2' )!==false) selected
-															@endif> D3 sederajat</option>
-														<option value="3" @if(strpos($url,'pendidikan=3' )!==false) selected
-															@endif> Strata sederajat</option>
+						<form id="formFilter" method="GET" action="dashboardsiswa" enctype="multipart/form-data">
+							<div class="m-widget14">
+								<div class="m-widget14__header m--margin-bottom">
+									<span class="m-widget14__title">
+										Pendidikan Mentor
+									</span>
+									<span class="m-widget14__title">
+										<div class="form-group m-form__group row">
+											<div class="col-10">
+												<select onchange="myFunction()" class="form-control m-input" id="pend" name="pendidikan" type="text">
+													<option value="4" @if(strpos($url,'pendidikan=4' )!==false) selected @endif>Semua Jenjang</option>
+													<option value="1" @if(strpos($url,'pendidikan=1' )!==false) selected @endif> SMA/SMK sederajat</option>
+													<option value="2" @if(strpos($url,'pendidikan=2' )!==false) selected @endif> D3 sederajat</option>
+													<option value="3" @if(strpos($url,'pendidikan=3' )!==false) selected @endif> Strata sederajat</option>
+												</select>
+											</div>
+										</div>
+									</span>
+								</div>
+							</div>
+							<div class="m-widget14">
+								<div class="m-widget14__header m--margin-bottom">
+									<span class="m-widget14__title">
+										Mata Pelajaran
+									</span>
+									<div class="m-checkbox-list">
+										<label class="m-checkbox">
+											<input class="myCheckBox" value="true" id="bin" name="bin" type="checkbox" @if(strpos($url,'bin' )!==false) checked @endif>
+											Bahasa Indonesia
+											<span></span>
+										</label>
+									</div>
+									<div class="m-checkbox-list">
+										<label class="m-checkbox">
+											<input class="myCheckBox" value="true" id="mtk" name="mtk" type="checkbox" @if(strpos($url,'mtk' )!==false) checked @endif>
+											Matematika
+											<span></span>
+										</label>
+									</div>
+									<div class="m-checkbox-list">
+										<label class="m-checkbox">
+											<input class="myCheckBox" value="true" id="ipa" name="ipa" type="checkbox" @if(strpos($url,'ipa' )!==false) checked @endif>
+											IPA
+											<span></span>
+										</label>
+									</div>
+									<div class="m-checkbox-list">
+										<label class="m-checkbox">
+											<input class="myCheckBox" value="true" id="ips" name="ips" type="checkbox" @if(strpos($url,'ips' )!==false) checked @endif>
+											IPS
+											<span></span>
+										</label>
+									</div>
+									<div class="m-checkbox-list">
+										<label class="m-checkbox">
+											<input class="myCheckBox" value="true" id="big" name="big" type="checkbox" @if(strpos($url,'big' )!==false) checked @endif>
+											Bahasa Inggris
+											<span></span>
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="m-widget14">
+								<div class="m-widget14__header m--margin-bottom">
+									<span class="m-widget14__title">
+										Alamat
+									</span>
+									<div class="m-form__group form-group">
+										<div class="form-group m-form__group row">
+											<div class="col-10">
+												<select class="form-control m-input" id="prov" name="provinsi" type="text">
+													<option value="0">Semua Provinsi</option>
+													@foreach ($p as $a)
+													<option value="{{ $a->id }}" @if(strpos($url, 'provinsi=' .strval($a->id) )!==false) selected
+														@endif> {{$a->nama}}</option>
+													@endforeach
+												</select>
+											</div>
+										</div>
+										<div class="form-group m-form__group row">
+											<label for="example-text-input">
+											</label>
+											<div class="col-10">
+												<select class="form-control m-input" name="kabupaten" type="text" id="kab">
+													<option value="0">Semua Kabupaten</option>
+													@if($b!==NULL)
+													@foreach ($b as $a)
+													<option value="{{ $a->id }}" @if(strpos($url, 'kabupaten=' .strval($a->id) )!==false) selected
+														@endif> {{$a->nama}}</option>
+													@endforeach
+													@endif
+												</select>
+											</div>
+										</div>
+										<div class="form-group m-form__group row">
+											<label for="example-text-input">
+											</label>
+											<div class="col-10">
+												<select class="form-control m-input" name="kecamatan" type="text" id="kec">
+													<option value="0">Semua Kecamatan </option>
+													@if($c!==NULL)
+													@foreach ($c as $a)
+													<option value="{{ $a->id }}" @if(strpos($url, 'kecamatan=' .strval($a->id) )!==false) selected
+														@endif> {{$a->nama}}</option>
+													@endforeach
+													@endif
+												</select>
+											</div>
+										</div>
+										<div class="form-group m-form__group row">
+											<label for="example-text-input">
+											</label>
+											<div class="col-10">
+												<select class="form-control m-input" name="kelurahan" type="text" id="kel">
+													<option value="0">Semua Kelurahan </option>
+													@if($k!==NULL)
+													@foreach ($k as $a)
+													<option value="{{ $a->id }}" @if(strpos($url, 'kelurahan=' .strval($a->id) )!==false) selected
+														@endif> {{$a->nama}}</option>
+													@endforeach
+													@endif
+												</select>
+											</div>
+										</div>
+										<button type="submit" id="btn" class="btn btn-info">
+											Cari
+										</button>
+										<a href="http://localhost/appbimbel/public/dashboardsiswa" class="btn btn-danger">Reset</a>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div> -->
+			<div class="col-xl-3">
+				<div class="m-portlet m-portlet--accent m-portlet--head-solid-bg m-portlet--head-sm" data-portlet="true" id="m_portlet_tools_1">
+					<div class="m-portlet__head">
+						<div class="m-portlet__head-caption">
+							<div class="m-portlet__head-title">
+								<h3 class="m-portlet__head-text">
+									Filter
+								</h3>
+							</div>
+						</div>
+						<div class="m-portlet__head-tools">
+							<ul class="m-portlet__nav">
+								<li class="m-portlet__nav-item">
+									<a href="" data-portlet-tool="toggle" class="m-portlet__nav-link m-portlet__nav-link--icon">
+										<i class="la la-angle-down"></i>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="m-portlet__body @if($filter=='nggak') collapse @else @endif">
+						<form id="formFilter" method="GET" action="dashboardsiswa" enctype="multipart/form-data">
+							<div class="m-widget4">
+								<div class="m-widget4__item">
+									<div class="m-widget4__info">
+										<span class="m-widget4__text">
+											Pendidikan Mentor
+										</span>
+										<span class="m-widget14__title">
+											<div class="form-group m-form__group row">
+												<div class="col-12">
+													<select onchange="myFunction()" class="form-control m-input" id="pend" name="pendidikan" type="text">
+														<option value="4" @if(strpos($url,'pendidikan=4' )!==false) selected @endif>Semua Jenjang</option>
+														<option value="1" @if(strpos($url,'pendidikan=1' )!==false) selected @endif> SMA/SMK sederajat</option>
+														<option value="2" @if(strpos($url,'pendidikan=2' )!==false) selected @endif> D3 sederajat</option>
+														<option value="3" @if(strpos($url,'pendidikan=3' )!==false) selected @endif> Strata sederajat</option>
 													</select>
 												</div>
-												</div>
-											</span>
+											</div>
+										</span>
+									</div>
+								</div>
+								<div class="m-widget4__item">
+									<div class="m-widget4__info">
+										<span class="m-widget4__text">
+											Mata Pelajaran
+										</span>
+										<div class="m-checkbox-list">
+											<label class="m-checkbox">
+												<input class="myCheckBox" value="true" id="bin" name="bin" type="checkbox" @if(strpos($url,'bin' )!==false) checked @endif>
+												Bahasa Indonesia
+												<span></span>
+											</label>
+										</div>
+										<div class="m-checkbox-list">
+											<label class="m-checkbox">
+												<input class="myCheckBox" value="true" id="mtk" name="mtk" type="checkbox" @if(strpos($url,'mtk' )!==false) checked @endif>
+												Matematika
+												<span></span>
+											</label>
+										</div>
+										<div class="m-checkbox-list">
+											<label class="m-checkbox">
+												<input class="myCheckBox" value="true" id="ipa" name="ipa" type="checkbox" @if(strpos($url,'ipa' )!==false) checked @endif>
+												IPA
+												<span></span>
+											</label>
+										</div>
+										<div class="m-checkbox-list">
+											<label class="m-checkbox">
+												<input class="myCheckBox" value="true" id="ips" name="ips" type="checkbox" @if(strpos($url,'ips' )!==false) checked @endif>
+												IPS
+												<span></span>
+											</label>
+										</div>
+										<div class="m-checkbox-list">
+											<label class="m-checkbox">
+												<input class="myCheckBox" value="true" id="big" name="big" type="checkbox" @if(strpos($url,'big' )!==false) checked @endif>
+												Bahasa Inggris
+												<span></span>
+											</label>
 										</div>
 									</div>
 								</div>
-								<div class="col-xl-4">
-									<div class="m-widget14">
-										<div class="m-widget14__header m--margin-bottom">
-											<span class="m-widget14__title">
-												Mata Pelajaran
-											</span>
-											<div class="m-checkbox-list">
-												<label class="m-checkbox">
-													<input class="myCheckBox" value="true" id="bin" name="bin" type="checkbox" @if(strpos($url,'bin'
-														)!==false) checked @endif>
-													Bahasa Indonesia
-													<span></span>
-												</label>
-											</div>
-											<div class="m-checkbox-list">
-												<label class="m-checkbox">
-													<input class="myCheckBox" value="true" id="mtk" name="mtk" type="checkbox" @if(strpos($url,'mtk'
-														)!==false) checked @endif>
-													Matematika
-													<span></span>
-												</label>
-											</div>
-											<div class="m-checkbox-list">
-												<label class="m-checkbox">
-													<input class="myCheckBox"  value="true" id="ipa" name="ipa" type="checkbox" @if(strpos($url,'ipa'
-														)!==false) checked @endif>
-													IPA
-													<span></span>
-												</label>
-											</div>
-											<div class="m-checkbox-list">
-												<label class="m-checkbox">
-													<input class="myCheckBox" value="true" id="ips"  name="ips" type="checkbox" @if(strpos($url,'ips'
-														)!==false) checked @endif>
-													IPS
-													<span></span>
-												</label>
-											</div>
-											<div class="m-checkbox-list">
-												<label class="m-checkbox">
-													<input class="myCheckBox" value="true" id="big" name="big" type="checkbox" @if(strpos($url,'big'
-														)!==false) checked @endif>
-													Bahasa Inggris
-													<span></span>
-												</label>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-xl-4">
-									<div class="m-widget14">
-										<div class="m-widget14__header m--margin-bottom">
-											<span class="m-widget14__title">
-												Alamat
-											</span>
-											<div class="m-form__group form-group">
-												<div class="form-group m-form__group row">
-													<div class="col-10">
-														<select class="form-control m-input" id="prov" name="provinsi"
-															type="text">
-															<option value="0">Semua Provinsi</option>
-															@foreach ($p as $a)
-															<option value="{{ $a->id }}" @if(strpos($url, 'provinsi='.strval($a->id) )!==false) selected
-																	@endif> {{$a->nama}}</option>
-															@endforeach
-														</select>
-													</div>
+								<div class="m-widget4__item">
+									<div class="m-widget4__info">
+										<span class="m-widget4__text">
+											Alamat
+										</span>
+										<div class="m-form__group form-group">
+											<div class="form-group m-form__group row">
+												<div class="col-12">
+													<select class="form-control m-input" id="prov" name="provinsi" type="text">
+														<option value="0">Semua Provinsi</option>
+														@foreach ($p as $a)
+														<option value="{{ $a->id }}" @if(strpos($url, 'provinsi=' .strval($a->id) )!==false) selected
+															@endif> {{$a->nama}}</option>
+														@endforeach
+													</select>
 												</div>
-												<div class="form-group m-form__group row">
-													<label for="example-text-input">
-													</label>
-													<div class="col-10">
-														<select class="form-control m-input" name="kabupaten"
-															type="text" id="kab">
-															<option value="0">Semua Kabupaten</option>
-															@if($b!==NULL)
-															@foreach ($b as $a)
-															<option value="{{ $a->id }}" @if(strpos($url, 'kabupaten='.strval($a->id) )!==false) selected
-																	@endif> {{$a->nama}}</option>
-															@endforeach
-															@endif
-															
-														</select>
-													</div>
-												</div>
-												<div class="form-group m-form__group row">
-													<label for="example-text-input">
-													</label>
-													<div class="col-10">
-														<select class="form-control m-input" name="kecamatan"
-															type="text" id="kec">
-															<option value="0">Semua Kecamatan </option>
-															@if($c!==NULL)
-															@foreach ($c as $a)
-															<option value="{{ $a->id }}" @if(strpos($url, 'kecamatan='.strval($a->id) )!==false) selected
-																	@endif> {{$a->nama}}</option>
-															@endforeach
-															@endif
-														</select>
-													</div>
-												</div>
-												<div class="form-group m-form__group row">
-													<label for="example-text-input">
-													</label>
-													<div class="col-10">
-														<select class="form-control m-input" name="kelurahan"
-															type="text" id="kel">
-															<option value="0">Semua Kelurahan </option>
-															@if($k!==NULL)
-															@foreach ($k as $a)
-															<option value="{{ $a->id }}" @if(strpos($url, 'kelurahan='.strval($a->id) )!==false) selected
-																	@endif> {{$a->nama}}</option>
-															@endforeach
-															@endif
-														</select>
-													</div>
-												</div>
-												<button type="submit" id="btn" class="btn btn-info">
-													Cari
-												</button>
-												<a href="http://localhost/appbimbel/public/dashboardsiswa" class="btn btn-danger">Reset</a>
 											</div>
+											<div class="form-group m-form__group row">
+												<label for="example-text-input">
+												</label>
+												<div class="col-12">
+													<select class="form-control m-input" name="kabupaten" type="text" id="kab">
+														<option value="0">Semua Kabupaten</option>
+														@if($b!==NULL)
+														@foreach ($b as $a)
+														<option value="{{ $a->id }}" @if(strpos($url, 'kabupaten=' .strval($a->id) )!==false) selected
+															@endif> {{$a->nama}}</option>
+														@endforeach
+														@endif
+													</select>
+												</div>
+											</div>
+											<div class="form-group m-form__group row">
+												<label for="example-text-input">
+												</label>
+												<div class="col-12">
+													<select class="form-control m-input" name="kecamatan" type="text" id="kec">
+														<option value="0">Semua Kecamatan </option>
+														@if($c!==NULL)
+														@foreach ($c as $a)
+														<option value="{{ $a->id }}" @if(strpos($url, 'kecamatan=' .strval($a->id) )!==false) selected
+															@endif> {{$a->nama}}</option>
+														@endforeach
+														@endif
+													</select>
+												</div>
+											</div>
+											<div class="form-group m-form__group row">
+												<label for="example-text-input">
+												</label>
+												<div class="col-12">
+													<select class="form-control m-input" name="kelurahan" type="text" id="kel">
+														<option value="0">Semua Kelurahan </option>
+														@if($k!==NULL)
+														@foreach ($k as $a)
+														<option value="{{ $a->id }}" @if(strpos($url, 'kelurahan=' .strval($a->id) )!==false) selected
+															@endif> {{$a->nama}}</option>
+														@endforeach
+														@endif
+													</select>
+												</div>
+											</div>
+											<button type="submit" id="btn" class="btn btn-info">
+												Cari
+											</button>
+											<a href="http://localhost/appbimbel/public/dashboardsiswa" class="btn btn-danger">Reset</a>
 										</div>
 									</div>
 								</div>
@@ -241,8 +376,8 @@
 				</div>
 			</div>
 			@if($filter=='nggak')
-			<div class="col-xl-12">
-			<div class="m-portlet m-portlet--success m-portlet--head-solid-bg m-portlet--head-sm" data-portlet="true" id="m_portlet_tools_2">
+			<div class="col-xl-9">
+				<div class="m-portlet m-portlet--success m-portlet--head-solid-bg m-portlet--head-sm" data-portlet="true" id="m_portlet_tools_2">
 					<div class="m-portlet__head">
 						<div class="m-portlet__head-caption">
 							<div class="m-portlet__head-title">
@@ -262,15 +397,15 @@
 									@foreach($mentor as $m)
 									<div class="m-widget5__item">
 										<div class="m-widget5__pic">
-												@if($m->foto==NULL)
-												<img src="{{ url('/data_fileSiswa/default_photo_profile.png') }}" height="100px" width="100px" alt="Anda Belum Upload Foto" />
-												@else
-												<img src="{{ url('/data_file2/'.$m->foto) }}" alt="Tidak Ada Foto" />
-												@endif
-											</div>
+											@if($m->foto==NULL)
+											<img src="{{ url('/data_fileSiswa/default_photo_profile.png') }}" height="100px" width="100px" alt="Anda Belum Upload Foto" />
+											@else
+											<img src="{{ url('/data_file2/'.$m->foto) }}" alt="Tidak Ada Foto" />
+											@endif
+										</div>
 										<div class="m-widget5__content">
 											<h4 class="m-widget5__title">
-												{{$m->nm_depan}}
+												{{$m->nm_depan}} {{$m->nm_belakang}}
 											</h4>
 											<span class="m-widget5__desc m--font-info">
 												{{$m->prodi}}
@@ -279,10 +414,10 @@
 												<span class="m-widget5__author">
 													Kelas 2 SMP
 												</span>
-												</div>
+											</div>
 											<div class="m-widget5__info">
 												<span class="m-widget5__author">
-												{{$m->alamat}}
+													{{$m->alamat}}
 												</span>
 											</div>
 										</div>
@@ -298,7 +433,6 @@
 									@endforeach
 									{{ $mentor->links() }}
 									@endif
-									
 								</div>
 							</div>
 						</div>
@@ -307,7 +441,7 @@
 			</div>
 			@endif
 			@if($filter=='iya')
-			<div class="col-xl-12">
+			<div class="col-xl-9">
 				<div class="m-portlet m-portlet--success m-portlet--head-solid-bg m-portlet--head-sm" data-portlet="true" id="m_portlet_tools_2">
 					<div class="m-portlet__head">
 						<div class="m-portlet__head-caption">
@@ -324,22 +458,22 @@
 							<div class="tab-pane active" id="m_widget5_tab1_content" aria-expanded="true">
 								<!--begin::m-widget5-->
 								<div class="m-widget5">
-										@if($isCompleted->statusKomplit!==6)
-										<center> Hasil pencarian mentor akan muncul setelah data Anda lengkap </center>
-										@elseif($grup->isEmpty())
-										<center> Tidak Ada Hasil Pencarian </center>
-										@else
+									@if($isCompleted->statusKomplit!==6)
+									<center> Hasil pencarian mentor akan muncul setelah data Anda lengkap </center>
+									@elseif($grup->isEmpty())
+									<center> Tidak Ada Hasil Pencarian </center>
+									@else
 									@foreach($grup as $m)
 									<div class="m-widget5__item">
 										<div class="m-widget5__pic">
-												@if($m->foto==NULL)
-												<img src="{{ url('/data_fileSiswa/default_photo_profile.png') }}" height="100px" width="100px" alt="Anda Belum Upload Foto" />
-												@else
-												<img src="{{ url('/data_file2/'.$m->foto) }}" alt="Tidak Ada Foto" />
-												@endif</div>
+											@if($m->foto==NULL)
+											<img src="{{ url('/data_fileSiswa/default_photo_profile.png') }}" height="100px" width="100px" alt="Anda Belum Upload Foto" />
+											@else
+											<img src="{{ url('/data_file2/'.$m->foto) }}" alt="Tidak Ada Foto" />
+											@endif</div>
 										<div class="m-widget5__content">
 											<h4 class="m-widget5__title">
-												{{$m->nm_depan}}
+												{{$m->nm_depan}} {{$m->nm_belakang}}
 											</h4>
 											<span class="m-widget5__desc m--font-info">
 												{{$m->prodi}}
@@ -353,16 +487,16 @@
 										<div class="m-widget5__stats1">
 											<br>
 											<a href="detailmentor/{{$m->idmentor}}">
-											<button type="button" class="btn btn-outline-success btn-sm m-btn m-btn--custom">
-												Detail
-											</button>
+												<button type="button" class="btn btn-outline-success btn-sm m-btn m-btn--custom">
+													Detail
+												</button>
 											</a>
 										</div>
 									</div>
 									@endforeach
-									
+
 									@endif
-									
+
 									<!--end::m-widget5-->
 								</div>
 								@if($grup!=='iwak')

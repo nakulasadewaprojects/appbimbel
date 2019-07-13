@@ -3,7 +3,7 @@
 
 <div class="m-grid__item m-grid__item--fluid m-wrapper">
     <div class="m-content">
-        <div class="col-md-12">
+        <div class="col-lg-12">
             <div class="m-portlet m-portlet--success m-portlet--head-solid-bg m-portlet--head-sm" data-portlet="true" id="m_portlet_tools_2">
                 <div class="m-portlet">
                     <div class="m-portlet__head">

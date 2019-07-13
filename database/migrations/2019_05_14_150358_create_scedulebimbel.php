@@ -17,8 +17,8 @@ class CreateScedulebimbel extends Migration
             $table->bigIncrements('idsceduleBimbel');
             $table->string('NoIDBimbel')->nullable();
             $table->integer('durasi')->comment('hitungan hari')->nullable();
-            $table->datetime('startBimbel')->nullable();
-            $table->datetime('endBimbel')->nullable();
+            $table->date('startBimbel')->nullable();
+            $table->date('endBimbel')->nullable();
         });
     }
 
