@@ -719,7 +719,7 @@
 							</div>
 						</li>			
 						<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" data-menu-submenu-toggle="hover">
-							<a href="http://localhost/appbimbel/public/payment" class="m-menu__link">
+							<a href="http://localhost/appbimbel/public/informasiinvoice" class="m-menu__link">
 								<i class="m-menu__link-icon flaticon-information"></i>
 							</a>
 							<div class="m-menu__submenu">
@@ -809,6 +809,9 @@
 	{{-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script> --}}
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+	<!-- jQuery for carousel -->
+	<script src="http://localhost/appbimbel/public/js/owl.carousel.min.js"></script>
+	<script src="http://localhost/appbimbel/public/js/owl.custom.js"></script>
 
 	<script>
 		$(function() {

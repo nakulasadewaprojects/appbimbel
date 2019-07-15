@@ -19,6 +19,16 @@
 		</div>
 	</div>
 	@endif
+
+	<div class="m-subheader ">
+		<div class="d-flex align-items-center">
+			<div class="mr-auto">
+				<h3 class="m-subheader__title ">
+					Lihat Profil Saya
+				</h3>
+			</div>
+		</div>
+	</div>
 	<div class="m-content">
 		<div class="row">
 			<div class="col-xl-3 col-lg-4">
@@ -86,7 +96,7 @@
 				<div class="m-portlet m-portlet--full-height m-portlet--tabs  ">
 					<div class="tab-content">
 						<div class="tab-pane active">
-							<div class="m-portlet m-portlet--success m-portlet--head-solid-bg m-portlet--head-sm" data-portlet="true" id="m_portlet_tools_2">
+							<div class="m-portlet m-portlet--success m-portlet--head-solid-bg">
 								<div class="m-portlet__head">
 									<div class="m-portlet__head-caption">
 										<div class="m-portlet__head-title">

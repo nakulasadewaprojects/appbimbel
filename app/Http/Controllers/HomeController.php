@@ -362,13 +362,19 @@ class HomeController extends Controller
             'Aktifitas'=>$request->aktivitas,
             'Catatan'=>$request->catatan,
             ]);
-          return redirect('/dashboard');
+          return redirect('/datareport');
         }
     public function datareport(){
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
-        return view('datareport' , ['isCompleted' => $showing, 'm' => $mentor]);
+        $report = DB::table('hasilpembelajaran')->get(); 
+        return view('datareport' , ['isCompleted' => $showing, 'm' => $mentor, 'datareport' => $report]);
     }
+    public function hapusreport($id){
+        DB::table('hasilpembelajaran')->where('idhasilpembelajaran',$id)->delete();
+        return redirect('/datareport');
+    } 
+
     public function export_excel(Request $request)
 	{
         $date=$request['daterange'];
@@ -544,7 +550,12 @@ class HomeController extends Controller
         ]);
     return redirect('/datamultimedia');
     }
-
+    public function informasiinvoice(){
+        $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
+        $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
+        $datamultimedia = DB::table('contentvideo')->get();
+        return view('informasiinvoice' , ['isCompleted' => $showing, 'm' => $mentor, 'multimedia' => $datamultimedia]);
+    }
     public function update($idmentor, Request $request)
     {
         $this->validate($request, [

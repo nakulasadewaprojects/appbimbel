@@ -33,7 +33,24 @@
 		</div>
 	</div>
 	@endif
-
+	{{-- <div class="col-md-6">
+		<div class="white-box">			
+			<!-- START carousel-->
+			<div id="carousel-example-captions-1" data-ride="carousel" class="carousel slide">
+				<ol class="carousel-indicators">
+					<li data-target="#carousel-example-captions-1" data-slide-to="0" class="active"></li>
+					<li data-target="#carousel-example-captions-1" data-slide-to="1"></li>
+					<li data-target="#carousel-example-captions-1" data-slide-to="2"></li>
+				</ol>
+				<div role="listbox" class="carousel-inner">
+					<div class="carousel-item active"> <img src="http://localhost/appbimbel/public/assets/img/img4.jpg" alt="First slide image"> </div>
+					<div class="carousel-item"> <img src="http://localhost/appbimbel/public/assets/img/img5.jpg" alt="Second slide image"> </div>
+					<div class="carousel-item"> <img src="http://localhost/appbimbel/public/assets/img/img6.jpg" alt="Third slide image"> </div>
+				</div>
+			</div>
+			<!-- END carousel-->
+		</div>
+	</div> --}}
 	<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 		<div class="carousel-inner">
 			<div class="carousel-item active">
@@ -117,23 +134,7 @@
 						</div>
 						<!--end:: Widgets/Stats2-1 -->
 					</div>
-					<div class="col-xl-4">
-						<!--begin:: Widgets/Daily Sales-->
-						<div class="m-widget14">
-							<div class="m-widget14__header m--margin-bottom-30">
-								<h3 class="m-widget14__title">
-									Daily Report
-								</h3>
-								{{-- <span class="m-widget14__desc">
-									Check out each collumn for more details
-								</span> --}}
-							</div>
-							<div class="m-widget14__chart" style="height:120px;">
-								<canvas id="m_chart_daily_sales"></canvas>
-							</div>
-						</div>
-						<!--end:: Widgets/Daily Sales-->
-					</div>
+					
 					<div class="col-xl-4">
 						<!--begin:: Widgets/Profit Share-->
 						<div class="m-widget14">
