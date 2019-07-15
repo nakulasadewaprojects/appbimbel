@@ -17,21 +17,28 @@
                 </div>
                 <div class="m-portlet__body">
                     <div class="m-widget4">
+                        @foreach ($quiz as $q)
                         <div class="m-widget4__item">
                             <div class="m-widget4__img m-widget4__img--icon">
-                                <img src="assets/app/media/img/files/doc.svg" alt="">
+                               <img src="assets/app/media/img/files/pdf.svg" alt="" id="myPDF">
+                                <a target="_blank" href="{{ url('/data_quiz/'.$q->filequiz) }}">{{$q->judul}}</a>
+
                             </div>
+<!--
                             <div class="m-widget4__info">
                                 <span class="m-widget4__text">
                                     Metronic Documentation
                                 </span>
                             </div>
+-->
                             <div class="m-widget4__ext">
                                 <a href="#" class="m-widget4__icon">
                                     <i class="la la-download"></i>
                                 </a>
                             </div>
                         </div>
+                        @endforeach
+<!--
                         <div class="m-widget4__item">
                             <div class="m-widget4__img m-widget4__img--icon">
                                 <img src="assets/app/media/img/files/jpg.svg" alt="">
@@ -47,6 +54,8 @@
                                 </a>
                             </div>
                         </div>
+-->
+<!--
                         <div class="m-widget4__item">
                             <div class="m-widget4__img m-widget4__img--icon">
                                 <img src="assets/app/media/img/files/pdf.svg" alt="">
@@ -62,6 +71,8 @@
                                 </a>
                             </div>
                         </div>
+-->
+<!--
                         <div class="m-widget4__item">
                             <div class="m-widget4__img m-widget4__img--icon">
                                 <img src="assets/app/media/img/files/javascript.svg" alt="">
@@ -77,6 +88,8 @@
                                 </a>
                             </div>
                         </div>
+-->
+<!--
                         <div class="m-widget4__item">
                             <div class="m-widget4__img m-widget4__img--icon">
                                 <img src="assets/app/media/img/files/zip.svg" alt="">
@@ -92,6 +105,8 @@
                                 </a>
                             </div>
                         </div>
+-->
+<!--
                         <div class="m-widget4__item">
                             <div class="m-widget4__img m-widget4__img--icon">
                                 <img src="assets/app/media/img/files/pdf.svg" alt="">
@@ -107,6 +122,7 @@
                                 </a>
                             </div>
                         </div>
+-->
                     </div>
                 </div>
             </div>

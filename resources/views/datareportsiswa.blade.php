@@ -56,77 +56,55 @@
 									<!--end: Search Form -->
 								<!--begin: Datatable -->
 									<table class="m-datatable" id="html_table" width="100%">
-										<thead>
-											<tr>
-												<th title="Field #1">
-													Nama Modul
-												</th>
-												<th title="Field #4">
-													File
-												</th>
-												<th title="Field #5">
-													Jenjang Pendidikan
-												</th>
-												<th title="Field #5">
-													Mata Pelajaran
-												</th>
-												<th title="Field #2">
-														Tanggal Upload
-													</th>
-												<th title="Field #7">
-													Action
-												</th>
-											</tr>
-										</thead>
-										{{-- <tbody>
-										@foreach($tutorial as $t)
+								<thead>
+									<tr>
+                                        <th title="Field #2">
+											Tanggal Bibel 
+										</th>
+										<th title="Field #1">
+											Nama Siswa
+										</th>
+										<th title="Field #2">
+											Mata Pelajaran
+										</th>
+										<th title="Field #8">
+											Modul
+										</th>
+                                        <th title="Field #8">
+											Ktivitas
+										</th>
+                                        <th title="Field #8">
+											Catatan
+										</th>
+                                        
+									</tr>
+								</thead>
+										 <tbody>
+										@foreach($report as $t)
 										<tr>											
 											<td>
-												{{$t->nama_modul}}
+												{{$t->TglBimbel}}
 											</td>
 											<td>
-												<img src="assets/app/media/img/files/pdf.svg" height="30px" width="30px" alt="" id="myPDF">
-												<a target="_blank" href="{{ url('/data_modul/'.$t->file) }}">{{$t->file}}<a />
+												{{$t->NamaLengkap}}
 											</td>
 											<td>
-												@if($t->jenjangpendidikan==1)
-												SD
-												@elseif($t->jenjangpendidikan==2)
-												SMP
-												@elseif($t->jenjangpendidikan==3)
-												SMA
-												@else
-												SMK
-												@endif
+												{{$t->MatPel}}
 											</td>
 											<td>
-													@if($t->matpel==1)
-													Bhs. Indonesia
-													@elseif($t->matpel==2)
-													Matematika
-													@elseif($t->matpel==3)
-													IPA
-													@elseif($t->matpel==4)
-													IPS
-													@else
-													Bhs. Iggris
-													@endif
+												{{$t->ModulMatpel}}
+	
 											</td>
-											<td>{{$t->tgl_upload}}</td>
+											<td>
+                                                {{$t->Aktifitas}}
+                                            </td>
 											
 											<td>
-												<a href="http://localhost/appbimbel/public/datatutorial/hapustutorial/{{$t->idmodul}}" class="btn btn-danger m-btn m-btn--icon m-btn--icon-only">
-														<i class="la la-folder"></i>
-												</a>
-												<a href="http://localhost/appbimbel/public/datatutorial/edittutorial/{{$t->idmodul}}" class="btn btn-warning m-btn m-btn--icon m-btn--icon-only">
-													<i class="la la-edit"></i>	
-												</a>
-																								
-											
+                                                {{$t->Catatan}}
 											</td>																			
 										</tr>
 										@endforeach
-										</tbody>  --}}
+										</tbody>  
 										
 									</table>
 									<!--end: Datatable -->

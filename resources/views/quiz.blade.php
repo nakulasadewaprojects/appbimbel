@@ -20,7 +20,7 @@
                             </div>
                         </div>
                         <!--begin::Form-->
-                        <form class="m-form m-form--label-align-right" action="http://localhost/appbimbel/public/multimedia/input" method="POST" enctype="multipart/form-data">
+                        <form class="m-form m-form--label-align-right" action="http://localhost/appbimbel/public/quiz/input" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div class="m-portlet__body">
                                 <div class="m-form__section m-form__section--first">
@@ -44,9 +44,47 @@
                                             </span>
                                         </div>
                                     </div>
-                                    
+                                     <div class="form-group m-form__group row">
+                                        <label class="col-form-label col-lg-2 col-sm-15">
+                                            File Upload
+                                        </label>
+                                        <div class="col-lg-4 col-md-9 col-sm-12">
+                                            <input type="file" name="quiz" accept="application/pdf" class="form-control m-input">
 
-                                    <br>
+                                            {{-- <div class="m-dropzone dropzone m-dropzone--success" action="inc/api/dropzone/upload.php" id="m-dropzone-three">
+                                            <div class="m-dropzone__msg dz-message needsclick">
+                                            <input type="file" name="modul" accept="application/pdf" class="form-control m-input" >
+
+                                                <h3 class="m-dropzone__msg-title">
+                                                    Drop files here or click to upload.
+                                                </h3>
+                                                <span class="m-dropzone__msg-desc">
+
+                                                    Only image, pdf and psd files are allowed for upload
+                                                </span>
+                                            </div>
+                                        </div> --}}
+                                            {{-- <input type="file" name="modul" accept="application/pdf" class="form-control m-input"> --}}
+                                            {{-- <div class="dropzone">
+                                                    <div class="fallback">
+                                                            <input name="file" type="file" multiple />
+                                                          </div>
+                                            </div> --}}
+                                            {{-- <div id="dropzone">
+                                                <div class="dropzone needsclick" id="demo-upload">
+
+                                                    <div class="dz-message needsclick">
+                                                    Drop files here or click to upload.<br />
+                                                    <span class="note needsclick">(This is just a demo dropzone. Selected files are <strong>not</strong> actually uploaded.)</span>
+                                                    </div>
+                                              
+                                                 </div>
+                                            </div> --}}
+                                            <span class="m-form__help">
+                                                *Upload File PDF max 2 mb
+                                            </span>
+                                        </div>
+                                    </div>
                                     <div class="m-portlet__foot m-portlet__foot--fit">
                                         <div class="m-form__actions m-form__actions">
                                             <div class="row">

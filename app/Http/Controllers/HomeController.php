@@ -290,10 +290,29 @@ class HomeController extends Controller
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
         return view('quiz' , ['isCompleted' => $showing, 'm' => $mentor]);
     }
+    public function inputQuiz(Request $request){
+            $tglentry=Carbon::now();
+            $TbmentorNoID= DB::table('tbmentor')->where('idmentor',Auth::user()->idmentor)->value('NoIDMentor');
+            $quiz = $request->file('quiz');
+            $nama_quiz = time().'.'.$quiz->getClientOriginalExtension();
+            $tujuan_upload = public_path('/data_quiz') ;
+            $quiz->move($tujuan_upload, $nama_quiz);
+            
+        DB::table('quiz')->insert([
+            'NoIdMentor'=> $TbmentorNoID,
+            'created_at'=> $tglentry,
+            'judul'=>$request->judul,
+            'filequiz'=>$nama_quiz,
+            'diskripsi'=>$request->deskripsi
+        ]);
+      return redirect('/dataquiz');
+    }
     public function dataquiz(){
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
-        return view('dataquiz' , ['isCompleted' => $showing, 'm' => $mentor]);
+        $dataquiz = DB::table('quiz')->where('NoIdMentor', Auth::user()->NoIDMentor)->get(); 
+
+        return view('dataquiz' , ['isCompleted' => $showing, 'm' => $mentor, 'quiz'=>$dataquiz]);
     }
     public function nilaiquiz(){
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
@@ -332,7 +351,7 @@ class HomeController extends Controller
         }
         DB::table('hasilpembelajaran')->insert([
             'no_id'=>$noidreport,
-            'IdMentor'=>$request->idmentor,
+            'IdMentor'=>$TbMentorNoID,
             'IdSiswa'=>$request->siswa,
             'created_at'=>$created_at,
             'TglBimbel'=>Carbon::parse($request['tglBimbel'])->format('Y-m-d'),

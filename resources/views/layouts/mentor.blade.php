@@ -38,7 +38,8 @@
 	<link rel="stylesheet" href="http://localhost/appbimbel/public/css/viewbox.css">
 	<link href="http://localhost/appbimbel/public/css/jquery.touchPDF.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-
+	{{-- <link rel="stylesheet" href="http://localhost/appbimbel/public/css/dropzone.css" />
+	<link rel="stylesheet" href="http://localhost/appbimbel/public/css/dropzonestyle.css" /> --}}
 </head>
 <body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-light m-aside-left--fixed m-aside-left--offcanvas m-aside-left--minimize m-brand--minimize m-footer--push m-aside--offcanvas-default">
 	<div class="m-grid m-grid--hor m-grid--root m-page">
@@ -804,6 +805,7 @@
 	<script src="http://localhost/appbimbel/public/js/bootstrap-datepicker.js" type="text/javascript"></script>
 	<script src="http://localhost/appbimbel/public/js/bootstrap-select.js" type="text/javascript"></script>
 	<script src="http://localhost/appbimbel/public/js/bootstrap-timepicker.js" type="text/javascript"></script>
+	<script src="http://localhost/appbimbel/public/js/dropzone.js" type="text/javascript"></script>
 	{{-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script> --}}
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>

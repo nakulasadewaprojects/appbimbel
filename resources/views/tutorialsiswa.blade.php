@@ -18,40 +18,11 @@
                 <div class="m-portlet__body">
                     <div class="m-widget4">
                         @foreach ($modul as $md)
-                        {{-- <div class="m-widget4__item">
-                            <div class="m-widget4__img m-widget4__img--icon">
-                                <img src="assets/app/media/img/files/doc.svg" alt="">
-                            </div>
-                            <div class="m-widget4__info">
-                                <span class="m-widget4__text">
-                                    Metronic Documentation
-                                </span>
-                            </div>
-                            <div class="m-widget4__ext">
-                                <a href="#" class="m-widget4__icon">
-                                    <i class="la la-download"></i>
-                                </a>
-                            </div>
-                        </div> --}}
-                        {{-- <div class="m-widget4__item">
-                            <div class="m-widget4__img m-widget4__img--icon">
-                                <img src="assets/app/media/img/files/jpg.svg" alt="">
-                            </div>
-                            <div class="m-widget4__info">
-                                <span class="m-widget4__text">
-                                    Make JPEG Great Again
-                                </span>
-                            </div>
-                            <div class="m-widget4__ext">
-                                <a href="#" class="m-widget4__icon">
-                                    <i class="la la-download"></i>
-                                </a>
-                            </div>
-                        </div> --}}
+                       
                         <div class="m-widget4__item">
                             <div class="m-widget4__img m-widget4__img--icon">
                                 <img src="assets/app/media/img/files/pdf.svg" alt="" id="myPDF">
-								<a target="_blank" href="{{ url('/data_modul/'.$md->file) }}">{{$md->nama_modul}}<a />
+                                <a target="_blank" href="{{ url('/data_modul/'.$md->file) }}">{{$md->nama_modul}}</a>
 
                             </div>
                             <div class="m-widget4__info">

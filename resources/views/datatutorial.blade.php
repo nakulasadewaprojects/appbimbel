@@ -86,7 +86,7 @@
 											</td>
 											<td>
 												<img src="assets/app/media/img/files/pdf.svg" height="30px" width="30px" alt="" id="myPDF">
-												<a target="_blank" href="{{ url('/data_modul/'.$t->file) }}">{{$t->file}}<a />
+                                                <a target="_blank" href="{{ url('/data_modul/'.$t->file) }}">{{$t->file}}</a>
 											</td>
 											<td>
 												@if($t->jenjangpendidikan==1)

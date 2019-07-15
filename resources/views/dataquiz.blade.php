@@ -58,35 +58,38 @@
 							<table class="m-datatable" id="html_table" width="100%">
 								<thead>
 									<tr>
+                                        <th title="Field #2">
+											Tanggal Upload
+										</th>
 										<th title="Field #1">
-											Nama 
+											Nama Quiz
 										</th>
 										<th title="Field #2">
 											File
 										</th>
+                                        
 									
 										<th title="Field #8">
 											Action
 										</th>
 									</tr>
 								</thead>
-								{{-- <tbody>
-										@foreach($paket as $p)
+								<tbody>
+										@foreach($quiz as $p)
 										<tr>
-											
-											<td>{{$p->nmpaket}}</td>
-								<td>Rp. {{$p->harga}}</td>
-								<td>{{$p->durasi}} bulan</td>
-								<td>{{$p->hari}}</td>
-								<td>{{$p->wkt_mulai}}</td>
-								<td>{{$p->wkt_akhir}}</td>
-								<td>{{$p->matpel}}</td>
-								<td>{{$p->keterangan}}</td>
-								<td>{{$p->statusPaket}}</td>
+											<td>{{$p->created_at}}</td>
+											<td>{{$p->judul}}</td>
+<!--                                            <td>filequiz{{$p->filequiz}}</td>-->
+                                            <td>
+                                                <img src="assets/app/media/img/files/pdf.svg" height="30px" width="30px" alt="" id="myPDF">
+                                                <a target="_blank" href="{{ url('/data_quiz/'.$p->filequiz) }}">{{$p->filequiz}}</a>
+                                            </td>
+<!--                                            <td>{{$p->diskripsi}}</td>-->
+                
 
 								</tr>
 								@endforeach
-								</tbody> --}}
+								</tbody>
 
 							</table>
 							<!--end: Datatable -->
@@ -98,5 +101,4 @@
 	</div>
 </div>
 
-</div>
 @endsection
