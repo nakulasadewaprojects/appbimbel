@@ -130,9 +130,17 @@ class HomeController extends Controller
        }
 
     public function jadwal(){
+        $jadwalBimb=DB::table('siswabimbel')
+        ->join('scedulebimbel', 'siswabimbel.NoIDBimbel', '=', 'scedulebimbel.NoIDBimbel')
+        ->join('sceduletutor', 'sceduletutor.NoIDBimbel', '=', 'scedulebimbel.NoIDBimbel')
+        ->join('tbsiswa','tbsiswa.NoIDSiswa','=','siswabimbel.NoIDSiswa')
+        ->join('tbdetailsiswa','tbdetailsiswa.idtbSiswa','=','tbsiswa.idtbSiswa')      
+        ->join('tbmentor','tbmentor.NoIDMentor','=','siswabimbel.NoIDTutor')
+        ->where('siswabimbel.NoIDTutor', Auth::user()->NoIDMentor)->get();
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();
         $showing = DB::table('tbdetailmentor')->where('idtbRiwayatTutor', Auth::user()->idmentor)->first();
-        return view('jadwal' , ['isCompleted' => $showing, 'm' => $mentor]);
+        return view('jadwal' , ['isCompleted' => $showing, 'm' => $mentor,'jadwal'=>$jadwalBimb]);
+        // return $jadwalBimb;
     }
     public function approvalmentor(){
         $mentor = DB::table('tbmentor')->where('idmentor', Auth::user()->idmentor)->first();

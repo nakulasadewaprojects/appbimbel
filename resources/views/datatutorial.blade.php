@@ -45,7 +45,7 @@
 													<span>
 														<i class="la la-cart-plus"></i>
 														<span>
-															New Order
+															<b>New Order</b> 
 														</span>
 													</span>
 												</a>

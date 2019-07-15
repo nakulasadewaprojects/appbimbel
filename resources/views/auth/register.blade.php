@@ -167,7 +167,7 @@
 											     <span></span>
                                                 </label>
                                             </div>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<blink><a data-target="#m_modal_1" data-toggle="modal" href="#m_modal_1">Baca persyaratan</a></blink>
+                                            {{-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<blink><a data-target="#m_modal_1" data-toggle="modal" href="#m_modal_1">Baca persyaratan</a></blink> --}}
                                       
                                             <div class="m-login__form-action">
                                             <!--                            <div class="col-md-6 offset-md-4">-->
